@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load static %}
+{% load vendor_static %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
@@ -12,8 +13,8 @@
     <title>{% block title %}{% trans "Homepage" %}{% endblock title %} – {{ settings.SITE_NAME }}</title>
 
     <!-- Bootstrap -->
-    <link href="{% static "vendor/bootstrap-4.3.1/css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "vendor/open-iconic-1.1.1/font/css/open-iconic-bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% vendor_static 'bootstrap' 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% vendor_static 'open-iconic' 'css/open-iconic-bootstrap.min.css' %}">
     <link href="{% static "css/common.css" %}" rel="stylesheet">
     {% load static %}
 
@@ -60,9 +61,14 @@
       {% include 'petition/image_upload_url.js' %}
     </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static "vendor/jquery-3.3.1/jquery-3.3.1.min.js" %}"></script>
+    {% comment %} <script src="{% static "vendor/jquery-3.3.1/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "vendor/popper-1.14.6/popper.min.js" %}"></script>
-    <script src="{% static "vendor/bootstrap-4.3.1/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "vendor/bootstrap-4.3.1/js/bootstrap.min.js" %}"></script> {% endcomment %}
+
+    <script src="{% vendor_static 'jquery' 'jquery.min.js' %}"></script>
+    <script src="{% vendor_static 'popper' 'popper.min.js' %}"></script>
+
+    <script src="{% vendor_static 'bootstrap' 'js/bootstrap.bundle.min.js' %}"></script>
     {% block extrajs %}
     {% endblock %}
 </body>

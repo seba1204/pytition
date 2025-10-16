@@ -26,4 +26,9 @@ urlpatterns = [
     re_path(r'^tinymce/', include('tinymce.urls')),
     re_path(r'^i18n/', include('django.conf.urls.i18n')),
     re_path(r'^maintenance-mode/', include('maintenance_mode.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# Only in development: serve media and static files through Django.
+# In production, these should be served by the web server (e.g. nginx).
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

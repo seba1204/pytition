@@ -29,9 +29,15 @@ license = { text = "BSD 3-Clause" }
 [tool.pdm]
 distribution = false
 
+[tool.pytition.vendors]
+bootstrap = "4.3.1"
+open-iconic = "1.1.1"
+jquery = "3.3.1"
+popper = "1.14.6"
+
 [tool.pdm.scripts]
 manage = "python manage.py"
 
 [dependency-groups]
-dev = ["whitenoise>=6.11.0"]
+dev = []
 docs = ["coverage==4.5.2", "sphinx", "sphinx-rtd-theme"]

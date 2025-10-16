@@ -32,6 +32,10 @@ ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "[::1]"]
 # ──────────────────────────────────────────────────────────────────────────────
 
 INSTALLED_APPS = [
+    # Pytition apps
+    "apps.core",
+    "apps.petition",
+
     # Django core
     "django.contrib.admin",
     "django.contrib.auth",
@@ -47,9 +51,6 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "formtools",
     "phonenumber_field",
-
-    # Pytition apps
-    "apps.petition", # apps.petition.apps.PetitionConfig
 ]
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -58,7 +59,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
