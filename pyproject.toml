@@ -30,4 +30,4 @@ distribution = false
 
 [dependency-groups]
 dev = ["whitenoise>=6.11.0"]
-test = ["coverage==4.5.2", "sphinx", "sphinx-rtd-theme"]
+docs = ["coverage==4.5.2", "sphinx", "sphinx-rtd-theme"]
