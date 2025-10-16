@@ -2,5 +2,9 @@
 Small delta for development.
 """
 
+
 DEBUG = True
-ALLOWED_HOSTS = ["*"]  # dev convenience
+
+# dev convenience
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = []

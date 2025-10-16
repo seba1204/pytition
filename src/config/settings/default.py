@@ -49,16 +49,7 @@ MAINTENANCE_MODE_STATE_FILE_PATH = "/tmp/pytition_maintenance_mode"
 # ──────────────────────────────────────────────────────────────────────────────
 # Language setup extras
 # ──────────────────────────────────────────────────────────────────────────────
-
-LANGUAGES = [
-    ("fr", "Français"),
-    ("en", "English"),
-]
 PHONENUMBER_DEFAULT_REGION = "FR"
-
-# If you customize LANG_INFO / EXTRA_LANG_INFO, declare them here as dicts
-EXTRA_LANG_INFO = {}
-
 # ──────────────────────────────────────────────────────────────────────────────
 # UI / Editor
 # ──────────────────────────────────────────────────────────────────────────────

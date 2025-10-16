@@ -49,6 +49,13 @@ def iter_po_headers(po_path: Path) -> Dict[str, str]:
     return headers
 
 
+def normalize_code(code: str) -> str:
+    """
+    Normalize locale codes to Django style: lowercase + hyphen.
+    Examples: 'fr_FR' -> 'fr-fr', 'pt_BR' -> 'pt-br', 'oc' -> 'oc'
+    """
+    return code.replace("_", "-").lower()
+
 def discover_locale_dirs(locale_paths: Iterable[Path]) -> Dict[str, Path]:
     """
     Return a mapping {code -> locale_dir} for locales that contain LC_MESSAGES/django.po|.mo.
@@ -61,7 +68,7 @@ def discover_locale_dirs(locale_paths: Iterable[Path]) -> Dict[str, Path]:
         for lang_dir in root.iterdir():
             if not lang_dir.is_dir():
                 continue
-            code = lang_dir.name.lower()
+            code = normalize_code(lang_dir.name)
             lc = lang_dir / "LC_MESSAGES"
             if (lc / "django.po").exists() or (lc / "django.mo").exists():
                 found[code] = lang_dir

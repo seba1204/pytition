@@ -5,11 +5,8 @@ Anything can still be overridden via .env / ENV.
 """
 from __future__ import annotations
 
-from django.conf.locale import LANG_INFO as DJANGO_LANG_INFO
-
-import re
 from pathlib import Path
-from typing import Dict, Iterable, Tuple
+from django.conf.locale import LANG_INFO as DJANGO_LANG_INFO
 
 from .helpers.i18n import build_languages
 
@@ -148,17 +145,17 @@ PASSWORD_HASHERS = [
 # Internationalization — auto-discover languages from LOCALE_PATHS
 # ──────────────────────────────────────────────────────────────────────────────
 
-LANGUAGE_CODE = "fr-fr"
 TIME_ZONE = "Europe/Paris"
 USE_I18N = True # Activate Django's translation system.
 USE_TZ = True # Use timezone-aware datetimes.
 USE_L10N = True # Format dates, numbers and calendars according to the current locale.
 
-LOCALE_PATHS = [SRC_DIR / "locale"] # for makemessages
+LOCALE_PATHS = [BASE_DIR / "locale"] # for makemessages
 
 # Build from your LOCALE_PATHS (declared above in this file)
 LANGUAGES, EXTRA_LANG_INFO = build_languages(LOCALE_PATHS)
-
+DJANGO_LANG_INFO.update(EXTRA_LANG_INFO)
+LANGUAGE_CODE = LANGUAGES[0][0]  # default to first available language
 # ──────────────────────────────────────────────────────────────────────────────
 # Static & Media
 # ──────────────────────────────────────────────────────────────────────────────
