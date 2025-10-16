@@ -2,9 +2,9 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
-from petition.models import Organization, Petition, PytitionUser, Permission
-from petition.helpers import get_update_form
-from petition.forms import DeleteAccountForm
+from .models import Organization, Petition, PytitionUser, Permission
+from .helpers import get_update_form
+from .forms import DeleteAccountForm
 from .utils import add_default_data
 
 

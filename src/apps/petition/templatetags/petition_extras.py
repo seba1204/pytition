@@ -1,5 +1,5 @@
 from django import template
-from petition.helpers import sanitize_html
+from .helpers import sanitize_html
 
 register = template.Library()
 

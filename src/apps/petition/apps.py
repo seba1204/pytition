@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
-
 class PetitionConfig(AppConfig):
-    name = 'petition'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.petition"
+    verbose_name = "Petitions"

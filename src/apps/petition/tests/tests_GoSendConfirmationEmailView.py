@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from .utils import add_default_data
 
-from petition.models import Petition, Signature, PytitionUser
+from .models import Petition, Signature, PytitionUser
 
 
 class GoSendConfirmationEmailViewTest(TestCase):

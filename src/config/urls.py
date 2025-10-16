@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.urls import include, re_path
 from django.contrib import admin
-from petition.views import index
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import index
 
 urlpatterns = [
     re_path(r'^$', index, name="index"),
-    re_path(r'^petition/', include('petition.urls')),
+    re_path(r'^petition/', include('apps.petition.urls')),
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^tinymce/', include('tinymce.urls')),
     re_path(r'^i18n/', include('django.conf.urls.i18n')),

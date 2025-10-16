@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from .utils import add_default_data
 
-from petition.models import Organization, Petition, PytitionUser
+from .models import Organization, Petition, PytitionUser
 
 
 class PetitionViewTest(TestCase):

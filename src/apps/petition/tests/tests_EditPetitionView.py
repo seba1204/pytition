@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-from petition.models import Organization, Petition, PytitionUser, Permission
+from .models import Organization, Petition, PytitionUser, Permission
 from .utils import add_default_data
 
 import os

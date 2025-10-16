@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-from petition.models import Organization, Petition, PytitionUser, SlugModel
+from .models import Organization, Petition, PytitionUser, SlugModel
 
 
 class PytitionUserTest(TestCase):

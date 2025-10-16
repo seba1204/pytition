@@ -2,7 +2,7 @@ import logging
 from django.core.management import BaseCommand
 from django.db.models import Count
 
-from petition.models import Petition, Moderation, ModerationReason, PytitionUser
+from .models import Petition, Moderation, ModerationReason, PytitionUser
 
 logger = logging.getLogger(__name__)
 

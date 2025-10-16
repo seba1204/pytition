@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.core.management import call_command
 from django.contrib.auth.models import User
 
-from petition.models import Organization, Permission, Petition, Signature
+from .models import Organization, Permission, Petition, Signature
 
 logging.disable(logging.CRITICAL)
 

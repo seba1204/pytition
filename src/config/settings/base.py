@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'maintenance_mode',
     'tinymce',
     'colorfield',
-    'petition.apps.PetitionConfig',
+    'apps.petition.apps.PetitionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,8 +70,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'petition.helpers.footer_content_processor',
-                'petition.helpers.settings_context_processor',
+                'apps.petition.helpers.footer_content_processor',
+                'apps.petition.helpers.settings_context_processor',
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
@@ -83,6 +83,12 @@ TEMPLATES = [
         },
     },
 ]
+
+DATABASES = {"default": {
+    "ENGINE": "django.db.backends.sqlite3",
+    "NAME": BASE_DIR / "db.sqlite3",
+}}
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"

@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.messages import constants
 
-from petition.models import Organization, Petition, PytitionUser, Signature, Permission
+from .models import Organization, Petition, PytitionUser, Signature, Permission
 from .utils import add_default_data
 
 

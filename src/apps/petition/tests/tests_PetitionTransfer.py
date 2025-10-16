@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.messages import get_messages
 
-from petition.models import Organization, Petition, PytitionUser, Permission
+from .models import Organization, Petition, PytitionUser, Permission
 
 
 users = ['julia', 'john', 'max', 'sarah']

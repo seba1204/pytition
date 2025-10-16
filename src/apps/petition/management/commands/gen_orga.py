@@ -1,7 +1,7 @@
 import logging
 from django.core.management.base import LabelCommand
 
-from petition.models import Organization
+from .models import Organization
 
 logger = logging.getLogger(__name__)
 
