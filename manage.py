@@ -10,7 +10,7 @@ except Exception:
     pass  # en prod, on peut s'appuyer sur de vraies vars d'env
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-                      os.getenv("DJANGO_SETTINGS_MODULE", "config.settings.dev"))
+                      os.getenv("DJANGO_SETTINGS_MODULE", "config.settings"))
 
 # Si tu utilises le src layout sans installer le paquet en dev
 sys.path.insert(0, os.getenv("PYTHONPATH", "src"))

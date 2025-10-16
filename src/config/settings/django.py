@@ -1,0 +1,187 @@
+"""
+All core Django settings with sane, minimal defaults.
+Developers are expected to tweak these in code if needed.
+Anything can still be overridden via .env / ENV.
+"""
+from __future__ import annotations
+
+from django.conf.locale import LANG_INFO as DJANGO_LANG_INFO
+
+import re
+from pathlib import Path
+from typing import Dict, Iterable, Tuple
+
+from .helpers.i18n import build_languages
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Paths
+# ──────────────────────────────────────────────────────────────────────────────
+
+BASE_DIR = Path(__file__).resolve().parents[3]  # repo root
+SRC_DIR = BASE_DIR / "src"
+BUILD_DIR = BASE_DIR / ".build"
+BUILD_DIR.mkdir(exist_ok=True)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Security
+# ──────────────────────────────────────────────────────────────────────────────
+
+SECRET_KEY = "CHANGE_ME_IN_PROD"
+DEBUG = True
+ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "[::1]"]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Applications
+# ──────────────────────────────────────────────────────────────────────────────
+
+INSTALLED_APPS = [
+    # Django core
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    # 3rd party
+    "maintenance_mode",
+    "tinymce",
+    "colorfield",
+    "widget_tweaks",
+    "formtools",
+    "phonenumber_field",
+
+    # Pytition apps
+    "apps.petition", # apps.petition.apps.PetitionConfig
+]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Middleware
+# ──────────────────────────────────────────────────────────────────────────────
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    # 3rd party
+    "maintenance_mode.middleware.MaintenanceModeMiddleware",
+]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# URL / WSGI / ASGI
+# ──────────────────────────────────────────────────────────────────────────────
+
+ROOT_URLCONF = "config.urls"
+
+WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Templates
+# ──────────────────────────────────────────────────────────────────────────────
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [SRC_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                # Custom
+                "apps.petition.helpers.footer_content_processor",
+                "apps.petition.helpers.settings_context_processor",
+
+                # Django built-in
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.template.context_processors.i18n",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+
+                # 3rd party
+                "maintenance_mode.context_processors.maintenance_mode",
+            ],
+        },
+    },
+]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Database
+# ──────────────────────────────────────────────────────────────────────────────
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": str(BUILD_DIR / "db.sqlite3"),
+    }
+}
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Password validation
+# ──────────────────────────────────────────────────────────────────────────────
+
+# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 9}},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Internationalization — auto-discover languages from LOCALE_PATHS
+# ──────────────────────────────────────────────────────────────────────────────
+
+LANGUAGE_CODE = "fr-fr"
+TIME_ZONE = "Europe/Paris"
+USE_I18N = True # Activate Django's translation system.
+USE_TZ = True # Use timezone-aware datetimes.
+USE_L10N = True # Format dates, numbers and calendars according to the current locale.
+
+LOCALE_PATHS = [SRC_DIR / "locale"] # for makemessages
+
+# Build from your LOCALE_PATHS (declared above in this file)
+LANGUAGES, EXTRA_LANG_INFO = build_languages(LOCALE_PATHS)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Static & Media
+# ──────────────────────────────────────────────────────────────────────────────
+
+STATIC_URL = "/static/"
+STATIC_ROOT = str(BUILD_DIR / "static")
+STATICFILES_DIRS = [BASE_DIR / "assets"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = str(BUILD_DIR / "media")
+
+FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Auth / Redirects
+# ──────────────────────────────────────────────────────────────────────────────
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Security headers
+# ──────────────────────────────────────────────────────────────────────────────
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
