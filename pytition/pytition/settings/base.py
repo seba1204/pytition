@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,12 +139,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
+# Default language code for this installation.
 LANGUAGE_CODE = 'en-us'
 
+# Activate Django's translation system.
 USE_I18N = True
-
+# Format dates, numbers and calendars according to the current locale.
 USE_L10N = True
-
+# Use timezone-aware datetimes.
 USE_TZ = True
 X_FRAME_OPTIONS = "SAMEORIGIN"
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"), )
@@ -272,7 +275,7 @@ DEFAULT_NOREPLY_MAIL = "noreply@domain.tld"
 
 MAINTENANCE_MODE_IGNORE_ADMIN_SITE = True
 # Following setting prevents error 500, due to issue #76 of django_maintenance_mode
-MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(BASE_DIR, 'maintenance_mode_state.txt')
+MAINTENANCE_MODE_STATE_FILE_PATH = '/home/chap/pytition/.cache/maintenance_mode_state.txt'
 
 # Set default region to France with regard to accepting phone numbers without international prefix.
 # The +33 prefix for France is therefore optional, but it might be mandatory to add a prefix for 
