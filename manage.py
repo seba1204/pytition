@@ -1,22 +1,19 @@
 #!/usr/bin/env python
-import os
-import sys
+import os, sys
+from pathlib import Path
 
-if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pytition.settings")
-    try:
-        from django.core.management import execute_from_command_line
-    except ImportError:
-        # The above import may fail for some other reason. Ensure that the
-        # issue is really that Django is missing to avoid masking other
-        # exceptions on Python 2.
-        try:
-            import django
-        except ImportError:
-            raise ImportError(
-                "Couldn't import Django. Are you sure it's installed and "
-                "available on your PYTHONPATH environment variable? Did you "
-                "forget to activate a virtual environment?"
-            )
-        raise
-    execute_from_command_line(sys.argv)
+# Optionnel: charge .env en dev/local
+try:
+    from dotenv import load_dotenv  # pip install python-dotenv
+    load_dotenv(dotenv_path=Path(".env"), override=False)
+except Exception:
+    pass  # en prod, on peut s'appuyer sur de vraies vars d'env
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE",
+                      os.getenv("DJANGO_SETTINGS_MODULE", "config.settings.dev"))
+
+# Si tu utilises le src layout sans installer le paquet en dev
+sys.path.insert(0, os.getenv("PYTHONPATH", "src"))
+
+from django.core.management import execute_from_command_line
+execute_from_command_line(sys.argv)

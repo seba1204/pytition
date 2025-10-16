@@ -61,7 +61,7 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
-ROOT_URLCONF = 'pytition.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -84,11 +84,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'pytition.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-
-if os.environ.get('USE_POSTGRESQL'):
-    from .pgsql import DATABASES
 
 #:| Set it to ``True`` if you want email sending to retry upon failure.
 #:| Email transmition naturally have retries *if the first SMTP server accepts it*
@@ -103,7 +100,7 @@ if os.environ.get('USE_POSTGRESQL'):
 #: * set a cron job (automatic task execution), or
 #: * serve the Django app through uwsgi (recommended setup)
 #:
-#: .. warning:: The first time you switch this setting from ``False`` to ``True``, you must run the ``DJANGO_SETTINGS_MODULE=pytition.settings.config python3 pytition/manage.py migrate`` command again. Beware to run it while being in your virtualenv.
+#: .. warning:: The first time you switch this setting from ``False`` to ``True``, you must run the ``DJANGO_SETTINGS_MODULE=config.settings.dev python3 pytition/manage.py migrate`` command again. Beware to run it while being in your virtualenv.
 USE_MAIL_QUEUE = False
 
 # set it to True if you use the 'mailer' backend, and a external Crontab has been set

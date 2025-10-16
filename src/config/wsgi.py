@@ -12,7 +12,7 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pytition.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev")
 from django.conf import settings
 
 if settings.USE_MAIL_QUEUE:
