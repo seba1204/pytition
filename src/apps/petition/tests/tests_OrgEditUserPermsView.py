@@ -1,9 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from .utils import add_default_data
+from apps.petition.models import PytitionUser
 
-from apps.petition.models import PytitionUser, Permission, Organization
+from .utils import add_default_data
 
 
 class OrgEditUserPermsViewTest(TestCase):
@@ -23,5 +23,10 @@ class OrgEditUserPermsViewTest(TestCase):
 
     def test_OrgEditUserPermsViewOk(self):
         julia = self.login("julia")
-        response = self.client.get(reverse("org_edit_user_perms", kwargs={'orgslugname': 'rap', 'user_name': 'julia'}))
+        response = self.client.get(
+            reverse(
+                "org_edit_user_perms",
+                kwargs={"orgslugname": "rap", "user_name": "julia"},
+            )
+        )
         self.assertEqual(response.status_code, 200)

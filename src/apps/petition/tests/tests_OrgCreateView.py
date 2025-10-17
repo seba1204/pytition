@@ -1,14 +1,15 @@
 from django.test import TestCase, override_settings
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 
-from apps.petition.models import Organization, Petition, PytitionUser, Permission
+from apps.petition.models import Organization, Permission, PytitionUser
+
 from .utils import add_default_data
 
 
 class OrgCreateViewTest(TestCase):
     """Test Org Creation view"""
+
     @classmethod
     def setUpTestData(cls):
         add_default_data()
@@ -32,34 +33,36 @@ class OrgCreateViewTest(TestCase):
 
     def test_CreateOK(self):
         john = self.login("john")
-        newname = 'my new-org with @ ç special_chars'
+        newname = "my new-org with @ ç special_chars"
         previous_org_numbers = john.organization_set.count()
         data = {
-            'name': newname,
+            "name": newname,
         }
         response = self.client.post(reverse("org_create"), data, follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
-        user = response.context['user']
+        user = response.context["user"]
         orgs = user.organization_set.all()
         self.assertEqual(user, john)
         self.assertEqual(len(orgs), previous_org_numbers + 1)
         org = Organization.objects.get(slugname=slugify(newname))
         self.assertEqual(org.slugname, slugify(newname))
         self.assertEqual(org.name, newname)
-        admins_perms = Permission.objects.filter(organization=org, can_modify_permissions=True)
+        admins_perms = Permission.objects.filter(
+            organization=org, can_modify_permissions=True
+        )
         self.assertGreaterEqual(admins_perms.count(), 1)
 
     def test_CreateAlreadyExistsKO(self):
         john = self.login("john")
-        newname = 'my new-org with @ ç special_chars'
+        newname = "my new-org with @ ç special_chars"
         previous_org_numbers = john.organization_set.count()
         data = {
-            'name': newname,
+            "name": newname,
         }
         # first creation
         response = self.client.post(reverse("org_create"), data, follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
-        user = response.context['user']
+        user = response.context["user"]
         orgs = user.organization_set.all()
         self.assertEqual(user, john)
         self.assertEqual(len(orgs), previous_org_numbers + 1)
@@ -75,29 +78,31 @@ class OrgCreateViewTest(TestCase):
 
     def test_CreateEmptyKO(self):
         john = self.login("john")
-        newname = ''
+        newname = ""
         previous_org_numbers = john.organization_set.count()
         data = {
-            'name': newname,
+            "name": newname,
         }
         response = self.client.post(reverse("org_create"), data)
         self.assertEqual(response.status_code, 200)
-        user = response.context['user']
+        user = response.context["user"]
         orgs = user.organization_set.all()
         self.assertEqual(user, john)
         self.assertEqual(len(orgs), previous_org_numbers)
-        empty_org_name_number = Organization.objects.filter(name='').count()
+        empty_org_name_number = Organization.objects.filter(name="").count()
         self.assertEqual(empty_org_name_number, 0)
 
     def test_UserUnauthenticatedKO(self):
         self.logout()
-        newname = 'my new-org with @ ç special_chars'
+        newname = "my new-org with @ ç special_chars"
         data = {
-            'name': newname,
+            "name": newname,
         }
         previous_org_num = Organization.objects.count()
         response = self.client.post(reverse("org_create"), data, follow=True)
-        self.assertRedirects(response, reverse("login")+"?next="+reverse("org_create"))
+        self.assertRedirects(
+            response, reverse("login") + "?next=" + reverse("org_create")
+        )
         new_org_num = Organization.objects.count()
         self.assertEqual(previous_org_num, new_org_num)
 
@@ -110,7 +115,7 @@ class OrgCreateViewTest(TestCase):
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertContains(response, "Only super users can create an organization.")
 
-        data = {'name': 'New Org'}
+        data = {"name": "New Org"}
         response = self.client.post(reverse("org_create"), data, follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertEqual(Organization.objects.count(), init_org_number)

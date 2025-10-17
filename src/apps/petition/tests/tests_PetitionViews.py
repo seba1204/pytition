@@ -1,13 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from .utils import add_default_data
-
 from apps.petition.models import Organization, Petition, PytitionUser
+
+from .utils import add_default_data
 
 
 class PetitionViewTest(TestCase):
     """Test index view"""
+
     @classmethod
     def setUpTestData(cls):
         add_default_data()
@@ -25,46 +26,65 @@ class PetitionViewTest(TestCase):
         self.client.logout()
 
     def test_petition_detail(self):
-        """ every body should see the petition, even when not logged in """
+        """every body should see the petition, even when not logged in"""
         petition = Petition.objects.filter(user__user__username="julia").first()
         response = self.client.get(reverse("detail", args=[petition.id]))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['petition'], petition)
+        self.assertEqual(response.context["petition"], petition)
         self.assertTemplateUsed(response, "petition/petition_detail.html")
 
-        self.assertContains(response, text='<meta property="og:site_name" content="testserver" />')
-        self.assertContains(response, text='<meta property="og:url" content="http://testserver/petition/{}/" />'
-                            .format(petition.id))
+        self.assertContains(
+            response, text='<meta property="og:site_name" content="testserver" />'
+        )
+        self.assertContains(
+            response,
+            text=f'<meta property="og:url" content="http://testserver/petition/{petition.id}/" />',
+        )
 
     def test_petition_success_msg(self):
-        """ Test that the success modal is there when signing and confirming """
+        """Test that the success modal is there when signing and confirming"""
         petition = Petition.objects.filter(published=True).first()
         data = {
-            'first_name': 'test first name',
-            'last_name': 'test last name',
-            'phone': '0123456789',
-            'email': 'toto@toto.com'
+            "first_name": "test first name",
+            "last_name": "test last name",
+            "phone": "0123456789",
+            "email": "toto@toto.com",
         }
         # First, let's sign the petition
-        response = self.client.post(reverse("create_signature", args=[petition.id]), data, follow=True)
+        response = self.client.post(
+            reverse("create_signature", args=[petition.id]), data, follow=True
+        )
         self.assertRedirects(response, petition.url)
-        self.assertContains(response, text="""<script type="text/javascript">
+        self.assertContains(
+            response,
+            text="""<script type="text/javascript">
 $("#show_sign_success").modal("show");
-</script>""")
-        self.assertContains(response, text='<div class="modal fade" id="show_sign_success">')
-        self.assertNotContains(response, text='show_confirm_success')
+</script>""",
+        )
+        self.assertContains(
+            response, text='<div class="modal fade" id="show_sign_success">'
+        )
+        self.assertNotContains(response, text="show_confirm_success")
         # Now, let's confirm our signature
         signature = petition.signature_set.first()
         self.assertFalse(signature.confirmed)
-        response = self.client.post(reverse("confirm", args=[petition.id, signature.confirmation_hash]), follow=True)
+        response = self.client.post(
+            reverse("confirm", args=[petition.id, signature.confirmation_hash]),
+            follow=True,
+        )
         self.assertRedirects(response, petition.url)
         signature.refresh_from_db()
         self.assertTrue(signature.confirmed)
-        self.assertContains(response, text="""<script type="text/javascript">
+        self.assertContains(
+            response,
+            text="""<script type="text/javascript">
 $("#show_confirm_success").modal("show");
-</script>""")
-        self.assertContains(response, text='<div class="modal fade" id="show_confirm_success">')
-        self.assertNotContains(response, text='show_sign_success')
+</script>""",
+        )
+        self.assertContains(
+            response, text='<div class="modal fade" id="show_confirm_success">'
+        )
+        self.assertNotContains(response, text="show_sign_success")
 
     def test_petition_publish(self):
         self.logout()
@@ -75,23 +95,23 @@ $("#show_confirm_success").modal("show");
         response = self.client.get(reverse("petition_publish", args=[petition.id]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petition.published, False)
-        self.login('julia')
+        self.login("julia")
         # Logged in with same user
         response = self.client.get(reverse("petition_publish", args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         petition.refresh_from_db()
         self.assertEqual(petition.published, True)
         # Petition for another user
-        john = PytitionUser.objects.get(user__username='john')
-        p2 = Petition.objects.create(title='Pas content', user=john)
+        john = PytitionUser.objects.get(user__username="john")
+        p2 = Petition.objects.create(title="Pas content", user=john)
         self.assertEqual(p2.published, False)
         response = self.client.get(reverse("petition_publish", args=[p2.id]))
         p2.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p2.published, False)
         # Petition from another organisation
-        greenpeace = Organization.objects.get(name='Greenpeace')
-        p3 = Petition.objects.create(title='Sauver la planete', org=greenpeace)
+        greenpeace = Organization.objects.get(name="Greenpeace")
+        p3 = Petition.objects.create(title="Sauver la planete", org=greenpeace)
         self.assertEqual(p3.published, False)
         p3.refresh_from_db()
         response = self.client.get(reverse("petition_publish", args=[p3.id]))
@@ -112,7 +132,7 @@ $("#show_confirm_success").modal("show");
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(petition.published, True)
-        self.login('julia')
+        self.login("julia")
         response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 200)
@@ -126,7 +146,7 @@ $("#show_confirm_success").modal("show");
         response = self.client.get(reverse("petition_delete", args=[petition.id]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petitions.count(), nb_julia_petitions)
-        self.login('julia')
+        self.login("julia")
         response = self.client.get(reverse("petition_delete", args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(petitions.count(), nb_julia_petitions - 1)
@@ -136,8 +156,15 @@ $("#show_confirm_success").modal("show");
         petitions = Petition.objects.filter(org__name="Attac")
         petition = petitions.first()
         nb_attac_petitions = petitions.count()
-        response = self.client.get(reverse("petition_delete", args=[petition.id]), follow=True)
-        self.assertRedirects(response, reverse("login")+"?next="+reverse("petition_delete", args=[petition.id]))
+        response = self.client.get(
+            reverse("petition_delete", args=[petition.id]), follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse("login")
+            + "?next="
+            + reverse("petition_delete", args=[petition.id]),
+        )
         self.assertEqual(petitions.count(), nb_attac_petitions)
         self.login("john")
         response = self.client.get(reverse("petition_delete", args=[petition.id]))
@@ -147,7 +174,9 @@ $("#show_confirm_success").modal("show");
     def test_user_slug_show_petition(self):
         petition = Petition.objects.filter(user__user__username="julia").first()
         slug = petition.slugmodel_set.first().slug
-        response = self.client.get(reverse("slug_show_petition", args=[petition.user.username, slug]))
+        response = self.client.get(
+            reverse("slug_show_petition", args=[petition.user.username, slug])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/petition_detail.html")
 
@@ -156,7 +185,9 @@ $("#show_confirm_success").modal("show");
         org = Organization.objects.first()
         petition = Petition.objects.create(title="NON NON NON", org=org)
         slug = petition.slugmodel_set.first().slug
-        response = self.client.get(reverse("slug_show_petition", args=[petition.org.slugname, slug]))
+        response = self.client.get(
+            reverse("slug_show_petition", args=[petition.org.slugname, slug])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/petition_detail.html")
 
@@ -169,7 +200,7 @@ $("#show_confirm_success").modal("show");
         response = self.client.get(reverse("petition_publish", args=[petition.id]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petition.published, False)
-        self.login('julia')
+        self.login("julia")
         # Logged in with same user
         response = self.client.get(reverse("petition_publish", args=[petition.id]))
         self.assertEqual(response.status_code, 200)
@@ -177,7 +208,7 @@ $("#show_confirm_success").modal("show");
         self.assertEqual(petition.published, True)
         # Petition from your org
         at = Organization.objects.get(name="Les Amis de la Terre")
-        p2 = Petition.objects.create(title='Pas content', org=at)
+        p2 = Petition.objects.create(title="Pas content", org=at)
         self.assertEqual(p2.published, False)
         response = self.client.get(reverse("petition_publish", args=[p2.id]))
         p2.refresh_from_db()
@@ -193,8 +224,8 @@ $("#show_confirm_success").modal("show");
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p2.published, False)
         # Petition from another organisation
-        greenpeace = Organization.objects.get(name='Greenpeace')
-        p3 = Petition.objects.create(title='Sauver la planete', org=greenpeace)
+        greenpeace = Organization.objects.get(name="Greenpeace")
+        p3 = Petition.objects.create(title="Sauver la planete", org=greenpeace)
         self.assertEqual(p3.published, False)
         p3.refresh_from_db()
         response = self.client.get(reverse("petition_publish", args=[p3.id]))
@@ -210,7 +241,7 @@ $("#show_confirm_success").modal("show");
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petition.published, True)
-        self.login('julia')
+        self.login("julia")
         response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 200)

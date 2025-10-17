@@ -1,11 +1,14 @@
 from __future__ import annotations
-from pathlib import Path
-from PIL import Image
-import cairosvg
-from io import BytesIO
 
-from .base import PipelineStep, Context
+from io import BytesIO
+from pathlib import Path
+
+import cairosvg
+from PIL import Image
+
+from .base import Context, PipelineStep
 from .registry import register_step
+
 
 @register_step("favicons", order=40)
 class FaviconsStep(PipelineStep):
@@ -24,19 +27,30 @@ class FaviconsStep(PipelineStep):
     def __init__(self, name: str):
         super().__init__("favicons")
 
-    def _png_from_svg_or_png(self, logo_svg: Path, fallback_png: Path, size: int) -> Image.Image:
+    def _png_from_svg_or_png(
+        self, logo_svg: Path, fallback_png: Path, size: int
+    ) -> Image.Image:
         """Rend un PNG RGBA de size×size à partir du SVG (prioritaire) ou d'un PNG fallback."""
         if logo_svg.exists():
-            png_bytes = cairosvg.svg2png(url=str(logo_svg), output_width=size, output_height=size)
+            png_bytes = cairosvg.svg2png(
+                url=str(logo_svg), output_width=size, output_height=size
+            )
             if png_bytes is None:
                 raise ValueError("cairosvg.svg2png did not return bytes for SVG logo.")
             return Image.open(BytesIO(png_bytes)).convert("RGBA")
         if fallback_png.exists():
-            return Image.open(fallback_png).convert("RGBA").resize((size, size), Image.Resampling.LANCZOS)
-        raise FileNotFoundError(f"Neither SVG logo ({logo_svg}) nor fallback PNG ({fallback_png}) found.")
+            return (
+                Image.open(fallback_png)
+                .convert("RGBA")
+                .resize((size, size), Image.Resampling.LANCZOS)
+            )
+        raise FileNotFoundError(
+            f"Neither SVG logo ({logo_svg}) nor fallback PNG ({fallback_png}) found."
+        )
 
     def _save_multi_ico(self, images, out_path: Path):
         from io import BytesIO
+
         buf = BytesIO()
         # Pillow sait écrire un ICO multi-résolutions si on passe la liste des tailles
         images[0].save(buf, format="ICO", sizes=[im.size for im in images])
@@ -70,7 +84,10 @@ class FaviconsStep(PipelineStep):
         #    On reconstruit depuis les images précédentes pour garantir cohérence.
         if not png_outputs:
             # Si l'utilisateur a vidé ASSETS_FAVICON_SIZES, garantissons au moins 16/32
-            png_outputs = [self._png_from_svg_or_png(logo_svg, fallback_png, s) for s in (16, 32, 48)]
+            png_outputs = [
+                self._png_from_svg_or_png(logo_svg, fallback_png, s)
+                for s in (16, 32, 48)
+            ]
         self._save_multi_ico(png_outputs, root / "favicon.ico")
         self.log(ctx, "Généré favicon.ico")
 

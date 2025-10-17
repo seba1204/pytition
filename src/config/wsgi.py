@@ -23,21 +23,23 @@ if settings.USE_MAIL_QUEUE:
         @uwsgidecorators.timer(settings.UWSGI_WAIT_FOR_MAIL_SEND_IN_S)
         def send_queued_mail(num):
             """Send queued mail every 10 seconds"""
-            call_command('send_mail')
+            call_command("send_mail")
 
         @uwsgidecorators.timer(settings.UWSGI_WAIT_FOR_RETRY_IN_S)
         def retry_deferred(num):
             """Retry deferred emails"""
-            call_command('retry_deferred')
+            call_command("retry_deferred")
 
         @uwsgidecorators.timer(settings.UWSGI_WAIT_FOR_PURGE_IN_S)
         def purge_mail(num):
             """purge 2 days old mails"""
-            call_command('purge_mail_log', settings.UWSGI_NB_DAYS_TO_KEEP)
+            call_command("purge_mail_log", settings.UWSGI_NB_DAYS_TO_KEEP)
 
     except ImportError:
         if settings.MAIL_EXTERNAL_CRON_SET:
-            print("info: uwsgi not found, the external cron job will be in charge of sending emails")
+            print(
+                "info: uwsgi not found, the external cron job will be in charge of sending emails"
+            )
         else:
             print("""Error: uwsgi not found and no external cron job have been set.
 With this setup, no email will be ever sent.

@@ -1,9 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from .utils import add_default_data
+from apps.petition.models import Organization, Permission, PytitionUser
 
-from apps.petition.models import PytitionUser, Permission, Organization
+from .utils import add_default_data
 
 
 class OrgDeleteMemberViewTest(TestCase):
@@ -24,23 +24,25 @@ class OrgDeleteMemberViewTest(TestCase):
     def test_OrgDeleteMemberViewOk(self):
         """Let's try to add and then delete user max to org RAP"""
         # Add max to RAP
-        julia = self.login('julia')
+        julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         julia_perms.can_add_members = True
         # Add permission to remove members
         julia_perms.can_remove_members = True
         julia_perms.save()
-        response = self.client.get(reverse('org_add_user', args=["rap"])+"?user=max")
+        response = self.client.get(reverse("org_add_user", args=["rap"]) + "?user=max")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], 'application/json')
-        user = PytitionUser.objects.get(user__username='max')
-        rap = Organization.objects.get(slugname='rap')
+        self.assertEqual(response["Content-Type"], "application/json")
+        user = PytitionUser.objects.get(user__username="max")
+        rap = Organization.objects.get(slugname="rap")
         invitations = user.invitations.all()
         self.assertIn(rap, invitations)
         # Max accepts invitation
         self.logout()
         max = self.login("max")
-        response = self.client.get(reverse('invite_accept', kwargs={'orgslugname': 'rap'}), follow=True)
+        response = self.client.get(
+            reverse("invite_accept", kwargs={"orgslugname": "rap"}), follow=True
+        )
         self.assertRedirects(response, reverse("user_dashboard"))
         rap = Organization.objects.get(slugname="rap")
         self.assertIn(max, rap.members.all())
@@ -49,30 +51,33 @@ class OrgDeleteMemberViewTest(TestCase):
         # Remove max from RAP
         self.logout()
         julia = self.login("julia")
-        response = self.client.get(reverse('org_delete_member', kwargs={'orgslugname': 'rap'}) + "?member=max")
+        response = self.client.get(
+            reverse("org_delete_member", kwargs={"orgslugname": "rap"}) + "?member=max"
+        )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
-
 
     def test_OrgDeleteMemberViewKoForbidden(self):
         """Let's try to add user max to org RAP from non-authorized Julia user"""
         # Add max to RAP
-        julia = self.login('julia')
+        julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         julia_perms.can_add_members = True
         julia_perms.can_remove_members = False
         julia_perms.save()
-        response = self.client.get(reverse('org_add_user', args=["rap"])+"?user=max")
+        response = self.client.get(reverse("org_add_user", args=["rap"]) + "?user=max")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], 'application/json')
-        user = PytitionUser.objects.get(user__username='max')
-        rap = Organization.objects.get(slugname='rap')
+        self.assertEqual(response["Content-Type"], "application/json")
+        user = PytitionUser.objects.get(user__username="max")
+        rap = Organization.objects.get(slugname="rap")
         invitations = user.invitations.all()
         self.assertIn(rap, invitations)
         # Max accepts invitation
         self.logout()
         max = self.login("max")
-        response = self.client.get(reverse('invite_accept', kwargs={'orgslugname': 'rap'}), follow=True)
+        response = self.client.get(
+            reverse("invite_accept", kwargs={"orgslugname": "rap"}), follow=True
+        )
         self.assertRedirects(response, reverse("user_dashboard"))
         rap = Organization.objects.get(slugname="rap")
         self.assertIn(max, rap.members.all())
@@ -82,16 +87,21 @@ class OrgDeleteMemberViewTest(TestCase):
         self.logout()
         julia = self.login("julia")
         # Now try to remove member from RAP org without the corresponding permission
-        response = self.client.get(reverse('org_delete_member', args=["rap"])+"?member=max")
+        response = self.client.get(
+            reverse("org_delete_member", args=["rap"]) + "?member=max"
+        )
         self.assertEqual(response.status_code, 403)
-        self.assertEqual(response['Content-Type'], 'application/json')
+        self.assertEqual(response["Content-Type"], "application/json")
 
     def test_OrgDeleteMemberLastAdminKo(self):
-        julia = self.login('julia')
+        julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         # Add permission to remove members
         julia_perms.can_remove_members = True
         julia_perms.save()
-        response = self.client.get(reverse('org_delete_member', kwargs={'orgslugname': 'rap'}) + "?member=julia")
+        response = self.client.get(
+            reverse("org_delete_member", kwargs={"orgslugname": "rap"})
+            + "?member=julia"
+        )
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")

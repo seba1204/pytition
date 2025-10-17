@@ -1,20 +1,19 @@
-import django
-from django.test import TestCase
-from django.urls import reverse
 from django.contrib.auth import get_user_model
-from apps.petition.models import Organization, Petition, PytitionUser, SlugModel, Signature, PetitionTemplate, Permission
+from django.test import TestCase
+
+from apps.petition.models import Organization, Permission, PytitionUser
 
 
 class PermissionTest(TestCase):
     def setUp(self):
         User = get_user_model()
-        u = User.objects.create_user('julia', password='julia')
+        u = User.objects.create_user("julia", password="julia")
         org = Organization.objects.create(name="RAP")
 
     def test_createPermission(self):
         self.assertEqual(Permission.objects.count(), 0)
         org = Organization.objects.get(name="RAP")
-        pu = PytitionUser.objects.get(user__username='julia')
+        pu = PytitionUser.objects.get(user__username="julia")
         org.members.add(pu)
         self.assertEqual(Permission.objects.count(), 1)
         p = Permission.objects.first()
@@ -35,7 +34,7 @@ class PermissionTest(TestCase):
     def test_to_string(self):
         self.assertEqual(Permission.objects.count(), 0)
         org = Organization.objects.get(name="RAP")
-        pu = PytitionUser.objects.get(user__username='julia')
+        pu = PytitionUser.objects.get(user__username="julia")
         org.members.add(pu)
         p = Permission.objects.first()
-        self.assertEqual(str(p), "{} : {}".format(org.name, pu.name))
+        self.assertEqual(str(p), f"{org.name} : {pu.name}")

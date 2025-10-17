@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from typing import Final
+
 from .base import Vendor
 from .registry import register
+
 
 def _major(version: str) -> int:
     """Retourne la major version (1 pour 1.x.y, 2 pour 2.x.y, etc.)."""
@@ -14,6 +17,7 @@ def _major(version: str) -> int:
         head = head.lstrip("vV")
         return int(head.split("-", 1)[0])
 
+
 class PopperVendor(Vendor):
     """Télécharge Popper (v1 = popper.js, v2 = @popperjs/core) via unpkg.
 
@@ -22,7 +26,9 @@ class PopperVendor(Vendor):
     """
 
     _V1_PATH: Final[str] = "https://unpkg.com/popper.js@{ver}/dist/umd/popper.min.js"
-    _V2_PATH: Final[str] = "https://unpkg.com/@popperjs/core@{ver}/dist/umd/popper.min.js"
+    _V2_PATH: Final[str] = (
+        "https://unpkg.com/@popperjs/core@{ver}/dist/umd/popper.min.js"
+    )
 
     def download_and_stage(self) -> None:
         maj = _major(self.version)
@@ -36,6 +42,7 @@ class PopperVendor(Vendor):
         # Pas de sous-dossier "js": on met le fichier à la racine du vendor versionné
         self.stage_dir.mkdir(parents=True, exist_ok=True)
         self._write_file(self.stage_dir / "popper.min.js", blob)
+
 
 # Enregistrer plusieurs alias utiles
 register("popper")(PopperVendor)

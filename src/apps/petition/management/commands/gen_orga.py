@@ -1,4 +1,5 @@
 import logging
+
 from django.core.management.base import LabelCommand
 
 from apps.petition.models import Organization
@@ -12,6 +13,7 @@ class Command(LabelCommand):
     ./manage.py gen_orga org1 org2 "org test"
     > Generate 3 orgs with given names
     """
+
     label = "Organization name"
 
     def handle_label(self, label, **options):

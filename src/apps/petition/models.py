@@ -1,32 +1,42 @@
-from django.db import models
+import html
+import uuid
+
+from colorfield.fields import ColorField
+from django.conf import settings
+from django.contrib.auth.hashers import get_hasher
+from django.core.exceptions import ValidationError
+from django.db import models, transaction
+from django.db.models.signals import post_delete, post_save, pre_save
+from django.dispatch import receiver
+from django.urls import reverse
+from django.utils import timezone
 from django.utils.html import mark_safe, strip_tags
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
-from django.core.exceptions import ValidationError
-from django.db.models.signals import post_save, post_delete, pre_save
-from django.dispatch import receiver
-from django.conf import settings
-from django.contrib.auth.hashers import get_hasher
-from django.db import transaction
-from django.urls import reverse
-from django.utils import timezone
-
-from tinymce import models as tinymce_models
-from colorfield.fields import ColorField
 from phonenumber_field.modelfields import PhoneNumberField
+from tinymce import models as tinymce_models
 
 from .helpers import sanitize_html
-
-import html
-import uuid
 
 
 # ----------------------------------- PytitionUser ----------------------------
 class PytitionUser(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="pytitionuser")
-    invitations = models.ManyToManyField('Organization', related_name="invited", blank=True)
-    default_template = models.ForeignKey('PetitionTemplate', blank=True, null=True, related_name='+', verbose_name=gettext_lazy("Default petition template"), to_field='id', on_delete=models.SET_NULL)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="pytitionuser"
+    )
+    invitations = models.ManyToManyField(
+        "Organization", related_name="invited", blank=True
+    )
+    default_template = models.ForeignKey(
+        "PetitionTemplate",
+        blank=True,
+        null=True,
+        related_name="+",
+        verbose_name=gettext_lazy("Default petition template"),
+        to_field="id",
+        on_delete=models.SET_NULL,
+    )
     moderated = models.BooleanField(default=False)
 
     def drop(self):
@@ -72,13 +82,13 @@ class PytitionUser(models.Model):
         return "user"
 
     def __str__(self):
-        if self.get_full_name != '':
+        if self.get_full_name != "":
             return self.get_full_name
         else:
             return self.username
 
     def __repr__(self):
-        if self.get_full_name != '':
+        if self.get_full_name != "":
             return self.get_full_name
         else:
             return self.username
@@ -86,10 +96,24 @@ class PytitionUser(models.Model):
 
 # --------------------------------- Organization ------------------------------
 class Organization(models.Model):
-    name = models.CharField(max_length=200, verbose_name=gettext_lazy("Name"), unique=True, null=False, blank=False)
-    default_template = models.ForeignKey('PetitionTemplate', blank=True, null=True, related_name='+', verbose_name=gettext_lazy("Default petition template"), to_field='id', on_delete=models.SET_NULL)
+    name = models.CharField(
+        max_length=200,
+        verbose_name=gettext_lazy("Name"),
+        unique=True,
+        null=False,
+        blank=False,
+    )
+    default_template = models.ForeignKey(
+        "PetitionTemplate",
+        blank=True,
+        null=True,
+        related_name="+",
+        verbose_name=gettext_lazy("Default petition template"),
+        to_field="id",
+        on_delete=models.SET_NULL,
+    )
     slugname = models.SlugField(max_length=200, unique=True)
-    members = models.ManyToManyField(PytitionUser, through='Permission')
+    members = models.ManyToManyField(PytitionUser, through="Permission")
 
     def is_last_admin(self, user):
         """
@@ -98,7 +122,9 @@ class Organization(models.Model):
         Return true or false
         """
         # get all permissions
-        perms = Permission.objects.filter(can_modify_permissions=True, organization=self)
+        perms = Permission.objects.filter(
+            can_modify_permissions=True, organization=self
+        )
         if perms.count() > 1:
             return False
         elif perms.count() == 1:
@@ -115,9 +141,7 @@ class Organization(models.Model):
         Check if an user has a given access right on the organisation
         """
         try:
-            perm = Permission.objects.get(
-                organization=self,
-                user=user)
+            perm = Permission.objects.get(organization=self, user=user)
         except Permission.DoesNotExist:
             return False
         else:
@@ -127,7 +151,7 @@ class Organization(models.Model):
         return self.name
 
     def __repr__(self):
-        return '< {} >'.format(self.name)
+        return f"< {self.name} >"
 
     @property
     def owners(self):
@@ -149,29 +173,25 @@ class Organization(models.Model):
 
 # ----------------------------------- Petition --------------------------------
 class Petition(models.Model):
-    NO =           "no gradient"
-    RIGHT =        "to right"
-    BOTTOM =       "to bottom"
+    NO = "no gradient"
+    RIGHT = "to right"
+    BOTTOM = "to bottom"
     BOTTOM_RIGHT = "to bottom right"
-    BOTTOM_LEFT =  "to bottom left"
+    BOTTOM_LEFT = "to bottom left"
 
     LINEAR_GRADIENT_CHOICES = (
-        (NO,           "no gradient"),
-        (RIGHT,        "to right"),
-        (BOTTOM,       "to bottom"),
+        (NO, "no gradient"),
+        (RIGHT, "to right"),
+        (BOTTOM, "to bottom"),
         (BOTTOM_RIGHT, "to bottom right"),
-        (BOTTOM_LEFT,  "to bottom left")
+        (BOTTOM_LEFT, "to bottom left"),
     )
 
     MAIL = "MAIL"
     POST = "POST"
     GET = "GET"
 
-    NEWSLETTER_SUBSCRIBE_METHOD_CHOICES = (
-        (MAIL, "MAIL"),
-        (POST, "POST"),
-        (GET,  "GET")
-    )
+    NEWSLETTER_SUBSCRIBE_METHOD_CHOICES = ((MAIL, "MAIL"), (POST, "POST"), (GET, "GET"))
 
     # Description
     title = models.TextField(verbose_name=gettext_lazy("Title"))
@@ -179,10 +199,16 @@ class Petition(models.Model):
     side_text = tinymce_models.HTMLField(blank=True)
     target = models.IntegerField(default=500)
     # Owner
-    user = models.ForeignKey(PytitionUser, on_delete=models.CASCADE, null=True, blank=True)
-    org = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(
+        PytitionUser, on_delete=models.CASCADE, null=True, blank=True
+    )
+    org = models.ForeignKey(
+        Organization, on_delete=models.CASCADE, null=True, blank=True
+    )
     # Colors
-    linear_gradient_direction = models.CharField(choices=LINEAR_GRADIENT_CHOICES, max_length=15, default=NO, blank=True)
+    linear_gradient_direction = models.CharField(
+        choices=LINEAR_GRADIENT_CHOICES, max_length=15, default=NO, blank=True
+    )
     gradient_from = ColorField(blank=True)
     gradient_to = ColorField(blank=True)
     bgcolor = ColorField(blank=True)
@@ -197,11 +223,17 @@ class Petition(models.Model):
     newsletter_subscribe_mail_subject = models.CharField(max_length=1000, blank=True)
     newsletter_subscribe_mail_from = models.CharField(max_length=500, blank=True)
     newsletter_subscribe_mail_to = models.CharField(max_length=500, blank=True)
-    newsletter_subscribe_method = models.CharField(choices=NEWSLETTER_SUBSCRIBE_METHOD_CHOICES, max_length=4, default=MAIL)
-    newsletter_subscribe_mail_smtp_host = models.CharField(max_length=100, default='localhost', blank=True)
+    newsletter_subscribe_method = models.CharField(
+        choices=NEWSLETTER_SUBSCRIBE_METHOD_CHOICES, max_length=4, default=MAIL
+    )
+    newsletter_subscribe_mail_smtp_host = models.CharField(
+        max_length=100, default="localhost", blank=True
+    )
     newsletter_subscribe_mail_smtp_port = models.IntegerField(default=25, blank=True)
     newsletter_subscribe_mail_smtp_user = models.CharField(max_length=200, blank=True)
-    newsletter_subscribe_mail_smtp_password = models.CharField(max_length=200, blank=True)
+    newsletter_subscribe_mail_smtp_password = models.CharField(
+        max_length=200, blank=True
+    )
     newsletter_subscribe_mail_smtp_tls = models.BooleanField(default=False)
     newsletter_subscribe_mail_smtp_starttls = models.BooleanField(default=False)
     org_twitter_handle = models.CharField(max_length=20, blank=True)
@@ -233,9 +265,13 @@ class Petition(models.Model):
 
     def transfer_to(self, user=None, org=None):
         if user is None and org is None:
-            raise ValueError("You should specify either an org or a user when transferring a petition")
+            raise ValueError(
+                "You should specify either an org or a user when transferring a petition"
+            )
         if user is not None and org is not None:
-            raise ValueError("You cannot specify both a user and an org to transfer a petition to")
+            raise ValueError(
+                "You cannot specify both a user and an org to transfer a petition to"
+            )
         if user:
             self.user = user
             self.org = None
@@ -246,7 +282,11 @@ class Petition(models.Model):
 
     def prepopulate_from_template(self, template, fields=None, exclude_fields=None):
         if fields is None:
-            fields = [f.name for f in self._meta.fields if f.name not in ["id", "title", "salt", "user", "org"]]
+            fields = [
+                f.name
+                for f in self._meta.fields
+                if f.name not in ["id", "title", "salt", "user", "org"]
+            ]
         for field in fields:
             if field in exclude_fields:
                 continue
@@ -254,7 +294,6 @@ class Petition(models.Model):
                 template_value = getattr(template, field)
                 if template_value is not None and template_value != "":
                     setattr(self, field, template_value)
-
 
     def slugify(self):
         # Slugify the petition title and save it as slugname
@@ -277,12 +316,11 @@ class Petition(models.Model):
                         if s.petition.owner_type == "org":
                             if self.org == s.petition.org:
                                 alread_used = True
-                    else:
-                        if s.petition.owner_type == "user":
-                            if self.user == s.petition.user:
-                                alread_used = True
+                    elif s.petition.owner_type == "user":
+                        if self.user == s.petition.user:
+                            alread_used = True
                 if alread_used:
-                    raise ValueError('This slug is already used')
+                    raise ValueError("This slug is already used")
                 else:
                     slug = SlugModel.objects.create(slug=slugtext, petition=self)
 
@@ -309,12 +347,18 @@ class Petition(models.Model):
             return nb_electronic_signatures
 
     def already_signed(self, email):
-        signature_number = Signature.objects.filter(petition = self.id)\
-            .filter(confirmed = True).filter(email = email).count()
+        signature_number = (
+            Signature.objects.filter(petition=self.id)
+            .filter(confirmed=True)
+            .filter(email=email)
+            .count()
+        )
         return signature_number > 0
 
     def confirm_signature(self, conf_hash):
-        signature = Signature.objects.filter(petition=self.id).get(confirmation_hash=conf_hash)
+        signature = Signature.objects.filter(petition=self.id).get(
+            confirmation_hash=conf_hash
+        )
         if signature:
             # Now confirm the signature corresponding to this hash
             signature.confirm()
@@ -335,15 +379,17 @@ class Petition(models.Model):
 
     @property
     def to_json(self):
-        return {'title': self.title,
-                'signatures': self.get_signature_number(True),
-                'text': self.text,
-                'target': self.target,
-                'description': self.twitter_description,
-                'image': self.twitter_image,
-                'org_twitter_handle': self.org_twitter_handle,
-                'has_newsletter': self.has_newsletter,
-                'creator': self.owner_name}
+        return {
+            "title": self.title,
+            "signatures": self.get_signature_number(True),
+            "text": self.text,
+            "target": self.target,
+            "description": self.twitter_description,
+            "image": self.twitter_image,
+            "org_twitter_handle": self.org_twitter_handle,
+            "has_newsletter": self.has_newsletter,
+            "creator": self.owner_name,
+        }
 
     @property
     def owner_type(self):
@@ -376,7 +422,9 @@ class Petition(models.Model):
 
     @property
     def raw_twitter_description(self):
-        return html.unescape(mark_safe(strip_tags(sanitize_html(self.twitter_description))))
+        return html.unescape(
+            mark_safe(strip_tags(sanitize_html(self.twitter_description)))
+        )
 
     @property
     def raw_text(self):
@@ -397,10 +445,7 @@ class Petition(models.Model):
             return self.user == user
         # The petition is owned by an organization
         try:
-            perm = Permission.objects.get(
-                organization=self.org,
-                user=user
-            )
+            perm = Permission.objects.get(organization=self.org, user=user)
         except Permission.DoesNotExist:
             # No such permission, denied
             return False
@@ -411,31 +456,31 @@ class Petition(models.Model):
         slugs = self.slugmodel_set.all()
         if len(slugs) == 0:
             # If there is no slug, ugly url
-            return reverse('detail', kwargs={'petition_id': self.id})
+            return reverse("detail", kwargs={"petition_id": self.id})
+        elif self.owner_type == "org":
+            #  This petition is owned by an Organization
+            return reverse(
+                "slug_show_petition",
+                kwargs={"orgslugname": self.org.slugname, "petitionname": slugs[0]},
+            )
+        elif self.owner_type == "user":
+            # This petition is owned by a PytitionUser
+            return reverse(
+                "slug_show_petition",
+                kwargs={"username": self.user.username, "petitionname": slugs[0]},
+            )
         else:
-            if self.owner_type == "org":
-                #  This petition is owned by an Organization
-                return reverse("slug_show_petition",
-                           kwargs={"orgslugname": self.org.slugname,
-                               "petitionname": slugs[0]})
-            elif self.owner_type == "user":
-                # This petition is owned by a PytitionUser
-                return reverse("slug_show_petition",
-                           kwargs={"username": self.user.username,
-                               "petitionname": slugs[0]})
-            else:
-                # This is a BUG!
-                raise ValueError(_("This petition is buggy. Sorry about that!"))
+            # This is a BUG!
+            raise ValueError(_("This petition is buggy. Sorry about that!"))
 
     def save(self, *args, **kwargs):
-        if (self.org is None and self.user is None):
+        if self.org is None and self.user is None:
             raise Exception("You need to provide a user or org as owner")
-        elif (self.org is not None and self.user is not None):
+        elif self.org is not None and self.user is not None:
             raise Exception("A petition can have only one owner")
-        else:
-            if not self.salt:
-                hasher = get_hasher()
-                self.salt = hasher.salt().decode('utf-8')
+        elif not self.salt:
+            hasher = get_hasher()
+            self.salt = hasher.salt().decode("utf-8")
         self.last_modification_date = timezone.now()
         super(Petition, self).save(*args, **kwargs)
 
@@ -445,25 +490,50 @@ class Petition(models.Model):
 
     @property
     def has_any_share_button(self):
-        return (self.has_email_share_button or self.has_facebook_share_button or self.has_tumblr_share_button or self.has_linkedin_share_button 
-                or self.has_twitter_share_button or self.has_mastodon_share_button or self.has_whatsapp_share_button)
+        return (
+            self.has_email_share_button
+            or self.has_facebook_share_button
+            or self.has_tumblr_share_button
+            or self.has_linkedin_share_button
+            or self.has_twitter_share_button
+            or self.has_mastodon_share_button
+            or self.has_whatsapp_share_button
+        )
+
 
 # --------------------------------- Signature ---------------------------------
 class Signature(models.Model):
-    first_name = models.CharField(max_length=50, verbose_name=gettext_lazy("First name"))
+    first_name = models.CharField(
+        max_length=50, verbose_name=gettext_lazy("First name")
+    )
     last_name = models.CharField(max_length=50, verbose_name=gettext_lazy("Last name"))
-    phone = PhoneNumberField(max_length=20, blank=True, verbose_name=gettext_lazy("Phone number"))
+    phone = PhoneNumberField(
+        max_length=20, blank=True, verbose_name=gettext_lazy("Phone number")
+    )
     email = models.EmailField(verbose_name=gettext_lazy("Email address"))
     confirmation_hash = models.CharField(max_length=128)
-    confirmed = models.BooleanField(default=False, verbose_name=gettext_lazy("Confirmed"))
-    petition = models.ForeignKey(Petition, on_delete=models.CASCADE, verbose_name=gettext_lazy("Petition"))
-    subscribed_to_mailinglist = models.BooleanField(default=False, verbose_name=gettext_lazy("Subscribed to mailing list"))
-    date = models.DateTimeField(blank=True, auto_now_add=True, verbose_name=gettext_lazy("Date"))
+    confirmed = models.BooleanField(
+        default=False, verbose_name=gettext_lazy("Confirmed")
+    )
+    petition = models.ForeignKey(
+        Petition, on_delete=models.CASCADE, verbose_name=gettext_lazy("Petition")
+    )
+    subscribed_to_mailinglist = models.BooleanField(
+        default=False, verbose_name=gettext_lazy("Subscribed to mailing list")
+    )
+    date = models.DateTimeField(
+        blank=True, auto_now_add=True, verbose_name=gettext_lazy("Date")
+    )
     ipaddress = models.TextField(blank=True, null=True)
 
     def clean(self):
         if self.petition.already_signed(self.email):
-            if self.petition.signature_set.filter(email = self.email).get(confirmed = True).id != self.id:
+            if (
+                self.petition.signature_set.filter(email=self.email)
+                .get(confirmed=True)
+                .id
+                != self.id
+            ):
                 raise ValidationError(_("You already signed the petition"))
 
     def save(self, *args, **kwargs):
@@ -472,47 +542,56 @@ class Signature(models.Model):
             self.confirmation_hash = str(uuid.uuid4())
         if self.confirmed:
             # invalidating other signatures from same email
-            Signature.objects.filter(petition=self.petition).filter(email=self.email)\
-                .exclude(id=self.id).delete()
+            Signature.objects.filter(petition=self.petition).filter(
+                email=self.email
+            ).exclude(id=self.id).delete()
         super().save(*args, **kwargs)
 
     def confirm(self):
         self.confirmed = True
 
     def __str__(self):
-        return html.unescape("[{}:{}] {} {}".format(self.petition.id, "OK" if self.confirmed else "..", self.first_name,
-                                                    self.last_name))
+        return html.unescape(
+            "[{}:{}] {} {}".format(
+                self.petition.id,
+                "OK" if self.confirmed else "..",
+                self.first_name,
+                self.last_name,
+            )
+        )
 
     def __repr__(self):
-        return html.unescape("[{}:{}] {} {}".format(self.petition.id, "OK" if self.confirmed else "..", self.first_name,
-                                                    self.last_name))
+        return html.unescape(
+            "[{}:{}] {} {}".format(
+                self.petition.id,
+                "OK" if self.confirmed else "..",
+                self.first_name,
+                self.last_name,
+            )
+        )
 
 
-#------------------------------- PetitionTemplate -----------------------------
+# ------------------------------- PetitionTemplate -----------------------------
 class PetitionTemplate(models.Model):
-    NO =           "no gradient"
-    RIGHT =        "to right"
-    BOTTOM =       "to bottom"
+    NO = "no gradient"
+    RIGHT = "to right"
+    BOTTOM = "to bottom"
     BOTTOM_RIGHT = "to bottom right"
-    BOTTOM_LEFT =  "to bottom left"
+    BOTTOM_LEFT = "to bottom left"
 
     LINEAR_GRADIENT_CHOICES = (
-        (NO,           "no gradient"),
-        (RIGHT,        "to right"),
-        (BOTTOM,       "to bottom"),
+        (NO, "no gradient"),
+        (RIGHT, "to right"),
+        (BOTTOM, "to bottom"),
         (BOTTOM_RIGHT, "to bottom right"),
-        (BOTTOM_LEFT,  "to bottom left")
+        (BOTTOM_LEFT, "to bottom left"),
     )
 
     MAIL = "MAIL"
     POST = "POST"
     GET = "GET"
 
-    NEWSLETTER_SUBSCRIBE_METHOD_CHOICES = (
-        (MAIL, "MAIL"),
-        (POST, "POST"),
-        (GET,  "GET")
-    )
+    NEWSLETTER_SUBSCRIBE_METHOD_CHOICES = ((MAIL, "MAIL"), (POST, "POST"), (GET, "GET"))
 
     # Description
     name = models.CharField(max_length=50, verbose_name=gettext_lazy("Name"))
@@ -520,10 +599,16 @@ class PetitionTemplate(models.Model):
     side_text = tinymce_models.HTMLField(blank=True)
     target = models.IntegerField(blank=True, null=True)
     # Owner
-    user = models.ForeignKey(PytitionUser, on_delete=models.CASCADE, null=True, blank=True)
-    org = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(
+        PytitionUser, on_delete=models.CASCADE, null=True, blank=True
+    )
+    org = models.ForeignKey(
+        Organization, on_delete=models.CASCADE, null=True, blank=True
+    )
     # Fancy colors
-    linear_gradient_direction = models.CharField(choices=LINEAR_GRADIENT_CHOICES, max_length=15, default=NO, blank=True)
+    linear_gradient_direction = models.CharField(
+        choices=LINEAR_GRADIENT_CHOICES, max_length=15, default=NO, blank=True
+    )
     gradient_from = ColorField(blank=True)
     gradient_to = ColorField(blank=True)
     bgcolor = ColorField(blank=True)
@@ -538,12 +623,17 @@ class PetitionTemplate(models.Model):
     newsletter_subscribe_mail_subject = models.CharField(max_length=1000, blank=True)
     newsletter_subscribe_mail_from = models.EmailField(max_length=500, blank=True)
     newsletter_subscribe_mail_to = models.EmailField(max_length=500, blank=True)
-    newsletter_subscribe_method = models.CharField(choices=NEWSLETTER_SUBSCRIBE_METHOD_CHOICES, max_length=4,
-                                                   default=MAIL)
-    newsletter_subscribe_mail_smtp_host = models.CharField(max_length=100, default='localhost', blank=True)
+    newsletter_subscribe_method = models.CharField(
+        choices=NEWSLETTER_SUBSCRIBE_METHOD_CHOICES, max_length=4, default=MAIL
+    )
+    newsletter_subscribe_mail_smtp_host = models.CharField(
+        max_length=100, default="localhost", blank=True
+    )
     newsletter_subscribe_mail_smtp_port = models.IntegerField(default=25)
     newsletter_subscribe_mail_smtp_user = models.CharField(max_length=200, blank=True)
-    newsletter_subscribe_mail_smtp_password = models.CharField(max_length=200, blank=True)
+    newsletter_subscribe_mail_smtp_password = models.CharField(
+        max_length=200, blank=True
+    )
     newsletter_subscribe_mail_smtp_tls = models.BooleanField(default=False)
     newsletter_subscribe_mail_smtp_starttls = models.BooleanField(default=False)
     org_twitter_handle = models.CharField(max_length=20, blank=True)
@@ -574,9 +664,9 @@ class PetitionTemplate(models.Model):
             return "user"
 
     def save(self, *args, **kwargs):
-        if (self.org is None and self.user is None):
+        if self.org is None and self.user is None:
             raise Exception("You need to provide a user or org as owner")
-        elif (self.org is not None and self.user is not None):
+        elif self.org is not None and self.user is not None:
             raise Exception("A petition can have only one owner")
         else:
             super(PetitionTemplate, self).save(*args, **kwargs)
@@ -589,7 +679,9 @@ class SlugModel(models.Model):
 
     def clean(self, *args, **kwargs):
         if self.slug == "" or self.slug is None:
-            raise ValidationError(_("A permlink cannot be empty. Please enter something."), code="invalid")
+            raise ValidationError(
+                _("A permlink cannot be empty. Please enter something."), code="invalid"
+            )
         super(SlugModel, self).clean(*args, **kwargs)
 
     def __str__(self):
@@ -598,10 +690,19 @@ class SlugModel(models.Model):
     def __repr__(self):
         return self.slug
 
+
 # ------------------------------------ Permission -----------------------------
 class Permission(models.Model):
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, verbose_name=gettext_lazy("Organization related to these permissions"))
-    user = models.ForeignKey(PytitionUser, on_delete=models.CASCADE, verbose_name=gettext_lazy("User related to these permissions"))
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        verbose_name=gettext_lazy("Organization related to these permissions"),
+    )
+    user = models.ForeignKey(
+        PytitionUser,
+        on_delete=models.CASCADE,
+        verbose_name=gettext_lazy("User related to these permissions"),
+    )
     can_add_members = models.BooleanField(default=False)
     can_remove_members = models.BooleanField(default=False)
     can_create_petitions = models.BooleanField(default=True)
@@ -631,19 +732,20 @@ class Permission(models.Model):
         self.save()
 
     def __str__(self):
-        return "{} : {}".format(self.organization.name, self.user.name)
+        return f"{self.organization.name} : {self.user.name}"
 
     def __repr__(self):
-        return '< {} >'.format(self.__str__())
+        return f"< {self.__str__()} >"
 
 
-#------------------------------ Pre save actions -----------------------------
+# ------------------------------ Pre save actions -----------------------------
 @receiver(pre_save, sender=SlugModel)
 def check_slug_is_not_empty(sender, instance, **kwargs):
     instance.clean()
     instance.validate_unique()
 
-#------------------------------ Post save actions -----------------------------
+
+# ------------------------------ Post save actions -----------------------------
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -654,30 +756,38 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.pytitionuser.save()
 
+
 @receiver(pre_save, sender=Petition)
 def pre_save_petition(sender, instance, **kwargs):
     if not instance.creation_date:
         instance.creation_date = timezone.now()
 
+
 @receiver(post_save, sender=Petition)
 def save_petition(sender, instance, **kwargs):
     if instance.slugmodel_set.count() == 0:
         instance.slugify()
-    if kwargs['created']:
+    if kwargs["created"]:
         instance.creation_date = timezone.now()
         instance.save()
+
 
 @receiver(post_delete, sender=PytitionUser)
 def post_delete_user(sender, instance, *args, **kwargs):
     if instance.user:  # just in case user is not specified
         instance.user.delete()
 
+
 # ------------------------------------ ModerationReason -----------------------------
+
 
 class ModerationReason(models.Model):
     msg = models.TextField(verbose_name=gettext_lazy("message"))
     visible = models.BooleanField(default=True)
 
+
 class Moderation(models.Model):
     petition = models.ForeignKey(Petition, on_delete=models.CASCADE)
-    reason = models.ForeignKey(ModerationReason, blank=True, null=True, on_delete=models.SET_NULL)
+    reason = models.ForeignKey(
+        ModerationReason, blank=True, null=True, on_delete=models.SET_NULL
+    )

@@ -4,72 +4,71 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0007_auto_20190807_2221'),
+        ("petition", "0007_auto_20190807_2221"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='petition',
-            old_name='confirmation_email_sender',
-            new_name='confirmation_email_reply',
+            model_name="petition",
+            old_name="confirmation_email_sender",
+            new_name="confirmation_email_reply",
         ),
         migrations.RenameField(
-            model_name='petitiontemplate',
-            old_name='confirmation_email_sender',
-            new_name='confirmation_email_reply',
+            model_name="petitiontemplate",
+            old_name="confirmation_email_sender",
+            new_name="confirmation_email_reply",
         ),
         migrations.RemoveField(
-            model_name='petition',
-            name='confirmation_email_smtp_host',
+            model_name="petition",
+            name="confirmation_email_smtp_host",
         ),
         migrations.RemoveField(
-            model_name='petition',
-            name='confirmation_email_smtp_password',
+            model_name="petition",
+            name="confirmation_email_smtp_password",
         ),
         migrations.RemoveField(
-            model_name='petition',
-            name='confirmation_email_smtp_port',
+            model_name="petition",
+            name="confirmation_email_smtp_port",
         ),
         migrations.RemoveField(
-            model_name='petition',
-            name='confirmation_email_smtp_starttls',
+            model_name="petition",
+            name="confirmation_email_smtp_starttls",
         ),
         migrations.RemoveField(
-            model_name='petition',
-            name='confirmation_email_smtp_tls',
+            model_name="petition",
+            name="confirmation_email_smtp_tls",
         ),
         migrations.RemoveField(
-            model_name='petition',
-            name='confirmation_email_smtp_user',
+            model_name="petition",
+            name="confirmation_email_smtp_user",
         ),
         migrations.RemoveField(
-            model_name='petition',
-            name='use_custom_email_settings',
+            model_name="petition",
+            name="use_custom_email_settings",
         ),
         migrations.RemoveField(
-            model_name='petitiontemplate',
-            name='confirmation_email_smtp_host',
+            model_name="petitiontemplate",
+            name="confirmation_email_smtp_host",
         ),
         migrations.RemoveField(
-            model_name='petitiontemplate',
-            name='confirmation_email_smtp_password',
+            model_name="petitiontemplate",
+            name="confirmation_email_smtp_password",
         ),
         migrations.RemoveField(
-            model_name='petitiontemplate',
-            name='confirmation_email_smtp_port',
+            model_name="petitiontemplate",
+            name="confirmation_email_smtp_port",
         ),
         migrations.RemoveField(
-            model_name='petitiontemplate',
-            name='confirmation_email_smtp_starttls',
+            model_name="petitiontemplate",
+            name="confirmation_email_smtp_starttls",
         ),
         migrations.RemoveField(
-            model_name='petitiontemplate',
-            name='confirmation_email_smtp_tls',
+            model_name="petitiontemplate",
+            name="confirmation_email_smtp_tls",
         ),
         migrations.RemoveField(
-            model_name='petitiontemplate',
-            name='confirmation_email_smtp_user',
+            model_name="petitiontemplate",
+            name="confirmation_email_smtp_user",
         ),
     ]

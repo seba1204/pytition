@@ -1,13 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 
-from apps.petition.models import Organization, Petition, PytitionUser, Permission
+from apps.petition.models import PytitionUser
+
 from .utils import add_default_data
 
 
 class UserDashboardViewTest(TestCase):
     """Test index view"""
+
     @classmethod
     def setUpTestData(cls):
         add_default_data()
@@ -27,7 +28,9 @@ class UserDashboardViewTest(TestCase):
     def test_NotLoggedIn(self):
         self.logout()
         response = self.client.get(reverse("user_dashboard"), follow=True)
-        self.assertRedirects(response, reverse("login")+"?next="+reverse("user_dashboard"))
+        self.assertRedirects(
+            response, reverse("login") + "?next=" + reverse("user_dashboard")
+        )
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
 
@@ -40,9 +43,9 @@ class UserDashboardViewTest(TestCase):
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
-        petitions = response.context['petitions'].all()
+        petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)
-        self.assertEqual(response.context['user'], john)
+        self.assertEqual(response.context["user"], john)
 
     def test_UserOK2(self):
         julia = self.login("julia")
@@ -53,9 +56,9 @@ class UserDashboardViewTest(TestCase):
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
-        petitions = response.context['petitions'].all()
+        petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)
-        self.assertEqual(response.context['user'], julia)
+        self.assertEqual(response.context["user"], julia)
 
     def test_UserOK3(self):
         max = self.login("max")
@@ -66,9 +69,9 @@ class UserDashboardViewTest(TestCase):
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
-        petitions = response.context['petitions'].all()
+        petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)
-        self.assertEqual(response.context['user'], max)
+        self.assertEqual(response.context["user"], max)
 
     def test_UserOK4(self):
         sarah = self.login("sarah")
@@ -79,6 +82,6 @@ class UserDashboardViewTest(TestCase):
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
-        petitions = response.context['petitions'].all()
+        petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)
-        self.assertEqual(response.context['user'], sarah)
+        self.assertEqual(response.context["user"], sarah)

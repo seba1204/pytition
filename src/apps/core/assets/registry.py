@@ -1,18 +1,21 @@
 import importlib
 import pkgutil
 from pathlib import Path
-from typing import Dict, List, Tuple, Type
+
 from .base import PipelineStep
 
-_REGISTRY: Dict[str, Type[PipelineStep]] = {}
+_REGISTRY: dict[str, type[PipelineStep]] = {}
 _DISCOVERED = False
 
+
 def register_step(name: str, order: int = 100):
-    def _wrap(cls: Type[PipelineStep]) -> Type[PipelineStep]:
+    def _wrap(cls: type[PipelineStep]) -> type[PipelineStep]:
         cls.order = order
         _REGISTRY[name] = cls
         return cls
+
     return _wrap
+
 
 def _auto_discover():
     global _DISCOVERED
@@ -25,6 +28,7 @@ def _auto_discover():
         importlib.import_module(f"apps.core.assets.{modname}")
     _DISCOVERED = True
 
-def get_steps() -> List[Tuple[str, Type[PipelineStep]]]:
+
+def get_steps() -> list[tuple[str, type[PipelineStep]]]:
     _auto_discover()
     return sorted(_REGISTRY.items(), key=lambda kv: kv[1].order)

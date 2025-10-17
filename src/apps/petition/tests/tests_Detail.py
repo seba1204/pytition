@@ -1,9 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.petition.models import Petition
+
 from .utils import add_default_data
 
-from apps.petition.models import Petition
 
 class DetailViewTest(TestCase):
     """Test detail view"""
@@ -14,5 +15,5 @@ class DetailViewTest(TestCase):
 
     def test_DetailOk(self):
         petition = Petition.objects.filter(published=True).first()
-        response = self.client.get(reverse('detail', args=[petition.id]))
+        response = self.client.get(reverse("detail", args=[petition.id]))
         self.assertEqual(response.status_code, 200)

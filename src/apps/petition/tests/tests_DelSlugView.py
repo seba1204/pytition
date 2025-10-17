@@ -1,9 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from .utils import add_default_data
+from apps.petition.models import Permission, Petition, PytitionUser
 
-from apps.petition.models import PytitionUser, Permission, Organization, Petition
+from .utils import add_default_data
 
 
 class DelSlugViewTest(TestCase):
@@ -28,6 +28,13 @@ class DelSlugViewTest(TestCase):
         john_perms.save()
         petition = Petition.objects.filter(org__slugname="attac").first()
         slug = petition.slugmodel_set.first()
-        response = self.client.get(reverse("del_slug", kwargs={'petition_id': petition.id})+"?slugid="+str(slug.id),
-                                   follow=True)
-        self.assertRedirects(response, reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form")
+        response = self.client.get(
+            reverse("del_slug", kwargs={"petition_id": petition.id})
+            + "?slugid="
+            + str(slug.id),
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form",
+        )

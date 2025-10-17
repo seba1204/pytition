@@ -1,9 +1,13 @@
 from __future__ import annotations
-from pathlib import Path
-from rjsmin import jsmin
+
 import json
-from .base import PipelineStep, Context
+from pathlib import Path
+
+from rjsmin import jsmin
+
+from .base import Context, PipelineStep
 from .registry import register_step
+
 
 @register_step("scripts", order=30)
 class ScriptsStep(PipelineStep):
@@ -12,6 +16,7 @@ class ScriptsStep(PipelineStep):
     Génère une source map simple: mapping de départ (col 0, ligne 0) + sourcesContent.
     (Suffisant pour DevTools; si tu veux des mappings fins, on pourra l'étendre.)
     """
+
     def __init__(self, name: str):
         super().__init__("scripts")
 
@@ -30,7 +35,10 @@ class ScriptsStep(PipelineStep):
             minified = jsmin(code)
             out_js = dst / rel.with_suffix(".min.js")
             out_js.parent.mkdir(parents=True, exist_ok=True)
-            out_js.write_text(str(minified) + "\n//# sourceMappingURL=" + out_js.name + ".map", encoding="utf-8")
+            out_js.write_text(
+                str(minified) + "\n//# sourceMappingURL=" + out_js.name + ".map",
+                encoding="utf-8",
+            )
 
             # Source map minimale manuelle
             source_map = {
@@ -40,6 +48,7 @@ class ScriptsStep(PipelineStep):
                 "sourcesContent": [code],
                 "mappings": ";",  # vide (pas de mapping précis)
             }
-            (dst / (out_js.name + ".map")).write_text(json.dumps(source_map, indent=2), encoding="utf-8")
+            (dst / (out_js.name + ".map")).write_text(
+                json.dumps(source_map, indent=2), encoding="utf-8"
+            )
             self.log(ctx, f"Minifié JS + map: {rel} → {out_js.name}")
-

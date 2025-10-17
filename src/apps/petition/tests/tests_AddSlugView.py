@@ -1,15 +1,15 @@
-from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django.utils.text import slugify
 
-from apps.petition.models import Organization, Petition, PytitionUser
+from apps.petition.models import PytitionUser
 
 from .utils import add_default_data
 
 
 class AddSlugViewTest(TestCase):
     """Test Slug creation view"""
+
     @classmethod
     def setUpTestData(cls):
         add_default_data()
@@ -29,13 +29,18 @@ class AddSlugViewTest(TestCase):
     def test_addSlugOK(self):
         max = self.login("max")
         petition = max.petition_set.all()[0]
-        slugtext = 'coucou ceci est un slug'
+        slugtext = "coucou ceci est un slug"
         data = {
-            'slugtext': slugtext,
+            "slugtext": slugtext,
         }
         previous_slug_count = petition.slugmodel_set.count()
-        response = self.client.post(reverse("add_new_slug", args=[petition.id]), data, follow=True)
-        self.assertRedirects(response, reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form")
+        response = self.client.post(
+            reverse("add_new_slug", args=[petition.id]), data, follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form",
+        )
         slug_count = petition.slugmodel_set.count()
         self.assertEqual(slug_count, previous_slug_count + 1)
         new_slug = petition.slugmodel_set.get(slug=slugify(slugtext))
@@ -44,22 +49,33 @@ class AddSlugViewTest(TestCase):
     def test_addSlugAlreadyExistsKO(self):
         max = self.login("max")
         petition = max.petition_set.all()[0]
-        slugtext = 'coucou ceci est un slug'
+        slugtext = "coucou ceci est un slug"
         data = {
-            'slugtext': slugtext,
+            "slugtext": slugtext,
         }
         previous_slug_count = petition.slugmodel_set.count()
         # first time slug insertion
-        response = self.client.post(reverse("add_new_slug", args=[petition.id]), data, follow=True)
-        self.assertRedirects(response, reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form")
+        response = self.client.post(
+            reverse("add_new_slug", args=[petition.id]), data, follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form",
+        )
         slug_count = petition.slugmodel_set.count()
         self.assertEqual(slug_count, previous_slug_count + 1)
         new_slug = petition.slugmodel_set.get(slug=slugify(slugtext))
         self.assertEqual(new_slug.slug, slugify(slugtext))
         # second time slug insertion (should fail)
         with self.assertRaises(ValueError):
-            response = self.client.post(reverse("add_new_slug", args=[petition.id]), data, follow=True)
-            self.assertRedirects(response, reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form")
+            response = self.client.post(
+                reverse("add_new_slug", args=[petition.id]), data, follow=True
+            )
+            self.assertRedirects(
+                response,
+                reverse("edit_petition", args=[petition.id])
+                + "#tab_social_network_form",
+            )
         slug_count = petition.slugmodel_set.count()
         self.assertEqual(slug_count, previous_slug_count + 1)
         new_slug = petition.slugmodel_set.get(slug=slugify(slugtext))

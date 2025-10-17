@@ -1,8 +1,10 @@
 from __future__ import annotations
-from pathlib import Path
+
+import shutil
+
 from .base import Vendor
 from .registry import register
-import shutil
+
 
 @register("bootstrap")
 class BootstrapVendor(Vendor):

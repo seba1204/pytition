@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from pathlib import Path
+
 from PIL import Image, UnidentifiedImageError
-from .base import PipelineStep, Context
+
+from .base import Context, PipelineStep
 from .registry import register_step
+
 
 @register_step("images", order=10)
 class ImagesStep(PipelineStep):
@@ -11,6 +15,7 @@ class ImagesStep(PipelineStep):
     Copie les SVG tels quels.
     Source: assets/img/**/* -> <static_root>/img/
     """
+
     def __init__(self, name: str):
         super().__init__("images")
 
@@ -19,7 +24,11 @@ class ImagesStep(PipelineStep):
         dst = Path(ctx.static_root) / "img"
         dst.mkdir(parents=True, exist_ok=True)
 
-        sizes = getattr(ctx.settings, "ASSETS_IMAGE_SIZES", {"thumbnail":200,"standard":800,"retina":1600})
+        sizes = getattr(
+            ctx.settings,
+            "ASSETS_IMAGE_SIZES",
+            {"thumbnail": 200, "standard": 800, "retina": 1600},
+        )
         quality = getattr(ctx.settings, "ASSETS_IMAGE_QUALITY", 85)
 
         if not src.exists():

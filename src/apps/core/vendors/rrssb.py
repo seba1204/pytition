@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 import shutil
+
 from .base import Vendor
 from .registry import register
+
 
 @register("rrssb")
 class RRSSBVendor(Vendor):
@@ -23,7 +26,9 @@ class RRSSBVendor(Vendor):
             except Exception:
                 continue
         if blob is None:
-            raise RuntimeError("Impossible de récupérer RRSSB (vérifie la version/tag).")
+            raise RuntimeError(
+                "Impossible de récupérer RRSSB (vérifie la version/tag)."
+            )
 
         root = next((self.stage_dir / "_zip").iterdir())
         js_src = list(root.rglob("js/rrssb.min.js"))
@@ -34,7 +39,6 @@ class RRSSBVendor(Vendor):
         (self.stage_dir / "js").mkdir(parents=True, exist_ok=True)
         (self.stage_dir / "css").mkdir(parents=True, exist_ok=True)
 
-        from pathlib import Path as _P
         shutil.copy2(js_src[0], self.stage_dir / "js" / "rrssb.min.js")
         # Copie toutes les CSS rrssb*.css disponibles (minifiées ou non)
         for css in css_src:

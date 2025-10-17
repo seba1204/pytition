@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from .base import Vendor
 from .registry import register
+
 
 @register("jquery")
 class JQueryVendor(Vendor):

@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0008_auto_20190922_1805'),
+        ("petition", "0008_auto_20190922_1805"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='petition',
-            name='paper_signatures',
+            model_name="petition",
+            name="paper_signatures",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='petition',
-            name='paper_signatures_enabled',
+            model_name="petition",
+            name="paper_signatures_enabled",
             field=models.BooleanField(default=False),
         ),
     ]

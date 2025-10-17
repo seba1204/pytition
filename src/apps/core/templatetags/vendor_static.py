@@ -1,11 +1,14 @@
 from __future__ import annotations
+
+import tomllib
 from functools import lru_cache
 from pathlib import Path
-import tomllib
+
 from django import template
 from django.templatetags.static import static
 
 register = template.Library()
+
 
 @lru_cache
 def _load_versions() -> dict[str, str]:
@@ -13,6 +16,7 @@ def _load_versions() -> dict[str, str]:
     with open(pyproject, "rb") as f:
         cfg = tomllib.load(f)
     return cfg.get("tool", {}).get("pytition", {}).get("vendors", {})
+
 
 @register.simple_tag
 def vendor_static(vendor: str, path: str) -> str:

@@ -1,10 +1,9 @@
-
 from django.test import TestCase
 from django.urls import reverse
 
-from .utils import add_default_data
+from apps.petition.models import Petition, PytitionUser, Signature
 
-from apps.petition.models import Petition, Signature, PytitionUser
+from .utils import add_default_data
 
 
 class GoSendConfirmationEmailViewTest(TestCase):
@@ -25,31 +24,46 @@ class GoSendConfirmationEmailViewTest(TestCase):
     def test_GoSendConfirmationEmailViewLoginKO(self):
         self.logout()
         data = {
-            'first_name': 'Alan',
-            'last_name': 'John',
-            'email': 'alan@john.org',
-            'subscribed_to_mailinglist': False,
+            "first_name": "Alan",
+            "last_name": "John",
+            "email": "alan@john.org",
+            "subscribed_to_mailinglist": False,
         }
         petition = Petition.objects.filter(published=True).first()
-        response = self.client.post(reverse('create_signature', args=[petition.id]), data, follow=True)
+        response = self.client.post(
+            reverse("create_signature", args=[petition.id]), data, follow=True
+        )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()
-        response = self.client.get(reverse('resend_confirmation_email', args=[signature.id]), follow=True)
-        self.assertRedirects(response, reverse("login")+"?next="+reverse("resend_confirmation_email",
-                                                                         args=[signature.id]))
+        response = self.client.get(
+            reverse("resend_confirmation_email", args=[signature.id]), follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse("login")
+            + "?next="
+            + reverse("resend_confirmation_email", args=[signature.id]),
+        )
 
     def test_GoSendConfirmationEmailViewLoginOK(self):
-        self.login('admin')
+        self.login("admin")
         data = {
-            'first_name': 'Alan',
-            'last_name': 'John',
-            'email': 'alan@john.org',
-            'subscribed_to_mailinglist': False,
+            "first_name": "Alan",
+            "last_name": "John",
+            "email": "alan@john.org",
+            "subscribed_to_mailinglist": False,
         }
         app_label = Signature._meta.app_label
         petition = Petition.objects.filter(published=True).first()
-        response = self.client.post(reverse('create_signature', args=[petition.id]), data, follow=True)
+        response = self.client.post(
+            reverse("create_signature", args=[petition.id]), data, follow=True
+        )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()
-        response = self.client.get(reverse('resend_confirmation_email', args=[signature.id]), follow=True)
-        self.assertRedirects(response, reverse('admin:{}_signature_change'.format(app_label), args=[signature.id]))
+        response = self.client.get(
+            reverse("resend_confirmation_email", args=[signature.id]), follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse(f"admin:{app_label}_signature_change", args=[signature.id]),
+        )

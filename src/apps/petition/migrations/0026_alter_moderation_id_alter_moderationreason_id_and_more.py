@@ -5,85 +5,114 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0025_remove_petitiontemplate_has_share_buttons'),
+        ("petition", "0025_remove_petitiontemplate_has_share_buttons"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='moderation',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="moderation",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='moderationreason',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="moderationreason",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='organization',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="organization",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='permission',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="permission",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='petition',
-            name='bgcolor',
-            field=colorfield.fields.ColorField(blank=True, default='', image_field=None, max_length=25, samples=None),
+            model_name="petition",
+            name="bgcolor",
+            field=colorfield.fields.ColorField(
+                blank=True, default="", image_field=None, max_length=25, samples=None
+            ),
         ),
         migrations.AlterField(
-            model_name='petition',
-            name='gradient_from',
-            field=colorfield.fields.ColorField(blank=True, default='', image_field=None, max_length=25, samples=None),
+            model_name="petition",
+            name="gradient_from",
+            field=colorfield.fields.ColorField(
+                blank=True, default="", image_field=None, max_length=25, samples=None
+            ),
         ),
         migrations.AlterField(
-            model_name='petition',
-            name='gradient_to',
-            field=colorfield.fields.ColorField(blank=True, default='', image_field=None, max_length=25, samples=None),
+            model_name="petition",
+            name="gradient_to",
+            field=colorfield.fields.ColorField(
+                blank=True, default="", image_field=None, max_length=25, samples=None
+            ),
         ),
         migrations.AlterField(
-            model_name='petition',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="petition",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='petitiontemplate',
-            name='bgcolor',
-            field=colorfield.fields.ColorField(blank=True, default='', image_field=None, max_length=25, samples=None),
+            model_name="petitiontemplate",
+            name="bgcolor",
+            field=colorfield.fields.ColorField(
+                blank=True, default="", image_field=None, max_length=25, samples=None
+            ),
         ),
         migrations.AlterField(
-            model_name='petitiontemplate',
-            name='gradient_from',
-            field=colorfield.fields.ColorField(blank=True, default='', image_field=None, max_length=25, samples=None),
+            model_name="petitiontemplate",
+            name="gradient_from",
+            field=colorfield.fields.ColorField(
+                blank=True, default="", image_field=None, max_length=25, samples=None
+            ),
         ),
         migrations.AlterField(
-            model_name='petitiontemplate',
-            name='gradient_to',
-            field=colorfield.fields.ColorField(blank=True, default='', image_field=None, max_length=25, samples=None),
+            model_name="petitiontemplate",
+            name="gradient_to",
+            field=colorfield.fields.ColorField(
+                blank=True, default="", image_field=None, max_length=25, samples=None
+            ),
         ),
         migrations.AlterField(
-            model_name='petitiontemplate',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="petitiontemplate",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='pytitionuser',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="pytitionuser",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='signature',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="signature",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='slugmodel',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="slugmodel",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
     ]

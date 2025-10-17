@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0017_petitiontemplate_paper_signatures_enabled'),
+        ("petition", "0017_petitiontemplate_paper_signatures_enabled"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='petition',
-            name='publication_date',
+            model_name="petition",
+            name="publication_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

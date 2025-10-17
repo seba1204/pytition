@@ -1,8 +1,10 @@
 from __future__ import annotations
-from pathlib import Path
+
 import shutil
+
 from .base import Vendor
 from .registry import register
+
 
 @register("smartwizard")
 @register("jquery-smart-wizard")
@@ -25,7 +27,9 @@ class SmartWizardVendor(Vendor):
             except Exception:
                 continue
         if blob is None:
-            raise RuntimeError("Impossible de récupérer SmartWizard (vérifie la version/tag).")
+            raise RuntimeError(
+                "Impossible de récupérer SmartWizard (vérifie la version/tag)."
+            )
 
         root = next((self.stage_dir / "_zip").iterdir())
         js_src = list(root.rglob("dist/js/jquery.smartWizard.min.js"))

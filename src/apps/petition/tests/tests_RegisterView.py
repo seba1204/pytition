@@ -1,11 +1,12 @@
-from django.test import TestCase
-from django.urls import reverse
-from django.urls.exceptions import NoReverseMatch
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.core import mail
+from django.test import TestCase
+from django.urls import reverse
+from django.urls.exceptions import NoReverseMatch
 
 from apps.petition.models import PytitionUser
+
 
 class PytitionUserRegister(TestCase):
     def setUp(self):
@@ -30,7 +31,7 @@ class PytitionUserRegister(TestCase):
             # No answer to Captcha
             response = self.client.post(reverse("register"), data=data)
             self.assertEqual(response.status_code, 200)
-            form = response.context['form']
+            form = response.context["form"]
             self.assertEqual(form.is_bound, True)
             self.assertEqual(form.is_valid(), False)
             self.assertGreater(len(form.errors["answer"]), 0)
@@ -42,20 +43,20 @@ class PytitionUserRegister(TestCase):
             self.assertNotIn("password1", form.errors)
             self.assertNotIn("password2", form.errors)
             self.assertNotIn("email_confirm", form.errors)
-            pu = authenticate(username=data['username'], password=data['password1'])
+            pu = authenticate(username=data["username"], password=data["password1"])
             self.assertEqual(pu, None)
             with self.assertRaises(PytitionUser.DoesNotExist):
-                toto = PytitionUser.objects.get(user__username=data['username'])
+                toto = PytitionUser.objects.get(user__username=data["username"])
 
             # Wrong answer to Captcha
             response = self.client.get(reverse("register"))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
-            answer = answer + 1 # compute a wrong answer by adding 1 to correct answer
+            answer = answer + 1  # compute a wrong answer by adding 1 to correct answer
             data["answer"] = answer
             response = self.client.post(reverse("register"), data=data)
             self.assertEqual(response.status_code, 200)
-            form = response.context['form']
+            form = response.context["form"]
             self.assertEqual(form.is_bound, True)
             self.assertEqual(form.is_valid(), False)
             self.assertGreater(len(form.errors["answer"]), 0)
@@ -67,21 +68,21 @@ class PytitionUserRegister(TestCase):
             self.assertNotIn("password1", form.errors)
             self.assertNotIn("password2", form.errors)
             self.assertNotIn("email_confirm", form.errors)
-            pu = authenticate(username=data['username'], password=data['password1'])
+            pu = authenticate(username=data["username"], password=data["password1"])
             self.assertEqual(pu, None)
             with self.assertRaises(PytitionUser.DoesNotExist):
-                toto = PytitionUser.objects.get(user__username=data['username'])
+                toto = PytitionUser.objects.get(user__username=data["username"])
 
             # Incorrect email
             response = self.client.get(reverse("register"))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
-            data2 = dict(data) # copy
-            data2["answer"] = answer # correct answer
-            data2["email"] = "invalid-email-syntax" # invalid email
+            data2 = dict(data)  # copy
+            data2["answer"] = answer  # correct answer
+            data2["email"] = "invalid-email-syntax"  # invalid email
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
-            form = response.context['form']
+            form = response.context["form"]
             self.assertEqual(form.is_bound, True)
             self.assertEqual(form.is_valid(), False)
             self.assertEqual(len(form.errors), 1)
@@ -93,21 +94,21 @@ class PytitionUserRegister(TestCase):
             self.assertNotIn("password1", form.errors)
             self.assertNotIn("password2", form.errors)
             self.assertNotIn("email_confirm", form.errors)
-            pu = authenticate(username=data2['username'], password=data2['password1'])
+            pu = authenticate(username=data2["username"], password=data2["password1"])
             self.assertEqual(pu, None)
             with self.assertRaises(PytitionUser.DoesNotExist):
-                toto = PytitionUser.objects.get(user__username=data2['username'])
+                toto = PytitionUser.objects.get(user__username=data2["username"])
 
             # Password mismatch (password1 != password2)
             response = self.client.get(reverse("register"))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data2 = dict(data)
-            data2["answer"] = answer # correct answer
-            data2["password2"] = "not like password1" # invalid password
+            data2["answer"] = answer  # correct answer
+            data2["password2"] = "not like password1"  # invalid password
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
-            form = response.context['form']
+            form = response.context["form"]
             self.assertEqual(form.is_bound, True)
             self.assertEqual(form.is_valid(), False)
             self.assertEqual(len(form.errors), 1)
@@ -119,21 +120,21 @@ class PytitionUserRegister(TestCase):
             self.assertNotIn("password1", form.errors)
             self.assertIn("password2", form.errors)
             self.assertNotIn("email_confirm", form.errors)
-            pu = authenticate(username=data2['username'], password=data2['password1'])
+            pu = authenticate(username=data2["username"], password=data2["password1"])
             self.assertEqual(pu, None)
             with self.assertRaises(PytitionUser.DoesNotExist):
-                toto = PytitionUser.objects.get(user__username=data2['username'])
+                toto = PytitionUser.objects.get(user__username=data2["username"])
 
             # email_confirm filled-up
             response = self.client.get(reverse("register"))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
-            data2 = dict(data) # copy
-            data2["answer"] = answer # correct answer
+            data2 = dict(data)  # copy
+            data2["answer"] = answer  # correct answer
             data2["email_confirm"] = data2["email"]
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
-            form = response.context['form']
+            form = response.context["form"]
             self.assertEqual(form.is_bound, True)
             self.assertEqual(form.is_valid(), False)
             self.assertEqual(len(form.errors), 1)
@@ -145,16 +146,16 @@ class PytitionUserRegister(TestCase):
             self.assertNotIn("password1", form.errors)
             self.assertNotIn("password2", form.errors)
             self.assertIn("email_confirm", form.errors)
-            pu = authenticate(username=data2['username'], password=data2['password1'])
+            pu = authenticate(username=data2["username"], password=data2["password1"])
             self.assertEqual(pu, None)
             with self.assertRaises(PytitionUser.DoesNotExist):
-                toto = PytitionUser.objects.get(user__username=data2['username'])
+                toto = PytitionUser.objects.get(user__username=data2["username"])
 
             # Check what happens if mandatory fields are blank
             data2 = dict()
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
-            form = response.context['form']
+            form = response.context["form"]
             self.assertEqual(form.is_bound, True)
             self.assertEqual(form.is_valid(), False)
             self.assertEqual(len(form.errors), 6)
@@ -167,14 +168,14 @@ class PytitionUserRegister(TestCase):
             response = self.client.post(reverse("register"), data=data)
             self.assertEqual(response.status_code, 302)
             self.assertRedirects(response, reverse("login"))
-            toto = PytitionUser.objects.get(user__username=data['username'])
+            toto = PytitionUser.objects.get(user__username=data["username"])
             self.assertEqual(toto.user.email, data["email"])
             self.assertEqual(toto.user.first_name, data["first_name"])
             self.assertEqual(toto.user.last_name, data["last_name"])
             self.assertEqual(len(mail.outbox), 1)
-            self.assertEqual(mail.outbox[0].subject, 'Account created !')
+            self.assertEqual(mail.outbox[0].subject, "Account created !")
             # Let's try to authenticate, to check password is OK
-            pu = authenticate(username=data['username'], password=data['password1'])
+            pu = authenticate(username=data["username"], password=data["password1"])
             self.assertNotEqual(pu, None)
         else:
             with self.assertRaises(NoReverseMatch):

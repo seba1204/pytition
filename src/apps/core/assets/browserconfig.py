@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from pathlib import Path
-from .base import PipelineStep, Context
+
+from .base import Context, PipelineStep
 from .registry import register_step
+
 
 @register_step("browserconfig", order=60)
 class BrowserConfigStep(PipelineStep):
@@ -9,6 +12,7 @@ class BrowserConfigStep(PipelineStep):
     Génère browserconfig.xml pour Microsoft/Windows (tuiles).
     Requiert au moins une icône carrée 150x150 (on réutilise android-chrome-192x192).
     """
+
     def __init__(self, name: str):
         super().__init__("browserconfig")
 

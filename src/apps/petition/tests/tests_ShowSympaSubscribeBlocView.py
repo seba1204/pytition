@@ -1,16 +1,18 @@
-from django.test import TestCase
-from django.urls import reverse
-from django.contrib.auth import get_user_model
-from apps.petition.models import Petition, PytitionUser, Signature
-
 import random
 import string
+
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+from django.urls import reverse
+
+from apps.petition.models import Petition, PytitionUser, Signature
+
 
 class SympaBlockTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
-        u = User.objects.create_user('julia', password='julia')
+        u = User.objects.create_user("julia", password="julia")
 
     def login(self, name, password=None):
         self.client.login(username=name, password=password if password else name)
@@ -23,8 +25,8 @@ class SympaBlockTest(TestCase):
     def create_signatures(self, petition):
         self.nb_subscribed = 0
         for i in range(10):
-            firstname = ''.join([random.choice(string.ascii_letters) for n in range(7)])
-            lastname = ''.join([random.choice(string.ascii_letters) for n in range(7)])
+            firstname = "".join([random.choice(string.ascii_letters) for n in range(7)])
+            lastname = "".join([random.choice(string.ascii_letters) for n in range(7)])
             subscribed = False
             if i % 2:
                 subscribed = True
@@ -32,10 +34,10 @@ class SympaBlockTest(TestCase):
             Signature.objects.create(
                 first_name=firstname.capitalize(),
                 last_name=lastname.capitalize(),
-                email=f'{firstname}@{lastname}.net',
+                email=f"{firstname}@{lastname}.net",
                 petition=petition,
                 confirmed=True,
-                subscribed_to_mailinglist=subscribed
+                subscribed_to_mailinglist=subscribed,
             )
 
     def test_ShowSympaSubscribeBlock(self):
@@ -48,6 +50,10 @@ class SympaBlockTest(TestCase):
         self.assertEqual(self.nb_subscribed, 5)
         for s in p.signature_set.all():
             if not s.confirmed or not s.subscribed_to_mailinglist:
-                self.assertNotContains(response, f"{s.email} {s.first_name} {s.last_name}<br>\n")
+                self.assertNotContains(
+                    response, f"{s.email} {s.first_name} {s.last_name}<br>\n"
+                )
             else:
-                self.assertContains(response, f"{s.email} {s.first_name} {s.last_name}<br>\n", 1)
+                self.assertContains(
+                    response, f"{s.email} {s.first_name} {s.last_name}<br>\n", 1
+                )

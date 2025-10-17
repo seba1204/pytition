@@ -1,16 +1,16 @@
 from __future__ import annotations
+
 import hashlib
 import io
 import os
 import shutil
 import tarfile
+import tomllib
 import zipfile
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Optional
-from urllib.request import urlopen, Request
-import tomllib
+from urllib.request import Request, urlopen
 
 
 @dataclass
@@ -19,6 +19,7 @@ class DownloadResult:
     version: str
     dest_dir: Path
     changed: bool
+
 
 class Vendor(ABC):
     """Base class for all vendors.
@@ -45,7 +46,9 @@ class Vendor(ABC):
         """
 
     # ----------------------- helpers -----------------------
-    def _http_get_bytes(self, url: str, user_agent: str = "PytitionVendorFetcher/1.0") -> bytes:
+    def _http_get_bytes(
+        self, url: str, user_agent: str = "PytitionVendorFetcher/1.0"
+    ) -> bytes:
         req = Request(url, headers={"User-Agent": user_agent})
         with urlopen(req) as resp:  # nosec - controlled URLs from subclasses
             return resp.read()
@@ -68,10 +71,14 @@ class Vendor(ABC):
     def _atomic_replace_from_stage(self) -> bool:
         """Replace `dest_dir` with `stage_dir` atomically. Returns True if changed."""
         if not self.stage_dir.exists():
-            raise RuntimeError("stage_dir does not exist; did you run download_and_stage()?")
+            raise RuntimeError(
+                "stage_dir does not exist; did you run download_and_stage()?"
+            )
         # Compute fingerprint of stage
         stage_hash = self._hash_tree(self.stage_dir)
-        current_hash = self._hash_tree(self.dest_dir) if self.dest_dir.exists() else None
+        current_hash = (
+            self._hash_tree(self.dest_dir) if self.dest_dir.exists() else None
+        )
         changed = stage_hash != current_hash
         if changed:
             tmp_backup = self.dest_dir.with_suffix(".bak")
@@ -86,7 +93,7 @@ class Vendor(ABC):
             shutil.rmtree(self.stage_dir, ignore_errors=True)
         return changed
 
-    def _hash_tree(self, root: Path) -> Optional[str]:
+    def _hash_tree(self, root: Path) -> str | None:
         if not root.exists():
             return None
         h = hashlib.sha256()
@@ -113,7 +120,9 @@ class Vendor(ABC):
         changed = self._atomic_replace_from_stage()
         return DownloadResult(self.name, self.version, self.dest_dir, changed=changed)
 
+
 # ----------------------- utilities -----------------------
+
 
 def read_vendors_from_pyproject(pyproject_path: Path) -> dict[str, str]:
     with open(pyproject_path, "rb") as f:

@@ -1,10 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 
-import json
+from apps.petition.models import PytitionUser
 
 from .utils import add_default_data
-from apps.petition.models import PytitionUser
 
 
 class GetUserListViewTest(TestCase):
@@ -21,25 +20,25 @@ class GetUserListViewTest(TestCase):
 
     def test_GetUserListViewOk(self):
         self.login("julia")
-        response = self.client.get(reverse('get_user_list')+"?q=admin")
+        response = self.client.get(reverse("get_user_list") + "?q=admin")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], "application/json")
-        values = response.json()['values']
+        self.assertEqual(response["Content-Type"], "application/json")
+        values = response.json()["values"]
         self.assertEqual(len(values), 1)
         self.assertEqual(values[0], "admin")
 
     def test_GetUserListViewEmptySearchOk(self):
         self.login("julia")
-        response = self.client.get(reverse('get_user_list'))
+        response = self.client.get(reverse("get_user_list"))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], "application/json")
-        values = response.json()['values']
+        self.assertEqual(response["Content-Type"], "application/json")
+        values = response.json()["values"]
         self.assertEqual(len(values), 0)
 
     def test_GetUserListViewEmptyStringSearchOk(self):
         self.login("julia")
-        response = self.client.get(reverse('get_user_list')+"?q=")
+        response = self.client.get(reverse("get_user_list") + "?q=")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], "application/json")
-        values = response.json()['values']
+        self.assertEqual(response["Content-Type"], "application/json")
+        values = response.json()["values"]
         self.assertEqual(len(values), 0)

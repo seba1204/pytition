@@ -1,2 +1,2 @@
-from .registry import register_step, get_steps
-from .base import PipelineStep, Context
+from .base import Context, PipelineStep
+from .registry import get_steps, register_step

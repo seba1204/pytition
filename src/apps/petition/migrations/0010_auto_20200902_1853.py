@@ -3,39 +3,40 @@
 from django.db import migrations, models
 from django.utils import timezone
 
+
 def populate_dates(apps, schema_editor):
-    Petition = apps.get_model('petition', 'Petition')
+    Petition = apps.get_model("petition", "Petition")
     for petition in Petition.objects.all().iterator():
         petition.creation_date = timezone.now()
         petition.last_modification_date = timezone.now()
         petition.save()
 
-class Migration(migrations.Migration):
 
+class Migration(migrations.Migration):
     dependencies = [
-        ('petition', '0009_auto_20200210_0948'),
+        ("petition", "0009_auto_20200210_0948"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='petition',
-            name='creation_date',
+            model_name="petition",
+            name="creation_date",
             field=models.DateTimeField(null=True, blank=True),
         ),
         migrations.AddField(
-            model_name='petition',
-            name='last_modification_date',
+            model_name="petition",
+            name="last_modification_date",
             field=models.DateTimeField(null=True, blank=True),
         ),
         migrations.RunPython(populate_dates),
         migrations.AlterField(
-            model_name='petition',
-            name='creation_date',
+            model_name="petition",
+            name="creation_date",
             field=models.DateTimeField(blank=True),
         ),
         migrations.AlterField(
-            model_name='petition',
-            name='last_modification_date',
+            model_name="petition",
+            name="last_modification_date",
             field=models.DateTimeField(blank=True),
         ),
     ]

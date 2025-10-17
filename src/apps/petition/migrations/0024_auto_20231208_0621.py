@@ -4,7 +4,7 @@ from django.db import migrations
 
 
 def set_new_petition_template_share_fields(apps, schema_editor):
-    PetitionTemplate = apps.get_model('petition', 'PetitionTemplate')
+    PetitionTemplate = apps.get_model("petition", "PetitionTemplate")
     for pt in PetitionTemplate.objects.all():
         if pt.has_share_buttons:
             pt.has_email_share_button = True
@@ -16,12 +16,10 @@ def set_new_petition_template_share_fields(apps, schema_editor):
             pt.has_whatsapp_share_button = True
             pt.save()
 
+
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0023_petitiontemplate_has_email_share_button_and_more'),
+        ("petition", "0023_petitiontemplate_has_email_share_button_and_more"),
     ]
 
-    operations = [
-        migrations.RunPython(set_new_petition_template_share_fields)
-    ]
+    operations = [migrations.RunPython(set_new_petition_template_share_fields)]

@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from .base import Vendor
 from .registry import register
+
 
 @register("bs-custom-file-input")
 @register("bscustomfileinput")
@@ -21,11 +23,15 @@ class BsCustomFileInputVendor(Vendor):
                 self._extract_zip_bytes(blob, tmp)
                 root = next(tmp.iterdir())
                 # chemins possibles
-                candidates = list(root.rglob("dist/bs-custom-file-input.min.js")) + \
-                             list(root.rglob("bs-custom-file-input.min.js"))
+                candidates = list(
+                    root.rglob("dist/bs-custom-file-input.min.js")
+                ) + list(root.rglob("bs-custom-file-input.min.js"))
                 if candidates:
                     self.stage_dir.mkdir(parents=True, exist_ok=True)
-                    self._write_file(self.stage_dir / "bs-custom-file-input.min.js", candidates[0].read_bytes())
+                    self._write_file(
+                        self.stage_dir / "bs-custom-file-input.min.js",
+                        candidates[0].read_bytes(),
+                    )
                     return
             except Exception:
                 continue

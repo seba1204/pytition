@@ -34,10 +34,10 @@ USE_MAIL_QUEUE = False
 MAIL_EXTERNAL_CRON_SET = False
 
 # If you run under uWSGI and have mail queue workers
-UWSGI_WAIT_FOR_MAIL_SEND_IN_S = 5 # wait before sending mails
-UWSGI_WAIT_FOR_RETRY_IN_S = 60 # 1 min between retries
-UWSGI_WAIT_FOR_PURGE_IN_S = 86400 # 1 day between purges
-UWSGI_NB_DAYS_TO_KEEP = 7 # keep sent/failed mails for 7 days
+UWSGI_WAIT_FOR_MAIL_SEND_IN_S = 5  # wait before sending mails
+UWSGI_WAIT_FOR_RETRY_IN_S = 60  # 1 min between retries
+UWSGI_WAIT_FOR_PURGE_IN_S = 86400  # 1 day between purges
+UWSGI_NB_DAYS_TO_KEEP = 7  # keep sent/failed mails for 7 days
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Maintenance mode (example placeholders)
@@ -62,7 +62,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "insert_toolbar": "forecolor backcolor",
     "fontsize_formats": "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
     "entity_encoding": "raw",
-    "relative_urls" : False,
+    "relative_urls": False,
     "convert_urls": True,
     "file_picker_types": "image",
     "automatic_uploads": True,
@@ -108,24 +108,24 @@ TINYMCE_INCLUDE_JQUERY = True
 
 DEFAULT_INDEX_THUMBNAIL = "/img/petition_icon.svg"
 FOOTER_TEMPLATE = None
-INDEX_PAGE = "HOME"   # "ORGA_PROFILE" / "USER_PROFILE" / "LOGIN_REGISTER"
+INDEX_PAGE = "HOME"  # "ORGA_PROFILE" / "USER_PROFILE" / "LOGIN_REGISTER"
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Anti-bot
 # ──────────────────────────────────────────────────────────────────────────────
 
-SIGNATURE_THROTTLE = 5                 # allowed signatures from same IP
-SIGNATURE_THROTTLE_TIMING = 60*60*24   # time window in seconds (1 day)
+SIGNATURE_THROTTLE = 5  # allowed signatures from same IP
+SIGNATURE_THROTTLE_TIMING = 60 * 60 * 24  # time window in seconds (1 day)
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Assets / PWA
 # ──────────────────────────────────────────────────────────────────────────────
 ASSETS_IMAGE_SIZES = {
-    "thumbnail": 200,   # max width
+    "thumbnail": 200,  # max width
     "standard": 800,
-    "retina":   1600,
+    "retina": 1600,
 }
-ASSETS_IMAGE_QUALITY = 85   # WebP quality
+ASSETS_IMAGE_QUALITY = 85  # WebP quality
 ASSETS_FAVICON_SIZES = [16, 32, 48]
 ASSETS_APPLE_TOUCH_SIZE = 180
 ASSETS_ANDROID_ICON_SIZES = [192, 512]

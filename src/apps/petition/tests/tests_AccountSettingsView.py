@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from apps.petition.forms import DeleteAccountForm
 from apps.petition.helpers import get_update_form
-from apps.petition.models import Organization, Permission, Petition, PytitionUser
+from apps.petition.models import PytitionUser
 
 from .utils import add_default_data
 

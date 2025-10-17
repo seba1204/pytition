@@ -8,13 +8,15 @@ Design goals:
 """
 
 from __future__ import annotations
-import os
+
 import ast
+import os
+from collections.abc import Iterable, Mapping
 from pathlib import Path
-from typing import Any, Dict, Iterable, Mapping, Optional
+from typing import Any
 
 
-def load_dotenv(paths: Iterable[Path]) -> Dict[str, str]:
+def load_dotenv(paths: Iterable[Path]) -> dict[str, str]:
     """
     Parse .env files in order and return a flat dict of key -> value.
     Later files in `paths` override earlier ones (last-wins).
@@ -23,10 +25,10 @@ def load_dotenv(paths: Iterable[Path]) -> Dict[str, str]:
       KEY="value with spaces"
     Ignores comments (#...) and blank lines.
     """
-    envmap: Dict[str, str] = {}
+    envmap: dict[str, str] = {}
     for p in paths:
         try:
-            with open(p, "r", encoding="utf-8") as f:
+            with open(p, encoding="utf-8") as f:
                 for raw in f:
                     line = raw.strip()
                     if not line or line.startswith("#") or "=" not in line:
@@ -40,7 +42,9 @@ def load_dotenv(paths: Iterable[Path]) -> Dict[str, str]:
     return envmap
 
 
-def get_env(name: str, dotenv: Mapping[str, str], osenv: Mapping[str, str] | None = None) -> Optional[str]:
+def get_env(
+    name: str, dotenv: Mapping[str, str], osenv: Mapping[str, str] | None = None
+) -> str | None:
     """
     Return a value for `name` with precedence:
       1) `dotenv` map
@@ -58,7 +62,11 @@ def to_bool(value: str) -> bool:
     return value.lower() in {"1", "true", "yes", "on"}
 
 
-def detect_env(dotenv: Mapping[str, str], osenv: Mapping[str, str] | None = None, default: str = "dev") -> str:
+def detect_env(
+    dotenv: Mapping[str, str],
+    osenv: Mapping[str, str] | None = None,
+    default: str = "dev",
+) -> str:
     """
     Decide between "dev" | "prod" | "test".
     Priority: ENV (in .env then OS) -> DEBUG (in .env then OS) -> default.
@@ -96,7 +104,11 @@ def coerce_like(original: Any, newval: str) -> Any:
     return newval
 
 
-def override_settings(globals_dict: Dict[str, Any], dotenv: Mapping[str, str], osenv: Mapping[str, str] | None = None) -> None:
+def override_settings(
+    globals_dict: dict[str, Any],
+    dotenv: Mapping[str, str],
+    osenv: Mapping[str, str] | None = None,
+) -> None:
     """
     For every UPPERCASE key in `globals_dict`, override its value using:
       1) .env (dotenv)

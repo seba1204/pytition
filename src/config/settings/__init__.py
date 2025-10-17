@@ -20,24 +20,27 @@ Notes:
 """
 
 from __future__ import annotations
+
 import os
 from pathlib import Path
 
-from .helpers.envtools import load_dotenv, detect_env, override_settings
+from .helpers.envtools import detect_env, load_dotenv, override_settings
+
 # ──────────────────────────────────────────────────────────────────────────────
 # .env loading (no external dependency)
 # ──────────────────────────────────────────────────────────────────────────────
 
 # Adjust this if your .env sits elsewhere:
-PROJECT_ROOT = Path(__file__).resolve().parents[3]  # src/config/settings/__init__.py -> src -> (repo root)
+PROJECT_ROOT = (
+    Path(__file__).resolve().parents[3]
+)  # src/config/settings/__init__.py -> src -> (repo root)
 DOTENV_PATHS = [
     PROJECT_ROOT / ".env",
-    PROJECT_ROOT / "src" / ".env",        # optional fallback
+    PROJECT_ROOT / "src" / ".env",  # optional fallback
 ]
 
 _DOTENV = load_dotenv(DOTENV_PATHS)
 _ENV = detect_env(_DOTENV)
-
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -45,10 +48,9 @@ _ENV = detect_env(_DOTENV)
 # ──────────────────────────────────────────────────────────────────────────────
 
 # First: core Django settings (safe defaults)
-from .django import *
-
 # Then: app/project defaults
 from .default import *
+from .django import *
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Apply per-environment deltas

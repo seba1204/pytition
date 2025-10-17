@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 import json
 from pathlib import Path
-from .base import PipelineStep, Context
+
+from .base import Context, PipelineStep
 from .registry import register_step
+
 
 @register_step("manifest", order=50)
 class ManifestStep(PipelineStep):
@@ -10,6 +13,7 @@ class ManifestStep(PipelineStep):
     Génère manifest.json minimaliste pour PWA.
     Icônes: android-chrome-192x192 / 512x512 générés par FaviconsStep.
     """
+
     def __init__(self, name: str):
         super().__init__("manifest")
 
@@ -23,13 +27,25 @@ class ManifestStep(PipelineStep):
             "background_color": getattr(ctx.settings, "ASSETS_PWA_BG_COLOR", "#ffffff"),
             "theme_color": getattr(ctx.settings, "ASSETS_PWA_THEME_COLOR", "#000000"),
             "icons": [
-                {"src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png"},
-                {"src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png"},
+                {
+                    "src": "/android-chrome-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                },
+                {
+                    "src": "/android-chrome-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                },
             ],
         }
-        (root / "manifest.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        (root / "manifest.json").write_text(
+            json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
 
         # Generate an alias site.webmanifest
-        (root / "site.webmanifest").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-        
+        (root / "site.webmanifest").write_text(
+            json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+
         self.log(ctx, "Généré manifest.json")

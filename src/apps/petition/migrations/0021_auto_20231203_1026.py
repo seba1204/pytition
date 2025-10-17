@@ -2,6 +2,7 @@
 
 from django.db import migrations
 
+
 def set_new_petition_share_fields(apps, schema_editor):
     Petition = apps.get_model("petition", "Petition")
     for petition in Petition.objects.all():
@@ -17,11 +18,8 @@ def set_new_petition_share_fields(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0020_petition_has_email_share_button_and_more'),
+        ("petition", "0020_petition_has_email_share_button_and_more"),
     ]
 
-    operations = [
-        migrations.RunPython(set_new_petition_share_fields)
-    ]
+    operations = [migrations.RunPython(set_new_petition_share_fields)]

@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
 
 @dataclass
 class Context:
@@ -12,11 +14,13 @@ class Context:
     stderr: Any  # file-like
     verbosity: int = 1
 
+
 class PipelineStep:
     """
     Base de toutes les étapes du pipeline.
     Implémente `run(self, ctx: Context) -> None`.
     """
+
     order: int = 100  # ordre par défaut si non spécifié
 
     def __init__(self, name: str):

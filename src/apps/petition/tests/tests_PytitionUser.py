@@ -1,7 +1,7 @@
-from django.test import TestCase
-from django.urls import reverse
 from django.contrib.auth import get_user_model
-from apps.petition.models import Organization, Petition, PytitionUser, SlugModel
+from django.test import TestCase
+
+from apps.petition.models import PytitionUser
 
 
 class PytitionUserTest(TestCase):
@@ -10,5 +10,5 @@ class PytitionUserTest(TestCase):
 
     def test_createPytitionUser(self):
         User = get_user_model()
-        u = User.objects.create_user('julia', password='julia')
+        u = User.objects.create_user("julia", password="julia")
         self.assertEqual(PytitionUser.objects.count(), 1)

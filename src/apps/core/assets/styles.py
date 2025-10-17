@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from pathlib import Path
+
 from cssmin import cssmin
-from .base import PipelineStep, Context
+
+from .base import Context, PipelineStep
 from .registry import register_step
+
 
 @register_step("styles", order=20)
 class StylesStep(PipelineStep):
@@ -10,6 +14,7 @@ class StylesStep(PipelineStep):
     Minifie les .css de assets/css -> <static_root>/css
     (Ignore .scss : compilation hors scope demandé)
     """
+
     def __init__(self, name: str):
         super().__init__("styles")
 

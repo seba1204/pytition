@@ -1,10 +1,10 @@
+from django.contrib.messages import constants
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.messages import constants
+
+from apps.petition.models import Permission, PytitionUser
 
 from .utils import add_default_data
-
-from apps.petition.models import PytitionUser, Permission, Organization
 
 
 class OrgSetUserPermsViewTest(TestCase):
@@ -24,21 +24,43 @@ class OrgSetUserPermsViewTest(TestCase):
 
     def test_OrgSetUserPermsViewGetRedirectOk(self):
         julia = self.login("julia")
-        response = self.client.get(reverse("org_set_user_perms", kwargs={'orgslugname': 'rap', 'user_name': 'julia'}),
-                                   follow=True)
-        self.assertRedirects(response, reverse("org_edit_user_perms", kwargs={'orgslugname': 'rap', 'user_name': 'julia'}))
+        response = self.client.get(
+            reverse(
+                "org_set_user_perms",
+                kwargs={"orgslugname": "rap", "user_name": "julia"},
+            ),
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse(
+                "org_edit_user_perms",
+                kwargs={"orgslugname": "rap", "user_name": "julia"},
+            ),
+        )
 
     def test_OrgSetUserPermsViewPostOk(self):
         julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         data = {
-            'can_remove_members': 'off',
+            "can_remove_members": "off",
         }
         self.assertEqual(julia_perms.can_remove_members, True)
-        response = self.client.post(reverse("org_set_user_perms", kwargs={'orgslugname': 'rap', 'user_name': 'julia'}),
-                                    data, follow=True)
-        self.assertRedirects(response, reverse("org_edit_user_perms",
-                                               kwargs={'orgslugname': 'rap', 'user_name': 'julia'}))
+        response = self.client.post(
+            reverse(
+                "org_set_user_perms",
+                kwargs={"orgslugname": "rap", "user_name": "julia"},
+            ),
+            data,
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse(
+                "org_edit_user_perms",
+                kwargs={"orgslugname": "rap", "user_name": "julia"},
+            ),
+        )
         julia_perms.refresh_from_db()
         self.assertEqual(julia_perms.can_remove_members, False)
 
@@ -48,17 +70,28 @@ class OrgSetUserPermsViewTest(TestCase):
         # Now let's try to remove admin rights from julia
         # It should fail in order to make it impossible to have an admin-less Organization
         data = {
-            'can_modify_permissions': 'off',
+            "can_modify_permissions": "off",
         }
         self.assertEqual(julia_perms.can_modify_permissions, True)
-        response = self.client.post(reverse("org_set_user_perms", kwargs={'orgslugname': 'rap', 'user_name': 'julia'}),
-                                    data, follow=True)
-        self.assertRedirects(response, reverse("org_edit_user_perms",
-                                               kwargs={'orgslugname': 'rap', 'user_name': 'julia'}))
-        self.assertEqual(response.context['permissions'].can_modify_permissions, True)
+        response = self.client.post(
+            reverse(
+                "org_set_user_perms",
+                kwargs={"orgslugname": "rap", "user_name": "julia"},
+            ),
+            data,
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse(
+                "org_edit_user_perms",
+                kwargs={"orgslugname": "rap", "user_name": "julia"},
+            ),
+        )
+        self.assertEqual(response.context["permissions"].can_modify_permissions, True)
         julia_perms.refresh_from_db()
         self.assertEqual(julia_perms.can_modify_permissions, True)
-        messages = response.context['messages']
+        messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
         for msg in messages:
@@ -68,22 +101,34 @@ class OrgSetUserPermsViewTest(TestCase):
 
     def test_OrgSetUserPermsViewSeveralAdminsRemoveItsPermsOK(self):
         julia = self.login("julia")
-        julia_perms = Permission.objects.get(organization__slugname="alternatiba", user=julia)
+        julia_perms = Permission.objects.get(
+            organization__slugname="alternatiba", user=julia
+        )
         # Now let's try to remove admin rights from julia
         # It should fail in order to make it impossible to have an admin-less Organization
         data = {
-            'can_modify_permissions': 'off',
+            "can_modify_permissions": "off",
         }
         self.assertEqual(julia_perms.can_modify_permissions, True)
-        response = self.client.post(reverse("org_set_user_perms", kwargs={'orgslugname': 'alternatiba',
-                                                                          'user_name': 'julia'}),
-                                    data, follow=True)
-        self.assertRedirects(response, reverse("org_edit_user_perms",
-                                               kwargs={'orgslugname': 'alternatiba', 'user_name': 'julia'}))
-        self.assertEqual(response.context['permissions'].can_modify_permissions, False)
+        response = self.client.post(
+            reverse(
+                "org_set_user_perms",
+                kwargs={"orgslugname": "alternatiba", "user_name": "julia"},
+            ),
+            data,
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse(
+                "org_edit_user_perms",
+                kwargs={"orgslugname": "alternatiba", "user_name": "julia"},
+            ),
+        )
+        self.assertEqual(response.context["permissions"].can_modify_permissions, False)
         julia_perms.refresh_from_db()
         self.assertEqual(julia_perms.can_modify_permissions, False)
-        messages = response.context['messages']
+        messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
         for msg in messages:
@@ -93,22 +138,34 @@ class OrgSetUserPermsViewTest(TestCase):
 
     def test_OrgSetUserPermsViewLastAdminSeveralMembersRemoveItsPermsKO(self):
         julia = self.login("julia")
-        julia_perms = Permission.objects.get(organization__slugname="les-amis-de-la-terre", user=julia)
+        julia_perms = Permission.objects.get(
+            organization__slugname="les-amis-de-la-terre", user=julia
+        )
         # Now let's try to remove admin rights from julia
         # It should fail in order to make it impossible to have an admin-less Organization
         data = {
-            'can_modify_permissions': 'off',
+            "can_modify_permissions": "off",
         }
         self.assertEqual(julia_perms.can_modify_permissions, True)
-        response = self.client.post(reverse("org_set_user_perms", kwargs={'orgslugname': 'les-amis-de-la-terre',
-                                                                          'user_name': 'julia'}),
-                                    data, follow=True)
-        self.assertRedirects(response, reverse("org_edit_user_perms",
-                                               kwargs={'orgslugname': 'les-amis-de-la-terre', 'user_name': 'julia'}))
-        self.assertEqual(response.context['permissions'].can_modify_permissions, True)
+        response = self.client.post(
+            reverse(
+                "org_set_user_perms",
+                kwargs={"orgslugname": "les-amis-de-la-terre", "user_name": "julia"},
+            ),
+            data,
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse(
+                "org_edit_user_perms",
+                kwargs={"orgslugname": "les-amis-de-la-terre", "user_name": "julia"},
+            ),
+        )
+        self.assertEqual(response.context["permissions"].can_modify_permissions, True)
         julia_perms.refresh_from_db()
         self.assertEqual(julia_perms.can_modify_permissions, True)
-        messages = response.context['messages']
+        messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
         for msg in messages:

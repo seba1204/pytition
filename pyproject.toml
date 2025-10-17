@@ -1,8 +1,11 @@
 [project]
 name = "Pytition"
 version = "3.0.0"
-description = "Django app for self-hosted privacy-friendly online petitions"
-authors = [{ name = "Yann Sionneau", email = "yann@sionneau.net" }]
+description = "Django app for self-hosted privacy-friendly online petitions."
+authors = [
+    { name = "Yann Sionneau", email = "yann@sionneau.net" },
+    { name = "Sébastien PONT", email = "contact@spont.me" },
+]
 dependencies = [
     "Django~=5.2.0",
     "django-colorfield==0.10.1",
@@ -30,9 +33,6 @@ readme = "README.md"
 license = { text = "BSD 3-Clause" }
 
 
-[tool.pdm]
-distribution = false
-
 [tool.pytition.vendors]
 bootstrap = "4.3.1"
 open-iconic = "1.1.1"
@@ -42,9 +42,49 @@ jquery-smart-wizard = "4.4.1"
 rrssb = "1.14.0"
 bs-custom-file-input = "1.3.4"
 
+
+[tool.pdm]
+distribution = false
+
 [tool.pdm.scripts]
 manage = "python manage.py"
 
 [dependency-groups]
-dev = ["djlint>=1.36.4"]
+dev = ["djlint>=1.36.4", "ruff>=0.14.1"]
 docs = ["coverage==4.5.2", "sphinx", "sphinx-rtd-theme"]
+
+[tool.ruff]
+line-length = 88
+src = ["src"]
+
+[tool.ruff.lint]
+# Codes of the various linters used by ruff:
+# E = pycodestyle errors
+# F = pyflakes
+# I = isort
+# UP = unimported
+# B = bandit
+# C4 = flake8-comprehensions
+# SIM = flake8-simplify
+# PTH = flake8-pie
+# PL = flake8-pyi
+# D = pydocstyle TODO: enable pydocstyle later
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "PTH", "PL"]
+ignore = [
+    "D203", # incompatible avec D211
+    "D212", # incompatible avec D213
+    "D401", # first line should be in imperative mood; try rephrasing
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+
+
+[tool.pyright]
+include = ["src"]
+# strict = ["src"] # TODO: enable strict mode later
+pythonVersion = "3.11"
+venvPath = "."
+venv = ".venv"
+# reportMissingTypeStubs = "warning" TODO: enable later
+reportMissingTypeStubs = "none"

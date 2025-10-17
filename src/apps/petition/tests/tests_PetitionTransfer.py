@@ -1,23 +1,22 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase, override_settings
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-from django.contrib.messages import get_messages
 
-from apps.petition.models import Organization, Petition, PytitionUser, Permission
+from apps.petition.models import Organization, Permission, Petition, PytitionUser
 
-
-users = ['julia', 'john', 'max', 'sarah']
-orgs = ['RAP', 'Greenpeace', 'Attac', 'Les Amis de la Terre']
+users = ["julia", "john", "max", "sarah"]
+orgs = ["RAP", "Greenpeace", "Attac", "Les Amis de la Terre"]
 
 org_members = {
-    'RAP': ['julia'],
-    'Les Amis de la Terre': ['julia', 'max'],
-    'Attac': ['john'],
+    "RAP": ["julia"],
+    "Les Amis de la Terre": ["julia", "max"],
+    "Attac": ["john"],
 }
 
 
 class PetitionCreateWizardViewTest(TestCase):
     """Test PetitionCreateWizard view"""
+
     @classmethod
     def setUpTestData(cls):
         User = get_user_model()
@@ -35,11 +34,11 @@ class PetitionCreateWizardViewTest(TestCase):
                 user = PytitionUser.objects.get(user__username=username)
                 org.members.add(user)
                 permission = Permission.objects.get(organization=org, user=user)
-                permission.can_modify_permissions=True
+                permission.can_modify_permissions = True
                 permission.save()
 
         # give julia can_modify_petitions permission on "Les Amis de la Terre" organization
-        user = PytitionUser.objects.get(user__username='julia')
+        user = PytitionUser.objects.get(user__username="julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         perm = Permission.objects.get(organization=org, user=user)
         perm.can_modify_petitions = True
@@ -80,20 +79,34 @@ class PetitionCreateWizardViewTest(TestCase):
         user_petition = Petition.objects.create(title="Petition 1", user=user)
         url = reverse("transfer_petition", args=[user_petition.id])
 
-        response = self.client.post(url, data={"new_owner_type": "org", "new_owner_name": org.slugname}, follow=True)
+        response = self.client.post(
+            url,
+            data={"new_owner_type": "org", "new_owner_name": org.slugname},
+            follow=True,
+        )
         self.assertEqual(response.status_code, 200)
         user_petition = Petition.objects.get(id=user_petition.id)
         self.assertEqual(user_petition.org, org)
 
-        response = self.client.post(url, data={"new_owner_type": "user", "new_owner_name": user.user.username}, follow=True)
+        response = self.client.post(
+            url,
+            data={"new_owner_type": "user", "new_owner_name": user.user.username},
+            follow=True,
+        )
         self.assertEqual(response.status_code, 200)
         user_petition = Petition.objects.get(id=user_petition.id)
         self.assertEqual(user_petition.user, user)
 
         with override_settings(DISABLE_USER_PETITION=True):
             user_petition = Petition.objects.create(title="Petition 1", org=org)
-            response = self.client.post(url, data={"new_owner_type": "user", "new_owner_name": user.user.username}, follow=True)
-            self.assertContains(response, "Users are not allowed to transfer petitions to organizations on this instance.")
+            response = self.client.post(
+                url,
+                data={"new_owner_type": "user", "new_owner_name": user.user.username},
+                follow=True,
+            )
+            self.assertContains(
+                response,
+                "Users are not allowed to transfer petitions to organizations on this instance.",
+            )
             user_petition = Petition.objects.get(id=user_petition.id)
             self.assertIsNone(user_petition.user)
-        

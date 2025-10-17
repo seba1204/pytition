@@ -1,6 +1,10 @@
 from __future__ import annotations
-from django.contrib.staticfiles.management.commands.collectstatic import Command as CollectStatic
+
+from django.contrib.staticfiles.management.commands.collectstatic import (
+    Command as CollectStatic,
+)
 from django.core.management import call_command
+
 
 class Command(CollectStatic):
     help = "Build assets, fetch vendor assets, puis exécute collectstatic."

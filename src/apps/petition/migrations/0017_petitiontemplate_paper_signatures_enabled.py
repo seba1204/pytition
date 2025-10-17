@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0016_signature_uses_phone_number_field'),
+        ("petition", "0016_signature_uses_phone_number_field"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='petitiontemplate',
-            name='paper_signatures_enabled',
+            model_name="petitiontemplate",
+            name="paper_signatures_enabled",
             field=models.BooleanField(default=False),
         ),
     ]

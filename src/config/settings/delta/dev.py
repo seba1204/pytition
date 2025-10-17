@@ -2,7 +2,6 @@
 Small delta for development.
 """
 
-
 DEBUG = True
 
 # dev convenience

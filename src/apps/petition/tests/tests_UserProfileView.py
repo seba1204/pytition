@@ -12,10 +12,10 @@ class UserProfileViewTest(TestCase):
         add_default_data()
 
     def test_UserProfileViewOk(self):
-        response = self.client.get(reverse('user_profile', args=["max"]))
+        response = self.client.get(reverse("user_profile", args=["max"]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/user_profile.html")
 
     def test_UserProfileViewKo(self):
-        response = self.client.get(reverse('user_profile', args=["not_existing_user"]))
+        response = self.client.get(reverse("user_profile", args=["not_existing_user"]))
         self.assertEqual(response.status_code, 404)

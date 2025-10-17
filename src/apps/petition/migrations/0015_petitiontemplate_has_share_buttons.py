@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('petition', '0014_petition_has_share_buttons'),
+        ("petition", "0014_petition_has_share_buttons"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='petitiontemplate',
-            name='has_share_buttons',
+            model_name="petitiontemplate",
+            name="has_share_buttons",
             field=models.BooleanField(default=True),
         ),
     ]

@@ -1,14 +1,15 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 
-from apps.petition.models import Organization, Petition, PytitionUser
+from apps.petition.models import Organization, PytitionUser
+
 from .utils import add_default_data
 
 
 class OrgDashboardViewTest(TestCase):
     """Test index view"""
+
     @classmethod
     def setUpTestData(cls):
         add_default_data()
@@ -29,7 +30,9 @@ class OrgDashboardViewTest(TestCase):
         org_name = "org that does not exist"
         orgslugname = slugify(org_name)
         self.login("julia")
-        response = self.client.get(reverse("org_dashboard", args=[orgslugname]), follow=True)
+        response = self.client.get(
+            reverse("org_dashboard", args=[orgslugname]), follow=True
+        )
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
@@ -37,7 +40,9 @@ class OrgDashboardViewTest(TestCase):
         org_name = "Attac"
         orgslugname = slugify(org_name)
         self.login("julia")
-        response = self.client.get(reverse("org_dashboard", args=[orgslugname]), follow=True)
+        response = self.client.get(
+            reverse("org_dashboard", args=[orgslugname]), follow=True
+        )
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
@@ -45,8 +50,13 @@ class OrgDashboardViewTest(TestCase):
         self.logout()
         org_name = "RAP"
         orgslugname = slugify(org_name)
-        response = self.client.get(reverse("org_dashboard", args=[orgslugname]), follow=True)
-        self.assertRedirects(response, reverse("login")+"?next="+reverse("org_dashboard", args=[orgslugname]))
+        response = self.client.get(
+            reverse("org_dashboard", args=[orgslugname]), follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse("login") + "?next=" + reverse("org_dashboard", args=[orgslugname]),
+        )
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
 
@@ -58,9 +68,9 @@ class OrgDashboardViewTest(TestCase):
         response = self.client.get(reverse("org_dashboard", args=[orgslugname]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/org_dashboard.html")
-        petitions = response.context['petitions'].all()
+        petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), 4)
-        self.assertEqual(response.context['user'], john)
+        self.assertEqual(response.context["user"], john)
 
     def test_OrgOK2(self):
         org_name = "RAP"
@@ -69,9 +79,9 @@ class OrgDashboardViewTest(TestCase):
         response = self.client.get(reverse("org_dashboard", args=[orgslugname]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/org_dashboard.html")
-        petitions = response.context['petitions'].all()
+        petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), 0)
-        self.assertEqual(response.context['user'], julia)
+        self.assertEqual(response.context["user"], julia)
 
     def test_OrgOK3(self):
         org_name = "Les Amis de la Terre"
@@ -80,6 +90,6 @@ class OrgDashboardViewTest(TestCase):
         response = self.client.get(reverse("org_dashboard", args=[orgslugname]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/org_dashboard.html")
-        petitions = response.context['petitions'].all()
+        petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), 1)
-        self.assertEqual(response.context['user'], max)
+        self.assertEqual(response.context["user"], max)
