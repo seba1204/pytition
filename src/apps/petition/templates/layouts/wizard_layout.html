@@ -3,12 +3,13 @@
 {% load widget_tweaks %}
 {% load petition_extras %}
 {% load static %}
+{% load vendor_static %}
 {% block media %}
     {{ form.media }}
 {% endblock %}
 {% block extracss %}
   {{ block.super }}
-    <link href="{% static 'vendor/smartwizard/dist/css/smart_wizard_theme_arrows.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% vendor_static 'jquery-smart-wizard' 'css/smart_wizard_theme_arrows.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}

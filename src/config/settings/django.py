@@ -155,7 +155,7 @@ LOCALE_PATHS = [BASE_DIR / "locale"] # for makemessages
 # Build from your LOCALE_PATHS (declared above in this file)
 LANGUAGES, EXTRA_LANG_INFO = build_languages(LOCALE_PATHS)
 DJANGO_LANG_INFO.update(EXTRA_LANG_INFO)
-LANGUAGE_CODE = LANGUAGES[0][0]  # default to first available language
+LANGUAGE_CODE = "fr-fr"  # default language
 # ──────────────────────────────────────────────────────────────────────────────
 # Static & Media
 # ──────────────────────────────────────────────────────────────────────────────
@@ -174,7 +174,7 @@ FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
 # Auth / Redirects
 # ──────────────────────────────────────────────────────────────────────────────
 
-LOGIN_URL = "/login/"
+LOGIN_URL = "/petition/login/"
 LOGIN_REDIRECT_URL = "/"
 
 # ──────────────────────────────────────────────────────────────────────────────

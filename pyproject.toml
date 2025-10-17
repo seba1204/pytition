@@ -34,10 +34,13 @@ bootstrap = "4.3.1"
 open-iconic = "1.1.1"
 jquery = "3.3.1"
 popper = "1.14.6"
+jquery-smart-wizard = "4.4.1"
+rrssb = "1.14.0"
+bs-custom-file-input = "1.3.4"
 
 [tool.pdm.scripts]
 manage = "python manage.py"
 
 [dependency-groups]
-dev = []
+dev = ["djlint>=1.36.4"]
 docs = ["coverage==4.5.2", "sphinx", "sphinx-rtd-theme"]

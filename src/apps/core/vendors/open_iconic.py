@@ -19,14 +19,19 @@ class OpenIconicVendor(Vendor):
         self._extract_zip_bytes(blob, tmp)
         # Zip unpacks to open-iconic-<version>/
         root = next(tmp.iterdir())  # e.g., open-iconic-1.1.1
-        # Copy CSS and fonts to a consistent layout
+        # Copy CSS, fonts and png to a consistent layout
         css_src = root / "font" / "css"
         fonts_src = root / "font" / "fonts"
+        png_src = root / "png"
         css_dst = self.stage_dir / "css"
         fonts_dst = self.stage_dir / "fonts"
+        png_dst = self.stage_dir / "png"
+        if png_dst.exists():
+            shutil.rmtree(png_dst)
         if css_dst.exists():
             shutil.rmtree(css_dst)
         if fonts_dst.exists():
             shutil.rmtree(fonts_dst)
         shutil.copytree(css_src, css_dst)
         shutil.copytree(fonts_src, fonts_dst)
+        shutil.copytree(png_src, png_dst)
