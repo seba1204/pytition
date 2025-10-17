@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 
-from .models import Organization, Petition, PytitionUser
+from apps.petition.models import Organization, Petition, PytitionUser
+
 from .utils import add_default_data
 
 

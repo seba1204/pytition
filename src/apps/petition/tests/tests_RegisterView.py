@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth import authenticate
 from django.core import mail
 
-from .models import PytitionUser
+from apps.petition.models import PytitionUser
 
 class PytitionUserRegister(TestCase):
     def setUp(self):

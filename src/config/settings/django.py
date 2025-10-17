@@ -3,9 +3,11 @@ All core Django settings with sane, minimal defaults.
 Developers are expected to tweak these in code if needed.
 Anything can still be overridden via .env / ENV.
 """
+
 from __future__ import annotations
 
 from pathlib import Path
+
 import django.conf.locale
 from django.utils.translation import gettext_lazy
 
@@ -34,7 +36,6 @@ INSTALLED_APPS = [
     # Pytition apps
     "apps.core",
     "apps.petition",
-
     # Django core
     "django.contrib.admin",
     "django.contrib.auth",
@@ -42,7 +43,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # 3rd party
     "maintenance_mode",
     "tinymce",
@@ -65,7 +65,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
     # 3rd party
     "maintenance_mode.middleware.MaintenanceModeMiddleware",
 ]
@@ -93,14 +92,12 @@ TEMPLATES = [
                 # Custom
                 "apps.petition.helpers.footer_content_processor",
                 "apps.petition.helpers.settings_context_processor",
-
                 # Django built-in
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.template.context_processors.i18n",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-
                 # 3rd party
                 "maintenance_mode.context_processors.maintenance_mode",
             ],
@@ -126,18 +123,23 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 9}},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {"min_length": 9},
+    },
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.BCryptPasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+    "django.contrib.auth.hashers.BCryptPasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
 ]
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -145,27 +147,27 @@ PASSWORD_HASHERS = [
 # ──────────────────────────────────────────────────────────────────────────────
 
 TIME_ZONE = "Europe/Paris"
-USE_I18N = True # Activate Django's translation system.
-USE_TZ = True # Use timezone-aware datetimes.
-USE_L10N = True # Format dates, numbers and calendars according to the current locale.
+USE_I18N = True  # Activate Django's translation system.
+USE_TZ = True  # Use timezone-aware datetimes.
+USE_L10N = True  # Format dates, numbers and calendars according to the current locale.
 
-LOCALE_PATHS = [BASE_DIR / "locale"] # for makemessages
+LOCALE_PATHS = [BASE_DIR / "locale"]  # for makemessages
 
 # Supported languages
 # In theory, it would be possible to dynamically fetch languages from LOCALE_PATHS
 # that are well translated (eg. >95%), but this adds unjustified complexity.
 LANGUAGES = [
-    ('en', gettext_lazy('English')),
-    ('es', gettext_lazy('Spanish')),
-    ('fr', gettext_lazy('French')),
-    ('it', gettext_lazy('Italian')),
-    ('oc', gettext_lazy('Occitan')),
+    ("en", gettext_lazy("English")),
+    ("es", gettext_lazy("Spanish")),
+    ("fr", gettext_lazy("French")),
+    ("it", gettext_lazy("Italian")),
+    ("oc", gettext_lazy("Occitan")),
 ]
 
 EXTRA_LANG_INFO = {
-    'oc': {
-        'code': 'oc',
-        'name': 'Occitan',
+    "oc": {
+        "code": "oc",
+        "name": "Occitan",
     },
 }
 LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)

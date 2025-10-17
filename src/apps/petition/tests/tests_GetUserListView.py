@@ -4,7 +4,7 @@ from django.urls import reverse
 import json
 
 from .utils import add_default_data
-from .models import PytitionUser
+from apps.petition.models import PytitionUser
 
 
 class GetUserListViewTest(TestCase):

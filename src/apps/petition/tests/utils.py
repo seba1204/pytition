@@ -1,4 +1,4 @@
-from .models import Organization, Petition, PytitionUser, Permission
+from apps.petition.models import Organization, Petition, PytitionUser, Permission
 from django.contrib.auth import get_user_model
 
 

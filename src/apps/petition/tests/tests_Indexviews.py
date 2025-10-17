@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 
-from .models import Organization, Petition, PytitionUser
+from apps.petition.models import Organization, Petition, PytitionUser
 
 
 users = ['julia', 'john', 'max', 'sarah']

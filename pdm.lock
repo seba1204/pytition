@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:cc383a13789711f48559ccafe19157f976557f5104a375616dc40d95a6f4de33"
+content_hash = "sha256:c2e60f96be1376b72678932224c96a90296ff419f107b93efc308728ce6e2f00"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -1440,16 +1440,6 @@ groups = ["docs"]
 files = [
     {file = "snowballstemmer-3.0.1-py3-none-any.whl", hash = "sha256:6cd7b3897da8d6c9ffb968a6781fa6532dce9c3618a4b127d920dab764a19064"},
     {file = "snowballstemmer-3.0.1.tar.gz", hash = "sha256:6d5eeeec8e9f84d4d56b847692bacf79bc2c8e90c7f80ca4444ff8b6f2e52895"},
-]
-
-[[package]]
-name = "sourcemap"
-version = "0.2.1"
-summary = "Parse JavaScript source maps."
-groups = ["default"]
-files = [
-    {file = "sourcemap-0.2.1-py2.py3-none-any.whl", hash = "sha256:c448a8c48f9482e522e4582106b0c641a83b5dbc7f13927b178848e3ea20967b"},
-    {file = "sourcemap-0.2.1.tar.gz", hash = "sha256:be00a90185e7a16b87bbe62a68ffd5e38bc438ef4700806d9b90e44d8027787c"},
 ]
 
 [[package]]

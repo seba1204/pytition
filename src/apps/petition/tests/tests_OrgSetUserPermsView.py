@@ -4,7 +4,7 @@ from django.contrib.messages import constants
 
 from .utils import add_default_data
 
-from .models import PytitionUser, Permission, Organization
+from apps.petition.models import PytitionUser, Permission, Organization
 
 
 class OrgSetUserPermsViewTest(TestCase):

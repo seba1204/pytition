@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from .utils import add_default_data
 
-from .models import Petition
+from apps.petition.models import Petition
 
 class DetailViewTest(TestCase):
     """Test detail view"""

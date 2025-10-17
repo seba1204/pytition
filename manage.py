@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import os, sys
+import os
+import sys
 from pathlib import Path
 
 # Optionnel: charge .env en dev/local
@@ -16,4 +17,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE",
 sys.path.insert(0, os.getenv("PYTHONPATH", "src"))
 
 from django.core.management import execute_from_command_line
+
 execute_from_command_line(sys.argv)

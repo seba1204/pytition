@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
-from .models import Organization, Petition, PytitionUser, Permission
+from apps.petition.models import Organization, Petition, PytitionUser, Permission
 from .utils import add_default_data
 
 

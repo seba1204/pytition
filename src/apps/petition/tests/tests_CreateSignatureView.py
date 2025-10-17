@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from .utils import add_default_data
 
-from .models import Petition, Signature
+from apps.petition.models import Petition, Signature
 
 
 class CreateSignatureViewTest(TestCase):

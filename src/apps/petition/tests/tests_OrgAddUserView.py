@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from .utils import add_default_data
 
-from .models import PytitionUser, Permission, Organization
+from apps.petition.models import PytitionUser, Permission, Organization
 
 
 class OrgAddUserViewTest(TestCase):

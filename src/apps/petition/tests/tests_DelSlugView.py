@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from .utils import add_default_data
 
-from .models import PytitionUser, Permission, Organization, Petition
+from apps.petition.models import PytitionUser, Permission, Organization, Petition
 
 
 class DelSlugViewTest(TestCase):
