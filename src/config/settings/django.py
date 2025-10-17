@@ -35,6 +35,12 @@ ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "[::1]"]
 INSTALLED_APPS = [
     # Pytition apps
     "apps.core",
+    "apps.accounts",
+    "apps.organizations",
+    "apps.petitions",
+    "apps.signatures",
+    "apps.moderation",
+    "apps.integrations",
     "apps.petition",
     # Django core
     "django.contrib.admin",
