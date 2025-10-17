@@ -25,8 +25,6 @@ from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
 from formtools.wizard.views import SessionWizardView
 
-from apps.accounts.models import PytitionUser
-
 from .forms import (
     ContentFormPetition,
     ContentFormTemplate,
@@ -61,6 +59,7 @@ from .models import (
     Permission,
     Petition,
     PetitionTemplate,
+    PytitionUser,
     Signature,
     SlugModel,
 )
