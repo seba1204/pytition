@@ -6,9 +6,8 @@ Anything can still be overridden via .env / ENV.
 from __future__ import annotations
 
 from pathlib import Path
-from django.conf.locale import LANG_INFO as DJANGO_LANG_INFO
-
-from .helpers.i18n import build_languages
+import django.conf.locale
+from django.utils.translation import gettext_lazy
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Paths
@@ -152,10 +151,26 @@ USE_L10N = True # Format dates, numbers and calendars according to the current l
 
 LOCALE_PATHS = [BASE_DIR / "locale"] # for makemessages
 
-# Build from your LOCALE_PATHS (declared above in this file)
-LANGUAGES, EXTRA_LANG_INFO = build_languages(LOCALE_PATHS)
-DJANGO_LANG_INFO.update(EXTRA_LANG_INFO)
-LANGUAGE_CODE = "fr-fr"  # default language
+# Supported languages
+# In theory, it would be possible to dynamically fetch languages from LOCALE_PATHS
+# that are well translated (eg. >95%), but this adds unjustified complexity.
+LANGUAGES = [
+    ('en', gettext_lazy('English')),
+    ('es', gettext_lazy('Spanish')),
+    ('fr', gettext_lazy('French')),
+    ('it', gettext_lazy('Italian')),
+    ('oc', gettext_lazy('Occitan')),
+]
+
+EXTRA_LANG_INFO = {
+    'oc': {
+        'code': 'oc',
+        'name': 'Occitan',
+    },
+}
+LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
+django.conf.locale.LANG_INFO = LANG_INFO
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Static & Media
 # ──────────────────────────────────────────────────────────────────────────────
