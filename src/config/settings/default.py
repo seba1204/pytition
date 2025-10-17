@@ -106,7 +106,7 @@ TINYMCE_INCLUDE_JQUERY = True
 # Homepage
 # ──────────────────────────────────────────────────────────────────────────────
 
-DEFAULT_INDEX_THUMBNAIL = "/img/petition_icon.svg"
+DEFAULT_INDEX_THUMBNAIL = "/img/logo_placeholder.svg"
 FOOTER_TEMPLATE = None
 INDEX_PAGE = "HOME"  # "ORGA_PROFILE" / "USER_PROFILE" / "LOGIN_REGISTER"
 
