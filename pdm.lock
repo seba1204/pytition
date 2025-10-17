@@ -2,10 +2,10 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "dev", "docs"]
+groups = ["default", "dev", "docs", "typecheck"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:969e2ed2a4280d1954c32bb1b13909f4f0824710c90edb6b69ba5e0b4dd15956"
+content_hash = "sha256:2162ce33198f4138c7eb7a547957250707c51168a508e4330f991a84e861f35f"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -26,7 +26,7 @@ name = "asgiref"
 version = "3.10.0"
 requires_python = ">=3.9"
 summary = "ASGI specs, helper code, and adapters"
-groups = ["default"]
+groups = ["default", "typecheck"]
 dependencies = [
     "typing-extensions>=4; python_version < \"3.11\"",
 ]
@@ -411,7 +411,7 @@ name = "django"
 version = "5.2.7"
 requires_python = ">=3.10"
 summary = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
-groups = ["default"]
+groups = ["default", "typecheck"]
 dependencies = [
     "asgiref>=3.8.1",
     "sqlparse>=0.3.1",
@@ -504,6 +504,39 @@ dependencies = [
 files = [
     {file = "django-phonenumber-field-6.3.0.tar.gz", hash = "sha256:668db2e61559908ce8dcd660ac716262c7922cc29ec76ede3f9b88772992dc28"},
     {file = "django_phonenumber_field-6.3.0-py3-none-any.whl", hash = "sha256:188ca55b27ef1ac4d9b279d90ee3f1377ece6cd9ed8c63f0a66efd565bf9ad6f"},
+]
+
+[[package]]
+name = "django-stubs"
+version = "5.2.7"
+requires_python = ">=3.10"
+summary = "Mypy stubs for Django"
+groups = ["typecheck"]
+dependencies = [
+    "django",
+    "django-stubs-ext>=5.2.7",
+    "tomli; python_full_version < \"3.11\"",
+    "types-pyyaml",
+    "typing-extensions>=4.11.0",
+]
+files = [
+    {file = "django_stubs-5.2.7-py3-none-any.whl", hash = "sha256:2864e74b56ead866ff1365a051f24d852f6ed02238959664f558a6c9601c95bf"},
+    {file = "django_stubs-5.2.7.tar.gz", hash = "sha256:2a07e47a8a867836a763c6bba8bf3775847b4fd9555bfa940360e32d0ee384a1"},
+]
+
+[[package]]
+name = "django-stubs-ext"
+version = "5.2.7"
+requires_python = ">=3.10"
+summary = "Monkey-patching and extensions for django-stubs"
+groups = ["typecheck"]
+dependencies = [
+    "django",
+    "typing-extensions",
+]
+files = [
+    {file = "django_stubs_ext-5.2.7-py3-none-any.whl", hash = "sha256:0466a7132587d49c5bbe12082ac9824d117a0dedcad5d0ada75a6e0d3aca6f60"},
+    {file = "django_stubs_ext-5.2.7.tar.gz", hash = "sha256:b690655bd4cb8a44ae57abb314e0995dc90414280db8f26fff0cb9fb367d1cac"},
 ]
 
 [[package]]
@@ -968,6 +1001,17 @@ files = [
 ]
 
 [[package]]
+name = "nodeenv"
+version = "1.9.1"
+requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
+summary = "Node.js virtual environment builder"
+groups = ["typecheck"]
+files = [
+    {file = "nodeenv-1.9.1-py2.py3-none-any.whl", hash = "sha256:ba11c9782d29c27c70ffbdda2d7415098754709be8a7056d79a737cd901155c9"},
+    {file = "nodeenv-1.9.1.tar.gz", hash = "sha256:6ec12890a2dab7946721edbfbcd91f3319c6ccc9aec47be7c7e6b7011ee6645f"},
+]
+
+[[package]]
 name = "packaging"
 version = "25.0"
 requires_python = ">=3.8"
@@ -1173,6 +1217,21 @@ groups = ["docs"]
 files = [
     {file = "pygments-2.19.2-py3-none-any.whl", hash = "sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b"},
     {file = "pygments-2.19.2.tar.gz", hash = "sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"},
+]
+
+[[package]]
+name = "pyright"
+version = "1.1.406"
+requires_python = ">=3.7"
+summary = "Command line wrapper for pyright"
+groups = ["typecheck"]
+dependencies = [
+    "nodeenv>=1.6.0",
+    "typing-extensions>=4.1",
+]
+files = [
+    {file = "pyright-1.1.406-py3-none-any.whl", hash = "sha256:1d81fb43c2407bf566e97e57abb01c811973fdb21b2df8df59f870f688bdca71"},
+    {file = "pyright-1.1.406.tar.gz", hash = "sha256:c4872bc58c9643dac09e8a2e74d472c62036910b3bd37a32813989ef7576ea2c"},
 ]
 
 [[package]]
@@ -1601,7 +1660,7 @@ name = "sqlparse"
 version = "0.5.3"
 requires_python = ">=3.8"
 summary = "A non-validating SQL parser."
-groups = ["default"]
+groups = ["default", "typecheck"]
 files = [
     {file = "sqlparse-0.5.3-py3-none-any.whl", hash = "sha256:cf2196ed3418f3ba5de6af7e82c694a9fbdbfecccdfc72e281548517081f16ca"},
     {file = "sqlparse-0.5.3.tar.gz", hash = "sha256:09f67787f56a0b16ecdbde1bfc7f5d9c3371ca683cfeaa8e6ff60b4807ec9272"},
@@ -1636,11 +1695,47 @@ files = [
 ]
 
 [[package]]
+name = "types-python-dateutil"
+version = "2.9.0.20251008"
+requires_python = ">=3.9"
+summary = "Typing stubs for python-dateutil"
+groups = ["typecheck"]
+files = [
+    {file = "types_python_dateutil-2.9.0.20251008-py3-none-any.whl", hash = "sha256:b9a5232c8921cf7661b29c163ccc56055c418ab2c6eabe8f917cbcc73a4c4157"},
+    {file = "types_python_dateutil-2.9.0.20251008.tar.gz", hash = "sha256:c3826289c170c93ebd8360c3485311187df740166dbab9dd3b792e69f2bc1f9c"},
+]
+
+[[package]]
+name = "types-pyyaml"
+version = "6.0.12.20250915"
+requires_python = ">=3.9"
+summary = "Typing stubs for PyYAML"
+groups = ["typecheck"]
+files = [
+    {file = "types_pyyaml-6.0.12.20250915-py3-none-any.whl", hash = "sha256:e7d4d9e064e89a3b3cae120b4990cd370874d2bf12fa5f46c97018dd5d3c9ab6"},
+    {file = "types_pyyaml-6.0.12.20250915.tar.gz", hash = "sha256:0f8b54a528c303f0e6f7165687dd33fafa81c807fcac23f632b63aa624ced1d3"},
+]
+
+[[package]]
+name = "types-requests"
+version = "2.32.4.20250913"
+requires_python = ">=3.9"
+summary = "Typing stubs for requests"
+groups = ["typecheck"]
+dependencies = [
+    "urllib3>=2",
+]
+files = [
+    {file = "types_requests-2.32.4.20250913-py3-none-any.whl", hash = "sha256:78c9c1fffebbe0fa487a418e0fa5252017e9c60d1a2da394077f1780f655d7e1"},
+    {file = "types_requests-2.32.4.20250913.tar.gz", hash = "sha256:abd6d4f9ce3a9383f269775a9835a4c24e5cd6b9f647d64f88aa4613c33def5d"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 requires_python = ">=3.9"
 summary = "Backported and Experimental Type Hints for Python 3.9+"
-groups = ["default"]
+groups = ["default", "typecheck"]
 files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
@@ -1651,7 +1746,7 @@ name = "tzdata"
 version = "2025.2"
 requires_python = ">=2"
 summary = "Provider of IANA time zone data"
-groups = ["default"]
+groups = ["default", "typecheck"]
 marker = "sys_platform == \"win32\""
 files = [
     {file = "tzdata-2025.2-py2.py3-none-any.whl", hash = "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8"},
@@ -1663,7 +1758,7 @@ name = "urllib3"
 version = "2.5.0"
 requires_python = ">=3.9"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
-groups = ["default", "docs"]
+groups = ["default", "docs", "typecheck"]
 files = [
     {file = "urllib3-2.5.0-py3-none-any.whl", hash = "sha256:e6b01673c0fa6a13e374b50871808eb3bf7046c4b125b216f6bf1cc604cff0dc"},
     {file = "urllib3-2.5.0.tar.gz", hash = "sha256:3fc47733c7e419d4bc3f6b3dc2b4f890bb743906a30d56ba4a5bfa4bbff92760"},

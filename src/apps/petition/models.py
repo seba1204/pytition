@@ -17,81 +17,9 @@ from django.utils.translation import gettext_lazy
 from phonenumber_field.modelfields import PhoneNumberField
 from tinymce import models as tinymce_models
 
+from apps.accounts.models import PytitionUser
+
 from .helpers import sanitize_html
-
-
-# ----------------------------------- PytitionUser ----------------------------
-class PytitionUser(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="pytitionuser"
-    )
-    invitations = models.ManyToManyField(
-        "Organization", related_name="invited", blank=True
-    )
-    default_template = models.ForeignKey(
-        "PetitionTemplate",
-        blank=True,
-        null=True,
-        related_name="+",
-        verbose_name=gettext_lazy("Default petition template"),
-        to_field="id",
-        on_delete=models.SET_NULL,
-    )
-    moderated = models.BooleanField(default=False)
-
-    def drop(self):
-        with transaction.atomic():
-            orgs = list(self.organization_set.all())
-            petitions = list(self.petition_set.all())
-            templates = list(self.petitiontemplate_set.all())
-            self.delete()
-            for org in orgs:
-                if org.members.count() == 0:
-                    org.delete()
-            for petition in petitions:
-                petition.delete()
-            for template in templates:
-                template.delete()
-
-    def moderate(self, do_moderate=True):
-        self.moderated = do_moderate
-        self.save()
-
-    @property
-    def is_authenticated(self):
-        return self.user.is_authenticated
-
-    @property
-    def name(self):
-        return self.username
-
-    @property
-    def username(self):
-        return self.user.username
-
-    @property
-    def get_full_name(self):
-        return self.user.get_full_name()
-
-    @property
-    def fullname(self):
-        return self.get_full_name
-
-    @property
-    def kind(self):
-        return "user"
-
-    def __str__(self):
-        if self.get_full_name != "":
-            return self.get_full_name
-        else:
-            return self.username
-
-    def __repr__(self):
-        if self.get_full_name != "":
-            return self.get_full_name
-        else:
-            return self.username
 
 
 # --------------------------------- Organization ------------------------------

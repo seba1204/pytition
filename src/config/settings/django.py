@@ -36,11 +36,11 @@ INSTALLED_APPS = [
     # Pytition apps
     "apps.core",
     "apps.accounts",
-    "apps.organizations",
-    "apps.petitions",
-    "apps.signatures",
-    "apps.moderation",
-    "apps.integrations",
+    # "apps.organizations",
+    # "apps.petitions",
+    # "apps.signatures",
+    # "apps.moderation",
+    # "apps.integrations",
     "apps.petition",
     # Django core
     "django.contrib.admin",
@@ -121,7 +121,8 @@ DATABASES = {
         "NAME": str(BUILD_DIR / "db.sqlite3"),
     }
 }
-
+# FIXME: migrate to BigAutoField later
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # ──────────────────────────────────────────────────────────────────────────────
 # Password validation
 # ──────────────────────────────────────────────────────────────────────────────
@@ -130,7 +131,9 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+        "NAME": (
+            "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+        )
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",

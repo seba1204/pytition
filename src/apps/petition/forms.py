@@ -6,11 +6,12 @@ from django.forms import ModelForm, ValidationError
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE
 
+from apps.accounts.models import PytitionUser
+
 from .helpers import send_welcome_mail
 from .models import (
     Organization,
     Petition,
-    PytitionUser,
     Signature,
 )
 from .widgets import SwitchField

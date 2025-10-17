@@ -53,7 +53,7 @@ def get_client_ip(request):
 
 # Get the user of the current session
 def get_session_user(request):
-    from .models import PytitionUser
+    from apps.accounts.models import PytitionUser
 
     try:
         pytitionuser = PytitionUser.objects.get(user__username=request.user.username)
