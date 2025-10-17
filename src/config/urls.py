@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.urls import include, re_path
+from django.urls import include, re_path, path
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from apps.petition.views import index
+from django.views.generic import RedirectView
 
 urlpatterns = [
     re_path(r'^$', index, name="index"),
@@ -27,6 +28,30 @@ urlpatterns = [
     re_path(r'^i18n/', include('django.conf.urls.i18n')),
     re_path(r'^maintenance-mode/', include('maintenance_mode.urls')),
 ]
+
+
+# Favicons & manifest from static files:
+favicons = [
+    "favicon.ico",
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "favicon-48x48.png",
+    "apple-touch-icon.png",
+    "android-chrome-192x192.png",
+    "android-chrome-512x512.png",
+    "mstile-150x150.png",
+    "safari-pinned-tab.svg",
+    "manifest.json",
+    "site.webmanifest",
+    "browserconfig.xml",
+]
+
+favicon_urlpatterns = [
+    path(f"{fname}", RedirectView.as_view(url=settings.STATIC_URL + fname, permanent=True))
+    for fname in favicons
+]
+
+urlpatterns += favicon_urlpatterns
 # Only in development: serve media and static files through Django.
 # In production, these should be served by the web server (e.g. nginx).
 if settings.DEBUG:

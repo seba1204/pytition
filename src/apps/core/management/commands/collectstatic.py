@@ -3,11 +3,15 @@ from django.contrib.staticfiles.management.commands.collectstatic import Command
 from django.core.management import call_command
 
 class Command(CollectStatic):
-    help = "Fetch vendor assets into STATIC_ROOT/vendor then run collectstatic."
+    help = "Build assets, fetch vendor assets, puis exécute collectstatic."
 
     def handle(self, *args, **opts):
-        # Allow passthrough of verbosity, etc. to subcommand as needed
+        self.stdout.write("→ Building app assets (buildassets)…")
+        # On laisse passer la verbosité à la commande fille si nécessaire
+        call_command("buildassets", verbosity=opts.get("verbosity", 1))
+
         self.stdout.write("→ Fetching vendor assets (fetchvendors)…")
-        call_command("fetchvendors")
+        call_command("fetchvendors", verbosity=opts.get("verbosity", 1))
+
         self.stdout.write("→ Running collectstatic…")
         return super().handle(*args, **opts)

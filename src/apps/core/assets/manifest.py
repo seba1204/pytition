@@ -1,0 +1,35 @@
+from __future__ import annotations
+import json
+from pathlib import Path
+from .base import PipelineStep, Context
+from .registry import register_step
+
+@register_step("manifest", order=50)
+class ManifestStep(PipelineStep):
+    """
+    Génère manifest.json minimaliste pour PWA.
+    Icônes: android-chrome-192x192 / 512x512 générés par FaviconsStep.
+    """
+    def __init__(self, name: str):
+        super().__init__("manifest")
+
+    def run(self, ctx: Context) -> None:
+        root = Path(ctx.static_root)
+        data = {
+            "name": getattr(ctx.settings, "ASSETS_PWA_NAME", "App"),
+            "short_name": getattr(ctx.settings, "ASSETS_PWA_SHORT_NAME", "App"),
+            "start_url": getattr(ctx.settings, "ASSETS_PWA_START_URL", "/"),
+            "display": getattr(ctx.settings, "ASSETS_PWA_DISPLAY", "standalone"),
+            "background_color": getattr(ctx.settings, "ASSETS_PWA_BG_COLOR", "#ffffff"),
+            "theme_color": getattr(ctx.settings, "ASSETS_PWA_THEME_COLOR", "#000000"),
+            "icons": [
+                {"src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png"},
+                {"src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png"},
+            ],
+        }
+        (root / "manifest.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        # Generate an alias site.webmanifest
+        (root / "site.webmanifest").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        
+        self.log(ctx, "Généré manifest.json")

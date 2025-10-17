@@ -178,6 +178,7 @@ django.conf.locale.LANG_INFO = LANG_INFO
 STATIC_URL = "/static/"
 STATIC_ROOT = str(BUILD_DIR / "static")
 STATICFILES_DIRS = [BASE_DIR / "assets"]
+ASSETS_DIR = STATICFILES_DIRS[0]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = str(BUILD_DIR / "media")

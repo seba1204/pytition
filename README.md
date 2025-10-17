@@ -2,6 +2,8 @@
 
 # Pytition
 
+![logo_pytition](./doc/logo_400.png)
+
 ## Why using Pytition?
 
 * Because it allows you to host petitions without compromising the privacy of your signatories.

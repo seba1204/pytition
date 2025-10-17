@@ -1,0 +1,97 @@
+from __future__ import annotations
+from pathlib import Path
+from PIL import Image
+import cairosvg
+from io import BytesIO
+
+from .base import PipelineStep, Context
+from .registry import register_step
+
+@register_step("favicons", order=40)
+class FaviconsStep(PipelineStep):
+    """
+    Génère un set complet de favicons et icônes PWA depuis assets/logo.svg (fallback assets/img/logo.png) :
+      - favicon.ico (16/32/48)
+      - favicon-16x16.png, favicon-32x32.png, favicon-48x48.png
+      - apple-touch-icon.png (180x180)
+      - android-chrome-192x192.png, android-chrome-512x512.png
+      - mstile-150x150.png
+      - safari-pinned-tab.svg (copie du logo.svg)
+      - site.webmanifest (alias de manifest.json)
+    Sortie: <static_root> à la racine.
+    """
+
+    def __init__(self, name: str):
+        super().__init__("favicons")
+
+    def _png_from_svg_or_png(self, logo_svg: Path, fallback_png: Path, size: int) -> Image.Image:
+        """Rend un PNG RGBA de size×size à partir du SVG (prioritaire) ou d'un PNG fallback."""
+        if logo_svg.exists():
+            png_bytes = cairosvg.svg2png(url=str(logo_svg), output_width=size, output_height=size)
+            if png_bytes is None:
+                raise ValueError("cairosvg.svg2png did not return bytes for SVG logo.")
+            return Image.open(BytesIO(png_bytes)).convert("RGBA")
+        if fallback_png.exists():
+            return Image.open(fallback_png).convert("RGBA").resize((size, size), Image.Resampling.LANCZOS)
+        raise FileNotFoundError(f"Neither SVG logo ({logo_svg}) nor fallback PNG ({fallback_png}) found.")
+
+    def _save_multi_ico(self, images, out_path: Path):
+        from io import BytesIO
+        buf = BytesIO()
+        # Pillow sait écrire un ICO multi-résolutions si on passe la liste des tailles
+        images[0].save(buf, format="ICO", sizes=[im.size for im in images])
+        out_path.write_bytes(buf.getvalue())
+
+    def run(self, ctx: Context) -> None:
+        root = Path(ctx.static_root)
+        root.mkdir(parents=True, exist_ok=True)
+
+        assets_root = Path(ctx.assets_dir)
+        logo_svg = assets_root / "logo.svg"
+        fallback_png = assets_root / "img" / "logo.png"
+
+        # --- Tailles configurables / valeurs par défaut ---
+        png_fav_sizes = getattr(ctx.settings, "ASSETS_FAVICON_SIZES", [16, 32, 48])
+        apple_size = getattr(ctx.settings, "ASSETS_APPLE_TOUCH_SIZE", 180)
+        android_sizes = getattr(ctx.settings, "ASSETS_ANDROID_ICON_SIZES", [192, 512])
+        ms_tile_size = 150  # standard pour browserconfig.xml
+        # --------------------------------------------------
+
+        # 1) favicon-XX.png (16/32/48)
+        png_outputs = []
+        for s in png_fav_sizes:
+            img = self._png_from_svg_or_png(logo_svg, fallback_png, s)
+            out = root / f"favicon-{s}x{s}.png"
+            img.save(out, format="PNG")
+            png_outputs.append(img)
+            self.log(ctx, f"Généré {out.name}")
+
+        # 2) favicon.ico multi-résolutions (16/32/48)
+        #    On reconstruit depuis les images précédentes pour garantir cohérence.
+        if not png_outputs:
+            # Si l'utilisateur a vidé ASSETS_FAVICON_SIZES, garantissons au moins 16/32
+            png_outputs = [self._png_from_svg_or_png(logo_svg, fallback_png, s) for s in (16, 32, 48)]
+        self._save_multi_ico(png_outputs, root / "favicon.ico")
+        self.log(ctx, "Généré favicon.ico")
+
+        # 3) Apple touch icon (180x180)
+        apple = self._png_from_svg_or_png(logo_svg, fallback_png, apple_size)
+        apple.save(root / "apple-touch-icon.png", format="PNG")
+        self.log(ctx, "Généré apple-touch-icon.png")
+
+        # 4) Android/Chrome icons (192, 512)
+        for s in android_sizes:
+            img = self._png_from_svg_or_png(logo_svg, fallback_png, s)
+            img.save(root / f"android-chrome-{s}x{s}.png", format="PNG")
+            self.log(ctx, f"Généré android-chrome-{s}x{s}.png")
+
+        # 5) Microsoft tile (150x150)
+        mstile = self._png_from_svg_or_png(logo_svg, fallback_png, ms_tile_size)
+        mstile.save(root / f"mstile-{ms_tile_size}x{ms_tile_size}.png", format="PNG")
+        self.log(ctx, f"Généré mstile-{ms_tile_size}x{ms_tile_size}.png")
+
+        # 6) Safari pinned tab (copie du SVG source)
+        #    Idéalement monochrome; ici on copie tel quel pour éviter une conversion hasardeuse.
+        if logo_svg.exists():
+            (root / "safari-pinned-tab.svg").write_bytes(logo_svg.read_bytes())
+            self.log(ctx, "Généré safari-pinned-tab.svg (copie)")

@@ -116,3 +116,22 @@ INDEX_PAGE = "HOME"   # "ORGA_PROFILE" / "USER_PROFILE" / "LOGIN_REGISTER"
 
 SIGNATURE_THROTTLE = 5                 # allowed signatures from same IP
 SIGNATURE_THROTTLE_TIMING = 60*60*24   # time window in seconds (1 day)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Assets / PWA
+# ──────────────────────────────────────────────────────────────────────────────
+ASSETS_IMAGE_SIZES = {
+    "thumbnail": 200,   # max width
+    "standard": 800,
+    "retina":   1600,
+}
+ASSETS_IMAGE_QUALITY = 85   # WebP quality
+ASSETS_FAVICON_SIZES = [16, 32, 48]
+ASSETS_APPLE_TOUCH_SIZE = 180
+ASSETS_ANDROID_ICON_SIZES = [192, 512]
+ASSETS_PWA_NAME = SITE_NAME
+ASSETS_PWA_SHORT_NAME = SITE_NAME
+ASSETS_PWA_THEME_COLOR = "#0d6efd"
+ASSETS_PWA_BG_COLOR = "#ffffff"
+ASSETS_PWA_START_URL = "/"
+ASSETS_PWA_DISPLAY = "standalone"
