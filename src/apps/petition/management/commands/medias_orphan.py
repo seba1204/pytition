@@ -1,4 +1,4 @@
-from .models import Petition
+from apps.petition.models import Petition
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from pathlib import Path

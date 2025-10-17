@@ -3,7 +3,7 @@ import random
 import string
 from django.core.management import BaseCommand
 
-from .models import Petition, Signature
+from apps.petition.models import Petition, Signature
 
 
 logger = logging.getLogger(__name__)

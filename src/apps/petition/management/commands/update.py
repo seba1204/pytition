@@ -9,8 +9,7 @@ run = partial(subprocess.run, shell=True, check=True)
 
 
 class Command(BaseCommand):
-    """Update pytition install
-    """
+    """Update pytition install."""
 
     def handle(self, *args, **options):
         try:
