@@ -30,7 +30,7 @@ class PetitionViewTest(TestCase):
 
         petition = Petition.objects.filter(user__user__username="julia").first()
 
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         response = self.client.get(reverse("detail", args=[petition.id]))
@@ -49,7 +49,7 @@ class PetitionViewTest(TestCase):
     def test_petition_success_msg(self) -> None:
         """Test that the success modal is there when signing and confirming"""
         petition = Petition.objects.filter(published=True).first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         data = {
@@ -75,7 +75,7 @@ $("#show_sign_success").modal("show");
         self.assertNotContains(response, text="show_confirm_success")
         # Now, let's confirm our signature
         signature = petition.signature_set.first()
-        self.assertIsNone(signature, "Signature should not be None.")
+        self.assertIsNotNone(signature, "Signature should not be None.")
         if signature is None:
             return
         self.assertFalse(signature.confirmed)
@@ -100,7 +100,7 @@ $("#show_confirm_success").modal("show");
     def test_petition_publish(self) -> None:
         self.logout()
         petition = Petition.objects.filter(user__user__username="julia").first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         petition.published = False
@@ -134,7 +134,7 @@ $("#show_confirm_success").modal("show");
 
     def test_petition_unpublish(self) -> None:
         petition = Petition.objects.filter(user__user__username="julia").first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         self.assertEqual(petition.published, True)
@@ -158,7 +158,7 @@ $("#show_confirm_success").modal("show");
     def test_user_petition_delete(self) -> None:
         petitions = Petition.objects.filter(user__user__username="julia")
         petition = petitions.first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         nb_julia_petitions = petitions.count()
@@ -175,7 +175,7 @@ $("#show_confirm_success").modal("show");
         self.logout()
         petitions = Petition.objects.filter(org__name="Attac")
         petition = petitions.first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         nb_attac_petitions = petitions.count()
@@ -196,7 +196,7 @@ $("#show_confirm_success").modal("show");
 
     def test_user_slug_show_petition(self) -> None:
         petition = Petition.objects.filter(user__user__username="julia").first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         slugmodel = petition.slugmodel_set.first()
@@ -237,7 +237,7 @@ $("#show_confirm_success").modal("show");
     def test_petition_publish_org(self) -> None:
         self.logout()
         petition = Petition.objects.filter(org__name="Les Amis de la Terre").first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         petition.published = False
@@ -280,7 +280,7 @@ $("#show_confirm_success").modal("show");
 
     def test_petition_unpublish_org(self) -> None:
         petition = Petition.objects.filter(org__name="Les Amis de la Terre").first()
-        self.assertIsNone(petition, "Petition should not be None.")
+        self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
         petition.published = True

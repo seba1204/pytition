@@ -6,7 +6,7 @@ class SwitchWidget(forms.CheckboxInput):
     template_name = "petition/widgets/SwitchInput.html"
 
     def get_context(self, name: str, value: object, attrs: dict | None) -> dict:
-        if attrs == None:
+        if attrs is None:
             attrs = {}
         if "class" in attrs:
             attrs["class"] = attrs["class"] + " custom-control-input"

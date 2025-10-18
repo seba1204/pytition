@@ -108,7 +108,7 @@ class PetitionCreateWizardViewTest(TestCase):
             )
             self.assertContains(
                 response,
-                "Users are not allowed to transfer petitions to"
+                "Users are not allowed to transfer petitions to "
                 "organizations on this instance.",
             )
             user_petition = Petition.objects.get(id=user_petition.id)

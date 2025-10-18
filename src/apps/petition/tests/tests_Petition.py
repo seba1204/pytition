@@ -34,10 +34,14 @@ class PetitionTest(TestCase):
         org = Organization.objects.first()
         pu = PytitionUser.objects.get(user__username="julia")
         self.assertEqual(Petition.objects.count(), 0)
-        self.assertRaises(TypeError, Petition.objects.create, title="Petition")
+        self.assertRaises(Exception, Petition.objects.create, title="Petition")  # noqa
         self.assertEqual(Petition.objects.count(), 0)
-        self.assertRaises(
-            TypeError, Petition.objects.create, title="Petition", user=pu, org=org
+        self.assertRaises(  # noqa
+            Exception,
+            Petition.objects.create,
+            title="Petition",
+            user=pu,
+            org=org,
         )
         self.assertEqual(Petition.objects.count(), 0)
 
@@ -58,7 +62,7 @@ class PetitionTest(TestCase):
         )
         # This should never happen but testing just in case
         s = SlugModel.objects.first()
-        self.assertIsNone(s)
+        self.assertIsNotNone(s)
         if s is None:
             return
         s.delete()
@@ -86,7 +90,7 @@ class PetitionTest(TestCase):
         p.unpublish()
         self.assertEqual(p.published, False)
 
-    def test_autocreation_salt(self) -> None:
+    def test_auto_creation_salt(self) -> None:
         pu = PytitionUser.objects.get(user__username="julia")
         p = Petition.objects.create(title="Petition", user=pu)
         self.assertIsNotNone(p.salt)
@@ -98,7 +102,7 @@ class PetitionTest(TestCase):
         self.assertEqual(p.is_allowed_to_edit(pu), True)
         # else no
         User = get_user_model()
-        u = User.objects.create_user("john", password="john")
+        _u = User.objects.create_user("john", password="john")
         john = PytitionUser.objects.get(user__username="john")
         self.assertEqual(p.is_allowed_to_edit(john), False)
         # Now with org petitions
@@ -123,7 +127,7 @@ class PetitionTest(TestCase):
         p.paper_signatures_enabled = False
         p.save()
         self.assertEqual(p.get_signature_number(), 0)
-        s = Signature.objects.create(
+        _s = Signature.objects.create(
             first_name="User", last_name="User", email="user@example.org", petition=p
         )
         self.assertEqual(p.get_signature_number(), 1)

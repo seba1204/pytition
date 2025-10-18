@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
 
-from .models import (
+from apps.petition.models import (
     Organization,
     Permission,
     Petition,
@@ -12,7 +12,7 @@ from .models import (
     Signature,
     SlugModel,
 )
-from .views import send_confirmation_email
+from apps.petition.views import send_confirmation_email
 
 
 @admin.register(PytitionUser)

@@ -76,7 +76,7 @@ class PetitionViewTest(TestCase):
         julia = self.login("julia")
         # User petition
         p = julia.petition_set.first()
-        self.assertIsNone(p, "Petition should not be None for user 'julia'")
+        self.assertIsNotNone(p, "Petition should not be None for user 'julia'")
         if p is None:
             return  # Prevent further errors if the petition is None
         response = self.client.get(reverse("get_csv_signature", args=[p.id]))
@@ -117,7 +117,7 @@ class PetitionViewTest(TestCase):
     def test_show_signatures_post_deleteOK(self) -> None:
         julia = self.login("julia")
         petition = julia.petition_set.first()
-        self.assertIsNone(petition, "Petition should not be None for user 'julia'")
+        self.assertIsNotNone(petition, "Petition should not be None for user 'julia'")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
@@ -148,7 +148,7 @@ class PetitionViewTest(TestCase):
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
-        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        self.assertIsNotNone(petition, f"Petition should not be None for {org.name}")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
@@ -179,7 +179,7 @@ class PetitionViewTest(TestCase):
         self.login("julia")
         max = PytitionUser.objects.get(user__username="max")
         petition = max.petition_set.first()
-        self.assertIsNone(petition, f"Petition should not be None for {max.name}")
+        self.assertIsNotNone(petition, f"Petition should not be None for {max.name}")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
@@ -212,7 +212,7 @@ class PetitionViewTest(TestCase):
         self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
-        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        self.assertIsNotNone(petition, f"Petition should not be None for {org.name}")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
@@ -246,7 +246,7 @@ class PetitionViewTest(TestCase):
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
 
-        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        self.assertIsNotNone(petition, f"Petition should not be None for {org.name}")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
@@ -275,7 +275,7 @@ class PetitionViewTest(TestCase):
         julia = self.login("julia")
         petition = julia.petition_set.first()
 
-        self.assertIsNone(petition, f"Petition should not be None for {julia.name}")
+        self.assertIsNotNone(petition, f"Petition should not be None for {julia.name}")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
@@ -304,7 +304,7 @@ class PetitionViewTest(TestCase):
         julia = self.login("julia")
         petition = julia.petition_set.first()
 
-        self.assertIsNone(petition, f"Petition should not be None for {julia.name}")
+        self.assertIsNotNone(petition, f"Petition should not be None for {julia.name}")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
@@ -333,7 +333,7 @@ class PetitionViewTest(TestCase):
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
 
-        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        self.assertIsNotNone(petition, f"Petition should not be None for {org.name}")
         if petition is None:
             return  # Prevent further errors if the petition is None
         pid = petition.id
