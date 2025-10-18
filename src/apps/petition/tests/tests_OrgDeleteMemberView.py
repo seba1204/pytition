@@ -10,18 +10,18 @@ class OrgDeleteMemberViewTest(TestCase):
     """Test org_delete_member view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def test_OrgDeleteMemberViewOk(self):
+    def test_OrgDeleteMemberViewOk(self) -> None:
         """Let's try to add and then delete user max to org RAP"""
         # Add max to RAP
         julia = self.login("julia")
@@ -57,7 +57,7 @@ class OrgDeleteMemberViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
 
-    def test_OrgDeleteMemberViewKoForbidden(self):
+    def test_OrgDeleteMemberViewKoForbidden(self) -> None:
         """Let's try to add user max to org RAP from non-authorized Julia user"""
         # Add max to RAP
         julia = self.login("julia")
@@ -93,7 +93,7 @@ class OrgDeleteMemberViewTest(TestCase):
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")
 
-    def test_OrgDeleteMemberLastAdminKo(self):
+    def test_OrgDeleteMemberLastAdminKo(self) -> None:
         julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         # Add permission to remove members

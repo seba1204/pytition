@@ -13,16 +13,20 @@ register = template.Library()
 @lru_cache
 def _load_versions() -> dict[str, str]:
     pyproject = Path(__file__).resolve().parents[4] / "pyproject.toml"
-    with open(pyproject, "rb") as f:
+    with Path.open(pyproject, "rb") as f:
         cfg = tomllib.load(f)
-    return cfg.get("tool", {}).get("pytition", {}).get("vendors", {})
+    vendors = cfg.get("tool", {}).get("pytition", {}).get("vendors", {})
+    if not isinstance(vendors, dict):
+        return {}
+    # Ensure all keys and values are strings
+    return {str(k): str(v) for k, v in vendors.items()}
 
 
 @register.simple_tag
 def vendor_static(vendor: str, path: str) -> str:
-    """Construit un chemin static vers un vendor versionné."""
+    """Builds a static path to a versioned vendor."""
     versions = _load_versions()
     version = versions.get(vendor)
     if not version:
-        raise template.TemplateSyntaxError(f"Version inconnue pour '{vendor}'")
+        raise template.TemplateSyntaxError(f"Unknown version for '{vendor}'")
     return static(f"vendor/{vendor}-{version}/{path}")

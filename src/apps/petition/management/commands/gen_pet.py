@@ -1,6 +1,6 @@
 import logging
 
-from django.core.management import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 
 from apps.petition.models import Organization, Petition, PytitionUser
 
@@ -16,13 +16,14 @@ class Command(BaseCommand):
     > Generate 10 petitions for org:orgname
     """
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("--user", type=str)
         parser.add_argument("--orga", type=str)
         parser.add_argument("--number", "-n", type=int, default=1)
 
-    def handle(self, *args, **options):
-        if not options["orga"] and not options["user"]:
+    def handle(self, *args: object, **opts: object) -> None:
+        opts = dict(opts)  # Ensure opts is a dict
+        if not opts["orga"] and not opts["user"]:
             logger.error("You must either specify --orga or --user")
             return
         data = {
@@ -31,21 +32,24 @@ class Command(BaseCommand):
             "org_twitter_handle": "@RAP_Asso",
             "published": True,
         }
-        if options["orga"]:
+        if opts["orga"]:
             try:
-                orga = Organization.objects.get(name=options["orga"])
+                orga = Organization.objects.get(name=opts["orga"])
                 data.update({"org": orga})
             except Organization.DoesNotExist:
-                logger.error("%s org not found.", options["orga"])
+                logger.error("%s org not found.", opts["orga"])
                 return
-        elif options["user"]:
+        elif opts["user"]:
             try:
-                user = PytitionUser.objects.get(user__username=options["user"])
+                user = PytitionUser.objects.get(user__username=opts["user"])
                 data.update({"user": user})
             except PytitionUser.DoesNotExist:
-                logger.error("%s user not found.", options["user"])
+                logger.error("%s user not found.", opts["user"])
                 return
-        for i in range(options["number"]):
-            data["title"] = "Petition %d" % i
+        num = opts.get("number")
+        if not isinstance(num, int) or num < 1:
+            num = 1
+        for i in range(1, num + 1):
+            data["title"] = f"Petition {i}"
             Petition.objects.create(**data)
-        logger.info("%d petitions created", options["number"])
+        logger.info("%d petitions created", opts["number"])

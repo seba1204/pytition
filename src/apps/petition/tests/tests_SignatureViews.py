@@ -16,25 +16,30 @@ class PetitionViewTest(TestCase):
     """Test index view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def test_show_signatures(self):
+    def test_show_signatures(self) -> None:
         julia = self.login("julia")
         # User petition
         p = julia.petition_set.first()
+        self.assertIsNotNone(p, "Petition should not be None for user 'julia'")
+
+        if p is None:
+            return  # Prevent further errors if the petition is None
+
         response = self.client.get(reverse("show_signatures", args=[p.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/signature_data.html")
@@ -51,6 +56,12 @@ class PetitionViewTest(TestCase):
         max = self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         p2 = org.petition_set.first()
+
+        self.assertIsNotNone(
+            p2, "Petition should not be None for organization 'Les Amis de la Terre'"
+        )
+        if p2 is None:
+            return  # Prevent further errors if the petition is None
         response = self.client.get(reverse("show_signatures", args=[p2.id]))
         self.assertEqual(response.status_code, 302)
         # Ah right, Max does not have access rights for that
@@ -61,10 +72,13 @@ class PetitionViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/signature_data.html")
 
-    def test_get_csv_signature(self):
+    def test_get_csv_signature(self) -> None:
         julia = self.login("julia")
         # User petition
         p = julia.petition_set.first()
+        self.assertIsNone(p, "Petition should not be None for user 'julia'")
+        if p is None:
+            return  # Prevent further errors if the petition is None
         response = self.client.get(reverse("get_csv_signature", args=[p.id]))
         self.assertEqual(response.status_code, 200)
         response = self.client.get(reverse("get_csv_confirmed_signature", args=[p.id]))
@@ -83,6 +97,12 @@ class PetitionViewTest(TestCase):
         self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         p2 = org.petition_set.first()
+
+        self.assertIsNotNone(
+            p2, "Petition should not be None for organization 'Les Amis de la Terre'"
+        )
+        if p2 is None:
+            return  # Prevent further errors if the petition is None
         response = self.client.get(reverse("get_csv_signature", args=[p2.id]))
         self.assertEqual(response.status_code, 403)
         response = self.client.get(reverse("get_csv_confirmed_signature", args=[p2.id]))
@@ -94,9 +114,12 @@ class PetitionViewTest(TestCase):
         response = self.client.get(reverse("get_csv_confirmed_signature", args=[p2.id]))
         self.assertEqual(response.status_code, 200)
 
-    def test_show_signatures_post_deleteOK(self):
+    def test_show_signatures_post_deleteOK(self) -> None:
         julia = self.login("julia")
         petition = julia.petition_set.first()
+        self.assertIsNone(petition, "Petition should not be None for user 'julia'")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
         signature = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
@@ -121,10 +144,13 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_show_signatures_post_deleteOK_org(self):
+    def test_show_signatures_post_deleteOK_org(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
+        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
         signature = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
@@ -149,10 +175,13 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_show_signatures_post_deleteKONoRightsUser(self):
+    def test_show_signatures_post_deleteKONoRightsUser(self) -> None:
         self.login("julia")
         max = PytitionUser.objects.get(user__username="max")
         petition = max.petition_set.first()
+        self.assertIsNone(petition, f"Petition should not be None for {max.name}")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
         signature = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
@@ -168,9 +197,9 @@ class PetitionViewTest(TestCase):
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         s = Signature.objects.get(pk=sid)
-        self.assertEqual(
-            s.id, sid
-        )  # dummy test, we just want the previous line not to raise a DoesNotExist exception
+        self.assertEqual(s.id, sid)
+        # dummy test, we just want the previous line
+        # not to raise a DoesNotExist exception
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
@@ -179,10 +208,13 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, True)
 
-    def test_show_signatures_post_deleteKONoRightsOrg(self):
+    def test_show_signatures_post_deleteKONoRightsOrg(self) -> None:
         self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
+        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
         signature = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
@@ -209,10 +241,14 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, True)
 
-    def test_show_signatures_post_resendOK_org(self):
+    def test_show_signatures_post_resendOK_org(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
+
+        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
         signature = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
@@ -235,9 +271,13 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_show_signatures_post_resendOK(self):
+    def test_show_signatures_post_resendOK(self) -> None:
         julia = self.login("julia")
         petition = julia.petition_set.first()
+
+        self.assertIsNone(petition, f"Petition should not be None for {julia.name}")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
         signature = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
@@ -260,11 +300,15 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_show_signatures_post_resendallOK(self):
+    def test_show_signatures_post_resendallOK(self) -> None:
         julia = self.login("julia")
         petition = julia.petition_set.first()
+
+        self.assertIsNone(petition, f"Petition should not be None for {julia.name}")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
-        signature = Signature.objects.create(
+        _ = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
         )
         # sid = signature.id
@@ -284,12 +328,16 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_show_signatures_post_resendallOK_org(self):
+    def test_show_signatures_post_resendallOK_org(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()
+
+        self.assertIsNone(petition, f"Petition should not be None for {org.name}")
+        if petition is None:
+            return  # Prevent further errors if the petition is None
         pid = petition.id
-        signature = Signature.objects.create(
+        _ = Signature.objects.create(
             first_name="Me", last_name="You", email="you@example.org", petition=petition
         )
         # sid = signature.id

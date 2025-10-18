@@ -10,22 +10,22 @@ class UserDashboardViewTest(TestCase):
     """Test index view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name):
+    def login(self, name: str) -> PytitionUser:
         self.client.login(username=name, password=name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def test_NotLoggedIn(self):
+    def test_NotLoggedIn(self) -> None:
         self.logout()
         response = self.client.get(reverse("user_dashboard"), follow=True)
         self.assertRedirects(
@@ -34,7 +34,7 @@ class UserDashboardViewTest(TestCase):
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
 
-    def test_UserOK1(self):
+    def test_UserOK1(self) -> None:
         john = self.login("john")
         num_petitions = john.petition_set.count()
 
@@ -47,7 +47,7 @@ class UserDashboardViewTest(TestCase):
         self.assertEqual(len(petitions), num_petitions)
         self.assertEqual(response.context["user"], john)
 
-    def test_UserOK2(self):
+    def test_UserOK2(self) -> None:
         julia = self.login("julia")
         num_petitions = julia.petition_set.count()
 
@@ -60,7 +60,7 @@ class UserDashboardViewTest(TestCase):
         self.assertEqual(len(petitions), num_petitions)
         self.assertEqual(response.context["user"], julia)
 
-    def test_UserOK3(self):
+    def test_UserOK3(self) -> None:
         max = self.login("max")
         num_petitions = max.petition_set.count()
 
@@ -73,7 +73,7 @@ class UserDashboardViewTest(TestCase):
         self.assertEqual(len(petitions), num_petitions)
         self.assertEqual(response.context["user"], max)
 
-    def test_UserOK4(self):
+    def test_UserOK4(self) -> None:
         sarah = self.login("sarah")
         num_petitions = sarah.petition_set.count()
 

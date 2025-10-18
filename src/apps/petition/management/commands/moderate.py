@@ -1,6 +1,6 @@
 import logging
 
-from django.core.management import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 from django.db.models import Count
 
 from apps.petition.models import Moderation, ModerationReason, Petition, PytitionUser
@@ -20,7 +20,7 @@ class Command(BaseCommand):
     > -D username : delete a user or Organization account
     """
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("-r", "--add-reason", type=str)
         parser.add_argument("-R", "--delete-reason", type=str)
         parser.add_argument("-l", "--list", action="store_true")
@@ -31,8 +31,8 @@ class Command(BaseCommand):
         parser.add_argument("-P", "--unmoderate-petition", type=int)
         parser.add_argument("-U", "--unmoderate-user", type=str)
 
-    def handle(self, *args, **options):
-        if options["list"]:
+    def handle(self, *args: object, **opts: object) -> None:
+        if opts["list"]:
             petitions = (
                 Moderation.objects.values("petition")
                 .annotate(count=Count("petition"))
@@ -42,64 +42,68 @@ class Command(BaseCommand):
             if len(petitions) == 0:
                 return
             print("Number of moderation request: title [id : url]")
-            for petition in petitions:
-                p = Petition.objects.get(pk=petition["petition"])
-                print(
-                    "{count}: {title} [{id} : {url}]".format(
-                        count=petition["count"], title=p.title, id=p.id, url=p.url
-                    )
-                )
+            for petition_data in petitions:
+                petition = Petition.objects.get(pk=int(petition_data["petition"]))
 
-        if options["add_reason"]:
-            msg = options["add_reason"]
-            ModerationReason.objects.create(msg=msg)
+        if opts["add_reason"]:
+            msg = opts["add_reason"]
+            ModerationReason.objects.create(msg=str(msg))
             print(f"Created reason: '{msg}'")
 
-        if options["delete_reason"]:
-            msg = options["delete_reason"]
+        if opts["delete_reason"]:
+            msg = opts["delete_reason"]
             r = ModerationReason.objects.get(msg=msg)
             r.delete()
             print(f"Deleted reason: '{msg}'")
 
-        if options["moderate_petition"]:
-            id = options["moderate_petition"]
+        if opts["moderate_petition"]:
+            id = opts["moderate_petition"]
+            if not isinstance(id, int):
+                print("Invalid petition id")
+                return
             petition = Petition.objects.get(pk=id)
             title = petition.title
             petition.moderate()
             petition.save()
             print(f"Petition '{title}' moderated")
 
-        if options["moderate_user"]:
-            username = options["moderate_user"]
+        if opts["moderate_user"]:
+            username = opts["moderate_user"]
             user = PytitionUser.objects.get(user__username=username)
             user.moderate()
             user.save()
             print(f"User '{username}' moderated")
 
-        if options["unmoderate_petition"]:
-            id = options["unmoderate_petition"]
+        if opts["unmoderate_petition"]:
+            id = opts["unmoderate_petition"]
+            if not isinstance(id, int):
+                print("Invalid petition id")
+                return
             petition = Petition.objects.get(pk=id)
             title = petition.title
             petition.moderate(False)
             petition.save()
             print(f"Petition '{title}' un-moderated")
 
-        if options["unmoderate_user"]:
-            username = options["unmoderate_user"]
+        if opts["unmoderate_user"]:
+            username = opts["unmoderate_user"]
             user = PytitionUser.objects.get(user__username=username)
             user.moderate(False)
             user.save()
             print(f"User '{username}' un-moderated")
 
-        if options["delete_petition"]:
-            id = options["delete_petition"]
+        if opts["delete_petition"]:
+            id = opts["delete_petition"]
+            if not isinstance(id, int):
+                print("Invalid petition id")
+                return
             petition = Petition.objects.get(pk=id)
             title = petition.title
             petition.delete()
             print(f"Petition '{title}' deleted")
 
-        if options["delete_user"]:
-            username = options["delete_user"]
+        if opts["delete_user"]:
+            username = opts["delete_user"]
             user = PytitionUser.objects.get(user__username=username)
             user.delete()
             print(f"User '{username}' deleted")

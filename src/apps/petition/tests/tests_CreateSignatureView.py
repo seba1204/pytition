@@ -10,10 +10,10 @@ class CreateSignatureViewTest(TestCase):
     """Test create_signature view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def test_CreateSignaturePOSTOk(self):
+    def test_CreateSignaturePOSTOk(self) -> None:
         data = {
             "first_name": "Alan",
             "last_name": "John",
@@ -22,11 +22,17 @@ class CreateSignatureViewTest(TestCase):
             "subscribed_to_mailinglist": False,
         }
         petition = Petition.objects.filter(published=True).first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.post(
             reverse("create_signature", args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()
+        self.assertIsNotNone(signature)
+        if signature is None:
+            return
         self.assertEqual(signature.confirmed, False)
         self.assertEqual(signature.email, "alan@john.org")
         self.assertEqual(signature.phone, "+33605040302")
@@ -34,7 +40,7 @@ class CreateSignatureViewTest(TestCase):
         self.assertEqual(signature.last_name, "John")
         self.assertEqual(signature.subscribed_to_mailinglist, False)
 
-    def test_CreateSignaturePOSTNok(self):
+    def test_CreateSignaturePOSTNok(self) -> None:
         data = {
             "first_name": "Alan",
             "last_name": "",
@@ -42,6 +48,9 @@ class CreateSignatureViewTest(TestCase):
             "phone": "060504030201",
         }
         petition = Petition.objects.filter(published=True).first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.post(
             reverse("create_signature", args=[petition.id]), data
         )
@@ -51,8 +60,11 @@ class CreateSignatureViewTest(TestCase):
         self.assertContains(response, "Enter a valid phone number")
         self.assertContains(response, "Enter a valid email address")
 
-    def test_CreateSignatureGETOk(self):
+    def test_CreateSignatureGETOk(self) -> None:
         petition = Petition.objects.filter(published=True).first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.get(
             reverse("create_signature", args=[petition.id]), follow=True
         )

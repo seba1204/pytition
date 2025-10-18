@@ -11,22 +11,22 @@ class OrgDashboardViewTest(TestCase):
     """Test index view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name):
+    def login(self, name: str) -> PytitionUser:
         self.client.login(username=name, password=name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def test_orgNotExist(self):
+    def test_orgNotExist(self) -> None:
         org_name = "org that does not exist"
         orgslugname = slugify(org_name)
         self.login("julia")
@@ -36,7 +36,7 @@ class OrgDashboardViewTest(TestCase):
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
-    def test_NotAMember(self):
+    def test_NotAMember(self) -> None:
         org_name = "Attac"
         orgslugname = slugify(org_name)
         self.login("julia")
@@ -46,7 +46,7 @@ class OrgDashboardViewTest(TestCase):
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
-    def test_NotLoggedIn(self):
+    def test_NotLoggedIn(self) -> None:
         self.logout()
         org_name = "RAP"
         orgslugname = slugify(org_name)
@@ -60,7 +60,7 @@ class OrgDashboardViewTest(TestCase):
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
 
-    def test_OrgOK1(self):
+    def test_OrgOK1(self) -> None:
         org_name = "Attac"
         orgslugname = slugify(org_name)
         john = self.login("john")
@@ -72,7 +72,7 @@ class OrgDashboardViewTest(TestCase):
         self.assertEqual(len(petitions), 4)
         self.assertEqual(response.context["user"], john)
 
-    def test_OrgOK2(self):
+    def test_OrgOK2(self) -> None:
         org_name = "RAP"
         orgslugname = slugify(org_name)
         julia = self.login("julia")
@@ -83,7 +83,7 @@ class OrgDashboardViewTest(TestCase):
         self.assertEqual(len(petitions), 0)
         self.assertEqual(response.context["user"], julia)
 
-    def test_OrgOK3(self):
+    def test_OrgOK3(self) -> None:
         org_name = "Les Amis de la Terre"
         orgslugname = slugify(org_name)
         max = self.login("max")

@@ -11,18 +11,18 @@ class OrgSetUserPermsViewTest(TestCase):
     """Test org_edit_user_perms view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def test_OrgSetUserPermsViewGetRedirectOk(self):
+    def test_OrgSetUserPermsViewGetRedirectOk(self) -> None:
         julia = self.login("julia")
         response = self.client.get(
             reverse(
@@ -39,7 +39,7 @@ class OrgSetUserPermsViewTest(TestCase):
             ),
         )
 
-    def test_OrgSetUserPermsViewPostOk(self):
+    def test_OrgSetUserPermsViewPostOk(self) -> None:
         julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         data = {
@@ -64,7 +64,7 @@ class OrgSetUserPermsViewTest(TestCase):
         julia_perms.refresh_from_db()
         self.assertEqual(julia_perms.can_remove_members, False)
 
-    def test_OrgSetUserPermsViewLastAdminRemoveItsPermsKO(self):
+    def test_OrgSetUserPermsViewLastAdminRemoveItsPermsKO(self) -> None:
         julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         # Now let's try to remove admin rights from julia
@@ -99,7 +99,7 @@ class OrgSetUserPermsViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, True)
 
-    def test_OrgSetUserPermsViewSeveralAdminsRemoveItsPermsOK(self):
+    def test_OrgSetUserPermsViewSeveralAdminsRemoveItsPermsOK(self) -> None:
         julia = self.login("julia")
         julia_perms = Permission.objects.get(
             organization__slugname="alternatiba", user=julia
@@ -136,7 +136,7 @@ class OrgSetUserPermsViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_OrgSetUserPermsViewLastAdminSeveralMembersRemoveItsPermsKO(self):
+    def test_OrgSetUserPermsViewLastAdminSeveralMembersRemoveItsPermsKO(self) -> None:
         julia = self.login("julia")
         julia_perms = Permission.objects.get(
             organization__slugname="les-amis-de-la-terre", user=julia

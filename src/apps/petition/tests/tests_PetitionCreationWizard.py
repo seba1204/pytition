@@ -18,7 +18,7 @@ class PetitionCreateWizardViewTest(TestCase):
     """Test PetitionCreateWizard view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         User = get_user_model()
         for org in orgs:
             o = Organization.objects.create(name=org)
@@ -28,35 +28,35 @@ class PetitionCreateWizardViewTest(TestCase):
             u.first_name = user
             u.last_name = user + "Last"
             u.save()
-        for orgname in org_members:
-            org = Organization.objects.get(name=orgname)
-            for username in org_members[orgname]:
-                user = PytitionUser.objects.get(user__username=username)
-                org.members.add(user)
-                permission = Permission.objects.get(organization=org, user=user)
+        for orgname, member_usernames in org_members.items():
+            org_obj = Organization.objects.get(name=orgname)
+            for username in member_usernames:
+                user_obj = PytitionUser.objects.get(user__username=username)
+                org_obj.members.add(user_obj)
+                permission = Permission.objects.get(organization=org_obj, user=user_obj)
                 permission.can_modify_permissions = True
                 permission.save()
 
         # give julia can_modify_petitions permission on "Les Amis de la Terre" organization
-        user = PytitionUser.objects.get(user__username="julia")
-        org = Organization.objects.get(name="Les Amis de la Terre")
-        perm = Permission.objects.get(organization=org, user=user)
+        user_obj = PytitionUser.objects.get(user__username="julia")
+        org_obj = Organization.objects.get(name="Les Amis de la Terre")
+        perm = Permission.objects.get(organization=org_obj, user=user_obj)
         perm.can_modify_petitions = True
         perm.save()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def test_NotLoggedIn(self):
+    def test_NotLoggedIn(self) -> None:
         self.logout()
         org = Organization.objects.get(name="RAP")
         response = self.client.get(
@@ -71,21 +71,21 @@ class PetitionCreateWizardViewTest(TestCase):
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
 
-    def test_call_page1_ok(self):
+    def test_call_page1_ok(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse("org_petition_wizard", args=[org.slugname]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/org_base.html")
 
-    def test_call_page2_ok(self):
+    def test_call_page2_ok(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse("user_petition_wizard"))
         self.assertEqual(response.status_code, 200)
 
     @override_settings(DISABLE_USER_PETITION=True)
-    def test_user_petition_disabled(self):
+    def test_user_petition_disabled(self) -> None:
         self.login("julia")
         response = self.client.get(reverse("user_petition_wizard"))
         self.assertRedirects(response, reverse("user_dashboard"))
@@ -96,7 +96,7 @@ class PetitionCreateWizardViewTest(TestCase):
         )
 
     @override_settings(DISABLE_USER_PETITION=True)
-    def test_org_petition_still_working(self):
+    def test_org_petition_still_working(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse("org_petition_wizard", args=[org.slugname]))

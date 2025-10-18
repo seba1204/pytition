@@ -11,8 +11,8 @@ from .registry import register_step
 @register_step("images", order=10)
 class ImagesStep(PipelineStep):
     """
-    Convertit PNG/JPEG en WebP dans 3 tailles.
-    Copie les SVG tels quels.
+    Converts PNG/JPEG to WebP in 3 sizes.
+    Copies SVG files as-is.
     Source: assets/img/**/* -> <static_root>/img/
     """
 
@@ -32,7 +32,7 @@ class ImagesStep(PipelineStep):
         quality = getattr(ctx.settings, "ASSETS_IMAGE_QUALITY", 85)
 
         if not src.exists():
-            self.log(ctx, "Aucun dossier assets/img, étape ignorée.")
+            self.log(ctx, "No assets/img folder, step skipped.")
             return
 
         for path in src.rglob("*"):
@@ -40,25 +40,22 @@ class ImagesStep(PipelineStep):
                 continue
             rel = path.relative_to(src)
             if path.suffix.lower() == ".svg":
-                # copie brute
                 out = dst / rel
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_bytes(path.read_bytes())
-                self.log(ctx, f"Copié SVG: {rel}")
+                self.log(ctx, f"SVG copied: {rel}")
                 continue
 
             try:
                 with Image.open(path) as im:
                     im.load()
             except UnidentifiedImageError:
-                # copie brute si format non géré par Pillow
                 out = dst / rel
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_bytes(path.read_bytes())
-                self.log(ctx, f"Copié (brut) {rel}")
+                self.log(ctx, f"Raw copy {rel}")
                 continue
 
-            # normalisation en RGB (WebP ne gère pas tous les modes)
             if im.mode in ("P", "LA", "RGBA"):
                 bg = Image.new("RGBA", im.size, (255, 255, 255, 0))
                 bg.paste(im, (0, 0))

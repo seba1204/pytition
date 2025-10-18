@@ -5,6 +5,6 @@ from django.urls import reverse
 class AllPetitionsViewTest(TestCase):
     """Test all_petitions view"""
 
-    def test_allPetitionsOk(self):
+    def test_allPetitionsOk(self) -> None:
         response = self.client.get(reverse("all_petitions"))
         self.assertEqual(response.status_code, 302)

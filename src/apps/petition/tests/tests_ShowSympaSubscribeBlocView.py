@@ -10,19 +10,19 @@ from apps.petition.models import Petition, PytitionUser, Signature
 
 class SympaBlockTest(TestCase):
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         User = get_user_model()
         u = User.objects.create_user("julia", password="julia")
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def create_signatures(self, petition):
+    def create_signatures(self, petition: Petition) -> None:
         self.nb_subscribed = 0
         for i in range(10):
             firstname = "".join([random.choice(string.ascii_letters) for n in range(7)])
@@ -40,7 +40,7 @@ class SympaBlockTest(TestCase):
                 subscribed_to_mailinglist=subscribed,
             )
 
-    def test_ShowSympaSubscribeBlock(self):
+    def test_ShowSympaSubscribeBlock(self) -> None:
         pu = self.login("julia")
         p = Petition.objects.create(title="my test petition", user=pu)
         self.create_signatures(p)

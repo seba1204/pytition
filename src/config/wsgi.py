@@ -21,29 +21,31 @@ if settings.USE_MAIL_QUEUE:
         from django.core.management import call_command
 
         @uwsgidecorators.timer(settings.UWSGI_WAIT_FOR_MAIL_SEND_IN_S)
-        def send_queued_mail(num):
-            """Send queued mail every 10 seconds"""
+        def send_queued_mail(num: int) -> None:
+            """Send queued mail every 10 seconds."""
             call_command("send_mail")
 
         @uwsgidecorators.timer(settings.UWSGI_WAIT_FOR_RETRY_IN_S)
-        def retry_deferred(num):
+        def retry_deferred(num: int) -> None:
             """Retry deferred emails"""
             call_command("retry_deferred")
 
         @uwsgidecorators.timer(settings.UWSGI_WAIT_FOR_PURGE_IN_S)
-        def purge_mail(num):
+        def purge_mail(num: int) -> None:
             """purge 2 days old mails"""
             call_command("purge_mail_log", settings.UWSGI_NB_DAYS_TO_KEEP)
 
     except ImportError:
         if settings.MAIL_EXTERNAL_CRON_SET:
             print(
-                "info: uwsgi not found, the external cron job will be in charge of sending emails"
+                "info: uwsgi not found, the external cron job will be in "
+                "charge of sending emails"
             )
         else:
             print("""Error: uwsgi not found and no external cron job have been set.
 With this setup, no email will be ever sent.
-If you want some mails, you should set MAIL_EXTERNAL_CRON_SET=True and setup the cron yourself with something like:
+If you want some mails, you should set MAIL_EXTERNAL_CRON_SET=Tru
+and setup the cron yourself with something like:
 *       * * * * (/path/to/your/python /path/to/your/manage.py send_mail)
 0,20,40 * * * * (/path/to/your/python /path/to/your/manage.py retry_deferred)
 0       0 * * * (/path/to/your/python /path/to/your/manage.py purge_mail_log 2)

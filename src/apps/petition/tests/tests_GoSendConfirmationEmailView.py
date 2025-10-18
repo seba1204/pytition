@@ -10,18 +10,18 @@ class GoSendConfirmationEmailViewTest(TestCase):
     """Test go_send_confirmation_email view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def test_GoSendConfirmationEmailViewLoginKO(self):
+    def test_GoSendConfirmationEmailViewLoginKO(self) -> None:
         self.logout()
         data = {
             "first_name": "Alan",
@@ -30,11 +30,18 @@ class GoSendConfirmationEmailViewTest(TestCase):
             "subscribed_to_mailinglist": False,
         }
         petition = Petition.objects.filter(published=True).first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.post(
             reverse("create_signature", args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()
+
+        self.assertIsNotNone(signature)
+        if signature is None:
+            return
         response = self.client.get(
             reverse("resend_confirmation_email", args=[signature.id]), follow=True
         )
@@ -45,7 +52,7 @@ class GoSendConfirmationEmailViewTest(TestCase):
             + reverse("resend_confirmation_email", args=[signature.id]),
         )
 
-    def test_GoSendConfirmationEmailViewLoginOK(self):
+    def test_GoSendConfirmationEmailViewLoginOK(self) -> None:
         self.login("admin")
         data = {
             "first_name": "Alan",
@@ -55,11 +62,18 @@ class GoSendConfirmationEmailViewTest(TestCase):
         }
         app_label = Signature._meta.app_label
         petition = Petition.objects.filter(published=True).first()
+
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.post(
             reverse("create_signature", args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()
+        self.assertIsNotNone(signature)
+        if signature is None:
+            return
         response = self.client.get(
             reverse("resend_confirmation_email", args=[signature.id]), follow=True
         )

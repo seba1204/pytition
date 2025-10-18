@@ -14,26 +14,26 @@ from .utils import add_default_data
 
 
 class OrganizationTest(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         pass
 
-    def test_createOrganization(self):
+    def test_createOrganization(self) -> None:
         self.assertEqual(Organization.objects.count(), 0)
         o = Organization.objects.create()
         self.assertEqual(Organization.objects.count(), 1)
 
-    def test_org_autocreate_slug(self):
+    def test_org_autocreate_slug(self) -> None:
         o = Organization.objects.create(name="RAP")
         self.assertEqual(o.slugname, "rap")
 
-    def test_name_should_be_uniq(self):
+    def test_name_should_be_uniq(self) -> None:
         o = Organization.objects.create(name="RAP")
         self.assertEqual(Organization.objects.count(), 1)
         self.assertRaises(
             django.db.utils.IntegrityError, Organization.objects.create, name="RAP"
         )
 
-    def test_add_member(self):
+    def test_add_member(self) -> None:
         o = Organization.objects.create(name="RAP")
         User = get_user_model()
         u = User.objects.create_user("julia", password="julia")
@@ -42,7 +42,7 @@ class OrganizationTest(TestCase):
         o.members.add(pu)
         self.assertEqual(o.members.count(), 1)
 
-    def test_delete_org(self):
+    def test_delete_org(self) -> None:
         org = Organization.objects.create(name="RAP")
         p = Petition.objects.create(title="Antipub", org=org)
         pt = PetitionTemplate.objects.create(name="Default", org=org)
@@ -53,7 +53,7 @@ class OrganizationTest(TestCase):
         self.assertEqual(Petition.objects.count(), 0)
         self.assertEqual(PetitionTemplate.objects.count(), 0)
 
-    def test_is_last_admin(self):
+    def test_is_last_admin(self) -> None:
         add_default_data()
         julia = PytitionUser.objects.get(user__username="julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
@@ -65,7 +65,7 @@ class OrganizationTest(TestCase):
         perm.save()
         self.assertEqual(org.is_last_admin(julia), False)
 
-    def test_is_allowed_to(self):
+    def test_is_allowed_to(self) -> None:
         o = Organization.objects.create(name="RAP")
         User = get_user_model()
         u = User.objects.create_user("julia", password="julia")

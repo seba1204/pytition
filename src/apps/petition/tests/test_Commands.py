@@ -10,7 +10,7 @@ logging.disable(logging.CRITICAL)
 
 
 class CommandTestCase(TestCase):
-    def test_gen_orga_command(self):
+    def test_gen_orga_command(self) -> None:
         self.assertEqual(Organization.objects.count(), 0)
 
         call_command("gen_orga", "test-org")
@@ -19,19 +19,25 @@ class CommandTestCase(TestCase):
         call_command("gen_orga", "test-org")
         self.assertEqual(Organization.objects.count(), 1)
 
-    def test_gen_user_command(self):
+    def test_gen_user_command(self) -> None:
         self.assertEqual(User.objects.count(), 0)
 
         call_command("gen_user", "user", "password")
         self.assertEqual(User.objects.count(), 1)
-        self.assertTrue(User.objects.first().check_password("password"))
+        user_obj = User.objects.first()
+        self.assertIsNotNone(user_obj)
+        if user_obj is not None:
+            self.assertTrue(user_obj.check_password("password"))
 
         call_command("gen_user", "user", "password2", "--first-name", "User")
         self.assertEqual(User.objects.count(), 1)
-        self.assertEqual(User.objects.first().first_name, "User")
-        self.assertTrue(User.objects.first().check_password("password2"))
+        user_obj = User.objects.first()
+        self.assertIsNotNone(user_obj)
+        if user_obj is not None:
+            self.assertEqual(user_obj.first_name, "User")
+            self.assertTrue(user_obj.check_password("password2"))
 
-    def test_join_org_command(self):
+    def test_join_org_command(self) -> None:
         org = Organization.objects.create(name="org")
         User.objects.create_user(username="user", password="pass")
         self.assertEqual(Permission.objects.count(), 0)
@@ -49,7 +55,7 @@ class CommandTestCase(TestCase):
         self.assertEqual(Permission.objects.count(), 1)
         self.assertEqual(org.members.count(), 1)
 
-    def test_gen_pet_command(self):
+    def test_gen_pet_command(self) -> None:
         Organization.objects.create(name="org")
         User.objects.create_user(username="user", password="pass")
         self.assertEqual(Petition.objects.count(), 0)
@@ -60,7 +66,7 @@ class CommandTestCase(TestCase):
         call_command("gen_pet", "--orga", "org", "--number", "9")
         self.assertEqual(Petition.objects.count(), 10)
 
-    def test_gen_sig_command(self):
+    def test_gen_sig_command(self) -> None:
         org = Organization.objects.create(name="org")
         user = User.objects.create_user(username="user", password="pass")
         pet = Petition.objects.create(title="Test", user=user.pytitionuser)

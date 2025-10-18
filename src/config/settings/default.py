@@ -55,10 +55,19 @@ PHONENUMBER_DEFAULT_REGION = "FR"
 # ──────────────────────────────────────────────────────────────────────────────
 
 TINYMCE_DEFAULT_CONFIG = {
-    "plugins": "print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help",
+    "plugins": (
+        "print preview fullpage searchreplace autolink directionality visualblocks "
+        "visualchars fullscreen image link media template codesample table charmap hr "
+        "pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor "
+        "wordcount imagetools contextmenu colorpicker textpattern help"
+    ),
     "cleanup_on_startup": True,
     "custom_undo_redo_levels": 10,
-    "toolbar1": "formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | fontselect | fontsizeselect",
+    "toolbar1": (
+        "formatselect | bold italic strikethrough forecolor backcolor | link | "
+        "alignleft aligncenter alignright alignjustify | "
+        "numlist bullist outdent indent | removeformat | fontselect | fontsizeselect"
+    ),
     "insert_toolbar": "forecolor backcolor",
     "fontsize_formats": "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
     "entity_encoding": "raw",
@@ -107,7 +116,8 @@ TINYMCE_INCLUDE_JQUERY = True
 # ──────────────────────────────────────────────────────────────────────────────
 
 DEFAULT_INDEX_THUMBNAIL = "/img/logo_placeholder.svg"
-FOOTER_TEMPLATE = None
+
+FOOTER_TEMPLATE: str | None = None
 INDEX_PAGE = "HOME"  # "ORGA_PROFILE" / "USER_PROFILE" / "LOGIN_REGISTER"
 
 # ──────────────────────────────────────────────────────────────────────────────

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from rjsmin import jsmin
+from rjsmin import jsmin  # type: ignore[import-untyped]
 
 from .base import Context, PipelineStep
 from .registry import register_step
@@ -12,9 +12,9 @@ from .registry import register_step
 @register_step("scripts", order=30)
 class ScriptsStep(PipelineStep):
     """
-    Minifie les .js de assets/js -> <static_root>/js
-    Génère une source map simple: mapping de départ (col 0, ligne 0) + sourcesContent.
-    (Suffisant pour DevTools; si tu veux des mappings fins, on pourra l'étendre.)
+    Minifies .js files from assets/js -> <static_root>/js
+    Generates a simple source map: starting mapping (col 0, line 0) + sourcesContent.
+    (Sufficient for DevTools; if you want fine mappings, we can extend it.)
     """
 
     def __init__(self, name: str):
@@ -26,7 +26,7 @@ class ScriptsStep(PipelineStep):
         dst.mkdir(parents=True, exist_ok=True)
 
         if not src.exists():
-            self.log(ctx, "Aucun dossier assets/js, étape ignorée.")
+            self.log(ctx, "No assets/js folder, step skipped.")
             return
 
         for path in src.rglob("*.js"):
@@ -40,7 +40,7 @@ class ScriptsStep(PipelineStep):
                 encoding="utf-8",
             )
 
-            # Source map minimale manuelle
+            # Minimal manual source map
             source_map = {
                 "version": 3,
                 "file": out_js.name,
@@ -51,4 +51,4 @@ class ScriptsStep(PipelineStep):
             (dst / (out_js.name + ".map")).write_text(
                 json.dumps(source_map, indent=2), encoding="utf-8"
             )
-            self.log(ctx, f"Minifié JS + map: {rel} → {out_js.name}")
+            self.log(ctx, f"Minified JS + map: {rel} → {out_js.name}")

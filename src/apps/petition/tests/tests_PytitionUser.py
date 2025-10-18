@@ -5,10 +5,10 @@ from apps.petition.models import PytitionUser
 
 
 class PytitionUserTest(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         pass
 
-    def test_createPytitionUser(self):
+    def test_createPytitionUser(self) -> None:
         User = get_user_model()
         u = User.objects.create_user("julia", password="julia")
         self.assertEqual(PytitionUser.objects.count(), 1)

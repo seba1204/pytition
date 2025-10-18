@@ -9,24 +9,24 @@ from apps.petition.models import (
 
 
 class PetitionTemplateTest(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         User = get_user_model()
         u = User.objects.create_user("julia", password="julia")
         org = Organization.objects.create(name="RAP")
 
-    def test_createUserPetitionTemplate(self):
+    def test_createUserPetitionTemplate(self) -> None:
         self.assertEqual(PetitionTemplate.objects.count(), 0)
         pu = PytitionUser.objects.get(user__username="julia")
         PetitionTemplate.objects.create(name="Default", user=pu)
         self.assertEqual(PetitionTemplate.objects.count(), 1)
 
-    def test_createOrgPetitionTemplate(self):
+    def test_createOrgPetitionTemplate(self) -> None:
         self.assertEqual(PetitionTemplate.objects.count(), 0)
         org = Organization.objects.first()
         PetitionTemplate.objects.create(name="Default", org=org)
         self.assertEqual(PetitionTemplate.objects.count(), 1)
 
-    def test_createPetitionTemplateRefused(self):
+    def test_createPetitionTemplateRefused(self) -> None:
         org = Organization.objects.first()
         pu = PytitionUser.objects.get(user__username="julia")
         self.assertEqual(PetitionTemplate.objects.count(), 0)
@@ -43,7 +43,7 @@ class PetitionTemplateTest(TestCase):
         )
         self.assertEqual(PetitionTemplate.objects.count(), 0)
 
-    def test_owner_type(self):
+    def test_owner_type(self) -> None:
         org = Organization.objects.first()
         pu = PytitionUser.objects.get(user__username="julia")
         p1 = PetitionTemplate.objects.create(name="PetitionTemplate", org=org)

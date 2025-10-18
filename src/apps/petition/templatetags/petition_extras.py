@@ -1,26 +1,38 @@
 from django import template
+from widget_tweaks.templatetags.widget_tweaks import add_class  # type: ignore
 
 from apps.petition.helpers import sanitize_html
 
 register = template.Library()
 
 
-from widget_tweaks.templatetags.widget_tweaks import add_class
-
-
 @register.filter
-def addstr(arg1, arg2):
+def addstr(arg1: object, arg2: object) -> str:
     """concatenate arg1 & arg2"""
     return str(arg1) + str(arg2)
 
 
 @register.filter
-def getitem(array, item):
-    return array[item]
+def getitem(array: object, item: object) -> object:
+    try:
+        if isinstance(array, dict):
+            return array[item]
+        elif isinstance(array, (list, tuple)):
+            if isinstance(item, int):
+                return array[item]
+            else:
+                raise TypeError
+        else:
+            raise TypeError
+    except (TypeError, KeyError, IndexError):
+        try:
+            return getattr(array, str(item))
+        except AttributeError:
+            return None
 
 
 @register.filter
-def bootstrap(field):
+def bootstrap(field: object) -> object:
     if (
         hasattr(field, "field")
         and hasattr(field.field, "widget")
@@ -44,5 +56,5 @@ def bootstrap(field):
 
 
 @register.filter
-def html_sanitize(html):
+def html_sanitize(html: str) -> str:
     return sanitize_html(html)

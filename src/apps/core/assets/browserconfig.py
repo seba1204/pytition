@@ -9,8 +9,8 @@ from .registry import register_step
 @register_step("browserconfig", order=60)
 class BrowserConfigStep(PipelineStep):
     """
-    Génère browserconfig.xml pour Microsoft/Windows (tuiles).
-    Requiert au moins une icône carrée 150x150 (on réutilise android-chrome-192x192).
+    Generates browserconfig.xml for Microsoft/Windows (tiles).
+    Requires at least one 150x150 square icon (we reuse android-chrome-192x192).
     """
 
     def __init__(self, name: str):
@@ -29,4 +29,4 @@ class BrowserConfigStep(PipelineStep):
 </browserconfig>
 """.format(tile_color=getattr(ctx.settings, "ASSETS_PWA_THEME_COLOR", "#000000"))
         (root / "browserconfig.xml").write_text(xml, encoding="utf-8")
-        self.log(ctx, "Généré browserconfig.xml")
+        self.log(ctx, "browserconfig.xml generated.")

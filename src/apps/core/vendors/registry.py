@@ -1,5 +1,6 @@
 import importlib
 import pkgutil
+from collections.abc import Callable
 from pathlib import Path
 
 from .base import Vendor
@@ -8,9 +9,9 @@ _REGISTRY: dict[str, type[Vendor]] = {}
 _DISCOVERED = False
 
 
-def _auto_discover():
+def _auto_discover() -> None:
     """Import all modules in this package to trigger @register decorators."""
-    global _DISCOVERED
+    global _DISCOVERED  # noqa: PLW0603
     if _DISCOVERED:
         return
     pkg_dir = Path(__file__).parent
@@ -20,7 +21,7 @@ def _auto_discover():
     _DISCOVERED = True
 
 
-def register(name: str):
+def register(name: str) -> Callable[[type[Vendor]], type[Vendor]]:
     def _wrap(cls: type[Vendor]) -> type[Vendor]:
         _REGISTRY[name.lower()] = cls
         return cls
@@ -33,6 +34,6 @@ def get_vendor_class(name: str) -> type[Vendor]:
     key = name.lower()
     if key not in _REGISTRY:
         raise SystemExit(
-            f"Vendor inconnu '{name}'. Disponibles: {', '.join(sorted(_REGISTRY))}"
+            f"Unknown vendor '{name}'. Available: {', '.join(sorted(_REGISTRY))}"
         )
     return _REGISTRY[key]

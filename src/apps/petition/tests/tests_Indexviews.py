@@ -31,7 +31,7 @@ class IndexViewTest(TestCase):
     """Test index view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         User = get_user_model()
         for org in orgs:
             o = Organization.objects.create(name=org)
@@ -58,15 +58,15 @@ class IndexViewTest(TestCase):
                     published=False, user=pu, title="Petition D%i" % i
                 )
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_index(self):
+    def test_index(self) -> None:
         with self.settings(INDEX_PAGE="HOME"):
             response = self.client.get("/", follow=True)
             self.assertTemplateUsed(response, "layouts/base.html")
 
-    def test_index_orga_profile(self):
+    def test_index_orga_profile(self) -> None:
         for org in orgs:
             orgslugname = slugify(org)
             with self.settings(INDEX_PAGE="ORGA_PROFILE", INDEX_PAGE_ORGA=org):
@@ -79,7 +79,7 @@ class IndexViewTest(TestCase):
                         len(response.context["petitions"]), org_published_petitions[org]
                     )
 
-    def test_index_user_profile(self):
+    def test_index_user_profile(self) -> None:
         for user in users:
             with self.settings(INDEX_PAGE="USER_PROFILE", INDEX_PAGE_USER=user):
                 with self.subTest(user=user):
@@ -90,7 +90,7 @@ class IndexViewTest(TestCase):
                         user_published_petitions[user],
                     )
 
-    def test_index_login_register(self):
+    def test_index_login_register(self) -> None:
         with self.settings(INDEX_PAGE="LOGIN_REGISTER"):
             response = self.client.get("/", follow=True)
             self.assertRedirects(response, reverse("login"))

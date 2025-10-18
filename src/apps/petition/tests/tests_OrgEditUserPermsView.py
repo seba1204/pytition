@@ -10,18 +10,18 @@ class OrgEditUserPermsViewTest(TestCase):
     """Test org_edit_user_perms view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def test_OrgEditUserPermsViewOk(self):
+    def test_OrgEditUserPermsViewOk(self) -> None:
         julia = self.login("julia")
         response = self.client.get(
             reverse(

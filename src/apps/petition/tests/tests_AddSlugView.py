@@ -11,22 +11,22 @@ class AddSlugViewTest(TestCase):
     """Test Slug creation view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def test_addSlugOK(self):
+    def test_addSlugOK(self) -> None:
         max = self.login("max")
         petition = max.petition_set.all()[0]
         slugtext = "coucou ceci est un slug"
@@ -46,7 +46,7 @@ class AddSlugViewTest(TestCase):
         new_slug = petition.slugmodel_set.get(slug=slugify(slugtext))
         self.assertEqual(new_slug.slug, slugify(slugtext))
 
-    def test_addSlugAlreadyExistsKO(self):
+    def test_addSlugAlreadyExistsKO(self) -> None:
         max = self.login("max")
         petition = max.petition_set.all()[0]
         slugtext = "coucou ceci est un slug"

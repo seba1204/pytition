@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from apps.petition.models import Organization, Permission, Petition, PytitionUser
 
 
-def add_default_data():
+def add_default_data() -> None:
     """
     Add default data for test purpose
     """
@@ -53,20 +53,20 @@ def add_default_data():
             Petition.objects.create(published=True, title="Petition C%i" % i, user=pu)
         for i in range(user_unpublished_petitions[user]):
             Petition.objects.create(published=False, title="Petition D%i" % i, user=pu)
-    for orgname in org_members:
-        org = Organization.objects.get(name=orgname)
-        for username in org_members[orgname]:
-            user = PytitionUser.objects.get(user__username=username)
-            org.members.add(user)
-            p = Permission.objects.get(organization=org, user=user)
+    for orgname, usernames in org_members.items():
+        org_obj = Organization.objects.get(name=orgname)
+        for username in usernames:
+            user_obj = PytitionUser.objects.get(user__username=username)
+            org_obj.members.add(user_obj)
+            p = Permission.objects.get(organization=org_obj, user=user_obj)
             p.set_all(False)
             p.can_create_petitions = True
             p.save()
-    for orgname in org_admins:
-        org = Organization.objects.get(name=orgname)
-        for username in org_admins[orgname]:
-            user = PytitionUser.objects.get(user__username=username)
-            perms = Permission.objects.get(organization=org, user=user)
+    for orgname, usernames in org_admins.items():
+        org_obj = Organization.objects.get(name=orgname)
+        for username in usernames:
+            user_obj = PytitionUser.objects.get(user__username=username)
+            perms = Permission.objects.get(organization=org_obj, user=user_obj)
             perms.set_all(True)
             perms.save()
 

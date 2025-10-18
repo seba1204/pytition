@@ -1,5 +1,6 @@
 import importlib
 import pkgutil
+from collections.abc import Callable
 from pathlib import Path
 
 from .base import PipelineStep
@@ -8,7 +9,9 @@ _REGISTRY: dict[str, type[PipelineStep]] = {}
 _DISCOVERED = False
 
 
-def register_step(name: str, order: int = 100):
+def register_step(
+    name: str, order: int = 100
+) -> Callable[[type[PipelineStep]], type[PipelineStep]]:
     def _wrap(cls: type[PipelineStep]) -> type[PipelineStep]:
         cls.order = order
         _REGISTRY[name] = cls
@@ -17,8 +20,8 @@ def register_step(name: str, order: int = 100):
     return _wrap
 
 
-def _auto_discover():
-    global _DISCOVERED
+def _auto_discover() -> None:
+    global _DISCOVERED  # noqa: PLW0603
     if _DISCOVERED:
         return
     pkg_dir = Path(__file__).parent

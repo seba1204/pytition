@@ -51,7 +51,7 @@ class Vendor(ABC):
     ) -> bytes:
         req = Request(url, headers={"User-Agent": user_agent})
         with urlopen(req) as resp:  # nosec - controlled URLs from subclasses
-            return resp.read()
+            return bytes(resp.read())
 
     def _extract_zip_bytes(self, blob: bytes, into: Path) -> None:
         into.mkdir(parents=True, exist_ok=True)
@@ -65,7 +65,7 @@ class Vendor(ABC):
 
     def _write_file(self, where: Path, data: bytes) -> None:
         where.parent.mkdir(parents=True, exist_ok=True)
-        with open(where, "wb") as f:
+        with Path.open(where, "wb") as f:
             f.write(data)
 
     def _atomic_replace_from_stage(self) -> bool:
@@ -101,7 +101,7 @@ class Vendor(ABC):
             for fn in sorted(files):
                 p = Path(base) / fn
                 h.update(str(p.relative_to(root)).encode())
-                with open(p, "rb") as f:
+                with Path.open(p, "rb") as f:
                     while True:
                         chunk = f.read(1024 * 1024)
                         if not chunk:
@@ -125,7 +125,7 @@ class Vendor(ABC):
 
 
 def read_vendors_from_pyproject(pyproject_path: Path) -> dict[str, str]:
-    with open(pyproject_path, "rb") as f:
+    with Path.open(pyproject_path, "rb") as f:
         cfg = tomllib.load(f)
     vendors = cfg.get("tool", {}).get("pytition", {}).get("vendors", {})
     # normalize keys to kebab-case strings

@@ -28,7 +28,7 @@ def load_dotenv(paths: Iterable[Path]) -> dict[str, str]:
     envmap: dict[str, str] = {}
     for p in paths:
         try:
-            with open(p, encoding="utf-8") as f:
+            with Path.open(p, encoding="utf-8") as f:
                 for raw in f:
                     line = raw.strip()
                     if not line or line.startswith("#") or "=" not in line:

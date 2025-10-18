@@ -9,10 +9,10 @@ from apps.petition.models import PytitionUser
 
 
 class PytitionUserRegister(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         pass
 
-    def test_createPytitionUser(self):
+    def test_createPytitionUser(self) -> None:
         if settings.ALLOW_REGISTER:
             response = self.client.get(reverse("register"))
             self.assertEqual(response.status_code, 200)
@@ -53,7 +53,7 @@ class PytitionUserRegister(TestCase):
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             answer = answer + 1  # compute a wrong answer by adding 1 to correct answer
-            data["answer"] = answer
+            data["answer"] = str(answer)
             response = self.client.post(reverse("register"), data=data)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
@@ -78,7 +78,7 @@ class PytitionUserRegister(TestCase):
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data2 = dict(data)  # copy
-            data2["answer"] = answer  # correct answer
+            data2["answer"] = str(answer)  # correct answer
             data2["email"] = "invalid-email-syntax"  # invalid email
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
@@ -104,7 +104,7 @@ class PytitionUserRegister(TestCase):
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data2 = dict(data)
-            data2["answer"] = answer  # correct answer
+            data2["answer"] = str(answer)  # correct answer
             data2["password2"] = "not like password1"  # invalid password
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
@@ -130,7 +130,7 @@ class PytitionUserRegister(TestCase):
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data2 = dict(data)  # copy
-            data2["answer"] = answer  # correct answer
+            data2["answer"] = str(answer)  # correct answer
             data2["email_confirm"] = data2["email"]
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
@@ -152,7 +152,7 @@ class PytitionUserRegister(TestCase):
                 toto = PytitionUser.objects.get(user__username=data2["username"])
 
             # Check what happens if mandatory fields are blank
-            data2 = dict()
+            data2 = {}
             response = self.client.post(reverse("register"), data=data2)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
@@ -164,7 +164,7 @@ class PytitionUserRegister(TestCase):
             response = self.client.get(reverse("register"))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
-            data["answer"] = answer
+            data["answer"] = str(answer)
             response = self.client.post(reverse("register"), data=data)
             self.assertEqual(response.status_code, 302)
             self.assertRedirects(response, reverse("login"))

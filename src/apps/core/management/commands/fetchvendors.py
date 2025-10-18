@@ -4,7 +4,7 @@ from collections.abc import Iterable
 from pathlib import Path
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand, CommandError, CommandParser
 
 from apps.core.vendors import get_vendor_class, read_vendors_from_pyproject
 
@@ -12,7 +12,7 @@ from apps.core.vendors import get_vendor_class, read_vendors_from_pyproject
 class Command(BaseCommand):
     help = "Download vendor assets into STATIC_ROOT/vendor based on pyproject.toml"
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument(
             "vendors", nargs="*", help="Optional list of vendor names to fetch."
         )
@@ -23,12 +23,17 @@ class Command(BaseCommand):
             "--pyproject", default="pyproject.toml", help="Path to pyproject.toml"
         )
 
-    def handle(self, *args, **opts):
-        pyproject = Path(opts["pyproject"]).resolve()
+    def handle(self, *args: object, **opts: object) -> None:
+        opts = dict(opts)  # Ensure opts is a dict
+        pyproject = Path(str(opts["pyproject"])).resolve()
         if not pyproject.exists():
             raise CommandError(f"pyproject not found at {pyproject}")
         all_versions = read_vendors_from_pyproject(pyproject)
-        wanted: Iterable[str] = opts["vendors"] or all_versions.keys()
+        vendor_list = opts.get("vendors")
+        if not isinstance(vendor_list, (list, tuple)):
+            vendor_list = []
+
+        wanted: Iterable[str] = vendor_list or all_versions.keys()
 
         static_root = Path(getattr(settings, "STATIC_ROOT", "staticfiles")).resolve()
         if not static_root.exists():
@@ -38,7 +43,8 @@ class Command(BaseCommand):
         for name in wanted:
             if name not in all_versions:
                 raise CommandError(
-                    f"Vendor '{name}' not configured in [tool.pytition.vendors] of {pyproject}"
+                    f"Vendor '{name}' not configured in "
+                    f"[tool.pytition.vendors] of {pyproject}"
                 )
             version = all_versions[name]
             cls = get_vendor_class(name)

@@ -20,7 +20,7 @@ class BootstrapVendor(Vendor):
         tmp = self.stage_dir / "_zip"
         self._extract_zip_bytes(blob, tmp)
         # In the dist zip, content is under "bootstrap-<ver>-dist/"
-        root = next(tmp.iterdir())  # type: ignore[assignment]
+        root = next(tmp.iterdir())
         # Copy selected folders into final layout
         # Final structure: vendor/bootstrap/{css,js}
         for folder in ("css", "js"):

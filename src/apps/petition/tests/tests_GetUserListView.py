@@ -10,15 +10,15 @@ class GetUserListViewTest(TestCase):
     """Test get_user_list view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def test_GetUserListViewOk(self):
+    def test_GetUserListViewOk(self) -> None:
         self.login("julia")
         response = self.client.get(reverse("get_user_list") + "?q=admin")
         self.assertEqual(response.status_code, 200)
@@ -27,7 +27,7 @@ class GetUserListViewTest(TestCase):
         self.assertEqual(len(values), 1)
         self.assertEqual(values[0], "admin")
 
-    def test_GetUserListViewEmptySearchOk(self):
+    def test_GetUserListViewEmptySearchOk(self) -> None:
         self.login("julia")
         response = self.client.get(reverse("get_user_list"))
         self.assertEqual(response.status_code, 200)
@@ -35,7 +35,7 @@ class GetUserListViewTest(TestCase):
         values = response.json()["values"]
         self.assertEqual(len(values), 0)
 
-    def test_GetUserListViewEmptyStringSearchOk(self):
+    def test_GetUserListViewEmptyStringSearchOk(self) -> None:
         self.login("julia")
         response = self.client.get(reverse("get_user_list") + "?q=")
         self.assertEqual(response.status_code, 200)

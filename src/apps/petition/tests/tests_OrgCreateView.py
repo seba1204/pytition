@@ -11,27 +11,27 @@ class OrgCreateViewTest(TestCase):
     """Test Org Creation view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def test_CreateGetFormOK(self):
+    def test_CreateGetFormOK(self) -> None:
         john = self.login("john")
         response = self.client.get(reverse("org_create"))
         self.assertEqual(response.status_code, 200)
 
-    def test_CreateOK(self):
+    def test_CreateOK(self) -> None:
         john = self.login("john")
         newname = "my new-org with @ ç special_chars"
         previous_org_numbers = john.organization_set.count()
@@ -52,7 +52,7 @@ class OrgCreateViewTest(TestCase):
         )
         self.assertGreaterEqual(admins_perms.count(), 1)
 
-    def test_CreateAlreadyExistsKO(self):
+    def test_CreateAlreadyExistsKO(self) -> None:
         john = self.login("john")
         newname = "my new-org with @ ç special_chars"
         previous_org_numbers = john.organization_set.count()
@@ -76,7 +76,7 @@ class OrgCreateViewTest(TestCase):
         org_count = user.organization_set.filter(name=newname).count()
         self.assertEqual(org_count, 1)
 
-    def test_CreateEmptyKO(self):
+    def test_CreateEmptyKO(self) -> None:
         john = self.login("john")
         newname = ""
         previous_org_numbers = john.organization_set.count()
@@ -92,7 +92,7 @@ class OrgCreateViewTest(TestCase):
         empty_org_name_number = Organization.objects.filter(name="").count()
         self.assertEqual(empty_org_name_number, 0)
 
-    def test_UserUnauthenticatedKO(self):
+    def test_UserUnauthenticatedKO(self) -> None:
         self.logout()
         newname = "my new-org with @ ç special_chars"
         data = {
@@ -107,7 +107,7 @@ class OrgCreateViewTest(TestCase):
         self.assertEqual(previous_org_num, new_org_num)
 
     @override_settings(RESTRICT_ORG_CREATION=True)
-    def test_restrict_org_creation(self):
+    def test_restrict_org_creation(self) -> None:
         init_org_number = Organization.objects.count()
         self.login("john")
 

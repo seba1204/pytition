@@ -1,6 +1,6 @@
 import logging
 
-from django.core.management import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 
 from apps.petition.models import Organization, Permission, PytitionUser
 
@@ -14,20 +14,20 @@ class Command(BaseCommand):
     > Make user:username join org:orgname
     """
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("username", type=str)
         parser.add_argument("org", type=str)
 
-    def handle(self, *args, **options):
+    def handle(self, *args: object, **opts: object) -> None:
         try:
-            user = PytitionUser.objects.get(user__username=options["username"])
+            user = PytitionUser.objects.get(user__username=opts["username"])
         except PytitionUser.DoesNotExist:
-            logger.error("%s user does not exist", options["username"])
+            logger.error("%s user does not exist", opts["username"])
             return
         try:
-            org = Organization.objects.get(name=options["org"])
+            org = Organization.objects.get(name=opts["org"])
         except Organization.DoesNotExist:
-            logger.error("%s org does not exist", options["org"])
+            logger.error("%s org does not exist", opts["org"])
             return
         org.members.add(user)
         perms, created = Permission.objects.get_or_create(organization=org, user=user)

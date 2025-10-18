@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from django.conf import settings
 from django.test import TestCase
@@ -13,40 +13,46 @@ class EditPetitionViewTest(TestCase):
     """Test index view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name):
+    def login(self, name: str) -> PytitionUser:
         self.client.login(username=name, password=name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def test_edit_404(self):
+    def test_edit_404(self) -> None:
         """Non-existent petition id : should return 404"""
         self.login("julia")
         response = self.client.get(reverse("edit_petition", args=[1000]))
         self.assertEqual(response.status_code, 404)
 
-    def test_edit_200(self):
+    def test_edit_200(self) -> None:
         """edit your own petition while being logged-in"""
         self.login("julia")
         petition = self.pu.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.get(reverse("edit_petition", args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
 
-    def test_edit_loggedout(self):
+    def test_edit_loggedout(self) -> None:
         """edit your own petition while being logged out"""
         self.login("julia")
         petition = self.pu.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         self.logout()
         response = self.client.get(
             reverse("edit_petition", args=[petition.id]), follow=True
@@ -56,29 +62,35 @@ class EditPetitionViewTest(TestCase):
             reverse("login") + "?next=" + reverse("edit_petition", args=[petition.id]),
         )
 
-    def test_edit_notYourOwnPetition(self):
+    def test_edit_notYourOwnPetition(self) -> None:
         """editing somebody else's petition"""
         self.login("julia")
         max = PytitionUser.objects.get(user__username="max")
         petition = max.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.get(
             reverse("edit_petition", args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
-    def test_edit_notInOrg(self):
+    def test_edit_notInOrg(self) -> None:
         """editing a petition owned by an Organization the logged-in user is *NOT* part of"""
         self.login("sarah")
         attac = Organization.objects.get(name="Les Amis de la Terre")
         petition = attac.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.get(
             reverse("edit_petition", args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
-    def test_edit_InOrgButNoEditPermission(self):
+    def test_edit_InOrgButNoEditPermission(self) -> None:
         """
         editing a petition owned by an Organization the logged-in user is part of
         but without the can_modify_petitions permission
@@ -89,12 +101,15 @@ class EditPetitionViewTest(TestCase):
         perm.can_modify_petitions = False
         perm.save()
         petition = at.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.get(
             reverse("edit_petition", args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
 
-    def test_edit_InOrgWithEditPerm(self):
+    def test_edit_InOrgWithEditPerm(self) -> None:
         """
         editing a petition owned by an Organization the logged-in user is part of
         *AND* with the can_modify_petitions permission
@@ -102,12 +117,15 @@ class EditPetitionViewTest(TestCase):
         self.login("julia")
         at = Organization.objects.get(name="Les Amis de la Terre")
         petition = at.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
         response = self.client.get(reverse("edit_petition", args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
 
-    def test_edit_post_content_form(self):
+    def test_edit_post_content_form(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         content_form_data = {
@@ -164,7 +182,7 @@ class EditPetitionViewTest(TestCase):
             self.assertEqual(getattr(p, key), value)
             self.assertEqual(getattr(p2, key), value)
 
-    def test_edit_post_content_form_papersigntest(self):
+    def test_edit_post_content_form_papersigntest(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         content_form_data = {
@@ -225,7 +243,7 @@ class EditPetitionViewTest(TestCase):
             self.assertEqual(getattr(p, key), value)
             self.assertEqual(getattr(p2, key), value)
 
-    def test_edit_petition_POST_email_form(self):
+    def test_edit_petition_POST_email_form(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         email_form_data = {
@@ -268,17 +286,16 @@ class EditPetitionViewTest(TestCase):
             self.assertEqual(getattr(p2, key), value)
             self.assertEqual(getattr(p, key), value)
 
-    def test_edit_petition_POST_social_network_form(self):
+    def test_edit_petition_POST_social_network_form(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
+
         # FIXME: path manipulation is ugly here, find a better way
-        thispath = os.path.join(os.path.dirname(__file__))
+        this_path = Path(__file__).parent
         # this path should point to <root>/src/apps/petition/tests/
         # and the logo is at <root>/assets/img/logo.png
-        logo = os.path.abspath(
-            os.path.join(thispath, "../../../../assets/img/logo.png")
-        )
-        fp = open(logo, "rb")
+        logo = (this_path / "../../../../assets/img/logo.png").resolve()
+        fp = Path.open(logo, "rb")
         social_network_form_data = {
             "social_network_form_submitted": "yes",
             "twitter_description": "This is my twitter desc!",
@@ -330,12 +347,14 @@ class EditPetitionViewTest(TestCase):
                     + "/"
                     + p2.twitter_image[len(settings.MEDIA_URL) :]
                 )
-                with open(petition_path, "rb") as img:
-                    with open(petition2_path, "rb") as img2:
-                        with open(logo, "rb") as logofp:
-                            logocontent = logofp.read()
-                            self.assertEqual(img.read(), logocontent)
-                            self.assertEqual(img2.read(), logocontent)
+                with (
+                    Path(petition_path).open("rb") as img,
+                    Path(petition2_path).open("rb") as img2,
+                    logo.open("rb") as logofp,
+                ):
+                    logocontent = logofp.read()
+                    self.assertEqual(img.read(), logocontent)
+                    self.assertEqual(img2.read(), logocontent)
                 continue
             self.assertEqual(getattr(p2, key), value)
             self.assertEqual(getattr(p, key), value)
@@ -346,7 +365,7 @@ class EditPetitionViewTest(TestCase):
         self.assertEqual(response2.context["social_network_form_submitted"], True)
         self.assertEqual(response2.context["newsletter_form_submitted"], False)
 
-    def test_edit_petition_POST_newsletter_form(self):
+    def test_edit_petition_POST_newsletter_form(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         newsletter_form_data = {
@@ -354,7 +373,6 @@ class EditPetitionViewTest(TestCase):
             "has_newsletter": "on",
             "newsletter_subscribe_http_data": "blah",
             "newsletter_subscribe_http_mailfield": "blih",
-            "newsletter_subscribe_http_mailfield": "bluh",
             "newsletter_subscribe_mail_subject": "bloh",
             "newsletter_subscribe_mail_from": "toto@titi.com",
             "newsletter_subscribe_mail_to": "titi@toto.com",
@@ -405,7 +423,7 @@ class EditPetitionViewTest(TestCase):
         self.assertEqual(response2.context["social_network_form_submitted"], False)
         self.assertEqual(response2.context["newsletter_form_submitted"], True)
 
-    def test_edit_petition_POST_style_form(self):
+    def test_edit_petition_POST_style_form(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         style_form_data = {
@@ -456,7 +474,7 @@ class EditPetitionViewTest(TestCase):
         self.assertEqual(response2.context["newsletter_form_submitted"], False)
         self.assertEqual(response.context["style_form_submitted"], True)
 
-    def test_edit_petition_email_share_button(self):
+    def test_edit_petition_email_share_button(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -525,7 +543,7 @@ class EditPetitionViewTest(TestCase):
         p.refresh_from_db()
         self.assertFalse(p.has_email_share_button)
 
-    def test_edit_petition_facebook_share_button(self):
+    def test_edit_petition_facebook_share_button(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -594,7 +612,7 @@ class EditPetitionViewTest(TestCase):
         p.refresh_from_db()
         self.assertFalse(p.has_facebook_share_button)
 
-    def test_edit_petition_tumblr_share_button(self):
+    def test_edit_petition_tumblr_share_button(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -663,7 +681,7 @@ class EditPetitionViewTest(TestCase):
         p.refresh_from_db()
         self.assertFalse(p.has_tumblr_share_button)
 
-    def test_edit_petition_linkedin_share_button(self):
+    def test_edit_petition_linkedin_share_button(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -732,7 +750,7 @@ class EditPetitionViewTest(TestCase):
         p.refresh_from_db()
         self.assertFalse(p.has_linkedin_share_button)
 
-    def test_edit_petition_twitter_share_button(self):
+    def test_edit_petition_twitter_share_button(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -801,7 +819,7 @@ class EditPetitionViewTest(TestCase):
         p.refresh_from_db()
         self.assertFalse(p.has_twitter_share_button)
 
-    def test_edit_petition_mastodon_share_button(self):
+    def test_edit_petition_mastodon_share_button(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -870,7 +888,7 @@ class EditPetitionViewTest(TestCase):
         p.refresh_from_db()
         self.assertFalse(p.has_mastodon_share_button)
 
-    def test_edit_petition_whatsapp_share_button(self):
+    def test_edit_petition_whatsapp_share_button(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {

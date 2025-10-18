@@ -1,9 +1,12 @@
+from typing import Any
+
 import lxml
+import lxml.html
 import requests
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, EmailMultiAlternatives, get_connection
-from django.http import Http404, HttpResponseForbidden
+from django.http import Http404, HttpRequest, HttpResponse, HttpResponseForbidden
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.html import strip_tags
@@ -12,18 +15,18 @@ from lxml.html.clean import Cleaner
 
 
 # Remove all moderated instances of Petition
-def remove_user_moderated(petitions):
+def remove_user_moderated(petitions: list) -> list:
     petitions = [p for p in petitions if not p.is_moderated]
     return petitions
 
 
 # Remove all javascripts from HTML code
-def sanitize_html(unsecure_html_content):
+def sanitize_html(unsecure_html_content: str) -> str:
     cleaner = Cleaner(
         inline_style=False,
         scripts=True,
         javascript=True,
-        safe_attrs=lxml.html.defs.safe_attrs | set(["style"]),
+        safe_attrs=lxml.html.defs.safe_attrs | {"style"},
         frames=False,
         embedded=False,
         meta=True,
@@ -36,43 +39,46 @@ def sanitize_html(unsecure_html_content):
             cleaner.clean_html(lxml.html.fromstring(unsecure_html_content)),
             method="html",
         )
-    except:
+        return str(secure_html_content.decode())
+    except Exception:
         secure_html_content = b""
-    return secure_html_content.decode()
+    return ""
 
 
 # Get the client IP address, considering proxies and RP
-def get_client_ip(request):
+
+
+def get_client_ip(request: HttpRequest) -> str:
     x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
     if x_forwarded_for:
         ip = x_forwarded_for.split(",")[0]
     else:
         ip = request.META.get("REMOTE_ADDR")
-    return ip
+    return str(ip)
 
 
 # Get the user of the current session
-def get_session_user(request):
-    from .models import PytitionUser
+def get_session_user(request: HttpRequest) -> object:
+    from .models import PytitionUser  # noqa # to avoid circular import
 
     try:
         pytitionuser = PytitionUser.objects.get(user__username=request.user.username)
-    except User.DoesNotExist:
-        raise Http404(_("not found"))
+    except User.DoesNotExist as err:
+        raise Http404(_("not found")) from err
     return pytitionuser
 
 
 # Check if an user is in an organization
 # FIXME : move this as an org method ?
-def check_user_in_orga(user, orga):
+def check_user_in_orga(user: Any, orga: Any) -> HttpResponse | None:
     if orga not in user.organizations.all():
         return HttpResponseForbidden(_("You are not part of this organization"))
     return None
 
 
 # Return a 404 if a petition does not exist
-def petition_from_id(id):
-    from .models import Petition
+def petition_from_id(id: int) -> Any:
+    from .models import Petition  # noqa # to avoid circular import
 
     petition = Petition.by_id(id)
     if petition is None:

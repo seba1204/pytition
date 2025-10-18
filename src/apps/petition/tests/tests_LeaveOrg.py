@@ -10,22 +10,22 @@ class LeaveOrgViewTest(TestCase):
     """Test LeaveOrg view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         # Clean up run after every test method.
         pass
 
-    def test_NotLoggedIn(self):
+    def test_NotLoggedIn(self) -> None:
         self.logout()
         org = Organization.objects.get(name="RAP")
         response = self.client.get(
@@ -38,7 +38,7 @@ class LeaveOrgViewTest(TestCase):
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
 
-    def test_leave_org_ok(self):
+    def test_leave_org_ok(self) -> None:
         max = self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse("leave_org", args=[org.slugname]))
@@ -46,7 +46,7 @@ class LeaveOrgViewTest(TestCase):
         self.assertRedirects(response, reverse("account_settings"))
         self.assertNotIn(org, max.organization_set.all())
 
-    def test_leave_refuse_alone(self):
+    def test_leave_refuse_alone(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         response = self.client.get(reverse("leave_org", args=[org.slugname]))
@@ -54,7 +54,7 @@ class LeaveOrgViewTest(TestCase):
         self.assertRedirects(response, reverse("account_settings") + "#a_org_form")
         self.assertIn(org, julia.organization_set.all())
 
-    def test_leave_refuse_lastAdmin(self):
+    def test_leave_refuse_lastAdmin(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse("leave_org", args=[org.slugname]))

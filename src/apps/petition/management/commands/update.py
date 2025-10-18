@@ -12,14 +12,14 @@ run = partial(subprocess.run, shell=True, check=True)
 class Command(BaseCommand):
     """Update pytition install."""
 
-    def handle(self, *args, **options):
+    def handle(self, *args: object, **opts: object) -> None:
         try:
             git_path = Path(settings.BASE_DIR).parent
             os.chdir(git_path)
             run("git checkout master -q && git pull -q ")
 
             version_cmd = "curl -s https://api.github.com/repos/pytition/pytition/releases/latest | grep 'tag_name' | cut -d : -f2,3 | tr -d \\\" | tr -d ,"
-            version = run(version_cmd, capture_output=True).stdout.decode().strip()
+            version = run(version_cmd, capture_output=True).stdout.strip()
 
             checkout_cmd = f"git checkout {version} -q"
             run(checkout_cmd)

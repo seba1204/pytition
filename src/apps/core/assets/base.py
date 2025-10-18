@@ -17,16 +17,16 @@ class Context:
 
 class PipelineStep:
     """
-    Base de toutes les étapes du pipeline.
-    Implémente `run(self, ctx: Context) -> None`.
+    Base for all pipeline steps.
+    Implements `run(self, ctx: Context) -> None`.
     """
 
-    order: int = 100  # ordre par défaut si non spécifié
+    order: int = 100
 
     def __init__(self, name: str):
         self.name = name
 
-    def log(self, ctx: Context, msg: str, level: int = 1):
+    def log(self, ctx: Context, msg: str, level: int = 1) -> None:
         if ctx.verbosity >= level:
             ctx.stdout.write(f"[{self.name}] {msg}")
 

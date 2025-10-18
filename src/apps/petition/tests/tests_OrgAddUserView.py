@@ -10,15 +10,15 @@ class OrgAddUserViewTest(TestCase):
     """Test org_add_user view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def test_OrgAddUserViewOk(self):
+    def test_OrgAddUserViewOk(self) -> None:
         """Let's try to add user max to org RAP"""
         julia = self.login("julia")
         response = self.client.get(reverse("org_add_user", args=["rap"]) + "?user=max")
@@ -29,7 +29,7 @@ class OrgAddUserViewTest(TestCase):
         invitations = user.invitations.all()
         self.assertIn(rap, invitations)
 
-    def test_OrgAddUserViewKoForbidden(self):
+    def test_OrgAddUserViewKoForbidden(self) -> None:
         """Let's try to add user max to org RAP from non-authorized users"""
         # John is not in RAP org
         self.login("john")

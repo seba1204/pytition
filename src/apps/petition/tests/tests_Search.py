@@ -5,10 +5,10 @@ from django.urls import reverse
 class SearchViewTest(TestCase):
     """Test search view"""
 
-    def test_SearchOk(self):
+    def test_SearchOk(self) -> None:
         response = self.client.get(reverse("search"))
         self.assertEqual(response.status_code, 200)
 
-    def test_SearchWithQueryOk(self):
+    def test_SearchWithQueryOk(self) -> None:
         response = self.client.get(reverse("search") + "?q=petition")
         self.assertEqual(response.status_code, 200)

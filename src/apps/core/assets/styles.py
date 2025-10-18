@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from cssmin import cssmin
+from cssmin import cssmin  # type: ignore[import-untyped]
 
 from .base import Context, PipelineStep
 from .registry import register_step
@@ -11,8 +11,8 @@ from .registry import register_step
 @register_step("styles", order=20)
 class StylesStep(PipelineStep):
     """
-    Minifie les .css de assets/css -> <static_root>/css
-    (Ignore .scss : compilation hors scope demandé)
+    Minify .css files from assets/css -> <static_root>/css
+    (Ignore .scss: compilation outside scope requested)
     """
 
     def __init__(self, name: str):
@@ -24,7 +24,7 @@ class StylesStep(PipelineStep):
         dst.mkdir(parents=True, exist_ok=True)
 
         if not src.exists():
-            self.log(ctx, "Aucun dossier assets/css, étape ignorée.")
+            self.log(ctx, "No assets/css folder, step skipped.")
             return
 
         for path in src.rglob("*.css"):
@@ -33,4 +33,4 @@ class StylesStep(PipelineStep):
             out.parent.mkdir(parents=True, exist_ok=True)
             minified = cssmin(path.read_text(encoding="utf-8"))
             out.write_text(minified, encoding="utf-8")
-            self.log(ctx, f"Minifié CSS: {rel} → {out.name}")
+            self.log(ctx, f"CSS minified: {rel} → {out.name}")

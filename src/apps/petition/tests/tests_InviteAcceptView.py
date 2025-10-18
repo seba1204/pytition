@@ -10,18 +10,18 @@ class InviteAcceptViewTest(TestCase):
     """Test invite_accept view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         add_default_data()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def test_InviteAcceptViewOk(self):
+    def test_InviteAcceptViewOk(self) -> None:
         julia = self.login("julia")
         # julia invites max
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)

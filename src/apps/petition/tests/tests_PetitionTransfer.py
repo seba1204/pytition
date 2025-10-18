@@ -18,7 +18,7 @@ class PetitionCreateWizardViewTest(TestCase):
     """Test PetitionCreateWizard view"""
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         User = get_user_model()
         for org in orgs:
             o = Organization.objects.create(name=org)
@@ -28,31 +28,33 @@ class PetitionCreateWizardViewTest(TestCase):
             u.first_name = user
             u.last_name = user + "Last"
             u.save()
-        for orgname in org_members:
-            org = Organization.objects.get(name=orgname)
-            for username in org_members[orgname]:
-                user = PytitionUser.objects.get(user__username=username)
-                org.members.add(user)
-                permission = Permission.objects.get(organization=org, user=user)
+        for orgname, member_usernames in org_members.items():
+            org_obj = Organization.objects.get(name=orgname)
+            for username in member_usernames:
+                user_obj = PytitionUser.objects.get(user__username=username)
+                org_obj.members.add(user_obj)
+                permission = Permission.objects.get(organization=org_obj, user=user_obj)
                 permission.can_modify_permissions = True
                 permission.save()
 
-        # give julia can_modify_petitions permission on "Les Amis de la Terre" organization
-        user = PytitionUser.objects.get(user__username="julia")
-        org = Organization.objects.get(name="Les Amis de la Terre")
-        perm = Permission.objects.get(organization=org, user=user)
+        # give julia can_modify_petitions permission
+        # on "Les Amis de la Terre" organization
+        user_obj = PytitionUser.objects.get(user__username="julia")
+        org_obj = Organization.objects.get(name="Les Amis de la Terre")
+
+        perm = Permission.objects.get(organization=org_obj, user=user_obj)
         perm.can_modify_petitions = True
         perm.save()
 
-    def login(self, name, password=None):
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
-    def logout(self):
+    def logout(self) -> None:
         self.client.logout()
 
-    def test_model_transfer_method(self):
+    def test_model_transfer_method(self) -> None:
         org = Organization.objects.get(name="Les Amis de la Terre")
         user = PytitionUser.objects.get(user__username="julia")
 
@@ -72,7 +74,7 @@ class PetitionCreateWizardViewTest(TestCase):
             user_petition.transfer_to()
             user_petition.transfer_to(org=org, user=user)
 
-    def test_transfer_view(self):
+    def test_transfer_view(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         user = PytitionUser.objects.get(user__username="julia")
@@ -106,7 +108,8 @@ class PetitionCreateWizardViewTest(TestCase):
             )
             self.assertContains(
                 response,
-                "Users are not allowed to transfer petitions to organizations on this instance.",
+                "Users are not allowed to transfer petitions to"
+                "organizations on this instance.",
             )
             user_petition = Petition.objects.get(id=user_petition.id)
             self.assertIsNone(user_petition.user)
