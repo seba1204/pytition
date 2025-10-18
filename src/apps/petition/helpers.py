@@ -89,7 +89,7 @@ def check_user_in_orga(user: Any, orga: Any) -> HttpResponse | None:
 def petition_from_id(id: int) -> Petition:
     from .models import Petition  # noqa # to avoid circular import
 
-    petition: Petition = Petition.by_id(id)
+    petition: Petition | None = Petition.by_id(id)
     if petition is None:
         raise Http404(_("Petition does not exist"))
     else:

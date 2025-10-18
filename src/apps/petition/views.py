@@ -2,7 +2,9 @@ import csv
 import os
 import random
 from datetime import timedelta
+from pathlib import Path
 from time import time
+from typing import Any
 
 from django.conf import settings
 from django.contrib import messages
@@ -15,7 +17,19 @@ from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
 from django.db import IntegrityError, transaction
 from django.db.models import Q
-from django.http import Http404, HttpResponse, HttpResponseForbidden, JsonResponse
+
+# ------------------------------------ Views -----------------------------------
+# Path : /
+# Depending on the settings.INDEX_PAGE, show a list of petitions or
+# redirect to an user/org profile page
+from django.http import (
+    Http404,
+    HttpRequest,
+    HttpResponse,
+    HttpResponseForbidden,
+    JsonResponse,
+)
+from django.http import HttpResponse as DjangoHttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -23,7 +37,7 @@ from django.utils.html import format_html
 from django.utils.timezone import now
 from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
-from formtools.wizard.views import SessionWizardView
+from formtools.wizard.views import SessionWizardView  # type: ignore
 
 from .forms import (
     ContentFormPetition,
@@ -35,6 +49,7 @@ from .forms import (
     PetitionCreationStep1,
     PetitionCreationStep2,
     PetitionCreationStep3,
+    PytitionUserCreationForm,
     SignatureForm,
     SocialNetworkForm,
     StyleForm,
@@ -64,30 +79,24 @@ from .models import (
     SlugModel,
 )
 
-# ------------------------------------ Views -----------------------------------
 
-
-# Path : /
-# Depending on the settings.INDEX_PAGE, show a list of petitions or
-# redirect to an user/org profile page
-def index(request):
+def index(request: HttpRequest) -> DjangoHttpResponse:
     if not hasattr(settings, "INDEX_PAGE"):
         raise Http404(_("You must set an INDEX_PAGE config in your settings"))
-    if settings.INDEX_PAGE == "USER_PROFILE":
-        try:
-            user_name = getattr(settings, 'INDEX_PAGE_USER')
-        except:
+    index_page = getattr(settings, "INDEX_PAGE", None)
+    if index_page == "USER_PROFILE":
+        user_name = getattr(settings, "INDEX_PAGE_USER", None)
+        if not isinstance(user_name, str) or not user_name:
             raise Http404(_("You must set an INDEX_PAGE_USER config in your settings"))
-    elif settings.INDEX_PAGE == "ORGA_PROFILE":
-        try:
-            org_name = getattr(settings, 'INDEX_PAGE_ORGA')
-        except:
+    elif index_page == "ORGA_PROFILE":
+        org_name = getattr(settings, "INDEX_PAGE_ORGA", None)
+        if not isinstance(org_name, str) or not org_name:
             raise Http404(_("You must set an INDEX_PAGE_ORGA config in your settings"))
 
-    if settings.INDEX_PAGE == "ORGA_PROFILE":
+    if index_page == "ORGA_PROFILE":
         org = Organization.objects.get(name=org_name)
         return redirect("org_profile", org.slugname)
-    elif settings.INDEX_PAGE == "USER_PROFILE":
+    elif index_page == "USER_PROFILE":
         return redirect("user_profile", user_name)
     elif settings.INDEX_PAGE == "LOGIN_REGISTER":
         if request.user.is_authenticated:
@@ -96,16 +105,13 @@ def index(request):
             return redirect("login")
     else:
         authenticated = request.user.is_authenticated
-        if authenticated:
-            user = get_session_user(request)
-        else:
-            user = request.user
+        user = get_session_user(request) if authenticated else request.user
         sort = request.GET.get("sort", "desc")
         creation_date = "-creation_date" if sort == "desc" else "creation_date"
-        all_petitions = Petition.objects.filter(
+        all_petitions_qs = Petition.objects.filter(
             published=True, moderated=False
         ).order_by(creation_date)
-        all_petitions = remove_user_moderated(all_petitions)
+        all_petitions = remove_user_moderated(list(all_petitions_qs))
         paginator = Paginator(all_petitions, settings.PAGINATOR_COUNT)
         page = request.GET.get("page")
         petitions = paginator.get_page(page)
@@ -120,7 +126,7 @@ def index(request):
 # <int:petition_id>/show_sympa_subscribe_bloc
 # Show sympa subscribe bloc to mass subscribe people to newsletter
 @login_required
-def show_sympa_subscribe_bloc(request, petition_id):
+def show_sympa_subscribe_bloc(request: HttpRequest, petition_id: int) -> HttpResponse:
     try:
         pytitionuser = get_session_user(request)
     except Exception:
@@ -133,6 +139,7 @@ def show_sympa_subscribe_bloc(request, petition_id):
 
     if (
         petition.owner_type == "org"
+        and petition.org is not None
         and not petition.org.is_allowed_to(pytitionuser, "can_view_signatures")
         or petition.owner_type == "user"
         and petition.owner != pytitionuser
@@ -155,29 +162,31 @@ def show_sympa_subscribe_bloc(request, petition_id):
 
 # /search?q=QUERY
 # Show results of a search query
-def search(request):
+def search(request: HttpRequest) -> HttpResponse:
     q = request.GET.get("q", "")
     if q != "":
-        petitions = Petition.objects.filter(
+        petitions_qs = Petition.objects.filter(
             Q(title__icontains=q) | Q(text__icontains=q)
         ).filter(published=True, moderated=False)[:15]
-        petitions = remove_user_moderated(petitions)
-        orgs = Organization.objects.filter(name__icontains=q)
+        petitions = remove_user_moderated(list(petitions_qs))
+        orgs = list(Organization.objects.filter(name__icontains=q))
     else:
-        petitions = Petition.objects.filter(published=True, moderated=False).order_by(
-            "-id"
-        )
-        petitions = remove_user_moderated(petitions)
+        petitions_qs = Petition.objects.filter(
+            published=True, moderated=False
+        ).order_by("-id")
+        petitions = remove_user_moderated(list(petitions_qs))
         paginator = Paginator(petitions, settings.PAGINATOR_COUNT)
         page = request.GET.get("page")
         petitions = paginator.get_page(page)
-        orgs = []
+        orgs: list[Any] = []
     return render(
         request, "petition/search.html", {"petitions": petitions, "orgs": orgs, "q": q}
     )
 
 
-def hide_sign_form_if_user_just_signed(request, ctx):
+def hide_sign_form_if_user_just_signed(
+    request: HttpRequest, ctx: dict[str, Any]
+) -> None:
     storage = get_messages(request)
     for message in storage:
         if message.level == messages.SUCCESS:
@@ -191,7 +200,7 @@ def hide_sign_form_if_user_just_signed(request, ctx):
 
 # /<int:petition_id>/
 # Show information on a petition
-def detail(request, petition_id):
+def detail(request: HttpRequest, petition_id: int) -> HttpResponse:
     petition = petition_from_id(petition_id)
     check_petition_is_accessible(request, petition)
     try:
@@ -224,23 +233,26 @@ def detail(request, petition_id):
 
 # /<int:petition_id>/confirm/<confirmation_hash>
 # Confirm signature to a petition
-def confirm(request, petition_id, confirmation_hash):
+def confirm(
+    request: HttpRequest, petition_id: int, confirmation_hash: str
+) -> HttpResponse:
     petition = petition_from_id(petition_id)
     check_petition_is_accessible(request, petition)
     try:
-        successmsg = petition.confirm_signature(confirmation_hash)
-        if successmsg is None:
+        success_msg = petition.confirm_signature(confirmation_hash)
+        if success_msg is None:
             messages.error(
                 request,
                 _(
-                    "Error: This confirmation code is invalid. Maybe you've already confirmed?"
+                    "Error: This confirmation code is invalid. "
+                    "Maybe you've already confirmed?"
                 ),
             )
         else:
-            messages.success(request, successmsg)
+            messages.success(request, success_msg)
             request.session["just_confirmed"] = True
     except ValidationError as e:
-        messages.error(request, _(e.message))
+        messages.error(request, _(str(e.message)))
     except Signature.DoesNotExist:
         messages.error(request, _("Error: This confirmation code is invalid."))
     return redirect(petition.url)
@@ -250,16 +262,21 @@ def confirm(request, petition_id, confirmation_hash):
 # <int:petition_id>/get_csv_confirmed_signature
 # returns the CSV files of the list of signatures
 @login_required
-def get_csv_signature(request, petition_id, only_confirmed):
+def get_csv_signature(
+    request: HttpRequest, petition_id: int, only_confirmed: bool
+) -> HttpResponse:
     user = get_session_user(request)
     try:
         petition = Petition.objects.get(pk=petition_id)
     except Petition.DoesNotExist:
         return JsonResponse({}, status=404)
-
+    org = petition.org
+    is_allowed = False
+    if org is not None:
+        is_allowed = org.is_allowed_to(user, "can_view_signatures")
     if (
         petition.owner_type == "org"
-        and not petition.org.is_allowed_to(user, "can_view_signatures")
+        and not is_allowed
         or petition.owner_type == "user"
         and petition.owner != user
     ):
@@ -294,7 +311,7 @@ def get_csv_signature(request, petition_id, only_confirmed):
 # resend/<int:signature_id>
 # resend the signature confirmation email
 @login_required
-def go_send_confirmation_email(request, signature_id):
+def go_send_confirmation_email(request: HttpRequest, signature_id: int) -> HttpResponse:
     app_label = Signature._meta.app_label
     signature = Signature.objects.filter(pk=signature_id).get()
     send_confirmation_email(request, signature)
@@ -303,7 +320,7 @@ def go_send_confirmation_email(request, signature_id):
 
 # <int:petition_id>/sign
 # Sign a petition
-def create_signature(request, petition_id):
+def create_signature(request: HttpRequest, petition_id: int) -> HttpResponse:
     petition = petition_from_id(petition_id)
     check_petition_is_accessible(request, petition)
 
@@ -340,10 +357,13 @@ def create_signature(request, petition_id):
                 request,
                 format_html(
                     _(
-                        "Thank you for signing this petition, an email has just been sent to you at your address '{}'"
+                        "Thank you for signing this petition, an email has just been "
+                        "sent to you at your address '{}'"
                         " in order to confirm your signature.<br>"
-                        "You will need to click on the confirmation link in the email.<br>"
-                        "If you cannot find the email in your Inbox, please have a look in your Spam box."
+                        "You will need to click on the confirmation link in the email."
+                        "<br>"
+                        "If you cannot find the email in your Inbox, please have a "
+                        "look in your Spam box."
                     ),
                     signature.email,
                 ),
@@ -358,7 +378,7 @@ def create_signature(request, petition_id):
 # /org/<slug:orgslugname>/dashboard
 # Show the dashboard of an organization
 @login_required
-def org_dashboard(request, orgslugname):
+def org_dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     try:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
@@ -381,9 +401,8 @@ def org_dashboard(request, orgslugname):
         messages.error(
             request,
             _(
-                "Internal error, cannot find your permissions attached to this organization ('{orgname}')".format(
-                    orgname=org.name
-                )
+                "Internal error, cannot find your permissions attached to this "
+                "organization ('{orgname}')".format(orgname=org.name)
             ),
         )
         return redirect("user_dashboard")
@@ -409,7 +428,7 @@ def org_dashboard(request, orgslugname):
 # /user/dashboard
 # Dashboard of the logged in user
 @login_required
-def user_dashboard(request):
+def user_dashboard(request: HttpRequest) -> HttpResponse:
     user = get_session_user(request)
     petitions = user.petition_set.all()
 
@@ -427,18 +446,18 @@ def user_dashboard(request):
 
 # /user/<user_name>
 # Show the user profile
-def user_profile(request, user_name):
+def user_profile(request: HttpRequest, user_name: str) -> HttpResponse:
     try:
         user = PytitionUser.objects.get(user__username=user_name)
-    except PytitionUser.DoesNotExist:
-        raise Http404(_("not found"))
+    except PytitionUser.DoesNotExist as err:
+        raise Http404(_("not found")) from err
     sort = request.GET.get("sort", "desc")
     creation_date = "-creation_date" if sort == "desc" else "creation_date"
-    petitions = user.petition_set.filter(published=True, moderated=False).order_by(
+    petitions_qs = user.petition_set.filter(published=True, moderated=False).order_by(
         creation_date
     )
-    petitions = remove_user_moderated(petitions)
-    paginator = Paginator(petitions, settings.PAGINATOR_COUNT)
+    petitions_list = remove_user_moderated(list(petitions_qs))
+    paginator = Paginator(petitions_list, settings.PAGINATOR_COUNT)
     page = request.GET.get("page")
     petitions = paginator.get_page(page)
 
@@ -450,13 +469,13 @@ def user_profile(request, user_name):
 
 
 # /org/<slug:orgslugname>/leave_org
-# User is leaving the organisation
+# User is leaving the organization
 @login_required
-def leave_org(request, orgslugname):
+def leave_org(request: HttpRequest, orgslugname: str) -> HttpResponse:
     try:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
-        raise Http404(_("not found"))
+        raise Http404(_("not found")) from None
 
     pytitionuser = get_session_user(request)
 
@@ -467,14 +486,15 @@ def leave_org(request, orgslugname):
             messages.error(
                 request,
                 _(
-                    "Impossible to leave this organisation, you are the last administrator"
+                    "Impossible to leave this organization, "
+                    "you are the last administrator"
                 ),
             )
             return redirect(reverse("account_settings") + "#a_org_form")
         elif org.members.count() == 1:
             messages.error(
                 request,
-                _("Impossible to leave this organisation, you are the last member"),
+                _("Impossible to leave this organization, you are the last member"),
             )
             return redirect(reverse("account_settings") + "#a_org_form")
         else:
@@ -484,23 +504,23 @@ def leave_org(request, orgslugname):
 
 # /org/<slug:orgslugname>
 # Show the profile of an organization
-def org_profile(request, orgslugname):
+def org_profile(request: HttpRequest, orgslugname: str) -> HttpResponse:
     try:
         user = get_session_user(request)
-    except:
+    except Exception:
         user = None
     try:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
-        raise Http404(_("not found"))
+        raise Http404(_("not found")) from None
 
     sort = request.GET.get("sort", "desc")
     creation_date = "-creation_date" if sort == "desc" else "creation_date"
-    petitions = org.petition_set.filter(published=True, moderated=False).order_by(
+    petitions_qs = org.petition_set.filter(published=True, moderated=False).order_by(
         creation_date
     )
-    petitions = remove_user_moderated(petitions)
-    paginator = Paginator(petitions, settings.PAGINATOR_COUNT)
+    petitions_list = remove_user_moderated(list(petitions_qs))
+    paginator = Paginator(petitions_list, settings.PAGINATOR_COUNT)
     page = request.GET.get("page")
     petitions = paginator.get_page(page)
 
@@ -516,7 +536,7 @@ def org_profile(request, orgslugname):
 # /get_user_list
 # get the list of users
 @login_required
-def get_user_list(request):
+def get_user_list(request: HttpRequest) -> JsonResponse:
     q = request.GET.get("q", "")
     if q != "":
         users = PytitionUser.objects.filter(
@@ -525,7 +545,7 @@ def get_user_list(request):
             | Q(user__last_name__icontains=q)
         ).all()
     else:
-        users = []
+        users = PytitionUser.objects.none()
 
     userdict = {
         "values": [user.user.username for user in users],
@@ -536,19 +556,19 @@ def get_user_list(request):
 # PATH : org/<slug:orgslugname>/add_user
 # Add an user to an organization
 @login_required
-def org_add_user(request, orgslugname):
+def org_add_user(request: HttpRequest, orgslugname: str) -> JsonResponse:
     adduser = request.GET.get("user", "")
 
     try:
         adduser = PytitionUser.objects.get(user__username=adduser)
     except PytitionUser.DoesNotExist:
-        message = _("This user does not exist (anylonger?)")
+        message = _("This user does not exist (any longer?)")
         return JsonResponse({"message": message}, status=404)
 
     try:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
-        message = _("This organization does not exist (anylonger?)")
+        message = _("This organization does not exist (any longer?)")
         return JsonResponse({"message": message}, status=404)
 
     pytitionuser = get_session_user(request)
@@ -570,8 +590,8 @@ def org_add_user(request, orgslugname):
     try:
         adduser.invitations.add(org)
         adduser.save()
-    except:
-        message = _("An error occured")
+    except Exception:
+        message = _("An error occurred")
         return JsonResponse({"message": message}, status=500)
 
     message = _(
@@ -583,10 +603,10 @@ def org_add_user(request, orgslugname):
 
 
 # /org/<slug:orgslugname>/invite_accept
-# Accept an invitation to an organisation
+# Accept an invitation to an organization
 # Called from /user/dashboard
 @login_required
-def invite_accept(request, orgslugname):
+def invite_accept(request: HttpRequest, orgslugname: str) -> HttpResponse:
     if orgslugname == "":
         return HttpResponse(status=500)
 
@@ -594,7 +614,7 @@ def invite_accept(request, orgslugname):
     try:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
-        raise Http404(_("not found"))
+        raise Http404(_("not found")) from None
 
     if org in pytitionuser.invitations.all():
         try:
@@ -609,9 +629,9 @@ def invite_accept(request, orgslugname):
 
 
 # /org/<slug:orgslugname>/invite_dismiss
-# Dismiss the invitation to an organisation
+# Dismiss the invitation to an organization
 @login_required
-def invite_dismiss(request, orgslugname):
+def invite_dismiss(request: HttpRequest, orgslugname: str) -> HttpResponse:
     if orgslugname == "":
         return JsonResponse({}, status=500)
 
@@ -620,12 +640,12 @@ def invite_dismiss(request, orgslugname):
     try:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
-        raise Http404(_("not found"))
+        raise Http404(_("not found")) from None
 
     if org in pytitionuser.invitations.all():
         try:
             pytitionuser.invitations.remove(org)
-        except:
+        except Exception:
             return JsonResponse({}, status=500)
     else:
         raise Http404(_("not found"))
@@ -637,7 +657,7 @@ def invite_dismiss(request, orgslugname):
 # /user/new_template
 # Create a new template
 @login_required
-def new_template(request, orgslugname=None):
+def new_template(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
     pytitionuser = get_session_user(request)
     ctx = {"user": pytitionuser}
 
@@ -647,7 +667,7 @@ def new_template(request, orgslugname=None):
             org = Organization.objects.get(slugname=orgslugname)
             ctx["org"] = org
         except Organization.DoesNotExist:
-            raise Http404(_("Organization does not exist"))
+            raise Http404(_("Organization does not exist")) from None
 
         if org not in pytitionuser.organization_set.all():
             return HttpResponseForbidden(
@@ -660,9 +680,8 @@ def new_template(request, orgslugname=None):
         except Permission.DoesNotExist:
             return HttpResponse(
                 _(
-                    "Internal error, cannot find your permissions attached to this organization ('{orgname}')".format(
-                        orgname=org.name
-                    )
+                    "Internal error, cannot find your permissions attached to this "
+                    "organization ('{orgname}')".format(orgname=org.name)
                 ),
                 status=500,
             )
@@ -670,7 +689,8 @@ def new_template(request, orgslugname=None):
         if not permissions.can_create_templates:
             return HttpResponseForbidden(
                 _(
-                    "You don't have the permission to create a Template in this organization"
+                    "You don't have the permission to create a Template in "
+                    "this organization"
                 )
             )
 
@@ -698,23 +718,20 @@ def new_template(request, orgslugname=None):
 # /templates/<int:template_id>/edit
 # Edit a petition template
 @login_required
-def edit_template(request, template_id):
+def edit_template(request: HttpRequest, template_id: int) -> HttpResponse:
     id = template_id
-    if id == "":
-        return HttpResponseForbidden(_("You need to provide the template id to modify"))
 
     try:
         template = PetitionTemplate.objects.get(pk=id)
-    except PetitionTemplate.DoesNotExist:
-        raise Http404(_("This template does not exist"))
+    except PetitionTemplate.DoesNotExist as err:
+        raise Http404(_("This template does not exist")) from err
 
     pytitionuser = get_session_user(request)
     context = {"user": pytitionuser}
 
-    if template.owner_type == "org":
-        owner = template.org
-    else:
-        owner = template.user
+    owner: Organization | PytitionUser | None = (
+        template.org if template.owner_type == "org" else template.user
+    )
 
     if template.owner_type == "org":
         try:
@@ -722,9 +739,8 @@ def edit_template(request, template_id):
         except Exception:
             return HttpResponse(
                 _(
-                    "Internal error, cannot find your permissions attached to this organization ('{orgname}')".format(
-                        orgname=owner.name
-                    )
+                    "Internal error, cannot find your permissions attached to this "
+                    "organization ('{orgname}')".format(orgname=owner.name)
                 ),
                 status=500,
             )
@@ -793,8 +809,8 @@ def edit_template(request, template_id):
                 storage = FileSystemStorage()
                 file = social_network_form.cleaned_data["twitter_image"]
                 if file:
-                    path = os.path.join(pytitionuser.username, file.name)
-                    name = storage.save(path, file)
+                    path = Path(pytitionuser.username) / file.name
+                    name = storage.save(str(path), file)
                     template.twitter_image = storage.url(name)
                 if social_network_form.cleaned_data["remove_twitter_image"]:
                     template.twitter_image = ""
@@ -828,11 +844,11 @@ def edit_template(request, template_id):
                 template.save()
         else:
             remove_fields = ["twitter_image", "remove_twitter_image"]
-            fields = dict(
-                (k, v)
+            fields = {
+                k: v
                 for k, v in SocialNetworkForm.base_fields.items()
                 if k not in remove_fields
-            )
+            }
             social_network_form = SocialNetworkForm(
                 {f: getattr(template, f) for f in fields}
             )
@@ -911,11 +927,11 @@ def edit_template(request, template_id):
             )
     else:
         remove_fields = ["twitter_image", "remove_twitter_image"]
-        fields = dict(
-            (k, v)
+        fields = {
+            k: v
             for k, v in SocialNetworkForm.base_fields.items()
             if k not in remove_fields
-        )
+        }
         social_network_form = SocialNetworkForm(
             {f: getattr(template, f) for f in fields}
         )
@@ -947,7 +963,7 @@ def edit_template(request, template_id):
 # /templates/<int:template_id>/delete
 # Delete a template
 @login_required
-def template_delete(request, template_id):
+def template_delete(request: HttpRequest, template_id: int) -> JsonResponse:
     pytitionuser = get_session_user(request)
     if template_id == "":
         return JsonResponse({}, status=500)
@@ -977,9 +993,9 @@ def template_delete(request, template_id):
 
 
 # /templates/<int:template_id>/fav
-# Set a template as favourite
+# Set a template as favorite
 @login_required
-def template_fav_toggle(request, template_id):
+def template_fav_toggle(request: HttpRequest, template_id: int) -> JsonResponse:
     pytitionuser = get_session_user(request)
     if template_id == "":
         return JsonResponse({}, status=500)
@@ -1015,7 +1031,7 @@ def template_fav_toggle(request, template_id):
 # /org/<slug:orgslugname>/delete_member
 # Remove a member from an organization
 @login_required
-def org_delete_member(request, orgslugname):
+def org_delete_member(request: HttpRequest, orgslugname: str) -> JsonResponse:
     member_name = request.GET.get("member", "")
     try:
         member = PytitionUser.objects.get(user__username=member_name)
@@ -1034,7 +1050,7 @@ def org_delete_member(request, orgslugname):
 
     try:
         permissions = Permission.objects.get(user=pytitionuser, organization=org)
-    except Permission.DoesNoeExist:
+    except Permission.DoesNotExist:
         return JsonResponse({}, status=500)
 
     if permissions.can_remove_members or pytitionuser == member:
@@ -1053,7 +1069,9 @@ def org_delete_member(request, orgslugname):
 # PATH : org/<slug:orgslugname>/edit_user_permissions/<slug:user_name>
 # Show a webpage to edit permissions
 @login_required
-def org_edit_user_perms(request, orgslugname, user_name):
+def org_edit_user_perms(
+    request: HttpRequest, orgslugname: str, user_name: str
+) -> HttpResponse:
     """Shows the page which lists the user permissions."""
     pytitionuser = get_session_user(request)
 
@@ -1070,13 +1088,14 @@ def org_edit_user_perms(request, orgslugname, user_name):
     except Organization.DoesNotExist:
         raise Http404(
             _("Organization '{name}' does not exist".format(name=orgslugname))
-        )
+        ) from None
 
     if org not in member.organization_set.all():
         messages.error(
             request,
             _(
-                "The user '{username}' is not member of this organization ({orgname}).".format(
+                "The user '{username}' is not member of "
+                "this organization ({orgname}).".format(
                     username=user_name, orgname=org.name
                 )
             ),
@@ -1089,19 +1108,19 @@ def org_edit_user_perms(request, orgslugname, user_name):
         messages.error(
             request,
             _(
-                "Internal error, this member does not have permissions attached to this organization."
+                "Internal error, this member does not have permissions attached "
+                "to this organization."
             ),
         )
         return redirect("org_dashboard", org.slugname)
 
     try:
         user_permissions = Permission.objects.get(organization=org, user=pytitionuser)
-    except:
+    except Exception:
         return HttpResponse(
             _(
-                "Internal error, cannot find your permissions attached to this organization ('{orgname}')".format(
-                    orgname=org.name
-                )
+                "Internal error, cannot find your permissions attached to this "
+                "organization ('{orgname}')".format(orgname=org.name)
             ),
             status=500,
         )
@@ -1122,7 +1141,9 @@ def org_edit_user_perms(request, orgslugname, user_name):
 # PATH /org/<slug:orgslugname>/set_user_permissions/<slug:user_name>
 # Set a permission for an user
 @login_required
-def org_set_user_perms(request, orgslugname, user_name):
+def org_set_user_perms(
+    request: HttpRequest, orgslugname: str, user_name: str
+) -> HttpResponse:
     """Actually do the modification of user permissions.
     Data come from "org_edit_user_perms" view's form.
     """
@@ -1131,24 +1152,25 @@ def org_set_user_perms(request, orgslugname, user_name):
     try:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
-        raise Http404(_("Organization does not exist"))
+        raise Http404(_("Organization does not exist")) from None
 
     if pytitionuser not in org.members.all():
         messages.error(request, _("You are not part of this organization"))
         return redirect("user_dashboard")
 
     try:
-        userperms = Permission.objects.get(user=pytitionuser, organization=org)
+        user_perms = Permission.objects.get(user=pytitionuser, organization=org)
     except Exception:
         messages.error(
             request,
             _(
-                "Fatal error, you don't have permissions attached to you for this organization"
+                "Fatal error, you don't have permissions attached to you for "
+                "this organization"
             ),
         )
         return redirect("org_dashboard", org.slugname)
 
-    if not userperms.can_modify_permissions:
+    if not user_perms.can_modify_permissions:
         messages.error(
             request,
             _("You are not allowed to modify this organization members' permissions"),
@@ -1178,7 +1200,8 @@ def org_set_user_perms(request, orgslugname, user_name):
         messages.error(
             request,
             _(
-                "Fatal error, this user does not have permissions attached for this organization"
+                "Fatal error, this user does not have permissions attached for "
+                "this organization"
             ),
         )
         return redirect("org_dashboard", org.slugname)
@@ -1257,7 +1280,7 @@ WizardForms = [
 # PATH : subroutes of /wizard
 @method_decorator(login_required, name="dispatch")
 class PetitionCreationWizard(SessionWizardView):
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> Any:
         if settings.DISABLE_USER_PETITION and "orgslugname" not in self.kwargs:
             messages.error(
                 request, _("Users are not allowed to create their own petitions.")
@@ -1265,10 +1288,10 @@ class PetitionCreationWizard(SessionWizardView):
             return redirect("user_dashboard")
         return super().dispatch(request, *args, **kwargs)
 
-    def get_template_names(self):
+    def get_template_names(self) -> list[str]:
         return [WizardTemplates[self.steps.current]]
 
-    def get_form_initial(self, step):
+    def get_form_initial(self, step: str) -> dict[str, Any]:
         template = None
         org_petition = "orgslugname" in self.kwargs
         if org_petition:
@@ -1295,9 +1318,8 @@ class PetitionCreationWizard(SessionWizardView):
         ):
             template = None
 
-        if step == "step2":
-            if template is not None:
-                return {"message": template.text}
+        if step == "step2" and template is not None:
+            return {"message": template.text}
 
         if step == "step3":
             if template is not None:
@@ -1305,9 +1327,9 @@ class PetitionCreationWizard(SessionWizardView):
             else:
                 return {"use_template": False, "template_id": 0}
 
-        return self.initial_dict.get(step, {})
+        return dict(self.initial_dict.get(step, {}) or {})
 
-    def get_form_kwargs(self, step=None):
+    def get_form_kwargs(self, step: str | None = None) -> dict[str, Any]:
         if step == "step1":
             org_petition = "orgslugname" in self.kwargs
             if org_petition:
@@ -1320,7 +1342,7 @@ class PetitionCreationWizard(SessionWizardView):
         else:
             return {}
 
-    def done(self, form_list, **kwargs):
+    def done(self, form_list: list[Any], **kwargs: Any) -> HttpResponse:
         org_petition = "orgslugname" in self.kwargs
         title = self.get_cleaned_data_for_step("step1")["title"]
         message = self.get_cleaned_data_for_step("step2")["message"]
@@ -1399,7 +1421,7 @@ class PetitionCreationWizard(SessionWizardView):
             else:
                 return redirect("user_dashboard")
 
-    def get_context_data(self, form, **kwargs):
+    def get_context_data(self, form: Any, **kwargs: Any) -> dict[str, Any]:
         org_petition = "orgslugname" in self.kwargs
         context = super(PetitionCreationWizard, self).get_context_data(
             form=form, **kwargs
@@ -1444,7 +1466,7 @@ class PetitionCreationWizard(SessionWizardView):
 # /<int:petition_id>/delete
 # Delete a petition
 @login_required
-def petition_delete(request, petition_id):
+def petition_delete(request: HttpRequest, petition_id: int) -> JsonResponse:
     petition = petition_from_id(petition_id)
     pytitionuser = get_session_user(request)
 
@@ -1455,8 +1477,10 @@ def petition_delete(request, petition_id):
         else:
             return JsonResponse({}, status=403)
     else:  # an organization owns the petition
-        userperms = Permission.objects.get(organization=petition.org, user=pytitionuser)
-        if userperms.can_delete_petitions:
+        user_perms = Permission.objects.get(
+            organization=petition.org, user=pytitionuser
+        )
+        if user_perms.can_delete_petitions:
             petition.delete()
             return JsonResponse({})
         else:
@@ -1466,7 +1490,7 @@ def petition_delete(request, petition_id):
 # /<int:petition_id>/publish
 # Publish a petition
 @login_required
-def petition_publish(request, petition_id):
+def petition_publish(request: HttpRequest, petition_id: int) -> JsonResponse:
     pytitionuser = get_session_user(request)
     petition = petition_from_id(petition_id)
 
@@ -1480,10 +1504,10 @@ def petition_publish(request, petition_id):
     else:
         # Check if the user has permission over this org
         try:
-            userperms = Permission.objects.get(
+            user_perms = Permission.objects.get(
                 organization=petition.org, user=pytitionuser
             )
-            if userperms.can_modify_petitions:
+            if user_perms.can_modify_petitions:
                 petition.publish()
                 return JsonResponse({})
             else:
@@ -1495,7 +1519,7 @@ def petition_publish(request, petition_id):
 # /<int:petition_id>/unpublish
 # Unpublish a petition
 @login_required
-def petition_unpublish(request, petition_id):
+def petition_unpublish(request: HttpRequest, petition_id: int) -> JsonResponse:
     pytitionuser = get_session_user(request)
     petition = petition_from_id(petition_id)
 
@@ -1508,10 +1532,10 @@ def petition_unpublish(request, petition_id):
     else:
         # Check if the user has permission over this org
         try:
-            userperms = Permission.objects.get(
+            user_perms = Permission.objects.get(
                 organization=petition.org, user=pytitionuser
             )
-            if userperms.can_modify_petitions:
+            if user_perms.can_modify_petitions:
                 petition.unpublish()
                 return JsonResponse({})
             else:
@@ -1523,7 +1547,7 @@ def petition_unpublish(request, petition_id):
 # /<int:petition_id>/edit
 # Edit a petition
 @login_required
-def edit_petition(request, petition_id):
+def edit_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
     petition = petition_from_id(petition_id)
     pytitionuser = get_session_user(request)
 
@@ -1798,7 +1822,7 @@ def edit_petition(request, petition_id):
 # /<int:petition_id>/show_signatures
 # Show the signatures of a petition
 @login_required
-def show_signatures(request, petition_id):
+def show_signatures(request: HttpRequest, petition_id: int) -> HttpResponse:
     petition = petition_from_id(petition_id)
     pytitionuser = get_session_user(request)
     ctx = {}
@@ -1933,7 +1957,7 @@ def show_signatures(request, petition_id):
 # /account_settings
 # Show settings for the user accounts
 @login_required
-def account_settings(request):
+def account_settings(request: HttpRequest) -> HttpResponse:
     pytitionuser = get_session_user(request)
     submitted_ctx = {
         "update_info_form_submitted": False,
@@ -1974,7 +1998,7 @@ def account_settings(request):
         password_change_form = PasswordChangeForm(pytitionuser.user)
 
     orgs = pytitionuser.organization_set.all()
-    # Checking if the user is allowed to leave the organisation
+    # Checking if the user is allowed to leave the organization
     for org in orgs:
         if org.members.count() < 2:
             org.leave = False
@@ -2002,7 +2026,7 @@ def account_settings(request):
 # GET/POST /org/create
 # Create a new organization
 @login_required
-def org_create(request):
+def org_create(request: HttpRequest) -> HttpResponse:
     if settings.RESTRICT_ORG_CREATION and not request.user.has_perm(
         "petition.add_organization"
     ):
@@ -2035,7 +2059,12 @@ def org_create(request):
 
 # GET /org/<slug:orgslugname>/<slug:petitionname>
 # Show a petition
-def slug_show_petition(request, orgslugname=None, username=None, petitionname=None):
+def slug_show_petition(
+    request: HttpRequest,
+    orgslugname: str | None = None,
+    username: str | None = None,
+    petitionname: str | None = None,
+) -> HttpResponse:
     try:
         pytitionuser = get_session_user(request)
     except Exception:
@@ -2046,16 +2075,16 @@ def slug_show_petition(request, orgslugname=None, username=None, petitionname=No
             org = Organization.objects.get(slugname=orgslugname)
             slug = SlugModel.objects.get(slug=petitionname, petition__org=org)
         except (Organization.DoesNotExist, SlugModel.DoesNotExist):
-            raise Http404(_("Sorry, we are not able to find this petition"))
+            raise Http404(_("Sorry, we are not able to find this petition")) from None
         petition = slug.petition
     else:
         try:
             user = PytitionUser.objects.get(user__username=username)
             slug = SlugModel.objects.get(slug=petitionname, petition__user=user)
         except PytitionUser.DoesNotExist:
-            raise Http404(_("Sorry, we are not able to find this petition"))
+            raise Http404(_("Sorry, we are not able to find this petition")) from None
         except SlugModel.DoesNotExist:
-            raise Http404(_("Sorry, we are not able to find this petition"))
+            raise Http404(_("Sorry, we are not able to find this petition")) from None
         petition = slug.petition
     check_petition_is_accessible(request, petition)
     sign_form = SignatureForm(petition=petition)
@@ -2085,7 +2114,7 @@ def slug_show_petition(request, orgslugname=None, username=None, petitionname=No
 # /<int:petition_id>/add_new_slug
 # Add a new slug for a petition
 @login_required
-def add_new_slug(request, petition_id):
+def add_new_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)
@@ -2094,11 +2123,11 @@ def add_new_slug(request, petition_id):
         return redirect("user_dashboard")
 
     if request.method == "POST":
-        slugtexts = request.POST.getlist("slugtext", "")
-        if slugtexts == "" or slugtexts == []:
+        slug_texts = request.POST.getlist("slugtext", "")
+        if slug_texts in ("", []):
             messages.error(request, _("You entered an empty slug text"))
         elif petition.is_allowed_to_edit(pytitionuser):
-            for slugtext in slugtexts:
+            for slugtext in slug_texts:
                 try:
                     petition.add_slug(slugtext)
                     petition.save()
@@ -2127,7 +2156,7 @@ def add_new_slug(request, petition_id):
 # /<int:petition_id>/del_slug
 # Remove a slug from a petition
 @login_required
-def del_slug(request, petition_id):
+def del_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)
@@ -2158,7 +2187,7 @@ def del_slug(request, petition_id):
 
 
 @login_required
-def image_upload(request):
+def image_upload(request: HttpRequest) -> HttpResponse:
     pytitionuser = get_session_user(request)
 
     if request.method != "POST":
@@ -2169,15 +2198,15 @@ def image_upload(request):
         return HttpResponseForbidden()
 
     storage = FileSystemStorage()
-    path = os.path.join(pytitionuser.username, file.name)
-    name = storage.save(path, file)
+    path = Path(pytitionuser.username) / file.name
+    name = storage.save(str(path), file)
     return JsonResponse({"location": storage.url(name)})
 
 
 # /transfer_petition/<int:petition_id>
 # Transfer a petition to another org or user
 @login_required
-def transfer_petition(request, petition_id):
+def transfer_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)
@@ -2187,28 +2216,26 @@ def transfer_petition(request, petition_id):
 
     ctx = {"user": pytitionuser, "petition": petition}
 
+    # Permission checks
     if petition.owner_type == "org":
         org = petition.owner
         if not org.is_allowed_to(pytitionuser, "can_modify_permissions"):
             messages.error(
                 request,
                 _(
-                    "You don't have the permission to transfer a petition from Organization '{}'".format(
-                        petition.owner
-                    )
+                    "You don't have the permission to transfer a petition from "
+                    "Organization '{}'".format(petition.owner)
                 ),
             )
-            return redirect("org_dashboard", petition.owner)
-    elif petition.owner_type == "user" and petition.user != pytitionuser:
-        messages.error(
-            request, _("You don't have the permission to transfer this petition")
-        )
-        return redirect("user_dashboard")
-
-    if petition.owner_type == "org":
+            return redirect("org_dashboard", petition.owner.slugname)
         ctx["base_template"] = "petition/org_base.html"
         ctx["org"] = petition.owner
-    else:
+    elif petition.owner_type == "user":
+        if petition.user != pytitionuser:
+            messages.error(
+                request, _("You don't have the permission to transfer this petition")
+            )
+            return redirect("user_dashboard")
         ctx["base_template"] = "petition/user_base.html"
 
     if request.method == "GET":
@@ -2219,30 +2246,33 @@ def transfer_petition(request, petition_id):
         new_owner_name = request.POST.get("new_owner_name", "")
         org = None
         user = None
-        notFound = False
-        if owner_type == "" or new_owner_name == "":
+
+        if not owner_type or not new_owner_name:
             messages.error(request, _("Incorrect request, something went wrong."))
-            return redirect(request, "petition/transfer_petition.html", ctx)
+            return render(request, "petition/transfer_petition.html", ctx)
+
+        not_found = False
         if owner_type == "org":
             try:
                 org = Organization.objects.get(slugname=new_owner_name)
-            except:
-                notFound = True
-        if owner_type == "user":
+            except Exception:
+                not_found = True
+        elif owner_type == "user":
             if settings.DISABLE_USER_PETITION:
                 messages.error(
                     request,
                     _(
-                        "Users are not allowed to transfer petitions to organizations on this instance."
+                        "Users are not allowed to transfer petitions to organizations "
+                        "on this instance."
                     ),
                 )
                 return redirect("user_dashboard")
             try:
                 user = PytitionUser.objects.get(user__username=new_owner_name)
-            except:
-                notFound = True
+            except Exception:
+                not_found = True
 
-        if notFound:
+        if not_found:
             messages.error(
                 request, _("You tried to transfer a petition to a non-exiting account")
             )
@@ -2250,7 +2280,8 @@ def transfer_petition(request, petition_id):
 
         try:
             petition.transfer_to(user, org)
-            petition.unpublish()  # To prevent sending an unwanted published petition to an organization.
+            # To prevent sending an unwanted published petition to an organization.
+            petition.unpublish()
             messages.success(request, _("Petition successfully transfered!"))
             return redirect("user_dashboard")
         except ValueError:
@@ -2259,9 +2290,12 @@ def transfer_petition(request, petition_id):
             )
             return redirect("transfer_petition", petition.id)
 
+    # Default fallback if method is not GET or POST
+    return redirect("user_dashboard")
+
 
 @login_required
-def search_users_and_orgs(request):
+def search_users_and_orgs(request: HttpRequest) -> JsonResponse:
     query = request.GET.get("q", "")
     if query != "":
         users = PytitionUser.objects.filter(
@@ -2289,12 +2323,12 @@ def search_users_and_orgs(request):
 
 
 class PytitionUserCreateView(CreateView):
-    def save_numbers(self, request):
+    def save_numbers(self, request: HttpRequest) -> None:
         request.session["random_a"] = self.a
         request.session["random_b"] = self.b
         request.session["answer"] = self.answer
 
-    def get_new_numbers(self):
+    def get_new_numbers(self) -> None:
         r = random.Random(time())
         self.a = r.choice(range(0, 100))
         self.b = r.choice(range(0, 100))
@@ -2303,27 +2337,29 @@ class PytitionUserCreateView(CreateView):
             "How much is {a} + {b}?"
         ).format(a=self.a, b=self.b)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(PytitionUserCreateView, self).__init__(*args, **kwargs)
         self.get_new_numbers()
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         self.save_numbers(self.request)
         return super(PytitionUserCreateView, self).get_context_data(**kwargs)
 
-    def get_form_kwargs(self):
-        kwargs = super(PytitionUserCreateView, self).get_form_kwargs()
+    def get_form_kwargs(self) -> dict[str, Any]:
+        kwargs = super().get_form_kwargs()
         kwargs.update({"request": self.request})
         return kwargs
 
-    def form_valid(self, form):
+    def form_valid(self, form: PytitionUserCreationForm) -> HttpResponse:
         form.send_success_email()
         return super().form_valid(form)
 
 
 # /<int:petition_id>/report/<int:reason_id>
 # Report a petition to moderation
-def report_petition(request, petition_id, reason_id=None):
+def report_petition(
+    request: HttpRequest, petition_id: int, reason_id: int | None = None
+) -> HttpResponse:
     petition = petition_from_id(petition_id)
     if reason_id:
         try:

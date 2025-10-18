@@ -1,9 +1,10 @@
 from __future__ import annotations
+
 import html
 import uuid
-from typing import Any, Optional
+from typing import Any
 
-from colorfield.fields import ColorField
+from colorfield.fields import ColorField  # type: ignore
 from django.conf import settings
 from django.contrib.auth.hashers import get_hasher
 from django.core.exceptions import ValidationError
@@ -12,13 +13,13 @@ from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.safestring import mark_safe
 from django.utils.html import strip_tags
+from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
-from phonenumber_field.modelfields import PhoneNumberField
-from tinymce import models as tinymce_models
+from phonenumber_field.modelfields import PhoneNumberField  # type: ignore
+from tinymce import models as tinymce_models  # type: ignore
 
 from .helpers import sanitize_html
 
@@ -28,8 +29,8 @@ class PytitionUser(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="pytitionuser"
     )
-    invitations: models.ManyToManyField['Organization'] = models.ManyToManyField(
-        'Organization', related_name='invited', blank=True
+    invitations: models.ManyToManyField = models.ManyToManyField(
+        "Organization", related_name="invited", blank=True
     )
     default_template = models.ForeignKey(
         "PetitionTemplate",
@@ -61,36 +62,36 @@ class PytitionUser(models.Model):
         self.save()
 
     @property
-    def is_authenticated(self):
+    def is_authenticated(self) -> bool:
         return self.user.is_authenticated
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.username
 
     @property
-    def username(self):
-        return self.user.username
+    def username(self) -> str:
+        return self.user.username if self.user is not None else ""
 
     @property
-    def get_full_name(self):
+    def get_full_name(self) -> str:
         return self.user.get_full_name()
 
     @property
-    def fullname(self):
+    def fullname(self) -> str:
         return self.get_full_name
 
     @property
-    def kind(self):
+    def kind(self) -> str:
         return "user"
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.get_full_name != "":
             return self.get_full_name
         else:
             return self.username
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         if self.get_full_name != "":
             return self.get_full_name
         else:
@@ -116,11 +117,11 @@ class Organization(models.Model):
         on_delete=models.SET_NULL,
     )
     slugname = models.SlugField(max_length=200, unique=True)
-    members: models.ManyToManyField[PytitionUser] = models.ManyToManyField(
-        PytitionUser, through='Permission'
+    members: models.ManyToManyField = models.ManyToManyField(
+        PytitionUser, through="Permission"
     )
 
-    def is_last_admin(self, user):
+    def is_last_admin(self, user: PytitionUser) -> bool:
         """
         Check if the given user is the last admin of this organization
         Admin is an user having the can_modify_permissions right
@@ -133,47 +134,45 @@ class Organization(models.Model):
         if perms.count() > 1:
             return False
         elif perms.count() == 1:
-            if perms.first().user == user:
-                return True
-            else:
-                return False
+            perm = perms.first()
+            return perm is not None and perm.user == user
         else:
             # That should never happen
             return True
 
-    def is_allowed_to(self, user, right):
+    def is_allowed_to(self, user: PytitionUser, right: str) -> bool:
         """
-        Check if an user has a given access right on the organisation
+        Check if an user has a given access right on the organization
         """
         try:
             perm = Permission.objects.get(organization=self, user=user)
         except Permission.DoesNotExist:
             return False
         else:
-            return getattr(perm, right)
+            return bool(getattr(perm, right))
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"< {self.name} >"
 
     @property
-    def owners(self):
+    def owners(self) -> models.QuerySet:
         return self.members.filter(permission__can_modify_permissions=True)
 
     @property
-    def kind(self):
+    def kind(self) -> str:
         return "org"
 
     @property
-    def fullname(self):
+    def fullname(self) -> str:
         return self.name
 
     def save(self, *args: Any, **kwargs: Any) -> None:
         if not self.slugname:
             self.slugname = slugify(self.name)
-        super(Organization, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 # ----------------------------------- Petition --------------------------------
@@ -263,15 +262,20 @@ class Petition(models.Model):
     show_publication_date = models.BooleanField(default=False)
 
     @property
-    def is_moderated(self):
+    def is_moderated(self) -> bool:
         if self.owner_type == "user":
-            return self.owner.moderated or self.moderated
+            # owner is a PytitionUser, which has 'moderated'
+            return getattr(self.owner, "moderated", False) or self.moderated
+        # owner is an Organization, which does not have 'moderated'
         return self.moderated
 
-    def transfer_to(self, user: Optional['PytitionUser']=None, org: Optional['Organization']=None) -> None:
+    def transfer_to(
+        self, user: PytitionUser | None = None, org: Organization | None = None
+    ) -> None:
         if user is None and org is None:
             raise ValueError(
-                "You should specify either an org or a user when transferring a petition"
+                "You should specify either an org or a user when transferring "
+                "a petition"
             )
         if user is not None and org is not None:
             raise ValueError(
@@ -285,7 +289,12 @@ class Petition(models.Model):
             self.user = None
         self.save()
 
-    def prepopulate_from_template(self, template: 'PetitionTemplate', fields: list[str] | None = None, exclude_fields: list[str] | None = None) -> None:
+    def prepopulate_from_template(
+        self,
+        template: PetitionTemplate,
+        fields: list[str] | None = None,
+        exclude_fields: list[str] | None = None,
+    ) -> None:
         if fields is None:
             fields = [
                 f.name
@@ -293,65 +302,69 @@ class Petition(models.Model):
                 if f.name not in ["id", "title", "salt", "user", "org"]
             ]
         for field in fields:
-            if field in exclude_fields:
+            if exclude_fields and field in exclude_fields:
                 continue
             if hasattr(self, field) and hasattr(template, field):
                 template_value = getattr(template, field)
                 if template_value is not None and template_value != "":
                     setattr(self, field, template_value)
 
-    def slugify(self):
+    def slugify(self) -> None:
         # Slugify the petition title and save it as slugname
         if self.slugmodel_set.count() == 0:
             slugtext = slugify(self.title)
             self.add_slug(slugtext)
 
     def add_slug(self, slugtext: str) -> None:
-        # Add a slug corectly
+        # Add a slug correctly
         with transaction.atomic():
             slugtext = slugify(slugtext)
             # Check if there is another similar slug for the same user/org
             same_slugs = SlugModel.objects.filter(slug=slugtext)
             if len(same_slugs) == 0:
-                slug = SlugModel.objects.create(slug=slugtext, petition=self)
+                SlugModel.objects.create(slug=slugtext, petition=self)
             else:
-                alread_used = False
+                already_used = False
                 for s in same_slugs:
                     if self.owner_type == "org":
-                        if s.petition.owner_type == "org":
-                            if self.org == s.petition.org:
-                                alread_used = True
-                    elif s.petition.owner_type == "user":
-                        if self.user == s.petition.user:
-                            alread_used = True
-                if alread_used:
+                        if (
+                            s.petition.owner_type == "org"
+                            and self.org == s.petition.org
+                        ):
+                            already_used = True
+                    elif (
+                        s.petition.owner_type == "user" and self.user == s.petition.user
+                    ):
+                        already_used = True
+                if already_used:
                     raise ValueError("This slug is already used")
                 else:
-                    slug = SlugModel.objects.create(slug=slugtext, petition=self)
+                    SlugModel.objects.create(slug=slugtext, petition=self)
 
     def del_slug(self, slug: Any) -> None:
         # Delete a given slug
         s = SlugModel.objects.filter(slug=slug, petition=self).first()
-        s.delete()
+        if s is not None:
+            s.delete()
 
     @classmethod
-    def by_id(cls, id):
+    def by_id(cls, id: int) -> Petition | None:
         try:
             return Petition.objects.get(pk=id)
         except Petition.DoesNotExist:
             return None
 
-    def get_signature_number(self, confirmed=None):
-        signatures = self.signature_set
+    def get_signature_number(self, confirmed: bool | None = None) -> int:
+        qs = self.signature_set.all()
         if confirmed is not None:
-            signatures = signatures.filter(confirmed=confirmed)
-        nb_electronic_signatures = signatures.count()
+            qs = qs.filter(confirmed=confirmed)
+        nb_electronic_signatures = qs.count()
         if self.paper_signatures_enabled:
             return nb_electronic_signatures + self.paper_signatures
         else:
             return nb_electronic_signatures
 
-    def already_signed(self, email):
+    def already_signed(self, email: str) -> bool:
         signature_number = (
             Signature.objects.filter(petition=self.id)
             .filter(confirmed=True)
@@ -360,7 +373,7 @@ class Petition(models.Model):
         )
         return signature_number > 0
 
-    def confirm_signature(self, conf_hash):
+    def confirm_signature(self, conf_hash: str) -> str | None:
         signature = Signature.objects.filter(petition=self.id).get(
             confirmation_hash=conf_hash
         )
@@ -383,7 +396,7 @@ class Petition(models.Model):
         self.save()
 
     @property
-    def to_json(self):
+    def to_json(self) -> dict[str, Any]:
         return {
             "title": self.title,
             "signatures": self.get_signature_number(True),
@@ -397,51 +410,56 @@ class Petition(models.Model):
         }
 
     @property
-    def owner_type(self):
+    def owner_type(self) -> str:
         if self.org:
             return "org"
         else:
             return "user"
 
     @property
-    def owner_name(self):
+    def owner_name(self) -> str:
         return str(self.owner)
 
     @property
-    def owner_username(self):
+    def owner_username(self) -> str:
         if self.owner_type == "org":
-            return self.org.slugname
+            if self.org is not None:
+                return self.org.slugname
+            else:
+                return ""
         else:
-            return self.user.username
+            return self.user.username if self.user is not None else ""
 
     @property
-    def owner(self):
-        if self.org:
+    def owner(self) -> Organization | PytitionUser:
+        if self.org is not None:
             return self.org
-        else:
+        elif self.user is not None:
             return self.user
+        else:
+            raise ValueError("Petition has no owner (neither org nor user is set)")
 
     @property
-    def signature_number(self):
+    def signature_number(self) -> int:
         return self.get_signature_number(True)
 
     @property
-    def raw_twitter_description(self):
+    def raw_twitter_description(self) -> str:
         return html.unescape(
             mark_safe(strip_tags(sanitize_html(self.twitter_description)))
         )
 
     @property
-    def raw_text(self):
+    def raw_text(self) -> str:
         return html.unescape(mark_safe(strip_tags(sanitize_html(self.text))))
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.title
 
-    def is_allowed_to_edit(self, user):
+    def is_allowed_to_edit(self, user: PytitionUser) -> bool:
         """
         Check if a user is allowed to edit this petition
         """
@@ -457,23 +475,29 @@ class Petition(models.Model):
         return perm.can_modify_petitions
 
     @property
-    def url(self):
+    def url(self) -> str:
         slugs = self.slugmodel_set.all()
         if len(slugs) == 0:
             # If there is no slug, ugly url
             return reverse("detail", kwargs={"petition_id": self.id})
         elif self.owner_type == "org":
             #  This petition is owned by an Organization
-            return reverse(
-                "slug_show_petition",
-                kwargs={"orgslugname": self.org.slugname, "petitionname": slugs[0]},
-            )
+            if self.org is not None:
+                return reverse(
+                    "slug_show_petition",
+                    kwargs={"orgslugname": self.org.slugname, "petitionname": slugs[0]},
+                )
+            else:
+                raise ValueError(_("This petition is missing an organization owner."))
         elif self.owner_type == "user":
             # This petition is owned by a PytitionUser
-            return reverse(
-                "slug_show_petition",
-                kwargs={"username": self.user.username, "petitionname": slugs[0]},
-            )
+            if self.user is not None:
+                return reverse(
+                    "slug_show_petition",
+                    kwargs={"username": self.user.username, "petitionname": slugs[0]},
+                )
+            else:
+                raise ValueError(_("This petition is missing a user owner."))
         else:
             # This is a BUG!
             raise ValueError(_("This petition is buggy. Sorry about that!"))
@@ -485,17 +509,17 @@ class Petition(models.Model):
             raise Exception("A petition can have only one owner")
         elif not self.salt:
             hasher = get_hasher()
-            salt = hasher.salt()
-            self.salt = salt.decode('utf-8') if isinstance(salt, bytes) else str(salt)
+            salt: bytes | str = hasher.salt()
+            self.salt = salt.decode("utf-8") if isinstance(salt, bytes) else str(salt)
         self.last_modification_date = timezone.now()
-        super(Petition, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def moderate(self, do_moderate: bool = True) -> None:
         self.moderated = do_moderate
         self.save()
 
     @property
-    def has_any_share_button(self):
+    def has_any_share_button(self) -> bool:
         return (
             self.has_email_share_button
             or self.has_facebook_share_button
@@ -532,15 +556,15 @@ class Signature(models.Model):
     )
     ipaddress = models.TextField(blank=True, null=True)
 
-    def clean(self):
-        if self.petition.already_signed(self.email):
-            if (
-                self.petition.signature_set.filter(email=self.email)
-                .get(confirmed=True)
-                .id
-                != self.id
-            ):
-                raise ValidationError(_("You already signed the petition"))
+    def clean(self) -> None:
+        if (
+            self.petition.already_signed(self.email)
+            and self.petition.signature_set.filter(email=self.email)
+            .get(confirmed=True)
+            .id
+            != self.id
+        ):
+            raise ValidationError(_("You already signed the petition"))
 
     def save(self, *args: Any, **kwargs: Any) -> None:
         self.clean()
@@ -553,10 +577,10 @@ class Signature(models.Model):
             ).exclude(id=self.id).delete()
         super().save(*args, **kwargs)
 
-    def confirm(self):
+    def confirm(self) -> None:
         self.confirmed = True
 
-    def __str__(self):
+    def __str__(self) -> str:
         return html.unescape(
             "[{}:{}] {} {}".format(
                 self.petition.id,
@@ -566,7 +590,7 @@ class Signature(models.Model):
             )
         )
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return html.unescape(
             "[{}:{}] {} {}".format(
                 self.petition.id,
@@ -656,14 +680,14 @@ class PetitionTemplate(models.Model):
     has_whatsapp_share_button = models.BooleanField(default=False)
     paper_signatures_enabled = models.BooleanField(default=False)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.name
 
     @property
-    def owner_type(self):
+    def owner_type(self) -> str:
         if self.org:
             return "org"
         else:
@@ -675,7 +699,7 @@ class PetitionTemplate(models.Model):
         elif self.org is not None and self.user is not None:
             raise Exception("A petition can have only one owner")
         else:
-            super(PetitionTemplate, self).save(*args, **kwargs)
+            super().save(*args, **kwargs)
 
 
 # --------------------------------- SlugModel ---------------------------------
@@ -683,17 +707,18 @@ class SlugModel(models.Model):
     slug = models.SlugField(max_length=200)
     petition = models.ForeignKey(Petition, on_delete=models.CASCADE)
 
-    def clean(self, *args, **kwargs):
+    def clean(self, *args: Any, **kwargs: Any) -> None:
         if self.slug == "" or self.slug is None:
             raise ValidationError(
-                _("A permlink cannot be empty. Please enter something."), code="invalid"
+                _("A permalink cannot be empty. Please enter something."),
+                code="invalid",
             )
-        super(SlugModel, self).clean(*args, **kwargs)
+        super().clean(*args, **kwargs)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.slug
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.slug
 
 
@@ -722,7 +747,7 @@ class Permission(models.Model):
     can_delete_signatures = models.BooleanField(default=False)
     can_modify_permissions = models.BooleanField(default=False)
 
-    def set_all(self, value):
+    def set_all(self, value: bool) -> None:
         self.can_add_members = value
         self.can_remove_members = value
         self.can_create_petitions = value
@@ -737,23 +762,25 @@ class Permission(models.Model):
         self.can_modify_permissions = value
         self.save()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.organization.name} : {self.user.name}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"< {self.__str__()} >"
 
 
 # ------------------------------ Pre save actions -----------------------------
 @receiver(pre_save, sender=SlugModel)
-def check_slug_is_not_empty(sender: Any, instance: 'SlugModel', **kwargs: Any) -> None:
+def check_slug_is_not_empty(sender: Any, instance: SlugModel, **kwargs: Any) -> None:
     instance.clean()
     instance.validate_unique()
 
 
 # ------------------------------ Post save actions -----------------------------
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(sender: Any, instance: Any, created: bool, **kwargs: Any) -> None:
+def create_user_profile(
+    sender: Any, instance: Any, created: bool, **kwargs: Any
+) -> None:
     if created:
         PytitionUser.objects.create(user=instance)
 
@@ -764,22 +791,24 @@ def save_user_profile(sender: Any, instance: Any, **kwargs: Any) -> None:
 
 
 @receiver(pre_save, sender=Petition)
-def pre_save_petition(sender: Any, instance: 'Petition', **kwargs: Any) -> None:
+def pre_save_petition(sender: Any, instance: Petition, **kwargs: Any) -> None:
     if not instance.creation_date:
         instance.creation_date = timezone.now()
 
 
 @receiver(post_save, sender=Petition)
-def save_petition(sender: Any, instance: 'Petition', **kwargs: Any) -> None:
+def save_petition(sender: Any, instance: Petition, **kwargs: Any) -> None:
     if instance.slugmodel_set.count() == 0:
         instance.slugify()
-    if kwargs.get('created'):
+    if kwargs.get("created"):
         instance.creation_date = timezone.now()
         instance.save()
 
 
 @receiver(post_delete, sender=PytitionUser)
-def post_delete_user(sender: Any, instance: 'PytitionUser', *args: Any, **kwargs: Any) -> None:
+def post_delete_user(
+    sender: Any, instance: PytitionUser, *args: Any, **kwargs: Any
+) -> None:
     if instance.user:  # just in case user is not specified
         instance.user.delete()
 

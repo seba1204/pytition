@@ -1,10 +1,12 @@
-from colorfield.fields import ColorWidget
+from typing import Any, cast
+
+from colorfield.fields import ColorWidget  # type: ignore
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.forms import ModelForm, ValidationError
 from django.utils.translation import gettext_lazy as _
-from tinymce.widgets import TinyMCE
+from tinymce.widgets import TinyMCE  # type: ignore
 
 from .helpers import send_welcome_mail
 from .models import (
@@ -67,10 +69,12 @@ class SignatureForm(ModelForm):
 
         labels = dict.fromkeys(["first_name", "last_name", "phone", "email"], "")
 
-    def __init__(self, petition=None, *args, **kwargs):
+    def __init__(
+        self, petition: Petition | None = None, *args: Any, **kwargs: Any
+    ) -> None:
         super().__init__(*args, **kwargs)
         self.instance.petition = petition
-        if not petition.has_newsletter:
+        if not petition or not petition.has_newsletter:
             del self.fields["subscribed_to_mailinglist"]
         else:
             self.fields[
@@ -82,16 +86,21 @@ class PetitionCreationStep1(forms.Form):
     ### Ask for title ###
     title = forms.CharField(max_length=200)
 
-    def clean_title(self):
+    def clean_title(self) -> str:
         title = self.cleaned_data.get("title")
-        # slugtext = slugify(html.unescape(mark_safe(strip_tags(title).strip())))
+        if not isinstance(title, str) or title is None:
+            raise ValidationError(
+                _("Title is required and must be a string."), code="invalid"
+            )
         filters = {"title": title}
         if self.owned_by_org:
             org = Organization.objects.get(slugname=self.orgslugname)
-            filters.update({"org": org})
+            org_filter_dict: dict[str, Any] = {"org": org}
+            filters.update(org_filter_dict)
         else:
             user = PytitionUser.objects.get(user__username=self.username)
-            filters.update({"user": user})
+            user_filter_dict: dict[str, Any] = {"user": user}
+            filters.update(user_filter_dict)
         results = Petition.objects.filter(**filters)
         if results.count() > 0:
             self.add_error(
@@ -101,9 +110,9 @@ class PetitionCreationStep1(forms.Form):
                 ),
             )
 
-        return title
+        return str(title)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if "orgslugname" in kwargs:
             self.orgslugname = kwargs.pop("orgslugname")
             self.owned_by_org = True
@@ -112,7 +121,7 @@ class PetitionCreationStep1(forms.Form):
             self.username = kwargs.pop("user_name")
         else:
             raise ValueError(_("You should either provide an org name or a user name"))
-        super(PetitionCreationStep1, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class PetitionCreationStep2(forms.Form):
@@ -228,35 +237,90 @@ class NewsletterForm(forms.Form):
 
     newsletter_subscribe_mail_smtp_port.widget.attrs.update({"min": 1, "max": 65535})
 
-    def clean(self):
-        # FIXME: WIP
-        cleaned_data = super(NewsletterForm, self).clean()
-        data = {}
-        for field in self.base_fields:
-            data[field] = cleaned_data.get(field)
+    def clean(self) -> dict[str, Any]:
+        cleaned_data = super().clean()
+        data: dict[str, Any] = {}
+        if cleaned_data is not None:
+            for field in self.base_fields:
+                data[field] = cleaned_data.get(field)
 
-        if (
-            data["newsletter_subscribe_mail_smtp_tls"]
-            and data["newsletter_subscribe_mail_smtp_starttls"]
-        ):
+        # TLS vs STARTTLS are mutually exclusive
+        tls = bool(data.get("newsletter_subscribe_mail_smtp_tls"))
+        starttls = bool(data.get("newsletter_subscribe_mail_smtp_starttls"))
+        if tls and starttls:
             self.add_error(
                 "newsletter_subscribe_mail_smtp_tls",
                 ValidationError(
                     _("You cannot select both TLS and STARTTLS."), code="invalid"
                 ),
             )
-
-        if (
-            data["newsletter_subscribe_mail_smtp_port"] < 1
-            or data["newsletter_subscribe_mail_smtp_port"] > 65535
-        ):
             self.add_error(
-                "newsletter_subscribe_mail_smtp_port",
+                "newsletter_subscribe_mail_smtp_starttls",
                 ValidationError(
-                    _("SMTP port must be >= 1 and <= 65535"), code="invalid"
+                    _("You cannot select both TLS and STARTTLS."), code="invalid"
                 ),
             )
 
+        # Port bounds check when provided
+        MAX_PORT_NUMBER = 65535
+        port = data.get("newsletter_subscribe_mail_smtp_port")
+        if port is not None:
+            try:
+                port_int = int(port)
+                if port_int < 1 or port_int > MAX_PORT_NUMBER:
+                    self.add_error(
+                        "newsletter_subscribe_mail_smtp_port",
+                        ValidationError(
+                            _(f"Port must be between 1 and {MAX_PORT_NUMBER}."),
+                            code="invalid",
+                        ),
+                    )
+            except (TypeError, ValueError):
+                self.add_error(
+                    "newsletter_subscribe_mail_smtp_port",
+                    ValidationError(_("Port must be an integer."), code="invalid"),
+                )
+
+        # When HTTP method is selected, required fields must be present
+        method = cast(str | None, data.get("newsletter_subscribe_method"))
+        if method in {"GET", "POST"}:
+            if not data.get("newsletter_subscribe_http_url"):
+                self.add_error(
+                    "newsletter_subscribe_http_url",
+                    ValidationError(
+                        _("This field is required for HTTP subscription."),
+                        code="invalid",
+                    ),
+                )
+            if not data.get("newsletter_subscribe_http_mailfield"):
+                self.add_error(
+                    "newsletter_subscribe_http_mailfield",
+                    ValidationError(
+                        _("This field is required for HTTP subscription."),
+                        code="invalid",
+                    ),
+                )
+
+        # When MAIL method is selected, require mail-to fields
+        if method == "MAIL":
+            if not data.get("newsletter_subscribe_mail_to"):
+                self.add_error(
+                    "newsletter_subscribe_mail_to",
+                    ValidationError(
+                        _("Please provide the list admin address."), code="invalid"
+                    ),
+                )
+            if not data.get("newsletter_subscribe_mail_subject"):
+                self.add_error(
+                    "newsletter_subscribe_mail_subject",
+                    ValidationError(
+                        _("Please provide the subscription subject template."),
+                        code="invalid",
+                    ),
+                )
+
+        # Save back to cleaned_data with the right type
+        self.cleaned_data = dict(data)
         return self.cleaned_data
 
 
@@ -286,38 +350,46 @@ class PytitionUserCreationForm(UserCreationForm):
         )
         field_classes = {"username": UsernameField}
 
-    def __init__(self, request=None, *args, **kwargs):
-        super(PytitionUserCreationForm, self).__init__(*args, **kwargs)
+    def __init__(self, request: Any = None, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
         self.fields["first_name"].required = True
         self.fields["email"].required = True
         self.request = request
 
-    def clean(self):
+    def clean(self) -> dict[str, Any]:
         session = self.request.session
         cleaned_data = super(UserCreationForm, self).clean()
+        if cleaned_data is None:
+            cleaned_data = {}
         if (
             "answer" in cleaned_data
             and int(cleaned_data["answer"]) != session["answer"]
         ):
-            self.add_error("answer", ValidationError(_("Wrong answer"), code="invalid"))
+            self.add_error(
+                "answer",
+                ValidationError(_("Wrong answer"), code="invalid"),
+            )
         if "email_confirm" in cleaned_data and cleaned_data["email_confirm"] != "":
-            # Normal users should end up with email_confirm == "" because the field is hidden
-            # Robots might fill up this field, thus we throw an error
+            # Normal users should end up with email_confirm == "" because the field is
+            # hidden. Robots might fill up this field, thus we throw an error.
             self.add_error(
                 "email_confirm",
-                ValidationError("Incorrect email confirmation", code="invalid"),
+                ValidationError(
+                    "Incorrect email confirmation",
+                    code="invalid",
+                ),
             )
         if "answer" in cleaned_data:
             del cleaned_data["answer"]
         if "answer" in self.data:
             # QueryDict() objects are immutable!
-            newdata = dict(self.data.items())
-            del newdata["answer"]
-            self.data = newdata
+            new_data = dict(self.data.items())
+            del new_data["answer"]
+            self.data = new_data
         self.cleaned_data = cleaned_data
         return cleaned_data
 
-    def send_success_email(self):
+    def send_success_email(self) -> None:
         send_welcome_mail(self.cleaned_data)
 
 
@@ -326,13 +398,13 @@ class UpdateInfoForm(UserCreationForm):
         model = get_user_model()
         fields = ("first_name", "last_name", "email")
 
-    def __init__(self, user, *args, **kwargs):
-        super(UpdateInfoForm, self).__init__(*args, **kwargs)
+    def __init__(self, user: Any, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
         self.user = user
         del self.fields["password1"]
         del self.fields["password2"]
 
-    def save(self, commit=True):
+    def save(self, commit: bool = True) -> Any:
         self.user.email = self.cleaned_data["email"]
         self.user.first_name = self.cleaned_data["first_name"]
         self.user.last_name = self.cleaned_data["last_name"]
@@ -344,9 +416,9 @@ class UpdateInfoForm(UserCreationForm):
 class DeleteAccountForm(forms.Form):
     validation = forms.CharField()
 
-    def clean(self):
-        cleaned_data = super(DeleteAccountForm, self).clean()
-        valid = cleaned_data.get("validation")
+    def clean(self) -> dict[str, Any]:
+        cleaned_data = super().clean()
+        valid = cleaned_data.get("validation") if cleaned_data is not None else None
         if valid != _("DROP MY ACCOUNT"):
             self.add_error(
                 "validation",
@@ -362,15 +434,16 @@ class OrgCreationForm(forms.ModelForm):
         model = Organization
         fields = ("name",)
 
-    def clean(self):
-        cleaned_data = super(OrgCreationForm, self).clean()
-        name = cleaned_data.get("name")
+    def clean(self) -> dict[str, Any]:
+        cleaned_data = super().clean()
+        name = cleaned_data.get("name") if cleaned_data is not None else None
         if name in ["..", "."]:
             self.add_error(
                 "name",
                 ValidationError(
                     _(
-                        "This is an invalid Organization name. Please try something else."
+                        "This is an invalid Organization name. "
+                        "Please try something else."
                     ),
                     code="invalid",
                 ),

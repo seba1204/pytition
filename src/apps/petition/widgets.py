@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections.abc import Mapping
 from typing import Any
 
 from django import forms
@@ -11,7 +10,7 @@ class SwitchWidget(forms.CheckboxInput):
     template_name = "petition/widgets/SwitchInput.html"
 
     def get_context(
-        self, name: str, value: Any, attrs: Mapping[str, Any] | None
+        self, name: str, value: Any, attrs: dict[str, Any] | None
     ) -> dict[str, Any]:
         if attrs is None:
             attrs = {}
@@ -28,7 +27,7 @@ class SwitchWidget(forms.CheckboxInput):
 
     def __init__(
         self,
-        attrs: Mapping[str, Any] | None = None,
+        attrs: dict[str, Any] | None = None,
         check_test: Any | None = None,
         *,
         label: str | None = None,

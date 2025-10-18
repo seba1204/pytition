@@ -320,7 +320,7 @@ class EditPetitionViewTest(TestCase):
         self.assertEqual(response.context["social_network_form_submitted"], True)
         self.assertEqual(response.context["newsletter_form_submitted"], False)
 
-        fp = open(logo, "rb")
+        fp = Path.open(logo, "rb")
         social_network_form_data.update({"twitter_image": fp})
         # For an user template
         p2 = Petition.objects.create(title="My petition 2", user=julia)
@@ -350,11 +350,11 @@ class EditPetitionViewTest(TestCase):
                 with (
                     Path(petition_path).open("rb") as img,
                     Path(petition2_path).open("rb") as img2,
-                    logo.open("rb") as logofp,
+                    logo.open("rb") as logo_fp,
                 ):
-                    logocontent = logofp.read()
-                    self.assertEqual(img.read(), logocontent)
-                    self.assertEqual(img2.read(), logocontent)
+                    logo_content = logo_fp.read()
+                    self.assertEqual(img.read(), logo_content)
+                    self.assertEqual(img2.read(), logo_content)
                 continue
             self.assertEqual(getattr(p2, key), value)
             self.assertEqual(getattr(p, key), value)
@@ -373,6 +373,7 @@ class EditPetitionViewTest(TestCase):
             "has_newsletter": "on",
             "newsletter_subscribe_http_data": "blah",
             "newsletter_subscribe_http_mailfield": "blih",
+            "newsletter_subscribe_http_mailfield": "bluh",
             "newsletter_subscribe_mail_subject": "bloh",
             "newsletter_subscribe_mail_from": "toto@titi.com",
             "newsletter_subscribe_mail_to": "titi@toto.com",
