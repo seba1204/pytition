@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any
+
 from django import forms
 from django.utils.safestring import SafeString
 
@@ -5,7 +10,9 @@ from django.utils.safestring import SafeString
 class SwitchWidget(forms.CheckboxInput):
     template_name = "petition/widgets/SwitchInput.html"
 
-    def get_context(self, name: str, value: object, attrs: dict | None) -> dict:
+    def get_context(
+        self, name: str, value: Any, attrs: Mapping[str, Any] | None
+    ) -> dict[str, Any]:
         if attrs is None:
             attrs = {}
         if "class" in attrs:
@@ -14,28 +21,38 @@ class SwitchWidget(forms.CheckboxInput):
             attrs.update({"class": "custom-control-input"})
 
         ctx = super().get_context(name, value, attrs)
-        ctx["widget"].update({"label": self.label})
+        # Attach label so the template can render a custom label element
+        if hasattr(self, "label"):
+            ctx["widget"].update({"label": self.label})
         return ctx
 
-    def __init__(self, *args: object, **kwargs: object) -> None:
-        super().__init__(*args, **kwargs)
-        if "label" in kwargs:
-            self.label = kwargs.pop("label")
+    def __init__(
+        self,
+        attrs: Mapping[str, Any] | None = None,
+        check_test: Any | None = None,
+        *,
+        label: str | None = None,
+    ) -> None:
+        super().__init__(attrs=attrs, check_test=check_test)
+        # keep a label reference for template consumption
+        self.label = label
 
 
 class SwitchField(forms.BooleanField):
     widget = SwitchWidget
 
-    def __init__(self, *args: object, **kwargs: object) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        label = kwargs.pop("label", None)
         super().__init__(*args, **kwargs)
-        if "label" in kwargs:
-            self.widget.label = kwargs["label"]
+        # Propagate label into widget instance
+        self.widget.label = label
 
     def get_bound_field(
         self, form: forms.BaseForm, field_name: str
     ) -> forms.BoundField:
         bf = super().get_bound_field(form, field_name)
-        bf.label_tag = self.label_tag
+        # mypy doesn't like rebinding a method; it's intentional to hide the label
+        bf.label_tag = self.label_tag  # type: ignore[method-assign]
         return bf
 
     def label_tag(
@@ -45,4 +62,5 @@ class SwitchField(forms.BooleanField):
         label_suffix: str | None = None,
         tag: str | None = None,
     ) -> SafeString:
+        # We render the label manually in the widget template, so suppress here.
         return SafeString("")

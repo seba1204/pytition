@@ -1,4 +1,8 @@
-from typing import Any
+from __future__ import annotations
+
+import json
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any
 
 import lxml
 import lxml.html
@@ -13,11 +17,16 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from lxml.html.clean import Cleaner
 
+if TYPE_CHECKING:  # pragma: no cover
+    from .models import Petition, PytitionUser
+
 
 # Remove all moderated instances of Petition
-def remove_user_moderated(petitions: list) -> list:
-    petitions = [p for p in petitions if not p.is_moderated]
-    return petitions
+def remove_user_moderated(petitions: list[Any]) -> list[Any]:
+    """Filter-out moderated petitions when we already have a list.
+    (Used where we cannot easily express the check in a queryset.)
+    """
+    return [p for p in petitions if not getattr(p, "is_moderated", False)]
 
 
 # Remove all javascripts from HTML code
@@ -58,7 +67,7 @@ def get_client_ip(request: HttpRequest) -> str:
 
 
 # Get the user of the current session
-def get_session_user(request: HttpRequest) -> object:
+def get_session_user(request: HttpRequest) -> PytitionUser:
     from .models import PytitionUser  # noqa # to avoid circular import
 
     try:
@@ -77,10 +86,10 @@ def check_user_in_orga(user: Any, orga: Any) -> HttpResponse | None:
 
 
 # Return a 404 if a petition does not exist
-def petition_from_id(id: int) -> Any:
+def petition_from_id(id: int) -> Petition:
     from .models import Petition  # noqa # to avoid circular import
 
-    petition = Petition.by_id(id)
+    petition: Petition = Petition.by_id(id)
     if petition is None:
         raise Http404(_("Petition does not exist"))
     else:
@@ -88,7 +97,7 @@ def petition_from_id(id: int) -> Any:
 
 
 # Check if a petition is publicly accessible
-def check_petition_is_accessible(request, petition):
+def check_petition_is_accessible(request: HttpRequest, petition: Any) -> bool | None:
     if petition.published and not petition.moderated:
         return True
     if request.user.is_authenticated:
@@ -101,15 +110,16 @@ def check_petition_is_accessible(request, petition):
         raise Http404(_("This Petition has been moderated!"))
     if not petition.published:
         raise Http404(_("This Petition is not published yet!"))
+    return None
 
 
 # Get settings
-def settings_context_processor(request):
+def settings_context_processor(request: HttpRequest) -> dict[str, Any]:
     return {"settings": settings}
 
 
 # Get footer content
-def footer_content_processor(request):
+def footer_content_processor(request: HttpRequest) -> dict[str, Any]:
     footer_content = None
     if settings.FOOTER_TEMPLATE:
         footer_content = render_to_string(settings.FOOTER_TEMPLATE)
@@ -117,7 +127,7 @@ def footer_content_processor(request):
 
 
 # Send Confirmation email
-def send_confirmation_email(request, signature):
+def send_confirmation_email(request: HttpRequest, signature: Any) -> None:
     petition = signature.petition
     url = request.build_absolute_uri(
         reverse("confirm", args=[petition.id, signature.confirmation_hash])
@@ -140,7 +150,7 @@ def send_confirmation_email(request, signature):
 
 
 # Send welcome mail on account creation
-def send_welcome_mail(user_infos):
+def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
     html_message = render_to_string("registration/confirmation_email.html", user_infos)
     message = strip_tags(html_message)
     with get_connection() as connection:
@@ -156,7 +166,7 @@ def send_welcome_mail(user_infos):
 
 
 # Generate a meta url for the HTML meta property
-def petition_detail_meta(request, petition_id):
+def petition_detail_meta(request: HttpRequest, petition_id: int) -> dict[str, str]:
     url = "{scheme}://{host}{petition_path}".format(
         scheme=request.scheme,
         host=request.get_host(),
@@ -165,7 +175,7 @@ def petition_detail_meta(request, petition_id):
     return {"site_url": request.get_host(), "petition_url": url}
 
 
-def subscribe_to_newsletter(petition, email):
+def subscribe_to_newsletter(petition: Any, email: str) -> None:
     if petition.newsletter_subscribe_method in ["POST", "GET"]:
         if petition.newsletter_subscribe_http_url == "":
             return
@@ -173,8 +183,6 @@ def subscribe_to_newsletter(petition, email):
         if data == "" or data is None:
             data = {}
         else:
-            import json
-
             data = data.replace("'", '"')
             data = json.loads(data)
         if petition.newsletter_subscribe_http_mailfield != "":
@@ -201,15 +209,15 @@ def subscribe_to_newsletter(petition, email):
             ).send(fail_silently=True)
 
 
-def get_update_form(user, data=None):
-    from .forms import UpdateInfoForm
+def get_update_form(user: Any, data: Mapping[str, Any] | None = None) -> Any:
+    from .forms import UpdateInfoForm  # noqa # to avoid circular import
 
     if not data:
-        _data = {
+        _data: dict[str, Any] = {
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
         }
     else:
-        _data = data
+        _data = dict(data)
     return UpdateInfoForm(user, _data)

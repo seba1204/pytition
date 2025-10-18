@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib import admin, messages
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
@@ -19,10 +21,9 @@ from apps.petition.views import send_confirmation_email
 class PytitionUserAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
-    def name(self, pu):
+    @admin.display(description=gettext_lazy("Name"))
+    def name(self, pu: Any) -> Any:
         return pu
-
-    name.description = gettext_lazy("Name")
 
 
 @admin.register(SlugModel)
@@ -34,17 +35,17 @@ class SlugModelAdmin(admin.ModelAdmin):
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ("name", "petition_num", "user_num")
 
-    def petition_num(self, org):
+    @admin.display(description=gettext_lazy("Number of petitions"))
+    def petition_num(self, org: Any) -> int:
         return org.petition_set.count()
 
-    def user_num(self, org):
+    @admin.display(description=gettext_lazy("Number of members"))
+    def user_num(self, org: Any) -> int:
         return org.members.count()
 
-    petition_num.description = gettext_lazy("Number of petitions")
-    user_num.description = gettext_lazy("Number of members")
 
-
-def confirm(modeladmin, request, queryset):
+@admin.action(description=gettext_lazy("Confirm the signatures"))
+def confirm(modeladmin: Any, request: Any, queryset: Any) -> None:
     try:
         for signature in queryset:
             signature.confirm()
@@ -53,15 +54,10 @@ def confirm(modeladmin, request, queryset):
         messages.error(request, gettext_lazy("Error: {}").format(e.message))
 
 
-def resend_confirmation_mail(modeladmin, request, queryset):
+@admin.action(description=gettext_lazy("Send the confirmation email once again"))
+def resend_confirmation_mail(modeladmin: Any, request: Any, queryset: Any) -> None:
     for signature in queryset:
         send_confirmation_email(request, signature)
-
-
-confirm.short_description = gettext_lazy("Confirm the signatures")
-resend_confirmation_mail.short_description = gettext_lazy(
-    "Send the confirmation email once again"
-)
 
 
 @admin.register(Signature)
@@ -315,17 +311,13 @@ class PetitionAdmin(admin.ModelAdmin):
         (gettext_lazy("Publish the petition"), {"fields": ("published",)}),
     )
 
-    def non_confirmed_signature_number(self, petition):
+    @admin.display(description=gettext_lazy("Unconfirmed signatures"))
+    def non_confirmed_signature_number(self, petition: Any) -> int:
         return petition.get_signature_number(confirmed=False)
 
-    non_confirmed_signature_number.short_description = gettext_lazy(
-        "Unconfirmed signatures"
-    )
-
-    def confirmed_signature_number(self, petition):
+    @admin.display(description=gettext_lazy("Confirmed signatures"))
+    def confirmed_signature_number(self, petition: Any) -> int:
         return petition.get_signature_number(confirmed=True)
-
-    confirmed_signature_number.short_description = gettext_lazy("Confirmed signatures")
 
 
 class PetitionTemplateForm(ModelForm):

@@ -1,5 +1,7 @@
+from __future__ import annotations
 import html
 import uuid
+from typing import Any, Optional
 
 from colorfield.fields import ColorField
 from django.conf import settings
@@ -10,7 +12,8 @@ from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.html import mark_safe, strip_tags
+from django.utils.safestring import mark_safe
+from django.utils.html import strip_tags
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
@@ -25,8 +28,8 @@ class PytitionUser(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="pytitionuser"
     )
-    invitations = models.ManyToManyField(
-        "Organization", related_name="invited", blank=True
+    invitations: models.ManyToManyField['Organization'] = models.ManyToManyField(
+        'Organization', related_name='invited', blank=True
     )
     default_template = models.ForeignKey(
         "PetitionTemplate",
@@ -39,7 +42,7 @@ class PytitionUser(models.Model):
     )
     moderated = models.BooleanField(default=False)
 
-    def drop(self):
+    def drop(self) -> None:
         with transaction.atomic():
             orgs = list(self.organization_set.all())
             petitions = list(self.petition_set.all())
@@ -53,7 +56,7 @@ class PytitionUser(models.Model):
             for template in templates:
                 template.delete()
 
-    def moderate(self, do_moderate=True):
+    def moderate(self, do_moderate: bool = True) -> None:
         self.moderated = do_moderate
         self.save()
 
@@ -113,7 +116,9 @@ class Organization(models.Model):
         on_delete=models.SET_NULL,
     )
     slugname = models.SlugField(max_length=200, unique=True)
-    members = models.ManyToManyField(PytitionUser, through="Permission")
+    members: models.ManyToManyField[PytitionUser] = models.ManyToManyField(
+        PytitionUser, through='Permission'
+    )
 
     def is_last_admin(self, user):
         """
@@ -165,7 +170,7 @@ class Organization(models.Model):
     def fullname(self):
         return self.name
 
-    def save(self, *args, **kwargs):
+    def save(self, *args: Any, **kwargs: Any) -> None:
         if not self.slugname:
             self.slugname = slugify(self.name)
         super(Organization, self).save(*args, **kwargs)
@@ -263,7 +268,7 @@ class Petition(models.Model):
             return self.owner.moderated or self.moderated
         return self.moderated
 
-    def transfer_to(self, user=None, org=None):
+    def transfer_to(self, user: Optional['PytitionUser']=None, org: Optional['Organization']=None) -> None:
         if user is None and org is None:
             raise ValueError(
                 "You should specify either an org or a user when transferring a petition"
@@ -280,7 +285,7 @@ class Petition(models.Model):
             self.user = None
         self.save()
 
-    def prepopulate_from_template(self, template, fields=None, exclude_fields=None):
+    def prepopulate_from_template(self, template: 'PetitionTemplate', fields: list[str] | None = None, exclude_fields: list[str] | None = None) -> None:
         if fields is None:
             fields = [
                 f.name
@@ -301,7 +306,7 @@ class Petition(models.Model):
             slugtext = slugify(self.title)
             self.add_slug(slugtext)
 
-    def add_slug(self, slugtext):
+    def add_slug(self, slugtext: str) -> None:
         # Add a slug corectly
         with transaction.atomic():
             slugtext = slugify(slugtext)
@@ -324,7 +329,7 @@ class Petition(models.Model):
                 else:
                     slug = SlugModel.objects.create(slug=slugtext, petition=self)
 
-    def del_slug(self, slug):
+    def del_slug(self, slug: Any) -> None:
         # Delete a given slug
         s = SlugModel.objects.filter(slug=slug, petition=self).first()
         s.delete()
@@ -367,12 +372,12 @@ class Petition(models.Model):
         else:
             return None
 
-    def publish(self):
+    def publish(self) -> None:
         self.published = True
         self.publication_date = timezone.now()
         self.save()
 
-    def unpublish(self):
+    def unpublish(self) -> None:
         self.published = False
         self.publication_date = None
         self.save()
@@ -473,18 +478,19 @@ class Petition(models.Model):
             # This is a BUG!
             raise ValueError(_("This petition is buggy. Sorry about that!"))
 
-    def save(self, *args, **kwargs):
+    def save(self, *args: Any, **kwargs: Any) -> None:
         if self.org is None and self.user is None:
             raise Exception("You need to provide a user or org as owner")
         elif self.org is not None and self.user is not None:
             raise Exception("A petition can have only one owner")
         elif not self.salt:
             hasher = get_hasher()
-            self.salt = hasher.salt().decode("utf-8")
+            salt = hasher.salt()
+            self.salt = salt.decode('utf-8') if isinstance(salt, bytes) else str(salt)
         self.last_modification_date = timezone.now()
         super(Petition, self).save(*args, **kwargs)
 
-    def moderate(self, do_moderate=True):
+    def moderate(self, do_moderate: bool = True) -> None:
         self.moderated = do_moderate
         self.save()
 
@@ -536,7 +542,7 @@ class Signature(models.Model):
             ):
                 raise ValidationError(_("You already signed the petition"))
 
-    def save(self, *args, **kwargs):
+    def save(self, *args: Any, **kwargs: Any) -> None:
         self.clean()
         if not self.confirmation_hash:
             self.confirmation_hash = str(uuid.uuid4())
@@ -663,7 +669,7 @@ class PetitionTemplate(models.Model):
         else:
             return "user"
 
-    def save(self, *args, **kwargs):
+    def save(self, *args: Any, **kwargs: Any) -> None:
         if self.org is None and self.user is None:
             raise Exception("You need to provide a user or org as owner")
         elif self.org is not None and self.user is not None:
@@ -740,40 +746,40 @@ class Permission(models.Model):
 
 # ------------------------------ Pre save actions -----------------------------
 @receiver(pre_save, sender=SlugModel)
-def check_slug_is_not_empty(sender, instance, **kwargs):
+def check_slug_is_not_empty(sender: Any, instance: 'SlugModel', **kwargs: Any) -> None:
     instance.clean()
     instance.validate_unique()
 
 
 # ------------------------------ Post save actions -----------------------------
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender: Any, instance: Any, created: bool, **kwargs: Any) -> None:
     if created:
         PytitionUser.objects.create(user=instance)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def save_user_profile(sender, instance, **kwargs):
+def save_user_profile(sender: Any, instance: Any, **kwargs: Any) -> None:
     instance.pytitionuser.save()
 
 
 @receiver(pre_save, sender=Petition)
-def pre_save_petition(sender, instance, **kwargs):
+def pre_save_petition(sender: Any, instance: 'Petition', **kwargs: Any) -> None:
     if not instance.creation_date:
         instance.creation_date = timezone.now()
 
 
 @receiver(post_save, sender=Petition)
-def save_petition(sender, instance, **kwargs):
+def save_petition(sender: Any, instance: 'Petition', **kwargs: Any) -> None:
     if instance.slugmodel_set.count() == 0:
         instance.slugify()
-    if kwargs["created"]:
+    if kwargs.get('created'):
         instance.creation_date = timezone.now()
         instance.save()
 
 
 @receiver(post_delete, sender=PytitionUser)
-def post_delete_user(sender, instance, *args, **kwargs):
+def post_delete_user(sender: Any, instance: 'PytitionUser', *args: Any, **kwargs: Any) -> None:
     if instance.user:  # just in case user is not specified
         instance.user.delete()
 

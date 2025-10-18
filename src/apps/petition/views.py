@@ -75,12 +75,12 @@ def index(request):
         raise Http404(_("You must set an INDEX_PAGE config in your settings"))
     if settings.INDEX_PAGE == "USER_PROFILE":
         try:
-            user_name = settings.INDEX_PAGE_USER
+            user_name = getattr(settings, 'INDEX_PAGE_USER')
         except:
             raise Http404(_("You must set an INDEX_PAGE_USER config in your settings"))
     elif settings.INDEX_PAGE == "ORGA_PROFILE":
         try:
-            org_name = settings.INDEX_PAGE_ORGA
+            org_name = getattr(settings, 'INDEX_PAGE_ORGA')
         except:
             raise Http404(_("You must set an INDEX_PAGE_ORGA config in your settings"))
 
@@ -123,7 +123,7 @@ def index(request):
 def show_sympa_subscribe_bloc(request, petition_id):
     try:
         pytitionuser = get_session_user(request)
-    except:
+    except Exception:
         pytitionuser = None
 
     if not pytitionuser:
@@ -196,7 +196,7 @@ def detail(request, petition_id):
     check_petition_is_accessible(request, petition)
     try:
         pytitionuser = get_session_user(request)
-    except:
+    except Exception:
         pytitionuser = None
 
     reasons = ModerationReason.objects.all()
@@ -601,7 +601,7 @@ def invite_accept(request, orgslugname):
             with transaction.atomic():
                 pytitionuser.invitations.remove(org)
                 org.members.add(pytitionuser)
-        except:
+        except Exception:
             return HttpResponse(status=500)
     else:
         raise Http404(_("not found"))
@@ -719,7 +719,7 @@ def edit_template(request, template_id):
     if template.owner_type == "org":
         try:
             permissions = Permission.objects.get(organization=owner, user=pytitionuser)
-        except:
+        except Exception:
             return HttpResponse(
                 _(
                     "Internal error, cannot find your permissions attached to this organization ('{orgname}')".format(
@@ -954,7 +954,7 @@ def template_delete(request, template_id):
 
     try:
         template = PetitionTemplate.objects.get(pk=template_id)
-    except:
+    except Exception:
         return JsonResponse({}, status=404)
 
     if template.owner_type == "org":
@@ -1139,7 +1139,7 @@ def org_set_user_perms(request, orgslugname, user_name):
 
     try:
         userperms = Permission.objects.get(user=pytitionuser, organization=org)
-    except:
+    except Exception:
         messages.error(
             request,
             _(
@@ -2038,7 +2038,7 @@ def org_create(request):
 def slug_show_petition(request, orgslugname=None, username=None, petitionname=None):
     try:
         pytitionuser = get_session_user(request)
-    except:
+    except Exception:
         pytitionuser = None
 
     if orgslugname:
@@ -2089,7 +2089,7 @@ def add_new_slug(request, petition_id):
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)
-    except:
+    except Exception:
         messages.error(request, _("This petition does not exist (anymore?)."))
         return redirect("user_dashboard")
 
@@ -2131,7 +2131,7 @@ def del_slug(request, petition_id):
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)
-    except:
+    except Exception:
         messages.error(request, _("This petition does not exist (anymore?)."))
         return redirect("user_dashboard")
     if petition.is_allowed_to_edit(pytitionuser):
@@ -2181,7 +2181,7 @@ def transfer_petition(request, petition_id):
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)
-    except:
+    except Exception:
         messages.error(request, _("This petition does not exist."))
         return redirect("user_dashboard")
 
@@ -2328,7 +2328,7 @@ def report_petition(request, petition_id, reason_id=None):
     if reason_id:
         try:
             reason = ModerationReason.objects.get(pk=reason_id)
-        except:
+        except Exception:
             return HttpResponse(status=500)
 
     if reason_id:
