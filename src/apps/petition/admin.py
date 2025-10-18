@@ -37,11 +37,11 @@ class OrganizationAdmin(admin.ModelAdmin):
 
     @admin.display(description=gettext_lazy("Number of petitions"))
     def petition_num(self, org: Any) -> int:
-        return org.petition_set.count()
+        return int(org.petition_set.count())
 
     @admin.display(description=gettext_lazy("Number of members"))
     def user_num(self, org: Any) -> int:
-        return org.members.count()
+        return int(org.members.count())
 
 
 @admin.action(description=gettext_lazy("Confirm the signatures"))
@@ -83,8 +83,8 @@ class SignatureAdmin(admin.ModelAdmin):
 
 
 class PetitionAdminForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(PetitionAdminForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args: Any, **kwargs: Any):
+        super().__init__(*args, **kwargs)
         self.fields["user"].required = False
         self.fields["org"].required = False
 
@@ -94,23 +94,35 @@ class PetitionAdminForm(ModelForm):
         exclude = ("slugs",)
         help_texts = {
             "linear_gradient_direction": gettext_lazy(
-                "This is a gradient color. If selected, the background color will be a gradient color. If not, the background color will be a monochrome background color."
+                "This is a gradient color. If selected, the background color will be a "
+                "gradient color. If not, the background color will be a monochrome "
+                "background color."
             ),
             "gradient_to": gettext_lazy("Only used if gradient is selected"),
             "gradient_from": gettext_lazy("Only used if gradient is selected"),
             "footer_links": gettext_lazy(
-                "Put a bullet point list of links, it will appear horizontally in the page footer"
+                "Put a bullet point list of links, it will appear horizontally in "
+                "the page footer"
             ),
             "twitter_description": gettext_lazy(
-                "This is the description of the petition, it will be displayed in Twitter/Facebook cards when the link is posted to social networks. To be tested via https://cards-dev.twitter.com/validator and https://developers.facebook.com/tools/debug/"
+                "This is the description of the petition, it will be displayed in "
+                "Twitter/Facebook cards when the link is posted to social networks."
+                "To be tested via https://cards-dev.twitter.com/validator and"
+                "https://developers.facebook.com/tools/debug/"
             ),
             "twitter_image": gettext_lazy(
-                "Picture displayed in Twitter/Facebook cards when the link is posted to social networks. To be tested via https://cards-dev.twitter.com/validator and https://developers.facebook.com/tools/debug/"
+                "Picture displayed in Twitter/Facebook cards when the link is posted to"
+                "social networks. To be tested via "
+                "https://cards-dev.twitter.com/validator and "
+                "https://developers.facebook.com/tools/debug/"
             ),
             "has_newsletter": gettext_lazy(
-                "Allow to chose whether the newsletter subscription checkbox is shown or not"
+                "Allow to chose whether the newsletter subscription "
+                "checkbox is shown or not"
             ),
-            "newsletter_subscribe_http_data": gettext_lazy("""Only in case subscription to the newsletter via HTTP POST or GET methods. Put here data to be sent, using Python dictionary syntax. e.g.: <br>
+            "newsletter_subscribe_http_data": gettext_lazy("""Only in case "
+            "subscription to the newsletter via HTTP POST or GET methods."
+            "Put here data to be sent, using Python dictionary syntax. e.g.: <br>
                     {\'_wpcf7\': 21,<br>
                     \'_wpcf7_version\': \'4.9\',<br>
                     \'_wpcf7_locale\': \'fr_FR\',<br>
@@ -119,34 +131,54 @@ class PetitionAdminForm(ModelForm):
                     \'your-email\': \'\'<br>
                     }"""),
             "newsletter_subscribe_http_mailfield": gettext_lazy(
-                "Only when HTTP POST or GET subscription method is used. Name of the field to send via GET or POST, containing the email address to subscribe. Following the example of preceding form field, that would be 'your-email'"
+                "Only when HTTP POST or GET subscription method is used. "
+                "Name of the field to send via GET or POST, containing the email"
+                "address to subscribe. Following the example of preceding form field,"
+                "that would be 'your-email'"
             ),
             "newsletter_subscribe_http_url": gettext_lazy(
-                "Only when HTTP POST or GET subscription method is used. Adresse HTTP à requêter via GET ou POST pour enregistrer quelqu'un sur la newsletter"
+                "Only when HTTP POST or GET subscription method is used."
+                "Adresse HTTP à requêter via GET ou POST pour"
+                "enregistrer quelqu'un sur la newsletter"
             ),
             "newsletter_subscribe_mail_subject": gettext_lazy(
-                "Only when EMAIL subscription method is used. Inscrire ici la syntaxe de sujet du mail qui permet d'inscrire quelqu'un à la newsletter. Indiquez {} à la place où le mail du signataire doit être inséré. Ex: 'ADD NOM_LISTE {} NOM_SIGNATAIRE'"
+                "Only when EMAIL subscription method is used."
+                "Inscrire ici la syntaxe de sujet du mail qui permet d'inscrire"
+                "quelqu'un à la newsletter. Indiquez {} à la place où le mail du"
+                "signataire doit être inséré. Ex: 'ADD NOM_LISTE {} NOM_SIGNATAIRE'"
             ),
             "newsletter_subscribe_mail_from": gettext_lazy(
-                "Only when EMAIL subscription method is used. L'expéditeur du mail qui permet d'enregistrer quelqu'un à la newsletter. Il s'agit généralement d'une adresse qui est administratrice de la liste SYMPA ou MAILMAN"
+                "Only when EMAIL subscription method is used. L'expéditeur du mail qui"
+                "permet d'enregistrer quelqu'un à la newsletter. Il s'agit généralement"
+                "d'une adresse qui est administratrice de la liste SYMPA ou MAILMAN"
             ),
             "newsletter_subscribe_mail_to": gettext_lazy(
-                "Only when EMAIL subscription method is used. Adresse email d'administration de la liste, ex : sympa@NOM_LISTE.listes.vox.coop"
+                "Only when EMAIL subscription method is used. Adresse email"
+                "d'administration de la liste, ex : sympa@NOM_LISTE.listes.vox.coop"
             ),
             "newsletter_subscribe_method": gettext_lazy(
-                "This selects the newsletter subscription method. It is either HTTP GET or POST or via sending EMAIL to the newsletter admin address"
+                "This selects the newsletter subscription method. It is either"
+                "HTTP GET or POST or via sending EMAIL to the newsletter admin address"
             ),
             "published": gettext_lazy(
-                "If checked, the petition is published and accessible on the website by everybody. If not checked, the petition is only accessible by logged in users, others will get a 404 error."
+                "If checked, the petition is published and accessible on the website by"
+                "everybody. If not checked, the petition is only accessible by logged"
+                "in users, others will get a 404 error."
             ),
             "newsletter_text": gettext_lazy(
-                "E.g.: I want to receive updates or informations from this organization."
+                "E.g.: I want to receive updates or informations from this organization"
             ),
             "sign_form_footer": gettext_lazy(
-                "E.g.: Your data will stay strictly confidential and will not be sold, given away or exchanged with third parties. Informations about this campaign as well as other news about this organization will be sent to you if you checked the checkbox. You can unsubscribe at any moment."
+                "E.g.: Your data will stay strictly confidential and will not be sold,"
+                "given away or exchanged with third parties. Informations about this"
+                "campaign as well as other news about this organization will be sent to"
+                "you if you checked the checkbox. You can unsubscribe at any moment."
             ),
             "org_twitter_handle": gettext_lazy(
-                "The twitter account handle of the organization, starting with the '@' symbol. E.g.: @RAP_Asso. This is necessary in order to attribute the 'Twitter Card' to the correct account. See https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary"
+                "The twitter account handle of the organization, starting with the"
+                "'@' symbol. E.g.: @RAP_Asso. This is necessary in order to attribute"
+                "the 'Twitter Card' to the correct account. See"
+                "https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary"
             ),
             "use_custom_email_settings": gettext_lazy(
                 "Check if you want to use your own E-Mail SMTP account."
@@ -156,7 +188,8 @@ class PetitionAdminForm(ModelForm):
                 "If you don't have a real email account, leave 'localhost'."
             ),
             "newsletter_subscribe_mail_smtp_port": gettext_lazy(
-                "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS if the email server supports it."
+                "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS"
+                "if the email server supports it."
             ),
             "newsletter_subscribe_mail_smtp_user": gettext_lazy(
                 "Leave empty if you don't use any account autentication."
@@ -165,10 +198,12 @@ class PetitionAdminForm(ModelForm):
                 "Leave empty if you don't use any account autentication."
             ),
             "newsletter_subscribe_mail_smtp_tls": gettext_lazy(
-                "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if possible. Don't check both. The 2 settings are mutually exclusive."
+                "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if"
+                "possible. Don't check both. The 2 settings are mutually exclusive."
             ),
             "newsletter_subscribe_mail_smtp_starttls": gettext_lazy(
-                "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage. Ne pas cocher les 2. Les 2 réglages sont mutuellement exclusifs."
+                "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage."
+                "Ne pas cocher les 2. Les 2 réglages sont mutuellement exclusifs."
             ),
         }
         labels = {
@@ -198,10 +233,12 @@ class PetitionAdminForm(ModelForm):
                 "Is the petition associated with a newsletter?"
             ),
             "newsletter_subscribe_http_data": gettext_lazy(
-                "Data structure to be sent in order to subscribe someone to the newsletter in case of HTTP method"
+                "Data structure to be sent in order to subscribe someone to the"
+                "newsletter in case of HTTP method"
             ),
             "newsletter_subscribe_http_mailfield": gettext_lazy(
-                "Name of the field which should contain the email value in the PHP data structure"
+                "Name of the field which should contain the email value in the PHP"
+                "data structure"
             ),
             "newsletter_subscribe_http_url": gettext_lazy(
                 "HTTP URL for newsletter subscription"
@@ -312,17 +349,17 @@ class PetitionAdmin(admin.ModelAdmin):
     )
 
     @admin.display(description=gettext_lazy("Unconfirmed signatures"))
-    def non_confirmed_signature_number(self, petition: Any) -> int:
-        return petition.get_signature_number(confirmed=False)
+    def non_confirmed_signature_number(self, petition: Petition) -> int:
+        return int(petition.get_signature_number(confirmed=False))
 
     @admin.display(description=gettext_lazy("Confirmed signatures"))
     def confirmed_signature_number(self, petition: Any) -> int:
-        return petition.get_signature_number(confirmed=True)
+        return int(petition.get_signature_number(confirmed=True))
 
 
 class PetitionTemplateForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(PetitionTemplateForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
         self.fields["user"].required = False
         self.fields["org"].required = False
 
@@ -331,23 +368,35 @@ class PetitionTemplateForm(ModelForm):
         fields = ["linear_gradient_direction", "side_text"]
         help_texts = {
             "linear_gradient_direction": gettext_lazy(
-                "This is a gradient color. If selected, the background color will be a gradient color. If not, the background color will be a monochrome background color."
+                "This is a gradient color. If selected, the background color will be a"
+                "gradient color. If not, the background color will be a monochrome"
+                "background color."
             ),
             "gradient_to": gettext_lazy("Only used if gradient is selected"),
             "gradient_from": gettext_lazy("Only used if gradient is selected"),
             "footer_links": gettext_lazy(
-                "Put a bullet point list of links, it will appear horizontally in the page footer"
+                "Put a bullet point list of links, it will appear horizontally in the"
+                "page footer"
             ),
             "twitter_description": gettext_lazy(
-                "This is the description of the petition, it will be displayed in Twitter/Facebook cards when the link is posted to social networks. To be tested via https://cards-dev.twitter.com/validator and https://developers.facebook.com/tools/debug/"
+                "This is the description of the petition, it will be displayed in"
+                "Twitter/Facebook cards when the link is posted to social networks."
+                "To be tested via https://cards-dev.twitter.com/validator and"
+                "https://developers.facebook.com/tools/debug/"
             ),
             "twitter_image": gettext_lazy(
-                "Picture displayed in Twitter/Facebook cards when the link is posted to social networks. To be tested via https://cards-dev.twitter.com/validator and https://developers.facebook.com/tools/debug/"
+                "Picture displayed in Twitter/Facebook cards when the link is posted to"
+                "social networks. To be tested via"
+                "https://cards-dev.twitter.com/validator and"
+                "https://developers.facebook.com/tools/debug/"
             ),
             "has_newsletter": gettext_lazy(
-                "Allow to chose whether the newsletter subscription checkbox is shown or not"
+                "Allow to chose whether the newsletter subscription checkbox is shown"
+                "or not"
             ),
-            "newsletter_subscribe_http_data": gettext_lazy("""Only in case subscription to the newsletter via HTTP POST or GET methods. Put here data to be sent, using Python dictionary syntax. e.g.: <br>
+            "newsletter_subscribe_http_data": gettext_lazy("""Only in case subscription"
+            "to the newsletter via HTTP POST or GET methods. Put here data to be sent,"
+            "using Python dictionary syntax. e.g.: <br>
                     {\'_wpcf7\': 21,<br>
                     \'_wpcf7_version\': \'4.9\',<br>
                     \'_wpcf7_locale\': \'fr_FR\',<br>
@@ -356,34 +405,54 @@ class PetitionTemplateForm(ModelForm):
                     \'your-email\': \'\'<br>
                     }"""),
             "newsletter_subscribe_http_mailfield": gettext_lazy(
-                "Only when HTTP POST or GET subscription method is used. Name of the field to send via GET or POST, containing the email address to subscribe. Following the example of preceding form field, that would be 'your-email'"
+                "Only when HTTP POST or GET subscription method is used. Name of the"
+                "field to send via GET or POST, containing the email address to"
+                "subscribe. Following the example of preceding form field, that would"
+                "be 'your-email'"
             ),
             "newsletter_subscribe_http_url": gettext_lazy(
-                "Only when HTTP POST or GET subscription method is used. Adresse HTTP à requêter via GET ou POST pour enregistrer quelqu'un sur la newsletter"
+                "Only when HTTP POST or GET subscription method is used."
+                "Adresse HTTP à requêter via GET ou POST pour enregistrer quelqu'un"
+                "sur la newsletter"
             ),
             "newsletter_subscribe_mail_subject": gettext_lazy(
-                "Only when EMAIL subscription method is used. Inscrire ici la syntaxe de sujet du mail qui permet d'inscrire quelqu'un à la newsletter. Indiquez {} à la place où le mail du signataire doit être inséré. Ex: 'ADD NOM_LISTE {} NOM_SIGNATAIRE'"
+                "Only when EMAIL subscription method is used. Inscrire ici la syntaxe"
+                "de sujet du mail qui permet d'inscrire quelqu'un à la newsletter."
+                "Indiquez {} à la place où le mail du signataire doit être inséré."
+                "Ex: 'ADD NOM_LISTE {} NOM_SIGNATAIRE'"
             ),
             "newsletter_subscribe_mail_from": gettext_lazy(
-                "Only when EMAIL subscription method is used. L'expéditeur du mail qui permet d'enregistrer quelqu'un à la newsletter. Il s'agit généralement d'une adresse qui est administratrice de la liste SYMPA ou MAILMAN"
+                "Only when EMAIL subscription method is used. L'expéditeur du mail qui"
+                "permet d'enregistrer quelqu'un à la newsletter. Il s'agit généralement"
+                "d'une adresse qui est administratrice de la liste SYMPA ou MAILMAN"
             ),
             "newsletter_subscribe_mail_to": gettext_lazy(
-                "Only when EMAIL subscription method is used. Adresse email d'administration de la liste, ex : sympa@NOM_LISTE.listes.vox.coop"
+                "Only when EMAIL subscription method is used. Adresse email"
+                "d'administration de la liste, ex : sympa@NOM_LISTE.listes.vox.coop"
             ),
             "newsletter_subscribe_method": gettext_lazy(
-                "This selects the newsletter subscription method. It is either HTTP GET or POST or via sending EMAIL to the newsletter admin address"
+                "This selects the newsletter subscription method. It is either HTTP GET"
+                "or POST or via sending EMAIL to the newsletter admin address"
             ),
             "published": gettext_lazy(
-                "If checked, the petition is published and accessible on the website by everybody. If not checked, the petition is only accessible by logged in users, others will get a 404 error."
+                "If checked, the petition is published and accessible on the website by"
+                "everybody. If not checked, the petition is only accessible by logged"
+                "in users, others will get a 404 error."
             ),
             "newsletter_text": gettext_lazy(
-                "E.g.: I want to receive updates or informations from this organization."
+                "E.g.: I want to receive updates or informations from thisorganization."
             ),
             "sign_form_footer": gettext_lazy(
-                "E.g.: Your data will stay strictly confidential and will not be sold, given away or exchanged with third parties. Informations about this campaign as well as other news about this organization will be sent to you if you checked the checkbox. You can unsubscribe at any moment."
+                "E.g.: Your data will stay strictly confidential and will not be sold,"
+                "given away or exchanged with third parties. Informations about this"
+                "campaign as well as other news about this organization will be sent to"
+                "you if you checked the checkbox. You can unsubscribe at any moment."
             ),
             "org_twitter_handle": gettext_lazy(
-                "The twitter account handle of the organization, starting with the '@' symbol. E.g.: @RAP_Asso. This is necessary in order to attribute the 'Twitter Card' to the correct account. See https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary"
+                "The twitter account handle of the organization, starting with the '@'"
+                "symbol. E.g.: @RAP_Asso. This is necessary in order to attribute the"
+                "'Twitter Card' to the correct account. See"
+                "https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary"
             ),
             "use_custom_email_settings": gettext_lazy(
                 "Check if you want to use your own E-Mail SMTP account."
@@ -393,7 +462,8 @@ class PetitionTemplateForm(ModelForm):
                 "If you don't have a real email account, leave 'localhost'."
             ),
             "newsletter_subscribe_mail_smtp_port": gettext_lazy(
-                "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS if the email server supports it."
+                "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS"
+                "if the email server supports it."
             ),
             "newsletter_subscribe_mail_smtp_user": gettext_lazy(
                 "Leave empty if you don't use any account autentication."
@@ -402,10 +472,12 @@ class PetitionTemplateForm(ModelForm):
                 "Leave empty if you don't use any account autentication."
             ),
             "newsletter_subscribe_mail_smtp_tls": gettext_lazy(
-                "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if possible. Don't check both. The 2 settings are mutually exclusive."
+                "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if"
+                "possible. Don't check both. The 2 settings are mutually exclusive."
             ),
             "newsletter_subscribe_mail_smtp_starttls": gettext_lazy(
-                "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage. Ne pas cocher les 2. Les 2 réglages sont mutuellement exclusifs."
+                "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage."
+                "Ne pas cocher les 2. Les 2 réglages sont mutuellement exclusifs."
             ),
         }
         labels = {
@@ -429,10 +501,12 @@ class PetitionTemplateForm(ModelForm):
                 "Is the petition associated with a newsletter?"
             ),
             "newsletter_subscribe_http_data": gettext_lazy(
-                "Data structure to be sent in order to subscribe someone to the newsletter in case of HTTP method"
+                "Data structure to be sent in order to subscribe someone to the"
+                "newsletter in case of HTTP method"
             ),
             "newsletter_subscribe_http_mailfield": gettext_lazy(
-                "Name of the field which should contain the email value in the PHP data structure"
+                "Name of the field which should contain the email value in the PHP data"
+                "structure"
             ),
             "newsletter_subscribe_http_url": gettext_lazy(
                 "HTTP URL for newsletter subscription"
