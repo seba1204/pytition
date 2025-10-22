@@ -1,13 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import Petition, Signature
-
-from .utils import add_default_data
 
 
 class CreateSignatureViewTest(TestCase):
-    """Test create_signature view"""
+    """Test create_signature view."""
 
     @classmethod
     def setUpTestData(cls) -> None:

@@ -1,13 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import Petition, PytitionUser, Signature
-
-from .utils import add_default_data
 
 
 class GoSendConfirmationEmailViewTest(TestCase):
-    """Test go_send_confirmation_email view"""
+    """Test go_send_confirmation_email view."""
 
     @classmethod
     def setUpTestData(cls) -> None:

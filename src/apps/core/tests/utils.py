@@ -4,9 +4,7 @@ from apps.petition.models import Organization, Permission, Petition, PytitionUse
 
 
 def add_default_data() -> None:
-    """
-    Add default data for test purpose
-    """
+    """Add default data for test purpose."""
     users = ["julia", "john", "max", "sarah"]
     orgs = ["RAP", "Greenpeace", "Attac", "Les Amis de la Terre", "Alternatiba"]
     user_published_petitions = {"john": 0, "sarah": 0, "julia": 5, "max": 10}
@@ -41,18 +39,18 @@ def add_default_data() -> None:
     for org in orgs:
         o = Organization.objects.create(name=org)
         for i in range(org_published_petitions[org]):
-            Petition.objects.create(published=True, title="Petition A%i" % i, org=o)
+            Petition.objects.create(published=True, title=f"Petition A{i}", org=o)
         for i in range(org_unpublished_petitions[org]):
-            Petition.objects.create(published=False, title="Petition B%i" % i, org=o)
+            Petition.objects.create(published=False, title=f"Petition B{i}", org=o)
     for user in users:
         u = User.objects.create_user(user, password=user)
         u.first_name = user
         u.save()
         pu = PytitionUser.objects.get(user__username=user)
         for i in range(user_published_petitions[user]):
-            Petition.objects.create(published=True, title="Petition C%i" % i, user=pu)
+            Petition.objects.create(published=True, title=f"Petition C{i}", user=pu)
         for i in range(user_unpublished_petitions[user]):
-            Petition.objects.create(published=False, title="Petition D%i" % i, user=pu)
+            Petition.objects.create(published=False, title=f"Petition D{i}", user=pu)
     for orgname, usernames in org_members.items():
         org_obj = Organization.objects.get(name=orgname)
         for username in usernames:

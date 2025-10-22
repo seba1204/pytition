@@ -1,11 +1,11 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from .utils import add_default_data
+from apps.core.tests.utils import add_default_data
 
 
 class UserProfileViewTest(TestCase):
-    """Test user_profile view"""
+    """Test user_profile view."""
 
     @classmethod
     def setUpTestData(cls) -> None:

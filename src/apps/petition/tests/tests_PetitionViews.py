@@ -1,13 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import Organization, Petition, PytitionUser
-
-from .utils import add_default_data
 
 
 class PetitionViewTest(TestCase):
-    """Test index view"""
+    """Test index view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -26,7 +25,7 @@ class PetitionViewTest(TestCase):
         self.client.logout()
 
     def test_petition_detail(self) -> None:
-        """every body should see the petition, even when not logged in"""
+        """Every body should see the petition, even when not logged in."""
 
         petition = Petition.objects.filter(user__user__username="julia").first()
 
@@ -47,7 +46,7 @@ class PetitionViewTest(TestCase):
         )
 
     def test_petition_success_msg(self) -> None:
-        """Test that the success modal is there when signing and confirming"""
+        """Test that the success modal is there when signing and confirming."""
         petition = Petition.objects.filter(published=True).first()
         self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:

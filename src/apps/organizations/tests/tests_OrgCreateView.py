@@ -2,9 +2,8 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils.text import slugify
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import Organization, Permission, PytitionUser
-
-from .utils import add_default_data
 
 
 class OrgCreateViewTest(TestCase):

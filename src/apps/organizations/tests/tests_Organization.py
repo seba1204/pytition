@@ -2,6 +2,7 @@ import django
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import (
     Organization,
     Permission,
@@ -9,8 +10,6 @@ from apps.petition.models import (
     PetitionTemplate,
     PytitionUser,
 )
-
-from .utils import add_default_data
 
 
 class OrganizationTest(TestCase):

@@ -2,14 +2,13 @@ from django.contrib.messages import constants
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import (
     Organization,
     Permission,
     PytitionUser,
     Signature,
 )
-
-from .utils import add_default_data
 
 
 class PetitionViewTest(TestCase):

@@ -4,13 +4,12 @@ from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import Organization, Permission, Petition, PytitionUser
-
-from .utils import add_default_data
 
 
 class EditPetitionViewTest(TestCase):
-    """Test index view"""
+    """Test index view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -35,7 +34,7 @@ class EditPetitionViewTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_edit_200(self) -> None:
-        """edit your own petition while being logged-in"""
+        """Edit your own petition while being logged-in."""
         self.login("julia")
         petition = self.pu.petition_set.first()
         self.assertIsNotNone(petition)
@@ -47,7 +46,7 @@ class EditPetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "petition/edit_petition.html")
 
     def test_edit_loggedout(self) -> None:
-        """edit your own petition while being logged out"""
+        """Edit your own petition while being logged out."""
         self.login("julia")
         petition = self.pu.petition_set.first()
         self.assertIsNotNone(petition)
@@ -63,7 +62,7 @@ class EditPetitionViewTest(TestCase):
         )
 
     def test_edit_notYourOwnPetition(self) -> None:
-        """editing somebody else's petition"""
+        """Editing somebody else's petition."""
         self.login("julia")
         max = PytitionUser.objects.get(user__username="max")
         petition = max.petition_set.first()
@@ -77,7 +76,8 @@ class EditPetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
     def test_edit_notInOrg(self) -> None:
-        """editing a petition owned by an Organization the logged-in user is *NOT* part of"""
+        """Editing a petition owned by an Organization the logged-in user is *NOT* part
+        of."""
         self.login("sarah")
         attac = Organization.objects.get(name="Les Amis de la Terre")
         petition = attac.petition_set.first()
@@ -91,10 +91,8 @@ class EditPetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
     def test_edit_InOrgButNoEditPermission(self) -> None:
-        """
-        editing a petition owned by an Organization the logged-in user is part of
-        but without the can_modify_petitions permission
-        """
+        """Editing a petition owned by an Organization the logged-in user is part of but
+        without the can_modify_petitions permission."""
         max = self.login("max")
         at = Organization.objects.get(name="Les Amis de la Terre")
         perm = Permission.objects.get(organization=at, user=max)
@@ -110,10 +108,8 @@ class EditPetitionViewTest(TestCase):
         self.assertRedirects(response, reverse("user_dashboard"))
 
     def test_edit_InOrgWithEditPerm(self) -> None:
-        """
-        editing a petition owned by an Organization the logged-in user is part of
-        *AND* with the can_modify_petitions permission
-        """
+        """Editing a petition owned by an Organization the logged-in user is part of
+        *AND* with the can_modify_petitions permission."""
         self.login("julia")
         at = Organization.objects.get(name="Les Amis de la Terre")
         petition = at.petition_set.first()

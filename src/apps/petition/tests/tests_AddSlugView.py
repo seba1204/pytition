@@ -2,13 +2,12 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils.text import slugify
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import PytitionUser
-
-from .utils import add_default_data
 
 
 class AddSlugViewTest(TestCase):
-    """Test Slug creation view"""
+    """Test Slug creation view."""
 
     @classmethod
     def setUpTestData(cls) -> None:

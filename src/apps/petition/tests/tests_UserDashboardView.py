@@ -1,13 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.core.tests.utils import add_default_data
 from apps.petition.models import PytitionUser
-
-from .utils import add_default_data
 
 
 class UserDashboardViewTest(TestCase):
-    """Test index view"""
+    """Test index view."""
 
     @classmethod
     def setUpTestData(cls) -> None:

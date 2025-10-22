@@ -1,7 +1,8 @@
 """
 All core Django settings with sane, minimal defaults.
-Developers are expected to tweak these in code if needed.
-Anything can still be overridden via .env / ENV.
+
+Developers are expected to tweak these in code if needed. Anything can still be
+overridden via .env / ENV.
 """
 
 from __future__ import annotations
@@ -35,6 +36,7 @@ ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "[::1]"]
 INSTALLED_APPS = [
     # Pytition apps
     "apps.core",
+    "apps.organizations",
     "apps.petition",
     # Django core
     "django.contrib.admin",
