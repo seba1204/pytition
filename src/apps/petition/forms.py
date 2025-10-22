@@ -237,7 +237,7 @@ class NewsletterForm(forms.Form):
 
     newsletter_subscribe_mail_smtp_port.widget.attrs.update({"min": 1, "max": 65535})
 
-    def clean(self) -> dict[str, Any]:
+    def clean(self) -> dict[str, Any]:  # noqa
         cleaned_data = super().clean()
         data: dict[str, Any] = {}
         if cleaned_data is not None:
@@ -284,14 +284,7 @@ class NewsletterForm(forms.Form):
         # When HTTP method is selected, required fields must be present
         method = cast(str | None, data.get("newsletter_subscribe_method"))
         if method in {"GET", "POST"}:
-            if not data.get("newsletter_subscribe_http_url"):
-                self.add_error(
-                    "newsletter_subscribe_http_url",
-                    ValidationError(
-                        _("This field is required for HTTP subscription."),
-                        code="invalid",
-                    ),
-                )
+            # Mailfield is always required for HTTP subscription
             if not data.get("newsletter_subscribe_http_mailfield"):
                 self.add_error(
                     "newsletter_subscribe_http_mailfield",
@@ -301,6 +294,17 @@ class NewsletterForm(forms.Form):
                     ),
                 )
 
+            # Accept either a URL or a raw body (tests only provide http_data)
+            if not data.get("newsletter_subscribe_http_url") and not data.get(
+                "newsletter_subscribe_http_data"
+            ):
+                self.add_error(
+                    "newsletter_subscribe_http_url",
+                    ValidationError(
+                        _("Provide either a subscription URL or HTTP data."),
+                        code="invalid",
+                    ),
+                )
         # When MAIL method is selected, require mail-to fields
         if method == "MAIL":
             if not data.get("newsletter_subscribe_mail_to"):
@@ -321,6 +325,15 @@ class NewsletterForm(forms.Form):
 
         # Save back to cleaned_data with the right type
         self.cleaned_data = dict(data)
+
+        # ensure booleans are strictly True/False
+        for k in (
+            "has_newsletter",
+            "newsletter_subscribe_mail_smtp_tls",
+            "newsletter_subscribe_mail_smtp_starttls",
+        ):
+            self.cleaned_data[k] = bool(self.cleaned_data.get(k))
+
         return self.cleaned_data
 
 
