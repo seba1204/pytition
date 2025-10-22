@@ -2,6 +2,9 @@ from django.conf import settings
 from django.urls import include, path, reverse_lazy
 from django.views.generic import RedirectView
 
+from apps.organizations import views as org_views
+from apps.petitions import views as petitions_views
+
 from . import views
 from .forms import PytitionUserCreationForm
 from .views import PetitionCreationWizard, PytitionUserCreateView
@@ -69,48 +72,58 @@ urlpatterns = [
         views.transfer_petition,
         name="transfer_petition",
     ),
-    # Organisation
-    path("org/create", views.org_create, name="org_create"),
-    path("org/<slug:orgslugname>", views.org_profile, name="org_profile"),
-    path("org/<slug:orgslugname>/dashboard", views.org_dashboard, name="org_dashboard"),
-    path("org/<slug:orgslugname>/leave_org", views.leave_org, name="leave_org"),
-    path("org/<slug:orgslugname>/add_user", views.org_add_user, name="org_add_user"),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Organization
+    # ──────────────────────────────────────────────────────────────────────────────────
+    path("org/create", org_views.org_create, name="org_create"),
+    path("org/<slug:orgslugname>", org_views.org_profile, name="org_profile"),
+    path(
+        "org/<slug:orgslugname>/dashboard",
+        org_views.org_dashboard,
+        name="org_dashboard",
+    ),
+    path("org/<slug:orgslugname>/leave_org", org_views.leave_org, name="leave_org"),
+    path(
+        "org/<slug:orgslugname>/add_user", org_views.org_add_user, name="org_add_user"
+    ),
     path(
         "org/<slug:orgslugname>/new_template",
-        views.new_template,
+        petitions_views.new_template,
         name="org_new_template",
     ),
     path(
         "org/<slug:orgslugname>/delete_member",
-        views.org_delete_member,
+        org_views.org_delete_member,
         name="org_delete_member",
     ),
     path(
         "org/<slug:orgslugname>/invite_accept",
-        views.invite_accept,
+        org_views.invite_accept,
         name="invite_accept",
     ),
     path(
         "org/<slug:orgslugname>/invite_dismiss",
-        views.invite_dismiss,
+        org_views.invite_dismiss,
         name="invite_dismiss",
     ),
     path(
         "org/<slug:orgslugname>/edit_user_permissions/<user_name>",
-        views.org_edit_user_perms,
+        org_views.org_edit_user_perms,
         name="org_edit_user_perms",
     ),
     path(
         "org/<slug:orgslugname>/set_user_permissions/<user_name>",
-        views.org_set_user_perms,
+        org_views.org_set_user_perms,
         name="org_set_user_perms",
     ),
     path(
         "org/<slug:orgslugname>/<slug:petitionname>",
-        views.slug_show_petition,
+        petitions_views.slug_show_petition,
         name="slug_show_petition",
     ),
+    # ──────────────────────────────────────────────────────────────────────────────────
     # Templates
+    # ──────────────────────────────────────────────────────────────────────────────────
     path("templates/<int:template_id>/edit", views.edit_template, name="edit_template"),
     path(
         "templates/<int:template_id>/fav",
@@ -124,11 +137,11 @@ urlpatterns = [
     ),
     # User
     path("user/dashboard", views.user_dashboard, name="user_dashboard"),
-    path("user/new_template", views.new_template, name="user_new_template"),
+    path("user/new_template", petitions_views.new_template, name="user_new_template"),
     path("user/<user_name>", views.user_profile, name="user_profile"),
     path(
         "user/<username>/<slug:petitionname>",
-        views.slug_show_petition,
+        petitions_views.slug_show_petition,
         name="slug_show_petition",
     ),
     # Actions
