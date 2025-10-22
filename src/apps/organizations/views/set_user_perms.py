@@ -51,20 +51,20 @@ def org_set_user_perms(  # noqa
                 "this organization"
             ),
         )
-        return redirect("org_dashboard", org.slugname)
+        return redirect("org:dashboard", org.slugname)
 
     if not user_perms.can_modify_permissions:
         messages.error(
             request,
             _("You are not allowed to modify this organization members' permissions"),
         )
-        return redirect("org_edit_user_perms", orgslugname, user_name)
+        return redirect("org:edit_user_perms", orgslugname, user_name)
 
     try:
         member = PytitionUser.objects.get(user__username=user_name)
     except PytitionUser.DoesNotExist:
         messages.error(request, _("User does not exist"))
-        return redirect("org_dashboard", orgslugname)
+        return redirect("org:dashboard", orgslugname)
 
     if org not in member.organization_set.all():
         messages.error(
@@ -75,7 +75,7 @@ def org_set_user_perms(  # noqa
                 )
             ),
         )
-        return redirect("org_dashboard", org.slugname)
+        return redirect("org:dashboard", org.slugname)
 
     try:
         permissions = Permission.objects.get(user=member, organization=org)
@@ -87,7 +87,7 @@ def org_set_user_perms(  # noqa
                 "this organization"
             ),
         )
-        return redirect("org_dashboard", org.slugname)
+        return redirect("org:dashboard", org.slugname)
 
     if request.method == "POST":
         error = False
@@ -144,4 +144,4 @@ def org_set_user_perms(  # noqa
             messages.success(request, _("Permissions successfully changed!"))
         permissions.save()
 
-    return redirect("org_edit_user_perms", orgslugname, user_name)
+    return redirect("org:edit_user_perms", orgslugname, user_name)

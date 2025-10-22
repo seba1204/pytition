@@ -15,7 +15,7 @@ org_members = {
 
 
 class PetitionCreateWizardViewTest(TestCase):
-    """Test PetitionCreateWizard view"""
+    """Test PetitionCreateWizard view."""
 
     @classmethod
     def setUpTestData(cls) -> None:

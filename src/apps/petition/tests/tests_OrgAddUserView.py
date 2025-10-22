@@ -7,7 +7,7 @@ from .utils import add_default_data
 
 
 class OrgAddUserViewTest(TestCase):
-    """Test org_add_user view"""
+    """Test org_add_user view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -19,9 +19,9 @@ class OrgAddUserViewTest(TestCase):
         return self.pu
 
     def test_OrgAddUserViewOk(self) -> None:
-        """Let's try to add user max to org RAP"""
+        """Let's try to add user max to org RAP."""
         julia = self.login("julia")
-        response = self.client.get(reverse("org_add_user", args=["rap"]) + "?user=max")
+        response = self.client.get(reverse("org:add_user", args=["rap"]) + "?user=max")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
         user = PytitionUser.objects.get(user__username="max")
@@ -30,24 +30,24 @@ class OrgAddUserViewTest(TestCase):
         self.assertIn(rap, invitations)
 
     def test_OrgAddUserViewKoForbidden(self) -> None:
-        """Let's try to add user max to org RAP from non-authorized users"""
+        """Let's try to add user max to org RAP from non-authorized users."""
         # John is not in RAP org
         self.login("john")
-        response = self.client.get(reverse("org_add_user", args=["rap"]) + "?user=max")
+        response = self.client.get(reverse("org:add_user", args=["rap"]) + "?user=max")
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")
         # Max is in "Les Amis de la Terre" but does not have "add member" right
         self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(
-            reverse("org_add_user", args=[org.slugname]) + "?user=john"
+            reverse("org:add_user", args=[org.slugname]) + "?user=john"
         )
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")
         # Try to add someone already in the Org
         self.login("julia")
         response = self.client.get(
-            reverse("org_add_user", args=[org.slugname]) + "?user=max"
+            reverse("org:add_user", args=[org.slugname]) + "?user=max"
         )
-        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.status_code, 409)
         self.assertEqual(response["Content-Type"], "application/json")

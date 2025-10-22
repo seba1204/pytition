@@ -13,7 +13,7 @@ from .utils import add_default_data
 
 
 class PetitionViewTest(TestCase):
-    """Test index view"""
+    """Test index view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -227,7 +227,7 @@ class PetitionViewTest(TestCase):
         response = self.client.post(
             reverse("show_signatures", args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("org_dashboard", args=[org.slugname]))
+        self.assertRedirects(response, reverse("org:dashboard", args=[org.slugname]))
         self.assertTemplateUsed(response, "petition/org_dashboard.html")
         s = Signature.objects.get(pk=sid)
         self.assertEqual(

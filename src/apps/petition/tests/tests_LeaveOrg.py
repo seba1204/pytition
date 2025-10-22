@@ -7,7 +7,7 @@ from .utils import add_default_data
 
 
 class LeaveOrgViewTest(TestCase):
-    """Test LeaveOrg view"""
+    """Test LeaveOrg view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -29,11 +29,11 @@ class LeaveOrgViewTest(TestCase):
         self.logout()
         org = Organization.objects.get(name="RAP")
         response = self.client.get(
-            reverse("leave_org", args=[org.slugname]), follow=True
+            reverse("org:leave", args=[org.slugname]), follow=True
         )
         self.assertRedirects(
             response,
-            reverse("login") + "?next=" + reverse("leave_org", args=[org.slugname]),
+            reverse("login") + "?next=" + reverse("org:leave", args=[org.slugname]),
         )
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -41,7 +41,7 @@ class LeaveOrgViewTest(TestCase):
     def test_leave_org_ok(self) -> None:
         max = self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
-        response = self.client.get(reverse("leave_org", args=[org.slugname]))
+        response = self.client.get(reverse("org:leave", args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("account_settings"))
         self.assertNotIn(org, max.organization_set.all())
@@ -49,7 +49,7 @@ class LeaveOrgViewTest(TestCase):
     def test_leave_refuse_alone(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
-        response = self.client.get(reverse("leave_org", args=[org.slugname]))
+        response = self.client.get(reverse("org:leave", args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("account_settings") + "#a_org_form")
         self.assertIn(org, julia.organization_set.all())
@@ -57,7 +57,7 @@ class LeaveOrgViewTest(TestCase):
     def test_leave_refuse_lastAdmin(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
-        response = self.client.get(reverse("leave_org", args=[org.slugname]))
+        response = self.client.get(reverse("org:leave", args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("account_settings") + "#a_org_form")
         self.assertIn(org, julia.organization_set.all())

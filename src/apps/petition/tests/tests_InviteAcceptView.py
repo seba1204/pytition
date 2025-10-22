@@ -7,7 +7,7 @@ from .utils import add_default_data
 
 
 class InviteAcceptViewTest(TestCase):
-    """Test invite_accept view"""
+    """Test invite_accept view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -27,13 +27,13 @@ class InviteAcceptViewTest(TestCase):
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         julia_perms.can_add_members = True
         julia_perms.save()
-        response = self.client.get(reverse("org_add_user", args=["rap"]) + "?user=max")
+        response = self.client.get(reverse("org:add_user", args=["rap"]) + "?user=max")
         self.assertEqual(response.status_code, 200)
         self.logout()
         max = self.login("max")
         # max accepts julia's invitation
         response = self.client.get(
-            reverse("invite_accept", kwargs={"orgslugname": "rap"}), follow=True
+            reverse("org:invite_accept", kwargs={"orgslugname": "rap"}), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
         rap = Organization.objects.get(slugname="rap")

@@ -28,7 +28,7 @@ org_unpublished_petitions = {
 
 
 class IndexViewTest(TestCase):
-    """Test index view"""
+    """Test index view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -73,7 +73,7 @@ class IndexViewTest(TestCase):
                 with self.subTest(org=org):
                     response = self.client.get("/", follow=True)
                     self.assertRedirects(
-                        response, reverse("org_profile", args=[orgslugname])
+                        response, reverse("org:profile", args=[orgslugname])
                     )
                     self.assertEqual(
                         len(response.context["petitions"]), org_published_petitions[org]

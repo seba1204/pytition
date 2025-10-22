@@ -37,7 +37,7 @@ from django.utils.html import format_html
 from django.utils.timezone import now
 from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
-from formtools.wizard.views import SessionWizardView  # type: ignorke
+from formtools.wizard.views import SessionWizardView  # type: ignore
 
 from .forms import (
     ContentFormPetition,
@@ -94,7 +94,7 @@ def index(request: HttpRequest) -> DjangoHttpResponse:
 
     if index_page == "ORGA_PROFILE":
         org = Organization.objects.get(name=org_name)
-        return redirect("org_profile", org.slugname)
+        return redirect("org:profile", org.slugname)
     elif index_page == "USER_PROFILE":
         return redirect("user_profile", user_name)
     elif settings.INDEX_PAGE == "LOGIN_REGISTER":
@@ -853,7 +853,7 @@ class PetitionCreationWizard(SessionWizardView):
                     organization=org, user=pytitionuser
                 )
             except Permission.DoesNotExist:
-                return redirect("org_dashboard", orgslugname)
+                return redirect("org:dashboard", orgslugname)
 
             if pytitionuser in org.members.all() and permissions.can_create_petitions:
                 # FIXME I think new here is better than create
@@ -870,13 +870,13 @@ class PetitionCreationWizard(SessionWizardView):
                             self.request,
                             _("This template does not belong to your organization"),
                         )
-                        return redirect("org_dashboard", orgslugname)
+                        return redirect("org:dashboard", orgslugname)
                 if publish:
                     petition.publish()
                 if _redirect and _redirect == "1":
                     return redirect("edit_petition", petition.id)
                 else:
-                    return redirect("org_dashboard", orgslugname)
+                    return redirect("org:dashboard", orgslugname)
             else:
                 messages.error(
                     self.request,
@@ -884,7 +884,7 @@ class PetitionCreationWizard(SessionWizardView):
                         "You don't have the permission to create a new petition in this Organization"
                     ),
                 )
-                return redirect("org_dashboard", orgslugname)
+                return redirect("org:dashboard", orgslugname)
         else:
             petition = Petition.objects.create(
                 title=title, text=message, user=pytitionuser
@@ -1353,7 +1353,7 @@ def show_signatures(request: HttpRequest, petition_id: int) -> HttpResponse:
                 request,
                 _("You are not allowed to view signatures in this organization"),
             )
-            return redirect("org_dashboard", org.slugname)
+            return redirect("org:dashboard", org.slugname)
 
         ctx.update(
             {"org": org, "other_orgs": other_orgs, "user_permissions": permissions}
@@ -1577,7 +1577,7 @@ def del_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
     else:
         messages.error(request, _("You don't have the permission to modify petitions"))
         if petition.owner_type == "org":
-            return redirect("org_dashboard", petition.owner.slugname)
+            return redirect("org:dashboard", petition.owner.slugname)
         else:
             return redirect("user_dashboard")
     return redirect(
@@ -1626,7 +1626,7 @@ def transfer_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
                     "Organization '{}'".format(petition.owner)
                 ),
             )
-            return redirect("org_dashboard", petition.owner.slugname)
+            return redirect("org:dashboard", petition.owner.slugname)
         ctx["base_template"] = "petition/org_base.html"
         ctx["org"] = petition.owner
     elif petition.owner_type == "user":

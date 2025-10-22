@@ -55,7 +55,7 @@ def new_template(request: HttpRequest, orgslugname: str | None = None) -> HttpRe
     ctx: _NewTemplateContext = {"user": pytitionuser}
 
     if orgslugname:
-        redirection = "org_new_template"
+        redirection = "org:new_template"
         try:
             org = Organization.objects.get(slugname=orgslugname)
             ctx["org"] = org

@@ -15,7 +15,7 @@ from .utils import add_default_data
 
 
 class PetitionViewTest(TestCase):
-    """Test index view"""
+    """Test index view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -37,11 +37,11 @@ class PetitionViewTest(TestCase):
         # GET request just shows the page
         # Not logged
         org = Organization.objects.get(name="RAP")
-        response = self.client.get(reverse("org_new_template", args=[org.slugname]))
+        response = self.client.get(reverse("org:new_template", args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
         # Logged
         self.login("julia")
-        response = self.client.get(reverse("org_new_template", args=[org.slugname]))
+        response = self.client.get(reverse("org:new_template", args=[org.slugname]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/new_template.html")
 
@@ -51,7 +51,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(org.petitiontemplate_set.count(), 0)
         data = {"template_name": "This is a default template"}
         response = self.client.post(
-            reverse("org_new_template", args=[org.slugname]), data
+            reverse("org:new_template", args=[org.slugname]), data
         )
         self.assertEqual(org.petitiontemplate_set.count(), 1)
         self.assertEqual(response.status_code, 302)
@@ -311,11 +311,11 @@ class PetitionViewTest(TestCase):
                 with (
                     Path(petition_path).open("rb") as img,
                     Path(petition2_path).open("rb") as img2,
-                    logo.open("rb") as logofp,
+                    logo.open("rb") as logo_fp,
                 ):
-                    logocontent = logofp.read()
-                    self.assertEqual(img.read(), logocontent)
-                    self.assertEqual(img2.read(), logocontent)
+                    logo_content = logo_fp.read()
+                    self.assertEqual(img.read(), logo_content)
+                    self.assertEqual(img2.read(), logo_content)
                 continue
             self.assertEqual(getattr(pt2, key), value)
             self.assertEqual(getattr(pt, key), value)

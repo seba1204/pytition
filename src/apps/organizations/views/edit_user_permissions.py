@@ -34,10 +34,12 @@ def org_edit_user_perms(
         The slugname of the organization.
     user_name : str
         The username of the member whose permissions are to be edited.
+
     Returns
     -------
     HttpResponse
         A webpage to edit user permissions.
+
     Raises
     ------
     Http404
@@ -52,7 +54,7 @@ def org_edit_user_perms(
         messages.error(
             request, _("User '{name}' does not exist".format(name=user_name))
         )
-        return redirect("org_dashboard", orgslugname)
+        return redirect("org:dashboard", orgslugname)
 
     try:
         org = Organization.objects.get(slugname=orgslugname)
@@ -71,7 +73,7 @@ def org_edit_user_perms(
                 )
             ),
         )
-        return redirect("org_dashboard", org.slugname)
+        return redirect("org:dashboard", org.slugname)
 
     try:
         permissions = Permission.objects.get(organization=org, user=member)
@@ -83,7 +85,7 @@ def org_edit_user_perms(
                 "to this organization."
             ),
         )
-        return redirect("org_dashboard", org.slugname)
+        return redirect("org:dashboard", org.slugname)
 
     try:
         user_permissions = Permission.objects.get(organization=org, user=pytitionuser)

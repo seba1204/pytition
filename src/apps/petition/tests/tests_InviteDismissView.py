@@ -7,7 +7,7 @@ from .utils import add_default_data
 
 
 class InviteDismissViewTest(TestCase):
-    """Test invite_dismiss view"""
+    """Test invite_dismiss view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -27,13 +27,13 @@ class InviteDismissViewTest(TestCase):
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         julia_perms.can_add_members = True
         julia_perms.save()
-        response = self.client.get(reverse("org_add_user", args=["rap"]) + "?user=max")
+        response = self.client.get(reverse("org:add_user", args=["rap"]) + "?user=max")
         self.assertEqual(response.status_code, 200)
         self.logout()
         max = self.login("max")
         # max dismisses julia's invitation
         response = self.client.get(
-            reverse("invite_dismiss", kwargs={"orgslugname": "rap"}), follow=True
+            reverse("org:invite_dismiss", kwargs={"orgslugname": "rap"}), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
         rap = Organization.objects.get(slugname="rap")

@@ -16,7 +16,7 @@
       <div class="card-body">
         {% with owner=petition.owner %}
         {% if owner.kind == 'org' %}
-        <a href="{% url 'org_profile' orgslugname=owner.slugname %}" class="text-muted">
+        <a href="{% url 'org:profile' orgslugname=owner.slugname %}" class="text-muted">
           {{ owner }}
         </a>
         {% elif owner.kind == 'user' %}{# It could be of another kind in the future. #}

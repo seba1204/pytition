@@ -7,7 +7,7 @@ from .utils import add_default_data
 
 
 class OrgEditUserPermsViewTest(TestCase):
-    """Test org_edit_user_perms view"""
+    """Test org_edit_user_perms view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -25,7 +25,7 @@ class OrgEditUserPermsViewTest(TestCase):
         julia = self.login("julia")
         response = self.client.get(
             reverse(
-                "org_edit_user_perms",
+                "org:edit_user_perms",
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             )
         )

@@ -8,7 +8,7 @@ from .utils import add_default_data
 
 
 class OrgCreateViewTest(TestCase):
-    """Test Org Creation view"""
+    """Test Org Creation view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -28,7 +28,7 @@ class OrgCreateViewTest(TestCase):
 
     def test_CreateGetFormOK(self) -> None:
         john = self.login("john")
-        response = self.client.get(reverse("org_create"))
+        response = self.client.get(reverse("org:create"))
         self.assertEqual(response.status_code, 200)
 
     def test_CreateOK(self) -> None:
@@ -38,7 +38,7 @@ class OrgCreateViewTest(TestCase):
         data = {
             "name": newname,
         }
-        response = self.client.post(reverse("org_create"), data, follow=True)
+        response = self.client.post(reverse("org:create"), data, follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
         user = response.context["user"]
         orgs = user.organization_set.all()
@@ -60,7 +60,7 @@ class OrgCreateViewTest(TestCase):
             "name": newname,
         }
         # first creation
-        response = self.client.post(reverse("org_create"), data, follow=True)
+        response = self.client.post(reverse("org:create"), data, follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
         user = response.context["user"]
         orgs = user.organization_set.all()
@@ -71,7 +71,7 @@ class OrgCreateViewTest(TestCase):
         self.assertEqual(org.name, newname)
 
         # second creation try
-        response = self.client.post(reverse("org_create"), data, follow=True)
+        response = self.client.post(reverse("org:create"), data, follow=True)
         self.assertEqual(response.status_code, 200)
         org_count = user.organization_set.filter(name=newname).count()
         self.assertEqual(org_count, 1)
@@ -83,7 +83,7 @@ class OrgCreateViewTest(TestCase):
         data = {
             "name": newname,
         }
-        response = self.client.post(reverse("org_create"), data)
+        response = self.client.post(reverse("org:create"), data)
         self.assertEqual(response.status_code, 200)
         user = response.context["user"]
         orgs = user.organization_set.all()
@@ -99,9 +99,9 @@ class OrgCreateViewTest(TestCase):
             "name": newname,
         }
         previous_org_num = Organization.objects.count()
-        response = self.client.post(reverse("org_create"), data, follow=True)
+        response = self.client.post(reverse("org:create"), data, follow=True)
         self.assertRedirects(
-            response, reverse("login") + "?next=" + reverse("org_create")
+            response, reverse("login") + "?next=" + reverse("org:create")
         )
         new_org_num = Organization.objects.count()
         self.assertEqual(previous_org_num, new_org_num)
@@ -111,18 +111,18 @@ class OrgCreateViewTest(TestCase):
         init_org_number = Organization.objects.count()
         self.login("john")
 
-        response = self.client.get(reverse("org_create"), follow=True)
+        response = self.client.get(reverse("org:create"), follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertContains(response, "Only super users can create an organization.")
 
         data = {"name": "New Org"}
-        response = self.client.post(reverse("org_create"), data, follow=True)
+        response = self.client.post(reverse("org:create"), data, follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertEqual(Organization.objects.count(), init_org_number)
         self.assertContains(response, "Only super users can create an organization.")
 
         self.login("admin")
-        response = self.client.post(reverse("org_create"), data, follow=True)
+        response = self.client.post(reverse("org:create"), data, follow=True)
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertEqual(Organization.objects.count(), init_org_number + 1)
         self.assertNotContains(response, "Only super users can create an organization.")
