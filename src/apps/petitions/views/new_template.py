@@ -89,7 +89,7 @@ def new_template(request: HttpRequest, orgslugname: str | None = None) -> HttpRe
                 )
             )
 
-        ctx["base_template"] = "petition/org_base.html"
+        ctx["base_template"] = "org/base.html"
     else:
         redirection = "user_new_template"
         ctx["base_template"] = "petition/user_base.html"

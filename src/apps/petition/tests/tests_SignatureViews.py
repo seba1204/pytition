@@ -228,7 +228,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse(OrgRoute.DASHBOARD, args=[org.slugname]))
-        self.assertTemplateUsed(response, "petition/org_dashboard.html")
+        self.assertTemplateUsed(response, "org/dashboard.html")
         s = Signature.objects.get(pk=sid)
         self.assertEqual(s.id, sid)
         # dummy test, we just want the previous line not to raise

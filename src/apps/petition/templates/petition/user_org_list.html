@@ -15,7 +15,7 @@
     {% for org in user.organization_set.all %}
       <li data-orgname="{{ org.name }}"
           data-orgslugname="{{ org.slugname }}"
-          data-leaveorg-url="{% url 'org:leave' org.slugname %}">
+          data-leaveorg-url="{% url "org:leave" org.slugname %}">
         <a href="{% url "org:dashboard" org.slugname %}" class="text-dark">{{ org.name }}</a>
       </li>
     {% endfor %}

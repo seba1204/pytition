@@ -102,7 +102,7 @@ def edit_user_perms(
 
     return render(
         request,
-        "petition/org_edit_user_perms.html",
+        "org/edit_user_perms.html",
         {
             "org": org,
             "member": member,

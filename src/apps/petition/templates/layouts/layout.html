@@ -1,19 +1,13 @@
-{% extends 'layouts/base.html' %}
+{% extends "layouts/base.html" %}
 {% load static %}
 {% load i18n %}
-
-
-{% block main_content %}
-{% endblock %}
-
+{% block main_content %}{% endblock %}
 {% block footer %}
-{% if footer_content %}
-<div class="footer-wrapper bg-dark">
-  <footer role="contentinfo" class="footer">
-    <div class="container">
-      {{ footer_content }}
+  {% if footer_content %}
+    <div class="footer-wrapper bg-dark">
+      <footer role="contentinfo" class="footer">
+        <div class="container">{{ footer_content }}</div>
+      </footer>
     </div>
-  </footer>
-</div>
-{% endif %}
+  {% endif %}
 {% endblock %}

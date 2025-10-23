@@ -74,7 +74,7 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     # Render the dashboard template
     return render(
         request,
-        "petition/org_dashboard.html",
+        "org/dashboard.html",
         {
             "org": org,
             "user": pytitionuser,

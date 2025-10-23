@@ -64,9 +64,7 @@ class PetitionViewTest(TestCase):
         self.assertRedirects(response, petition.url)
         self.assertContains(
             response,
-            text="""<script type="text/javascript">
-$("#show_sign_success").modal("show");
-</script>""",
+            text="""<script type="text/javascript">$("#show_sign_success").modal("show");</script>""",
         )
         self.assertContains(
             response, text='<div class="modal fade" id="show_sign_success">'
@@ -87,9 +85,7 @@ $("#show_sign_success").modal("show");
         self.assertTrue(signature.confirmed)
         self.assertContains(
             response,
-            text="""<script type="text/javascript">
-$("#show_confirm_success").modal("show");
-</script>""",
+            text="""<script type="text/javascript">$("#show_confirm_success").modal("show");</script>""",
         )
         self.assertContains(
             response, text='<div class="modal fade" id="show_confirm_success">'

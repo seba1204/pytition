@@ -61,12 +61,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     # 3rd party
     "maintenance_mode.middleware.MaintenanceModeMiddleware",
 ]
@@ -91,15 +91,15 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
-                # Custom
-                "apps.petition.helpers.footer_content_processor",
-                "apps.petition.helpers.settings_context_processor",
                 # Django built-in
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.template.context_processors.i18n",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                # Custom
+                "apps.petition.helpers.footer_content_processor",
+                "apps.petition.helpers.settings_context_processor",
                 # 3rd party
                 "maintenance_mode.context_processors.maintenance_mode",
             ],
@@ -168,6 +168,8 @@ LANGUAGES = [
     ("it", gettext_lazy("Italian")),
     ("oc", gettext_lazy("Occitan")),
 ]
+
+LOGOUT_REDIRECT_URL = "/"
 
 EXTRA_LANG_INFO = {
     "oc": {

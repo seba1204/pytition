@@ -76,7 +76,7 @@ class PetitionCreateWizardViewTest(TestCase):
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse("org_petition_wizard", args=[org.slugname]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/org_base.html")
+        self.assertTemplateUsed(response, "org/base.html")
 
     def test_call_page2_ok(self) -> None:
         self.login("julia")

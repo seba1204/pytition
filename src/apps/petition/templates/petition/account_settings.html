@@ -89,20 +89,20 @@
                                     <div class="list-group-item list-group-item-action">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mt-2 mb-2">
-                                                <a href="{% url 'org:dashboard' org.slugname %}">{{ org.name }}</a>
+                                                <a href="{% url "org:dashboard" org.slugname %}">{{ org.name }}</a>
                                             </h5>
                                             {% if org.leave %}
                                                 <button type="button"
                                                         class="btn btn-light btn-delete-org"
                                                         data-orgname="{{ org.name }}"
-                                                        data-leaveurl="{% url 'org:leave' org.slugname %}">
+                                                        data-leaveurl="{% url "org:leave" org.slugname %}">
                                                     Leave
                                                 </button>
                                             {% else %}
                                                 <span class="d-inline-block"
                                                       tabindex="0"
                                                       data-toggle="tooltip"
-                                                      title="{% trans 'You cannot leave an organization where you are either the last administrator or the last member' %}">
+                                                      title="{% trans "You cannot leave an organization where you are either the last administrator or the last member" %}">
                                                     <button type="button"
                                                             class="btn btn-light"
                                                             style="pointer-events: none"
@@ -118,7 +118,7 @@
                         {% endif %}
                         {% if not settings.RESTRICT_ORG_CREATION or perms.petition.add_organization %}
                             <div class="text-center mt-5">
-                                <a href="{% url 'org:create' %}" class="btn btn-primary">{% trans "Create an Organization" %}</a>
+                                <a href="{% url "org:create" %}" class="btn btn-primary">{% trans "Create an Organization" %}</a>
                             </div>
                         {% endif %}
                     </div>
@@ -186,40 +186,40 @@
         </div>
     </div>
 {% endblock main_content %}
-{% block extrajs %}
+{% block extra_js %}
     {{ block.super }}
     <script>
 $(function() {
     {% if not password_change_form_submitted %}
-   $('#password_change_form').find('form input').removeClass('is-valid').removeClass('is-invalid');
+   $("#password_change_form").find("form input").removeClass("is-valid").removeClass("is-invalid");
     {% endif %}
     {% if not update_info_form_submitted %}
-   $('#update_info_form').find('form input').removeClass('is-valid').removeClass('is-invalid');
+   $("#update_info_form").find("form input").removeClass("is-valid").removeClass("is-invalid");
     {% endif %}
     {% if not delete_account_form_submitted %}
-   $('#delete_account_form_submitted').find('form input').removeClass('is-valid').removeClass('is-invalid');
+   $("#delete_account_form_submitted").find("form input").removeClass("is-valid").removeClass("is-invalid");
     {% endif %}
 
     //show first tab pane where there is an :invalid field
-    var pane_id = $('input.is-invalid').closest('.tab-pane').attr('id');
-    $('.list-group a[href="#' + pane_id + '"]').tab('show');
+    var pane_id = $("input.is-invalid").closest(".tab-pane").attr("id");
+    $(".list-group a[href="#" + pane_id + ""]").tab("show");
 
-    $('.btn-delete-org').on('click', function(e) {
-        $('#orgname_modal').html($(this).data('orgname'));
-        $('#leavelink').attr('href', $(this).data('leaveurl'));
-        $('#org_leave_modal').modal('show');
+    $(".btn-delete-org").on("click", function(e) {
+        $("#orgname_modal").html($(this).data("orgname"));
+        $("#leavelink").attr("href", $(this).data("leaveurl"));
+        $("#org_leave_modal").modal("show");
         return false;
     });
 
     if(window.location.hash) {
-        if(['#a_password_change', '#a_org_form', '#a_update_info_form', '#a_delete_account'].includes(window.location.hash)) {
-            $(window.location.hash).tab('show');
+        if(["#a_password_change", "#a_org_form", "#a_update_info_form", "#a_delete_account"].includes(window.location.hash)) {
+            $(window.location.hash).tab("show");
         }
     }
 
-    $('[data-toggle="tooltip"]').tooltip()
+    $("[data-toggle="tooltip"]").tooltip()
 
 })
 
     </script>
-{% endblock extrajs %}
+{% endblock extra_js %}

@@ -68,9 +68,9 @@ def create(request: HttpRequest) -> HttpResponse:
         else:
             # Form is not valid, show it with errors in the template
             ctx.update({"form": form})
-            return render(request, "petition/org_create.html", ctx)
+            return render(request, "org/create.html", ctx)
 
     # If GET request, show an empty form
     form = OrgCreationForm()
     ctx.update({"form": form})
-    return render(request, "petition/org_create.html", ctx)
+    return render(request, "org/create.html", ctx)

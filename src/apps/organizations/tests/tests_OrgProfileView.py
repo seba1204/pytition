@@ -15,7 +15,7 @@ class OrgProfileViewTest(TestCase):
     def test_OrgProfileViewOk(self) -> None:
         response = self.client.get(reverse(OrgRoute.PROFILE, args=["rap"]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/org_profile.html")
+        self.assertTemplateUsed(response, "org/profile.html")
 
     def test_OrgProfileViewKo(self) -> None:
         response = self.client.get(reverse(OrgRoute.PROFILE, args=["not_existing_org"]))

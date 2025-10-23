@@ -1,4 +1,4 @@
-{% extends 'layouts/wizard_layout.html' %}
+{% extends "layouts/wizard_layout.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
 {% load petition_extras %}
@@ -62,14 +62,14 @@
     </form>
   </div>
 {% endblock %}
-{% block extrajs %}
+{% block extra_js %}
   {{ block.super }}
   <script type="text/javascript"
-          src="{%  vendor_static 'jquery-smart-wizard' 'js/jquery.smartWizard.min.js' %}"></script>
+          src="{%  vendor_static "jquery-smart-wizard" "js/jquery.smartWizard.min.js" %}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#smartwizard').smartWizard({
-                                    theme: 'arrows',
+      $("#smartwizard").smartWizard({
+                                    theme: "arrows",
                                     toolbarSettings: {
                                         showNextButton: false,
                                         showPreviousButton: false,
@@ -92,7 +92,7 @@
     });
 
     document.location.hash = "step-3";
-    $('html, body').scrollTop('0px');
+    $("html, body").scrollTop("0px");
 
     $(function() {
         $("form").on("submit", function(){

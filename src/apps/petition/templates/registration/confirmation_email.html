@@ -2,15 +2,13 @@
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-
-<h2>{% trans "Welcome" %} {{ firstname }}!</h2>
-
-{% blocktrans %}
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h2>{% trans "Welcome" %} {{ firstname }}!</h2>
+        {% blocktrans %}
 You successfully created your account ! Your login is {{ username }}
 {% endblocktrans %}
-</body>
+    </body>
 </html>

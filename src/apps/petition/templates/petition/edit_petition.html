@@ -1,4 +1,4 @@
-{% extends 'layouts/edit_layout.html' %}
+{% extends "layouts/edit_layout.html" %}
 {% load i18n %}
 {% load static %}
 {% load petition_extras %}
@@ -11,16 +11,16 @@
     {{ social_network_form.media }}
     {{ style_form.media }}
 {% endblock %}
-{% block extracss %}
+{% block extra_css %}
     {{ block.super }}
     <style>
     .custom-switch ~ .invalid-feedback {
         display: block;
     }
     </style>
-{% endblock extracss %}
+{% endblock extra_css %}
 {% comment %}
-# FIXME: Don't forget to make sure form is submited if something is modified and user changed tab.
+# FIXME: Don't forget to make sure form is submitted if something is modified and user changed tab.
 {% endcomment %}
 {% block main_title %}
     {% trans "Petition settings" %}
@@ -28,8 +28,8 @@
 {% block edit_content %}
     {% if not is_template %}
         <div data-petition-id="{{ petition.id }}"
-             data-petition-unpublish="{% url 'petition_unpublish' petition.id %}"
-             data-petition-publish="{% url 'petition_publish' petition.id %}"
+             data-petition-unpublish="{% url "petition_unpublish" petition.id %}"
+             data-petition-publish="{% url "petition_publish" petition.id %}"
              class="petition-publish-switch mb-4 custom-control custom-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}"
              data-action="publish">
             <input type="checkbox"
@@ -288,7 +288,7 @@
                                     {% else %}
                                         <img class="img-thumbnail img-fluid"
                                              alt="cloud clipart"
-                                             src="{% vendor_static 'open-iconic' '_zip/open-iconic-1.1.1/png/cloud-upload-8x.png' %}"
+                                             src="{% vendor_static "open-iconic" "_zip/open-iconic-1.1.1/png/cloud-upload-8x.png" %}"
                                              style="max-width: 200px;
                                                     max-height: 200px"
                                              id="img_preview" />
@@ -407,7 +407,7 @@
         </div>
     </div>
 {% endblock %}
-{% block extrajs %}
+{% block extra_js %}
     {{ block.super }}
     <script src="{% static "vendor/bs-custom-file-input-1.3.4/bs-custom-file-input.min.js" %}"></script>
     <script>
@@ -415,17 +415,17 @@ function readURL(input) {
   if (input.files && input.files[0]) {
     let reader = new FileReader();
     reader.onload = function(e) {
-      $('#img_preview').prop('src', e.target.result);
+      $("#img_preview").prop("src", e.target.result);
     }
     reader.readAsDataURL(input.files[0]); // convert to base64 string
   }
 }
 $(function () {
   $("#twitter_img_remove_btn").on("click", function() { /* reset input and remove preview when clicked delete button */
-     var label = $("label[for='" + $("#id_twitter_image").attr('id') + "']");
+     var label = $("label[for="" + $("#id_twitter_image").attr("id") + ""]");
      $("#remove_twitter_image").prop("checked", true);
      $("#twitter_img_card").prop("hidden", true);
-     label.text('{% trans "Choose file" %}');
+     label.text("{% trans "Choose file" %}");
   });
   $("#id_twitter_image").change(function() { /* update image preview when file input changed */
       readURL(this);
@@ -437,21 +437,21 @@ $(document).ready(function () { /* init bootstrap custom input */
   bsCustomFileInput.init();
 });
 $(function (){
-$('a[data-toggle="list"]').on('shown.bs.tab', function(e){
-    const paneID = $(e.target).attr('href');
-    const src = $(paneID).attr('data-src');
-    const formcontent = $('#form_content');
-    const formstyle = $('#form_style');
-    const formemail = $('#form_email');
-    const formsn = $('#form_sn');
-    const formnewsletter = $('#form_newsletter');
+$("a[data-toggle="list"]").on("shown.bs.tab", function(e){
+    const paneID = $(e.target).attr("href");
+    const src = $(paneID).attr("data-src");
+    const formcontent = $("#form_content");
+    const formstyle = $("#form_style");
+    const formemail = $("#form_email");
+    const formsn = $("#form_sn");
+    const formnewsletter = $("#form_newsletter");
 
     if(paneID === "#preview" && $(paneID+" div iframe").attr("src") === "") {
         // update the iframe src attribute using the custom data-attribute value
         $(paneID+" div iframe").attr("src", src);
     }
-    if ((formcontent.serialize() !== formcontent.data('serialize')) || formcontent.data('mce_changed')) {
-        $('a[href="#content_form"]').html(`
+    if ((formcontent.serialize() !== formcontent.data("serialize")) || formcontent.data("mce_changed")) {
+        $("a[href="#content_form"]").html(`
         <div class="d-flex">
             <span class="oi oi-clipboard"></span>
             <span>&nbsp;</span>
@@ -462,10 +462,10 @@ $('a[data-toggle="list"]').on('shown.bs.tab', function(e){
         </div>
         `);
     } else {
-        $('a[href="#content_form"]').html('<span class="oi oi-clipboard"></span> {% trans "Content" %}');
+        $("a[href="#content_form"]").html("<span class="oi oi-clipboard"></span> {% trans "Content" %}");
     }
-    if (formstyle.serialize() !== formstyle.data('serialize')) {
-        $('a[href="#style_form"]').html(`
+    if (formstyle.serialize() !== formstyle.data("serialize")) {
+        $("a[href="#style_form"]").html(`
         <div class="d-flex">
             <span class="oi oi-brush"></span>
             <span>&nbsp;</span>
@@ -476,10 +476,10 @@ $('a[data-toggle="list"]').on('shown.bs.tab', function(e){
         </div>
         `);
     } else {
-        $('a[href="#style_form"]').html('<span class="oi oi-brush"></span> {% trans "Style & Look" %}');
+        $("a[href="#style_form"]").html("<span class="oi oi-brush"></span> {% trans "Style & Look" %}");
     }
-    if (formemail.serialize() !== formemail.data('serialize')) {
-        $('a[href="#email_form"]').html(`
+    if (formemail.serialize() !== formemail.data("serialize")) {
+        $("a[href="#email_form"]").html(`
         <div class="d-flex">
             <span class="oi oi-envelope-closed"></span>
             <span>&nbsp;</span>
@@ -490,10 +490,10 @@ $('a[data-toggle="list"]').on('shown.bs.tab', function(e){
         </div>
         `);
     } else {
-        $('a[href="#email_form"]').html('<span class="oi oi-envelope-closed"></span> {% trans "E-mail setup" %}');
+        $("a[href="#email_form"]").html("<span class="oi oi-envelope-closed"></span> {% trans "E-mail setup" %}");
     }
-    if (formsn.serialize() !== formsn.data('serialize')) {
-        $('a[href="#social_network_form"]').html(`
+    if (formsn.serialize() !== formsn.data("serialize")) {
+        $("a[href="#social_network_form"]").html(`
         <div class="d-flex">
             <span class="oi oi-share-boxed"></span>
             <span>&nbsp;</span>
@@ -504,10 +504,10 @@ $('a[data-toggle="list"]').on('shown.bs.tab', function(e){
         </div>
         `);
     } else {
-        $('a[href="#social_network_form"]').html('<span class="oi oi-share-boxed"></span> {% trans "Social Networks" %}');
+        $("a[href="#social_network_form"]").html("<span class="oi oi-share-boxed"></span> {% trans "Social Networks" %}");
     }
-    if (formnewsletter.serialize() !== formnewsletter.data('serialize')) {
-        $('a[href="#newsletter_form"]').html(`
+    if (formnewsletter.serialize() !== formnewsletter.data("serialize")) {
+        $("a[href="#newsletter_form"]").html(`
         <div class="d-flex">
             <span class="oi oi-rss"></span>
             <span>&nbsp;</span>
@@ -518,18 +518,18 @@ $('a[data-toggle="list"]').on('shown.bs.tab', function(e){
         </div>
         `);
     } else {
-        $('a[href="#newsletter_form"]').html('<span class="oi oi-rss"></span> {% trans "Newsletter setup" %}');
+        $("a[href="#newsletter_form"]").html("<span class="oi oi-rss"></span> {% trans "Newsletter setup" %}");
     }
 });
 });
 // FIXME: This is because the checkbox+label gets ugly green color if is-valid
 $(function (){
-    $(".custom-switch input[type='checkbox']").removeClass('is-valid');
+    $(".custom-switch input[type="checkbox"]").removeClass("is-valid");
 });
 
 function hide_others_than(elem, do_hide) {
-    const parent_form_group = elem.closest('.form-group');
-    const all_form_groups = parent_form_group.siblings('.form-group');
+    const parent_form_group = elem.closest(".form-group");
+    const all_form_groups = parent_form_group.siblings(".form-group");
     const all_except_this = all_form_groups.not(parent_form_group);
     if (do_hide)
         all_except_this.hide();
@@ -538,21 +538,21 @@ function hide_others_than(elem, do_hide) {
 }
 
 $(function () {
-   const newsletter_box = $('#id_has_newsletter');
-   if (!newsletter_box.is(':checked'))
+   const newsletter_box = $("#id_has_newsletter");
+   if (!newsletter_box.is(":checked"))
        hide_others_than(newsletter_box, true);
 });
 
 {% if not petition.paper_signatures_enabled %}
 $(function () {
-   paper_signatures = $('#id_paper_signatures').parent().parent().hide();
+   paper_signatures = $("#id_paper_signatures").parent().parent().hide();
 });
 {% endif %}
 
 $(function () {
-   $('#id_has_newsletter').on("change", function() {
+   $("#id_has_newsletter").on("change", function() {
         const box = $(this);
-        const checked = box.prop('checked');
+        const checked = box.prop("checked");
         if (!checked)
             hide_others_than(box, true);
         else
@@ -565,19 +565,19 @@ $(function () {
     const hash = document.location.hash;
     const prefix = "tab_";
     if (hash) {
-        $('.list-group a[href="' + hash.replace(prefix, "") + '"]').tab('show');
+        $(".list-group a[href="" + hash.replace(prefix, "") + ""]").tab("show");
     }
 
 // Change hash for page-reload
-    $('.list-group a').on('shown.bs.tab', function (e) {
+    $(".list-group a").on("shown.bs.tab", function (e) {
         window.location.hash = e.target.hash.replace("#", "#" + prefix);
     });
 });
 
 //show first tab pane where there is an :invalid field
 $(function () {
-    const pane_id = $('input.is-invalid').closest('.tab-pane').attr('id');
-    $('.list-group a[href="#' + pane_id + '"]').tab('show');
+    const pane_id = $("input.is-invalid").closest(".tab-pane").attr("id");
+    $(".list-group a[href="#" + pane_id + ""]").tab("show");
 });
 
 var new_slugs_num = 0;
@@ -588,7 +588,7 @@ $(function () {
        const slugTable = $("#slugTable");
 
        new_slugs_num++;
-       $("#addSlugTd").prop('rowspan', new_slugs_num);
+       $("#addSlugTd").prop("rowspan", new_slugs_num);
 
        newform = `
         <tr class="bg-light">
@@ -607,55 +607,55 @@ $(function () {
 });
 
 $(function () {
-   $('input[data-action="slugDelete"]').on("click", function() {
+   $("input[data-action="slugDelete"]").on("click", function() {
        const slugId = $(this).closest("td[data-slugid]").data("slugid");
        window.location = "{% url "del_slug" petition.id %}" + "?slugid=" + slugId;
    });
 });
 
 $(function() {
-    const formcontent = $('#form_content');
-    const formstyle = $('#form_style');
-    const formemail = $('#form_email');
-    const formsn = $('#form_sn');
-    const formnewsletter = $('#form_newsletter');
+    const formcontent = $("#form_content");
+    const formstyle = $("#form_style");
+    const formemail = $("#form_email");
+    const formsn = $("#form_sn");
+    const formnewsletter = $("#form_newsletter");
 
-    formsn.data('serialize', formsn.serialize());
-    formcontent.data('serialize', formcontent.serialize());
-    formstyle.data('serialize', formstyle.serialize());
-    formnewsletter.data('serialize', formnewsletter.serialize());
-    formemail.data('serialize', formemail.serialize());
+    formsn.data("serialize", formsn.serialize());
+    formcontent.data("serialize", formcontent.serialize());
+    formstyle.data("serialize", formstyle.serialize());
+    formnewsletter.data("serialize", formnewsletter.serialize());
+    formemail.data("serialize", formemail.serialize());
 });
 
 function formHasChanged(){
-    const formcontent = $('#form_content');
-    const formstyle = $('#form_style');
-    const formemail = $('#form_email');
-    const formsn = $('#form_sn');
-    const formnewsletter = $('#form_newsletter');
-    const content_tab_changed = (formcontent.serialize() !== formcontent.data('serialize'))
-                                    || formcontent.data('mce_changed');
+    const formcontent = $("#form_content");
+    const formstyle = $("#form_style");
+    const formemail = $("#form_email");
+    const formsn = $("#form_sn");
+    const formnewsletter = $("#form_newsletter");
+    const content_tab_changed = (formcontent.serialize() !== formcontent.data("serialize"))
+                                    || formcontent.data("mce_changed");
 
-    return (formsn.serialize() !== formsn.data('serialize') && !formsn.data('submitted'))
-        || (content_tab_changed && !formcontent.data('submitted'))
-        || (formstyle.serialize() !== formstyle.data('serialize') && !formstyle.data('submitted'))
-        || (formemail.serialize() !== formemail.data('serialize') && !formemail.data('submitted'))
-        || (formnewsletter.serialize() !== formnewsletter.data('serialize') && !formnewsletter.data('submitted'));
+    return (formsn.serialize() !== formsn.data("serialize") && !formsn.data("submitted"))
+        || (content_tab_changed && !formcontent.data("submitted"))
+        || (formstyle.serialize() !== formstyle.data("serialize") && !formstyle.data("submitted"))
+        || (formemail.serialize() !== formemail.data("serialize") && !formemail.data("submitted"))
+        || (formnewsletter.serialize() !== formnewsletter.data("serialize") && !formnewsletter.data("submitted"));
 
 }
 
-$('form').on('submit', function(){
-   $(this).data('submitted', true);
+$("form").on("submit", function(){
+   $(this).data("submitted", true);
 });
 
-$(window).on('beforeunload', function(){
+$(window).on("beforeunload", function(){
   if (formHasChanged()) {
       return "You have un-saved modifications in the petition, are you sure you want to leave this page? You would lose your changes.";
   }
 });
 
 function set_mce_changed(ed) {
-    $(ed.formElement).data('mce_changed', true);
+    $(ed.formElement).data("mce_changed", true);
 }
 
 var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();

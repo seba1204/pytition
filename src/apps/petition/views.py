@@ -477,7 +477,7 @@ def edit_template(request: HttpRequest, template_id: int) -> HttpResponse:
                 _("You are not allowed to edit this organization's templates")
             )
         context["org"] = owner
-        base_template = "petition/org_base.html"
+        base_template = "org/base.html"
     else:
         if owner != pytitionuser:
             return HttpResponseForbidden(
@@ -916,7 +916,7 @@ class PetitionCreationWizard(SessionWizardView):
             form=form, **kwargs
         )
         if org_petition:
-            base_template = "petition/org_base.html"
+            base_template = "org/base.html"
             try:
                 org = Organization.objects.get(slugname=self.kwargs["orgslugname"])
             except Organization.DoesNotExist:
@@ -1276,7 +1276,7 @@ def edit_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
             {
                 "org": petition.org,
                 "user_permissions": permissions,
-                "base_template": "petition/org_base.html",
+                "base_template": "org/base.html",
                 "example_url": example_url,
                 "slug_prefix": slug_prefix,
             }
@@ -1325,7 +1325,7 @@ def show_signatures(request: HttpRequest, petition_id: int) -> HttpResponse:
             return redirect("user_dashboard")
     else:
         org = petition.org
-        base_template = "petition/org_base.html"
+        base_template = "org/base.html"
         other_orgs = pytitionuser.organization_set.filter(~Q(name=org.name)).all()
         if pytitionuser not in org.members.all():
             messages.error(
@@ -1629,7 +1629,7 @@ def transfer_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
                 ),
             )
             return redirect(OrgRoute.DASHBOARD, petition.owner.slugname)
-        ctx["base_template"] = "petition/org_base.html"
+        ctx["base_template"] = "org/base.html"
         ctx["org"] = petition.owner
     elif petition.owner_type == "user":
         if petition.user != pytitionuser:
