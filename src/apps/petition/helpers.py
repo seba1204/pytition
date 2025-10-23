@@ -10,7 +10,7 @@ import requests
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, EmailMultiAlternatives, get_connection
-from django.http import Http404, HttpRequest, HttpResponse, HttpResponseForbidden
+from django.http import Http404, HttpRequest
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.html import strip_tags
@@ -23,7 +23,9 @@ if TYPE_CHECKING:  # pragma: no cover
 
 # Remove all moderated instances of Petition
 def remove_user_moderated(petitions: list[Any]) -> list[Any]:
-    """Filter-out moderated petitions when we already have a list.
+    """
+    Filter-out moderated petitions when we already have a list.
+
     (Used where we cannot easily express the check in a queryset.)
     """
     return [p for p in petitions if not getattr(p, "is_moderated", False)]
@@ -75,14 +77,6 @@ def get_session_user(request: HttpRequest) -> PytitionUser:
     except User.DoesNotExist as err:
         raise Http404(_("not found")) from err
     return pytitionuser
-
-
-# Check if an user is in an organization
-# FIXME : move this as an org method ?
-def check_user_in_orga(user: Any, orga: Any) -> HttpResponse | None:
-    if orga not in user.organizations.all():
-        return HttpResponseForbidden(_("You are not part of this organization"))
-    return None
 
 
 # Return a 404 if a petition does not exist
