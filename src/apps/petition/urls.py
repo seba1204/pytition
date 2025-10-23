@@ -19,12 +19,14 @@ urlpatterns = [
     path(
         "<int:petition_id>/confirm/<confirmation_hash>", views.confirm, name="confirm"
     ),
+    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/get_csv_signature",
         signatures_views.get_csv_signature,
         {"only_confirmed": False},
         name="get_csv_signature",
     ),
+    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/get_csv_confirmed_signature",
         signatures_views.get_csv_signature,
@@ -36,11 +38,13 @@ urlpatterns = [
         views.go_send_confirmation_email,
         name="resend_confirmation_email",
     ),
+    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/sign",
         signatures_views.create,
         name="create_signature",
     ),
+    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/show_signatures",
         signatures_views.show_signatures,

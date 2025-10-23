@@ -8,7 +8,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.messages import get_messages
 from django.core.exceptions import ValidationError
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
@@ -36,6 +35,7 @@ from formtools.wizard.views import SessionWizardView  # type: ignore
 
 from apps.organizations.routes import OrgRoute
 from apps.signatures.forms import SignatureForm
+from apps.signatures.helpers import hide_sign_form_if_user_just_signed
 
 from .forms import (
     ContentFormPetition,
@@ -176,20 +176,6 @@ def search(request: HttpRequest) -> HttpResponse:
     return render(
         request, "petition/search.html", {"petitions": petitions, "orgs": orgs, "q": q}
     )
-
-
-def hide_sign_form_if_user_just_signed(
-    request: HttpRequest, ctx: dict[str, Any]
-) -> None:
-    storage = get_messages(request)
-    for message in storage:
-        if message.level == messages.SUCCESS:
-            just_confirmed = request.session.get("just_confirmed", False)
-            if just_confirmed:
-                ctx.update({"signature_is_confirmed": True})
-                request.session["just_confirmed"] = False
-            else:
-                ctx.update({"petition_is_signed": True})
 
 
 # /<int:petition_id>/

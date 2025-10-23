@@ -75,7 +75,7 @@ class SignatureAdmin(admin.ModelAdmin):
     list_filter = ("petition", "confirmed")
     actions = [confirm, resend_confirmation_mail]
     search_fields = ("first_name", "last_name", "phone", "email")
-    change_form_template = "petition/signature_change_form.html"
+    change_form_template = "signatures/change_form.html"
 
 
 # class SlugInlineAdmin(admin.TabularInline):

@@ -10,7 +10,7 @@
     {{ newsletter_form.media }}
     {{ social_network_form.media }}
     {{ style_form.media }}
-{% endblock %}
+{% endblock media %}
 {% block extra_css %}
     {{ block.super }}
     <style>
@@ -86,7 +86,7 @@
              id="content_form"
              role="tabpanel"
              aria-labelledby="list-content-form-list">
-            <form method="POST" id="form_content">
+            <form method="post" id="form_content">
                 {% csrf_token %}
                 {% include "petition/bs4_form.html" with form=content_form %}
                 <button name="content_form_submitted"
@@ -99,7 +99,7 @@
              id="social_network_form"
              role="tabpanel"
              aria-labelledby="list-social-network-form-list">
-            <form method="POST" id="form_sn" enctype="multipart/form-data">
+            <form method="post" id="form_sn" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group row">
                     <label for="id_twitter_description"
@@ -319,7 +319,7 @@
                     </b>
                 </div>
                 <form action="{% url "add_new_slug" petition.id %}"
-                      method="POST"
+                      method="post"
                       class="form-inline">
                     {% csrf_token %}
                     <table class="table table-striped" id="slugTable">
@@ -355,7 +355,7 @@
              id="style_form"
              role="tabpanel"
              aria-labelledby="style-form-list">
-            <form method="POST" id="form_style">
+            <form method="post" id="form_style">
                 {% csrf_token %}
                 {% include "petition/bs4_form.html" with form=style_form %}
                 <button name="style_form_submitted"
@@ -368,7 +368,7 @@
              id="email_form"
              role="tabpanel"
              aria-labelledby="list-email-form-list">
-            <form method="POST" id="form_email">
+            <form method="post" id="form_email">
                 {% csrf_token %}
                 {% include "petition/bs4_form.html" with form=email_form %}
                 <button name="email_form_submitted"
@@ -381,7 +381,7 @@
              id="newsletter_form"
              role="tabpanel"
              aria-labelledby="list-newsletter-form-list">
-            <form method="POST" id="form_newsletter">
+            <form method="post" id="form_newsletter">
                 {% csrf_token %}
                 {% include "petition/bs4_form.html" with form=newsletter_form %}
                 <button name="newsletter_form_submitted"
@@ -406,7 +406,7 @@
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock edit_content %}
 {% block extra_js %}
     {{ block.super }}
     <script src="{% static "vendor/bs-custom-file-input-1.3.4/bs-custom-file-input.min.js" %}"></script>
@@ -663,4 +663,4 @@ function get_csrf_token() {
     return csrftoken;
 }
     </script>
-{% endblock %}
+{% endblock extra_js %}

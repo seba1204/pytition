@@ -324,4 +324,4 @@ def show_signatures(request: HttpRequest, petition_id: int) -> HttpResponse:
         "signatures": signatures,
         **extra_ctx,
     }
-    return render(request, "petition/signature_data.html", ctx)
+    return render(request, "signatures/data.html", ctx)

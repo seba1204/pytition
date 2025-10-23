@@ -42,7 +42,7 @@ class PetitionViewTest(TestCase):
 
         response = self.client.get(reverse("show_signatures", args=[p.id]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         # Add signature
         self.assertEqual(Signature.objects.count(), 0)
         Signature.objects.create(
@@ -51,7 +51,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(Signature.objects.count(), 1)
         response = self.client.get(reverse("show_signatures", args=[p.id]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         # Org petition
         max = self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
@@ -70,7 +70,7 @@ class PetitionViewTest(TestCase):
         perm.save()
         response = self.client.get(reverse("show_signatures", args=[p2.id]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
 
     def test_get_csv_signature(self) -> None:
         julia = self.login("julia")
@@ -133,7 +133,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse("show_signatures", args=[pid]))
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         with self.assertRaises(Signature.DoesNotExist):
             Signature.objects.get(pk=sid)
         messages = response.context["messages"]
@@ -164,7 +164,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse("show_signatures", args=[pid]))
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         with self.assertRaises(Signature.DoesNotExist):
             Signature.objects.get(pk=sid)
         messages = response.context["messages"]
@@ -262,7 +262,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse("show_signatures", args=[pid]))
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
@@ -291,7 +291,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse("show_signatures", args=[pid]))
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
@@ -319,7 +319,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse("show_signatures", args=[pid]))
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
@@ -348,7 +348,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse("show_signatures", args=[pid]))
-        self.assertTemplateUsed(response, "petition/signature_data.html")
+        self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False
