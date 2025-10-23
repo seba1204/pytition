@@ -30,15 +30,8 @@ from formtools.wizard.views import SessionWizardView  # type: ignore
 from apps.consents.forms import EmailForm, NewsletterForm
 from apps.organizations.routes import OrgRoute
 from apps.petition.forms import (
-    ContentFormPetition,
-    ContentFormTemplate,
     DeleteAccountForm,
-    PetitionCreationStep1,
-    PetitionCreationStep2,
-    PetitionCreationStep3,
     PytitionUserCreationForm,
-    SocialNetworkForm,
-    StyleForm,
     UpdateInfoForm,
 )
 from apps.petition.helpers import (
@@ -58,6 +51,15 @@ from apps.petition.models import (
     PetitionTemplate,
     PytitionUser,
     SlugModel,
+)
+from apps.petitions.forms import (
+    ContentFormPetition,
+    ContentFormTemplate,
+    PetitionCreationStep1,
+    PetitionCreationStep2,
+    PetitionCreationStep3,
+    SocialNetworkForm,
+    StyleForm,
 )
 from apps.signatures.forms import SignatureForm
 from apps.signatures.helpers import hide_sign_form_if_user_just_signed
