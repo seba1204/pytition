@@ -13,6 +13,7 @@ from django.utils.translation import gettext as _
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import get_session_user, petition_from_id
 from apps.petition.models import Organization, Petition, PytitionUser
+from apps.petitions.routes import PetitionsRoute
 
 
 class _TransferContext(TypedDict, total=False):
@@ -97,7 +98,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
             messages.error(
                 request, _("You tried to transfer a petition to a non-exiting account")
             )
-            return redirect("transfer_petition", petition.id)
+            return redirect(PetitionsRoute.TRANSFER, petition.id)
 
         try:
             petition.transfer_to(user, orga)
@@ -109,7 +110,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
             messages.error(
                 request, _("Something went wrong while transferring this petition.")
             )
-            return redirect("transfer_petition", petition.id)
+            return redirect(PetitionsRoute.TRANSFER, petition.id)
 
     # Default fallback if method is not GET or POST
     return redirect("user_dashboard")

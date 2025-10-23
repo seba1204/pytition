@@ -12,6 +12,7 @@ from formtools.wizard.views import SessionWizardView  # type: ignore
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import get_session_user
 from apps.petition.models import Organization, Permission, Petition, PetitionTemplate
+from apps.petitions.routes import PetitionsRoute
 
 from .creation_steps import (
     PetitionCreationStep1,
@@ -143,7 +144,7 @@ class PetitionCreationWizard(SessionWizardView):
                 if publish:
                     petition.publish()
                 if _redirect and _redirect == "1":
-                    return redirect("edit_petition", petition.id)
+                    return redirect(PetitionsRoute.EDIT, petition.id)
                 else:
                     return redirect(OrgRoute.DASHBOARD, orgslugname)
             else:
@@ -174,7 +175,7 @@ class PetitionCreationWizard(SessionWizardView):
             if publish:
                 petition.publish()
             if _redirect and _redirect == "1":
-                return redirect("edit_petition", petition.id)
+                return redirect(PetitionsRoute.EDIT, petition.id)
             else:
                 return redirect("user_dashboard")
 

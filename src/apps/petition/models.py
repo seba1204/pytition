@@ -21,6 +21,8 @@ from django.utils.translation import gettext_lazy
 from phonenumber_field.modelfields import PhoneNumberField  # type: ignore
 from tinymce import models as tinymce_models  # type: ignore
 
+from apps.petitions.routes import PetitionsRoute
+
 from .helpers import sanitize_html
 
 
@@ -122,11 +124,8 @@ class Organization(models.Model):
     )
 
     def is_last_admin(self, user: PytitionUser) -> bool:
-        """
-        Check if the given user is the last admin of this organization
-        Admin is an user having the can_modify_permissions right
-        Return true or false
-        """
+        """Check if the given user is the last admin of this organization Admin is an
+        user having the can_modify_permissions right Return true or false."""
         # get all permissions
         perms = Permission.objects.filter(
             can_modify_permissions=True, organization=self
@@ -141,9 +140,7 @@ class Organization(models.Model):
             return True
 
     def is_allowed_to(self, user: PytitionUser, right: str) -> bool:
-        """
-        Check if an user has a given access right on the organization
-        """
+        """Check if an user has a given access right on the organization."""
         try:
             perm = Permission.objects.get(organization=self, user=user)
         except Permission.DoesNotExist:
@@ -460,9 +457,7 @@ class Petition(models.Model):
         return self.title
 
     def is_allowed_to_edit(self, user: PytitionUser) -> bool:
-        """
-        Check if a user is allowed to edit this petition
-        """
+        """Check if a user is allowed to edit this petition."""
         if self.owner_type == "user":
             # The user is the owner of the petition
             return self.user == user
@@ -479,7 +474,7 @@ class Petition(models.Model):
         slugs = self.slugmodel_set.all()
         if len(slugs) == 0:
             # If there is no slug, ugly url
-            return reverse("detail", kwargs={"petition_id": self.id})
+            return reverse(PetitionsRoute.DETAIL, kwargs={"petition_id": self.id})
         elif self.owner_type == "org":
             #  This petition is owned by an Organization
             if self.org is not None:

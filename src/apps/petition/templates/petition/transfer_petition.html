@@ -37,7 +37,7 @@
   <div class="modal fade"
        id="modal_xfer_confirm"
        data-petition=""
-       data-petition-delete="{% url "petition_delete" petition.id %}">
+       data-petition-delete="{% url "petitions:delete" petition.id %}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <form action="{% url "transfer_petition" petition.id %}"
+  <form action="{% url "petitions:transfer" petition.id %}"
         method="POST"
         id="xfer_req">
     {% csrf_token %}

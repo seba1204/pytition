@@ -4,6 +4,7 @@ from django.utils.text import slugify
 
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import PytitionUser
+from apps.petitions.routes import PetitionsRoute
 
 
 class AddSlugViewTest(TestCase):
@@ -34,11 +35,12 @@ class AddSlugViewTest(TestCase):
         }
         previous_slug_count = petition.slugmodel_set.count()
         response = self.client.post(
-            reverse("add_new_slug", args=[petition.id]), data, follow=True
+            reverse(PetitionsRoute.ADD_SLUG, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(
             response,
-            reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form",
+            reverse(PetitionsRoute.EDIT, args=[petition.id])
+            + "#tab_social_network_form",
         )
         slug_count = petition.slugmodel_set.count()
         self.assertEqual(slug_count, previous_slug_count + 1)
@@ -55,11 +57,12 @@ class AddSlugViewTest(TestCase):
         previous_slug_count = petition.slugmodel_set.count()
         # first time slug insertion
         response = self.client.post(
-            reverse("add_new_slug", args=[petition.id]), data, follow=True
+            reverse(PetitionsRoute.ADD_SLUG, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(
             response,
-            reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form",
+            reverse(PetitionsRoute.EDIT, args=[petition.id])
+            + "#tab_social_network_form",
         )
         slug_count = petition.slugmodel_set.count()
         self.assertEqual(slug_count, previous_slug_count + 1)
@@ -68,11 +71,11 @@ class AddSlugViewTest(TestCase):
         # second time slug insertion (should fail)
         with self.assertRaises(ValueError):
             response = self.client.post(
-                reverse("add_new_slug", args=[petition.id]), data, follow=True
+                reverse(PetitionsRoute.ADD_SLUG, args=[petition.id]), data, follow=True
             )
             self.assertRedirects(
                 response,
-                reverse("edit_petition", args=[petition.id])
+                reverse(PetitionsRoute.EDIT, args=[petition.id])
                 + "#tab_social_network_form",
             )
         slug_count = petition.slugmodel_set.count()

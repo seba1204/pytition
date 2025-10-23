@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.urls import include, path, reverse_lazy
-from django.views.generic import RedirectView
 
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
@@ -9,69 +8,68 @@ from apps.petition.forms import PytitionUserCreationForm
 from apps.petition.views import PytitionUserCreateView
 from apps.petitions import forms as PF
 from apps.petitions import views as PV
-from apps.signatures import views as signatures_views
+from apps.petitions.routes import NAMESPACE as PET_NS
+from apps.signatures import views as SV
 
 urlpatterns = [
     # index
     path("", views.index, name="index"),
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
+    path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("search", views.search, name="search"),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # Petitions
+    # Consents
     # ──────────────────────────────────────────────────────────────────────────────────
-    path("<int:petition_id>/", PV.detail, name="detail"),
     path(
         "<int:petition_id>/get_csv_signature",
-        signatures_views.get_csv_signature,
+        SV.get_csv_signature,
         {"only_confirmed": False},
         name="get_csv_signature",
     ),
     path(
         "<int:petition_id>/get_csv_confirmed_signature",
-        signatures_views.get_csv_signature,
+        SV.get_csv_signature,
         {"only_confirmed": True},
         name="get_csv_confirmed_signature",
     ),
     path(
         "<int:petition_id>/sign",
-        signatures_views.create,
+        SV.create,
         name="create_signature",
     ),
     path(
         "<int:petition_id>/show_signatures",
-        signatures_views.show_signatures,
+        SV.show_signatures,
         name="show_signatures",
     ),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Petitions
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Wizard : TODO: for now it stay here, but will be deleted
     path(
-        "<int:petition_id>/delete",
-        PV.delete,
-        name="petition_delete",
+        "wizard/org/<slug:orgslugname>/new_petition",
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
+        name="org_petition_wizard",
     ),
-    path("<int:petition_id>/publish", PV.publish, name="petition_publish"),
     path(
-        "<int:petition_id>/unpublish",
-        PV.unpublish,
-        name="petition_unpublish",
+        "wizard/org/<slug:orgslugname>/new_petition/from_template/<int:template_id>",
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
+        name="org_petition_wizard_from_template",
     ),
-    path("<int:petition_id>/edit", PV.edit, name="edit_petition"),
-    path("<int:petition_id>/add_new_slug", PV.add_slug, name="add_new_slug"),
-    path("<int:petition_id>/del_slug", PV.del_slug, name="del_slug"),
     path(
-        "<int:petition_id>/report/<int:reason_id>",
-        views.report_petition,
-        name="report_petition",
+        "wizard/user/new_petition",
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
+        name="user_petition_wizard",
     ),
+    path(
+        "wizard/user/new_petition/from_template/<template_id>",
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
+        name="user_petition_wizard_from_template",
+    ),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Moderation
+    # ──────────────────────────────────────────────────────────────────────────────────
     path("<int:petition_id>/report/", views.report_petition, name="report_petition"),
-    path(
-        "all_petitions",
-        RedirectView.as_view(pattern_name="index", permanent=False),
-        name="all_petitions",
-    ),
-    path(
-        "transfer_petition/<int:petition_id>",
-        PV.transfer,
-        name="transfer_petition",
-    ),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Organization
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -98,6 +96,7 @@ urlpatterns = [
     ),
     # User
     path("user/dashboard", views.user_dashboard, name="user_dashboard"),
+    # TODO: move to theming app
     path("user/new_template", PV.new_template, name="user_new_template"),
     path("user/<user_name>", views.user_profile, name="user_profile"),
     path(
@@ -111,27 +110,6 @@ urlpatterns = [
         "search_users_and_orgs",
         views.search_users_and_orgs,
         name="search_users_and_orgs",
-    ),
-    # Wizard
-    path(
-        "wizard/org/<slug:orgslugname>/new_petition",
-        PF.PetitionCreationWizard.as_view(PF.WizardForms),
-        name="org_petition_wizard",
-    ),
-    path(
-        "wizard/org/<slug:orgslugname>/new_petition/from_template/<int:template_id>",
-        PF.PetitionCreationWizard.as_view(PF.WizardForms),
-        name="org_petition_wizard_from_template",
-    ),
-    path(
-        "wizard/user/new_petition",
-        PF.PetitionCreationWizard.as_view(PF.WizardForms),
-        name="user_petition_wizard",
-    ),
-    path(
-        "wizard/user/new_petition/from_template/<template_id>",
-        PF.PetitionCreationWizard.as_view(PF.WizardForms),
-        name="user_petition_wizard_from_template",
     ),
     # Authentication
     path("", include("django.contrib.auth.urls")),

@@ -10,6 +10,7 @@ from apps.petition.models import (
     Signature,
     SlugModel,
 )
+from apps.petitions.routes import PetitionsRoute
 
 
 class PetitionTest(TestCase):
@@ -66,7 +67,7 @@ class PetitionTest(TestCase):
         if s is None:
             return
         s.delete()
-        self.assertEqual(p.url, reverse("detail", args=[p.id]))
+        self.assertEqual(p.url, reverse(PetitionsRoute.DETAIL, args=[p.id]))
         # Create a slug
         # p.add_slug('foobar')
 

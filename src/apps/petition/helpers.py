@@ -15,6 +15,8 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from lxml.html.clean import Cleaner
 
+from apps.petitions.routes import PetitionsRoute
+
 # Avoid circular imports for type checking
 if TYPE_CHECKING:  # pragma: no cover
     from .models import Petition, PytitionUser
@@ -137,11 +139,8 @@ def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
 
 # Generate a meta url for the HTML meta property
 def petition_detail_meta(request: HttpRequest, petition_id: int) -> dict[str, str]:
-    url = "{scheme}://{host}{petition_path}".format(
-        scheme=request.scheme,
-        host=request.get_host(),
-        petition_path=reverse("detail", args=[petition_id]),
-    )
+    detail_path = reverse(PetitionsRoute.DETAIL, args=[petition_id])
+    url = f"{request.scheme}://{request.get_host()}{detail_path}"
     return {"site_url": request.get_host(), "petition_url": url}
 
 

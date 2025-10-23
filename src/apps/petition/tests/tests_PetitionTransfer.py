@@ -3,6 +3,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.petition.models import Organization, Permission, Petition, PytitionUser
+from apps.petitions.routes import PetitionsRoute
 
 users = ["julia", "john", "max", "sarah"]
 orgs = ["RAP", "Greenpeace", "Attac", "Les Amis de la Terre"]
@@ -15,7 +16,7 @@ org_members = {
 
 
 class PetitionCreateWizardViewTest(TestCase):
-    """Test PetitionCreateWizard view"""
+    """Test PetitionCreateWizard view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -79,7 +80,7 @@ class PetitionCreateWizardViewTest(TestCase):
         org = Organization.objects.get(name="Les Amis de la Terre")
         user = PytitionUser.objects.get(user__username="julia")
         user_petition = Petition.objects.create(title="Petition 1", user=user)
-        url = reverse("transfer_petition", args=[user_petition.id])
+        url = reverse(PetitionsRoute.TRANSFER, args=[user_petition.id])
 
         response = self.client.post(
             url,

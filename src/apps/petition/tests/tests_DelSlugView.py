@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import Permission, Petition, PytitionUser
+from apps.petitions.routes import PetitionsRoute
 
 
 class DelSlugViewTest(TestCase):
@@ -34,12 +35,13 @@ class DelSlugViewTest(TestCase):
         if slug is None:
             return
         response = self.client.get(
-            reverse("del_slug", kwargs={"petition_id": petition.id})
+            reverse(PetitionsRoute.DEL_SLUG, kwargs={"petition_id": petition.id})
             + "?slugid="
             + str(slug.id),
             follow=True,
         )
         self.assertRedirects(
             response,
-            reverse("edit_petition", args=[petition.id]) + "#tab_social_network_form",
+            reverse(PetitionsRoute.EDIT, args=[petition.id])
+            + "#tab_social_network_form",
         )

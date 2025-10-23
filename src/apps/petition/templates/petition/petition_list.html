@@ -19,8 +19,8 @@
   <div class="row petition-list">
     {% for petition in petitions %}
       <div class="col-xl-3 col-lg-4 col-sm-6 col-12 text-center sb-preview"
-           data-petition-unpublish="{% url "petition_unpublish" petition.id %}"
-           data-petition-publish="{% url "petition_publish" petition.id %}">
+           data-petition-unpublish="{% url "petitions:unpublish" petition.id %}"
+           data-petition-publish="{% url "petitions:publish" petition.id %}">
         <div class="card h-100 {% if petition.is_moderated %}border border-danger{% endif %} ">
           <a href="{{ petition.url }}" class="sb-preview-img">
             {% if not petition.twitter_image %}
@@ -69,7 +69,7 @@
                  data-toggle="tooltip">
                 <span class="oi oi-eye"></span>
               </a>
-              <a href="{% url "edit_petition" petition.id %}"
+              <a href="{% url "petitions:edit" petition.id %}"
                  class="btn btn-outline-warning btn-sm"
                  title="{% trans "Edit petition" %}"
                  data-toggle="tooltip"><span class="oi oi-pencil"></span></a>
@@ -80,7 +80,7 @@
                  aria-disabled="true">
                 <span class="oi oi-spreadsheet"></span>
               </a>
-              <a href="{% url "transfer_petition" petition.id %}"
+              <a href="{% url "petitions:transfer" petition.id %}"
                  class="btn btn-outline-primary btn-sm"
                  data-toggle="tooltip"
                  title="{% trans "Transfer this petition" %}"
@@ -103,7 +103,7 @@
       <div class="modal fade"
            id="petition{{ petition.id }}_delete_modal"
            data-petition="{{ petition.id }}"
-           data-petition-delete="{% url "petition_delete" petition.id %}">
+           data-petition-delete="{% url "petitions:delete" petition.id %}">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">

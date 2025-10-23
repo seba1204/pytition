@@ -25,14 +25,14 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import TypeVar
 
-from django.http import HttpResponse
+from django.http import HttpResponseBase
 from django.urls import URLPattern, path
 
 # --------------------------------------------------------------------------- #
 # Types
 # --------------------------------------------------------------------------- #
 
-DjangoView = Callable[..., HttpResponse]
+DjangoView = Callable[..., HttpResponseBase]
 E = TypeVar("E", bound=StrEnum)
 
 

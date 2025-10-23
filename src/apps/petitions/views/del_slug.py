@@ -8,6 +8,7 @@ from django.utils.translation import gettext as _
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import get_session_user, petition_from_id
 from apps.petition.models import Organization, Petition, SlugModel
+from apps.petitions.routes import PetitionsRoute
 
 
 # /<int:petition_id>/del_slug
@@ -25,7 +26,7 @@ def del_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
         slug_id = request.GET.get("slugid", None)
         if not slug_id:
             return redirect(
-                reverse("edit_petition", args=[petition_id])
+                reverse(PetitionsRoute.EDIT, args=[petition_id])
                 + "#tab_social_network_form"
             )
 
@@ -41,5 +42,5 @@ def del_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
         else:
             return redirect("user_dashboard")
     return redirect(
-        reverse("edit_petition", args=[petition_id]) + "#tab_social_network_form"
+        reverse(PetitionsRoute.EDIT, args=[petition_id]) + "#tab_social_network_form"
     )

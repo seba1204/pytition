@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from apps.petition.helpers import get_session_user, petition_from_id
+from apps.petitions.routes import PetitionsRoute
 
 
 # /<int:petition_id>/add_new_slug
@@ -46,7 +47,8 @@ def add_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
                 request, _("You don't have the permission to modify petitions")
             )
         return redirect(
-            reverse("edit_petition", args=[petition_id]) + "#tab_social_network_form"
+            reverse(PetitionsRoute.EDIT, args=[petition_id])
+            + "#tab_social_network_form"
         )
     else:
         return redirect("user_dashboard")

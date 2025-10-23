@@ -4,6 +4,7 @@ from django.urls import reverse
 from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import Organization, Petition, PytitionUser
+from apps.petitions.routes import PetitionsRoute
 
 
 class PetitionViewTest(TestCase):
@@ -33,7 +34,7 @@ class PetitionViewTest(TestCase):
         self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
             return
-        response = self.client.get(reverse("detail", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.DETAIL, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
         self.assertTemplateUsed(response, "petition/petition_detail.html")
@@ -104,12 +105,12 @@ class PetitionViewTest(TestCase):
         petition.published = False
         petition.save()
         self.assertEqual(petition.published, False)
-        response = self.client.get(reverse("petition_publish", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[petition.id]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petition.published, False)
         self.login("julia")
         # Logged in with same user
-        response = self.client.get(reverse("petition_publish", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         petition.refresh_from_db()
         self.assertEqual(petition.published, True)
@@ -117,7 +118,7 @@ class PetitionViewTest(TestCase):
         john = PytitionUser.objects.get(user__username="john")
         p2 = Petition.objects.create(title="Pas content", user=john)
         self.assertEqual(p2.published, False)
-        response = self.client.get(reverse("petition_publish", args=[p2.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[p2.id]))
         p2.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p2.published, False)
@@ -126,7 +127,7 @@ class PetitionViewTest(TestCase):
         p3 = Petition.objects.create(title="Sauver la planete", org=greenpeace)
         self.assertEqual(p3.published, False)
         p3.refresh_from_db()
-        response = self.client.get(reverse("petition_publish", args=[p3.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[p3.id]))
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p3.published, False)
 
@@ -137,18 +138,24 @@ class PetitionViewTest(TestCase):
             return
         self.assertEqual(petition.published, True)
         self.logout()
-        response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
+        response = self.client.get(
+            reverse(PetitionsRoute.UNPUBLISH, args=[petition.id])
+        )
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petition.published, True)
         # Test to unpublish from wrong user
         self.login("max")
-        response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
+        response = self.client.get(
+            reverse(PetitionsRoute.UNPUBLISH, args=[petition.id])
+        )
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(petition.published, True)
         self.login("julia")
-        response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
+        response = self.client.get(
+            reverse(PetitionsRoute.UNPUBLISH, args=[petition.id])
+        )
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(petition.published, False)
@@ -161,11 +168,11 @@ class PetitionViewTest(TestCase):
             return
         nb_julia_petitions = petitions.count()
         self.assertEqual(petitions.count(), nb_julia_petitions)
-        response = self.client.get(reverse("petition_delete", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.DELETE, args=[petition.id]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petitions.count(), nb_julia_petitions)
         self.login("julia")
-        response = self.client.get(reverse("petition_delete", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.DELETE, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(petitions.count(), nb_julia_petitions - 1)
 
@@ -178,17 +185,17 @@ class PetitionViewTest(TestCase):
             return
         nb_attac_petitions = petitions.count()
         response = self.client.get(
-            reverse("petition_delete", args=[petition.id]), follow=True
+            reverse(PetitionsRoute.DELETE, args=[petition.id]), follow=True
         )
         self.assertRedirects(
             response,
             reverse("login")
             + "?next="
-            + reverse("petition_delete", args=[petition.id]),
+            + reverse(PetitionsRoute.DELETE, args=[petition.id]),
         )
         self.assertEqual(petitions.count(), nb_attac_petitions)
         self.login("john")
-        response = self.client.get(reverse("petition_delete", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.DELETE, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(petitions.count(), nb_attac_petitions - 1)
 
@@ -241,12 +248,12 @@ class PetitionViewTest(TestCase):
         petition.published = False
         petition.save()
         self.assertEqual(petition.published, False)
-        response = self.client.get(reverse("petition_publish", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[petition.id]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petition.published, False)
         self.login("julia")
         # Logged in with same user
-        response = self.client.get(reverse("petition_publish", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         petition.refresh_from_db()
         self.assertEqual(petition.published, True)
@@ -254,7 +261,7 @@ class PetitionViewTest(TestCase):
         at = Organization.objects.get(name="Les Amis de la Terre")
         p2 = Petition.objects.create(title="Pas content", org=at)
         self.assertEqual(p2.published, False)
-        response = self.client.get(reverse("petition_publish", args=[p2.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[p2.id]))
         p2.refresh_from_db()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(p2.published, True)
@@ -263,7 +270,7 @@ class PetitionViewTest(TestCase):
         p2.save()
         self.logout()
         self.login("max")
-        response = self.client.get(reverse("petition_publish", args=[p2.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[p2.id]))
         p2.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p2.published, False)
@@ -272,7 +279,7 @@ class PetitionViewTest(TestCase):
         p3 = Petition.objects.create(title="Sauver la planete", org=greenpeace)
         self.assertEqual(p3.published, False)
         p3.refresh_from_db()
-        response = self.client.get(reverse("petition_publish", args=[p3.id]))
+        response = self.client.get(reverse(PetitionsRoute.PUBLISH, args=[p3.id]))
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p3.published, False)
 
@@ -284,12 +291,16 @@ class PetitionViewTest(TestCase):
         petition.published = True
         petition.save()
         self.logout()
-        response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
+        response = self.client.get(
+            reverse(PetitionsRoute.UNPUBLISH, args=[petition.id])
+        )
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(petition.published, True)
         self.login("julia")
-        response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
+        response = self.client.get(
+            reverse(PetitionsRoute.UNPUBLISH, args=[petition.id])
+        )
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(petition.published, False)
@@ -297,13 +308,17 @@ class PetitionViewTest(TestCase):
         petition.save()
         self.logout()
         self.login("max")
-        response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
+        response = self.client.get(
+            reverse(PetitionsRoute.UNPUBLISH, args=[petition.id])
+        )
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(petition.published, True)
         self.logout()
         self.login("sarah")
-        response = self.client.get(reverse("petition_unpublish", args=[petition.id]))
+        response = self.client.get(
+            reverse(PetitionsRoute.UNPUBLISH, args=[petition.id])
+        )
         petition.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(petition.published, True)

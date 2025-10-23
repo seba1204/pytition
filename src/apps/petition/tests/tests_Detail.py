@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import Petition
+from apps.petitions.routes import PetitionsRoute
 
 
 class DetailViewTest(TestCase):
@@ -17,5 +18,5 @@ class DetailViewTest(TestCase):
         self.assertIsNotNone(petition)
         if petition is None:
             return
-        response = self.client.get(reverse("detail", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.DETAIL, args=[petition.id]))
         self.assertEqual(response.status_code, 200)

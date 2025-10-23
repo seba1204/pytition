@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import Organization, Permission, Petition, PytitionUser
+from apps.petitions.routes import PetitionsRoute
 
 
 class EditPetitionViewTest(TestCase):
@@ -30,7 +31,7 @@ class EditPetitionViewTest(TestCase):
     def test_edit_404(self) -> None:
         """Non-existent petition id : should return 404"""
         self.login("julia")
-        response = self.client.get(reverse("edit_petition", args=[1000]))
+        response = self.client.get(reverse(PetitionsRoute.EDIT, args=[1000]))
         self.assertEqual(response.status_code, 404)
 
     def test_edit_200(self) -> None:
@@ -40,7 +41,7 @@ class EditPetitionViewTest(TestCase):
         self.assertIsNotNone(petition)
         if petition is None:
             return
-        response = self.client.get(reverse("edit_petition", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.EDIT, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -54,11 +55,13 @@ class EditPetitionViewTest(TestCase):
             return
         self.logout()
         response = self.client.get(
-            reverse("edit_petition", args=[petition.id]), follow=True
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
         self.assertRedirects(
             response,
-            reverse("login") + "?next=" + reverse("edit_petition", args=[petition.id]),
+            reverse("login")
+            + "?next="
+            + reverse(PetitionsRoute.EDIT, args=[petition.id]),
         )
 
     def test_edit_notYourOwnPetition(self) -> None:
@@ -70,7 +73,7 @@ class EditPetitionViewTest(TestCase):
         if petition is None:
             return
         response = self.client.get(
-            reverse("edit_petition", args=[petition.id]), follow=True
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
@@ -85,7 +88,7 @@ class EditPetitionViewTest(TestCase):
         if petition is None:
             return
         response = self.client.get(
-            reverse("edit_petition", args=[petition.id]), follow=True
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
@@ -103,7 +106,7 @@ class EditPetitionViewTest(TestCase):
         if petition is None:
             return
         response = self.client.get(
-            reverse("edit_petition", args=[petition.id]), follow=True
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
 
@@ -116,7 +119,7 @@ class EditPetitionViewTest(TestCase):
         self.assertIsNotNone(petition)
         if petition is None:
             return
-        response = self.client.get(reverse("edit_petition", args=[petition.id]))
+        response = self.client.get(reverse(PetitionsRoute.EDIT, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -138,7 +141,7 @@ class EditPetitionViewTest(TestCase):
         # For an org petition
         p = Petition.objects.create(title="My Petition", org=org)
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), content_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -154,7 +157,7 @@ class EditPetitionViewTest(TestCase):
         # For a user petition
         p2 = Petition.objects.create(title="My Petition 2", user=julia)
         response = self.client.post(
-            reverse("edit_petition", args=[p2.id]), content_form_data
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -195,7 +198,7 @@ class EditPetitionViewTest(TestCase):
         # For an org petition
         p = Petition.objects.create(title="My Petition", org=org)
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), content_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -213,7 +216,7 @@ class EditPetitionViewTest(TestCase):
         # For a user petition
         p2 = Petition.objects.create(title="My Petition 2", user=julia)
         response = self.client.post(
-            reverse("edit_petition", args=[p2.id]), content_form_data
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -249,7 +252,7 @@ class EditPetitionViewTest(TestCase):
         # For an org template
         p = Petition.objects.create(title="My petition", org=org)
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), email_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -264,7 +267,7 @@ class EditPetitionViewTest(TestCase):
         # For an user template
         p2 = Petition.objects.create(title="My petition 2", user=julia)
         response = self.client.post(
-            reverse("edit_petition", args=[p2.id]), email_form_data
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -303,7 +306,7 @@ class EditPetitionViewTest(TestCase):
         p = Petition.objects.create(title="My petition", org=org)
         social_network_form_data.update({"twitter_image": fp})
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), social_network_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), social_network_form_data
         )
         fp.close()
         self.assertEqual(response.status_code, 200)
@@ -321,7 +324,7 @@ class EditPetitionViewTest(TestCase):
         # For an user template
         p2 = Petition.objects.create(title="My petition 2", user=julia)
         response2 = self.client.post(
-            reverse("edit_petition", args=[p2.id]), social_network_form_data
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), social_network_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -384,7 +387,7 @@ class EditPetitionViewTest(TestCase):
         # For an org template
         p = Petition.objects.create(title="My petition", org=org)
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), newsletter_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), newsletter_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -399,7 +402,7 @@ class EditPetitionViewTest(TestCase):
         # For an user template
         p2 = Petition.objects.create(title="My petition 2", user=julia)
         response2 = self.client.post(
-            reverse("edit_petition", args=[p2.id]), newsletter_form_data
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), newsletter_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -433,7 +436,7 @@ class EditPetitionViewTest(TestCase):
         # For an org template
         p = Petition.objects.create(title="My petition", org=org)
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), style_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), style_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -449,7 +452,7 @@ class EditPetitionViewTest(TestCase):
         # For an user template
         p2 = Petition.objects.create(title="My petition 2", user=julia)
         response2 = self.client.post(
-            reverse("edit_petition", args=[p2.id]), style_form_data
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), style_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -487,7 +490,7 @@ class EditPetitionViewTest(TestCase):
 
         # Now let's enable the email share button
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -503,7 +506,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_email_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -518,7 +521,7 @@ class EditPetitionViewTest(TestCase):
         # Now let's enable the email share button
         share_button_form_data["has_email_share_button"] = True
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -534,7 +537,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_email_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -556,7 +559,7 @@ class EditPetitionViewTest(TestCase):
 
         # Now let's enable the facebook share button
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -572,7 +575,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_facebook_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -587,7 +590,7 @@ class EditPetitionViewTest(TestCase):
         # Now let's enable the facebook share button
         share_button_form_data["has_facebook_share_button"] = True
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -603,7 +606,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_facebook_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -625,7 +628,7 @@ class EditPetitionViewTest(TestCase):
 
         # Now let's enable the tumblr share button
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -641,7 +644,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_tumblr_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -656,7 +659,7 @@ class EditPetitionViewTest(TestCase):
         # Now let's enable the tumblr share button
         share_button_form_data["has_tumblr_share_button"] = True
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -672,7 +675,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_tumblr_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -694,7 +697,7 @@ class EditPetitionViewTest(TestCase):
 
         # Now let's enable the linkedin share button
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -710,7 +713,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_linkedin_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -725,7 +728,7 @@ class EditPetitionViewTest(TestCase):
         # Now let's enable the linkedin share button
         share_button_form_data["has_linkedin_share_button"] = True
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -741,7 +744,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_linkedin_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -763,7 +766,7 @@ class EditPetitionViewTest(TestCase):
 
         # Now let's enable the twitter share button
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -779,7 +782,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_twitter_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -794,7 +797,7 @@ class EditPetitionViewTest(TestCase):
         # Now let's enable the twitter share button
         share_button_form_data["has_twitter_share_button"] = True
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -810,7 +813,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_twitter_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -832,7 +835,7 @@ class EditPetitionViewTest(TestCase):
 
         # Now let's enable the mastodon share button
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -848,7 +851,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_mastodon_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -863,7 +866,7 @@ class EditPetitionViewTest(TestCase):
         # Now let's enable the mastodon share button
         share_button_form_data["has_mastodon_share_button"] = True
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -879,7 +882,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_mastodon_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -901,7 +904,7 @@ class EditPetitionViewTest(TestCase):
 
         # Now let's enable the whatsapp share button
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -917,7 +920,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_whatsapp_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
@@ -932,7 +935,7 @@ class EditPetitionViewTest(TestCase):
         # Now let's enable the whatsapp share button
         share_button_form_data["has_whatsapp_share_button"] = True
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_petition.html")
@@ -948,7 +951,7 @@ class EditPetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_whatsapp_share_button"] = False
         response = self.client.post(
-            reverse("edit_petition", args=[p.id]), share_button_form_data
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
