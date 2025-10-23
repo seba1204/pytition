@@ -9,7 +9,6 @@ from django.utils.html import format_html
 from django.utils.timezone import now
 from django.utils.translation import gettext as _
 
-from apps.petition.forms import SignatureForm
 from apps.petition.helpers import (
     check_petition_is_accessible,
     get_client_ip,
@@ -19,6 +18,7 @@ from apps.petition.helpers import (
     subscribe_to_newsletter,
 )
 from apps.petition.models import Signature
+from apps.signatures.forms import SignatureForm
 
 
 # <int:petition_id>/sign

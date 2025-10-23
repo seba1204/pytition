@@ -35,6 +35,7 @@ from django.views.generic.edit import CreateView
 from formtools.wizard.views import SessionWizardView  # type: ignore
 
 from apps.organizations.routes import OrgRoute
+from apps.signatures.forms import SignatureForm
 
 from .forms import (
     ContentFormPetition,
@@ -46,7 +47,6 @@ from .forms import (
     PetitionCreationStep2,
     PetitionCreationStep3,
     PytitionUserCreationForm,
-    SignatureForm,
     SocialNetworkForm,
     StyleForm,
     UpdateInfoForm,
