@@ -22,13 +22,13 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
 
-from apps.consents.forms import EmailForm, NewsletterForm
-from apps.organizations.routes import OrgRoute
-from apps.petition.forms import (
+from apps.accounts.forms import (
     DeleteAccountForm,
     PytitionUserCreationForm,
     UpdateInfoForm,
 )
+from apps.consents.forms import EmailForm, NewsletterForm
+from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import (
     get_session_user,
     get_update_form,

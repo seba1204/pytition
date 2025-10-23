@@ -106,7 +106,7 @@ def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
 
 
 def get_update_form(user: Any, data: Mapping[str, Any] | None = None) -> Any:
-    from .forms import UpdateInfoForm  # noqa # to avoid circular import
+    from apps.accounts.forms import UpdateInfoForm  # noqa # to avoid circular import
 
     if not data:
         _data: dict[str, Any] = {

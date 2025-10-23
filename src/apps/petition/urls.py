@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.urls import include, path, reverse_lazy
 
+from apps.accounts.forms import PytitionUserCreationForm
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
-from apps.petition.forms import PytitionUserCreationForm
 from apps.petition.views import PytitionUserCreateView
 from apps.petitions import forms as PF
 from apps.petitions import views as PV

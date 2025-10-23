@@ -66,39 +66,3 @@ class PytitionUserCreationForm(UserCreationForm):
 
     def send_success_email(self) -> None:
         send_welcome_mail(self.cleaned_data)
-
-
-class UpdateInfoForm(UserCreationForm):
-    class Meta:
-        model = get_user_model()
-        fields = ("first_name", "last_name", "email")
-
-    def __init__(self, user: Any, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.user = user
-        del self.fields["password1"]
-        del self.fields["password2"]
-
-    def save(self, commit: bool = True) -> Any:
-        self.user.email = self.cleaned_data["email"]
-        self.user.first_name = self.cleaned_data["first_name"]
-        self.user.last_name = self.cleaned_data["last_name"]
-        if commit:
-            self.user.save()
-        return self.user
-
-
-class DeleteAccountForm(forms.Form):
-    validation = forms.CharField()
-
-    def clean(self) -> dict[str, Any]:
-        cleaned_data = super().clean()
-        valid = cleaned_data.get("validation") if cleaned_data is not None else None
-        if valid != _("DROP MY ACCOUNT"):
-            self.add_error(
-                "validation",
-                ValidationError(
-                    _("You miss-typed the validation code"), code="invalid"
-                ),
-            )
-        return self.cleaned_data
