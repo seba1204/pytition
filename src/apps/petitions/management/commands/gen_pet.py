@@ -8,13 +8,14 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    """Generate petitions for a user or an org
-
-    ./manage.py gen_pet --user username
-    > Generate a petition for user:username
-    ./manage.py gen_pet --orga orgname -n 10
-    > Generate 10 petitions for org:orgname
     """
+    Generate petitions for a user or an org.
+
+    ./manage.py gen_pet --user username > Generate a petition for user:username
+    ./manage.py gen_pet --orga orgname -n 10 > Generate 10 petitions for org:orgname
+    """
+
+    # TODO: Improve creation by not naming all petitions the same way (idempotence)
 
     def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("--user", type=str)
