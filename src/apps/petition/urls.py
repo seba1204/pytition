@@ -2,13 +2,13 @@ from django.conf import settings
 from django.urls import include, path, reverse_lazy
 from django.views.generic import RedirectView
 
+from apps.consents import views as consents_views
 from apps.organizations.routes import NAMESPACE as ORG_NS
+from apps.petition import views
+from apps.petition.forms import PytitionUserCreationForm
+from apps.petition.views import PetitionCreationWizard, PytitionUserCreateView
 from apps.petitions import views as petitions_views
 from apps.signatures import views as signatures_views
-
-from . import views
-from .forms import PytitionUserCreationForm
-from .views import PetitionCreationWizard, PytitionUserCreateView
 
 urlpatterns = [
     # index
@@ -17,7 +17,9 @@ urlpatterns = [
     # Petition
     path("<int:petition_id>/", views.detail, name="detail"),
     path(
-        "<int:petition_id>/confirm/<confirmation_hash>", views.confirm, name="confirm"
+        "<int:petition_id>/confirm/<confirmation_hash>",
+        consents_views.confirm,
+        name="confirm",
     ),
     # TODO: move to petitions/urls.py
     path(
@@ -35,7 +37,7 @@ urlpatterns = [
     ),
     path(
         "resend/<int:signature_id>",
-        views.go_send_confirmation_email,
+        consents_views.resend,
         name="resend_confirmation_email",
     ),
     # TODO: move to petitions/urls.py
@@ -52,7 +54,7 @@ urlpatterns = [
     ),
     path(
         "<int:petition_id>/show_sympa_subscribe_bloc",
-        views.show_sympa_subscribe_bloc,
+        consents_views.show_sympa_subscribe_bloc,
         name="show_sympa_subscribe_bloc",
     ),
     path("<int:petition_id>/delete", views.petition_delete, name="petition_delete"),

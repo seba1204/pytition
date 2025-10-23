@@ -28,7 +28,6 @@ from django.views.generic.edit import CreateView
 from formtools.wizard.views import SessionWizardView  # type: ignore
 
 from apps.consents.forms import EmailForm, NewsletterForm
-from apps.consents.helpers import send_confirmation_email
 from apps.organizations.routes import OrgRoute
 from apps.petition.forms import (
     ContentFormPetition,
@@ -49,7 +48,6 @@ from apps.petition.helpers import (
     petition_detail_meta,
     petition_from_id,
     remove_user_moderated,
-    sanitize_html,
 )
 from apps.petition.models import (
     Moderation,
@@ -59,7 +57,6 @@ from apps.petition.models import (
     Petition,
     PetitionTemplate,
     PytitionUser,
-    Signature,
     SlugModel,
 )
 from apps.signatures.forms import SignatureForm
@@ -107,43 +104,6 @@ def index(request: HttpRequest) -> DjangoHttpResponse:
             "petition/index.html",
             {"user": user, "petitions": petitions, "sort": sort},
         )
-
-
-# <int:petition_id>/show_sympa_subscribe_bloc
-# Show sympa subscribe bloc to mass subscribe people to newsletter
-@login_required
-def show_sympa_subscribe_bloc(request: HttpRequest, petition_id: int) -> HttpResponse:
-    try:
-        pytitionuser = get_session_user(request)
-    except Exception:
-        pytitionuser = None
-
-    if not pytitionuser:
-        return redirect("index")
-
-    petition = petition_from_id(petition_id)
-
-    if (
-        petition.owner_type == "org"
-        and petition.org is not None
-        and not petition.org.is_allowed_to(pytitionuser, "can_view_signatures")
-        or petition.owner_type == "user"
-        and petition.owner != pytitionuser
-    ):
-        return redirect("index")
-
-    text_bloc = ""
-    signatures = petition.signature_set.filter(subscribed_to_mailinglist=True)
-    if not signatures:
-        return HttpResponse(_("No newsletter subscription yet!"))
-
-    for signature in signatures:
-        text_bloc = (
-            text_bloc
-            + f"{signature.email} {signature.first_name} {signature.last_name}<br/>\n"
-        )
-
-    return HttpResponse(sanitize_html(text_bloc))
 
 
 # /search?q=QUERY
@@ -201,43 +161,6 @@ def detail(request: HttpRequest, petition_id: int) -> HttpResponse:
         return response
     else:
         return render(request, "petition/petition_detail.html", ctx)
-
-
-# /<int:petition_id>/confirm/<confirmation_hash>
-# Confirm signature to a petition
-def confirm(
-    request: HttpRequest, petition_id: int, confirmation_hash: str
-) -> HttpResponse:
-    petition = petition_from_id(petition_id)
-    check_petition_is_accessible(request, petition)
-    try:
-        success_msg = petition.confirm_signature(confirmation_hash)
-        if success_msg is None:
-            messages.error(
-                request,
-                _(
-                    "Error: This confirmation code is invalid. "
-                    "Maybe you've already confirmed?"
-                ),
-            )
-        else:
-            messages.success(request, success_msg)
-            request.session["just_confirmed"] = True
-    except ValidationError as e:
-        messages.error(request, _(str(e.message)))
-    except Signature.DoesNotExist:
-        messages.error(request, _("Error: This confirmation code is invalid."))
-    return redirect(petition.url)
-
-
-# resend/<int:signature_id>
-# resend the signature confirmation email
-@login_required
-def go_send_confirmation_email(request: HttpRequest, signature_id: int) -> HttpResponse:
-    app_label = Signature._meta.app_label
-    signature = Signature.objects.filter(pk=signature_id).get()
-    send_confirmation_email(request, signature)
-    return redirect(f"admin:{app_label}_signature_change", signature_id)
 
 
 # /user/dashboard
