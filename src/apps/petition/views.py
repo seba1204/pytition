@@ -13,11 +13,6 @@ from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
 from django.db import IntegrityError
 from django.db.models import Q
-
-# ------------------------------------ Views -----------------------------------
-# Path : /
-# Depending on the settings.INDEX_PAGE, show a list of petitions or
-# redirect to an user/org profile page
 from django.http import (
     Http404,
     HttpRequest,
@@ -33,6 +28,7 @@ from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
 from formtools.wizard.views import SessionWizardView  # type: ignore
 
+from apps.consents.forms import EmailForm, NewsletterForm
 from apps.organizations.routes import OrgRoute
 from apps.signatures.forms import SignatureForm
 from apps.signatures.helpers import hide_sign_form_if_user_just_signed
@@ -41,8 +37,6 @@ from .forms import (
     ContentFormPetition,
     ContentFormTemplate,
     DeleteAccountForm,
-    EmailForm,
-    NewsletterForm,
     PetitionCreationStep1,
     PetitionCreationStep2,
     PetitionCreationStep3,
