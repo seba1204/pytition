@@ -36,10 +36,10 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:
         return redirect("user_dashboard")
 
     ctx: _TransferContext = {"user": pytitionuser, "petition": petition}
-
+    org: Organization
     # Permission checks
     if petition.owner_type == "org":
-        org: Organization = petition.owner  # type: ignore
+        org = petition.owner  # type: ignore
         if not org.is_allowed_to(pytitionuser, "can_modify_permissions"):
             messages.error(
                 request,
@@ -66,6 +66,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:
         owner_type = request.POST.get("new_owner_type", "")
         new_owner_name = request.POST.get("new_owner_name", "")
         user = None
+        orga: Organization | None = None
 
         if not owner_type or not new_owner_name:
             messages.error(request, _("Incorrect request, something went wrong."))
@@ -74,7 +75,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:
         not_found = False
         if owner_type == "org":
             try:
-                org = Organization.objects.get(slugname=new_owner_name)
+                orga = Organization.objects.get(slugname=new_owner_name)
             except Exception:
                 not_found = True
         elif owner_type == "user":
@@ -99,7 +100,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:
             return redirect("transfer_petition", petition.id)
 
         try:
-            petition.transfer_to(user, org)
+            petition.transfer_to(user, orga)
             # To prevent sending an unwanted published petition to an organization.
             petition.unpublish()
             messages.success(request, _("Petition successfully transfered!"))
