@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 
-from apps.petition.helpers import get_session_user, petition_from_id
+from apps.petition.helpers import get_session_user
 from apps.petition.models import Permission
+from apps.petitions.helpers import petition_from_id
 
 
 # /<int:petition_id>/delete

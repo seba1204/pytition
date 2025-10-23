@@ -32,7 +32,6 @@ from apps.petition.forms import (
 from apps.petition.helpers import (
     get_session_user,
     get_update_form,
-    petition_from_id,
     remove_user_moderated,
 )
 from apps.petition.models import (
@@ -45,6 +44,7 @@ from apps.petition.models import (
     PytitionUser,
 )
 from apps.petitions.forms import ContentFormTemplate, SocialNetworkForm, StyleForm
+from apps.petitions.helpers import petition_from_id
 
 
 def index(request: HttpRequest) -> DjangoHttpResponse:

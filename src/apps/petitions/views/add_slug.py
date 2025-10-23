@@ -7,7 +7,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
-from apps.petition.helpers import get_session_user, petition_from_id
+from apps.petition.helpers import get_session_user
+from apps.petitions.helpers import petition_from_id
 from apps.petitions.routes import PetitionsRoute
 
 

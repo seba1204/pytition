@@ -14,9 +14,9 @@ from apps.petition.helpers import (
     check_petition_is_accessible,
     get_client_ip,
     petition_detail_meta,
-    petition_from_id,
 )
 from apps.petition.models import Signature
+from apps.petitions.helpers import petition_from_id
 from apps.signatures.forms import SignatureForm
 
 

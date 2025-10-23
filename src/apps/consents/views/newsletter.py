@@ -3,7 +3,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
-from apps.petition.helpers import get_session_user, petition_from_id, sanitize_html
+from apps.petition.helpers import get_session_user, sanitize_html
+from apps.petitions.helpers import petition_from_id
 
 
 # <int:petition_id>/show_sympa_subscribe_bloc

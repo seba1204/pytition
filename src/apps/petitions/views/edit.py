@@ -9,12 +9,13 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from apps.consents.forms import EmailForm, NewsletterForm
-from apps.petition.helpers import get_session_user, petition_from_id
+from apps.petition.helpers import get_session_user
 from apps.petition.models import Permission
 from apps.petitions.forms import ContentFormPetition, SocialNetworkForm, StyleForm
+from apps.petitions.helpers import petition_from_id
 
 
-# FIXME: This view is too big, and contains mypy warnings.
+# FIXME: This view is too big, it should be split into smaller functions
 # /<int:petition_id>/edit
 # Edit a petition
 @login_required

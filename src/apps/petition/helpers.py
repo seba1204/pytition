@@ -17,9 +17,8 @@ from lxml.html.clean import Cleaner
 
 from apps.petitions.routes import PetitionsRoute
 
-# Avoid circular imports for type checking
-if TYPE_CHECKING:  # pragma: no cover
-    from .models import Petition, PytitionUser
+if TYPE_CHECKING:
+    from apps.petition.models import PytitionUser
 
 
 # Remove all moderated instances of Petition
@@ -78,17 +77,6 @@ def get_session_user(request: HttpRequest) -> PytitionUser:
     except User.DoesNotExist as err:
         raise Http404(_("not found")) from err
     return pytitionuser
-
-
-# Return a 404 if a petition does not exist
-def petition_from_id(id: int) -> Petition:
-    from .models import Petition  # noqa # to avoid circular import
-
-    petition: Petition | None = Petition.by_id(id)
-    if petition is None:
-        raise Http404(_("Petition does not exist"))
-    else:
-        return petition
 
 
 # Check if a petition is publicly accessible

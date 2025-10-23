@@ -13,11 +13,9 @@ from django.utils.translation import gettext as _
 from apps.consents.helpers import send_confirmation_email
 from apps.core.exceptions import ApiError
 from apps.organizations.routes import OrgRoute
-from apps.petition.helpers import (
-    get_session_user,
-    petition_from_id,
-)
+from apps.petition.helpers import get_session_user
 from apps.petition.models import Organization, Permission, Petition, Signature
+from apps.petitions.helpers import petition_from_id
 
 
 class RedirectError(ApiError):
