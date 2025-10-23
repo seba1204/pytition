@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import Petition, PytitionUser, Signature
 
@@ -42,13 +43,13 @@ class GoSendConfirmationEmailViewTest(TestCase):
         if signature is None:
             return
         response = self.client.get(
-            reverse("resend_confirmation_email", args=[signature.id]), follow=True
+            reverse(ConsentRoute.RESEND, args=[signature.id]), follow=True
         )
         self.assertRedirects(
             response,
             reverse("login")
             + "?next="
-            + reverse("resend_confirmation_email", args=[signature.id]),
+            + reverse(ConsentRoute.RESEND, args=[signature.id]),
         )
 
     def test_GoSendConfirmationEmailViewLoginOK(self) -> None:
@@ -74,7 +75,7 @@ class GoSendConfirmationEmailViewTest(TestCase):
         if signature is None:
             return
         response = self.client.get(
-            reverse("resend_confirmation_email", args=[signature.id]), follow=True
+            reverse(ConsentRoute.RESEND, args=[signature.id]), follow=True
         )
         self.assertRedirects(
             response,

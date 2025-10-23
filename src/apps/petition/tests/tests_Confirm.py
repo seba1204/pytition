@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import Petition, Signature
 
@@ -34,7 +35,7 @@ class ConfirmViewTest(TestCase):
         self.assertEqual(signature.confirmed, False)
         confirm_hash = signature.confirmation_hash
         response = self.client.get(
-            reverse("confirm", args=[petition.id, confirm_hash]), follow=True
+            reverse(ConsentRoute.CONFIRM, args=[petition.id, confirm_hash]), follow=True
         )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()

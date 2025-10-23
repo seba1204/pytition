@@ -11,6 +11,8 @@ from django.urls import reverse
 from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 
+from apps.consents.routes import ConsentRoute
+
 
 # Send Confirmation email
 def send_confirmation_email(request: HttpRequest, signature: Any) -> None:
@@ -27,7 +29,7 @@ def send_confirmation_email(request: HttpRequest, signature: Any) -> None:
 
     petition = signature.petition
     url = request.build_absolute_uri(
-        reverse("confirm", args=[petition.id, signature.confirmation_hash])
+        reverse(ConsentRoute.CONFIRM, args=[petition.id, signature.confirmation_hash])
     )
     html_message = render_to_string(
         "petition/confirmation_email.html",

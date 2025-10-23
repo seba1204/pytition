@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.consents.routes import ConsentRoute
 from apps.petition.models import Petition, PytitionUser, Signature
 
 
@@ -44,7 +45,9 @@ class SympaBlockTest(TestCase):
         pu = self.login("julia")
         p = Petition.objects.create(title="my test petition", user=pu)
         self.create_signatures(p)
-        response = self.client.get(reverse("show_sympa_subscribe_bloc", args=[p.id]))
+        response = self.client.get(
+            reverse(ConsentRoute.SHOW_SYMPA_SUBSCRIBE_BLOC, args=[p.id])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "<br>", self.nb_subscribed)
         self.assertEqual(self.nb_subscribed, 5)

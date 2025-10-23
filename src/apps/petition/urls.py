@@ -2,7 +2,7 @@ from django.conf import settings
 from django.urls import include, path, reverse_lazy
 from django.views.generic import RedirectView
 
-from apps.consents import views as consents_views
+from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
 from apps.petition.forms import PytitionUserCreationForm
@@ -13,14 +13,10 @@ from apps.signatures import views as signatures_views
 urlpatterns = [
     # index
     path("", views.index, name="index"),
+    path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("search", views.search, name="search"),
     # Petition
     path("<int:petition_id>/", views.detail, name="detail"),
-    path(
-        "<int:petition_id>/confirm/<confirmation_hash>",
-        consents_views.confirm,
-        name="confirm",
-    ),
     # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/get_csv_signature",
@@ -35,11 +31,6 @@ urlpatterns = [
         {"only_confirmed": True},
         name="get_csv_confirmed_signature",
     ),
-    path(
-        "resend/<int:signature_id>",
-        consents_views.resend,
-        name="resend_confirmation_email",
-    ),
     # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/sign",
@@ -51,11 +42,6 @@ urlpatterns = [
         "<int:petition_id>/show_signatures",
         signatures_views.show_signatures,
         name="show_signatures",
-    ),
-    path(
-        "<int:petition_id>/show_sympa_subscribe_bloc",
-        consents_views.show_sympa_subscribe_bloc,
-        name="show_sympa_subscribe_bloc",
     ),
     path("<int:petition_id>/delete", views.petition_delete, name="petition_delete"),
     path("<int:petition_id>/publish", views.petition_publish, name="petition_publish"),

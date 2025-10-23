@@ -883,8 +883,8 @@ def edit_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
                 storage = FileSystemStorage()
                 file = social_network_form.cleaned_data["twitter_image"]
                 if file:
-                    path = Path.join(pytitionuser.username, file.name)
-                    name = storage.save(path, file)
+                    path = Path(pytitionuser.username) / file.name
+                    name = storage.save(str(path), file)
                     petition.twitter_image = storage.url(name)
                 if social_network_form.cleaned_data["remove_twitter_image"]:
                     petition.twitter_image = ""
