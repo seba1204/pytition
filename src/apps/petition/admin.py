@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
 
+from apps.consents.helpers import send_confirmation_email
 from apps.petition.models import (
     Organization,
     Permission,
@@ -14,7 +15,6 @@ from apps.petition.models import (
     Signature,
     SlugModel,
 )
-from apps.petition.views import send_confirmation_email
 
 
 @admin.register(PytitionUser)

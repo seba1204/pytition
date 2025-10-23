@@ -1,15 +1,13 @@
 from __future__ import annotations
 
-import json
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any
 
 import lxml
 import lxml.html
-import requests
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.mail import EmailMessage, EmailMultiAlternatives, get_connection
+from django.core.mail import EmailMultiAlternatives, get_connection
 from django.http import Http404, HttpRequest
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -121,29 +119,6 @@ def footer_content_processor(request: HttpRequest) -> dict[str, Any]:
     return {"footer_content": footer_content}
 
 
-# Send Confirmation email
-def send_confirmation_email(request: HttpRequest, signature: Any) -> None:
-    petition = signature.petition
-    url = request.build_absolute_uri(
-        reverse("confirm", args=[petition.id, signature.confirmation_hash])
-    )
-    html_message = render_to_string(
-        "petition/confirmation_email.html",
-        {"firstname": signature.first_name, "url": url},
-    )
-    message = strip_tags(html_message)
-    with get_connection() as connection:
-        msg = EmailMultiAlternatives(
-            _("Confirm your signature to our petition"),
-            message,
-            to=[signature.email],
-            connection=connection,
-            reply_to=[petition.confirmation_email_reply],
-        )
-        msg.attach_alternative(html_message, "text/html")
-        msg.send(fail_silently=False)
-
-
 # Send welcome mail on account creation
 def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
     html_message = render_to_string("registration/confirmation_email.html", user_infos)
@@ -168,40 +143,6 @@ def petition_detail_meta(request: HttpRequest, petition_id: int) -> dict[str, st
         petition_path=reverse("detail", args=[petition_id]),
     )
     return {"site_url": request.get_host(), "petition_url": url}
-
-
-def subscribe_to_newsletter(petition: Any, email: str) -> None:
-    if petition.newsletter_subscribe_method in ["POST", "GET"]:
-        if petition.newsletter_subscribe_http_url == "":
-            return
-        data = petition.newsletter_subscribe_http_data
-        if data == "" or data is None:
-            data = {}
-        else:
-            data = data.replace("'", '"')
-            data = json.loads(data)
-        if petition.newsletter_subscribe_http_mailfield != "":
-            data[petition.newsletter_subscribe_http_mailfield] = email
-    if petition.newsletter_subscribe_method == "POST":
-        requests.post(petition.newsletter_subscribe_http_url, data)
-    elif petition.newsletter_subscribe_method == "GET":
-        requests.get(petition.newsletter_subscribe_http_url, data)
-    elif petition.newsletter_subscribe_method == "MAIL":
-        with get_connection(
-            host=petition.newsletter_subscribe_mail_smtp_host,
-            port=petition.newsletter_subscribe_mail_smtp_port,
-            username=petition.newsletter_subscribe_mail_smtp_user,
-            password=petition.newsletter_subscribe_mail_smtp_password,
-            use_ssl=petition.newsletter_subscribe_mail_smtp_tls,
-            use_tls=petition.newsletter_subscribe_mail_smtp_starttls,
-        ) as connection:
-            EmailMessage(
-                petition.newsletter_subscribe_mail_subject.format(email),
-                "",
-                petition.newsletter_subscribe_mail_from,
-                [petition.newsletter_subscribe_mail_to],
-                connection=connection,
-            ).send(fail_silently=True)
 
 
 def get_update_form(user: Any, data: Mapping[str, Any] | None = None) -> Any:

@@ -10,12 +10,12 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.consents.helpers import send_confirmation_email
 from apps.core.exceptions import ApiError
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import (
     get_session_user,
     petition_from_id,
-    send_confirmation_email,
 )
 from apps.petition.models import Organization, Permission, Petition, Signature
 

@@ -1,4 +1,3 @@
-import os
 import random
 from pathlib import Path
 from time import time
@@ -29,11 +28,9 @@ from django.views.generic.edit import CreateView
 from formtools.wizard.views import SessionWizardView  # type: ignore
 
 from apps.consents.forms import EmailForm, NewsletterForm
+from apps.consents.helpers import send_confirmation_email
 from apps.organizations.routes import OrgRoute
-from apps.signatures.forms import SignatureForm
-from apps.signatures.helpers import hide_sign_form_if_user_just_signed
-
-from .forms import (
+from apps.petition.forms import (
     ContentFormPetition,
     ContentFormTemplate,
     DeleteAccountForm,
@@ -45,7 +42,7 @@ from .forms import (
     StyleForm,
     UpdateInfoForm,
 )
-from .helpers import (
+from apps.petition.helpers import (
     check_petition_is_accessible,
     get_session_user,
     get_update_form,
@@ -53,9 +50,8 @@ from .helpers import (
     petition_from_id,
     remove_user_moderated,
     sanitize_html,
-    send_confirmation_email,
 )
-from .models import (
+from apps.petition.models import (
     Moderation,
     ModerationReason,
     Organization,
@@ -66,6 +62,8 @@ from .models import (
     Signature,
     SlugModel,
 )
+from apps.signatures.forms import SignatureForm
+from apps.signatures.helpers import hide_sign_form_if_user_just_signed
 
 
 def index(request: HttpRequest) -> DjangoHttpResponse:
@@ -595,10 +593,7 @@ def template_fav_toggle(request: HttpRequest, template_id: int) -> JsonResponse:
     except PetitionTemplate.DoesNotExist:
         return JsonResponse({}, status=404)
 
-    if template.owner_type == "org":
-        owner = template.org
-    else:
-        owner = template.user
+    owner = template.org if template.owner_type == "org" else template.user
 
     if template.owner_type == "org":
         if owner not in pytitionuser.organization_set.all():
@@ -749,7 +744,8 @@ class PetitionCreationWizard(SessionWizardView):
                 messages.error(
                     self.request,
                     _(
-                        "You don't have the permission to create a new petition in this Organization"
+                        "You don't have the permission to create a new petition in "
+                        "this Organization"
                     ),
                 )
                 return redirect(OrgRoute.DASHBOARD, orgslugname)
@@ -778,15 +774,13 @@ class PetitionCreationWizard(SessionWizardView):
 
     def get_context_data(self, form: Any, **kwargs: Any) -> dict[str, Any]:
         org_petition = "orgslugname" in self.kwargs
-        context = super(PetitionCreationWizard, self).get_context_data(
-            form=form, **kwargs
-        )
+        context = super().get_context_data(form=form, **kwargs)
         if org_petition:
             base_template = "org/base.html"
             try:
                 org = Organization.objects.get(slugname=self.kwargs["orgslugname"])
             except Organization.DoesNotExist:
-                raise Http404(_("Organization does not exist"))
+                raise Http404(_("Organization does not exist")) from None
         else:
             base_template = "petition/user_base.html"
 
@@ -801,9 +795,8 @@ class PetitionCreationWizard(SessionWizardView):
             except Permission.DoesNotExist:
                 return HttpResponse(
                     _(
-                        "Internal error, cannot find your permissions attached to this organization ('{orgname}')".format(
-                            orgname=org.name
-                        )
+                        "Internal error, cannot find your permissions attached to "
+                        "this organization ('{orgname}')".format(orgname=org.name)
                     ),
                     status=500,
                 )
@@ -967,7 +960,7 @@ def edit_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
                 storage = FileSystemStorage()
                 file = social_network_form.cleaned_data["twitter_image"]
                 if file:
-                    path = os.path.join(pytitionuser.username, file.name)
+                    path = Path.join(pytitionuser.username, file.name)
                     name = storage.save(path, file)
                     petition.twitter_image = storage.url(name)
                 if social_network_form.cleaned_data["remove_twitter_image"]:
@@ -1219,8 +1212,11 @@ def account_settings(request: HttpRequest) -> HttpResponse:
 
     orgs = pytitionuser.organization_set.all()
     # Checking if the user is allowed to leave the organization
+
+    MIN_ORG_MEMBERS = 2
+
     for org in orgs:
-        if org.members.count() < 2:
+        if org.members.count() < MIN_ORG_MEMBERS:
             org.leave = False
         else:
             # More than one user, we need to check owners
@@ -1470,12 +1466,12 @@ class PytitionUserCreateView(CreateView):
         ).format(a=self.a, b=self.b)
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(PytitionUserCreateView, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.get_new_numbers()
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         self.save_numbers(self.request)
-        return super(PytitionUserCreateView, self).get_context_data(**kwargs)
+        return super().get_context_data(**kwargs)
 
     def get_form_kwargs(self) -> dict[str, Any]:
         kwargs = super().get_form_kwargs()
