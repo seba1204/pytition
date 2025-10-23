@@ -7,7 +7,7 @@ from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
 from apps.petition.forms import PytitionUserCreationForm
 from apps.petition.views import PetitionCreationWizard, PytitionUserCreateView
-from apps.petitions import views as petitions_views
+from apps.petitions import views as PV
 from apps.signatures import views as signatures_views
 
 urlpatterns = [
@@ -15,8 +15,10 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("search", views.search, name="search"),
-    # Petition
-    path("<int:petition_id>/", views.detail, name="detail"),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Petitions
+    # ──────────────────────────────────────────────────────────────────────────────────
+    path("<int:petition_id>/", PV.detail, name="detail"),
     # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/get_csv_signature",
@@ -43,14 +45,18 @@ urlpatterns = [
         signatures_views.show_signatures,
         name="show_signatures",
     ),
-    path("<int:petition_id>/delete", views.petition_delete, name="petition_delete"),
-    path("<int:petition_id>/publish", views.petition_publish, name="petition_publish"),
+    path(
+        "<int:petition_id>/delete",
+        PV.delete,
+        name="petition_delete",
+    ),
+    path("<int:petition_id>/publish", PV.publish, name="petition_publish"),
     path(
         "<int:petition_id>/unpublish",
-        views.petition_unpublish,
+        PV.unpublish,
         name="petition_unpublish",
     ),
-    path("<int:petition_id>/edit", views.edit_petition, name="edit_petition"),
+    path("<int:petition_id>/edit", PV.edit, name="edit_petition"),
     path("<int:petition_id>/add_new_slug", views.add_new_slug, name="add_new_slug"),
     path("<int:petition_id>/del_slug", views.del_slug, name="del_slug"),
     path(
@@ -66,7 +72,7 @@ urlpatterns = [
     ),
     path(
         "transfer_petition/<int:petition_id>",
-        views.transfer_petition,
+        PV.transfer,
         name="transfer_petition",
     ),
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -76,7 +82,7 @@ urlpatterns = [
     # PUBLIC: show a petition by slug — org owner
     path(
         "org/<orgslugname>/<slug:petitionname>",
-        petitions_views.slug_show_petition,
+        PV.slug_show_petition,
         name="slug_show_petition",
     ),
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -95,11 +101,11 @@ urlpatterns = [
     ),
     # User
     path("user/dashboard", views.user_dashboard, name="user_dashboard"),
-    path("user/new_template", petitions_views.new_template, name="user_new_template"),
+    path("user/new_template", PV.new_template, name="user_new_template"),
     path("user/<user_name>", views.user_profile, name="user_profile"),
     path(
         "user/<username>/<slug:petitionname>",
-        petitions_views.slug_show_petition,
+        PV.slug_show_petition,
         name="slug_show_petition",
     ),
     # Actions
