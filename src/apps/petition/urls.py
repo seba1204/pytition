@@ -6,7 +6,8 @@ from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
 from apps.petition.forms import PytitionUserCreationForm
-from apps.petition.views import PetitionCreationWizard, PytitionUserCreateView
+from apps.petition.views import PytitionUserCreateView
+from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.signatures import views as signatures_views
 
@@ -19,27 +20,23 @@ urlpatterns = [
     # Petitions
     # ──────────────────────────────────────────────────────────────────────────────────
     path("<int:petition_id>/", PV.detail, name="detail"),
-    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/get_csv_signature",
         signatures_views.get_csv_signature,
         {"only_confirmed": False},
         name="get_csv_signature",
     ),
-    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/get_csv_confirmed_signature",
         signatures_views.get_csv_signature,
         {"only_confirmed": True},
         name="get_csv_confirmed_signature",
     ),
-    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/sign",
         signatures_views.create,
         name="create_signature",
     ),
-    # TODO: move to petitions/urls.py
     path(
         "<int:petition_id>/show_signatures",
         signatures_views.show_signatures,
@@ -57,8 +54,8 @@ urlpatterns = [
         name="petition_unpublish",
     ),
     path("<int:petition_id>/edit", PV.edit, name="edit_petition"),
-    path("<int:petition_id>/add_new_slug", views.add_new_slug, name="add_new_slug"),
-    path("<int:petition_id>/del_slug", views.del_slug, name="del_slug"),
+    path("<int:petition_id>/add_new_slug", PV.add_slug, name="add_new_slug"),
+    path("<int:petition_id>/del_slug", PV.del_slug, name="del_slug"),
     path(
         "<int:petition_id>/report/<int:reason_id>",
         views.report_petition,
@@ -118,22 +115,22 @@ urlpatterns = [
     # Wizard
     path(
         "wizard/org/<slug:orgslugname>/new_petition",
-        PetitionCreationWizard.as_view(views.WizardForms),
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
         name="org_petition_wizard",
     ),
     path(
         "wizard/org/<slug:orgslugname>/new_petition/from_template/<int:template_id>",
-        PetitionCreationWizard.as_view(views.WizardForms),
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
         name="org_petition_wizard_from_template",
     ),
     path(
         "wizard/user/new_petition",
-        PetitionCreationWizard.as_view(views.WizardForms),
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
         name="user_petition_wizard",
     ),
     path(
         "wizard/user/new_petition/from_template/<template_id>",
-        PetitionCreationWizard.as_view(views.WizardForms),
+        PF.PetitionCreationWizard.as_view(PF.WizardForms),
         name="user_petition_wizard_from_template",
     ),
     # Authentication
