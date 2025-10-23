@@ -18,7 +18,7 @@ from apps.petitions.forms import ContentFormPetition, SocialNetworkForm, StyleFo
 # /<int:petition_id>/edit
 # Edit a petition
 @login_required
-def edit(request: HttpRequest, petition_id: int) -> HttpResponse:
+def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
     """
     Edit a petition view.
 

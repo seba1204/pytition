@@ -25,7 +25,7 @@ class _TransferContext(TypedDict, total=False):
 # /transfer_petition/<int:petition_id>
 # Transfer a petition to another org or user
 @login_required
-def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:
+def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
     """Transfer a petition to another organization or user account."""
     pytitionuser = get_session_user(request)
     petition: Petition

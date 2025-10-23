@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.organizations",
     "apps.petition",
+    "apps.petitions",
     "apps.signatures",
     # Django core
     "django.contrib.admin",
