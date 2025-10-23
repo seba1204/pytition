@@ -1,5 +1,6 @@
 {% extends "layouts/layout.html" %}
 {% load static %}
+{% load vendor_static %}
 {% load i18n %}
 {% load widget_tweaks %}
 {% load petition_extras %}
@@ -365,7 +366,7 @@ body {
   <script type="text/javascript" src="{% static "js/petition.js" %}"></script>
   {% if petition.has_any_share_button %}
     <script type="text/javascript"
-            src="{% static "vendor/rrssb/js/rrssb.min.js" %}"></script>
+            src="{% vendor_static "rrssb" "js/rrssb.min.js" %}"></script>
     <script>
     const msbConfig = {
       openModal: function () {
@@ -383,7 +384,6 @@ body {
       $("#msb-address").focus();
     });
     </script>
-    <script type="text/javascript" src="{% static "vendor/msb/js/mastodon.js" %}"></script>
   {% endif %}
   {% if petition_is_signed %}
     <script type="text/javascript">$("#show_sign_success").modal("show");</script>

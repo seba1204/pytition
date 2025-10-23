@@ -32,7 +32,7 @@ def send_confirmation_email(request: HttpRequest, signature: Any) -> None:
         reverse(ConsentRoute.CONFIRM, args=[petition.id, signature.confirmation_hash])
     )
     html_message = render_to_string(
-        "petition/confirmation_email.html",
+        "consents/confirmation_email.html",
         {"firstname": signature.first_name, "url": url},
     )
     message = strip_tags(html_message)
