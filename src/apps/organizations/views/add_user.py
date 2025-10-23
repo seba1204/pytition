@@ -1,8 +1,4 @@
-"""
-View to add a user to an organization.
-
-Uses the OrgCreationForm to handle organization creation.
-"""
+"""View to add a user to an organization."""
 
 from django.contrib.auth.decorators import login_required
 from django.http import (
