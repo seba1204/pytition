@@ -17,6 +17,7 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from lxml.html.clean import Cleaner
 
+# Avoid circular imports for type checking
 if TYPE_CHECKING:  # pragma: no cover
     from .models import Petition, PytitionUser
 

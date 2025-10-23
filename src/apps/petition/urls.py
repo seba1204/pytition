@@ -4,6 +4,7 @@ from django.views.generic import RedirectView
 
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petitions import views as petitions_views
+from apps.signatures import views as signatures_views
 
 from . import views
 from .forms import PytitionUserCreationForm
@@ -20,13 +21,13 @@ urlpatterns = [
     ),
     path(
         "<int:petition_id>/get_csv_signature",
-        views.get_csv_signature,
+        signatures_views.get_csv_signature,
         {"only_confirmed": False},
         name="get_csv_signature",
     ),
     path(
         "<int:petition_id>/get_csv_confirmed_signature",
-        views.get_csv_signature,
+        signatures_views.get_csv_signature,
         {"only_confirmed": True},
         name="get_csv_confirmed_signature",
     ),
@@ -35,10 +36,14 @@ urlpatterns = [
         views.go_send_confirmation_email,
         name="resend_confirmation_email",
     ),
-    path("<int:petition_id>/sign", views.create_signature, name="create_signature"),
+    path(
+        "<int:petition_id>/sign",
+        signatures_views.create,
+        name="create_signature",
+    ),
     path(
         "<int:petition_id>/show_signatures",
-        views.show_signatures,
+        signatures_views.show_signatures,
         name="show_signatures",
     ),
     path(

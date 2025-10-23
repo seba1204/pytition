@@ -1,7 +1,5 @@
-import csv
 import os
 import random
-from datetime import timedelta
 from pathlib import Path
 from time import time
 from typing import Any
@@ -10,7 +8,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.hashers import make_password
 from django.contrib.messages import get_messages
 from django.core.exceptions import ValidationError
 from django.core.files.storage import FileSystemStorage
@@ -33,8 +30,6 @@ from django.http import HttpResponse as DjangoHttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.utils.html import format_html
-from django.utils.timezone import now
 from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
 from formtools.wizard.views import SessionWizardView  # type: ignore
@@ -58,7 +53,6 @@ from .forms import (
 )
 from .helpers import (
     check_petition_is_accessible,
-    get_client_ip,
     get_session_user,
     get_update_form,
     petition_detail_meta,
@@ -66,7 +60,6 @@ from .helpers import (
     remove_user_moderated,
     sanitize_html,
     send_confirmation_email,
-    subscribe_to_newsletter,
 )
 from .models import (
     Moderation,
@@ -259,56 +252,6 @@ def confirm(
     return redirect(petition.url)
 
 
-# <int:petition_id>/get_csv_signature
-# <int:petition_id>/get_csv_confirmed_signature
-# returns the CSV files of the list of signatures
-@login_required
-def get_csv_signature(
-    request: HttpRequest, petition_id: int, only_confirmed: bool
-) -> HttpResponse:
-    user = get_session_user(request)
-    try:
-        petition = Petition.objects.get(pk=petition_id)
-    except Petition.DoesNotExist:
-        return JsonResponse({}, status=404)
-    org = petition.org
-    is_allowed = False
-    if org is not None:
-        is_allowed = org.is_allowed_to(user, "can_view_signatures")
-    if (
-        petition.owner_type == "org"
-        and not is_allowed
-        or petition.owner_type == "user"
-        and petition.owner != user
-    ):
-        return JsonResponse({}, status=403)
-
-    filename = f"{petition}.csv"
-    signatures = Signature.objects.filter(petition=petition)
-    if only_confirmed:
-        signatures = signatures.filter(confirmed=True)
-    else:
-        signatures = signatures.all()
-    response = HttpResponse(content_type="text/csv")
-    response["Content-Disposition"] = f"attachment;filename={filename}".replace(
-        "\r\n", ""
-    ).replace(" ", "%20")
-    writer = csv.writer(response)
-    attrs = [
-        "first_name",
-        "last_name",
-        "phone",
-        "email",
-        "subscribed_to_mailinglist",
-        "confirmed",
-    ]
-    writer.writerow(attrs)
-    for signature in signatures:
-        values = [getattr(signature, field) for field in attrs]
-        writer.writerow(values)
-    return response
-
-
 # resend/<int:signature_id>
 # resend the signature confirmation email
 @login_required
@@ -317,63 +260,6 @@ def go_send_confirmation_email(request: HttpRequest, signature_id: int) -> HttpR
     signature = Signature.objects.filter(pk=signature_id).get()
     send_confirmation_email(request, signature)
     return redirect(f"admin:{app_label}_signature_change", signature_id)
-
-
-# <int:petition_id>/sign
-# Sign a petition
-def create_signature(request: HttpRequest, petition_id: int) -> HttpResponse:
-    petition = petition_from_id(petition_id)
-    check_petition_is_accessible(request, petition)
-
-    if request.method == "POST":
-        form = SignatureForm(petition=petition, data=request.POST)
-        ctx = {
-            "petition": petition,
-            "form": form,
-            "meta": petition_detail_meta(request, petition_id),
-            "og_image_absolute_url": request.build_absolute_uri(petition.twitter_image),
-        }
-        if not form.is_valid():
-            return render(request, "petition/petition_detail.html", ctx)
-
-        ipaddr = make_password(
-            get_client_ip(request), salt=petition.salt.encode("utf-8")
-        )
-        since = now() - timedelta(seconds=settings.SIGNATURE_THROTTLE_TIMING)
-        signatures = Signature.objects.filter(
-            petition=petition, ipaddress=ipaddr, date__gt=since
-        )
-        if signatures.count() > settings.SIGNATURE_THROTTLE:
-            messages.error(
-                request,
-                _("Too many signatures from your IP address, please try again later."),
-            )
-            return render(request, "petition/petition_detail.html", ctx)
-        else:
-            signature = form.save()
-            signature.ipaddress = ipaddr
-            signature.save()
-            send_confirmation_email(request, signature)
-            messages.success(
-                request,
-                format_html(
-                    _(
-                        "Thank you for signing this petition, an email has just been "
-                        "sent to you at your address '{}'"
-                        " in order to confirm your signature.<br>"
-                        "You will need to click on the confirmation link in the email."
-                        "<br>"
-                        "If you cannot find the email in your Inbox, please have a "
-                        "look in your Spam box."
-                    ),
-                    signature.email,
-                ),
-            )
-
-        if petition.has_newsletter and signature.subscribed_to_mailinglist:
-            subscribe_to_newsletter(petition, signature.email)
-
-    return redirect(petition.url)
 
 
 # /user/dashboard
@@ -1306,141 +1192,6 @@ def edit_petition(request: HttpRequest, petition_id: int) -> HttpResponse:
     ctx.update(submitted_ctx)
 
     return render(request, "petition/edit_petition.html", ctx)
-
-
-# /<int:petition_id>/show_signatures
-# Show the signatures of a petition
-@login_required
-def show_signatures(request: HttpRequest, petition_id: int) -> HttpResponse:
-    petition = petition_from_id(petition_id)
-    pytitionuser = get_session_user(request)
-    ctx = {}
-
-    if petition.owner_type == "user":
-        base_template = "petition/user_base.html"
-        if petition.user != pytitionuser:
-            messages.error(
-                request, _("You are not allowed to view this petition's signatures.")
-            )
-            return redirect("user_dashboard")
-    else:
-        org = petition.org
-        base_template = "org/base.html"
-        other_orgs = pytitionuser.organization_set.filter(~Q(name=org.name)).all()
-        if pytitionuser not in org.members.all():
-            messages.error(
-                request,
-                _(
-                    "You are not member of the following organization: '{}'".format(
-                        org.name
-                    )
-                ),
-            )
-            return redirect("user_dashboard")
-        try:
-            permissions = Permission.objects.get(organization=org, user=pytitionuser)
-        except Permission.DoesNotExist:
-            messages.error(
-                request,
-                _(
-                    "Internal error, cannot find your permissions attached to this organization ('{orgname}')".format(
-                        orgname=org.name
-                    )
-                ),
-            )
-            return redirect("user_dashboard")
-
-        if not permissions.can_view_signatures:
-            messages.error(
-                request,
-                _("You are not allowed to view signatures in this organization"),
-            )
-            return redirect(OrgRoute.DASHBOARD, org.slugname)
-
-        ctx.update(
-            {"org": org, "other_orgs": other_orgs, "user_permissions": permissions}
-        )
-
-    if request.method == "POST":
-        action = request.POST.get("action", "")
-        selected_signature_ids = request.POST.getlist("signature_id", "")
-        failed = False
-        if selected_signature_ids and action:
-            selected_signatures = Signature.objects.filter(
-                pk__in=selected_signature_ids
-            )
-            if action == "delete":
-                for s in selected_signatures:
-                    pet = s.petition
-                    if pet.org:  # Petition is owned by an org, we check for rights
-                        if pet.org.is_allowed_to(pytitionuser, "can_delete_signatures"):
-                            s.delete()
-                        else:
-                            failed = True
-                    else:  # Petition is owned by a user, we check it's the one asking for deletion
-                        s.delete()
-                if failed:
-                    messages.error(
-                        request,
-                        _(
-                            "You don't have permission to delete some or all of selected signatures"
-                        ),
-                    )
-                else:
-                    messages.success(
-                        request, _("You successfully deleted all selected signatures")
-                    )
-            if action == "re-send":
-                for s in selected_signatures:
-                    if not s.confirmed:
-                        try:
-                            send_confirmation_email(request, s)
-                        except:
-                            failed = True
-                if failed:
-                    messages.error(
-                        request,
-                        _(
-                            "An error happened while trying to re-send confirmation emails"
-                        ),
-                    )
-                else:
-                    messages.success(
-                        request,
-                        _("You successfully re-sent all selected confirmation emails"),
-                    )
-        if action == "re-send-all":
-            selected_signatures = Signature.objects.filter(
-                petition=petition, confirmed=False
-            )
-            for s in selected_signatures:
-                try:
-                    send_confirmation_email(request, s)
-                except:
-                    failed = True
-            if failed:
-                messages.error(
-                    request,
-                    _("An error happened while trying to re-send confirmation emails"),
-                )
-            else:
-                messages.success(
-                    request, _("You successfully re-sent all confirmation emails")
-                )
-        return redirect("show_signatures", petition_id)
-
-    signatures = petition.signature_set.all()
-
-    ctx.update(
-        {
-            "petition": petition,
-            "user": pytitionuser,
-            "base_template": base_template,
-            "signatures": signatures,
-        }
-    )
-
-    return render(request, "petition/signature_data.html", ctx)
 
 
 # /account_settings
