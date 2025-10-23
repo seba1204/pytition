@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.urls import include, path, reverse_lazy
 
+from apps.accounts import views as AV
 from apps.accounts.forms import PytitionUserCreationForm
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
@@ -9,6 +10,7 @@ from apps.petition.views import PytitionUserCreateView
 from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.petitions.routes import NAMESPACE as PET_NS
+from apps.presets import views as PrV
 from apps.signatures import views as SV
 
 urlpatterns = [
@@ -80,9 +82,25 @@ urlpatterns = [
         PV.slug_show_petition,
         name="slug_show_petition",
     ),
+    path(
+        "user/<username>/<slug:petitionname>",
+        PV.slug_show_petition,
+        name="slug_show_petition",
+    ),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # Templates
+    # Accounts
     # ──────────────────────────────────────────────────────────────────────────────────
+    # TODO: should be "/presets/new", whether it's user or an org
+    path("user/new_template", PrV.new, name="user_new_template"),
+    path("user/dashboard", AV.dashboard, name="user_dashboard"),
+    path("get_user_list", AV.user_list, name="get_user_list"),
+    path("account_settings", AV.settings, name="account_settings"),
+    # has to be AFTER other /user/paths to avoid resolution conflicts
+    path("user/<user_name>", AV.profile, name="user_profile"),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Presets
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # TODO: move view to theming app
     path("templates/<int:template_id>/edit", views.edit_template, name="edit_template"),
     path(
         "templates/<int:template_id>/fav",
@@ -94,18 +112,6 @@ urlpatterns = [
         views.template_delete,
         name="template_delete",
     ),
-    # User
-    path("user/dashboard", views.user_dashboard, name="user_dashboard"),
-    # TODO: move to theming app
-    path("user/new_template", PV.new_template, name="user_new_template"),
-    path("user/<user_name>", views.user_profile, name="user_profile"),
-    path(
-        "user/<username>/<slug:petitionname>",
-        PV.slug_show_petition,
-        name="slug_show_petition",
-    ),
-    # Actions
-    path("get_user_list", views.get_user_list, name="get_user_list"),
     path(
         "search_users_and_orgs",
         views.search_users_and_orgs,
@@ -113,7 +119,6 @@ urlpatterns = [
     ),
     # Authentication
     path("", include("django.contrib.auth.urls")),
-    path("account_settings", views.account_settings, name="account_settings"),
     # Misc
     path("image_upload", views.image_upload, name="image_upload"),
 ]

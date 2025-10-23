@@ -42,7 +42,7 @@
                          role="tabpanel"
                          aria-labelledby="update-info-form-list">
                         <h3 class="mb-4">{% trans "Personal Information" %}</h3>
-                        <form method="POST">
+                        <form method="post">
                             {% csrf_token %}
                             {% include "petition/bs4_form.html" with form=update_info_form %}
                             <div class="text-center">
@@ -58,7 +58,7 @@
                          role="tabpanel"
                          aria-labelledby="password-change-form-list">
                         <h3 class="mb-4">{% trans "Change password" %}</h3>
-                        <form method="POST">
+                        <form method="post">
                             {% csrf_token %}
                             {% include "petition/bs4_form.html" with form=password_change_form %}
                             <div class="text-center">
@@ -78,7 +78,7 @@
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>{{ message }}</strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
                             {% endfor %}
@@ -103,10 +103,7 @@
                                                       tabindex="0"
                                                       data-toggle="tooltip"
                                                       title="{% trans "You cannot leave an organization where you are either the last administrator or the last member" %}">
-                                                    <button type="button"
-                                                            class="btn btn-light"
-                                                            style="pointer-events: none"
-                                                            disabled>Leave</button>
+                                                    <button type="button" class="btn btn-light disabled" disabled>Leave</button>
                                                 </span>
                                             {% endif %}
                                         </div>
@@ -128,7 +125,7 @@
                          aria-labelledby="delete-account-form-list">
                         <h3 class="mb-4">{% trans "Delete Account" %}</h3>
                         <div class="alert alert-warning alert-dismissible show fade">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <button type="button" class="close" data-dismiss="alert">×</button>
                             <div class="row">
                                 <div class="col-1 alert-icon-col">
                                     <span class="oi oi-warning"></span>
@@ -144,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="POST">
+                        <form method="post">
                             {% csrf_token %}
                             {% include "petition/bs4_form.html" with form=delete_account_form %}
                             <div class="text-center">
@@ -170,7 +167,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="org_leave_modal_label">{% trans "Leaving an organization" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">

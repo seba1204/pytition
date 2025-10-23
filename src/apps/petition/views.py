@@ -4,9 +4,7 @@ from time import time
 from typing import Any
 
 from django.conf import settings
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -22,16 +20,11 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
 
-from apps.accounts.forms import (
-    DeleteAccountForm,
-    PytitionUserCreationForm,
-    UpdateInfoForm,
-)
+from apps.accounts.forms import PytitionUserCreationForm
 from apps.consents.forms import EmailForm, NewsletterForm
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import (
     get_session_user,
-    get_update_form,
     remove_user_moderated,
 )
 from apps.petition.models import (
@@ -112,69 +105,6 @@ def search(request: HttpRequest) -> HttpResponse:
     return render(
         request, "petition/search.html", {"petitions": petitions, "orgs": orgs, "q": q}
     )
-
-
-# /user/dashboard
-# Dashboard of the logged in user
-@login_required
-def user_dashboard(request: HttpRequest) -> HttpResponse:
-    user = get_session_user(request)
-    petitions = user.petition_set.all()
-
-    return render(
-        request,
-        "petition/user_dashboard.html",
-        {
-            "user": user,
-            "petitions": petitions,
-            "can_create_petition": True,
-            "displaying_dashboard": True,
-        },
-    )
-
-
-# /user/<user_name>
-# Show the user profile
-def user_profile(request: HttpRequest, user_name: str) -> HttpResponse:
-    try:
-        user = PytitionUser.objects.get(user__username=user_name)
-    except PytitionUser.DoesNotExist as err:
-        raise Http404(_("not found")) from err
-    sort = request.GET.get("sort", "desc")
-    creation_date = "-creation_date" if sort == "desc" else "creation_date"
-    petitions_qs = user.petition_set.filter(published=True, moderated=False).order_by(
-        creation_date
-    )
-    petitions_list = remove_user_moderated(list(petitions_qs))
-    paginator = Paginator(petitions_list, settings.PAGINATOR_COUNT)
-    page = request.GET.get("page")
-    petitions = paginator.get_page(page)
-
-    return render(
-        request,
-        "petition/user_profile.html",
-        {"user": user, "petitions": petitions, "sort": sort},
-    )
-
-
-# /get_user_list
-# get the list of users
-@login_required
-def get_user_list(request: HttpRequest) -> JsonResponse:
-    q = request.GET.get("q", "")
-    if q != "":
-        users = PytitionUser.objects.filter(
-            Q(user__username__contains=q)
-            | Q(user__first_name__icontains=q)
-            | Q(user__last_name__icontains=q)
-        ).all()
-    else:
-        users = PytitionUser.objects.none()
-
-    userdict = {
-        "values": [user.user.username for user in users],
-    }
-    return JsonResponse(userdict)
 
 
 # /templates/<int:template_id>/edit
@@ -485,78 +415,6 @@ def template_fav_toggle(request: HttpRequest, template_id: int) -> JsonResponse:
     owner.save()
 
     return JsonResponse({})
-
-
-# /account_settings
-# Show settings for the user accounts
-@login_required
-def account_settings(request: HttpRequest) -> HttpResponse:
-    pytitionuser = get_session_user(request)
-    submitted_ctx = {
-        "update_info_form_submitted": False,
-        "delete_account_form_submitted": False,
-        "password_change_form_submitted": False,
-    }
-
-    if request.method == "POST":
-        if "update_info_form_submitted" in request.POST:
-            update_info_form = UpdateInfoForm(pytitionuser.user, request.POST)
-            submitted_ctx["update_info_form_submitted"] = True
-            if update_info_form.is_valid():
-                update_info_form.save()
-        else:
-            update_info_form = get_update_form(pytitionuser.user)
-
-        if "delete_account_form_submitted" in request.POST:
-            delete_account_form = DeleteAccountForm(request.POST)
-            submitted_ctx["delete_account_form_submitted"] = True
-            if delete_account_form.is_valid():
-                pytitionuser.drop()
-                return redirect("index")
-        else:
-            delete_account_form = DeleteAccountForm()
-
-        if "password_change_form_submitted" in request.POST:
-            password_change_form = PasswordChangeForm(pytitionuser.user, request.POST)
-            submitted_ctx["password_change_form_submitted"] = True
-            if password_change_form.is_valid():
-                password_change_form.save()
-                messages.success(request, _("You successfully changed your password!"))
-        else:
-            password_change_form = PasswordChangeForm(pytitionuser.user)
-
-    else:
-        update_info_form = get_update_form(pytitionuser.user)
-        delete_account_form = DeleteAccountForm()
-        password_change_form = PasswordChangeForm(pytitionuser.user)
-
-    orgs = pytitionuser.organization_set.all()
-    # Checking if the user is allowed to leave the organization
-
-    MIN_ORG_MEMBERS = 2
-
-    for org in orgs:
-        if org.members.count() < MIN_ORG_MEMBERS:
-            org.leave = False
-        else:
-            # More than one user, we need to check owners
-            owners = org.owners.all()
-            if owners.count() == 1 and pytitionuser in owners:
-                org.leave = False
-            else:
-                org.leave = True
-
-    ctx = {
-        "user": pytitionuser,
-        "update_info_form": update_info_form,
-        "delete_account_form": delete_account_form,
-        "password_change_form": password_change_form,
-        "base_template": "petition/user_base.html",
-        "orgs": orgs,
-    }
-    ctx.update(submitted_ctx)
-
-    return render(request, "petition/account_settings.html", ctx)
 
 
 @login_required

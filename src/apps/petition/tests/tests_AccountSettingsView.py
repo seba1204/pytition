@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.forms import DeleteAccountForm
 from apps.core.tests.utils import add_default_data
-from apps.petition.forms import DeleteAccountForm
 from apps.petition.helpers import get_update_form
 from apps.petition.models import PytitionUser
 
@@ -187,7 +187,7 @@ class AccountSettingsViewTest(TestCase):
                     response2, reverse("login") + "?next=" + reverse("user_dashboard")
                 )
                 self.assertEqual(0, 1)  # Should never be reached
-            except:
+            except Exception:
                 pass  # I expected that!
             pu = PytitionUser.objects.filter(user__username="john").count()
             self.assertEqual(pu, 0)
