@@ -3,9 +3,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from django.http import Http404, HttpRequest
+from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from apps.petition.helpers import get_session_user
+from apps.petitions.routes import PetitionsRoute
 
 # Avoid circular imports for type checking
 if TYPE_CHECKING:
@@ -14,6 +16,7 @@ if TYPE_CHECKING:
 
 # Return a 404 if a petition does not exist
 def petition_from_id(id: int) -> Petition:
+    """Get a Petition by its ID or raise 404 if it does not exist."""
     from apps.petition.models import Petition  # noqa
 
     petition: Petition | None = Petition.by_id(id)
@@ -27,6 +30,11 @@ def petition_from_id(id: int) -> Petition:
 def check_petition_is_accessible(
     request: HttpRequest, petition: Petition
 ) -> bool | None:
+    """
+    Check if the petition is publicly accessible.
+
+    Return True if accessible, None if not accessible, or raise 404 if moderated.
+    """
     if petition.published and not petition.moderated:
         return True
     if request.user.is_authenticated:
@@ -42,3 +50,11 @@ def check_petition_is_accessible(
     if not petition.published:
         raise Http404(_("This Petition is not published yet!"))
     return None
+
+
+# Generate a meta url for the HTML meta property
+def petition_detail_meta(request: HttpRequest, petition_id: int) -> dict[str, str]:
+    """Generate the full URL to the petition detail page."""
+    detail_path = reverse(PetitionsRoute.DETAIL, args=[petition_id])
+    url = f"{request.scheme}://{request.get_host()}{detail_path}"
+    return {"site_url": request.get_host(), "petition_url": url}

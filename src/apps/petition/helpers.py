@@ -10,12 +10,9 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives, get_connection
 from django.http import Http404, HttpRequest
 from django.template.loader import render_to_string
-from django.urls import reverse
 from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from lxml.html.clean import Cleaner
-
-from apps.petitions.routes import PetitionsRoute
 
 if TYPE_CHECKING:
     from apps.petition.models import PytitionUser
@@ -79,23 +76,6 @@ def get_session_user(request: HttpRequest) -> PytitionUser:
     return pytitionuser
 
 
-# Check if a petition is publicly accessible
-def check_petition_is_accessible(request: HttpRequest, petition: Any) -> bool | None:
-    if petition.published and not petition.moderated:
-        return True
-    if request.user.is_authenticated:
-        user = get_session_user(request)
-        if petition.owner_type == "user" and user == petition.owner:
-            return True
-        if petition.owner_type == "org" and user in petition.owner.members.all():
-            return True
-    if petition.moderated:
-        raise Http404(_("This Petition has been moderated!"))
-    if not petition.published:
-        raise Http404(_("This Petition is not published yet!"))
-    return None
-
-
 # Get settings
 def settings_context_processor(request: HttpRequest) -> dict[str, Any]:
     return {"settings": settings}
@@ -123,13 +103,6 @@ def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
         )
         msg.attach_alternative(html_message, "text/html")
         msg.send(fail_silently=False)
-
-
-# Generate a meta url for the HTML meta property
-def petition_detail_meta(request: HttpRequest, petition_id: int) -> dict[str, str]:
-    detail_path = reverse(PetitionsRoute.DETAIL, args=[petition_id])
-    url = f"{request.scheme}://{request.get_host()}{detail_path}"
-    return {"site_url": request.get_host(), "petition_url": url}
 
 
 def get_update_form(user: Any, data: Mapping[str, Any] | None = None) -> Any:
