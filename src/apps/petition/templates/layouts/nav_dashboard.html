@@ -7,7 +7,7 @@
         {% if displaying_dashboard is None %}
           {% if is_org %}
             <a class="btn btn-outline-primary"
-               href="{% url 'org:dashboard' slug %}"
+               href="{% url "org:dashboard" slug %}"
                aria-label="{% trans "Back to dashboard" %}"><span class="oi oi-dashboard">{% trans "Back to dashboard" %}</span></a>
           {% else %}
             <a class="btn btn-outline-primary"

@@ -16,7 +16,7 @@ from apps.petition.models import Organization, Permission
 
 # /org/<slug:orgslugname>/dashboard
 @login_required
-def org_dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
+def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     """
     Show the dashboard of an organization.
 

@@ -11,6 +11,8 @@ from django.http import (
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
+from apps.organizations.routes import OrgRoute
+
 # TODO: move get_session_user to apps/accounts/services.py
 from apps.petition.helpers import get_session_user
 
@@ -22,7 +24,11 @@ from apps.petition.models import Organization, Permission, PytitionUser
 
 
 @login_required
-def org_set_user_perms(  # noqa
+# FIXME: refactor to avoid those warnings
+# Too many return statements (7 > 6)
+# Too many branches (13 > 12)
+# Too many statements (54 > 50)
+def set_user_perms(  # noqa
     request: HttpRequest, orgslugname: str, user_name: str
 ) -> HttpResponse:
     """
@@ -51,20 +57,20 @@ def org_set_user_perms(  # noqa
                 "this organization"
             ),
         )
-        return redirect("org:dashboard", org.slugname)
+        return redirect(OrgRoute.DASHBOARD, org.slugname)
 
     if not user_perms.can_modify_permissions:
         messages.error(
             request,
             _("You are not allowed to modify this organization members' permissions"),
         )
-        return redirect("org:edit_user_perms", orgslugname, user_name)
+        return redirect(OrgRoute.EDIT_USER_PERMS, orgslugname, user_name)
 
     try:
         member = PytitionUser.objects.get(user__username=user_name)
     except PytitionUser.DoesNotExist:
         messages.error(request, _("User does not exist"))
-        return redirect("org:dashboard", orgslugname)
+        return redirect(OrgRoute.DASHBOARD, orgslugname)
 
     if org not in member.organization_set.all():
         messages.error(
@@ -75,7 +81,7 @@ def org_set_user_perms(  # noqa
                 )
             ),
         )
-        return redirect("org:dashboard", org.slugname)
+        return redirect(OrgRoute.DASHBOARD, org.slugname)
 
     try:
         permissions = Permission.objects.get(user=member, organization=org)
@@ -87,7 +93,7 @@ def org_set_user_perms(  # noqa
                 "this organization"
             ),
         )
-        return redirect("org:dashboard", org.slugname)
+        return redirect(OrgRoute.DASHBOARD, org.slugname)
 
     if request.method == "POST":
         error = False
@@ -144,4 +150,4 @@ def org_set_user_perms(  # noqa
             messages.success(request, _("Permissions successfully changed!"))
         permissions.save()
 
-    return redirect("org:edit_user_perms", orgslugname, user_name)
+    return redirect(OrgRoute.EDIT_USER_PERMS, orgslugname, user_name)

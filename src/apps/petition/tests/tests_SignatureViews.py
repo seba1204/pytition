@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
+from apps.organizations.routes import OrgRoute
 from apps.petition.models import (
     Organization,
     Permission,
@@ -226,12 +227,12 @@ class PetitionViewTest(TestCase):
         response = self.client.post(
             reverse("show_signatures", args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("org:dashboard", args=[org.slugname]))
+        self.assertRedirects(response, reverse(OrgRoute.DASHBOARD, args=[org.slugname]))
         self.assertTemplateUsed(response, "petition/org_dashboard.html")
         s = Signature.objects.get(pk=sid)
-        self.assertEqual(
-            s.id, sid
-        )  # dummy test, we just want the previous line not to raise a DoesNotExist exception
+        self.assertEqual(s.id, sid)
+        # dummy test, we just want the previous line not to raise
+        # a DoesNotExist exception
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
         ThereIsAnyError = False

@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
+from apps.organizations.routes import OrgRoute
 from apps.petition.models import PytitionUser
 
 
@@ -21,10 +22,10 @@ class OrgEditUserPermsViewTest(TestCase):
         self.client.logout()
 
     def test_OrgEditUserPermsViewOk(self) -> None:
-        julia = self.login("julia")
+        _julia = self.login("julia")
         response = self.client.get(
             reverse(
-                "org:edit_user_perms",
+                OrgRoute.EDIT_USER_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             )
         )

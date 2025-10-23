@@ -2,6 +2,7 @@ from django.conf import settings
 from django.urls import include, path, reverse_lazy
 from django.views.generic import RedirectView
 
+from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petitions import views as petitions_views
 
 from . import views
@@ -74,7 +75,7 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     # Organization
     # ──────────────────────────────────────────────────────────────────────────────────
-    path("org/", include("apps.organizations.urls", namespace="org")),
+    path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
     # PUBLIC: show a petition by slug — org owner
     path(
         "org/<orgslugname>/<slug:petitionname>",

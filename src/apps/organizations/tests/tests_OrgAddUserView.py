@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
+from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, PytitionUser
 
 
@@ -19,8 +20,10 @@ class OrgAddUserViewTest(TestCase):
 
     def test_OrgAddUserViewOk(self) -> None:
         """Let's try to add user max to org RAP."""
-        julia = self.login("julia")
-        response = self.client.get(reverse("org:add_user", args=["rap"]) + "?user=max")
+        _julia = self.login("julia")
+        response = self.client.get(
+            reverse(OrgRoute.ADD_USER, args=["rap"]) + "?user=max"
+        )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
         user = PytitionUser.objects.get(user__username="max")
@@ -32,21 +35,23 @@ class OrgAddUserViewTest(TestCase):
         """Let's try to add user max to org RAP from non-authorized users."""
         # John is not in RAP org
         self.login("john")
-        response = self.client.get(reverse("org:add_user", args=["rap"]) + "?user=max")
+        response = self.client.get(
+            reverse(OrgRoute.ADD_USER, args=["rap"]) + "?user=max"
+        )
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")
         # Max is in "Les Amis de la Terre" but does not have "add member" right
         self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(
-            reverse("org:add_user", args=[org.slugname]) + "?user=john"
+            reverse(OrgRoute.ADD_USER, args=[org.slugname]) + "?user=john"
         )
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")
         # Try to add someone already in the Org
         self.login("julia")
         response = self.client.get(
-            reverse("org:add_user", args=[org.slugname]) + "?user=max"
+            reverse(OrgRoute.ADD_USER, args=[org.slugname]) + "?user=max"
         )
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response["Content-Type"], "application/json")

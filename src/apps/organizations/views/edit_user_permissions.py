@@ -10,6 +10,8 @@ from django.http import (
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.organizations.routes import OrgRoute
+
 # TODO: move get_session_user to apps/accounts/services.py
 from apps.petition.helpers import get_session_user
 
@@ -20,7 +22,7 @@ from apps.petition.models import Organization, Permission, PytitionUser
 # PATH : org/<slug:orgslugname>/edit_user_permissions/<slug:user_name>
 # Show a webpage to edit permissions
 @login_required
-def org_edit_user_perms(
+def edit_user_perms(
     request: HttpRequest, orgslugname: str, user_name: str
 ) -> HttpResponse:
     """
@@ -54,7 +56,7 @@ def org_edit_user_perms(
         messages.error(
             request, _("User '{name}' does not exist".format(name=user_name))
         )
-        return redirect("org:dashboard", orgslugname)
+        return redirect(OrgRoute.DASHBOARD, orgslugname)
 
     try:
         org = Organization.objects.get(slugname=orgslugname)
@@ -73,7 +75,7 @@ def org_edit_user_perms(
                 )
             ),
         )
-        return redirect("org:dashboard", org.slugname)
+        return redirect(OrgRoute.DASHBOARD, org.slugname)
 
     try:
         permissions = Permission.objects.get(organization=org, user=member)
@@ -85,7 +87,7 @@ def org_edit_user_perms(
                 "to this organization."
             ),
         )
-        return redirect("org:dashboard", org.slugname)
+        return redirect(OrgRoute.DASHBOARD, org.slugname)
 
     try:
         user_permissions = Permission.objects.get(organization=org, user=pytitionuser)

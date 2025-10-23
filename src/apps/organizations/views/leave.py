@@ -20,7 +20,7 @@ from apps.petition.models import Organization
 # /org/<slug:orgslugname>/leave_org
 # User is leaving the organization
 @login_required
-def leave_org(request: HttpRequest, orgslugname: str) -> HttpResponse:
+def leave(request: HttpRequest, orgslugname: str) -> HttpResponse:
     """
     View function for a user to leave an organization.
 

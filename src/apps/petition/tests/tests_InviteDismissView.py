@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
+from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, Permission, PytitionUser
 
 
@@ -26,13 +27,15 @@ class InviteDismissViewTest(TestCase):
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         julia_perms.can_add_members = True
         julia_perms.save()
-        response = self.client.get(reverse("org:add_user", args=["rap"]) + "?user=max")
+        response = self.client.get(
+            reverse(OrgRoute.ADD_USER, args=["rap"]) + "?user=max"
+        )
         self.assertEqual(response.status_code, 200)
         self.logout()
         max = self.login("max")
         # max dismisses julia's invitation
         response = self.client.get(
-            reverse("org:invite_dismiss", kwargs={"orgslugname": "rap"}), follow=True
+            reverse(OrgRoute.INVITE_DISMISS, kwargs={"orgslugname": "rap"}), follow=True
         )
         self.assertRedirects(response, reverse("user_dashboard"))
         rap = Organization.objects.get(slugname="rap")

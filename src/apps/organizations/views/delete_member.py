@@ -18,7 +18,7 @@ from apps.petition.models import Organization, Permission, PytitionUser
 # /org/<slug:orgslugname>/delete_member
 # Remove a member from an organization
 @login_required
-def org_delete_member(request: HttpRequest, orgslugname: str) -> JsonResponse:
+def delete_member(request: HttpRequest, orgslugname: str) -> JsonResponse:
     """
     View function to delete a member from an organization.
 

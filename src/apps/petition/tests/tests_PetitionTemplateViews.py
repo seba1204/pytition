@@ -5,6 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
+from apps.organizations.routes import OrgRoute
 from apps.petition.models import (
     Organization,
     Permission,
@@ -36,11 +37,11 @@ class PetitionViewTest(TestCase):
         # GET request just shows the page
         # Not logged
         org = Organization.objects.get(name="RAP")
-        response = self.client.get(reverse("org:new_template", args=[org.slugname]))
+        response = self.client.get(reverse(OrgRoute.NEW_TEMPLATE, args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
         # Logged
         self.login("julia")
-        response = self.client.get(reverse("org:new_template", args=[org.slugname]))
+        response = self.client.get(reverse(OrgRoute.NEW_TEMPLATE, args=[org.slugname]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/new_template.html")
 
@@ -50,7 +51,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(org.petitiontemplate_set.count(), 0)
         data = {"template_name": "This is a default template"}
         response = self.client.post(
-            reverse("org:new_template", args=[org.slugname]), data
+            reverse(OrgRoute.NEW_TEMPLATE, args=[org.slugname]), data
         )
         self.assertEqual(org.petitiontemplate_set.count(), 1)
         self.assertEqual(response.status_code, 302)
@@ -110,7 +111,7 @@ class PetitionViewTest(TestCase):
         julia.refresh_from_db()
         self.assertEqual(julia.default_template, pt2)
 
-    def test_template_fav_toggletwice(self) -> None:
+    def test_template_fav_toggle_twice(self) -> None:
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         # For an org template
@@ -279,7 +280,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(response.context["social_network_form_submitted"], True)
         self.assertEqual(response.context["newsletter_form_submitted"], False)
 
-        fp = open(logo, "rb")
+        fp = Path.open(logo, "rb")
         social_network_form_data.update({"twitter_image": fp})
 
         # For an user template

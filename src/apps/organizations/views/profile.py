@@ -13,7 +13,7 @@ from apps.petition.models import Organization
 
 # /org/<slug:orgslugname>
 # Show the profile of an organization
-def org_profile(request: HttpRequest, orgslugname: str) -> HttpResponse:
+def profile(request: HttpRequest, orgslugname: str) -> HttpResponse:
     """
     View function to show the profile of an organization.
 

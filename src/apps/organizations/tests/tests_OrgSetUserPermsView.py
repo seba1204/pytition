@@ -3,11 +3,12 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.core.tests.utils import add_default_data
+from apps.organizations.routes import OrgRoute
 from apps.petition.models import Permission, PytitionUser
 
 
 class OrgSetUserPermsViewTest(TestCase):
-    """Test org:edit_user_perms view."""
+    """Test edit_user_perms view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -22,10 +23,10 @@ class OrgSetUserPermsViewTest(TestCase):
         self.client.logout()
 
     def test_OrgSetUserPermsViewGetRedirectOk(self) -> None:
-        julia = self.login("julia")
+        _julia = self.login("julia")
         response = self.client.get(
             reverse(
-                "org:set_user_perms",
+                OrgRoute.SET_USER_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
             follow=True,
@@ -33,7 +34,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                "org:edit_user_perms",
+                OrgRoute.EDIT_USER_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
         )
@@ -47,7 +48,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertEqual(julia_perms.can_remove_members, True)
         response = self.client.post(
             reverse(
-                "org:set_user_perms",
+                OrgRoute.SET_USER_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
             data,
@@ -56,7 +57,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                "org:edit_user_perms",
+                OrgRoute.EDIT_USER_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
         )
@@ -67,14 +68,15 @@ class OrgSetUserPermsViewTest(TestCase):
         julia = self.login("julia")
         julia_perms = Permission.objects.get(organization__slugname="rap", user=julia)
         # Now let's try to remove admin rights from julia
-        # It should fail in order to make it impossible to have an admin-less Organization
+        # It should fail in order to make it impossible to have
+        # an admin-less Organization
         data = {
             "can_modify_permissions": "off",
         }
         self.assertEqual(julia_perms.can_modify_permissions, True)
         response = self.client.post(
             reverse(
-                "org:set_user_perms",
+                OrgRoute.SET_USER_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
             data,
@@ -83,7 +85,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                "org:edit_user_perms",
+                OrgRoute.EDIT_USER_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
         )
@@ -104,14 +106,15 @@ class OrgSetUserPermsViewTest(TestCase):
             organization__slugname="alternatiba", user=julia
         )
         # Now let's try to remove admin rights from julia
-        # It should fail in order to make it impossible to have an admin-less Organization
+        # It should fail in order to make it impossible to
+        # have an admin-less Organization
         data = {
             "can_modify_permissions": "off",
         }
         self.assertEqual(julia_perms.can_modify_permissions, True)
         response = self.client.post(
             reverse(
-                "org:set_user_perms",
+                OrgRoute.SET_USER_PERMS,
                 kwargs={"orgslugname": "alternatiba", "user_name": "julia"},
             ),
             data,
@@ -120,7 +123,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                "org:edit_user_perms",
+                OrgRoute.EDIT_USER_PERMS,
                 kwargs={"orgslugname": "alternatiba", "user_name": "julia"},
             ),
         )
@@ -141,14 +144,15 @@ class OrgSetUserPermsViewTest(TestCase):
             organization__slugname="les-amis-de-la-terre", user=julia
         )
         # Now let's try to remove admin rights from julia
-        # It should fail in order to make it impossible to have an admin-less Organization
+        # It should fail in order to make it impossible to have
+        # an admin-less Organization
         data = {
             "can_modify_permissions": "off",
         }
         self.assertEqual(julia_perms.can_modify_permissions, True)
         response = self.client.post(
             reverse(
-                "org:set_user_perms",
+                OrgRoute.SET_USER_PERMS,
                 kwargs={"orgslugname": "les-amis-de-la-terre", "user_name": "julia"},
             ),
             data,
@@ -157,7 +161,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                "org:edit_user_perms",
+                OrgRoute.EDIT_USER_PERMS,
                 kwargs={"orgslugname": "les-amis-de-la-terre", "user_name": "julia"},
             ),
         )

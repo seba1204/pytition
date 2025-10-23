@@ -12,6 +12,8 @@ from django.http import Http404, HttpRequest, HttpResponse, HttpResponseForbidde
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.organizations.routes import OrgRoute
+
 # TODO: move get_session_user to apps/accounts/services.py
 from apps.petition.helpers import get_session_user
 
@@ -55,7 +57,7 @@ def new_template(request: HttpRequest, orgslugname: str | None = None) -> HttpRe
     ctx: _NewTemplateContext = {"user": pytitionuser}
 
     if orgslugname:
-        redirection = "org:new_template"
+        redirection: str = OrgRoute.NEW_TEMPLATE
         try:
             org = Organization.objects.get(slugname=orgslugname)
             ctx["org"] = org
