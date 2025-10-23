@@ -4,9 +4,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
-from apps.petition.helpers import check_petition_is_accessible
 from apps.petition.models import Signature
-from apps.petitions.helpers import petition_from_id
+from apps.petitions.helpers import check_petition_is_accessible, petition_from_id
 
 
 # /<int:petition_id>/confirm/<confirmation_hash>

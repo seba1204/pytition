@@ -2,12 +2,11 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 
 from apps.petition.helpers import (
-    check_petition_is_accessible,
     get_session_user,
     petition_detail_meta,
 )
 from apps.petition.models import ModerationReason
-from apps.petitions.helpers import petition_from_id
+from apps.petitions.helpers import check_petition_is_accessible, petition_from_id
 from apps.signatures.forms import SignatureForm
 from apps.signatures.helpers import hide_sign_form_if_user_just_signed
 
