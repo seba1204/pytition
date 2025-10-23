@@ -31,7 +31,7 @@ def remove_user_moderated(petitions: list[Any]) -> list[Any]:
     return [p for p in petitions if not getattr(p, "is_moderated", False)]
 
 
-# Remove all javascripts from HTML code
+# Remove all javascript from HTML code
 def sanitize_html(unsecure_html_content: str) -> str:
     cleaner = Cleaner(
         inline_style=False,
