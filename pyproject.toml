@@ -56,6 +56,7 @@ distribution = false
 
 [tool.pdm.scripts]
 manage = "python manage.py"
+test-fast = "pdm run manage test apps --parallel auto --keepdb --noinput"
 
 [dependency-groups]
 dev = [

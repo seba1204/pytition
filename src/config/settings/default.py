@@ -1,5 +1,6 @@
 """
 Project/application defaults.
+
 Keep it lean. Everything remains overrideable via .env / ENV.
 """
 
@@ -15,7 +16,7 @@ SITE_NAME = "Pytition"
 # Pagination / UI
 # ──────────────────────────────────────────────────────────────────────────────
 
-PAGINATOR_COUNT = 20
+PAGINATOR_COUNT = 12  # items per page
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Feature flags (examples)

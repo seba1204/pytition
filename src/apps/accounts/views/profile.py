@@ -8,17 +8,33 @@ from django.http import (
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
-from apps.petition.helpers import (
-    remove_user_moderated,
-)
-from apps.petition.models import (
-    PytitionUser,
-)
+from apps.petition.helpers import remove_user_moderated
+from apps.petition.models import PytitionUser
 
 
 # /user/<user_name>
 # Show the user profile
 def profile(request: HttpRequest, user_name: str) -> HttpResponse:
+    """
+    Show a list of all public petitions of the user.
+
+    Parameters:
+    -----------
+        request: HttpRequest
+        user_name: str -- the username of the user
+    GET parameters (in request.GET):
+    ----------------------------
+        sort: str -- 'asc' or 'desc' for creation date sorting (default 'desc')
+        page: int -- the page number (default 1)
+    Returns:
+    --------
+        HttpResponse -- the rendered user profile page
+    Notes:
+    -----
+        Shows only published and non-moderated petitions
+    """
+    user: PytitionUser
+
     try:
         user = PytitionUser.objects.get(user__username=user_name)
     except PytitionUser.DoesNotExist as err:
@@ -35,6 +51,6 @@ def profile(request: HttpRequest, user_name: str) -> HttpResponse:
 
     return render(
         request,
-        "petition/user_profile.html",
-        {"user": user, "petitions": petitions, "sort": sort},
+        template_name="petition/user_profile.html",
+        context={"user": user, "petitions": petitions, "sort": sort},
     )

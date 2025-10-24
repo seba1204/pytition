@@ -5,15 +5,14 @@ from django.http import (
     JsonResponse,
 )
 
-from apps.petition.models import (
-    PytitionUser,
-)
+from apps.petition.models import PytitionUser
 
 
 # /get_user_list
 # get the list of users
 @login_required
 def user_list(request: HttpRequest) -> JsonResponse:
+    """Get the list of users matching the query parameter 'q'."""
     q = request.GET.get("q", "")
     if q != "":
         users = PytitionUser.objects.filter(

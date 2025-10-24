@@ -100,7 +100,7 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     # Presets
     # ──────────────────────────────────────────────────────────────────────────────────
-    # TODO: move view to theming app
+    # TODO: move view to preset app
     path("templates/<int:template_id>/edit", views.edit_template, name="edit_template"),
     path(
         "templates/<int:template_id>/fav",

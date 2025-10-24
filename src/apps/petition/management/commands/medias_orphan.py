@@ -7,15 +7,15 @@ from apps.petition.models import Petition
 
 
 class Command(BaseCommand):
-    """find orphans medias in mediaroot"""
+    """Find orphans medias in media root."""
 
     def handle(self, *args: object, **opts: object) -> None:
-        mediaroot = Path(settings.MEDIA_ROOT)
+        media_root = Path(settings.MEDIA_ROOT)
         all_petition = list(Petition.objects.all())
         if all_petition:
             last_petition = all_petition[-1]
 
-        for media in mediaroot.glob("**/*.*"):
+        for media in media_root.glob("**/*.*"):
             media_str = str(media)
             if all_petition:
                 for petition in all_petition:
