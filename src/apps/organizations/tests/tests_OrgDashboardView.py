@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils.text import slugify
 
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, PytitionUser
@@ -33,7 +34,7 @@ class OrgDashboardViewTest(TestCase):
         response = self.client.get(
             reverse(OrgRoute.DASHBOARD, args=[orgslugname]), follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
     def test_NotAMember(self) -> None:
@@ -43,7 +44,7 @@ class OrgDashboardViewTest(TestCase):
         response = self.client.get(
             reverse(OrgRoute.DASHBOARD, args=[orgslugname]), follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
     def test_NotLoggedIn(self) -> None:

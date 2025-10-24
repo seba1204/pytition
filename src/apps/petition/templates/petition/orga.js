@@ -75,7 +75,7 @@ $(function () {
        var member_name = $(this).closest("[data-member]").data("member");
        $.ajax("{% url "org:delete_member" org.slugname %}?member=" + member_name).done(function () {
         if (member_name == "{{ user.name }}")
-            window.location = "{% url "user_dashboard" %}";
+               window.location = "{% url "accounts:dashboard" %}";
         else
             window.location = window.location.href;
        }).fail((xhr, status, error) => {

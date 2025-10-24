@@ -21,6 +21,7 @@ from django.utils.translation import gettext as _
 from django.views.generic.edit import CreateView
 
 from apps.accounts.forms import PytitionUserCreationForm
+from apps.accounts.routes import AccountsRoute
 from apps.consents.forms import EmailForm, NewsletterForm
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import (
@@ -57,10 +58,10 @@ def index(request: HttpRequest) -> DjangoHttpResponse:
         org = Organization.objects.get(name=org_name)
         return redirect(OrgRoute.PROFILE, org.slugname)
     elif index_page == "USER_PROFILE":
-        return redirect("user_profile", user_name)
+        return redirect(AccountsRoute.PUBLIC_PROFILE, user_name)
     elif settings.INDEX_PAGE == "LOGIN_REGISTER":
         if request.user.is_authenticated:
-            return redirect("user_dashboard")
+            return redirect(AccountsRoute.DASHBOARD)
         else:
             return redirect("login")
     else:

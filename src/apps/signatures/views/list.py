@@ -10,6 +10,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
 from apps.consents.helpers import send_confirmation_email
 from apps.core.exceptions import ApiError
 from apps.organizations.routes import OrgRoute
@@ -79,7 +80,7 @@ def _assert_can_view_signatures(
         if petition.user != pytitionuser:
             raise RedirectError(
                 _("You are not allowed to view this petition's signatures."),
-                "user_dashboard",
+                AccountsRoute.DASHBOARD,
             )
         return "petition/user_base.html", {}
 
@@ -87,7 +88,7 @@ def _assert_can_view_signatures(
     if org is None:
         raise RedirectError(
             _("Internal error, cannot find the organization owning this petition."),
-            "user_dashboard",
+            AccountsRoute.DASHBOARD,
         )
 
     if pytitionuser not in org.members.all():
@@ -95,7 +96,7 @@ def _assert_can_view_signatures(
             _("You are not member of the following organization: '{}'").format(
                 org.name
             ),
-            "user_dashboard",
+            AccountsRoute.DASHBOARD,
         )
 
     try:
@@ -106,7 +107,7 @@ def _assert_can_view_signatures(
                 "Internal error, cannot find your permissions attached to this "
                 "organization ('{orgname}')"
             ).format(orgname=org.name),
-            "user_dashboard",
+            AccountsRoute.DASHBOARD,
         ) from exc
 
     if not permissions.can_view_signatures:

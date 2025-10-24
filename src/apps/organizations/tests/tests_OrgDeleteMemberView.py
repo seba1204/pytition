@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, Permission, PytitionUser
@@ -45,7 +46,7 @@ class OrgDeleteMemberViewTest(TestCase):
         response = self.client.get(
             reverse(OrgRoute.INVITE_ACCEPT, kwargs={"orgslugname": "rap"}), follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         rap = Organization.objects.get(slugname="rap")
         self.assertIn(max, rap.members.all())
         self.assertIn(rap, max.organization_set.all())
@@ -83,7 +84,7 @@ class OrgDeleteMemberViewTest(TestCase):
         response = self.client.get(
             reverse(OrgRoute.INVITE_ACCEPT, kwargs={"orgslugname": "rap"}), follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         rap = Organization.objects.get(slugname="rap")
         self.assertIn(max, rap.members.all())
         self.assertIn(rap, max.organization_set.all())

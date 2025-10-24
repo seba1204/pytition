@@ -2,6 +2,7 @@ from django.contrib.messages import constants
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.routes import OrgRoute
 from apps.petition.models import (
@@ -194,7 +195,7 @@ class PetitionViewTest(TestCase):
         response = self.client.post(
             reverse("show_signatures", args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         s = Signature.objects.get(pk=sid)
         self.assertEqual(s.id, sid)

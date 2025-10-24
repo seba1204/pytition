@@ -4,6 +4,7 @@ from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import Organization, Permission, Petition, PytitionUser
 from apps.petitions.routes import PetitionsRoute
@@ -75,7 +76,7 @@ class EditPetitionViewTest(TestCase):
         response = self.client.get(
             reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
     def test_edit_notInOrg(self) -> None:
@@ -90,7 +91,7 @@ class EditPetitionViewTest(TestCase):
         response = self.client.get(
             reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
 
     def test_edit_InOrgButNoEditPermission(self) -> None:
@@ -108,7 +109,7 @@ class EditPetitionViewTest(TestCase):
         response = self.client.get(
             reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
 
     def test_edit_InOrgWithEditPerm(self) -> None:
         """Editing a petition owned by an Organization the logged-in user is part of

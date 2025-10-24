@@ -8,6 +8,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
 from apps.consents.forms import EmailForm, NewsletterForm
 from apps.petition.helpers import get_session_user
 from apps.petition.models import Permission
@@ -40,7 +41,7 @@ def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
 
     if not petition.is_allowed_to_edit(pytitionuser):
         messages.error(request, _("You are not allowed to edit this petition"))
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
 
     submitted_ctx = {
         "content_form_submitted": False,

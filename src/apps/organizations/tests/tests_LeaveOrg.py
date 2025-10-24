@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, PytitionUser
@@ -43,7 +44,7 @@ class LeaveOrgViewTest(TestCase):
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse(OrgRoute.LEAVE, args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse("account_settings"))
+        self.assertRedirects(response, reverse(AccountsRoute.SETTINGS))
         self.assertNotIn(org, max.organization_set.all())
 
     def test_leave_refuse_alone(self) -> None:
@@ -51,7 +52,7 @@ class LeaveOrgViewTest(TestCase):
         org = Organization.objects.get(name="RAP")
         response = self.client.get(reverse(OrgRoute.LEAVE, args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse("account_settings") + "#a_org_form")
+        self.assertRedirects(response, reverse(AccountsRoute.SETTINGS) + "#a_org_form")
         self.assertIn(org, julia.organization_set.all())
 
     def test_leave_refuse_lastAdmin(self) -> None:
@@ -59,5 +60,5 @@ class LeaveOrgViewTest(TestCase):
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(reverse(OrgRoute.LEAVE, args=[org.slugname]))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse("account_settings") + "#a_org_form")
+        self.assertRedirects(response, reverse(AccountsRoute.SETTINGS) + "#a_org_form")
         self.assertIn(org, julia.organization_set.all())

@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
+from apps.accounts.routes import AccountsRoute
 from apps.petition.models import Organization, Permission, PytitionUser
 
 users = ["julia", "john", "max", "sarah"]
@@ -88,7 +89,7 @@ class PetitionCreateWizardViewTest(TestCase):
     def test_user_petition_disabled(self) -> None:
         self.login("julia")
         response = self.client.get(reverse("user_petition_wizard"))
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         response = self.client.get(reverse("user_petition_wizard"), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(

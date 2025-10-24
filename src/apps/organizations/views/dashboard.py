@@ -7,6 +7,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
+
 # TODO: move get_session_user to apps/accounts/services.py
 from apps.petition.helpers import get_session_user
 
@@ -40,7 +42,7 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
         messages.error(
             request, _("This organization does not exist: '{}'".format(orgslugname))
         )
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
 
     pytitionuser = get_session_user(request)
 
@@ -49,7 +51,7 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
         messages.error(
             request, _("You are not part of this organization: '{}'".format(org.name))
         )
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
 
     # Get the user's permissions for this organization
     try:
@@ -62,7 +64,7 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
                 "organization ('{orgname}')".format(orgname=org.name)
             ),
         )
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
 
     # Get whether the user can create petitions
     can_create_petition = org.is_allowed_to(pytitionuser, "can_create_petitions")

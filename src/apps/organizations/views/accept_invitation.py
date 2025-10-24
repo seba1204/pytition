@@ -6,6 +6,8 @@ from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
+
 # TODO: move get_session_user to apps/accounts/services.py
 from apps.petition.helpers import get_session_user
 
@@ -55,4 +57,4 @@ def invite_accept(request: HttpRequest, orgslugname: str) -> HttpResponse:
             return HttpResponse(status=500)
     else:
         raise Http404(_("not found"))
-    return redirect("user_dashboard")
+    return redirect(AccountsRoute.DASHBOARD)

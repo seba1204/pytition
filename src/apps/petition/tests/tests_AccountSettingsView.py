@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.accounts.forms import DeleteAccountForm
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.petition.helpers import get_update_form
 from apps.petition.models import PytitionUser
@@ -29,9 +30,9 @@ class AccountSettingsViewTest(TestCase):
 
     def test_NotLoggedIn(self) -> None:
         self.logout()
-        response = self.client.get(reverse("account_settings"), follow=True)
+        response = self.client.get(reverse(AccountsRoute.SETTINGS), follow=True)
         self.assertRedirects(
-            response, reverse("login") + "?next=" + reverse("account_settings")
+            response, reverse("login") + "?next=" + reverse(AccountsRoute.SETTINGS)
         )
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -40,7 +41,7 @@ class AccountSettingsViewTest(TestCase):
         john = self.login("john")
         _ = get_update_form(john.user)
 
-        response = self.client.get(reverse("account_settings"))
+        response = self.client.get(reverse(AccountsRoute.SETTINGS))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -58,7 +59,7 @@ class AccountSettingsViewTest(TestCase):
     def test_UserOK2(self) -> None:
         julia = self.login("julia")
 
-        response = self.client.get(reverse("account_settings"))
+        response = self.client.get(reverse(AccountsRoute.SETTINGS))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -75,7 +76,7 @@ class AccountSettingsViewTest(TestCase):
 
     def test_UserOK3(self) -> None:
         max = self.login("max")
-        response = self.client.get(reverse("account_settings"))
+        response = self.client.get(reverse(AccountsRoute.SETTINGS))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -92,7 +93,7 @@ class AccountSettingsViewTest(TestCase):
 
     def test_UserOK4(self) -> None:
         sarah = self.login("sarah")
-        response = self.client.get(reverse("account_settings"))
+        response = self.client.get(reverse(AccountsRoute.SETTINGS))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -117,7 +118,7 @@ class AccountSettingsViewTest(TestCase):
                 "update_info_form_submitted": "yes",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -141,7 +142,7 @@ class AccountSettingsViewTest(TestCase):
             "new_password1": new_pass,
             "new_password2": new_pass,
         }
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -157,17 +158,18 @@ class AccountSettingsViewTest(TestCase):
         self.assertEqual(response.context["password_change_form"].is_bound, True)
         self.logout()
         self.login("john", password=new_pass)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         self.logout()
         self.login("john")
-        response3 = self.client.get(reverse("user_dashboard"), follow=True)
+        response3 = self.client.get(reverse(AccountsRoute.DASHBOARD), follow=True)
         self.assertRedirects(
-            response3, reverse("login") + "?next=" + reverse("user_dashboard")
+            response3, reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD)
         )
 
     def test_UserjohnPOSTDeleteAccountOK(self) -> None:
-        # to avoid 404 error when index page redirects to deleted Organization profile page
+        # to avoid 404 error when index page redirects
+        # to deleted Organization profile page
         with self.settings(INDEX_PAGE="HOME"):
             self.login("john")
             data = {
@@ -176,15 +178,18 @@ class AccountSettingsViewTest(TestCase):
             }
             f = DeleteAccountForm(data)
             self.assertEqual(f.is_valid(), True)
-            response = self.client.post(reverse("account_settings"), data, follow=True)
+            response = self.client.post(
+                reverse(AccountsRoute.SETTINGS), data, follow=True
+            )
             self.assertRedirects(response, reverse("index"))
             self.assertTemplateUsed(response, "layouts/base.html")
             self.logout()
             try:
                 self.login("john")
-                response2 = self.client.get(reverse("user_dashboard"))
+                response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
                 self.assertRedirects(
-                    response2, reverse("login") + "?next=" + reverse("user_dashboard")
+                    response2,
+                    reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD),
                 )
                 self.assertEqual(0, 1)  # Should never be reached
             except Exception:
@@ -206,7 +211,7 @@ class AccountSettingsViewTest(TestCase):
                 "update_info_form_submitted": "yes",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -231,7 +236,7 @@ class AccountSettingsViewTest(TestCase):
             "new_password1": new_pass,
             "new_password2": new_pass,
         }
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -247,13 +252,13 @@ class AccountSettingsViewTest(TestCase):
         self.assertEqual(response.context["password_change_form"].is_bound, True)
         self.logout()
         self.login(username, password=new_pass)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         self.logout()
         self.login(username)
-        response3 = self.client.get(reverse("user_dashboard"), follow=True)
+        response3 = self.client.get(reverse(AccountsRoute.DASHBOARD), follow=True)
         self.assertRedirects(
-            response3, reverse("login") + "?next=" + reverse("user_dashboard")
+            response3, reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD)
         )
 
     def test_UsersarahPOSTDeleteAccountOK(self) -> None:
@@ -267,15 +272,18 @@ class AccountSettingsViewTest(TestCase):
             }
             f = DeleteAccountForm(data)
             self.assertEqual(f.is_valid(), True)
-            response = self.client.post(reverse("account_settings"), data, follow=True)
+            response = self.client.post(
+                reverse(AccountsRoute.SETTINGS), data, follow=True
+            )
             self.assertRedirects(response, reverse("index"))
             self.assertTemplateUsed(response, "layouts/base.html")
             self.logout()
             try:
                 self.login(username)
-                response2 = self.client.get(reverse("user_dashboard"))
+                response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
                 self.assertRedirects(
-                    response2, reverse("login") + "?next=" + reverse("user_dashboard")
+                    response2,
+                    reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD),
                 )
                 self.assertEqual(0, 1)  # Should never be reached
             except:
@@ -297,7 +305,7 @@ class AccountSettingsViewTest(TestCase):
                 "update_info_form_submitted": "yes",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -322,7 +330,7 @@ class AccountSettingsViewTest(TestCase):
             "new_password1": new_pass,
             "new_password2": new_pass,
         }
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -338,13 +346,13 @@ class AccountSettingsViewTest(TestCase):
         self.assertEqual(response.context["password_change_form"].is_bound, True)
         self.logout()
         self.login(username, password=new_pass)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         self.logout()
         self.login(username)
-        response3 = self.client.get(reverse("user_dashboard"), follow=True)
+        response3 = self.client.get(reverse(AccountsRoute.DASHBOARD), follow=True)
         self.assertRedirects(
-            response3, reverse("login") + "?next=" + reverse("user_dashboard")
+            response3, reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD)
         )
 
     def test_UserjuliaPOSTDeleteAccountOK(self) -> None:
@@ -357,15 +365,18 @@ class AccountSettingsViewTest(TestCase):
             }
             f = DeleteAccountForm(data)
             self.assertEqual(f.is_valid(), True)
-            response = self.client.post(reverse("account_settings"), data, follow=True)
+            response = self.client.post(
+                reverse(AccountsRoute.SETTINGS), data, follow=True
+            )
             self.assertRedirects(response, reverse("index"))
             self.assertTemplateUsed(response, "layouts/base.html")
             self.logout()
             try:
                 self.login(username)
-                response2 = self.client.get(reverse("user_dashboard"))
+                response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
                 self.assertRedirects(
-                    response2, reverse("login") + "?next=" + reverse("user_dashboard")
+                    response2,
+                    reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD),
                 )
                 self.assertEqual(0, 1)  # Should never be reached
             except:
@@ -387,7 +398,7 @@ class AccountSettingsViewTest(TestCase):
                 "update_info_form_submitted": "yes",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -412,7 +423,7 @@ class AccountSettingsViewTest(TestCase):
             "new_password1": new_pass,
             "new_password2": new_pass,
         }
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -428,13 +439,13 @@ class AccountSettingsViewTest(TestCase):
         self.assertEqual(response.context["password_change_form"].is_bound, True)
         self.logout()
         self.login(username, password=new_pass)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         self.logout()
         self.login(username)
-        response3 = self.client.get(reverse("user_dashboard"), follow=True)
+        response3 = self.client.get(reverse(AccountsRoute.DASHBOARD), follow=True)
         self.assertRedirects(
-            response3, reverse("login") + "?next=" + reverse("user_dashboard")
+            response3, reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD)
         )
 
     def test_UsermaxPOSTDeleteAccountOK(self) -> None:
@@ -447,15 +458,18 @@ class AccountSettingsViewTest(TestCase):
             }
             f = DeleteAccountForm(data)
             self.assertEqual(f.is_valid(), True)
-            response = self.client.post(reverse("account_settings"), data, follow=True)
+            response = self.client.post(
+                reverse(AccountsRoute.SETTINGS), data, follow=True
+            )
             self.assertRedirects(response, reverse("index"))
             self.assertTemplateUsed(response, "layouts/base.html")
             self.logout()
             try:
                 self.login(username)
-                response2 = self.client.get(reverse("user_dashboard"))
+                response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
                 self.assertRedirects(
-                    response2, reverse("login") + "?next=" + reverse("user_dashboard")
+                    response2,
+                    reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD),
                 )
                 self.assertEqual(0, 1)  # Should never be reached
             except:
@@ -475,13 +489,13 @@ class AccountSettingsViewTest(TestCase):
         }
         f = DeleteAccountForm(data)
         self.assertEqual(f.is_valid(), False)
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "layouts/base.html")
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.logout()
         self.login(username)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         pu = PytitionUser.objects.filter(user__username=username).count()
         self.assertEqual(pu, 1)
@@ -498,13 +512,13 @@ class AccountSettingsViewTest(TestCase):
         }
         f = DeleteAccountForm(data)
         self.assertEqual(f.is_valid(), False)
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "layouts/base.html")
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.logout()
         self.login(username)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         pu = PytitionUser.objects.filter(user__username=username).count()
         self.assertEqual(pu, 1)
@@ -521,13 +535,13 @@ class AccountSettingsViewTest(TestCase):
         }
         f = DeleteAccountForm(data)
         self.assertEqual(f.is_valid(), False)
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "layouts/base.html")
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.logout()
         self.login(username)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         pu = PytitionUser.objects.filter(user__username=username).count()
         self.assertEqual(pu, 1)
@@ -544,13 +558,13 @@ class AccountSettingsViewTest(TestCase):
         }
         f = DeleteAccountForm(data)
         self.assertEqual(f.is_valid(), False)
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "layouts/base.html")
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.logout()
         self.login(username)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         pu = PytitionUser.objects.filter(user__username=username).count()
         self.assertEqual(pu, 1)
@@ -566,17 +580,17 @@ class AccountSettingsViewTest(TestCase):
         }
         f = DeleteAccountForm(data)
         self.assertEqual(f.is_valid(), True)
-        response = self.client.post(reverse("account_settings"), data, follow=True)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data, follow=True)
         self.assertRedirects(
-            response, reverse("login") + "?next=" + reverse("account_settings")
+            response, reverse("login") + "?next=" + reverse(AccountsRoute.SETTINGS)
         )
         self.assertTemplateUsed(response, "layouts/base.html")
 
     def test_UserUnauthenticatedGET(self) -> None:
         self.logout()
-        response = self.client.get(reverse("account_settings"), follow=True)
+        response = self.client.get(reverse(AccountsRoute.SETTINGS), follow=True)
         self.assertRedirects(
-            response, reverse("login") + "?next=" + reverse("account_settings")
+            response, reverse("login") + "?next=" + reverse(AccountsRoute.SETTINGS)
         )
         self.assertTemplateUsed(response, "layouts/base.html")
 
@@ -598,7 +612,7 @@ class AccountSettingsViewTest(TestCase):
                 "email": "wrongEmailSyntax",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -634,7 +648,7 @@ class AccountSettingsViewTest(TestCase):
                 "email": "wrongEmailSyntax",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -671,7 +685,7 @@ class AccountSettingsViewTest(TestCase):
                 "email": "wrongEmailSyntax",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -707,7 +721,7 @@ class AccountSettingsViewTest(TestCase):
                 "email": "wrongEmailSyntax",
             }
         )
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -735,7 +749,7 @@ class AccountSettingsViewTest(TestCase):
             "new_password1": new_pass,
             "new_password2": new_pass,
         }
-        response = self.client.post(reverse("account_settings"), data)
+        response = self.client.post(reverse(AccountsRoute.SETTINGS), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/account_settings.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -751,19 +765,19 @@ class AccountSettingsViewTest(TestCase):
         self.assertEqual(response.context["password_change_form"].is_bound, True)
         self.logout()
         self.login(username)
-        response2 = self.client.get(reverse("user_dashboard"))
+        response2 = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response2.status_code, 200)
         self.logout()
         self.login(username, password=new_pass)
-        response3 = self.client.get(reverse("user_dashboard"), follow=True)
+        response3 = self.client.get(reverse(AccountsRoute.DASHBOARD), follow=True)
         self.assertRedirects(
-            response3, reverse("login") + "?next=" + reverse("user_dashboard")
+            response3, reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD)
         )
 
     def test_OneUserAdminCannotLeave(self) -> None:
         julia = self.login("julia")
 
-        response = self.client.get(reverse("account_settings"))
+        response = self.client.get(reverse(AccountsRoute.SETTINGS))
         self.assertEqual(response.status_code, 200)
         orgs = response.context["orgs"]
         for org in orgs:

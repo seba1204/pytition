@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.petition.models import PytitionUser
 
@@ -26,9 +27,9 @@ class UserDashboardViewTest(TestCase):
 
     def test_NotLoggedIn(self) -> None:
         self.logout()
-        response = self.client.get(reverse("user_dashboard"), follow=True)
+        response = self.client.get(reverse(AccountsRoute.DASHBOARD), follow=True)
         self.assertRedirects(
-            response, reverse("login") + "?next=" + reverse("user_dashboard")
+            response, reverse("login") + "?next=" + reverse(AccountsRoute.DASHBOARD)
         )
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
@@ -37,7 +38,7 @@ class UserDashboardViewTest(TestCase):
         john = self.login("john")
         num_petitions = john.petition_set.count()
 
-        response = self.client.get(reverse("user_dashboard"))
+        response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")
@@ -50,7 +51,7 @@ class UserDashboardViewTest(TestCase):
         julia = self.login("julia")
         num_petitions = julia.petition_set.count()
 
-        response = self.client.get(reverse("user_dashboard"))
+        response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")
@@ -63,7 +64,7 @@ class UserDashboardViewTest(TestCase):
         max = self.login("max")
         num_petitions = max.petition_set.count()
 
-        response = self.client.get(reverse("user_dashboard"))
+        response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")
@@ -76,7 +77,7 @@ class UserDashboardViewTest(TestCase):
         sarah = self.login("sarah")
         num_petitions = sarah.petition_set.count()
 
-        response = self.client.get(reverse("user_dashboard"))
+        response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/user_dashboard.html")
         self.assertTemplateUsed(response, "petition/user_base.html")

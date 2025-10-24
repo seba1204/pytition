@@ -15,7 +15,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right"
              aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url "user_dashboard" %}">
+          <a class="dropdown-item" href="{% url "accounts:dashboard" %}">
             <span class="oi oi-person"></span>
             {% trans "Your dashboard" %}
           </a>
@@ -40,7 +40,7 @@
             </a>
           {% endif %}
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url "account_settings" %}">
+          <a class="dropdown-item" href="{% url "accounts:settings" %}">
             <span class="oi oi-cog"></span>
             {% trans "Settings" %}
           </a>

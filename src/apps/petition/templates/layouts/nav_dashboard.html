@@ -11,7 +11,7 @@
                aria-label="{% trans "Back to dashboard" %}"><span class="oi oi-dashboard">{% trans "Back to dashboard" %}</span></a>
           {% else %}
             <a class="btn btn-outline-primary"
-               href="{% url "user_dashboard" %}"
+               href="{% url "accounts:dashboard" %}"
                aria-label="{% trans "Back to dashboard" %}"><span class="oi oi-dashboard">{% trans "Back to dashboard" %}</span></a>
           {% endif %}
         {% endif %}

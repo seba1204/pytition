@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from formtools.wizard.views import SessionWizardView  # type: ignore
 
+from apps.accounts.routes import AccountsRoute
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import get_session_user
 from apps.petition.models import Organization, Permission, Petition, PetitionTemplate
@@ -42,7 +43,7 @@ class PetitionCreationWizard(SessionWizardView):
             messages.error(
                 request, _("Users are not allowed to create their own petitions.")
             )
-            return redirect("user_dashboard")
+            return redirect(AccountsRoute.DASHBOARD)
         return super().dispatch(request, *args, **kwargs)
 
     def get_template_names(self) -> list[str]:
@@ -116,7 +117,7 @@ class PetitionCreationWizard(SessionWizardView):
                 org = Organization.objects.get(slugname=orgslugname)
             except Organization.DoesNotExist:
                 messages.error(self.request, _("Cannot find this organization"))
-                return redirect("user_dashboard")
+                return redirect(AccountsRoute.DASHBOARD)
 
             try:
                 permissions = Permission.objects.get(
@@ -171,13 +172,13 @@ class PetitionCreationWizard(SessionWizardView):
                     messages.error(
                         self.request, _("This template does not belong to you")
                     )
-                    return redirect("user_dashboard")
+                    return redirect(AccountsRoute.DASHBOARD)
             if publish:
                 petition.publish()
             if _redirect and _redirect == "1":
                 return redirect(PetitionsRoute.EDIT, petition.id)
             else:
-                return redirect("user_dashboard")
+                return redirect(AccountsRoute.DASHBOARD)
 
     def get_context_data(self, form: Any, **kwargs: Any) -> dict[str, Any]:
         org_petition = "orgslugname" in self.kwargs

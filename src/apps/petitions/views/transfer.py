@@ -10,6 +10,7 @@ from django.http import (
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import get_session_user
 from apps.petition.models import Organization, Petition, PytitionUser
@@ -35,7 +36,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
         petition = petition_from_id(petition_id)
     except Exception:
         messages.error(request, _("This petition does not exist."))
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
 
     ctx: _TransferContext = {"user": pytitionuser, "petition": petition}
     org: Organization
@@ -58,7 +59,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
             messages.error(
                 request, _("You don't have the permission to transfer this petition")
             )
-            return redirect("user_dashboard")
+            return redirect(AccountsRoute.DASHBOARD)
         ctx["base_template"] = "petition/user_base.html"
 
     if request.method == "GET":
@@ -89,7 +90,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
                         "on this instance."
                     ),
                 )
-                return redirect("user_dashboard")
+                return redirect(AccountsRoute.DASHBOARD)
             try:
                 user = PytitionUser.objects.get(user__username=new_owner_name)
             except Exception:
@@ -106,7 +107,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
             # To prevent sending an unwanted published petition to an organization.
             petition.unpublish()
             messages.success(request, _("Petition successfully transfered!"))
-            return redirect("user_dashboard")
+            return redirect(AccountsRoute.DASHBOARD)
         except ValueError:
             messages.error(
                 request, _("Something went wrong while transferring this petition.")
@@ -114,4 +115,4 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
             return redirect(PetitionsRoute.TRANSFER, petition.id)
 
     # Default fallback if method is not GET or POST
-    return redirect("user_dashboard")
+    return redirect(AccountsRoute.DASHBOARD)

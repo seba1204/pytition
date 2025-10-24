@@ -25,7 +25,7 @@
                  class="text-muted">{{ owner }}</a>
             {% elif owner.kind == "user" %}
               {# It could be of another kind in the future. #}
-              <a href="{% url "user_profile" user_name=owner.username %}"
+              <a href="{% url "accounts:public_profile" user_name=owner.username %}"
                  class="text-muted">{{ owner }}</a>
             {% endif %}
           {% endwith %}

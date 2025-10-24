@@ -3,6 +3,7 @@ from django.urls import include, path, reverse_lazy
 
 from apps.accounts import views as AV
 from apps.accounts.forms import PytitionUserCreationForm
+from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
@@ -18,6 +19,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("", include("apps.petitions.urls", namespace=PET_NS)),
+    path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
     path("search", views.search, name="search"),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Consents
@@ -91,12 +93,9 @@ urlpatterns = [
     # Accounts
     # ──────────────────────────────────────────────────────────────────────────────────
     # TODO: should be "/presets/new", whether it's user or an org
-    path("user/new_template", PrV.new, name="user_new_template"),
-    path("user/dashboard", AV.dashboard, name="user_dashboard"),
+    path("preset/new", PrV.new, name="user_new_template"),
+    # TODO: should implement "/search/" logic
     path("get_user_list", AV.user_list, name="get_user_list"),
-    path("account_settings", AV.settings, name="account_settings"),
-    # has to be AFTER other /user/paths to avoid resolution conflicts
-    path("user/<user_name>", AV.profile, name="user_profile"),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Presets
     # ──────────────────────────────────────────────────────────────────────────────────

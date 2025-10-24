@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
 from apps.organizations.routes import OrgRoute
 from apps.petition.helpers import get_session_user
 from apps.petition.models import Organization, Petition, SlugModel
@@ -22,7 +23,7 @@ def del_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
         petition = petition_from_id(petition_id)
     except Exception:
         messages.error(request, _("This petition does not exist (anymore?)."))
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
     if petition.is_allowed_to_edit(pytitionuser):
         slug_id = request.GET.get("slugid", None)
         if not slug_id:
@@ -41,7 +42,7 @@ def del_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
             org: Organization = petition.owner  # type: ignore
             return redirect(OrgRoute.DASHBOARD, org.slugname)
         else:
-            return redirect("user_dashboard")
+            return redirect(AccountsRoute.DASHBOARD)
     return redirect(
         reverse(PetitionsRoute.EDIT, args=[petition_id]) + "#tab_social_network_form"
     )

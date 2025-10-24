@@ -10,6 +10,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
+
 # TODO: move get_session_user to apps/accounts/services.py
 from apps.petition.helpers import get_session_user
 
@@ -57,13 +59,13 @@ def leave(request: HttpRequest, orgslugname: str) -> HttpResponse:
                     "you are the last administrator"
                 ),
             )
-            return redirect(reverse("account_settings") + "#a_org_form")
+            return redirect(reverse(AccountsRoute.SETTINGS) + "#a_org_form")
         elif org.members.count() == 1:
             messages.error(
                 request,
                 _("Impossible to leave this organization, you are the last member"),
             )
-            return redirect(reverse("account_settings") + "#a_org_form")
+            return redirect(reverse(AccountsRoute.SETTINGS) + "#a_org_form")
         else:
             org.members.remove(pytitionuser)
-    return redirect("account_settings")
+    return redirect(AccountsRoute.SETTINGS)

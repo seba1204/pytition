@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% block login_next %}
-  {% url "user_dashboard" %}
+  {% url "accounts:dashboard" %}
 {% endblock login_next %}
 {% block extra_css %}
   <link href="{% static "css/home.css" %}" rel="stylesheet">

@@ -13,6 +13,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
 from apps.organizations.forms import OrgCreationForm
 
 # TODO: move get_session_user to apps/accounts/services.py
@@ -40,7 +41,7 @@ def create(request: HttpRequest) -> HttpResponse:
         # FIXME: should redirect to the page where the user was before requesting
         # the creation of a new organization.
         # If not possible, redirect to user dashboard.
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
     user = get_session_user(request)
 
     # Context initialization
@@ -63,7 +64,7 @@ def create(request: HttpRequest) -> HttpResponse:
                 _("You successfully created organization '{}'".format(org.name)),
             )
             # FIXME: should redirect to the newly created org dashboard.
-            return redirect("user_dashboard")
+            return redirect(AccountsRoute.DASHBOARD)
         else:
             # Form is not valid, show it with errors in the template
             ctx.update({"form": form})

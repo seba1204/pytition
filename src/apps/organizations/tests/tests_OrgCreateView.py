@@ -2,6 +2,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils.text import slugify
 
+from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, Permission, PytitionUser
@@ -39,7 +40,7 @@ class OrgCreateViewTest(TestCase):
             "name": newname,
         }
         response = self.client.post(reverse(OrgRoute.CREATE), data, follow=True)
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         user = response.context["user"]
         orgs = user.organization_set.all()
         self.assertEqual(user, john)
@@ -61,7 +62,7 @@ class OrgCreateViewTest(TestCase):
         }
         # first creation
         response = self.client.post(reverse(OrgRoute.CREATE), data, follow=True)
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         user = response.context["user"]
         orgs = user.organization_set.all()
         self.assertEqual(user, john)
@@ -112,17 +113,17 @@ class OrgCreateViewTest(TestCase):
         self.login("john")
 
         response = self.client.get(reverse(OrgRoute.CREATE), follow=True)
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertContains(response, "Only super users can create an organization.")
 
         data = {"name": "New Org"}
         response = self.client.post(reverse(OrgRoute.CREATE), data, follow=True)
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(Organization.objects.count(), init_org_number)
         self.assertContains(response, "Only super users can create an organization.")
 
         self.login("admin")
         response = self.client.post(reverse(OrgRoute.CREATE), data, follow=True)
-        self.assertRedirects(response, reverse("user_dashboard"))
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(Organization.objects.count(), init_org_number + 1)
         self.assertNotContains(response, "Only super users can create an organization.")

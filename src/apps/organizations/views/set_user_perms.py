@@ -11,6 +11,7 @@ from django.http import (
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
 from apps.organizations.routes import OrgRoute
 
 # TODO: move get_session_user to apps/accounts/services.py
@@ -45,7 +46,7 @@ def set_user_perms(  # noqa
 
     if pytitionuser not in org.members.all():
         messages.error(request, _("You are not part of this organization"))
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
 
     try:
         user_perms = Permission.objects.get(user=pytitionuser, organization=org)

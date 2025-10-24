@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils.text import slugify
 
+from apps.accounts.routes import AccountsRoute
 from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, Petition, PytitionUser
 
@@ -89,7 +90,9 @@ class IndexViewTest(TestCase):
                 self.subTest(user=user),
             ):
                 response = self.client.get("/", follow=True)
-                self.assertRedirects(response, reverse("user_profile", args=[user]))
+                self.assertRedirects(
+                    response, reverse(AccountsRoute.PUBLIC_PROFILE, args=[user])
+                )
                 self.assertEqual(
                     len(response.context["petitions"]),
                     user_published_petitions[user],
@@ -108,5 +111,5 @@ class IndexViewTest(TestCase):
             self.client.login(username="temporary", password="temporary")
 
             response = self.client.get("/", follow=True)
-            self.assertRedirects(response, reverse("user_dashboard"))
+            self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
             self.assertEqual(response.context["user"], pu)

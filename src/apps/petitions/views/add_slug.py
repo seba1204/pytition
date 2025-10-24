@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
+from apps.accounts.routes import AccountsRoute
 from apps.petition.helpers import get_session_user
 from apps.petitions.helpers import petition_from_id
 from apps.petitions.routes import PetitionsRoute
@@ -21,7 +22,7 @@ def add_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
         petition = petition_from_id(petition_id)
     except Exception:
         messages.error(request, _("This petition does not exist (anymore?)."))
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
 
     if request.method == "POST":
         slug_texts = request.POST.getlist("slugtext", "")
@@ -52,4 +53,4 @@ def add_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
             + "#tab_social_network_form"
         )
     else:
-        return redirect("user_dashboard")
+        return redirect(AccountsRoute.DASHBOARD)
