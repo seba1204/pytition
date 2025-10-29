@@ -10,7 +10,7 @@ from django.utils.timezone import now
 from django.utils.translation import gettext as _
 
 from apps.consents.helpers import send_confirmation_email, subscribe_to_newsletter
-from apps.petition.helpers import get_client_ip
+from apps.core.helpers import get_client_ip
 from apps.petition.models import Signature
 from apps.petitions.helpers import (
     check_petition_is_accessible,

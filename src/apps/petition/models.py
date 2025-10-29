@@ -21,9 +21,8 @@ from django.utils.translation import gettext_lazy
 from phonenumber_field.modelfields import PhoneNumberField  # type: ignore
 from tinymce import models as tinymce_models  # type: ignore
 
+from apps.core.helpers import sanitize_html
 from apps.petitions.routes import PetitionsRoute
-
-from .helpers import sanitize_html
 
 
 # ----------------------------------- PytitionUser ----------------------------

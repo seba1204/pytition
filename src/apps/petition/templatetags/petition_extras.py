@@ -1,14 +1,14 @@
 from django import template
 from widget_tweaks.templatetags.widget_tweaks import add_class  # type: ignore
 
-from apps.petition.helpers import sanitize_html
+from apps.core.helpers import sanitize_html
 
 register = template.Library()
 
 
 @register.filter
 def addstr(arg1: object, arg2: object) -> str:
-    """concatenate arg1 & arg2"""
+    """Concatenate arg1 & arg2."""
     return str(arg1) + str(arg2)
 
 

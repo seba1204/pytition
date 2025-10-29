@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
 from apps.accounts.services import get_session_user
-from apps.petition.helpers import sanitize_html
+from apps.core.helpers import sanitize_html
 from apps.petitions.helpers import petition_from_id
 
 

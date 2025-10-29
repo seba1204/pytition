@@ -103,7 +103,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # Custom
                 "apps.petition.helpers.footer_content_processor",
-                "apps.petition.helpers.settings_context_processor",
+                "apps.core.helpers.settings_context_processor",
                 # 3rd party
                 "maintenance_mode.context_processors.maintenance_mode",
             ],

@@ -3,15 +3,12 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any
 
-import lxml
-import lxml.html
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, get_connection
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
-from lxml.html.clean import Cleaner
 
 if TYPE_CHECKING:
     pass
@@ -25,48 +22,6 @@ def remove_user_moderated(petitions: list[Any]) -> list[Any]:
     (Used where we cannot easily express the check in a queryset.)
     """
     return [p for p in petitions if not getattr(p, "is_moderated", False)]
-
-
-# Remove all javascript from HTML code
-def sanitize_html(unsecure_html_content: str) -> str:
-    cleaner = Cleaner(
-        inline_style=False,
-        scripts=True,
-        javascript=True,
-        safe_attrs=lxml.html.defs.safe_attrs | {"style"},
-        frames=False,
-        embedded=False,
-        meta=True,
-        links=True,
-        page_structure=True,
-        remove_tags=["body"],
-    )
-    try:
-        secure_html_content = lxml.html.tostring(
-            cleaner.clean_html(lxml.html.fromstring(unsecure_html_content)),
-            method="html",
-        )
-        return str(secure_html_content.decode())
-    except Exception:
-        secure_html_content = b""
-    return ""
-
-
-# Get the client IP address, considering proxies and RP
-
-
-def get_client_ip(request: HttpRequest) -> str:
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(",")[0]
-    else:
-        ip = request.META.get("REMOTE_ADDR")
-    return str(ip)
-
-
-# Get settings
-def settings_context_processor(request: HttpRequest) -> dict[str, Any]:
-    return {"settings": settings}
 
 
 # Get footer content
