@@ -24,9 +24,12 @@ app_name = "accounts"
 # --------------------------------------------------------------------------- #
 
 ROUTES: dict[AccountsRoute, Route] = {
+    # .../users/dashboard/
     AccountsRoute.DASHBOARD: Route("dashboard", AV.dashboard),
+    # .../users/settings/
     AccountsRoute.SETTINGS: Route("settings", AV.settings),
     # this one must be last, as it is a catch-all for usernames
+    # .../users/<user_name>/
     AccountsRoute.PUBLIC_PROFILE: Route("<user_name>", AV.profile),
 }
 
