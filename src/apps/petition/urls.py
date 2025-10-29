@@ -31,8 +31,9 @@ urlpatterns = [
         CV.search_profiles,
         name="search_users_and_orgs",
     ),
+    path("get_user_list", AV.user_list, name="get_user_list"),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # Consents
+    # Signatures # TODO: move it to an urls.py so it can be included
     # ──────────────────────────────────────────────────────────────────────────────────
     path(
         "<int:petition_id>/get_csv_signature",
@@ -100,16 +101,13 @@ urlpatterns = [
         name="slug_show_petition",
     ),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # Accounts
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # TODO: should implement "/search/" logic, cf. ticket #20
-    path("get_user_list", AV.user_list, name="get_user_list"),
-    # ──────────────────────────────────────────────────────────────────────────────────
     # Django built-in views
     # ──────────────────────────────────────────────────────────────────────────────────
     # Authentication
     path("", include("django.contrib.auth.urls")),
-    # Misc
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Core
+    # ──────────────────────────────────────────────────────────────────────────────────
     path("image_upload", views.image_upload, name="image_upload"),
 ]
 
