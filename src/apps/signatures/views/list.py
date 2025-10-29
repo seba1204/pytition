@@ -12,8 +12,8 @@ from django.utils.translation import gettext as _
 
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
-from apps.consents.helpers import send_confirmation_email
 from apps.core.exceptions import ApiError
+from apps.notifications.services import send_confirmation_email
 from apps.organizations.routes import OrgRoute
 from apps.petition.models import Organization, Permission, Petition, Signature
 from apps.petitions.helpers import petition_from_id

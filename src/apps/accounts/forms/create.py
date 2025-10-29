@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from apps.petition.helpers import send_welcome_mail
+from apps.notifications.services import send_welcome_mail
 
 
 class PytitionUserCreationForm(UserCreationForm):

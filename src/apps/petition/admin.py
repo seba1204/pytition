@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
 
-from apps.consents.helpers import send_confirmation_email
+from apps.notifications.services import send_confirmation_email
 from apps.petition.models import (
     Organization,
     Permission,

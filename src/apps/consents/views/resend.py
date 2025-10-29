@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 
-from apps.consents.helpers import send_confirmation_email
+from apps.notifications.services import send_confirmation_email
 from apps.petition.models import Signature
 
 

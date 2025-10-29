@@ -39,11 +39,14 @@ INSTALLED_APPS = [
     "apps.consents",
     "apps.core",
     "apps.moderation",
+    "apps.media",
+    "apps.notifications",
     "apps.organizations",
     "apps.petition",
     "apps.petitions",
     "apps.presets",
     "apps.signatures",
+    "apps.theming",
     # Django core
     "django.contrib.admin",
     "django.contrib.auth",
@@ -104,7 +107,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 # Custom
-                "apps.petition.helpers.footer_content_processor",
+                "apps.theming.context_processors.footer_content",
                 "apps.core.helpers.settings_context_processor",
                 # 3rd party
                 "maintenance_mode.context_processors.maintenance_mode",
