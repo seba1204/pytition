@@ -3,7 +3,7 @@
 <ul class="dashboard-org-list">
   {% for template in templates %}
     <li class="d-flex align-items-center justify-content-between"
-        data-template-fav="{% url "template_fav_toggle" template.id %}">
+        data-template-fav="{% url "presets:toggle_fav" template.id %}">
       <span>{{ template.name }}</span>
       <div class="flex-wrap">
         {% if owner.default_template == template %}
@@ -25,7 +25,7 @@
            data-action="template-edit"
            data-toggle="tooltip"
            title="{% trans "Edit template" %}"
-           href="{% url "edit_template" template.id %}"><span class="oi oi-pencil"></span></a>
+           href="{% url "presets:edit" template.id %}"><span class="oi oi-pencil"></span></a>
         <a {% if owner.kind == "org" %} href="{% url "org_petition_wizard_from_template" org.slugname template.id %}" {% else %} href="{% url "user_petition_wizard_from_template" template.id %}" {% endif %}
            class="btn btn-link text-dark"
            data-action="template-instanciate"
@@ -62,7 +62,7 @@
             {% trans "Do you really want to do this?" %}
           </div>
           <div class="modal-footer"
-               data-template-delete="{% url "template_delete" template.id %}">
+               data-template-delete="{% url "presets:delete" template.id %}">
             <button type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Close" %}</button>
             <button type="button" class="btn btn-danger" data-action="template-delete">{% trans "Delete" %}</button>
           </div>

@@ -22,6 +22,7 @@ from apps.petition.models import (
     PetitionTemplate,
     PytitionUser,
 )
+from apps.presets.routes import PresetRoutes
 
 
 class _NewPresetContext(TypedDict, total=False):
@@ -91,7 +92,7 @@ def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
 
         ctx["base_template"] = "org/base.html"
     else:
-        redirection = "user_new_template"
+        redirection = PresetRoutes.NEW
         ctx["base_template"] = "petition/user_base.html"
 
     if request.method == "POST":
@@ -102,7 +103,7 @@ def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
             else:
                 template = PetitionTemplate(name=template_name, user=pytitionuser)
             template.save()
-            return redirect("edit_template", template.id)
+            return redirect(PresetRoutes.EDIT, template.id)
         else:
             messages.error(request, _("You need to provide a template name."))
             return redirect(redirection)

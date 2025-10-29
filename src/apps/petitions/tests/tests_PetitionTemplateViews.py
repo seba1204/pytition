@@ -12,6 +12,7 @@ from apps.petition.models import (
     PetitionTemplate,
     PytitionUser,
 )
+from apps.presets.routes import PresetRoutes
 
 
 class PetitionViewTest(TestCase):
@@ -60,12 +61,12 @@ class PetitionViewTest(TestCase):
         self.assertIsNotNone(pt)
         if pt is None:
             return
-        self.assertRedirects(response, reverse("edit_template", args=[pt.id]))
+        self.assertRedirects(response, reverse(PresetRoutes.EDIT, args=[pt.id]))
 
     def test_user_new_template_post(self) -> None:
         julia = self.login("julia")
         data = {"template_name": "This is a default template"}
-        response = self.client.post(reverse("user_new_template"), data)
+        response = self.client.post(reverse(PresetRoutes.NEW), data)
         self.assertEqual(julia.petitiontemplate_set.count(), 1)
         self.assertEqual(response.status_code, 302)
         pt = julia.petitiontemplate_set.first()
@@ -73,11 +74,11 @@ class PetitionViewTest(TestCase):
         self.assertIsNotNone(pt)
         if pt is None:
             return
-        self.assertRedirects(response, reverse("edit_template", args=[pt.id]))
+        self.assertRedirects(response, reverse(PresetRoutes.EDIT, args=[pt.id]))
 
     def test_user_new_template_get(self) -> None:
         julia = self.login("julia")
-        response = self.client.get(reverse("user_new_template"))
+        response = self.client.get(reverse(PresetRoutes.NEW))
         self.assertEqual(julia.petitiontemplate_set.count(), 0)
         self.assertEqual(response.status_code, 200)
 
@@ -86,12 +87,12 @@ class PetitionViewTest(TestCase):
         org = Organization.objects.get(name="RAP")
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
-        response = self.client.get(reverse("edit_template", args=[pt.id]))
+        response = self.client.get(reverse(PresetRoutes.EDIT, args=[pt.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template", user=julia)
-        response = self.client.get(reverse("edit_template", args=[pt2.id]))
+        response = self.client.get(reverse(PresetRoutes.EDIT, args=[pt2.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
 
@@ -100,13 +101,13 @@ class PetitionViewTest(TestCase):
         org = Organization.objects.get(name="RAP")
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
-        response = self.client.get(reverse("template_fav_toggle", args=[pt.id]))
+        response = self.client.get(reverse(PresetRoutes.TOGGLE_FAV, args=[pt.id]))
         self.assertEqual(response.status_code, 200)
         org.refresh_from_db()
         self.assertEqual(org.default_template, pt)
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template", user=julia)
-        response = self.client.get(reverse("template_fav_toggle", args=[pt2.id]))
+        response = self.client.get(reverse(PresetRoutes.TOGGLE_FAV, args=[pt2.id]))
         self.assertEqual(response.status_code, 200)
         julia.refresh_from_db()
         self.assertEqual(julia.default_template, pt2)
@@ -116,21 +117,21 @@ class PetitionViewTest(TestCase):
         org = Organization.objects.get(name="RAP")
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
-        response = self.client.get(reverse("template_fav_toggle", args=[pt.id]))
+        response = self.client.get(reverse(PresetRoutes.TOGGLE_FAV, args=[pt.id]))
         self.assertEqual(response.status_code, 200)
         org.refresh_from_db()
         self.assertEqual(org.default_template, pt)
-        response = self.client.get(reverse("template_fav_toggle", args=[pt.id]))
+        response = self.client.get(reverse(PresetRoutes.TOGGLE_FAV, args=[pt.id]))
         self.assertEqual(response.status_code, 200)
         org.refresh_from_db()
         self.assertEqual(org.default_template, None)
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template", user=julia)
-        response = self.client.get(reverse("template_fav_toggle", args=[pt2.id]))
+        response = self.client.get(reverse(PresetRoutes.TOGGLE_FAV, args=[pt2.id]))
         self.assertEqual(response.status_code, 200)
         julia.refresh_from_db()
         self.assertEqual(julia.default_template, pt2)
-        response = self.client.get(reverse("template_fav_toggle", args=[pt2.id]))
+        response = self.client.get(reverse(PresetRoutes.TOGGLE_FAV, args=[pt2.id]))
         self.assertEqual(response.status_code, 200)
         julia.refresh_from_db()
         self.assertEqual(julia.default_template, None)
@@ -141,20 +142,20 @@ class PetitionViewTest(TestCase):
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
         self.assertEqual(PetitionTemplate.objects.count(), 1)
-        response = self.client.get(reverse("template_delete", args=[pt.id]))
+        response = self.client.get(reverse(PresetRoutes.DELETE, args=[pt.id]))
         self.assertEqual(response.status_code, 403)
         self.assertEqual(PetitionTemplate.objects.count(), 1)
         # Ah yes, Max does not have access rights for that
         p = Permission.objects.get(organization=org, user=max)
         p.can_delete_templates = True
         p.save()
-        response = self.client.get(reverse("template_delete", args=[pt.id]))
+        response = self.client.get(reverse(PresetRoutes.DELETE, args=[pt.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(PetitionTemplate.objects.count(), 0)
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template", user=max)
         self.assertEqual(PetitionTemplate.objects.count(), 1)
-        response = self.client.get(reverse("template_delete", args=[pt2.id]))
+        response = self.client.get(reverse(PresetRoutes.DELETE, args=[pt2.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(PetitionTemplate.objects.count(), 0)
 
@@ -173,7 +174,7 @@ class PetitionViewTest(TestCase):
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), content_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -188,7 +189,7 @@ class PetitionViewTest(TestCase):
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template", user=julia)
         response = self.client.post(
-            reverse("edit_template", args=[pt2.id]), content_form_data
+            reverse(PresetRoutes.EDIT, args=[pt2.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -215,7 +216,7 @@ class PetitionViewTest(TestCase):
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), email_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -230,7 +231,7 @@ class PetitionViewTest(TestCase):
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template", user=julia)
         response = self.client.post(
-            reverse("edit_template", args=[pt2.id]), email_form_data
+            reverse(PresetRoutes.EDIT, args=[pt2.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -267,7 +268,7 @@ class PetitionViewTest(TestCase):
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), social_network_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), social_network_form_data
         )
         fp.close()
         self.assertEqual(response.status_code, 200)
@@ -286,7 +287,7 @@ class PetitionViewTest(TestCase):
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template 2", user=julia)
         response2 = self.client.post(
-            reverse("edit_template", args=[pt2.id]), social_network_form_data
+            reverse(PresetRoutes.EDIT, args=[pt2.id]), social_network_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -349,7 +350,7 @@ class PetitionViewTest(TestCase):
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), newsletter_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), newsletter_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -364,7 +365,7 @@ class PetitionViewTest(TestCase):
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template 2", user=julia)
         response2 = self.client.post(
-            reverse("edit_template", args=[pt2.id]), newsletter_form_data
+            reverse(PresetRoutes.EDIT, args=[pt2.id]), newsletter_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -398,7 +399,7 @@ class PetitionViewTest(TestCase):
         # For an org template
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), style_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), style_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -414,7 +415,7 @@ class PetitionViewTest(TestCase):
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template 2", user=julia)
         response2 = self.client.post(
-            reverse("edit_template", args=[pt2.id]), style_form_data
+            reverse(PresetRoutes.EDIT, args=[pt2.id]), style_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -452,7 +453,7 @@ class PetitionViewTest(TestCase):
 
         # Now let's enable the email share button
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -468,7 +469,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_email_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -483,7 +484,7 @@ class PetitionViewTest(TestCase):
         # Now let's enable the email share button
         share_button_form_data["has_email_share_button"] = True
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -499,7 +500,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_email_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -521,7 +522,7 @@ class PetitionViewTest(TestCase):
 
         # Now let's enable the facebook share button
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -537,7 +538,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_facebook_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -552,7 +553,7 @@ class PetitionViewTest(TestCase):
         # Now let's enable the facebook share button
         share_button_form_data["has_facebook_share_button"] = True
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -568,7 +569,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_facebook_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -590,7 +591,7 @@ class PetitionViewTest(TestCase):
 
         # Now let's enable the tumblr share button
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -606,7 +607,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_tumblr_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -621,7 +622,7 @@ class PetitionViewTest(TestCase):
         # Now let's enable the tumblr share button
         share_button_form_data["has_tumblr_share_button"] = True
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -637,7 +638,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_tumblr_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -659,7 +660,7 @@ class PetitionViewTest(TestCase):
 
         # Now let's enable the linkedin share button
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -675,7 +676,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_linkedin_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -690,7 +691,7 @@ class PetitionViewTest(TestCase):
         # Now let's enable the linkedin share button
         share_button_form_data["has_linkedin_share_button"] = True
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -706,7 +707,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_linkedin_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -728,7 +729,7 @@ class PetitionViewTest(TestCase):
 
         # Now let's enable the twitter share button
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -744,7 +745,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_twitter_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -759,7 +760,7 @@ class PetitionViewTest(TestCase):
         # Now let's enable the twitter share button
         share_button_form_data["has_twitter_share_button"] = True
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -775,7 +776,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_twitter_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -797,7 +798,7 @@ class PetitionViewTest(TestCase):
 
         # Now let's enable the mastodon share button
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -813,7 +814,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_mastodon_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -828,7 +829,7 @@ class PetitionViewTest(TestCase):
         # Now let's enable the mastodon share button
         share_button_form_data["has_mastodon_share_button"] = True
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -844,7 +845,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_mastodon_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -866,7 +867,7 @@ class PetitionViewTest(TestCase):
 
         # Now let's enable the whatsapp share button
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -882,7 +883,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_whatsapp_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
@@ -897,7 +898,7 @@ class PetitionViewTest(TestCase):
         # Now let's enable the whatsapp share button
         share_button_form_data["has_whatsapp_share_button"] = True
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "petition/edit_template.html")
@@ -913,7 +914,7 @@ class PetitionViewTest(TestCase):
         # Let's now turn it back off
         share_button_form_data["has_whatsapp_share_button"] = False
         response = self.client.post(
-            reverse("edit_template", args=[pt.id]), share_button_form_data
+            reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()

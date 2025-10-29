@@ -12,7 +12,7 @@ from apps.petition.views import PytitionUserCreateView
 from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.petitions.routes import NAMESPACE as PET_NS
-from apps.presets import views as PrV
+from apps.presets.routes import NAMESPACE as PRESET_NS
 from apps.signatures import views as SV
 
 urlpatterns = [
@@ -21,6 +21,7 @@ urlpatterns = [
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
+    path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Search, will be improved, cf. ticket #20
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -103,21 +104,6 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     # TODO: should implement "/search/" logic, cf. ticket #20
     path("get_user_list", AV.user_list, name="get_user_list"),
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # Presets
-    # ──────────────────────────────────────────────────────────────────────────────────
-    path("preset/new", PrV.new, name="user_new_template"),
-    path("templates/<int:template_id>/edit", views.edit_template, name="edit_template"),
-    path(
-        "templates/<int:template_id>/fav",
-        views.template_fav_toggle,
-        name="template_fav_toggle",
-    ),
-    path(
-        "templates/<int:template_id>/delete",
-        views.template_delete,
-        name="template_delete",
-    ),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Django built-in views
     # ──────────────────────────────────────────────────────────────────────────────────
