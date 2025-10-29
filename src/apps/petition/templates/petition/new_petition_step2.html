@@ -1,13 +1,15 @@
 {% extends "layouts/wizard_layout.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% load petition_extras %}
+{% load bootstrap %}
 {% load static %}
 {% load vendor_static %}
-{% block media %}{{ form.media }}{% endblock %}
+{% block media %}
+  {{ form.media }}
+{% endblock media %}
 {% block wizard_content %}
   <div id="step-2" class="px-3 pt-3">
-    <form method="POST">
+    <form method="post">
       {% csrf_token %}
       {{ wizard.management_form }}
       <div class="form-group">
@@ -38,7 +40,7 @@
       </div>
     </form>
   </div>
-{% endblock %}
+{% endblock wizard_content %}
 {% block extra_js %}
   {{ block.super }}
   <script type="text/javascript"
@@ -65,4 +67,4 @@
     }
     function set_mce_changed(ed) {}
   </script>
-{% endblock %}
+{% endblock extra_js %}

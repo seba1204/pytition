@@ -1,13 +1,13 @@
 {% extends "layouts/wizard_layout.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% load petition_extras %}
+{% load bootstrap %}
 {% load static %}
 {% load vendor_static %}
 {% block wizard_content %}
   <div id="step-1"
        class="d-flex align-items-center justify-content-auto px-3 pt-3">
-    <form method="POST" class="flex-fill">
+    <form method="post" class="flex-fill">
       {% csrf_token %}
       {{ wizard.management_form }}
       <div class="form-group">
@@ -29,7 +29,7 @@
       <button type="submit" class="btn btn-primary">{% trans "Next" %}</button>
     </form>
   </div>
-{% endblock %}
+{% endblock wizard_content %}
 {% block extra_js %}
   {{ block.super }}
   <script type="text/javascript"
@@ -48,4 +48,4 @@
     document.location.hash = "step-1";
     $("html, body").scrollTop("0px");
   </script>
-{% endblock %}
+{% endblock extra_js %}

@@ -1,16 +1,15 @@
 {% extends base_template %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% load petition_extras %}
 {% load static %}
 {% load vendor_static %}
-{% block media %}{{ form.media }}{% endblock %}
+{% block media %}{{ form.media }}{% endblock media %}
 {% block extra_css %}
   {{ block.super }}
   <link href="{% vendor_static "jquery-smart-wizard" "css/smart_wizard_theme_arrows.css" %}"
         rel="stylesheet"
         type="text/css" />
-{% endblock %}
+{% endblock extra_css %}
 {% block content %}
   <h1 class="my-3">{% trans "Create a new petition!" %}</h1>
   <div id="smartwizard">
@@ -34,4 +33,4 @@
     {% block wizard_content %}
     {% endblock wizard_content %}
   </div>
-{% endblock %}
+{% endblock content %}

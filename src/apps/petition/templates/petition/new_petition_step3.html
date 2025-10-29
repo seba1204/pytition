@@ -1,7 +1,6 @@
 {% extends "layouts/wizard_layout.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% load petition_extras %}
 {% load static %}
 {% load vendor_static %}
 {% block media %}
@@ -17,8 +16,14 @@
       <input type="hidden" name="redirect" id="redirectField" value="0">
       <div class="col-xl-4 col-lg-6 col-sm-12 col-12 mx-auto text-center sb-preview">
         <div class="card h-100 align-content-center">
-          <img class="card-img-top img-fluid img-thumbnail"
-               src="{% static "img/petition_icon.svg" %}">
+          <img class="card-img-top img-fluid img-thumbnail d-block mx-auto"
+               style="object-fit: contain;
+                      padding-top: 25px;
+                      padding-bottom: 25px"
+               src="{% static settings.DEFAULT_INDEX_THUMBNAIL %}"
+               width="100%"
+               max-height="150"
+               alt="{% trans "Petition logo placeholder" %}">
           <div class="card-body d-flex flex-column">
             <h4 class="card-title">{{ title }}</h4>
             <p class="card-text">{{ message|striptags|truncatechars:225 }}</p>
