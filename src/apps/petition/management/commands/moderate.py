@@ -9,15 +9,13 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    """Make a user join an orga
+    """
+    This command helps manually moderating petitions and user accounts.
 
-    ./manage.py moderate [-a | -l]
-    > -r "some text" : adds some text as a new moderation reason
-    > -l : list petitions in decreasing order of moderation demands
-    > -m id : moderate a petition
-    > -M username : moderate a user or Organization account
-    > -d id : delete a petition
-    > -D username : delete a user or Organization account
+    ./manage.py moderate [-a | -l] > -r "some text" : adds some text as a new moderation
+    reason > -l : list petitions in decreasing order of moderation demands > -m id :
+    moderate a petition > -M username : moderate a user or Organization account > -d id
+    : delete a petition > -D username : delete a user or Organization account
     """
 
     def add_arguments(self, parser: CommandParser) -> None:
