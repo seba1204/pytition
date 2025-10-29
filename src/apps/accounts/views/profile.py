@@ -8,7 +8,7 @@ from django.http import (
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
-from apps.petition.helpers import remove_user_moderated
+from apps.moderation.services import filter_moderated_petitions
 from apps.petition.models import PytitionUser
 
 
@@ -44,7 +44,7 @@ def profile(request: HttpRequest, user_name: str) -> HttpResponse:
     petitions_qs = user.petition_set.filter(published=True, moderated=False).order_by(
         creation_date
     )
-    petitions_list = remove_user_moderated(list(petitions_qs))
+    petitions_list = filter_moderated_petitions(list(petitions_qs))
     paginator = Paginator(petitions_list, settings.PAGINATOR_COUNT)
     page = request.GET.get("page")
     petitions = paginator.get_page(page)

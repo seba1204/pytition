@@ -22,10 +22,9 @@ from django.views.generic.edit import CreateView
 from apps.accounts.forms import PytitionUserCreationForm
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
+from apps.moderation.services import filter_moderated_petitions
 from apps.organizations.routes import OrgRoute
-from apps.petition.helpers import remove_user_moderated
-from apps.petition.models import Moderation, ModerationReason, Organization, Petition
-from apps.petitions.helpers import petition_from_id
+from apps.petition.models import Organization, Petition
 
 
 def index(request: HttpRequest) -> DjangoHttpResponse:
@@ -59,7 +58,7 @@ def index(request: HttpRequest) -> DjangoHttpResponse:
         all_petitions_qs = Petition.objects.filter(
             published=True, moderated=False
         ).order_by(creation_date)
-        all_petitions = remove_user_moderated(list(all_petitions_qs))
+        all_petitions = filter_moderated_petitions(list(all_petitions_qs))
         paginator = Paginator(all_petitions, settings.PAGINATOR_COUNT)
         page = request.GET.get("page")
         petitions = paginator.get_page(page)
@@ -119,22 +118,3 @@ class PytitionUserCreateView(CreateView):
     def form_valid(self, form: PytitionUserCreationForm) -> HttpResponse:
         form.send_success_email()
         return super().form_valid(form)
-
-
-# /<int:petition_id>/report/<int:reason_id>
-# Report a petition to moderation
-def report_petition(
-    request: HttpRequest, petition_id: int, reason_id: int | None = None
-) -> HttpResponse:
-    petition = petition_from_id(petition_id)
-    if reason_id:
-        try:
-            reason = ModerationReason.objects.get(pk=reason_id)
-        except Exception:
-            return HttpResponse(status=500)
-
-    if reason_id:
-        Moderation.objects.create(petition=petition, reason=reason)
-    else:
-        Moderation.objects.create(petition=petition)
-    return HttpResponse(status=200)

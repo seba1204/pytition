@@ -9,7 +9,7 @@ from django.http import (
 )
 from django.shortcuts import render
 
-from apps.petition.helpers import remove_user_moderated
+from apps.moderation.services import filter_moderated_petitions
 from apps.petition.models import Organization, Petition
 
 
@@ -41,7 +41,7 @@ def search(request: HttpRequest) -> HttpResponse:
         petitions_qs = Petition.objects.filter(
             Q(title__icontains=query) | Q(text__icontains=query)
         ).filter(published=True, moderated=False)[:15]
-        petitions = remove_user_moderated(list(petitions_qs))
+        petitions = filter_moderated_petitions(list(petitions_qs))
         orgs = list(Organization.objects.filter(name__icontains=query))
 
     # else, show latest petitions only (used in homepage, user page, etc.)
@@ -49,7 +49,7 @@ def search(request: HttpRequest) -> HttpResponse:
         petitions_qs = Petition.objects.filter(
             published=True, moderated=False
         ).order_by("-id")
-        petitions = remove_user_moderated(list(petitions_qs))
+        petitions = filter_moderated_petitions(list(petitions_qs))
         paginator = Paginator(petitions, settings.PAGINATOR_COUNT)
         petitions = paginator.get_page(page)
         orgs = []

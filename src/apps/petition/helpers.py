@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, get_connection
@@ -9,19 +9,6 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
-
-if TYPE_CHECKING:
-    pass
-
-
-# Remove all moderated instances of Petition
-def remove_user_moderated(petitions: list[Any]) -> list[Any]:
-    """
-    Filter-out moderated petitions when we already have a list.
-
-    (Used where we cannot easily express the check in a queryset.)
-    """
-    return [p for p in petitions if not getattr(p, "is_moderated", False)]
 
 
 # Get footer content

@@ -6,6 +6,7 @@ from apps.accounts.forms import PytitionUserCreationForm
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.core import views as CV
+from apps.moderation import views as MV
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
 from apps.petition.views import PytitionUserCreateView
@@ -84,7 +85,7 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     # Moderation
     # ──────────────────────────────────────────────────────────────────────────────────
-    path("<int:petition_id>/report/", views.report_petition, name="report_petition"),
+    path("<int:petition_id>/report/", MV.report, name="report_petition"),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Organization
     # ──────────────────────────────────────────────────────────────────────────────────
