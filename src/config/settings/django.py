@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.consents",
     "apps.core",
+    "apps.moderation",
     "apps.organizations",
     "apps.petition",
     "apps.petitions",
