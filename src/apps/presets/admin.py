@@ -196,7 +196,6 @@ class PetitionTemplateForm(ModelForm):
 
 @admin.register(PetitionTemplate)
 class PetitionTemplateAdmin(admin.ModelAdmin):
-    # change_form_template = 'petition/petition_change_form.html'
     form = PetitionTemplateForm
     fieldsets = (
         (

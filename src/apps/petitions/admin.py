@@ -203,7 +203,7 @@ class PetitionAdminForm(ModelForm):
 
 @admin.register(Petition)
 class PetitionAdmin(admin.ModelAdmin):
-    change_form_template = "petition/petition_change_form.html"
+    change_form_template = "petitions/admin/change_form.html"
     form = PetitionAdminForm
     search_fields = ("title",)
     list_display = (
