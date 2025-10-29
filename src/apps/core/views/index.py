@@ -50,6 +50,6 @@ def index(request: HttpRequest) -> DjangoHttpResponse:
 
         return render(
             request,
-            "petition/index.html",
+            "core/index.html",
             {"user": user, "petitions": petitions, "sort": sort},
         )
