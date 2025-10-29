@@ -1,7 +1,4 @@
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from apps.petition.models import Petition
+from apps.petition.models import Petition
 
 
 # Remove all moderated instances of Petition

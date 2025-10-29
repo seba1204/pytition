@@ -18,7 +18,7 @@ from apps.signatures import views as SV
 
 urlpatterns = [
     # index
-    path("", views.index, name="index"),
+    path("", CV.index, name="index"),
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
