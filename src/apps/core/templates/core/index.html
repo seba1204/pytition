@@ -13,7 +13,7 @@
       <h1 class="jumbotron-heading">{% trans "Welcome to Pytition" %}</h1>
       <p class="lead text-muted">{% trans "Make things change!" %}</p>
       {% if settings.SHOW_DEMO_TEXT %}
-        {% include "petition/demo_text.html" %}
+        {% include "ui/components/demo_text.html" %}
       {% endif %}
       {% if user.is_authenticated or settings.ALLOW_REGISTER %}
         <p>

@@ -4,4 +4,4 @@ $(function () {
 });
 
 {% url "accounts:dashboard" as dashboard_url %}
-{% include "petition/generic.js" with dashboard=dashboard_url %}
+{% include "core/generic.js" with dashboard=dashboard_url %}

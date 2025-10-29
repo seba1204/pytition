@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.consents",
     "apps.core",
-    "apps.media",
+    "apps.files",
     "apps.moderation",
     "apps.notifications",
     "apps.organizations",

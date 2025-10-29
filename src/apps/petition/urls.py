@@ -4,7 +4,7 @@ from apps.accounts import views as AV
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.core import views as CV
-from apps.media.routes import NAMESPACE as MEDIA_NS
+from apps.files.routes import NAMESPACE as MEDIA_NS
 from apps.moderation import views as MV
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petitions import forms as PF
@@ -20,7 +20,7 @@ urlpatterns = [
     path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
-    path("media/", include("apps.media.urls", namespace=MEDIA_NS)),
+    path("media/", include("apps.files.urls", namespace=MEDIA_NS)),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Search, will be improved, cf. ticket #20
     # ──────────────────────────────────────────────────────────────────────────────────

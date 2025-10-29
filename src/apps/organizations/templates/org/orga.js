@@ -85,4 +85,4 @@ $(function () {
 });
 
 {% url "org:dashboard" org.slugname as dashboard_url %}
-{% include "petition/generic.js" with dashboard=dashboard_url %}
+{% include "core/generic.js" with dashboard=dashboard_url %}

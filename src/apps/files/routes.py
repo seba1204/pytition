@@ -1,18 +1,18 @@
-"""Media route names (single textual source of truth)."""
+"""Files route names (single textual source of truth)."""
 
 from __future__ import annotations
 
 from enum import StrEnum
 
 # Django namespace used in include(..., namespace=NAMESPACE)
-NAMESPACE: str = "media"
+NAMESPACE: str = "files"
 
 _NS = f"{NAMESPACE}:"
 
 
-class MediaRoute(StrEnum):
+class FilesRoute(StrEnum):
     """
-    Fully-qualified media route names.
+    Fully-qualified files route names.
 
     Each member is a string equal to "<namespace>:<short>".
     """

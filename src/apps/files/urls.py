@@ -3,21 +3,21 @@ from __future__ import annotations
 from django.urls import URLPattern
 
 from apps.core.routes import Route, build_urlpatterns, validate_bijection
-from apps.media import views as MdV
-from apps.media.routes import MediaRoute
+from apps.files import views as MdV
+from apps.files.routes import FilesRoute
 
-app_name = "media"
+app_name = "files"
 
 # --------------------------------------------------------------------------- #
-# One-to-one mapping: every MediaRoute must appear exactly once
+# One-to-one mapping: every FilesRoute must appear exactly once
 # --------------------------------------------------------------------------- #
 
-ROUTES: dict[MediaRoute, Route] = {
-    MediaRoute.UPLOAD: Route("upload", MdV.upload),
+ROUTES: dict[FilesRoute, Route] = {
+    FilesRoute.UPLOAD: Route("upload", MdV.upload),
 }
 
 # Fail fast at import time (CI-friendly)
-validate_bijection(MediaRoute, ROUTES)
+validate_bijection(FilesRoute, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
 urlpatterns: list[URLPattern] = build_urlpatterns(ROUTES)
