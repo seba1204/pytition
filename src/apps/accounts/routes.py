@@ -31,3 +31,4 @@ class AccountsRoute(StrEnum):
     DASHBOARD = _NS + "dashboard"  # old user_dashboard
     PUBLIC_PROFILE = _NS + "public_profile"  # old user_profile
     SETTINGS = _NS + "settings"  # old account_settings
+    REGISTER = _NS + "register"

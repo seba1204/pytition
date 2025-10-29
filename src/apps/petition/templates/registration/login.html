@@ -9,7 +9,7 @@
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <p>{% trans "Your username and password didn't match. Please try again." %}</p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">×</span>
             </button>
           </div>
         {% endif %}
@@ -43,7 +43,7 @@
             </form>
             {% if settings.ALLOW_REGISTER %}
               <div class="mt-3">
-                {% trans "No account?" %} <a href="{% url "register" %}">{% trans "Register!" %}</a>
+                {% trans "No account?" %} <a href="{% url "accounts:register" %}">{% trans "Register!" %}</a>
               </div>
             {% endif %}
             <div class="mt-3">

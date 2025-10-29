@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate
 from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
-from django.urls.exceptions import NoReverseMatch
 
+from apps.accounts.routes import AccountsRoute
 from apps.petition.models import PytitionUser
 
 
@@ -14,7 +14,7 @@ class PytitionUserRegister(TestCase):
 
     def test_createPytitionUser(self) -> None:
         if settings.ALLOW_REGISTER:
-            response = self.client.get(reverse("register"))
+            response = self.client.get(reverse(AccountsRoute.REGISTER))
             self.assertEqual(response.status_code, 200)
 
             data = {
@@ -29,7 +29,7 @@ class PytitionUserRegister(TestCase):
             }
 
             # No answer to Captcha
-            response = self.client.post(reverse("register"), data=data)
+            response = self.client.post(reverse(AccountsRoute.REGISTER), data=data)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
             self.assertEqual(form.is_bound, True)
@@ -49,12 +49,12 @@ class PytitionUserRegister(TestCase):
                 toto = PytitionUser.objects.get(user__username=data["username"])
 
             # Wrong answer to Captcha
-            response = self.client.get(reverse("register"))
+            response = self.client.get(reverse(AccountsRoute.REGISTER))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             answer = answer + 1  # compute a wrong answer by adding 1 to correct answer
             data["answer"] = str(answer)
-            response = self.client.post(reverse("register"), data=data)
+            response = self.client.post(reverse(AccountsRoute.REGISTER), data=data)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
             self.assertEqual(form.is_bound, True)
@@ -74,13 +74,13 @@ class PytitionUserRegister(TestCase):
                 toto = PytitionUser.objects.get(user__username=data["username"])
 
             # Incorrect email
-            response = self.client.get(reverse("register"))
+            response = self.client.get(reverse(AccountsRoute.REGISTER))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data2 = dict(data)  # copy
             data2["answer"] = str(answer)  # correct answer
             data2["email"] = "invalid-email-syntax"  # invalid email
-            response = self.client.post(reverse("register"), data=data2)
+            response = self.client.post(reverse(AccountsRoute.REGISTER), data=data2)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
             self.assertEqual(form.is_bound, True)
@@ -100,13 +100,13 @@ class PytitionUserRegister(TestCase):
                 toto = PytitionUser.objects.get(user__username=data2["username"])
 
             # Password mismatch (password1 != password2)
-            response = self.client.get(reverse("register"))
+            response = self.client.get(reverse(AccountsRoute.REGISTER))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data2 = dict(data)
             data2["answer"] = str(answer)  # correct answer
             data2["password2"] = "not like password1"  # invalid password
-            response = self.client.post(reverse("register"), data=data2)
+            response = self.client.post(reverse(AccountsRoute.REGISTER), data=data2)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
             self.assertEqual(form.is_bound, True)
@@ -126,13 +126,13 @@ class PytitionUserRegister(TestCase):
                 toto = PytitionUser.objects.get(user__username=data2["username"])
 
             # email_confirm filled-up
-            response = self.client.get(reverse("register"))
+            response = self.client.get(reverse(AccountsRoute.REGISTER))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data2 = dict(data)  # copy
             data2["answer"] = str(answer)  # correct answer
             data2["email_confirm"] = data2["email"]
-            response = self.client.post(reverse("register"), data=data2)
+            response = self.client.post(reverse(AccountsRoute.REGISTER), data=data2)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
             self.assertEqual(form.is_bound, True)
@@ -153,7 +153,7 @@ class PytitionUserRegister(TestCase):
 
             # Check what happens if mandatory fields are blank
             data2 = {}
-            response = self.client.post(reverse("register"), data=data2)
+            response = self.client.post(reverse(AccountsRoute.REGISTER), data=data2)
             self.assertEqual(response.status_code, 200)
             form = response.context["form"]
             self.assertEqual(form.is_bound, True)
@@ -161,11 +161,11 @@ class PytitionUserRegister(TestCase):
             self.assertEqual(len(form.errors), 6)
 
             # Everything is correct
-            response = self.client.get(reverse("register"))
+            response = self.client.get(reverse(AccountsRoute.REGISTER))
             self.assertEqual(response.status_code, 200)
             answer = int(self.client.session["answer"])
             data["answer"] = str(answer)
-            response = self.client.post(reverse("register"), data=data)
+            response = self.client.post(reverse(AccountsRoute.REGISTER), data=data)
             self.assertEqual(response.status_code, 302)
             self.assertRedirects(response, reverse("login"))
             toto = PytitionUser.objects.get(user__username=data["username"])
@@ -178,5 +178,5 @@ class PytitionUserRegister(TestCase):
             pu = authenticate(username=data["username"], password=data["password1"])
             self.assertNotEqual(pu, None)
         else:
-            with self.assertRaises(NoReverseMatch):
-                response = self.client.get(reverse("register"))
+            response = self.client.get(reverse(AccountsRoute.REGISTER))
+            self.assertEqual(response.status_code, 403)

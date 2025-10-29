@@ -1,15 +1,12 @@
-from django.conf import settings
-from django.urls import include, path, reverse_lazy
+from django.urls import include, path
 
 from apps.accounts import views as AV
-from apps.accounts.forms import PytitionUserCreationForm
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.core import views as CV
 from apps.moderation import views as MV
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
-from apps.petition.views import PytitionUserCreateView
 from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.petitions.routes import NAMESPACE as PET_NS
@@ -111,16 +108,3 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     path("image_upload", views.image_upload, name="image_upload"),
 ]
-
-if settings.ALLOW_REGISTER:
-    urlpatterns += [
-        path(
-            "register/",
-            PytitionUserCreateView.as_view(
-                template_name="registration/register.html",
-                form_class=PytitionUserCreationForm,
-                success_url=reverse_lazy("login"),
-            ),
-            name="register",
-        ),
-    ]
