@@ -5,6 +5,7 @@ from apps.accounts import views as AV
 from apps.accounts.forms import PytitionUserCreationForm
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
+from apps.core import views as CV
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petition import views
 from apps.petition.views import PytitionUserCreateView
@@ -20,7 +21,15 @@ urlpatterns = [
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
-    path("search", views.search, name="search"),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Search, will be improved, cf. ticket #20
+    # ──────────────────────────────────────────────────────────────────────────────────
+    path("search", CV.search, name="search"),
+    path(
+        "search_users_and_orgs",
+        CV.search_profiles,
+        name="search_users_and_orgs",
+    ),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Consents
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -110,11 +119,6 @@ urlpatterns = [
         "templates/<int:template_id>/delete",
         views.template_delete,
         name="template_delete",
-    ),
-    path(
-        "search_users_and_orgs",
-        views.search_users_and_orgs,
-        name="search_users_and_orgs",
     ),
     # Authentication
     path("", include("django.contrib.auth.urls")),

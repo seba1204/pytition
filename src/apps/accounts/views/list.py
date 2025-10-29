@@ -10,6 +10,7 @@ from apps.petition.models import PytitionUser
 
 # /get_user_list
 # get the list of users
+# TODO: merge it with /search, cf. ticket #20
 @login_required
 def user_list(request: HttpRequest) -> JsonResponse:
     """Get the list of users matching the query parameter 'q'."""
