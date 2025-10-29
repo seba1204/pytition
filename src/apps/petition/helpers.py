@@ -91,18 +91,3 @@ def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
         )
         msg.attach_alternative(html_message, "text/html")
         msg.send(fail_silently=False)
-
-
-def get_update_form(user: Any, data: Mapping[str, Any] | None = None) -> Any:
-    """Get the update info form for the given user."""
-    from apps.accounts.forms import UpdateInfoForm  # noqa # to avoid circular import
-
-    if not data:
-        _data: dict[str, Any] = {
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "email": user.email,
-        }
-    else:
-        _data = dict(data)
-    return UpdateInfoForm(user, _data)
