@@ -4,8 +4,8 @@ from django import forms
 from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from apps.core.widgets import SwitchField
 from apps.petition.models import Petition
-from apps.petition.widgets import SwitchField
 
 
 class NewsletterForm(forms.Form):

@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE  # type: ignore
 
-from apps.petition.widgets import SwitchField
+from apps.core.widgets import SwitchField
 
 
 class ContentFormGeneric(forms.Form):
@@ -35,5 +35,6 @@ class ContentFormPetition(ContentFormGeneric):
 
 class ContentFormTemplate(ContentFormGeneric):
     """Class specifying the content for a petition template editing form."""
+
     name = forms.CharField(max_length=50)
     field_order = ("name",)
