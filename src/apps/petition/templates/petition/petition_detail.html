@@ -40,7 +40,7 @@
     <meta name="twitter:description" content="{{ petition.raw_text|safe }}" />
   {% endif %}
   {% if petition.twitter_image %}<meta name="twitter:image" content="{{ og_image_absolute_url }}" />{% endif %}
-{% endblock %}
+{% endblock extra_meta %}
 {% block extra_css %}
   <link href="{% static "css/petition.css" %}"
         rel="stylesheet"
@@ -60,7 +60,7 @@ body {
 }
 {% endif %}
   </style>
-{% endblock %}
+{% endblock extra_css %}
 {% block extra_js_head %}<script>dataLayer = [];</script>{% endblock %}
 {% block container_type %}
   container petition
@@ -77,7 +77,7 @@ body {
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">{% trans "Thank you!" %}</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal">×</button>
           </div>
           <div class="modal-body">
             {% blocktrans trimmed %}
@@ -99,7 +99,7 @@ body {
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">{% trans "Thank you!" %}</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal">×</button>
           </div>
           <div class="modal-body">
             {% blocktrans trimmed %}
@@ -126,7 +126,7 @@ body {
           <div class="modal-header">
             <h5 class="modal-title" id="MastodonModalLabel">{% trans "Instance address" %}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">×</span>
             </button>
           </div>
           <div class="modal-body">
@@ -162,7 +162,7 @@ body {
           which created it. Other visitors won"t be able to see it.
         {% endblocktrans %}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">×</span>
         </button>
       </div>
     {% endif %}
@@ -204,7 +204,7 @@ body {
           </div>
         {% endfor %}
         <div class="fields" {% if petition_is_signed %}hidden{% endif %}>
-          <form method="POST"
+          <form method="post"
                 name="petition"
                 class="form-group"
                 action="{% url "create_signature" petition.id %}">
@@ -273,7 +273,7 @@ body {
                   {% endif %}
                   {% if petition.has_tumblr_share_button %}
                     <li class="rrssb-tumblr">
-                      <a href="http://tumblr.com/share/link?url={{ request.build_absolute_uri }}&name={{ petition.title|html_sanitize|striptags|safe }}">
+                      <a href="https://tumblr.com/share/link?url={{ request.build_absolute_uri }}&name={{ petition.title|html_sanitize|striptags|safe }}">
                         <span class="rrssb-icon">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
                             <path d="M18.02 21.842c-2.03.052-2.422-1.396-2.44-2.446v-7.294h4.73V7.874H15.6V1.592h-3.714s-.167.053-.182.186c-.218 1.935-1.144 5.33-4.988 6.688v3.637h2.927v7.677c0 2.8 1.7 6.7 7.3 6.6 1.863-.03 3.934-.795 4.392-1.453l-1.22-3.54c-.52.213-1.415.413-2.115.455z" />
@@ -286,7 +286,7 @@ body {
                   {% if petition.has_linkedin_share_button %}
                     <li class="rrssb-linkedin">
                       <!-- Replace href with your meta and URL information -->
-                      <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ petition.title|html_sanitize|striptags|safe }}&amp;summary={% trans "Sign the petition!" %}"
+                      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ petition.title|html_sanitize|striptags|safe }}&amp;summary={% trans "Sign the petition!" %}"
                          class="popup">
                         <span class="rrssb-icon">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
@@ -391,7 +391,7 @@ body {
   {% if signature_is_confirmed %}
     <script type="text/javascript">$("#show_confirm_success").modal("show");</script>
   {% endif %}
-{% endblock %}
+{% endblock extra_js %}
 {% block footer %}
   <div class="container">
     <div class="row footer-wrapper bg-dark">
@@ -401,4 +401,4 @@ body {
       </footer>
     </div>
   </div>
-{% endblock %}
+{% endblock footer %}

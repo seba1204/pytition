@@ -7,6 +7,8 @@ from django.utils.safestring import SafeString
 
 
 class SwitchWidget(forms.CheckboxInput):
+    """A custom widget to render a boolean field as a switch."""
+
     template_name = "petition/widgets/SwitchInput.html"
 
     def get_context(
@@ -38,6 +40,8 @@ class SwitchWidget(forms.CheckboxInput):
 
 
 class SwitchField(forms.BooleanField):
+    """A custom form field to render a boolean as a switch widget."""
+
     widget = SwitchWidget
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:

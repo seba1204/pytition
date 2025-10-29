@@ -14,6 +14,7 @@ def addstr(arg1: object, arg2: object) -> str:
 
 @register.filter
 def getitem(array: object, item: object) -> object:
+    """Get an item from a list, tuple, dict, or object's attribute."""
     try:
         if isinstance(array, dict):
             return array[item]
@@ -33,6 +34,7 @@ def getitem(array: object, item: object) -> object:
 
 @register.filter
 def bootstrap(field: object) -> object:
+    """Add bootstrap classes to form fields based on their widget type."""
     if (
         hasattr(field, "field")
         and hasattr(field.field, "widget")

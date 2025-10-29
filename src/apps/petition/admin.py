@@ -78,10 +78,6 @@ class SignatureAdmin(admin.ModelAdmin):
     change_form_template = "signatures/change_form.html"
 
 
-# class SlugInlineAdmin(admin.TabularInline):
-# Petition.slugs.through
-
-
 class PetitionAdminForm(ModelForm):
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
