@@ -1,7 +1,7 @@
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 
-from apps.petition.helpers import get_session_user
+from apps.accounts.services import get_session_user
 from apps.petition.models import ModerationReason
 from apps.petitions.helpers import (
     check_petition_is_accessible,

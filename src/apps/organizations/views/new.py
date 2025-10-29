@@ -14,10 +14,8 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
 from apps.accounts.routes import AccountsRoute
+from apps.accounts.services import get_session_user
 from apps.organizations.forms import OrgCreationForm
-
-# TODO: move get_session_user to apps/accounts/services.py
-from apps.petition.helpers import get_session_user
 
 # TODO: move models to apps/{organizations/accounts}/models.py
 from apps.petition.models import Permission, PytitionUser

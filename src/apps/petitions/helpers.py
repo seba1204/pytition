@@ -6,7 +6,7 @@ from django.http import Http404, HttpRequest
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
-from apps.petition.helpers import get_session_user
+from apps.accounts.services import get_session_user
 from apps.petitions.routes import PetitionsRoute
 
 # Avoid circular imports for type checking

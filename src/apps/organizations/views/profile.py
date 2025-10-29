@@ -4,8 +4,8 @@ from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
-# TODO: move *user* functions to apps/accounts/services.py
-from apps.petition.helpers import get_session_user, remove_user_moderated
+from apps.accounts.services import get_session_user
+from apps.petition.helpers import remove_user_moderated
 
 # TODO: move model to apps/organizations/models.py
 from apps.petition.models import Organization

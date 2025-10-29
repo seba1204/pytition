@@ -22,12 +22,10 @@ from django.views.generic.edit import CreateView
 
 from apps.accounts.forms import PytitionUserCreationForm
 from apps.accounts.routes import AccountsRoute
+from apps.accounts.services import get_session_user
 from apps.consents.forms import EmailForm, NewsletterForm
 from apps.organizations.routes import OrgRoute
-from apps.petition.helpers import (
-    get_session_user,
-    remove_user_moderated,
-)
+from apps.petition.helpers import remove_user_moderated
 from apps.petition.models import (
     Moderation,
     ModerationReason,

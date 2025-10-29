@@ -9,8 +9,8 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from apps.accounts.routes import AccountsRoute
+from apps.accounts.services import get_session_user
 from apps.consents.forms import EmailForm, NewsletterForm
-from apps.petition.helpers import get_session_user
 from apps.petition.models import Permission
 from apps.petitions.forms import ContentFormPetition, SocialNetworkForm, StyleForm
 from apps.petitions.helpers import petition_from_id

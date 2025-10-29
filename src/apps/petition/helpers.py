@@ -6,16 +6,15 @@ from typing import TYPE_CHECKING, Any
 import lxml
 import lxml.html
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives, get_connection
-from django.http import Http404, HttpRequest
+from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 from lxml.html.clean import Cleaner
 
 if TYPE_CHECKING:
-    from apps.petition.models import PytitionUser
+    pass
 
 
 # Remove all moderated instances of Petition
@@ -63,17 +62,6 @@ def get_client_ip(request: HttpRequest) -> str:
     else:
         ip = request.META.get("REMOTE_ADDR")
     return str(ip)
-
-
-# Get the user of the current session
-def get_session_user(request: HttpRequest) -> PytitionUser:
-    from .models import PytitionUser  # noqa # to avoid circular import
-
-    try:
-        pytitionuser = PytitionUser.objects.get(user__username=request.user.username)
-    except User.DoesNotExist as err:
-        raise Http404(_("not found")) from err
-    return pytitionuser
 
 
 # Get settings

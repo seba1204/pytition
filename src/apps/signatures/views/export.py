@@ -1,19 +1,10 @@
 import csv
 
 from django.contrib.auth.decorators import login_required
-from django.http import (
-    HttpRequest,
-    HttpResponse,
-    JsonResponse,
-)
+from django.http import HttpRequest, HttpResponse, JsonResponse
 
-from apps.petition.helpers import (
-    get_session_user,
-)
-from apps.petition.models import (
-    Petition,
-    Signature,
-)
+from apps.accounts.services import get_session_user
+from apps.petition.models import Petition, Signature
 
 
 # <int:petition_id>/get_csv_signature

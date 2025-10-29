@@ -9,7 +9,8 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
 from apps.accounts.forms import DeleteAccountForm, UpdateInfoForm
-from apps.petition.helpers import get_session_user, get_update_form
+from apps.accounts.services import get_session_user
+from apps.petition.helpers import get_update_form
 from apps.petition.models import Organization, PytitionUser
 
 

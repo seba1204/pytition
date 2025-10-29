@@ -11,8 +11,8 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
 from apps.accounts.routes import AccountsRoute
+from apps.accounts.services import get_session_user
 from apps.organizations.routes import OrgRoute
-from apps.petition.helpers import get_session_user
 from apps.petition.models import Organization, Petition, PytitionUser
 from apps.petitions.helpers import petition_from_id
 from apps.petitions.routes import PetitionsRoute

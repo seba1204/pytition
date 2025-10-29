@@ -1,4 +1,3 @@
-
 from django.contrib.auth.decorators import login_required
 from django.http import (
     HttpRequest,
@@ -6,9 +5,7 @@ from django.http import (
 )
 from django.shortcuts import render
 
-from apps.petition.helpers import (
-    get_session_user,
-)
+from apps.accounts.services import get_session_user
 
 
 # /user/dashboard
