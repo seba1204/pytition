@@ -35,7 +35,7 @@
                  title="{% trans "Create a new petition template" %}">{% trans "New template" %}</a>
             </div>
             {% if org.petitiontemplate_set.all %}
-              {% include "petition/template_list.html" with templates=org.petitiontemplate_set.all owner=org %}
+              {% include "presets/list.html" with templates=org.petitiontemplate_set.all owner=org %}
             {% endif %}
           </div>
         </div>

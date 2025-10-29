@@ -108,4 +108,4 @@ def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
             messages.error(request, _("You need to provide a template name."))
             return redirect(redirection)
     else:
-        return render(request, "petition/new_template.html", ctx)
+        return render(request, "presets/new.html", ctx)

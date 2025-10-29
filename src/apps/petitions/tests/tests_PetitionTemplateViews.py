@@ -44,7 +44,7 @@ class PetitionViewTest(TestCase):
         self.login("julia")
         response = self.client.get(reverse(OrgRoute.NEW_TEMPLATE, args=[org.slugname]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/new_template.html")
+        self.assertTemplateUsed(response, "presets/new.html")
 
     def test_org_new_template_post(self) -> None:
         self.login("julia")
@@ -89,12 +89,12 @@ class PetitionViewTest(TestCase):
         pt = PetitionTemplate.objects.create(name="Default template", org=org)
         response = self.client.get(reverse(PresetRoutes.EDIT, args=[pt.id]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         # For an user template
         pt2 = PetitionTemplate.objects.create(name="Default template", user=julia)
         response = self.client.get(reverse(PresetRoutes.EDIT, args=[pt2.id]))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
 
     def test_template_fav_toggle(self) -> None:
         julia = self.login("julia")
@@ -178,7 +178,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["content_form"].is_valid(), True)
         self.assertEqual(response.context["content_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], True)
@@ -192,7 +192,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt2.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt2.refresh_from_db()
         for key, value in content_form_data.items():
             if key == "content_form_submitted":
@@ -219,7 +219,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["email_form"].is_valid(), True)
         self.assertEqual(response.context["email_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -234,7 +234,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt2.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["email_form"].is_valid(), True)
         self.assertEqual(response.context["email_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -273,7 +273,7 @@ class PetitionViewTest(TestCase):
         fp.close()
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -290,7 +290,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt2.id]), social_network_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt2.refresh_from_db()
 
         for key, value in social_network_form_data.items():
@@ -354,7 +354,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["newsletter_form"].is_valid(), True)
         self.assertEqual(response.context["newsletter_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -368,7 +368,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt2.id]), newsletter_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt2.refresh_from_db()
 
         newsletter_form_data["has_newsletter"] = True
@@ -403,7 +403,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["style_form"].is_valid(), True)
         self.assertEqual(response.context["style_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -418,7 +418,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt2.id]), style_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt2.refresh_from_db()
 
         style_form_data["bgcolor"] = style_form_data["bgcolor"]
@@ -457,7 +457,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -487,7 +487,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -526,7 +526,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -556,7 +556,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -595,7 +595,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -625,7 +625,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -664,7 +664,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -694,7 +694,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -733,7 +733,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -763,7 +763,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -802,7 +802,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -832,7 +832,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -871,7 +871,7 @@ class PetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         pt.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -901,7 +901,7 @@ class PetitionViewTest(TestCase):
             reverse(PresetRoutes.EDIT, args=[pt.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_template.html")
+        self.assertTemplateUsed(response, "presets/edit.html")
         pt.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
