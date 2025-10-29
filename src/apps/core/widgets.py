@@ -9,7 +9,7 @@ from django.utils.safestring import SafeString
 class SwitchWidget(forms.CheckboxInput):
     """A custom widget to render a boolean field as a switch."""
 
-    template_name = "petition/widgets/SwitchInput.html"
+    template_name = "ui/components/switch_input.html"
 
     def get_context(
         self, name: str, value: Any, attrs: dict[str, Any] | None

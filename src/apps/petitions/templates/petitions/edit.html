@@ -87,7 +87,7 @@
              aria-labelledby="list-content-form-list">
             <form method="post" id="form_content">
                 {% csrf_token %}
-                {% include "petition/bs4_form.html" with form=content_form %}
+                {% include "ui/forms/bs4.html" with form=content_form %}
                 <button name="content_form_submitted"
                         class="btn btn-primary"
                         value="yes"
@@ -356,7 +356,7 @@
              aria-labelledby="style-form-list">
             <form method="post" id="form_style">
                 {% csrf_token %}
-                {% include "petition/bs4_form.html" with form=style_form %}
+                {% include "ui/forms/bs4.html" with form=style_form %}
                 <button name="style_form_submitted"
                         class="btn btn-primary"
                         value="yes"
@@ -369,7 +369,7 @@
              aria-labelledby="list-email-form-list">
             <form method="post" id="form_email">
                 {% csrf_token %}
-                {% include "petition/bs4_form.html" with form=email_form %}
+                {% include "ui/forms/bs4.html" with form=email_form %}
                 <button name="email_form_submitted"
                         class="btn btn-primary"
                         value="yes"
@@ -382,7 +382,7 @@
              aria-labelledby="list-newsletter-form-list">
             <form method="post" id="form_newsletter">
                 {% csrf_token %}
-                {% include "petition/bs4_form.html" with form=newsletter_form %}
+                {% include "ui/forms/bs4.html" with form=newsletter_form %}
                 <button name="newsletter_form_submitted"
                         class="btn btn-primary"
                         value="yes"

@@ -11,7 +11,7 @@
     <div class="container">
         <form action="" method="POST" novalidate="novalidate">
             {% csrf_token %}
-            {% include "petition/bs4_form.html" with form=form %}
+            {% include "ui/forms/bs4.html" with form=form %}
             <button class="btn btn-primary" type="submit">{% trans "Register" %}</button>
         </form>
     </div>

@@ -10,7 +10,7 @@
         <div class="col">
             <form method="post">
                 {% csrf_token %}
-                {% include "petition/bs4_form.html" with form=form %}
+                {% include "ui/forms/bs4.html" with form=form %}
                 <button class="btn btn-success" type="submit">{% trans "Create" %}</button>
             </form>
         </div>
