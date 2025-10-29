@@ -7,10 +7,12 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    """Generate a user
+    """
+    Generate a user.
 
-    ./manage.py gen_user username password -fn User -ln James
-    > Generate user:username with password as password, and named User James
+    Example usage:
+    ./manage.py gen_user john johnPassword --first-name John --last-name Dupont
+    > Generate user: john (John Dupont) with password johnPassword
     """
 
     help = "Create a new user"

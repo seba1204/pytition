@@ -35,6 +35,7 @@ ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "[::1]"]
 
 INSTALLED_APPS = [
     # Pytition apps
+    "apps.accounts",
     "apps.consents",
     "apps.core",
     "apps.organizations",
