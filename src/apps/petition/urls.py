@@ -101,14 +101,12 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     # Accounts
     # ──────────────────────────────────────────────────────────────────────────────────
-    # TODO: should be "/presets/new", whether it's user or an org
-    path("preset/new", PrV.new, name="user_new_template"),
-    # TODO: should implement "/search/" logic
+    # TODO: should implement "/search/" logic, cf. ticket #20
     path("get_user_list", AV.user_list, name="get_user_list"),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Presets
     # ──────────────────────────────────────────────────────────────────────────────────
-    # TODO: move view to preset app
+    path("preset/new", PrV.new, name="user_new_template"),
     path("templates/<int:template_id>/edit", views.edit_template, name="edit_template"),
     path(
         "templates/<int:template_id>/fav",
@@ -120,6 +118,9 @@ urlpatterns = [
         views.template_delete,
         name="template_delete",
     ),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # Django built-in views
+    # ──────────────────────────────────────────────────────────────────────────────────
     # Authentication
     path("", include("django.contrib.auth.urls")),
     # Misc

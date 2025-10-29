@@ -23,6 +23,7 @@ from apps.core.routes import Route, build_urlpatterns, validate_bijection
 from apps.organizations import views as OV
 from apps.organizations.routes import OrgRoute
 from apps.petitions import views as PV
+from apps.presets import views as PrV
 
 app_name = "organizations"
 
@@ -38,7 +39,8 @@ ROUTES: dict[OrgRoute, Route] = {
     OrgRoute.DASHBOARD: Route(f"{SLUG}/dashboard", OV.dashboard),
     OrgRoute.LEAVE: Route(f"{SLUG}/leave_org", OV.leave),
     OrgRoute.ADD_USER: Route(f"{SLUG}/add_user", OV.add_user),
-    OrgRoute.NEW_TEMPLATE: Route(f"{SLUG}/new_template", PV.new_template),
+    # TODO: should be merged with "/presets/new", cf. ticket #52
+    OrgRoute.NEW_TEMPLATE: Route(f"{SLUG}/new_template", PrV.new),
     OrgRoute.DELETE_MEMBER: Route(f"{SLUG}/delete_member", OV.delete_member),
     OrgRoute.INVITE_ACCEPT: Route(f"{SLUG}/invite_accept", OV.invite_accept),
     OrgRoute.INVITE_DISMISS: Route(f"{SLUG}/invite_dismiss", OV.invite_dismiss),

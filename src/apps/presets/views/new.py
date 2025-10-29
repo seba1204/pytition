@@ -34,6 +34,7 @@ class _NewPresetContext(TypedDict, total=False):
 # /org/<slug:orgslugname>/new_template
 # /user/new_template
 # Create a new template
+# TODO: merge both endpoints into one `/presets/new`, wether user or org.
 @login_required
 def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
     """
