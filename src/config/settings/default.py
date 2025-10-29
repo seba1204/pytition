@@ -76,7 +76,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "convert_urls": True,
     "file_picker_types": "image",
     "automatic_uploads": True,
-    "images_upload_url": "/petition/image_upload",
+    "images_upload_url": "/petition/media/upload",  # TODO: make it dynamic
     "image_upload_credentials": True,
     "images_upload_handler": """function(blobInfo, success, failure) {
         let xhr = new XMLHttpRequest();

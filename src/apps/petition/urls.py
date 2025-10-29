@@ -4,9 +4,9 @@ from apps.accounts import views as AV
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.core import views as CV
+from apps.media.routes import NAMESPACE as MEDIA_NS
 from apps.moderation import views as MV
 from apps.organizations.routes import NAMESPACE as ORG_NS
-from apps.petition import views
 from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.petitions.routes import NAMESPACE as PET_NS
@@ -20,6 +20,7 @@ urlpatterns = [
     path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
+    path("media/", include("apps.media.urls", namespace=MEDIA_NS)),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Search, will be improved, cf. ticket #20
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -103,8 +104,4 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     # Authentication
     path("", include("django.contrib.auth.urls")),
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # Core
-    # ──────────────────────────────────────────────────────────────────────────────────
-    path("image_upload", views.image_upload, name="image_upload"),
 ]

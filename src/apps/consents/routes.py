@@ -1,16 +1,4 @@
-"""
-Organization route names (single textual source of truth).
-
-Members are fully-qualified route names like "organizations:add_user", so they
-can be used directly in :func:`django.urls.reverse` and in `{% url %}` without
-accessing `.value`.
-
-Notes
------
-- Keep the namespace string in a single place (module-level constant).
-- Use a private class constant `_NS` to avoid repetition in member values.
-- Enum members must be unique and stable (safe for refactor and autocomplete).
-"""
+"""Consents route names (single textual source of truth)."""
 
 from __future__ import annotations
 
@@ -24,7 +12,7 @@ _NS = f"{NAMESPACE}:"
 
 class ConsentRoute(StrEnum):
     """
-    Fully-qualified organization route names.
+    Fully-qualified consents route names.
 
     Each member is a string equal to "<namespace>:<short>".
     """

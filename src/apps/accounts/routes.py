@@ -1,15 +1,4 @@
-"""
-Accounts route names (single textual source of truth).
-
-Members are fully-qualified route names like "accounts:dashboard", so they
-can be used directly in :func:`django.urls.reverse` and in `{% url %}`.
-
-Notes
------
-- Keep the namespace string in a single place (module-level constant).
-- Use a private class constant `_NS` to avoid repetition in member values.
-- Enum members must be unique and stable (safe for refactor and autocomplete).
-"""
+"""Accounts route names (single textual source of truth)."""
 
 from __future__ import annotations
 
@@ -23,7 +12,7 @@ _NS = f"{NAMESPACE}:"
 
 class AccountsRoute(StrEnum):
     """
-    Fully-qualified organization route names.
+    Fully-qualified accounts route names.
 
     Each member is a string equal to "<namespace>:<short>".
     """
