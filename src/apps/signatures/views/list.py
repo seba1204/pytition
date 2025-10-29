@@ -82,7 +82,7 @@ def _assert_can_view_signatures(
                 _("You are not allowed to view this petition's signatures."),
                 AccountsRoute.DASHBOARD,
             )
-        return "petition/user_base.html", {}
+        return "accounts/base.html", {}
 
     org: Organization | None = petition.org
     if org is None:

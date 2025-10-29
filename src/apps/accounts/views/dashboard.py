@@ -17,7 +17,7 @@ def dashboard(request: HttpRequest) -> HttpResponse:
 
     return render(
         request,
-        "petition/user_dashboard.html",
+        "accounts/dashboard.html",
         {
             "user": user,
             "petitions": petitions,

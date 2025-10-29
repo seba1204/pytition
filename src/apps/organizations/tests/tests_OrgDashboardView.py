@@ -35,7 +35,7 @@ class OrgDashboardViewTest(TestCase):
             reverse(OrgRoute.DASHBOARD, args=[orgslugname]), follow=True
         )
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
 
     def test_NotAMember(self) -> None:
         org_name = "Attac"
@@ -45,7 +45,7 @@ class OrgDashboardViewTest(TestCase):
             reverse(OrgRoute.DASHBOARD, args=[orgslugname]), follow=True
         )
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
 
     def test_NotLoggedIn(self) -> None:
         self.logout()

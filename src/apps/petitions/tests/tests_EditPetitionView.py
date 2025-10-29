@@ -77,7 +77,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
 
     def test_edit_notInOrg(self) -> None:
         """Editing a petition owned by an Organization the logged-in user is *NOT* part
@@ -92,7 +92,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
         )
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
 
     def test_edit_InOrgButNoEditPermission(self) -> None:
         """Editing a petition owned by an Organization the logged-in user is part of but

@@ -93,7 +93,7 @@ def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
         ctx["base_template"] = "org/base.html"
     else:
         redirection = PresetRoutes.NEW
-        ctx["base_template"] = "petition/user_base.html"
+        ctx["base_template"] = "accounts/base.html"
 
     if request.method == "POST":
         template_name = request.POST.get("template_name", "")

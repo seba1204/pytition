@@ -33,7 +33,7 @@ ROUTES: dict[AccountsRoute, Route] = {
     AccountsRoute.REGISTER: Route(
         "register",
         AV.Register.as_view(
-            template_name="registration/register.html",
+            template_name="accounts/register.html",
             form_class=PytitionUserCreationForm,
             success_url=reverse_lazy("login"),
         ),

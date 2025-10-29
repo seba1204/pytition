@@ -60,7 +60,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
                 request, _("You don't have the permission to transfer this petition")
             )
             return redirect(AccountsRoute.DASHBOARD)
-        ctx["base_template"] = "petition/user_base.html"
+        ctx["base_template"] = "accounts/base.html"
 
     if request.method == "GET":
         return render(request, "petition/transfer_petition.html", ctx)

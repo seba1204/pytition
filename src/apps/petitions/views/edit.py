@@ -299,7 +299,7 @@ def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
         ).rsplit("/", 1)[0]
         ctx.update(
             {
-                "base_template": "petition/user_base.html",
+                "base_template": "accounts/base.html",
                 "example_url": example_url,
                 "slug_prefix": slug_prefix,
             }

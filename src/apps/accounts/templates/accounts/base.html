@@ -18,8 +18,8 @@
            title="{% trans "Create a new petition" %}">{% trans "New petition" %}</a>
       </div>
     </div>
-    {% include "petition/user_org_list.html" with user=user %}
-    {% include "petition/user_invitations.html" with user=user %}
+    {% include "accounts/org_list.html" with user=user %}
+    {% include "accounts/invitations.html" with user=user %}
     <div class="dashboard-nav-item py-3">
       <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h4>

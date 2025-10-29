@@ -59,7 +59,7 @@ def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
         Information about the user to include in the email.
     """
 
-    html_message = render_to_string("registration/confirmation_email.html", user_infos)
+    html_message = render_to_string("consents/confirmation_email.html", user_infos)
     message = strip_tags(html_message)
     with get_connection() as connection:
         msg = EmailMultiAlternatives(

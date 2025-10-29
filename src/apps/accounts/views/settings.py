@@ -93,10 +93,10 @@ def settings(request: HttpRequest) -> HttpResponse:  # noqa
         "update_info_form": update_info_form,
         "delete_account_form": delete_account_form,
         "password_change_form": password_change_form,
-        "base_template": "petition/user_base.html",
+        "base_template": "accounts/base.html",
         "orgs": orgs,
     }
 
     ctx.update(submitted_ctx)
 
-    return render(request, "petition/account_settings.html", ctx)
+    return render(request, "accounts/settings.html", ctx)

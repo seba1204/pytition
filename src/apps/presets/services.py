@@ -164,7 +164,7 @@ def ensure_user_can_edit_preset(
         raise PermissionDenied("User cannot edit another user's preset.")
 
     return EditAccess(
-        base_template="petition/user_base.html",
+        base_template="accounts/base.html",
         permissions=None,
         org=None,
     )

@@ -40,8 +40,8 @@ class UserDashboardViewTest(TestCase):
 
         response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
-        self.assertTemplateUsed(response, "petition/user_base.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
+        self.assertTemplateUsed(response, "accounts/base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
         petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)
@@ -53,8 +53,8 @@ class UserDashboardViewTest(TestCase):
 
         response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
-        self.assertTemplateUsed(response, "petition/user_base.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
+        self.assertTemplateUsed(response, "accounts/base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
         petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)
@@ -66,8 +66,8 @@ class UserDashboardViewTest(TestCase):
 
         response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
-        self.assertTemplateUsed(response, "petition/user_base.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
+        self.assertTemplateUsed(response, "accounts/base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
         petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)
@@ -79,8 +79,8 @@ class UserDashboardViewTest(TestCase):
 
         response = self.client.get(reverse(AccountsRoute.DASHBOARD))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
-        self.assertTemplateUsed(response, "petition/user_base.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
+        self.assertTemplateUsed(response, "accounts/base.html")
         self.assertTemplateUsed(response, "layouts/base.html")
         petitions = response.context["petitions"].all()
         self.assertEqual(len(petitions), num_petitions)

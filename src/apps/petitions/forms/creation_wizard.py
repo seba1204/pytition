@@ -190,7 +190,7 @@ class PetitionCreationWizard(SessionWizardView):
             except Organization.DoesNotExist:
                 raise Http404(_("Organization does not exist")) from None
         else:
-            base_template = "petition/user_base.html"
+            base_template = "accounts/base.html"
 
         pytitionuser = get_session_user(self.request)
         context.update({"user": pytitionuser, "base_template": base_template})

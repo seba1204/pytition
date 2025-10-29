@@ -196,7 +196,7 @@ class PetitionViewTest(TestCase):
             reverse("show_signatures", args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
-        self.assertTemplateUsed(response, "petition/user_dashboard.html")
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
         s = Signature.objects.get(pk=sid)
         self.assertEqual(s.id, sid)
         # dummy test, we just want the previous line
