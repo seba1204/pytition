@@ -2,7 +2,10 @@
 
 # Pytition
 
-![logo_pytition](./doc/logo_400.png)
+<p align="center">
+  <img src="./doc/logo_400.png" alt="Pytition logo" width="300"/>
+</p>
+
 
 ## Why using Pytition?
 
@@ -26,7 +29,7 @@
 * [x] Support for several organizations on the same Pytition instance [v2.0](https://github.com/pytition/Pytition/milestone/2)
   * Fine grain per-user per-organization permissions
 * [x] Email retry support through the use of a mail queue middleware
-* [x] Nice (multiple) permlink support for each petition
+* [x] Nice (multiple) permalink support for each petition
 * [x] Optional share buttons
 
 ## Future features
