@@ -28,9 +28,9 @@ WizardForms = [
 ]
 
 WizardTemplates = {
-    "step1": "petition/new_petition_step1.html",
-    "step2": "petition/new_petition_step2.html",
-    "step3": "petition/new_petition_step3.html",
+    "step1": "petitions/new_step1.html",
+    "step2": "petitions/new_step2.html",
+    "step3": "petitions/new_step3.html",
 }
 
 

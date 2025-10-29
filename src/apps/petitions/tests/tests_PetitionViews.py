@@ -37,7 +37,7 @@ class PetitionViewTest(TestCase):
         response = self.client.get(reverse(PetitionsRoute.DETAIL, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
-        self.assertTemplateUsed(response, "petition/petition_detail.html")
+        self.assertTemplateUsed(response, "petitions/detail.html")
 
         self.assertContains(
             response, text='<meta property="og:site_name" content="testserver" />'
@@ -218,7 +218,7 @@ class PetitionViewTest(TestCase):
             reverse("slug_show_petition", args=[user.username, slug])
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/petition_detail.html")
+        self.assertTemplateUsed(response, "petitions/detail.html")
 
     def pending_org_slug_show_petition(self) -> None:
         # Problem here
@@ -237,7 +237,7 @@ class PetitionViewTest(TestCase):
             reverse("slug_show_petition", args=[org.slugname, slug])
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/petition_detail.html")
+        self.assertTemplateUsed(response, "petitions/detail.html")
 
     def test_petition_publish_org(self) -> None:
         self.logout()

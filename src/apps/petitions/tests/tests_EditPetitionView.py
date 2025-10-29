@@ -45,7 +45,7 @@ class EditPetitionViewTest(TestCase):
         response = self.client.get(reverse(PetitionsRoute.EDIT, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
 
     def test_edit_loggedout(self) -> None:
         """Edit your own petition while being logged out."""
@@ -123,7 +123,7 @@ class EditPetitionViewTest(TestCase):
         response = self.client.get(reverse(PetitionsRoute.EDIT, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["petition"], petition)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
 
     def test_edit_post_content_form(self) -> None:
         julia = self.login("julia")
@@ -146,7 +146,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["content_form"].is_valid(), True)
         self.assertEqual(response.context["content_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], True)
@@ -161,7 +161,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p2.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p2.refresh_from_db()
         for key, value in content_form_data.items():
             if key == "content_form_submitted":
@@ -203,7 +203,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["content_form"].is_valid(), True)
         self.assertEqual(response.context["content_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], True)
@@ -220,7 +220,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p2.id]), content_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p2.refresh_from_db()
         for key, value in content_form_data.items():
             if key == "content_form_submitted":
@@ -256,7 +256,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["email_form"].is_valid(), True)
         self.assertEqual(response.context["email_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -271,7 +271,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p2.id]), email_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["email_form"].is_valid(), True)
         self.assertEqual(response.context["email_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -312,7 +312,7 @@ class EditPetitionViewTest(TestCase):
         fp.close()
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -328,7 +328,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p2.id]), social_network_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p2.refresh_from_db()
 
         for key, value in social_network_form_data.items():
@@ -392,7 +392,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["newsletter_form"].is_valid(), True)
         self.assertEqual(response.context["newsletter_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -406,7 +406,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p2.id]), newsletter_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p2.refresh_from_db()
 
         newsletter_form_data["has_newsletter"] = True
@@ -441,7 +441,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["style_form"].is_valid(), True)
         self.assertEqual(response.context["style_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -456,7 +456,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p2.id]), style_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p2.refresh_from_db()
 
         style_form_data["bgcolor"] = style_form_data["bgcolor"]
@@ -495,7 +495,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -525,7 +525,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -564,7 +564,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -594,7 +594,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -633,7 +633,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -663,7 +663,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -702,7 +702,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -732,7 +732,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -771,7 +771,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -801,7 +801,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -840,7 +840,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -870,7 +870,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
@@ -909,7 +909,7 @@ class EditPetitionViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         p.refresh_from_db()
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)
         self.assertEqual(response.context["content_form_submitted"], False)
@@ -939,7 +939,7 @@ class EditPetitionViewTest(TestCase):
             reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petition/edit_petition.html")
+        self.assertTemplateUsed(response, "petitions/edit.html")
         p.refresh_from_db()
         self.assertEqual(response.context["social_network_form"].is_valid(), True)
         self.assertEqual(response.context["social_network_form"].is_bound, True)

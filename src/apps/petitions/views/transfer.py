@@ -63,7 +63,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
         ctx["base_template"] = "accounts/base.html"
 
     if request.method == "GET":
-        return render(request, "petition/transfer_petition.html", ctx)
+        return render(request, "petitions/transfer.html", ctx)
 
     if request.method == "POST":
         owner_type = request.POST.get("new_owner_type", "")
@@ -73,7 +73,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
 
         if not owner_type or not new_owner_name:
             messages.error(request, _("Incorrect request, something went wrong."))
-            return render(request, "petition/transfer_petition.html", ctx)
+            return render(request, "petitions/transfer.html", ctx)
 
         not_found = False
         if owner_type == "org":

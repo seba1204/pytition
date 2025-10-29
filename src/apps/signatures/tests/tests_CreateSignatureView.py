@@ -54,7 +54,7 @@ class CreateSignatureViewTest(TestCase):
             reverse("create_signature", args=[petition.id]), data
         )
         self.assertEqual(Signature.objects.count(), 0)
-        self.assertTemplateUsed(response, "petition/petition_detail.html")
+        self.assertTemplateUsed(response, "petitions/detail.html")
         self.assertContains(response, "This field is required")
         self.assertContains(response, "Enter a valid phone number")
         self.assertContains(response, "Enter a valid email address")

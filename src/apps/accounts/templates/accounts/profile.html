@@ -30,6 +30,6 @@
         {% blocktrans asvar no_petitions_text %}
         This user has not created any petition yet
     {% endblocktrans %}
-        {% include "petition/generic_petition_list.html" with petitions=petitions no_petitions_text=no_petitions_text sort=sort %}
+        {% include "petitions/generic_list.html" with petitions=petitions no_petitions_text=no_petitions_text sort=sort %}
     </div>
 {% endblock main_content %}

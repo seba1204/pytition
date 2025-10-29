@@ -57,4 +57,4 @@ def detail(request: HttpRequest, petition_id: int) -> HttpResponse:
         response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
         return response
     else:
-        return render(request, "petition/petition_detail.html", ctx)
+        return render(request, "petitions/detail.html", ctx)

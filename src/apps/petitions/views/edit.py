@@ -306,4 +306,4 @@ def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
         )
     ctx.update(submitted_ctx)
 
-    return render(request, "petition/edit_petition.html", ctx)
+    return render(request, "petitions/edit.html", ctx)
