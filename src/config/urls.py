@@ -22,13 +22,17 @@ from django.urls import include, path
 from django.urls.resolvers import URLPattern, URLResolver
 from django.views.generic import RedirectView
 
+from apps.core.views import index
+
 urlpatterns: list[URLPattern | URLResolver]
 
 urlpatterns = [
+    path("", index, name="index"),
     path("petition/", include("apps.petition.urls")),
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
+    # Maintenance mode URLs (3rd party app)
     path("maintenance-mode/", include("maintenance_mode.urls")),
 ]
 
