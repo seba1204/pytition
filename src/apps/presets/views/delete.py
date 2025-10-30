@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpRequest, JsonResponse
 
 from apps.accounts.services import get_session_user
-from apps.petition.models import PetitionTemplate
+from apps.presets.models import PetitionTemplate
 from apps.presets.services import (
     FatalPermissionError,
     ensure_user_can_delete_preset,

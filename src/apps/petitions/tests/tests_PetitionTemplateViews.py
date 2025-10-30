@@ -9,9 +9,9 @@ from apps.organizations.routes import OrgRoute
 from apps.petition.models import (
     Organization,
     Permission,
-    PetitionTemplate,
     PytitionUser,
 )
+from apps.presets.models import PetitionTemplate
 from apps.presets.routes import PresetRoutes
 
 
@@ -335,7 +335,7 @@ class PetitionViewTest(TestCase):
             "has_newsletter": "on",
             "newsletter_subscribe_http_data": "blah",
             "newsletter_subscribe_http_mailfield": "blih",
-            "newsletter_subscribe_http_mailfield": "bluh",
+            "newsletter_subscribe_http_mailfield": "bluh",  # noqa
             "newsletter_subscribe_mail_subject": "bloh",
             "newsletter_subscribe_mail_from": "toto@titi.com",
             "newsletter_subscribe_mail_to": "titi@toto.com",

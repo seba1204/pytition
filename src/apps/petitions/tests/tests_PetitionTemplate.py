@@ -3,16 +3,16 @@ from django.test import TestCase
 
 from apps.petition.models import (
     Organization,
-    PetitionTemplate,
     PytitionUser,
 )
+from apps.presets.models import PetitionTemplate
 
 
 class PetitionTemplateTest(TestCase):
     def setUp(self) -> None:
         User = get_user_model()
-        u = User.objects.create_user("julia", password="julia")
-        org = Organization.objects.create(name="RAP")
+        _u = User.objects.create_user("julia", password="julia")
+        _org = Organization.objects.create(name="RAP")
 
     def test_createUserPetitionTemplate(self) -> None:
         self.assertEqual(PetitionTemplate.objects.count(), 0)
@@ -31,11 +31,11 @@ class PetitionTemplateTest(TestCase):
         pu = PytitionUser.objects.get(user__username="julia")
         self.assertEqual(PetitionTemplate.objects.count(), 0)
         self.assertRaises(
-            Exception, PetitionTemplate.objects.create, name="PetitionTemplate"
+            ValueError, PetitionTemplate.objects.create, name="PetitionTemplate"
         )
         self.assertEqual(PetitionTemplate.objects.count(), 0)
         self.assertRaises(
-            Exception,
+            ValueError,
             PetitionTemplate.objects.create,
             name="PetitionTemplate",
             user=pu,

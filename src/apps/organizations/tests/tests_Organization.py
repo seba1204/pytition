@@ -7,9 +7,9 @@ from apps.petition.models import (
     Organization,
     Permission,
     Petition,
-    PetitionTemplate,
     PytitionUser,
 )
+from apps.presets.models import PetitionTemplate
 
 
 class OrganizationTest(TestCase):
@@ -18,7 +18,7 @@ class OrganizationTest(TestCase):
 
     def test_createOrganization(self) -> None:
         self.assertEqual(Organization.objects.count(), 0)
-        o = Organization.objects.create()
+        _o = Organization.objects.create()
         self.assertEqual(Organization.objects.count(), 1)
 
     def test_org_autocreate_slug(self) -> None:
@@ -26,7 +26,7 @@ class OrganizationTest(TestCase):
         self.assertEqual(o.slugname, "rap")
 
     def test_name_should_be_uniq(self) -> None:
-        o = Organization.objects.create(name="RAP")
+        _o = Organization.objects.create(name="RAP")
         self.assertEqual(Organization.objects.count(), 1)
         self.assertRaises(
             django.db.utils.IntegrityError, Organization.objects.create, name="RAP"
@@ -35,7 +35,7 @@ class OrganizationTest(TestCase):
     def test_add_member(self) -> None:
         o = Organization.objects.create(name="RAP")
         User = get_user_model()
-        u = User.objects.create_user("julia", password="julia")
+        _u = User.objects.create_user("julia", password="julia")
         pu = PytitionUser.objects.get(user__username="julia")
         self.assertEqual(o.members.count(), 0)
         o.members.add(pu)
@@ -43,8 +43,8 @@ class OrganizationTest(TestCase):
 
     def test_delete_org(self) -> None:
         org = Organization.objects.create(name="RAP")
-        p = Petition.objects.create(title="Antipub", org=org)
-        pt = PetitionTemplate.objects.create(name="Default", org=org)
+        _p = Petition.objects.create(title="Antipub", org=org)
+        _pt = PetitionTemplate.objects.create(name="Default", org=org)
         self.assertEqual(org.petition_set.count(), 1)
         self.assertEqual(Petition.objects.count(), 1)
         self.assertEqual(PetitionTemplate.objects.count(), 1)
@@ -67,7 +67,7 @@ class OrganizationTest(TestCase):
     def test_is_allowed_to(self) -> None:
         o = Organization.objects.create(name="RAP")
         User = get_user_model()
-        u = User.objects.create_user("julia", password="julia")
+        _u = User.objects.create_user("julia", password="julia")
         pu = PytitionUser.objects.get(user__username="julia")
         o.members.add(pu)
         self.assertEqual(o.is_allowed_to(pu, "can_add_members"), False)

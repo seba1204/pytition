@@ -10,12 +10,8 @@ from django.core.files.storage import FileSystemStorage
 from django.http import Http404
 from django.utils.translation import gettext as _
 
-from apps.petition.models import (
-    Organization,
-    Permission,
-    PetitionTemplate,
-    PytitionUser,
-)
+from apps.petition.models import Organization, Permission, PytitionUser
+from apps.presets.models import PetitionTemplate
 
 
 class FatalPermissionError(RuntimeError):
