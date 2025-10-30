@@ -3,7 +3,8 @@ from django.http import (
     HttpResponse,
 )
 
-from apps.petition.models import Moderation, ModerationReason
+from apps.moderation.models import ModerationReason
+from apps.petition.models import Moderation
 from apps.petitions.helpers import petition_from_id
 
 
