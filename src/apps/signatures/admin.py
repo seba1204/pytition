@@ -2,9 +2,7 @@ from django.contrib import admin
 
 from apps.consents.admin import confirm
 from apps.notifications.admin import resend_confirmation_mail
-from apps.petition.models import (
-    Signature,
-)
+from apps.signatures.models import Signature
 
 
 @admin.register(Signature)

@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 
 from apps.notifications.services import send_confirmation_email
-from apps.petition.models import Signature
+from apps.signatures.models import Signature
 
 
 # resend/<int:signature_id>

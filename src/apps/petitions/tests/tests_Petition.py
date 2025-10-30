@@ -7,10 +7,10 @@ from apps.petition.models import (
     Permission,
     Petition,
     PytitionUser,
-    Signature,
     SlugModel,
 )
 from apps.petitions.routes import PetitionsRoute
+from apps.signatures.models import Signature
 
 
 class PetitionTest(TestCase):

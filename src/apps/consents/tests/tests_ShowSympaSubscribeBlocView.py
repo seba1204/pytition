@@ -6,7 +6,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.consents.routes import ConsentRoute
-from apps.petition.models import Petition, PytitionUser, Signature
+from apps.petition.models import Petition, PytitionUser
+from apps.signatures.models import Signature
 
 
 class SympaBlockTest(TestCase):

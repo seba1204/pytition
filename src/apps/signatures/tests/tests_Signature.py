@@ -1,12 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from apps.petition.models import (
-    Organization,
-    Petition,
-    PytitionUser,
-    Signature,
-)
+from apps.petition.models import Organization, Petition, PytitionUser
+from apps.signatures.models import Signature
 
 
 class SignatureTest(TestCase):

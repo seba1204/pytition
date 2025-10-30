@@ -5,12 +5,8 @@ from django.urls import reverse
 from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import (
-    Organization,
-    Permission,
-    PytitionUser,
-    Signature,
-)
+from apps.petition.models import Organization, Permission, PytitionUser
+from apps.signatures.models import Signature
 
 
 class PetitionViewTest(TestCase):
@@ -301,7 +297,7 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_show_signatures_post_resendallOK(self) -> None:
+    def test_show_signatures_post_resend_allOK(self) -> None:
         julia = self.login("julia")
         petition = julia.petition_set.first()
 
@@ -329,7 +325,7 @@ class PetitionViewTest(TestCase):
                 ThereIsAnyError = True
         self.assertEqual(ThereIsAnyError, False)
 
-    def test_show_signatures_post_resendallOK_org(self) -> None:
+    def test_show_signatures_post_resend_allOK_org(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
         petition = org.petition_set.first()

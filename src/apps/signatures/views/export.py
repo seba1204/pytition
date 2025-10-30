@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
 from apps.accounts.services import get_session_user
-from apps.petition.models import Petition, Signature
+from apps.petition.models import Petition
+from apps.signatures.models import Signature
 
 
 # <int:petition_id>/get_csv_signature

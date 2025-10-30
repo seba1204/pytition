@@ -4,18 +4,19 @@ import string
 
 from django.core.management.base import BaseCommand, CommandParser
 
-from apps.petition.models import Petition, Signature
+from apps.petition.models import Petition
+from apps.signatures.models import Signature
 
 logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    """Generate signatures for petitions
+    """
+    Generate signatures for petitions.
 
-    ./manage.py gen_sig 1
-    > Generate a random signature for Petition:1
-    ./manage.py gen_sig "Petition Test" -n 10
-    > Generate 10 signatures for Petition:Petition Test if unique
+    ./manage.py gen_sig 1 > Generate a random signature for Petition:1 ./manage.py
+    gen_sig "Petition Test" -n 10 > Generate 10 signatures for Petition:Petition Test if
+    unique
     """
 
     def add_arguments(self, parser: CommandParser) -> None:

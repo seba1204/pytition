@@ -3,7 +3,8 @@ from django.urls import reverse
 
 from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import Petition, Signature
+from apps.petition.models import Petition
+from apps.signatures.models import Signature
 
 
 class ConfirmViewTest(TestCase):

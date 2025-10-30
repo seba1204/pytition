@@ -12,13 +12,13 @@ from django.utils.translation import gettext as _
 from apps.consents.helpers import subscribe_to_newsletter
 from apps.core.helpers import get_client_ip
 from apps.notifications.services import send_confirmation_email
-from apps.petition.models import Signature
 from apps.petitions.helpers import (
     check_petition_is_accessible,
     petition_detail_meta,
     petition_from_id,
 )
 from apps.signatures.forms import SignatureForm
+from apps.signatures.models import Signature
 
 
 # <int:petition_id>/sign
