@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from apps.petition.models import Organization, Permission, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Permission, PytitionUser
 
 
 class PermissionTest(TestCase):

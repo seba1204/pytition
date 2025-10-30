@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpRequest, JsonResponse
 
-from apps.petition.models import Organization, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import PytitionUser
 
 
 @login_required

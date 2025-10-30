@@ -6,7 +6,8 @@ from django.urls import reverse
 
 from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import Organization, Permission, Petition, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Permission, Petition, PytitionUser
 from apps.petitions.routes import PetitionsRoute
 
 

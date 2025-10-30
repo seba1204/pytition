@@ -2,16 +2,17 @@ import logging
 
 from django.core.management.base import BaseCommand, CommandParser
 
-from apps.petition.models import Organization, Permission, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Permission, PytitionUser
 
 logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    """Make a user join an orga
+    """
+    Make a user join an orga.
 
-    ./manage.py join_org username orgname
-    > Make user:username join org:orgname
+    ./manage.py join_org username orgname > Make user:username join org:orgname
     """
 
     def add_arguments(self, parser: CommandParser) -> None:

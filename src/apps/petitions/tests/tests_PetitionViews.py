@@ -3,7 +3,8 @@ from django.urls import reverse
 
 from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import Organization, Petition, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Petition, PytitionUser
 from apps.petitions.routes import PetitionsRoute
 
 

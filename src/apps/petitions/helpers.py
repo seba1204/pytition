@@ -11,7 +11,8 @@ from apps.petitions.routes import PetitionsRoute
 
 # Avoid circular imports for type checking
 if TYPE_CHECKING:
-    from apps.petition.models import Organization, Petition
+    from apps.organizations.models import Organization
+    from apps.petition.models import Petition
 
 
 # Return a 404 if a petition does not exist

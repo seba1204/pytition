@@ -2,16 +2,16 @@ import logging
 
 from django.core.management.base import LabelCommand
 
-from apps.petition.models import Organization
+from apps.organizations.models import Organization
 
 logger = logging.getLogger(__name__)
 
 
 class Command(LabelCommand):
-    """Generate orgs by name
+    """
+    Generate orgs by name.
 
-    ./manage.py gen_orga org1 org2 "org test"
-    > Generate 3 orgs with given names
+    ./manage.py gen_orga org1 org2 "org test" > Generate 3 orgs with given names
     """
 
     label = "Organization name"

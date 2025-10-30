@@ -9,9 +9,10 @@ from django.utils.translation import gettext as _
 
 from apps.accounts.services import get_session_user
 from apps.core.exceptions import ApiError, ConflictError, ForbiddenError, NotFoundError
+from apps.organizations.models import Organization
 
 # TODO: move models to apps/{organizations/accounts}/models.py
-from apps.petition.models import Organization, PytitionUser
+from apps.petition.models import PytitionUser
 
 
 # HELPER FUNCTION

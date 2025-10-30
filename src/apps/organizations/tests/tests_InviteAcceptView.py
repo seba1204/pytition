@@ -3,8 +3,9 @@ from django.urls import reverse
 
 from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
+from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import Organization, Permission, PytitionUser
+from apps.petition.models import Permission, PytitionUser
 
 
 class InviteAcceptViewTest(TestCase):

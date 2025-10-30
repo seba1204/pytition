@@ -3,12 +3,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import (
-    Organization,
-    Permission,
-    Petition,
-    PytitionUser,
-)
+from apps.organizations.models import Organization
+from apps.petition.models import Permission, Petition, PytitionUser
 from apps.presets.models import PetitionTemplate
 
 

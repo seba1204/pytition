@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from apps.petition.models import Organization, Permission, Petition, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Permission, Petition, PytitionUser
 from apps.petitions.routes import PetitionsRoute
 
 users = ["julia", "john", "max", "sarah"]

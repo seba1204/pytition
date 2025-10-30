@@ -3,9 +3,7 @@ from typing import Any
 from django.contrib import admin
 from django.utils.translation import gettext_lazy
 
-from apps.petition.models import (
-    Organization,
-)
+from apps.organizations.models import Organization
 
 
 @admin.register(Organization)

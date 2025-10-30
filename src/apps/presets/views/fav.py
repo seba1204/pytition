@@ -6,7 +6,8 @@ from django.http import (
 from django.utils.translation import gettext as _
 
 from apps.accounts.services import get_session_user
-from apps.petition.models import Organization, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import PytitionUser
 from apps.presets.models import PetitionTemplate
 
 

@@ -6,9 +6,7 @@ from django.utils.translation import gettext as _
 
 from apps.accounts.services import get_session_user
 from apps.moderation.services import filter_moderated_petitions
-
-# TODO: move model to apps/organizations/models.py
-from apps.petition.models import Organization
+from apps.organizations.models import Organization
 
 
 # /org/<slug:orgslugname>

@@ -6,9 +6,10 @@ from django.utils.translation import gettext as _
 
 from apps.accounts.services import get_session_user
 from apps.moderation.models import ModerationReason
+from apps.organizations.models import Organization
 
 # TODO: move models to apps/{organizations/accounts}/models.py
-from apps.petition.models import Organization, PytitionUser, SlugModel
+from apps.petition.models import PytitionUser, SlugModel
 from apps.petitions.helpers import check_petition_is_accessible, petition_detail_meta
 from apps.signatures.forms import SignatureForm
 from apps.signatures.helpers import hide_sign_form_if_user_just_signed

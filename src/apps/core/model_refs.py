@@ -2,7 +2,7 @@
 # circular imports in Django model ForeignKey/M2M definitions
 
 PYTITION_USER = "petition.PytitionUser"
-ORGANIZATION = "petition.Organization"
+ORGANIZATION = "organizations.Organization"
 PETITION = "petition.Petition"
 SIGNATURE = "signatures.Signature"
 PETITION_TEMPLATE = "presets.PetitionTemplate"

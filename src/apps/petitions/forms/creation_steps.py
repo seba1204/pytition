@@ -5,7 +5,8 @@ from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE  # type: ignore
 
-from apps.petition.models import Organization, Petition, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Petition, PytitionUser
 
 
 class PetitionCreationStep1(forms.Form):

@@ -10,7 +10,8 @@ from django.http import (
 from django.shortcuts import render
 
 from apps.moderation.services import filter_moderated_petitions
-from apps.petition.models import Organization, Petition
+from apps.organizations.models import Organization
+from apps.petition.models import Petition
 
 
 # /search?q=QUERY

@@ -4,8 +4,9 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 from apps.accounts.routes import AccountsRoute
+from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import Organization, Petition, PytitionUser
+from apps.petition.models import Petition, PytitionUser
 
 users = ["julia", "john", "max", "sarah"]
 orgs = ["RAP", "Greenpeace", "Attac", "Les Amis de la Terre"]

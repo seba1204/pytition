@@ -3,7 +3,8 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.accounts.routes import AccountsRoute
-from apps.petition.models import Organization, Permission, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Permission, PytitionUser
 
 users = ["julia", "john", "max", "sarah"]
 orgs = ["RAP", "Greenpeace", "Attac", "Les Amis de la Terre"]

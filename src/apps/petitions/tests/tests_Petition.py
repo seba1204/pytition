@@ -2,13 +2,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.petition.models import (
-    Organization,
-    Permission,
-    Petition,
-    PytitionUser,
-    SlugModel,
-)
+from apps.organizations.models import Organization
+from apps.petition.models import Permission, Petition, PytitionUser, SlugModel
 from apps.petitions.routes import PetitionsRoute
 from apps.signatures.models import Signature
 

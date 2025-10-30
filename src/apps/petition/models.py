@@ -20,20 +20,20 @@ from django.utils.translation import gettext_lazy
 from tinymce import models as tinymce_models  # type: ignore
 
 from apps.core.helpers import sanitize_html
-from apps.core.model_refs import PETITION_TEMPLATE
+from apps.core.model_refs import ORGANIZATION, PETITION_TEMPLATE, PYTITION_USER
 from apps.petitions.routes import PetitionsRoute
 
 if TYPE_CHECKING:
+    from apps.organizations.models import Organization
     from apps.presets.models import PetitionTemplate
 
 
-# ----------------------------------- PytitionUser ----------------------------
 class PytitionUser(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="pytitionuser"
     )
     invitations: models.ManyToManyField = models.ManyToManyField(
-        "Organization", related_name="invited", blank=True
+        ORGANIZATION, related_name="invited", blank=True
     )
     default_template = models.ForeignKey(
         PETITION_TEMPLATE,
@@ -101,78 +101,6 @@ class PytitionUser(models.Model):
             return self.username
 
 
-# --------------------------------- Organization ------------------------------
-class Organization(models.Model):
-    name = models.CharField(
-        max_length=200,
-        verbose_name=gettext_lazy("Name"),
-        unique=True,
-        null=False,
-        blank=False,
-    )
-    default_template = models.ForeignKey(
-        PETITION_TEMPLATE,
-        blank=True,
-        null=True,
-        related_name="+",
-        verbose_name=gettext_lazy("Default petition template"),
-        to_field="id",
-        on_delete=models.SET_NULL,
-    )
-    slugname = models.SlugField(max_length=200, unique=True)
-    members: models.ManyToManyField = models.ManyToManyField(
-        PytitionUser, through="Permission"
-    )
-
-    def is_last_admin(self, user: PytitionUser) -> bool:
-        """Check if the given user is the last admin of this organization Admin is an
-        user having the can_modify_permissions right Return true or false."""
-        # get all permissions
-        perms = Permission.objects.filter(
-            can_modify_permissions=True, organization=self
-        )
-        if perms.count() > 1:
-            return False
-        elif perms.count() == 1:
-            perm = perms.first()
-            return perm is not None and perm.user == user
-        else:
-            # That should never happen
-            return True
-
-    def is_allowed_to(self, user: PytitionUser, right: str) -> bool:
-        """Check if an user has a given access right on the organization."""
-        try:
-            perm = Permission.objects.get(organization=self, user=user)
-        except Permission.DoesNotExist:
-            return False
-        else:
-            return bool(getattr(perm, right))
-
-    def __str__(self) -> str:
-        return self.name
-
-    def __repr__(self) -> str:
-        return f"< {self.name} >"
-
-    @property
-    def owners(self) -> models.QuerySet:
-        return self.members.filter(permission__can_modify_permissions=True)
-
-    @property
-    def kind(self) -> str:
-        return "org"
-
-    @property
-    def fullname(self) -> str:
-        return self.name
-
-    def save(self, *args: Any, **kwargs: Any) -> None:
-        if not self.slugname:
-            self.slugname = slugify(self.name)
-        super().save(*args, **kwargs)
-
-
 # ----------------------------------- Petition --------------------------------
 class Petition(models.Model):
     NO = "no gradient"
@@ -205,7 +133,7 @@ class Petition(models.Model):
         PytitionUser, on_delete=models.CASCADE, null=True, blank=True
     )
     org = models.ForeignKey(
-        Organization, on_delete=models.CASCADE, null=True, blank=True
+        ORGANIZATION, on_delete=models.CASCADE, null=True, blank=True
     )
     # Colors
     linear_gradient_direction = models.CharField(
@@ -554,12 +482,12 @@ class SlugModel(models.Model):
 # ------------------------------------ Permission -----------------------------
 class Permission(models.Model):
     organization = models.ForeignKey(
-        Organization,
+        ORGANIZATION,
         on_delete=models.CASCADE,
         verbose_name=gettext_lazy("Organization related to these permissions"),
     )
     user = models.ForeignKey(
-        PytitionUser,
+        PYTITION_USER,
         on_delete=models.CASCADE,
         verbose_name=gettext_lazy("User related to these permissions"),
     )

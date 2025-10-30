@@ -2,7 +2,8 @@ import logging
 
 from django.core.management.base import BaseCommand, CommandParser
 
-from apps.petition.models import Organization, Petition, PytitionUser
+from apps.organizations.models import Organization
+from apps.petition.models import Petition, PytitionUser
 
 logger = logging.getLogger(__name__)
 
