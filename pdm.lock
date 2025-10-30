@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:6e27a28027f8bd22b1bbdf13a154820e5d7daf5db05a2893e17fc92d97e07dbe"
+content_hash = "sha256:ebc18d67d02855c85ae416e5eaf5b9de66ac0c4e6daeb76cb4eb063fa4756882"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -690,7 +690,7 @@ name = "lxml"
 version = "6.0.2"
 requires_python = ">=3.8"
 summary = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "lxml-6.0.2-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:13e35cbc684aadf05d8711a5d1b5857c92e5e580efa9a0d2be197199c8def607"},
     {file = "lxml-6.0.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:3b1675e096e17c6fe9c0e8c81434f5736c0739ff9ac6123c87c2d452f48fc938"},
@@ -1676,6 +1676,21 @@ files = [
 ]
 
 [[package]]
+name = "translate-toolkit"
+version = "3.16.3"
+requires_python = ">=3.9"
+summary = "Tools and API for translation and localization engineering."
+groups = ["dev"]
+dependencies = [
+    "lxml<6.1,>=5.2.0",
+    "wcwidth<0.3,>=0.2.14",
+]
+files = [
+    {file = "translate_toolkit-3.16.3-py3-none-any.whl", hash = "sha256:2b8014e39864c0ab15fa981228a98a5bf1c299cb5c02470ed8d40909e50f5768"},
+    {file = "translate_toolkit-3.16.3.tar.gz", hash = "sha256:d9656526a8bb0f0a88a16a08ed463036589cd34af059daf80aaaa90b9246586c"},
+]
+
+[[package]]
 name = "types-uwsgi"
 version = "2.0.0.20250809"
 requires_python = ">=3.9"
@@ -1736,6 +1751,17 @@ summary = "The uWSGI server"
 groups = ["default"]
 files = [
     {file = "uwsgi-2.0.31.tar.gz", hash = "sha256:e8f8b350ccc106ff93a65247b9136f529c14bf96b936ac5b264c6ff9d0c76257"},
+]
+
+[[package]]
+name = "wcwidth"
+version = "0.2.14"
+requires_python = ">=3.6"
+summary = "Measures the displayed width of unicode strings in a terminal"
+groups = ["dev"]
+files = [
+    {file = "wcwidth-0.2.14-py2.py3-none-any.whl", hash = "sha256:a7bb560c8aee30f9957e5f9895805edd20602f2d7f720186dfd906e82b4982e1"},
+    {file = "wcwidth-0.2.14.tar.gz", hash = "sha256:4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605"},
 ]
 
 [[package]]
