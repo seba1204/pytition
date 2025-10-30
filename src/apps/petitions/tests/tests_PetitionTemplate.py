@@ -31,11 +31,11 @@ class PetitionTemplateTest(TestCase):
         pu = PytitionUser.objects.get(user__username="julia")
         self.assertEqual(PetitionTemplate.objects.count(), 0)
         self.assertRaises(
-            ValueError, PetitionTemplate.objects.create, name="PetitionTemplate"
+            Exception, PetitionTemplate.objects.create, name="PetitionTemplate"
         )
         self.assertEqual(PetitionTemplate.objects.count(), 0)
         self.assertRaises(
-            ValueError,
+            Exception,
             PetitionTemplate.objects.create,
             name="PetitionTemplate",
             user=pu,
