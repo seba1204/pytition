@@ -57,6 +57,7 @@ distribution = false
 [tool.pdm.scripts]
 manage = "python manage.py"
 test-fast = "pdm run manage test apps --parallel auto --keepdb --noinput"
+graph = "pdm run manage graph_models accounts organizations petitions signatures presets moderation petition --group-models --verbose-names --inheritance --arrow-shape crow --output doc/er.svg"
 
 [dependency-groups]
 dev = [
@@ -66,6 +67,9 @@ dev = [
     "lxml-stubs>=0.5.1",
     "docformatter[toml]>=1.7.7",
     "translate-toolkit>=3.16.3",
+    "django-extensions>=4.1",
+    "graphviz>=0.21",
+    "pydotplus>=2.0.2",
 ]
 docs = ["coverage==4.5.2", "sphinx", "sphinx-rtd-theme"]
 

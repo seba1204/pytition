@@ -22,7 +22,6 @@ from phonenumber_field.modelfields import PhoneNumberField  # type: ignore
 from tinymce import models as tinymce_models  # type: ignore
 
 from apps.core.helpers import sanitize_html
-from apps.core.model_refs import MODERATION_REASON
 from apps.petitions.routes import PetitionsRoute
 
 
@@ -806,13 +805,3 @@ def post_delete_user(
 ) -> None:
     if instance.user:  # just in case user is not specified
         instance.user.delete()
-
-
-# ------------------------------------ ModerationReason -----------------------------
-
-
-class Moderation(models.Model):
-    petition = models.ForeignKey(Petition, on_delete=models.CASCADE)
-    reason = models.ForeignKey(
-        MODERATION_REASON, blank=True, null=True, on_delete=models.SET_NULL
-    )

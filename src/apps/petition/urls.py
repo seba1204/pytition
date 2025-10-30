@@ -81,8 +81,13 @@ urlpatterns = [
         name="user_petition_wizard_from_template",
     ),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # Moderation
+    # Moderation TODO: move it to moderation/urls.py so it can be included cf. ticket #7
     # ──────────────────────────────────────────────────────────────────────────────────
+    path(
+        "<int:petition_id>/report/<int:reason_id>",
+        MV.report,
+        name="report_petition",
+    ),
     path("<int:petition_id>/report/", MV.report, name="report_petition"),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Organization

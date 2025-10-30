@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "formtools",
     "phonenumber_field",
+    "django_extensions",  # for dev purposes
 ]
 
 # ──────────────────────────────────────────────────────────────────────────────
