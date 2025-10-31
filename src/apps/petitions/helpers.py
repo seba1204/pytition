@@ -12,13 +12,13 @@ from apps.petitions.routes import PetitionsRoute
 # Avoid circular imports for type checking
 if TYPE_CHECKING:
     from apps.organizations.models import Organization
-    from apps.petition.models import Petition
+    from apps.petitions.models import Petition
 
 
 # Return a 404 if a petition does not exist
 def petition_from_id(id: int) -> Petition:
     """Get a Petition by its ID or raise 404 if it does not exist."""
-    from apps.petition.models import Petition  # noqa
+    from apps.petitions.models import Petition  # noqa
 
     petition: Petition | None = Petition.by_id(id)
     if petition is None:

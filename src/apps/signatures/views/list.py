@@ -17,8 +17,8 @@ from apps.core.exceptions import ApiError
 from apps.notifications.services import send_confirmation_email
 from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import Petition
 from apps.petitions.helpers import petition_from_id
+from apps.petitions.models import Petition
 from apps.signatures.models import Signature
 
 

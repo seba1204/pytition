@@ -4,7 +4,7 @@ from django import forms
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 from apps.signatures.models import Signature
 
 

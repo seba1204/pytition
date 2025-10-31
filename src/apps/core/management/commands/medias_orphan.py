@@ -3,7 +3,7 @@ from pathlib import Path
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 
 # FIXME: this check only remove medias not referenced in petitions texts or

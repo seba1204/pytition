@@ -4,7 +4,7 @@ import string
 
 from django.core.management.base import BaseCommand, CommandParser
 
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 from apps.signatures.models import Signature
 
 logger = logging.getLogger(__name__)

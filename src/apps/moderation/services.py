@@ -1,4 +1,4 @@
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 
 # Remove all moderated instances of Petition

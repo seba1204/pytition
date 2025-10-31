@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
 
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 
 class PetitionAdminForm(ModelForm):

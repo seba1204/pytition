@@ -15,8 +15,8 @@ from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
 from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import Petition
 from apps.petitions.helpers import petition_from_id
+from apps.petitions.models import Petition
 from apps.petitions.routes import PetitionsRoute
 
 

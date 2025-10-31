@@ -5,7 +5,7 @@ from django.db.models import Count
 
 from apps.accounts.models import PytitionUser
 from apps.moderation.models import Moderation, ModerationReason
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 logger = logging.getLogger(__name__)
 

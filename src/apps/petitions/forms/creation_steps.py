@@ -7,7 +7,7 @@ from tinymce.widgets import TinyMCE  # type: ignore
 
 from apps.accounts.models import PytitionUser
 from apps.organizations.models import Organization
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 
 class PetitionCreationStep1(forms.Form):

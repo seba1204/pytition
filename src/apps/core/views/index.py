@@ -10,7 +10,7 @@ from apps.accounts.services import get_session_user
 from apps.moderation.services import filter_moderated_petitions
 from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 
 def index(request: HttpRequest) -> DjangoHttpResponse:

@@ -1,9 +1,7 @@
 from colorfield.fields import ColorWidget  # type: ignore
 from django import forms
 
-from apps.petition.models import (
-    Petition,
-)
+from apps.petitions.models import Petition
 
 
 class StyleForm(forms.Form):

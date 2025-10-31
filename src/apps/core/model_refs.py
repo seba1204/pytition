@@ -3,7 +3,7 @@
 
 PYTITION_USER = "accounts.PytitionUser"
 ORGANIZATION = "organizations.Organization"
-PETITION = "petition.Petition"
+PETITION = "petitions.Petition"
 SIGNATURE = "signatures.Signature"
 PETITION_TEMPLATE = "presets.PetitionTemplate"
 SLUG_MODEL = "petitions.SlugModel"

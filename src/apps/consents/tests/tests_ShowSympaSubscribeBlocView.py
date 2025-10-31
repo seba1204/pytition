@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from apps.accounts.models import PytitionUser
 from apps.consents.routes import ConsentRoute
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 from apps.signatures.models import Signature
 
 

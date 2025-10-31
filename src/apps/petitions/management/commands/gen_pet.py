@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand, CommandParser
 
 from apps.accounts.models import PytitionUser
 from apps.organizations.models import Organization
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 logger = logging.getLogger(__name__)
 

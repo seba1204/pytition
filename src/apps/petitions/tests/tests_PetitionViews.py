@@ -5,7 +5,7 @@ from apps.accounts.models import PytitionUser
 from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 from apps.petitions.routes import PetitionsRoute
 
 

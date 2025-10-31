@@ -11,7 +11,7 @@ from django.shortcuts import render
 
 from apps.moderation.services import filter_moderated_petitions
 from apps.organizations.models import Organization
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 
 
 # /search?q=QUERY

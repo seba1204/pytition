@@ -15,7 +15,6 @@ class Migration(migrations.Migration):
         migrations.SeparateDatabaseAndState(
             database_operations=[],
             state_operations=[
-                # add an AlterField
                 migrations.AlterField(
                     model_name="petition",
                     name="user",

@@ -3,7 +3,7 @@ from django.test import TestCase
 
 from apps.accounts.models import PytitionUser
 from apps.organizations.models import Organization
-from apps.petition.models import Petition
+from apps.petitions.models import Petition
 from apps.signatures.models import Signature
 
 
