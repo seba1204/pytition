@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils.text import slugify
 
+from apps.accounts.models import PytitionUser
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import PytitionUser
 from apps.petitions.routes import PetitionsRoute
 
 

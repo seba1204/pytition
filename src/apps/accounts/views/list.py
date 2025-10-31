@@ -5,7 +5,7 @@ from django.http import (
     JsonResponse,
 )
 
-from apps.petition.models import PytitionUser
+from apps.accounts.models import PytitionUser
 
 
 # /get_user_list

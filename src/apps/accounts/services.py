@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from django.contrib.auth.models import User
 
     from apps.accounts.forms import UpdateInfoForm
-    from apps.petition.models import PytitionUser
+    from apps.accounts.models import PytitionUser
 
 
 # Get the user of the current session
@@ -35,7 +35,7 @@ def get_session_user(request: HttpRequest) -> PytitionUser:
     """
 
     # to avoid circular imports
-    from apps.petition.models import PytitionUser  # noqa
+    from apps.accounts.models import PytitionUser  # noqa
 
     pytitionuser: PytitionUser
     try:

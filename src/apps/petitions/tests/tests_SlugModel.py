@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from apps.petition.models import Petition, PytitionUser, SlugModel
+from apps.accounts.models import PytitionUser
+from apps.petition.models import Petition, SlugModel
 
 
 class SlugModelTest(TestCase):

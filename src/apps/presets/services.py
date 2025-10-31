@@ -10,9 +10,8 @@ from django.core.files.storage import FileSystemStorage
 from django.http import Http404
 from django.utils.translation import gettext as _
 
-from apps.accounts.models import Permission
+from apps.accounts.models import Permission, PytitionUser
 from apps.organizations.models import Organization
-from apps.petition.models import PytitionUser
 from apps.presets.models import PetitionTemplate
 
 

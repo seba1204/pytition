@@ -13,9 +13,9 @@ from django.http import (
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
+from apps.accounts.models import PytitionUser
 from apps.accounts.services import get_session_user
 from apps.consents.forms import EmailForm, NewsletterForm
-from apps.petition.models import PytitionUser
 from apps.petitions.forms import ContentFormTemplate, SocialNetworkForm, StyleForm
 from apps.presets.models import PetitionTemplate
 from apps.presets.services import (

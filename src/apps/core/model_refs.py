@@ -1,7 +1,7 @@
 # Those references are used to avoid
 # circular imports in Django model ForeignKey/M2M definitions
 
-PYTITION_USER = "petition.PytitionUser"
+PYTITION_USER = "accounts.PytitionUser"
 ORGANIZATION = "organizations.Organization"
 PETITION = "petition.Petition"
 SIGNATURE = "signatures.Signature"

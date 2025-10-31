@@ -9,9 +9,9 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
 from apps.accounts.forms import DeleteAccountForm, UpdateInfoForm
+from apps.accounts.models import PytitionUser
 from apps.accounts.services import get_session_user, get_update_form
 from apps.organizations.models import Organization
-from apps.petition.models import PytitionUser
 
 
 class _SettingsContext(TypedDict, total=False):

@@ -4,8 +4,8 @@ from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.models import PytitionUser
 from apps.accounts.routes import AccountsRoute
-from apps.petition.models import PytitionUser
 
 
 class PytitionUserRegister(TestCase):

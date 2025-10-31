@@ -8,11 +8,9 @@ from django.http import (
 )
 from django.utils.translation import gettext as _
 
-# TODO: move models to apps/{organizations/accounts}/models.py
-from apps.accounts.models import Permission
+from apps.accounts.models import Permission, PytitionUser
 from apps.accounts.services import get_session_user
 from apps.organizations.models import Organization
-from apps.petition.models import PytitionUser
 
 
 # /org/<slug:orgslugname>/delete_member

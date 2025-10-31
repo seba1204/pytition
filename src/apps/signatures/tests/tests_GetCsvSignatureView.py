@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.models import PytitionUser
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import PytitionUser
 
 
 class GetCsvSignatureViewTest(TestCase):

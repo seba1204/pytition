@@ -3,8 +3,9 @@ import logging
 from django.core.management.base import BaseCommand, CommandParser
 from django.db.models import Count
 
+from apps.accounts.models import PytitionUser
 from apps.moderation.models import Moderation, ModerationReason
-from apps.petition.models import Petition, PytitionUser
+from apps.petition.models import Petition
 
 logger = logging.getLogger(__name__)
 

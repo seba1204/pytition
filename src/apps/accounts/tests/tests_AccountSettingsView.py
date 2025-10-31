@@ -3,10 +3,10 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.accounts.forms import DeleteAccountForm
+from apps.accounts.models import PytitionUser
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_update_form
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import PytitionUser
 
 
 class AccountSettingsViewTest(TestCase):

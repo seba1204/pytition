@@ -8,8 +8,8 @@ from django.http import (
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
+from apps.accounts.models import PytitionUser
 from apps.moderation.services import filter_moderated_petitions
-from apps.petition.models import PytitionUser
 
 
 # /user/<user_name>

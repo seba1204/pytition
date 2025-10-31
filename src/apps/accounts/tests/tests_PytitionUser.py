@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from apps.petition.models import PytitionUser
+from apps.accounts.models import PytitionUser
 
 
 class PytitionUserTest(TestCase):

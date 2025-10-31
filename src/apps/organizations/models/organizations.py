@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy
 from apps.core.model_refs import PERMISSION, PETITION_TEMPLATE, PYTITION_USER
 
 if TYPE_CHECKING:
-    from apps.petition.models import PytitionUser
+    from apps.accounts.models import PytitionUser
 
 
 class Organization(models.Model):

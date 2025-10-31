@@ -10,11 +10,12 @@ from django.http import (
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.accounts.models import PytitionUser
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
 from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import Petition, PytitionUser
+from apps.petition.models import Petition
 from apps.petitions.helpers import petition_from_id
 from apps.petitions.routes import PetitionsRoute
 

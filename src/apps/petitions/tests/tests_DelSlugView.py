@@ -1,9 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.accounts.models import Permission
+from apps.accounts.models import Permission, PytitionUser
 from apps.core.tests.utils import add_default_data
-from apps.petition.models import Petition, PytitionUser
+from apps.petition.models import Petition
 from apps.petitions.routes import PetitionsRoute
 
 
