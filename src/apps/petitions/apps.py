@@ -18,3 +18,7 @@ from django.apps import AppConfig
 
 class PetitionsConfig(AppConfig):
     name = "apps.petitions"
+
+    def ready(self) -> None:
+        # Import signal handlers to connect them
+        import apps.petitions.signals  # noqa

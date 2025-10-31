@@ -19,3 +19,7 @@ from django.apps import AppConfig
 
 class AccountsConfig(AppConfig):
     name = "apps.accounts"
+
+    def ready(self) -> None:
+        # Import signal handlers to connect them
+        import apps.accounts.signals  # noqa
