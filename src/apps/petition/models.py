@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any
 from colorfield.fields import ColorField  # type: ignore
 from django.conf import settings
 from django.contrib.auth.hashers import get_hasher
-from django.core.exceptions import ValidationError
 from django.db import models, transaction
 from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
@@ -20,12 +19,13 @@ from django.utils.translation import gettext_lazy
 from tinymce import models as tinymce_models  # type: ignore
 
 from apps.core.helpers import sanitize_html
-from apps.core.model_refs import ORGANIZATION, PYTITION_USER
+from apps.core.model_refs import ORGANIZATION, PYTITION_USER, SLUG_MODEL
 from apps.petitions.routes import PetitionsRoute
 
 if TYPE_CHECKING:
     from apps.accounts.models import PytitionUser
     from apps.organizations.models import Organization
+    from apps.petitions.models import SlugModel
     from apps.presets.models import PetitionTemplate
 
 
@@ -171,6 +171,9 @@ class Petition(models.Model):
 
     def add_slug(self, slugtext: str) -> None:
         # Add a slug correctly
+        # lazy import to avoid circular imports
+        from apps.petitions.models import SlugModel  # noqa
+
         with transaction.atomic():
             slugtext = slugify(slugtext)
             # Check if there is another similar slug for the same user/org
@@ -197,6 +200,9 @@ class Petition(models.Model):
 
     def del_slug(self, slug: Any) -> None:
         # Delete a given slug
+        # lazy import to avoid circular imports
+        from apps.petitions.models import SlugModel  # noqa
+
         s = SlugModel.objects.filter(slug=slug, petition=self).first()
         if s is not None:
             s.delete()
@@ -391,28 +397,8 @@ class Petition(models.Model):
         )
 
 
-# --------------------------------- SlugModel ---------------------------------
-class SlugModel(models.Model):
-    slug = models.SlugField(max_length=200)
-    petition = models.ForeignKey(Petition, on_delete=models.CASCADE)
-
-    def clean(self, *args: Any, **kwargs: Any) -> None:
-        if self.slug == "" or self.slug is None:
-            raise ValidationError(
-                _("A permalink cannot be empty. Please enter something."),
-                code="invalid",
-            )
-        super().clean(*args, **kwargs)
-
-    def __str__(self) -> str:
-        return self.slug
-
-    def __repr__(self) -> str:
-        return self.slug
-
-
 # ------------------------------ Pre save actions -----------------------------
-@receiver(pre_save, sender=SlugModel)
+@receiver(pre_save, sender=SLUG_MODEL)
 def check_slug_is_not_empty(sender: Any, instance: SlugModel, **kwargs: Any) -> None:
     instance.clean()
     instance.validate_unique()

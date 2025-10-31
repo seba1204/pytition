@@ -4,7 +4,8 @@ from django.urls import reverse
 
 from apps.accounts.models import Permission, PytitionUser
 from apps.organizations.models import Organization
-from apps.petition.models import Petition, SlugModel
+from apps.petition.models import Petition
+from apps.petitions.models import SlugModel
 from apps.petitions.routes import PetitionsRoute
 from apps.signatures.models import Signature
 
