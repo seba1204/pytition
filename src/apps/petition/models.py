@@ -20,7 +20,7 @@ from django.utils.translation import gettext_lazy
 from tinymce import models as tinymce_models  # type: ignore
 
 from apps.core.helpers import sanitize_html
-from apps.core.model_refs import ORGANIZATION, PETITION_TEMPLATE, PYTITION_USER
+from apps.core.model_refs import ORGANIZATION, PETITION_TEMPLATE
 from apps.petitions.routes import PetitionsRoute
 
 if TYPE_CHECKING:
@@ -391,6 +391,10 @@ class Petition(models.Model):
 
     def is_allowed_to_edit(self, user: PytitionUser) -> bool:
         """Check if a user is allowed to edit this petition."""
+
+        # lazy import to avoid circular imports
+        from apps.accounts.models import Permission  # noqa
+
         if self.owner_type == "user":
             # The user is the owner of the petition
             return self.user == user
@@ -477,53 +481,6 @@ class SlugModel(models.Model):
 
     def __repr__(self) -> str:
         return self.slug
-
-
-# ------------------------------------ Permission -----------------------------
-class Permission(models.Model):
-    organization = models.ForeignKey(
-        ORGANIZATION,
-        on_delete=models.CASCADE,
-        verbose_name=gettext_lazy("Organization related to these permissions"),
-    )
-    user = models.ForeignKey(
-        PYTITION_USER,
-        on_delete=models.CASCADE,
-        verbose_name=gettext_lazy("User related to these permissions"),
-    )
-    can_add_members = models.BooleanField(default=False)
-    can_remove_members = models.BooleanField(default=False)
-    can_create_petitions = models.BooleanField(default=True)
-    can_modify_petitions = models.BooleanField(default=True)
-    can_delete_petitions = models.BooleanField(default=False)
-    can_create_templates = models.BooleanField(default=True)
-    can_modify_templates = models.BooleanField(default=True)
-    can_delete_templates = models.BooleanField(default=False)
-    can_view_signatures = models.BooleanField(default=False)
-    can_modify_signatures = models.BooleanField(default=False)
-    can_delete_signatures = models.BooleanField(default=False)
-    can_modify_permissions = models.BooleanField(default=False)
-
-    def set_all(self, value: bool) -> None:
-        self.can_add_members = value
-        self.can_remove_members = value
-        self.can_create_petitions = value
-        self.can_modify_petitions = value
-        self.can_delete_petitions = value
-        self.can_create_templates = value
-        self.can_modify_templates = value
-        self.can_delete_templates = value
-        self.can_view_signatures = value
-        self.can_modify_signatures = value
-        self.can_delete_signatures = value
-        self.can_modify_permissions = value
-        self.save()
-
-    def __str__(self) -> str:
-        return f"{self.organization.name} : {self.user.name}"
-
-    def __repr__(self) -> str:
-        return f"< {self.__str__()} >"
 
 
 # ------------------------------ Pre save actions -----------------------------

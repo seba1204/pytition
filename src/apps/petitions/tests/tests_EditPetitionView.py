@@ -4,10 +4,11 @@ from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse
 
+from apps.accounts.models import Permission
 from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
-from apps.petition.models import Permission, Petition, PytitionUser
+from apps.petition.models import Petition, PytitionUser
 from apps.petitions.routes import PetitionsRoute
 
 

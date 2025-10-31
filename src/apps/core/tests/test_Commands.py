@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.test import TestCase
 
+from apps.accounts.models import Permission
 from apps.organizations.models import Organization
-from apps.petition.models import Permission, Petition
+from apps.petition.models import Petition
 from apps.signatures.models import Signature
 
 logging.disable(logging.CRITICAL)

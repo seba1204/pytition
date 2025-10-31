@@ -43,7 +43,7 @@ class Organization(models.Model):
         """Check if the given user is the last admin of this organization Admin is an
         user having the can_modify_permissions right Return true or false."""
         # get all permissions
-        from apps.petition.models import Permission  # noqa
+        from apps.accounts.models import Permission  # noqa
 
         perms = Permission.objects.filter(
             can_modify_permissions=True, organization=self
@@ -60,7 +60,7 @@ class Organization(models.Model):
     def is_allowed_to(self, user: PytitionUser, right: str) -> bool:
         """Check if an user has a given access right on the organization."""
 
-        from apps.petition.models import Permission  # noqa
+        from apps.accounts.models import Permission  # noqa
 
         try:
             perm = Permission.objects.get(organization=self, user=user)

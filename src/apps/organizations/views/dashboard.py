@@ -7,12 +7,11 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+# TODO: move models to apps/organizations/models.py
+from apps.accounts.models import Permission
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
 from apps.organizations.models import Organization
-
-# TODO: move models to apps/organizations/models.py
-from apps.petition.models import Permission
 
 
 # /org/<slug:orgslugname>/dashboard

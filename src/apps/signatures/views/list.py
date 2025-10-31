@@ -10,13 +10,14 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+from apps.accounts.models import Permission
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
 from apps.core.exceptions import ApiError
 from apps.notifications.services import send_confirmation_email
 from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-from apps.petition.models import Permission, Petition
+from apps.petition.models import Petition
 from apps.petitions.helpers import petition_from_id
 from apps.signatures.models import Signature
 

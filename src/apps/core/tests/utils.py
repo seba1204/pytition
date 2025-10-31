@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 
+from apps.accounts.models import Permission
 from apps.organizations.models import Organization
-from apps.petition.models import Permission, Petition, PytitionUser
+from apps.petition.models import Petition, PytitionUser
 
 
 def add_default_data() -> None:

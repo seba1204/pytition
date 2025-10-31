@@ -2,8 +2,9 @@ import logging
 
 from django.core.management.base import BaseCommand, CommandParser
 
+from apps.accounts.models import Permission
 from apps.organizations.models import Organization
-from apps.petition.models import Permission, PytitionUser
+from apps.petition.models import PytitionUser
 
 logger = logging.getLogger(__name__)
 

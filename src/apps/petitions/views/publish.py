@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 
+from apps.accounts.models import Permission
 from apps.accounts.services import get_session_user
-from apps.petition.models import Permission
 from apps.petitions.helpers import petition_from_id
 
 

@@ -1,9 +1,7 @@
 from django.contrib import admin
 
-from apps.petition.models import (
-    Permission,
-    SlugModel,
-)
+from apps.accounts.models import Permission
+from apps.petition.models import SlugModel
 
 
 @admin.register(SlugModel)

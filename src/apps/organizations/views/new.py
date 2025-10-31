@@ -13,12 +13,12 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+# TODO: move models to apps/{organizations/accounts}/models.py
+from apps.accounts.models import Permission
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
 from apps.organizations.forms import OrgCreationForm
-
-# TODO: move models to apps/{organizations/accounts}/models.py
-from apps.petition.models import Permission, PytitionUser
+from apps.petition.models import PytitionUser
 
 
 # Context type hinting

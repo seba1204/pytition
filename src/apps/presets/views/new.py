@@ -12,12 +12,12 @@ from django.http import Http404, HttpRequest, HttpResponse, HttpResponseForbidde
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
+# TODO: move models to apps/{organizations/accounts/petitions}/models.py
+from apps.accounts.models import Permission
 from apps.accounts.services import get_session_user
 from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
-
-# TODO: move models to apps/{organizations/accounts/petitions}/models.py
-from apps.petition.models import Permission, PytitionUser
+from apps.petition.models import PytitionUser
 from apps.presets.models import PetitionTemplate
 from apps.presets.routes import PresetRoutes
 

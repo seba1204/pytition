@@ -1,15 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+from apps.accounts.models import Permission
 from apps.organizations.models import Organization
-from apps.petition.models import Permission, PytitionUser
+from apps.petition.models import PytitionUser
 
 
 class PermissionTest(TestCase):
     def setUp(self) -> None:
         User = get_user_model()
-        u = User.objects.create_user("julia", password="julia")
-        org = Organization.objects.create(name="RAP")
+        _u = User.objects.create_user("julia", password="julia")
+        _org = Organization.objects.create(name="RAP")
 
     def test_createPermission(self) -> None:
         self.assertEqual(Permission.objects.count(), 0)
