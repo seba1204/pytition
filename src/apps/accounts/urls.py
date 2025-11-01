@@ -16,7 +16,7 @@ from django.urls import URLPattern, reverse_lazy
 from apps.accounts import views as AV  # account views
 from apps.accounts.forms import PytitionUserCreationForm
 from apps.accounts.routes import AccountsRoute
-from apps.core.routes import Route, build_urlpatterns, validate_bijection
+from apps.core.route import Route, build_urlpatterns, validate_bijection
 
 app_name = "accounts"
 

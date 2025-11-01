@@ -20,44 +20,44 @@ urlpatterns = [
     path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
-    path("media/", include("apps.files.urls", namespace=MEDIA_NS)),
+    path("files/", include("apps.files.urls", namespace=MEDIA_NS)),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Search, will be improved, cf. ticket #20
     # ──────────────────────────────────────────────────────────────────────────────────
     path("search", CV.search, name="search"),
     path(
-        "search_users_and_orgs",
+        "search/profiles",
         CV.search_profiles,
         name="search_users_and_orgs",
     ),
-    path("get_user_list", AV.user_list, name="get_user_list"),
+    path("search/users", AV.user_list, name="get_user_list"),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Signatures # TODO: move it to an urls.py so it can be included
     # ──────────────────────────────────────────────────────────────────────────────────
     path(
-        "<int:petition_id>/get_csv_signature",
+        "<int:petition_id>/signatures/export",
         SV.get_csv_signature,
         {"only_confirmed": False},
         name="get_csv_signature",
     ),
     path(
-        "<int:petition_id>/get_csv_confirmed_signature",
+        "<int:petition_id>/signatures/export/confirmed",
         SV.get_csv_signature,
         {"only_confirmed": True},
         name="get_csv_confirmed_signature",
     ),
     path(
-        "<int:petition_id>/sign",
+        "<int:petition_id>/signatures/new",
         SV.create,
         name="create_signature",
     ),
     path(
-        "<int:petition_id>/show_signatures",
+        "<int:petition_id>/signatures/list",
         SV.show_signatures,
         name="show_signatures",
     ),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # Petitions
+    # Wizard
     # ──────────────────────────────────────────────────────────────────────────────────
     # Wizard : TODO: for now it stay here, but will be deleted
     path(
@@ -84,11 +84,15 @@ urlpatterns = [
     # Moderation TODO: move it to moderation/urls.py so it can be included cf. ticket #7
     # ──────────────────────────────────────────────────────────────────────────────────
     path(
-        "<int:petition_id>/report/<int:reason_id>",
+        "moderation/report/petition/<int:petition_id>/<int:reason_id>",
         MV.report,
         name="report_petition",
     ),
-    path("<int:petition_id>/report/", MV.report, name="report_petition"),
+    path(
+        "moderation/report/petition/<int:petition_id>/",
+        MV.report,
+        name="report_petition",
+    ),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Organization
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -104,9 +108,4 @@ urlpatterns = [
         PV.slug_show_petition,
         name="slug_show_petition",
     ),
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # Django built-in views
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # Authentication
-    path("", include("django.contrib.auth.urls")),
 ]

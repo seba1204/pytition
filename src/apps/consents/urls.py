@@ -4,7 +4,7 @@ from django.urls import URLPattern
 
 from apps.consents import views as CV
 from apps.consents.routes import ConsentRoute
-from apps.core.routes import Route, build_urlpatterns, validate_bijection
+from apps.core.route import Route, build_urlpatterns, validate_bijection
 
 app_name = "consents"
 

@@ -32,6 +32,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
+    path("", include("django.contrib.auth.urls")),
     # Maintenance mode URLs (3rd party app)
     path("maintenance-mode/", include("maintenance_mode.urls")),
 ]

@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from django.urls import URLPattern
 
-from apps.core.routes import Route, build_urlpatterns, validate_bijection
+from apps.core.route import Route, build_urlpatterns, validate_bijection
 from apps.organizations import views as OV
 from apps.organizations.routes import OrgRoute
 from apps.petitions import views as PV

@@ -14,7 +14,7 @@ from __future__ import annotations
 from django.urls import URLPattern
 from django.views.generic import RedirectView
 
-from apps.core.routes import Route, build_urlpatterns, validate_bijection
+from apps.core.route import Route, build_urlpatterns, validate_bijection
 from apps.petitions import views as PV
 from apps.petitions.routes import PetitionsRoute
 
@@ -27,14 +27,14 @@ PID = "<int:petition_id>"
 # --------------------------------------------------------------------------- #
 
 ROUTES: dict[PetitionsRoute, Route] = {
-    PetitionsRoute.DETAIL: Route("<int:petition_id>/", PV.detail),
-    PetitionsRoute.DELETE: Route("<int:petition_id>/delete", PV.delete),
-    PetitionsRoute.PUBLISH: Route("<int:petition_id>/publish", PV.publish),
-    PetitionsRoute.UNPUBLISH: Route("<int:petition_id>/unpublish", PV.unpublish),
-    PetitionsRoute.EDIT: Route("<int:petition_id>/edit", PV.edit),
-    PetitionsRoute.ADD_SLUG: Route("<int:petition_id>/add_new_slug/", PV.add_slug),
-    PetitionsRoute.DEL_SLUG: Route("<int:petition_id>/del_slug", PV.del_slug),
-    PetitionsRoute.TRANSFER: Route("transfer_petition/<int:petition_id>", PV.transfer),
+    PetitionsRoute.DETAIL: Route(f"{PID}/", PV.detail),
+    PetitionsRoute.DELETE: Route(f"{PID}/delete", PV.delete),
+    PetitionsRoute.PUBLISH: Route(f"{PID}/publish", PV.publish),
+    PetitionsRoute.UNPUBLISH: Route(f"{PID}/unpublish", PV.unpublish),
+    PetitionsRoute.EDIT: Route(f"{PID}/edit", PV.edit),
+    PetitionsRoute.ADD_SLUG: Route(f"{PID}/slug/add", PV.add_slug),
+    PetitionsRoute.DEL_SLUG: Route(f"{PID}/slug/del", PV.del_slug),
+    PetitionsRoute.TRANSFER: Route(f"{PID}/transfer", PV.transfer),
     PetitionsRoute.ALL_PETITIONS: Route(
         "all_petitions",
         # redirect to index view
