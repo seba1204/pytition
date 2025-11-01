@@ -81,13 +81,13 @@
               {% trans "Why do you want to report this petition?" %}
               <select id="reason_selector" class="custom-select">
                 {% for reason in moderation_reasons %}
-                  <option value="{% url "report_petition" petition.id reason.id %}">{{ reason.msg }}</option>
+                  <option value="{% url "moderation:report_petition" petition.id reason.id %}">{{ reason.msg }}</option>
                 {% endfor %}
               </select>
             {% else %}
               <!-- this is a Hack to keep the JS code simple !-->
               <select id="reason_selector" class="d-none">
-                <option value="{% url "report_petition" petition.id %}"></option>
+                <option value="{% url "moderation:report_petition" petition.id %}"></option>
               </select>
               {% trans "You are about to report this petition to moderation." %}
             {% endif %}

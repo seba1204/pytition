@@ -5,7 +5,7 @@ from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.core import views as CV
 from apps.core.routes import SEARCH_NS
 from apps.files.routes import NAMESPACE as MEDIA_NS
-from apps.moderation import views as MV
+from apps.moderation.routes import NAMESPACE as MOD_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petitions import forms as PF
 from apps.petitions import views as PV
@@ -18,10 +18,12 @@ urlpatterns = [
     path("", CV.index, name="index"),
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("", include("apps.petitions.urls", namespace=PET_NS)),
-    path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
-    path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
     path("files/", include("apps.files.urls", namespace=MEDIA_NS)),
+    path("moderation/", include("apps.moderation.urls", namespace=MOD_NS)),
+    path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
+    path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
     path("search/", include("apps.core.urls.search", namespace=SEARCH_NS)),
+    path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Signatures # TODO: move it to an urls.py so it can be included
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -72,23 +74,8 @@ urlpatterns = [
         name="user_petition_wizard_from_template",
     ),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # Moderation TODO: move it to moderation/urls.py so it can be included cf. ticket #7
+    # LEGACY: show a petition by slug through user/org name
     # ──────────────────────────────────────────────────────────────────────────────────
-    path(
-        "moderation/report/petition/<int:petition_id>/<int:reason_id>",
-        MV.report,
-        name="report_petition",
-    ),
-    path(
-        "moderation/report/petition/<int:petition_id>/",
-        MV.report,
-        name="report_petition",
-    ),
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # Organization
-    # ──────────────────────────────────────────────────────────────────────────────────
-    path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
-    # LEGACY: show a petition by slug — org owner
     path(
         "org/<orgslugname>/<slug:petitionname>",
         PV.slug_show_petition,
