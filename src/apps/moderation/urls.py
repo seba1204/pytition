@@ -14,12 +14,10 @@ app_name = "moderation"
 # One-to-one mapping: every ModerationRoute must appear exactly once
 # --------------------------------------------------------------------------- #
 
-PET = "report/petition/<int:petition_id>"
+PET = "<int:petition_id>"
 
 ROUTES: dict[ModerationRoute, Route] = {
-    # TODO: reason_id should be in optional URL parameter
-    ModerationRoute.REPORT: Route(f"{PET}/<int:reason_id>", MV.report),
-    ModerationRoute.REPORT: Route(f"{PET}/", MV.report),
+    ModerationRoute.REPORT: Route(f"report/petition/{PET}/", MV.report),
 }
 
 # Fail fast at import time (CI-friendly)

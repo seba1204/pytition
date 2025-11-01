@@ -7,12 +7,13 @@ from apps.moderation.models import Moderation, ModerationReason
 from apps.petitions.helpers import petition_from_id
 
 
-# /<int:petition_id>/report/<int:reason_id>
+# /<int:petition_id>/report/
 # Report a petition to moderation
-def report(
-    request: HttpRequest, petition_id: int, reason_id: int | None = None
-) -> HttpResponse:
+def report(request: HttpRequest, petition_id: int) -> HttpResponse:
     petition = petition_from_id(petition_id)
+    # get reason_id from request.GET
+    reason_id = request.GET.get("reason_id")
+    reason: ModerationReason | None = None
     if reason_id:
         try:
             reason = ModerationReason.objects.get(pk=reason_id)
