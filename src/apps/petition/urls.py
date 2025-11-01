@@ -1,9 +1,9 @@
 from django.urls import include, path
 
-from apps.accounts import views as AV
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.core import views as CV
+from apps.core.routes import SEARCH_NS
 from apps.files.routes import NAMESPACE as MEDIA_NS
 from apps.moderation import views as MV
 from apps.organizations.routes import NAMESPACE as ORG_NS
@@ -21,16 +21,7 @@ urlpatterns = [
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
     path("files/", include("apps.files.urls", namespace=MEDIA_NS)),
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # Search, will be improved, cf. ticket #20
-    # ──────────────────────────────────────────────────────────────────────────────────
-    path("search", CV.search, name="search"),
-    path(
-        "search/profiles",
-        CV.search_profiles,
-        name="search_users_and_orgs",
-    ),
-    path("search/users", AV.user_list, name="get_user_list"),
+    path("search/", include("apps.core.urls.search", namespace=SEARCH_NS)),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Signatures # TODO: move it to an urls.py so it can be included
     # ──────────────────────────────────────────────────────────────────────────────────
@@ -97,7 +88,7 @@ urlpatterns = [
     # Organization
     # ──────────────────────────────────────────────────────────────────────────────────
     path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
-    # PUBLIC: show a petition by slug — org owner
+    # LEGACY: show a petition by slug — org owner
     path(
         "org/<orgslugname>/<slug:petitionname>",
         PV.slug_show_petition,

@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.accounts.models import PytitionUser
+from apps.core.routes import SearchRoute
 from apps.core.tests.utils import add_default_data
 
 
@@ -19,7 +20,7 @@ class GetUserListViewTest(TestCase):
 
     def test_GetUserListViewOk(self) -> None:
         self.login("julia")
-        response = self.client.get(reverse("get_user_list") + "?q=admin")
+        response = self.client.get(reverse(SearchRoute.USERS) + "?q=admin")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
         values = response.json()["values"]
@@ -28,7 +29,7 @@ class GetUserListViewTest(TestCase):
 
     def test_GetUserListViewEmptySearchOk(self) -> None:
         self.login("julia")
-        response = self.client.get(reverse("get_user_list"))
+        response = self.client.get(reverse(SearchRoute.USERS))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
         values = response.json()["values"]
@@ -36,7 +37,7 @@ class GetUserListViewTest(TestCase):
 
     def test_GetUserListViewEmptyStringSearchOk(self) -> None:
         self.login("julia")
-        response = self.client.get(reverse("get_user_list") + "?q=")
+        response = self.client.get(reverse(SearchRoute.USERS) + "?q=")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
         values = response.json()["values"]

@@ -209,7 +209,7 @@ FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
 # Auth / Redirects
 # ──────────────────────────────────────────────────────────────────────────────
 
-LOGIN_URL = "/petition/login/"
+LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
 
 # ──────────────────────────────────────────────────────────────────────────────

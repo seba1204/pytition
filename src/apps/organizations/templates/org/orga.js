@@ -55,7 +55,7 @@ function addUser(user) {
 $(document).ready(function(){
   $("#invite_user").on("keyup", function() {
    $.ajax({
-   url: "{% url "get_user_list" %}?q=" + $("#invite_user").val(),
+   url: "{% url "core.search:users" %}?q=" + $("#invite_user").val(),
    dataType: "json",
    }).done(function(data) {
         $("#user_search_result").html("");

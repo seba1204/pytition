@@ -85,10 +85,10 @@
   {{ block.super }}
   <script>
 $(function() {
-    $("[data-toggle="tooltip"]").tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
     $("#searchbox").on("keyup", function() {
    $.ajax({
-   url: "{% url "search_users_and_orgs" %}?q=" + $("#searchbox").val(),
+   url: "{% url 'core.search:profiles' %}?q=" + $("#searchbox").val(),
    dataType: "json",
    }).done(function(data) {
         $("#search_results").html("");
@@ -117,7 +117,7 @@ $(function() {
         });
    });
   });
-  $("[data-action="petition-transfer"]").on("click", function () {
+  $('[data-action="petition-transfer"]').on('click', function () {
       $("#xfer_req").submit();
   });
 })

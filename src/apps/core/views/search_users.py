@@ -12,7 +12,7 @@ from apps.accounts.models import PytitionUser
 # get the list of users
 # TODO: merge it with /search, cf. ticket #20
 @login_required
-def user_list(request: HttpRequest) -> JsonResponse:
+def search_users(request: HttpRequest) -> JsonResponse:
     """Get the list of users matching the query parameter 'q'."""
     q = request.GET.get("q", "")
     if q != "":

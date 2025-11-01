@@ -49,7 +49,7 @@ class EditPetitionViewTest(TestCase):
         self.assertEqual(response.context["petition"], petition)
         self.assertTemplateUsed(response, "petitions/edit.html")
 
-    def test_edit_loggedout(self) -> None:
+    def test_edit_logged_out(self) -> None:
         """Edit your own petition while being logged out."""
         self.login("julia")
         petition = self.pu.petition_set.first()
