@@ -4,7 +4,7 @@ from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
 from apps.core import views as CV
 from apps.core.routes import SEARCH_NS
-from apps.files.routes import NAMESPACE as MEDIA_NS
+from apps.files.routes import NAMESPACE as FILES_NS
 from apps.moderation.routes import NAMESPACE as MOD_NS
 from apps.organizations.routes import NAMESPACE as ORG_NS
 from apps.petitions import forms as PF
@@ -18,7 +18,7 @@ urlpatterns = [
     path("", CV.index, name="index"),
     path("", include("apps.consents.urls", namespace=CONSENT_NS)),
     path("", include("apps.petitions.urls", namespace=PET_NS)),
-    path("files/", include("apps.files.urls", namespace=MEDIA_NS)),
+    path("files/", include("apps.files.urls", namespace=FILES_NS)),
     path("moderation/", include("apps.moderation.urls", namespace=MOD_NS)),
     path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
