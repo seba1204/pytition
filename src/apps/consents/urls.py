@@ -13,16 +13,8 @@ app_name = "consents"
 # --------------------------------------------------------------------------- #
 
 ROUTES: dict[ConsentRoute, Route] = {
-    ConsentRoute.CONFIRM: Route(
-        "<int:petition_id>/confirm/<confirmation_hash>",
-        CV.confirm,
-    ),
-    ConsentRoute.RESEND: Route(
-        "resend/<int:signature_id>",
-        CV.resend,
-    ),
     ConsentRoute.EXPORT: Route(
-        "<int:petition_id>/export",
+        "export",
         CV.export,
     ),
 }

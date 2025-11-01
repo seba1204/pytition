@@ -59,7 +59,7 @@
             {% endif %}
         {% endblock object_tools %}
         {% if change %}
-            <form action="{% url "consents:resend_confirmation_email" original.id %}">
+            <form action="{% url "signatures:resend_confirmation_email" original.id %}">
                 <input type="submit" value="Re-send confirmation email">
             </form>
         {% endif %}

@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.utils.html import strip_tags
 from django.utils.translation import gettext as _
 
-from apps.consents.routes import ConsentRoute
+from apps.signatures.routes import SignatureRoute
 
 # TODO: Implement a real notification app, cf. ticket #21
 
@@ -30,10 +30,10 @@ def send_confirmation_email(request: HttpRequest, signature: Any) -> None:
 
     petition = signature.petition
     url = request.build_absolute_uri(
-        reverse(ConsentRoute.CONFIRM, args=[petition.id, signature.confirmation_hash])
+        reverse(SignatureRoute.CONFIRM, args=[petition.id, signature.confirmation_hash])
     )
     html_message = render_to_string(
-        "consents/confirmation_email.html",
+        "notifications/confirmation_email.html",
         {"firstname": signature.first_name, "url": url},
     )
     message = strip_tags(html_message)
@@ -59,7 +59,7 @@ def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
         Information about the user to include in the email.
     """
 
-    html_message = render_to_string("consents/confirmation_email.html", user_infos)
+    html_message = render_to_string("notifications/confirmation_email.html", user_infos)
     message = strip_tags(html_message)
     with get_connection() as connection:
         msg = EmailMultiAlternatives(

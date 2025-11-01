@@ -20,3 +20,5 @@ class SignatureRoute(StrEnum):
     NEW = _NS + "new"
     LIST = _NS + "list"
     EXPORT = _NS + "export"
+    CONFIRM = _NS + "confirm"
+    RESEND_EMAIL = _NS + "resend_confirmation_email"

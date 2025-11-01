@@ -17,6 +17,4 @@ class ConsentRoute(StrEnum):
     Each member is a string equal to "<namespace>:<short>".
     """
 
-    CONFIRM = _NS + "confirm"
-    RESEND = _NS + "resend_confirmation_email"
     EXPORT = _NS + "export"

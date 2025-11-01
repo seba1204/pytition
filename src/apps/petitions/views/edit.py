@@ -11,7 +11,8 @@ from django.utils.translation import gettext as _
 from apps.accounts.models import Permission
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
-from apps.consents.forms import EmailForm, NewsletterForm
+from apps.consents.forms import NewsletterForm
+from apps.notifications.forms import EmailForm
 from apps.petitions.forms import ContentFormPetition, SocialNetworkForm, StyleForm
 from apps.petitions.helpers import petition_from_id
 

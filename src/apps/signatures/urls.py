@@ -19,9 +19,11 @@ ROUTES: dict[SignatureRoute, Route] = {
     SignatureRoute.NEW: Route("new/", SV.new),
     SignatureRoute.LIST: Route("list/", SV.list_view),
     SignatureRoute.EXPORT: Route("export/", SV.export),
+    SignatureRoute.CONFIRM: Route("confirm/<confirmation_hash>", SV.confirm),
+    SignatureRoute.RESEND_EMAIL: Route("resend/<int:signature_id>", SV.resend),
 }
 
-# Fail fast at import time (CI-friendly)
+# Fail fast at import time (CI-friendly)c
 validate_bijection(SignatureRoute, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)

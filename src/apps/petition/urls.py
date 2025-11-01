@@ -12,23 +12,22 @@ from apps.petitions.routes import NAMESPACE as PET_NS
 from apps.presets.routes import NAMESPACE as PRESET_NS
 from apps.signatures.routes import NAMESPACE as SIGN_NS
 
+PID = "<int:petition_id>"
+
 urlpatterns = [
     # index
     path("", CV.index, name="index"),
-    path("", include("apps.consents.urls", namespace=CONSENT_NS)),
-    path("", include("apps.petitions.urls", namespace=PET_NS)),
     path("files/", include("apps.files.urls", namespace=FILES_NS)),
     path("moderation/", include("apps.moderation.urls", namespace=MOD_NS)),
     path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
     path("search/", include("apps.core.urls.search", namespace=SEARCH_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
-    path(
-        "<int:petition_id>/signatures/",
-        include("apps.signatures.urls", namespace=SIGN_NS),
-    ),
+    path(f"{PID}/consents/", include("apps.consents.urls", namespace=CONSENT_NS)),
+    path(f"{PID}/signatures/", include("apps.signatures.urls", namespace=SIGN_NS)),
+    path("", include("apps.petitions.urls", namespace=PET_NS)),
     # ──────────────────────────────────────────────────────────────────────────────────
-    # LEGACY: show a petition by slug through user/org name
+    # LEGACY: show a petition by its owner (user/org)
     # ──────────────────────────────────────────────────────────────────────────────────
     path(
         "org/<orgslugname>/<slug:petitionname>",

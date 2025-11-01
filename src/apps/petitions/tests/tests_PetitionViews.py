@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.accounts.models import PytitionUser
-from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
 from apps.petitions.models import Petition
@@ -83,7 +82,7 @@ class PetitionViewTest(TestCase):
         self.assertFalse(signature.confirmed)
         response = self.client.post(
             reverse(
-                ConsentRoute.CONFIRM, args=[petition.id, signature.confirmation_hash]
+                SignatureRoute.CONFIRM, args=[petition.id, signature.confirmation_hash]
             ),
             follow=True,
         )

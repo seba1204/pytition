@@ -97,6 +97,40 @@ def _has_asset_extension(path: str, extensions: Sequence[str]) -> bool:
     return any(last.endswith(ext.lower().lstrip()) for ext in extensions)
 
 
+def _nearest_existing_parent(path: str, candidates: set[str]) -> str:
+    p = _parent_of(path)
+    while p not in candidates and p != "/":
+        p = _parent_of(p)
+    return p
+
+
+def _relative_label(parent: str, child: str) -> str:
+    """
+    Returns child without the parent prefix (without the initial slash).
+
+    Handles slashes correctly and provides a reasonable fallback if parent is not
+    actually a prefix of child.
+    """
+    # normalizes (canonical paths ending with ‘/’)
+    p = "/" if parent in ("", None) else parent
+    c = "/" if child in ("", None) else child
+
+    # strip to compare properly
+    ps = p.strip("/")
+    cs = c.strip("/")
+
+    if ps == "":  # parent = root
+        rel = cs
+    elif cs.startswith(ps + "/"):  # parent is a prefix of child
+        rel = cs[len(ps) + 1 :]
+    else:
+        # security: if the parent is not a true prefix (rare case),
+        # we keep the last segment as before
+        rel = cs.split("/")[-1]
+
+    return rel or "/"  # avoid empty string for root
+
+
 def _pattern_to_text(pattern: object) -> str:
     """Convert RoutePattern/RegexPattern to a readable string."""
     try:
@@ -256,26 +290,25 @@ def build_mermaid(
     all_paths: set[str] = {"/"}
     for ent in entries:
         p = ent.full_path or "/"
-        all_paths.add(p if p else "/")
+        all_paths.add(p)
 
     for ent in entries:
         path = ent.full_path or "/"
         if path == "":
             path = "/"
 
-        # Label logic:
-        # - if the parent is present in the graph => show only last segment
-        #   (e.g., '/dashboard')
-        # - otherwise (no parent) => show full path (e.g., '/petition/user/dashboard')
+        parent = _nearest_existing_parent(path, all_paths)
+
+        # Label:
+        # - if there is an existing parent => display the relative suffix
+        # - otherwise => display the full path (current behavior)
         if path not in nodes:
-            parent = _parent_of(path)
             if parent in all_paths and parent != path:
-                nodes[path] = _last_segment(path)
+                nodes[path] = _relative_label(parent, path)
             else:
                 nodes[path] = "/" + path.strip("/") if path != "/" else "/"
 
-        parent = _parent_of(path)
-        # Avoid self-loop for root
+        # Arête
         if parent != path:
             edges.add((parent, path))
 
