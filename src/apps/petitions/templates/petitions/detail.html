@@ -207,7 +207,7 @@ body {
           <form method="post"
                 name="petition"
                 class="form-group"
-                action="{% url "create_signature" petition.id %}">
+                action="{% url 'signatures:new' petition.id %}">
             {% csrf_token %}
             {% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
             {% if form.non_field_errors %}

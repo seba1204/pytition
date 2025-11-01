@@ -8,13 +8,9 @@ from apps.petitions.models import Petition
 from apps.signatures.models import Signature
 
 
-# <int:petition_id>/get_csv_signature
-# <int:petition_id>/get_csv_confirmed_signature
 # returns the CSV files of the list of signatures
 @login_required
-def get_csv_signature(
-    request: HttpRequest, petition_id: int, only_confirmed: bool
-) -> HttpResponse:
+def export(request: HttpRequest, petition_id: int) -> HttpResponse:
     user = get_session_user(request)
     try:
         petition = Petition.objects.get(pk=petition_id)
@@ -34,10 +30,9 @@ def get_csv_signature(
 
     filename = f"{petition}.csv"
     signatures = Signature.objects.filter(petition=petition)
-    if only_confirmed:
-        signatures = signatures.filter(confirmed=True)
-    else:
-        signatures = signatures.all()
+    confirmed = request.GET.get("confirmed", "").lower() in ["true", "1", "yes"]
+
+    signatures = signatures.filter(confirmed=True) if confirmed else signatures.all()
     response = HttpResponse(content_type="text/csv")
     response["Content-Disposition"] = f"attachment;filename={filename}".replace(
         "\r\n", ""

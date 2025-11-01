@@ -18,12 +18,12 @@
             {% csrf_token %}
             <div class="col">
                 <p>
-                    <a href="{% url "get_csv_signature" petition.id %}"
+                    <a href="{% url 'signatures:export' petition.id %}"
                        class="btn btn-primary">
                         <span class="oi oi-spreadsheet"></span>
                         {% trans "Export <strong>ALL</strong> signatures as CSV" %}
                     </a>
-                    <a href="{% url "get_csv_confirmed_signature" petition.id %}"
+                    <a href="{% url 'signatures:export' petition.id %}?confirmed=true"
                        class="btn btn-primary">
                         <span class="oi oi-spreadsheet"></span>
                         {% trans "Export <strong>confirmed</strong> signatures as CSV" %}

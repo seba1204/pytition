@@ -11,7 +11,7 @@ from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.petitions.routes import NAMESPACE as PET_NS
 from apps.presets.routes import NAMESPACE as PRESET_NS
-from apps.signatures import views as SV
+from apps.signatures.routes import NAMESPACE as SIGN_NS
 
 urlpatterns = [
     # index
@@ -24,30 +24,9 @@ urlpatterns = [
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
     path("search/", include("apps.core.urls.search", namespace=SEARCH_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
-    # ──────────────────────────────────────────────────────────────────────────────────
-    # Signatures # TODO: move it to an urls.py so it can be included
-    # ──────────────────────────────────────────────────────────────────────────────────
     path(
-        "<int:petition_id>/signatures/export",
-        SV.get_csv_signature,
-        {"only_confirmed": False},
-        name="get_csv_signature",
-    ),
-    path(
-        "<int:petition_id>/signatures/export/confirmed",
-        SV.get_csv_signature,
-        {"only_confirmed": True},
-        name="get_csv_confirmed_signature",
-    ),
-    path(
-        "<int:petition_id>/signatures/new",
-        SV.create,
-        name="create_signature",
-    ),
-    path(
-        "<int:petition_id>/signatures/list",
-        SV.show_signatures,
-        name="show_signatures",
+        "<int:petition_id>/signatures/",
+        include("apps.signatures.urls", namespace=SIGN_NS),
     ),
     # ──────────────────────────────────────────────────────────────────────────────────
     # Wizard

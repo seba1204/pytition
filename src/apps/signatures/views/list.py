@@ -20,6 +20,7 @@ from apps.organizations.routes import OrgRoute
 from apps.petitions.helpers import petition_from_id
 from apps.petitions.models import Petition
 from apps.signatures.models import Signature
+from apps.signatures.routes import SignatureRoute
 
 
 class RedirectError(ApiError):
@@ -277,10 +278,9 @@ def _handle_post_actions(
     messages.error(request, _("Unknown action requested."))
 
 
-# /<int:petition_id>/show_signatures
 # Show the signatures of a petition
 @login_required
-def show_signatures(request: HttpRequest, petition_id: int) -> HttpResponse:
+def list_view(request: HttpRequest, petition_id: int) -> HttpResponse:
     """
     Signatures listing and bulk actions for a petition.
 
@@ -316,7 +316,7 @@ def show_signatures(request: HttpRequest, petition_id: int) -> HttpResponse:
     if request.method == "POST":
         _handle_post_actions(request, petition, pytitionuser)
         # Single, unconditional redirect after POST for PRG pattern.
-        return redirect("show_signatures", petition_id)
+        return redirect(SignatureRoute.LIST, petition_id)
 
     signatures = petition.signature_set.all()
     ctx: dict[str, Any] = {

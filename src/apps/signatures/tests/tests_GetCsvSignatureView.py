@@ -3,10 +3,11 @@ from django.urls import reverse
 
 from apps.accounts.models import PytitionUser
 from apps.core.tests.utils import add_default_data
+from apps.signatures.routes import SignatureRoute
 
 
 class GetCsvSignatureViewTest(TestCase):
-    """Test get_csv_signature view."""
+    """Test export view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -27,7 +28,7 @@ class GetCsvSignatureViewTest(TestCase):
         self.assertIsNotNone(petition)
         if petition is None:
             return
-        response = self.client.get(reverse("get_csv_signature", args=[petition.id]))
+        response = self.client.get(reverse(SignatureRoute.EXPORT, args=[petition.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "text/csv")
         # TODO: add some csv parsing of the response
@@ -40,7 +41,8 @@ class GetCsvSignatureViewTest(TestCase):
         if petition is None:
             return
         response = self.client.get(
-            reverse("get_csv_confirmed_signature", args=[petition.id])
+            reverse(SignatureRoute.EXPORT, args=[petition.id]),
+            data={"confirmed": "true"},
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "text/csv")

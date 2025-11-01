@@ -21,9 +21,8 @@ from apps.signatures.forms import SignatureForm
 from apps.signatures.models import Signature
 
 
-# <int:petition_id>/sign
-# Sign a petition
-def create(request: HttpRequest, petition_id: int) -> HttpResponse:
+# Sign a petition (create  a new signature)
+def new(request: HttpRequest, petition_id: int) -> HttpResponse:
     """
     Create a signature for a petition.
 

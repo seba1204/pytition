@@ -4,10 +4,11 @@ from django.urls import reverse
 from apps.core.tests.utils import add_default_data
 from apps.petitions.models import Petition
 from apps.signatures.models import Signature
+from apps.signatures.routes import SignatureRoute
 
 
 class CreateSignatureViewTest(TestCase):
-    """Test create_signature view."""
+    """Test new signature view."""
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -26,7 +27,7 @@ class CreateSignatureViewTest(TestCase):
         if petition is None:
             return
         response = self.client.post(
-            reverse("create_signature", args=[petition.id]), data, follow=True
+            reverse(SignatureRoute.NEW, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()
@@ -52,7 +53,7 @@ class CreateSignatureViewTest(TestCase):
         if petition is None:
             return
         response = self.client.post(
-            reverse("create_signature", args=[petition.id]), data
+            reverse(SignatureRoute.NEW, args=[petition.id]), data
         )
         self.assertEqual(Signature.objects.count(), 0)
         self.assertTemplateUsed(response, "petitions/detail.html")
@@ -66,6 +67,6 @@ class CreateSignatureViewTest(TestCase):
         if petition is None:
             return
         response = self.client.get(
-            reverse("create_signature", args=[petition.id]), follow=True
+            reverse(SignatureRoute.NEW, args=[petition.id]), follow=True
         )
         self.assertRedirects(response, petition.url)

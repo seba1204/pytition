@@ -8,6 +8,7 @@ from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
 from apps.signatures.models import Signature
+from apps.signatures.routes import SignatureRoute
 
 
 class PetitionViewTest(TestCase):
@@ -38,7 +39,7 @@ class PetitionViewTest(TestCase):
         if p is None:
             return  # Prevent further errors if the petition is None
 
-        response = self.client.get(reverse("show_signatures", args=[p.id]))
+        response = self.client.get(reverse(SignatureRoute.LIST, args=[p.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "signatures/data.html")
         # Add signature
@@ -47,7 +48,7 @@ class PetitionViewTest(TestCase):
             first_name="Me", last_name="You", email="you@example.org", petition=p
         )
         self.assertEqual(Signature.objects.count(), 1)
-        response = self.client.get(reverse("show_signatures", args=[p.id]))
+        response = self.client.get(reverse(SignatureRoute.LIST, args=[p.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "signatures/data.html")
         # Org petition
@@ -60,13 +61,13 @@ class PetitionViewTest(TestCase):
         )
         if p2 is None:
             return  # Prevent further errors if the petition is None
-        response = self.client.get(reverse("show_signatures", args=[p2.id]))
+        response = self.client.get(reverse(SignatureRoute.LIST, args=[p2.id]))
         self.assertEqual(response.status_code, 302)
         # Ah right, Max does not have access rights for that
         perm = Permission.objects.get(organization=org, user=max)
         perm.can_view_signatures = True
         perm.save()
-        response = self.client.get(reverse("show_signatures", args=[p2.id]))
+        response = self.client.get(reverse(SignatureRoute.LIST, args=[p2.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "signatures/data.html")
 
@@ -77,9 +78,12 @@ class PetitionViewTest(TestCase):
         self.assertIsNotNone(p, "Petition should not be None for user 'julia'")
         if p is None:
             return  # Prevent further errors if the petition is None
-        response = self.client.get(reverse("get_csv_signature", args=[p.id]))
+        response = self.client.get(reverse(SignatureRoute.EXPORT, args=[p.id]))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("get_csv_confirmed_signature", args=[p.id]))
+        response = self.client.get(
+            reverse(SignatureRoute.EXPORT, args=[p.id]),
+            data={"confirmed": "true"},
+        )
         self.assertEqual(response.status_code, 200)
         # Add signature
         self.assertEqual(Signature.objects.count(), 0)
@@ -87,9 +91,12 @@ class PetitionViewTest(TestCase):
             first_name="Me", last_name="You", email="you@example.org", petition=p
         )
         self.assertEqual(Signature.objects.count(), 1)
-        response = self.client.get(reverse("get_csv_signature", args=[p.id]))
+        response = self.client.get(reverse(SignatureRoute.EXPORT, args=[p.id]))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("get_csv_confirmed_signature", args=[p.id]))
+        response = self.client.get(
+            reverse(SignatureRoute.EXPORT, args=[p.id]),
+            data={"confirmed": "true"},
+        )
         self.assertEqual(response.status_code, 200)
         # Org petition
         self.login("max")
@@ -101,15 +108,21 @@ class PetitionViewTest(TestCase):
         )
         if p2 is None:
             return  # Prevent further errors if the petition is None
-        response = self.client.get(reverse("get_csv_signature", args=[p2.id]))
+        response = self.client.get(reverse(SignatureRoute.EXPORT, args=[p2.id]))
         self.assertEqual(response.status_code, 403)
-        response = self.client.get(reverse("get_csv_confirmed_signature", args=[p2.id]))
+        response = self.client.get(
+            reverse(SignatureRoute.EXPORT, args=[p2.id]),
+            data={"confirmed": "true"},
+        )
         self.assertEqual(response.status_code, 403)
         # Ah right, max does not have access rights for that
         self.login("julia")
-        response = self.client.get(reverse("get_csv_signature", args=[p2.id]))
+        response = self.client.get(reverse(SignatureRoute.EXPORT, args=[p2.id]))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("get_csv_confirmed_signature", args=[p2.id]))
+        response = self.client.get(
+            reverse(SignatureRoute.EXPORT, args=[p2.id]),
+            data={"confirmed": "true"},
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_show_signatures_post_deleteOK(self) -> None:
@@ -128,9 +141,9 @@ class PetitionViewTest(TestCase):
             "signature_id": [sid],
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("show_signatures", args=[pid]))
+        self.assertRedirects(response, reverse(SignatureRoute.LIST, args=[pid]))
         self.assertTemplateUsed(response, "signatures/data.html")
         with self.assertRaises(Signature.DoesNotExist):
             Signature.objects.get(pk=sid)
@@ -159,9 +172,9 @@ class PetitionViewTest(TestCase):
             "signature_id": [sid],
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("show_signatures", args=[pid]))
+        self.assertRedirects(response, reverse(SignatureRoute.LIST, args=[pid]))
         self.assertTemplateUsed(response, "signatures/data.html")
         with self.assertRaises(Signature.DoesNotExist):
             Signature.objects.get(pk=sid)
@@ -190,7 +203,7 @@ class PetitionViewTest(TestCase):
             "signature_id": [sid],
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         self.assertTemplateUsed(response, "accounts/dashboard.html")
@@ -223,7 +236,7 @@ class PetitionViewTest(TestCase):
             "signature_id": [sid],
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
         self.assertRedirects(response, reverse(OrgRoute.DASHBOARD, args=[org.slugname]))
         self.assertTemplateUsed(response, "org/dashboard.html")
@@ -257,9 +270,9 @@ class PetitionViewTest(TestCase):
             "signature_id": [sid],
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("show_signatures", args=[pid]))
+        self.assertRedirects(response, reverse(SignatureRoute.LIST, args=[pid]))
         self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
@@ -286,9 +299,9 @@ class PetitionViewTest(TestCase):
             "signature_id": [sid],
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("show_signatures", args=[pid]))
+        self.assertRedirects(response, reverse(SignatureRoute.LIST, args=[pid]))
         self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
@@ -314,9 +327,9 @@ class PetitionViewTest(TestCase):
             "action": "re-send-all",
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("show_signatures", args=[pid]))
+        self.assertRedirects(response, reverse(SignatureRoute.LIST, args=[pid]))
         self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)
@@ -343,9 +356,9 @@ class PetitionViewTest(TestCase):
             "action": "re-send-all",
         }
         response = self.client.post(
-            reverse("show_signatures", args=[pid]), data, follow=True
+            reverse(SignatureRoute.LIST, args=[pid]), data, follow=True
         )
-        self.assertRedirects(response, reverse("show_signatures", args=[pid]))
+        self.assertRedirects(response, reverse(SignatureRoute.LIST, args=[pid]))
         self.assertTemplateUsed(response, "signatures/data.html")
         messages = response.context["messages"]
         self.assertGreaterEqual(len(messages), 1)

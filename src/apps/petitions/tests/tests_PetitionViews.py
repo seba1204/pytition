@@ -7,6 +7,7 @@ from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
 from apps.petitions.models import Petition
 from apps.petitions.routes import PetitionsRoute
+from apps.signatures.routes import SignatureRoute
 
 
 class PetitionViewTest(TestCase):
@@ -63,7 +64,7 @@ class PetitionViewTest(TestCase):
         }
         # First, let's sign the petition
         response = self.client.post(
-            reverse("create_signature", args=[petition.id]), data, follow=True
+            reverse(SignatureRoute.NEW, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
         self.assertContains(

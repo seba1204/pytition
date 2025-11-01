@@ -6,6 +6,7 @@ from apps.consents.routes import ConsentRoute
 from apps.core.tests.utils import add_default_data
 from apps.petitions.models import Petition
 from apps.signatures.models import Signature
+from apps.signatures.routes import SignatureRoute
 
 
 class GoSendConfirmationEmailViewTest(TestCase):
@@ -36,7 +37,7 @@ class GoSendConfirmationEmailViewTest(TestCase):
         if petition is None:
             return
         response = self.client.post(
-            reverse("create_signature", args=[petition.id]), data, follow=True
+            reverse(SignatureRoute.NEW, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()
@@ -69,7 +70,7 @@ class GoSendConfirmationEmailViewTest(TestCase):
         if petition is None:
             return
         response = self.client.post(
-            reverse("create_signature", args=[petition.id]), data, follow=True
+            reverse(SignatureRoute.NEW, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
         signature = Signature.objects.filter(petition=petition).first()

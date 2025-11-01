@@ -60,11 +60,11 @@
             {% endif %}
         {% endblock object_tools %}
         {% if change %}
-            <form action="{% url "get_csv_confirmed_signature" original.id %}">
+            <form action="{% url 'signatures:export' original.id %}?confirmed=true">
                 <input type="submit"
                        value="{% trans "Generate confirmed signatures CSV file" %}">
             </form>
-            <form action="{% url "get_csv_signature" original.id %}">
+            <form action="{% url 'signatures:export' original.id %}">
                 <input type="submit" value="{% trans "Generate ALL-signatures CSV file" %}">
             </form>
             <h2>
