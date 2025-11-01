@@ -19,5 +19,4 @@ class ConsentRoute(StrEnum):
 
     CONFIRM = _NS + "confirm"
     RESEND = _NS + "resend_confirmation_email"
-    # TODO: move it to signatures app
-    SHOW_SYMPA_SUBSCRIBE_BLOC = _NS + "show_sympa_subscribe_bloc"
+    EXPORT = _NS + "export"

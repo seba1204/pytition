@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import json
 from typing import Any
 
@@ -32,8 +33,12 @@ def subscribe_to_newsletter(petition: Any, email: str) -> None:
             data[petition.newsletter_subscribe_http_mailfield] = email
     if petition.newsletter_subscribe_method == "POST":
         requests.post(petition.newsletter_subscribe_http_url, data)
+        # FIXME: there is no error handling here
     elif petition.newsletter_subscribe_method == "GET":
-        requests.get(petition.newsletter_subscribe_http_url, data)
+        with contextlib.suppress(requests.exceptions.RequestException):
+            requests.get(petition.newsletter_subscribe_http_url, params=data)
+        # if server is currently not accessible, we just skip subscription
+        # FIXME: log error on admin panel, so the admin can check failed subscriptions
     elif petition.newsletter_subscribe_method == "MAIL":
         with get_connection(
             host=petition.newsletter_subscribe_mail_smtp_host,

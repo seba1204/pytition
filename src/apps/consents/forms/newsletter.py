@@ -91,6 +91,7 @@ class NewsletterForm(forms.Form):
 
         # When HTTP method is selected, required fields must be present
         method = cast(str | None, data.get("newsletter_subscribe_method"))
+        has_newsletter = bool(data.get("has_newsletter"))
         if method in {"GET", "POST"}:
             # Mailfield is always required for HTTP subscription
             if not data.get("newsletter_subscribe_http_mailfield"):
@@ -114,7 +115,8 @@ class NewsletterForm(forms.Form):
                     ),
                 )
         # When MAIL method is selected, require mail-to fields
-        if method == "MAIL":
+
+        if method == "MAIL" and has_newsletter:
             if not data.get("newsletter_subscribe_mail_to"):
                 self.add_error(
                     "newsletter_subscribe_mail_to",

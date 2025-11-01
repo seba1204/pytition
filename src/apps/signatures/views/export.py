@@ -12,6 +12,10 @@ from apps.signatures.models import Signature
 @login_required
 def export(request: HttpRequest, petition_id: int) -> HttpResponse:
     user = get_session_user(request)
+
+    # Query param :
+    confirmed = request.GET.get("confirmed", "").lower() in ["true", "1", "yes"]
+
     try:
         petition = Petition.objects.get(pk=petition_id)
     except Petition.DoesNotExist:
@@ -30,7 +34,6 @@ def export(request: HttpRequest, petition_id: int) -> HttpResponse:
 
     filename = f"{petition}.csv"
     signatures = Signature.objects.filter(petition=petition)
-    confirmed = request.GET.get("confirmed", "").lower() in ["true", "1", "yes"]
 
     signatures = signatures.filter(confirmed=True) if confirmed else signatures.all()
     response = HttpResponse(content_type="text/csv")

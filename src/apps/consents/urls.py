@@ -21,9 +21,9 @@ ROUTES: dict[ConsentRoute, Route] = {
         "resend/<int:signature_id>",
         CV.resend,
     ),
-    ConsentRoute.SHOW_SYMPA_SUBSCRIBE_BLOC: Route(
-        "<int:petition_id>/show_sympa_subscribe_bloc",
-        CV.show_sympa_subscribe_bloc,
+    ConsentRoute.EXPORT: Route(
+        "<int:petition_id>/export",
+        CV.export,
     ),
 }
 

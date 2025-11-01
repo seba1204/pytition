@@ -9,11 +9,13 @@ from apps.petitions.helpers import petition_from_id
 
 
 # <int:petition_id>/show_sympa_subscribe_bloc
-# Show sympa subscribe bloc to mass subscribe people to newsletter
 @login_required
-def show_sympa_subscribe_bloc(request: HttpRequest, petition_id: int) -> HttpResponse:
+def export(request: HttpRequest, petition_id: int) -> HttpResponse:
     """
-    Show the sympa subscribe bloc for a petition's newsletter.
+    Export consented newsletter subscribers of a petition.
+
+    For now, it returns an HTML bloc that can be copy/pasted into Sympa
+    mass subscription page.
 
     Parameters
     ----------

@@ -146,7 +146,7 @@
         });
 
         $("#show-sympa-mass-subscribe").on("click", function(){
-            $.ajax("{% url "consents:show_sympa_subscribe_bloc" petition.id %}").done(function(data){
+            $.ajax("{% url "consents:export" petition.id %}").done(function(data){
               $("#sympa_content").html(data);
             });
         });
