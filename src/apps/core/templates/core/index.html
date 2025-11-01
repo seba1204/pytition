@@ -17,7 +17,7 @@
       {% endif %}
       {% if user.is_authenticated or settings.ALLOW_REGISTER %}
         <p>
-          <a href="{% url "user_petition_wizard" %}" class="btn btn-primary">{% trans "Create a petition" %}</a>
+          <a href="{% url "petitions:new" %}" class="btn btn-primary">{% trans "Create a petition" %}</a>
         </p>
       {% endif %}
     </div>

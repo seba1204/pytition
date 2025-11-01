@@ -36,13 +36,66 @@ WizardTemplates = {
     "step3": "petitions/new_step3.html",
 }
 
+SESSION_KEY = "wizard_params:petition_creation"
+
 
 # Class Based Controller
 # PATH : subroutes of /wizard
 @method_decorator(login_required, name="dispatch")
 class PetitionCreationWizard(SessionWizardView):
+    def _load_params_from_session_or_get(self) -> None:
+        """Load/merge parameters from the session and query string."""
+        session_data = self.request.session
+        data = dict(session_data.get(SESSION_KEY, {}))
+
+        org = self.request.GET.get("org")
+        tpl = self.request.GET.get("template_id")
+
+        updated = False
+        if org is not None:
+            data["orgslugname"] = org
+            updated = True
+        if tpl and str(tpl).isdigit():
+            data["template_id"] = int(tpl)
+            updated = True
+
+        # If nothing in GET and nothing in session, data remains empty -> “user” mode
+        if updated or SESSION_KEY not in session_data:
+            session_data[SESSION_KEY] = data
+            session_data.modified = True
+
+        # cache on the instance to avoid re-reading the session 50 times
+        self._wizard_params = data
+
+    def _clear_params_session(self) -> None:
+        self.request.session.pop(SESSION_KEY, None)
+        self.request.session.modified = True
+
+    def _orgslugname(self) -> str | None:
+        value = (getattr(self, "_wizard_params", None) or {}).get("orgslugname")
+        if value is not None:
+            return str(value)
+        value = self.kwargs.get("orgslugname")
+        if value is not None:
+            return str(value)
+        return None
+
+    def _template_id(self) -> int | None:
+        value = (getattr(self, "_wizard_params", None) or {}).get("template_id")
+        if value is None:
+            value = self.kwargs.get("template_id")
+        if value is not None and isinstance(value, str) and value.isdigit():
+            return int(value)
+        if isinstance(value, int):
+            return value
+        return None
+
+    def _is_org_petition(self) -> bool:
+        return self._orgslugname() is not None
+
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> Any:
-        if settings.DISABLE_USER_PETITION and "orgslugname" not in self.kwargs:
+        self._load_params_from_session_or_get()
+        if settings.DISABLE_USER_PETITION and not self._is_org_petition():
             messages.error(
                 request, _("Users are not allowed to create their own petitions.")
             )
@@ -54,16 +107,16 @@ class PetitionCreationWizard(SessionWizardView):
 
     def get_form_initial(self, step: str) -> dict[str, Any]:
         template = None
-        org_petition = "orgslugname" in self.kwargs
+        org_petition = self._is_org_petition()
         if org_petition:
-            orgslugname = self.kwargs["orgslugname"]
+            orgslugname = self._orgslugname()
             org = Organization.objects.get(slugname=orgslugname)
         else:
             pytitionuser = get_session_user(self.request)
 
-        # Get the template, if any
-        if "template_id" in self.kwargs:
-            template = PetitionTemplate.objects.get(pk=self.kwargs["template_id"])
+        tpl_id = self._template_id()
+        if tpl_id is not None:
+            template = PetitionTemplate.objects.get(pk=tpl_id)
         elif org_petition:
             template = org.default_template
         else:
@@ -92,104 +145,105 @@ class PetitionCreationWizard(SessionWizardView):
 
     def get_form_kwargs(self, step: str | None = None) -> dict[str, Any]:
         if step == "step1":
-            org_petition = "orgslugname" in self.kwargs
-            if org_petition:
-                orgslugname = self.kwargs["orgslugname"]
-                kwargs = {"orgslugname": orgslugname}
+            if self._is_org_petition():
+                return {"orgslugname": self._orgslugname()}
             else:
                 pytitionuser = get_session_user(self.request)
-                kwargs = {"user_name": pytitionuser.user.username}
-            return kwargs
-        else:
-            return {}
+                return {"user_name": pytitionuser.user.username}
+        return {}
 
     # FIXME: this method is too long, split it into smaller methods
     def done(self, form_list: list[Any], **kwargs: Any) -> HttpResponse:  # noqa
-        org_petition = "orgslugname" in self.kwargs
-        title = self.get_cleaned_data_for_step("step1")["title"]
-        message = self.get_cleaned_data_for_step("step2")["message"]
-        publish = self.get_cleaned_data_for_step("step3")["publish"]
-        template_id = self.get_cleaned_data_for_step("step3")["template_id"]
-        use_template = self.get_cleaned_data_for_step("step3")["use_template"]
-        pytitionuser = get_session_user(self.request)
-        _redirect = self.request.POST.get("redirect", "")
+        try:
+            org_petition = self._is_org_petition()
+            title = self.get_cleaned_data_for_step("step1")["title"]
+            message = self.get_cleaned_data_for_step("step2")["message"]
+            publish = self.get_cleaned_data_for_step("step3")["publish"]
+            template_id = self.get_cleaned_data_for_step("step3")["template_id"]
+            use_template = self.get_cleaned_data_for_step("step3")["use_template"]
+            pytitionuser = get_session_user(self.request)
+            _redirect = self.request.POST.get("redirect", "")
 
-        if org_petition:
-            orgslugname = self.kwargs["orgslugname"]
-            try:
-                org = Organization.objects.get(slugname=orgslugname)
-            except Organization.DoesNotExist:
-                messages.error(self.request, _("Cannot find this organization"))
-                return redirect(AccountsRoute.DASHBOARD)
+            if org_petition:
+                orgslugname = self._orgslugname()
+                try:
+                    org = Organization.objects.get(slugname=orgslugname)
+                except Organization.DoesNotExist:
+                    messages.error(self.request, _("Cannot find this organization"))
+                    return redirect(AccountsRoute.DASHBOARD)
 
-            try:
-                permissions = Permission.objects.get(
-                    organization=org, user=pytitionuser
+                try:
+                    permissions = Permission.objects.get(
+                        organization=org, user=pytitionuser
+                    )
+                except Permission.DoesNotExist:
+                    return redirect(OrgRoute.DASHBOARD, orgslugname)
+
+                if (
+                    pytitionuser in org.members.all()
+                    and permissions.can_create_petitions
+                ):
+                    petition = Petition.objects.create(
+                        title=title, text=message, org=org
+                    )
+                    if use_template:
+                        template = PetitionTemplate.objects.get(pk=template_id)
+                        if template in org.petitiontemplate_set.all():
+                            petition.prepopulate_from_template(
+                                template, exclude_fields=["text"]
+                            )
+                            petition.save()
+                        else:
+                            messages.error(
+                                self.request,
+                                _("This template does not belong to your organization"),
+                            )
+                            return redirect(OrgRoute.DASHBOARD, orgslugname)
+                    if publish:
+                        petition.publish()
+                    if _redirect and _redirect == "1":
+                        return redirect(PetitionsRoute.EDIT, petition.id)
+                    return redirect(OrgRoute.DASHBOARD, orgslugname)
+                else:
+                    messages.error(
+                        self.request,
+                        _(
+                            "You don't have the permission to create a new petition in "
+                            "this Organization"
+                        ),
+                    )
+                    return redirect(OrgRoute.DASHBOARD, orgslugname)
+            else:
+                petition = Petition.objects.create(
+                    title=title, text=message, user=pytitionuser
                 )
-            except Permission.DoesNotExist:
-                return redirect(OrgRoute.DASHBOARD, orgslugname)
-
-            if pytitionuser in org.members.all() and permissions.can_create_petitions:
-                # FIXME I think new here is better than create
-                petition = Petition.objects.create(title=title, text=message, org=org)
                 if use_template:
                     template = PetitionTemplate.objects.get(pk=template_id)
-                    if template in org.petitiontemplate_set.all():
+                    if template in pytitionuser.petitiontemplate_set.all():
                         petition.prepopulate_from_template(
                             template, exclude_fields=["text"]
                         )
                         petition.save()
                     else:
                         messages.error(
-                            self.request,
-                            _("This template does not belong to your organization"),
+                            self.request, _("This template does not belong to you")
                         )
-                        return redirect(OrgRoute.DASHBOARD, orgslugname)
+                        return redirect(AccountsRoute.DASHBOARD)
                 if publish:
                     petition.publish()
                 if _redirect and _redirect == "1":
                     return redirect(PetitionsRoute.EDIT, petition.id)
-                else:
-                    return redirect(OrgRoute.DASHBOARD, orgslugname)
-            else:
-                messages.error(
-                    self.request,
-                    _(
-                        "You don't have the permission to create a new petition in "
-                        "this Organization"
-                    ),
-                )
-                return redirect(OrgRoute.DASHBOARD, orgslugname)
-        else:
-            petition = Petition.objects.create(
-                title=title, text=message, user=pytitionuser
-            )
-            if use_template:
-                template = PetitionTemplate.objects.get(pk=template_id)
-                if template in pytitionuser.petitiontemplate_set.all():
-                    petition.prepopulate_from_template(
-                        template, exclude_fields=["text"]
-                    )
-                    petition.save()
-                else:
-                    messages.error(
-                        self.request, _("This template does not belong to you")
-                    )
-                    return redirect(AccountsRoute.DASHBOARD)
-            if publish:
-                petition.publish()
-            if _redirect and _redirect == "1":
-                return redirect(PetitionsRoute.EDIT, petition.id)
-            else:
                 return redirect(AccountsRoute.DASHBOARD)
+        finally:
+            self._clear_params_session()
 
     def get_context_data(self, form: Any, **kwargs: Any) -> dict[str, Any]:
-        org_petition = "orgslugname" in self.kwargs
+        org_petition = self._is_org_petition()
         context = super().get_context_data(form=form, **kwargs)
         if org_petition:
             base_template = "org/base.html"
             try:
-                org = Organization.objects.get(slugname=self.kwargs["orgslugname"])
+                org = Organization.objects.get(slugname=self._orgslugname())
             except Organization.DoesNotExist:
                 raise Http404(_("Organization does not exist")) from None
         else:

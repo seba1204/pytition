@@ -13,7 +13,7 @@
           {% if petitions %}&nbsp;({{ petitions.count }}){% endif %}
         </h4>
         <a class="btn btn-outline-primary btn-sm"
-           href="{% url "user_petition_wizard" %}"
+           href="{% url "petitions:new" %}"
            data-toggle="tooltip"
            title="{% trans "Create a new petition" %}">{% trans "New petition" %}</a>
       </div>

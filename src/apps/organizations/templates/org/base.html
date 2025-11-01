@@ -18,7 +18,7 @@
                 <span class="oi oi-clipboard"></span> <a href="{% url "accounts:dashboard" %}">{% trans "Petitions" %}</a> ({{ org.petition_set.count }})
               </h4>
               <a class="btn btn-outline-primary btn-sm"
-                 href="{% url "org_petition_wizard" org.slugname %}">{% trans "New petition" %}</a>
+                 href="{% url "petitions:new" %}?org={{ org.slugname }}">{% trans "New petition" %}</a>
             </div>
           </div>
           {% include "org/member_list.html" with org=org user_permissions=user_permissions %}

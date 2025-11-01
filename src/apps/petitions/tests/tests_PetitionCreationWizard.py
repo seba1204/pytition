@@ -1,3 +1,5 @@
+from urllib.parse import quote
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase, override_settings
 from django.urls import reverse
@@ -5,6 +7,7 @@ from django.urls import reverse
 from apps.accounts.models import Permission, PytitionUser
 from apps.accounts.routes import AccountsRoute
 from apps.organizations.models import Organization
+from apps.petitions.routes import PetitionsRoute
 
 users = ["julia", "john", "max", "sarah"]
 orgs = ["RAP", "Greenpeace", "Attac", "Les Amis de la Terre"]
@@ -39,7 +42,8 @@ class PetitionCreateWizardViewTest(TestCase):
                 permission.can_modify_permissions = True
                 permission.save()
 
-        # give julia can_modify_petitions permission on "Les Amis de la Terre" organization
+        # give julia can_modify_petitions permission on "Les Amis de la Terre"
+        # organization
         user_obj = PytitionUser.objects.get(user__username="julia")
         org_obj = Organization.objects.get(name="Les Amis de la Terre")
         perm = Permission.objects.get(organization=org_obj, user=user_obj)
@@ -62,36 +66,36 @@ class PetitionCreateWizardViewTest(TestCase):
         self.logout()
         org = Organization.objects.get(name="RAP")
         response = self.client.get(
-            reverse("org_petition_wizard", args=[org.slugname]), follow=True
+            reverse(PetitionsRoute.NEW), data={"org": org.slugname}, follow=True
         )
-        self.assertRedirects(
-            response,
-            reverse("login")
-            + "?next="
-            + reverse("org_petition_wizard", args=[org.slugname]),
-        )
+
+        target_url = reverse(PetitionsRoute.NEW) + f"?org={org.slugname}"
+        login_url = reverse("login") + "?next=" + quote(target_url)
+        self.assertRedirects(response, login_url)
         self.assertTemplateUsed(response, "registration/login.html")
         self.assertTemplateUsed(response, "layouts/base.html")
 
     def test_call_page1_ok(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
-        response = self.client.get(reverse("org_petition_wizard", args=[org.slugname]))
+        response = self.client.get(
+            reverse(PetitionsRoute.NEW), data={"org": org.slugname}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "org/base.html")
 
     def test_call_page2_ok(self) -> None:
         self.login("julia")
-        org = Organization.objects.get(name="Les Amis de la Terre")
-        response = self.client.get(reverse("user_petition_wizard"))
+        _org = Organization.objects.get(name="Les Amis de la Terre")
+        response = self.client.get(reverse(PetitionsRoute.NEW))
         self.assertEqual(response.status_code, 200)
 
     @override_settings(DISABLE_USER_PETITION=True)
     def test_user_petition_disabled(self) -> None:
         self.login("julia")
-        response = self.client.get(reverse("user_petition_wizard"))
+        response = self.client.get(reverse(PetitionsRoute.NEW))
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
-        response = self.client.get(reverse("user_petition_wizard"), follow=True)
+        response = self.client.get(reverse(PetitionsRoute.NEW), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(
             response, "Users are not allowed to create their own petitions."
@@ -101,7 +105,9 @@ class PetitionCreateWizardViewTest(TestCase):
     def test_org_petition_still_working(self) -> None:
         self.login("julia")
         org = Organization.objects.get(name="Les Amis de la Terre")
-        response = self.client.get(reverse("org_petition_wizard", args=[org.slugname]))
+        response = self.client.get(
+            reverse(PetitionsRoute.NEW), data={"org": org.slugname}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(
             response, "Users are not allowed to create their own petitions."

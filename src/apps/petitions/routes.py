@@ -38,3 +38,4 @@ class PetitionsRoute(StrEnum):
     DEL_SLUG = _NS + "del_slug"  # old del_slug
     TRANSFER = _NS + "transfer"  # old transfer_petition
     ALL_PETITIONS = _NS + "all"  # old all_petitions
+    NEW = _NS + "new"

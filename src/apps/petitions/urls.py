@@ -15,6 +15,7 @@ from django.urls import URLPattern
 from django.views.generic import RedirectView
 
 from apps.core.route import Route, build_urlpatterns, validate_bijection
+from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.petitions.routes import PetitionsRoute
 
@@ -27,19 +28,22 @@ PID = "<int:petition_id>"
 # --------------------------------------------------------------------------- #
 
 ROUTES: dict[PetitionsRoute, Route] = {
-    PetitionsRoute.DETAIL: Route(f"{PID}/", PV.detail),
-    PetitionsRoute.DELETE: Route(f"{PID}/delete", PV.delete),
-    PetitionsRoute.PUBLISH: Route(f"{PID}/publish", PV.publish),
-    PetitionsRoute.UNPUBLISH: Route(f"{PID}/unpublish", PV.unpublish),
-    PetitionsRoute.EDIT: Route(f"{PID}/edit", PV.edit),
-    PetitionsRoute.ADD_SLUG: Route(f"{PID}/slug/add", PV.add_slug),
-    PetitionsRoute.DEL_SLUG: Route(f"{PID}/slug/del", PV.del_slug),
-    PetitionsRoute.TRANSFER: Route(f"{PID}/transfer", PV.transfer),
+    # collections
     PetitionsRoute.ALL_PETITIONS: Route(
-        "all_petitions",
-        # redirect to index view
-        RedirectView.as_view(pattern_name="index", permanent=False),
+        "all", RedirectView.as_view(pattern_name="index", permanent=False)
     ),
+    PetitionsRoute.NEW: Route(
+        "new/", PF.PetitionCreationWizard.as_view(PF.WizardForms)
+    ),
+    # items
+    PetitionsRoute.DELETE: Route(f"{PID}/delete/", PV.delete),
+    PetitionsRoute.PUBLISH: Route(f"{PID}/publish/", PV.publish),
+    PetitionsRoute.UNPUBLISH: Route(f"{PID}/unpublish/", PV.unpublish),
+    PetitionsRoute.EDIT: Route(f"{PID}/edit/", PV.edit),
+    PetitionsRoute.ADD_SLUG: Route(f"{PID}/slug/add/", PV.add_slug),
+    PetitionsRoute.DEL_SLUG: Route(f"{PID}/slug/del/", PV.del_slug),
+    PetitionsRoute.TRANSFER: Route(f"{PID}/transfer/", PV.transfer),
+    PetitionsRoute.DETAIL: Route(f"{PID}/", PV.detail),
 }
 
 # Fail fast at import time (CI-friendly)

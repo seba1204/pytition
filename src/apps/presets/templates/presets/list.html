@@ -1,5 +1,11 @@
 {% load i18n %}
 {% load static %}
+{% url "petitions:new" as new_url %}
+{% if owner.kind == 'org' %}
+  {% querystring template_id=template.id org=org.slugname as query %}
+{% else %}
+  {% querystring template_id=template.id as query %}
+{% endif %}
 <ul class="dashboard-org-list">
   {% for template in templates %}
     <li class="d-flex align-items-center justify-content-between"
@@ -26,11 +32,13 @@
            data-toggle="tooltip"
            title="{% trans "Edit template" %}"
            href="{% url "presets:edit" template.id %}"><span class="oi oi-pencil"></span></a>
-        <a {% if owner.kind == "org" %} href="{% url "org_petition_wizard_from_template" org.slugname template.id %}" {% else %} href="{% url "user_petition_wizard_from_template" template.id %}" {% endif %}
+        <a href="{{ new_url }}?template_id={{ template.id }}{% if owner.kind == 'org' %}&amp;org={{ org.slugname|urlencode }}{% endif %}"
            class="btn btn-link text-dark"
            data-action="template-instanciate"
            data-toggle="tooltip"
-           title="{% trans "Create a new petition using this template" %}"><span class="oi oi-clipboard"></span></a>
+           title="{% trans "Create a new petition using this template" %}">
+          <span class="oi oi-clipboard"></span>
+        </a>
         <span data-toggle="modal"
               data-target="#template_delete_modal_{{ template.id }}">
           <button class="btn btn-link text-dark"
@@ -53,7 +61,7 @@
             <h5 class="modal-title"
                 id="template_delete_modal_label_{{ template.id }}">{% trans "Delete this template?" %}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">×</span>
             </button>
           </div>
           <div class="modal-body">
