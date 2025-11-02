@@ -1,5 +1,3 @@
-from .add_slug import add_slug
-from .del_slug import del_slug
 from .delete import delete
 from .detail import detail
 from .edit import edit
@@ -9,8 +7,6 @@ from .transfer import transfer
 from .unpublish import unpublish
 
 __all__ = [
-    "add_slug",
-    "del_slug",
     "delete",
     "detail",
     "edit",

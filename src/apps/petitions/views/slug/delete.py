@@ -17,7 +17,7 @@ from apps.petitions.routes import PetitionsRoute
 # /<int:petition_id>/del_slug
 # Remove a slug from a petition
 @login_required
-def del_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
+def delete(request: HttpRequest, petition_id: int) -> HttpResponse:
     pytitionuser = get_session_user(request)
     petition: Petition
     try:

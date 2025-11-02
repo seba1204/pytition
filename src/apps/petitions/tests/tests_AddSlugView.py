@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 from apps.accounts.models import PytitionUser
 from apps.core.tests.utils import add_default_data
-from apps.petitions.routes import PetitionsRoute
+from apps.petitions.routes import PetitionsRoute, PetitionsSlugRoute
 
 
 class AddSlugViewTest(TestCase):
@@ -35,7 +35,7 @@ class AddSlugViewTest(TestCase):
         }
         previous_slug_count = petition.slugmodel_set.count()
         response = self.client.post(
-            reverse(PetitionsRoute.ADD_SLUG, args=[petition.id]), data, follow=True
+            reverse(PetitionsSlugRoute.ADD, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(
             response,
@@ -57,7 +57,7 @@ class AddSlugViewTest(TestCase):
         previous_slug_count = petition.slugmodel_set.count()
         # first time slug insertion
         response = self.client.post(
-            reverse(PetitionsRoute.ADD_SLUG, args=[petition.id]), data, follow=True
+            reverse(PetitionsSlugRoute.ADD, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(
             response,
@@ -71,7 +71,7 @@ class AddSlugViewTest(TestCase):
         # second time slug insertion (should fail)
         with self.assertRaises(ValueError):
             response = self.client.post(
-                reverse(PetitionsRoute.ADD_SLUG, args=[petition.id]), data, follow=True
+                reverse(PetitionsSlugRoute.ADD, args=[petition.id]), data, follow=True
             )
             self.assertRedirects(
                 response,

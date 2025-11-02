@@ -22,8 +22,6 @@ class PetitionsRoute(StrEnum):
     PUBLISH = _NS + "publish"  # old petition_publish
     UNPUBLISH = _NS + "unpublish"  # old petition_unpublish
     EDIT = _NS + "edit"  # old edit_petition
-    ADD_SLUG = _NS + "add_slug"  # old add_new_slug
-    DEL_SLUG = _NS + "del_slug"  # old del_slug
     TRANSFER = _NS + "transfer"  # old transfer_petition
     ALL_PETITIONS = _NS + "all"  # old all_petitions
     NEW = _NS + "new"

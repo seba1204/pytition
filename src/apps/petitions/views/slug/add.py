@@ -16,7 +16,7 @@ from apps.petitions.routes import PetitionsRoute
 # /<int:petition_id>/add_new_slug
 # Add a new slug for a petition
 @login_required
-def add_slug(request: HttpRequest, petition_id: int) -> HttpResponse:
+def add(request: HttpRequest, petition_id: int) -> HttpResponse:
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)

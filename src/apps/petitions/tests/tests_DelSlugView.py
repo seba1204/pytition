@@ -4,7 +4,7 @@ from django.urls import reverse
 from apps.accounts.models import Permission, PytitionUser
 from apps.core.tests.utils import add_default_data
 from apps.petitions.models import Petition
-from apps.petitions.routes import PetitionsRoute
+from apps.petitions.routes import PetitionsRoute, PetitionsSlugRoute
 
 
 class DelSlugViewTest(TestCase):
@@ -36,7 +36,7 @@ class DelSlugViewTest(TestCase):
         if slug is None:
             return
         response = self.client.get(
-            reverse(PetitionsRoute.DEL_SLUG, kwargs={"petition_id": petition.id})
+            reverse(PetitionsSlugRoute.DELETE, kwargs={"petition_id": petition.id})
             + "?slugid="
             + str(slug.id),
             follow=True,

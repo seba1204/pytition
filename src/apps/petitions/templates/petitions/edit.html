@@ -3,413 +3,399 @@
 {% load static %}
 {% load vendor_static %}
 {% block media %}
-    {{ block.super }}
-    {{ content_form.media }}
-    {{ email_form.media }}
-    {{ newsletter_form.media }}
-    {{ social_network_form.media }}
-    {{ style_form.media }}
+  {{ block.super }}
+  {{ content_form.media }}
+  {{ email_form.media }}
+  {{ newsletter_form.media }}
+  {{ social_network_form.media }}
+  {{ style_form.media }}
 {% endblock media %}
 {% block extra_css %}
-    {{ block.super }}
-    <style>
+  {{ block.super }}
+  <style>
     .custom-switch ~ .invalid-feedback {
         display: block;
     }
-    </style>
+  </style>
 {% endblock extra_css %}
 {% comment %}
 # FIXME: Don't forget to make sure form is submitted if something is modified and user changed tab.
 {% endcomment %}
 {% block main_title %}
-    {% trans "Petition settings" %}
+  {% trans "Petition settings" %}
 {% endblock main_title %}
 {% block edit_content %}
-    {% if not is_template %}
-        <div data-petition-id="{{ petition.id }}"
-             data-petition-unpublish="{% url "petitions:unpublish" petition.id %}"
-             data-petition-publish="{% url "petitions:publish" petition.id %}"
-             class="petition-publish-switch mb-4 custom-control custom-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}"
-             data-action="publish">
-            <input type="checkbox"
-                   class="custom-control-input"
-                   name="petition_published_{{ petition.id }}"
-                   id="petition_published_{{ petition.id }}"
-                   {% if petition.published %}checked{% endif %}>
-            <label class="custom-control-label"
-                   for="petition_published_{{ petition.id }}">
-                {% if not petition.published %}
-                    {% trans "Not published" %}
-                {% else %}
-                    {% trans "Published" %}
-                {% endif %}
-            </label>
-        </div>
-    {% endif %}
-    <div class="list-group list-group-horizontal mb-5"
-         id="list-tab"
-         role="tablist">
-        <a href="#content_form"
-           class="list-group-item list-group-item-info list-group-item-action active"
-           data-toggle="list"
-           aria-controls="content_form"
-           role="tab"><span class="oi oi-clipboard" aria-current="true"></span> {% trans "Content" %}</a>
-        <a href="#style_form"
-           class="list-group-item list-group-item-info list-group-item-action"
-           data-toggle="list"
-           aria-controls="style_form"
-           role="tab"><span class="oi oi-brush"></span> {% trans "Style & Look" %}</a>
-        <a href="#social_network_form"
-           class="list-group-item list-group-item-info list-group-item-action"
-           data-toggle="list"
-           aria-controls="social_network_form"
-           role="tab"><span class="oi oi-share-boxed"></span> {% trans "Social Networks" %}</a>
-        <a href="#email_form"
-           class="list-group-item list-group-item-info list-group-item-action"
-           data-toggle="list"
-           aria-controls="email_form"
-           role="tab"><span class="oi oi-envelope-closed"></span> {% trans "E-mail setup" %}</a>
-        <a href="#newsletter_form"
-           class="list-group-item list-group-item-info list-group-item-action"
-           data-toggle="list"
-           aria-controls="newsletter_form"
-           role="tab"><span class="oi oi-rss"></span> {% trans "Newsletter setup" %}</a>
-        <a href="#preview"
-           class="list-group-item list-group-item-info list-group-item-action"
-           data-toggle="list"
-           aria-controls="preview"
-           role="tab"><span class="oi oi-clipboard"></span> {% trans "Preview petition" %}</a>
+  {% if not is_template %}
+    <div data-petition-id="{{ petition.id }}"
+         data-petition-unpublish="{% url "petitions:unpublish" petition.id %}"
+         data-petition-publish="{% url "petitions:publish" petition.id %}"
+         class="petition-publish-switch mb-4 custom-control custom-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}"
+         data-action="publish">
+      <input type="checkbox"
+             class="custom-control-input"
+             name="petition_published_{{ petition.id }}"
+             id="petition_published_{{ petition.id }}"
+             {% if petition.published %}checked{% endif %}>
+      <label class="custom-control-label"
+             for="petition_published_{{ petition.id }}">
+        {% if not petition.published %}
+          {% trans "Not published" %}
+        {% else %}
+          {% trans "Published" %}
+        {% endif %}
+      </label>
     </div>
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active"
-             id="content_form"
-             role="tabpanel"
-             aria-labelledby="list-content-form-list">
-            <form method="post" id="form_content">
-                {% csrf_token %}
-                {% include "ui/forms/bs4.html" with form=content_form %}
-                <button name="content_form_submitted"
-                        class="btn btn-primary"
-                        value="yes"
-                        type="submit">{% trans "Save" %}</button>
-            </form>
+  {% endif %}
+  <div class="list-group list-group-horizontal mb-5"
+       id="list-tab"
+       role="tablist">
+    <a href="#content_form"
+       class="list-group-item list-group-item-info list-group-item-action active"
+       data-toggle="list"
+       aria-controls="content_form"
+       role="tab"><span class="oi oi-clipboard" aria-current="true"></span> {% trans "Content" %}</a>
+    <a href="#style_form"
+       class="list-group-item list-group-item-info list-group-item-action"
+       data-toggle="list"
+       aria-controls="style_form"
+       role="tab"><span class="oi oi-brush"></span> {% trans "Style & Look" %}</a>
+    <a href="#social_network_form"
+       class="list-group-item list-group-item-info list-group-item-action"
+       data-toggle="list"
+       aria-controls="social_network_form"
+       role="tab"><span class="oi oi-share-boxed"></span> {% trans "Social Networks" %}</a>
+    <a href="#email_form"
+       class="list-group-item list-group-item-info list-group-item-action"
+       data-toggle="list"
+       aria-controls="email_form"
+       role="tab"><span class="oi oi-envelope-closed"></span> {% trans "E-mail setup" %}</a>
+    <a href="#newsletter_form"
+       class="list-group-item list-group-item-info list-group-item-action"
+       data-toggle="list"
+       aria-controls="newsletter_form"
+       role="tab"><span class="oi oi-rss"></span> {% trans "Newsletter setup" %}</a>
+    <a href="#preview"
+       class="list-group-item list-group-item-info list-group-item-action"
+       data-toggle="list"
+       aria-controls="preview"
+       role="tab"><span class="oi oi-clipboard"></span> {% trans "Preview petition" %}</a>
+  </div>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active"
+         id="content_form"
+         role="tabpanel"
+         aria-labelledby="list-content-form-list">
+      <form method="post" id="form_content">
+        {% csrf_token %}
+        {% include "ui/forms/bs4.html" with form=content_form %}
+        <button name="content_form_submitted"
+                class="btn btn-primary"
+                value="yes"
+                type="submit">{% trans "Save" %}</button>
+      </form>
+    </div>
+    <div class="tab-pane fade"
+         id="social_network_form"
+         role="tabpanel"
+         aria-labelledby="list-social-network-form-list">
+      <form method="post" id="form_sn" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group row">
+          <label for="id_twitter_description"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Twitter description" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <input type="text"
+                   name="twitter_description"
+                   maxlength="200"
+                   class="is-valid form-control"
+                   id="id_twitter_description"
+                   {% if petition.twitter_description %}value="{{ petition.twitter_description }}"{% endif %}>
+          </div>
         </div>
-        <div class="tab-pane fade"
-             id="social_network_form"
-             role="tabpanel"
-             aria-labelledby="list-social-network-form-list">
-            <form method="post" id="form_sn" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group row">
-                    <label for="id_twitter_description"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Twitter description" %}</label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <input type="text"
-                               name="twitter_description"
-                               maxlength="200"
-                               class="is-valid form-control"
-                               id="id_twitter_description"
-                               {% if petition.twitter_description %}value="{{ petition.twitter_description }}"{% endif %}>
-                    </div>
+        <div class="form-group row">
+          <label for="id_org_twitter_handle"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Org twitter handle" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <input type="text"
+                   name="org_twitter_handle"
+                   maxlength="20"
+                   class="is-valid form-control"
+                   id="id_org_twitter_handle"
+                   {% if petition.org_twitter_handle %}value="{{ petition.org_twitter_handle }}"{% endif %}>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="id_has_email_share_button"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable email share button?" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="custom-control custom-switch">
+              <input type="checkbox"
+                     name="has_email_share_button"
+                     class="is-valid custom-control-input"
+                     id="id_has_email_share_button"
+                     {% if petition.has_email_share_button %}checked{% endif %}>
+              <label class="custom-control-label" for="id_has_email_share_button">{% trans "Enable email share button?" %}</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="id_has_facebook_share_button"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Facebook share button?" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="custom-control custom-switch">
+              <input type="checkbox"
+                     name="has_facebook_share_button"
+                     class="is-valid custom-control-input"
+                     id="id_has_facebook_share_button"
+                     {% if petition.has_facebook_share_button %}checked{% endif %}>
+              <label class="custom-control-label" for="id_has_facebook_share_button">
+                {% trans "Enable Facebook share button?" %}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="id_has_tumblr_share_button"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Tumblr share button?" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="custom-control custom-switch">
+              <input type="checkbox"
+                     name="has_tumblr_share_button"
+                     class="is-valid custom-control-input"
+                     id="id_has_tumblr_share_button"
+                     {% if petition.has_tumblr_share_button %}checked{% endif %}>
+              <label class="custom-control-label" for="id_has_tumblr_share_button">{% trans "Enable Tumblr share button?" %}</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="id_has_linkedin_share_button"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable LinkedIn share button?" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="custom-control custom-switch">
+              <input type="checkbox"
+                     name="has_linkedin_share_button"
+                     class="is-valid custom-control-input"
+                     id="id_has_linkedin_share_button"
+                     {% if petition.has_linkedin_share_button %}checked{% endif %}>
+              <label class="custom-control-label" for="id_has_linkedin_share_button">
+                {% trans "Enable LinkedIn share button?" %}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="id_has_twitter_share_button"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Twitter share button?" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="custom-control custom-switch">
+              <input type="checkbox"
+                     name="has_twitter_share_button"
+                     class="is-valid custom-control-input"
+                     id="id_has_twitter_share_button"
+                     {% if petition.has_twitter_share_button %}checked{% endif %}>
+              <label class="custom-control-label" for="id_has_twitter_share_button">
+                {% trans "Enable Twitter share button?" %}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="id_has_mastodon_share_button"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Mastodon share button?" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="custom-control custom-switch">
+              <input type="checkbox"
+                     name="has_mastodon_share_button"
+                     class="is-valid custom-control-input"
+                     id="id_has_mastodon_share_button"
+                     {% if petition.has_mastodon_share_button %}checked{% endif %}>
+              <label class="custom-control-label" for="id_has_mastodon_share_button">
+                {% trans "Enable Mastodon share button?" %}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="id_has_whatsapp_share_button"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Whatsapp share button?" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="custom-control custom-switch">
+              <input type="checkbox"
+                     name="has_whatsapp_share_button"
+                     class="is-valid custom-control-input"
+                     id="id_has_whatsapp_share_button"
+                     {% if petition.has_whatsapp_share_button %}checked{% endif %}>
+              <label class="custom-control-label" for="id_has_whatsapp_share_button">
+                {% trans "Enable Whatsapp share button?" %}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="input-group">
+            <input type="checkbox"
+                   name="remove_twitter_image"
+                   id="remove_twitter_image"
+                   hidden>
+            <label for="inputGroupFileAddon01"
+                   class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Twitter image" %}</label>
+            <div class="input-group-prepend">
+              <a class="input-group-text" id="inputGroupFileAddon01">{% trans "Upload" %}</a>
+            </div>
+            <div class="custom-file">
+              <input type="file"
+                     class="custom-file-input"
+                     id="id_twitter_image"
+                     aria-describedby="inputGroupFileAddon01"
+                     name="twitter_image">
+              <label class="custom-file-label" for="id_twitter_image">{% trans "Choose file" %}</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="img_preview" class="col-sm-12 col-md-3 col-lg-2 col-form-label"></label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="card"
+                 id="twitter_img_card"
+                 style="width: 18rem"
+                 {% if not petition.twitter_image %}hidden{% endif %}>
+              <div class="card-header">{% trans "Image" %}</div>
+              <div class="card-body mx-auto text-center">
+                <div class="card-text">
+                  {% if petition.twitter_image %}
+                    <img class="img-thumbnail img-fluid"
+                         alt="uploaded image preview"
+                         src="{{ petition.twitter_image }}"
+                         style="max-width: 200px;
+                                max-height: 200px"
+                         id="img_preview" />
+                  {% else %}
+                    <img class="img-thumbnail img-fluid"
+                         alt="cloud clipart"
+                         src="{% vendor_static "open-iconic" "_zip/open-iconic-1.1.1/png/cloud-upload-8x.png" %}"
+                         style="max-width: 200px;
+                                max-height: 200px"
+                         id="img_preview" />
+                  {% endif %}
                 </div>
-                <div class="form-group row">
-                    <label for="id_org_twitter_handle"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Org twitter handle" %}</label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <input type="text"
-                               name="org_twitter_handle"
-                               maxlength="20"
-                               class="is-valid form-control"
-                               id="id_org_twitter_handle"
-                               {% if petition.org_twitter_handle %}value="{{ petition.org_twitter_handle }}"{% endif %}>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="id_has_email_share_button"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">
-                        {% trans "Enable email share button?" %}
-                    </label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox"
-                                   name="has_email_share_button"
-                                   class="is-valid custom-control-input"
-                                   id="id_has_email_share_button"
-                                   {% if petition.has_email_share_button %}checked{% endif %}>
-                            <label class="custom-control-label" for="id_has_email_share_button">{% trans "Enable email share button?" %}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="id_has_facebook_share_button"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">
-                        {% trans "Enable Facebook share button?" %}
-                    </label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox"
-                                   name="has_facebook_share_button"
-                                   class="is-valid custom-control-input"
-                                   id="id_has_facebook_share_button"
-                                   {% if petition.has_facebook_share_button %}checked{% endif %}>
-                            <label class="custom-control-label" for="id_has_facebook_share_button">
-                                {% trans "Enable Facebook share button?" %}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="id_has_tumblr_share_button"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">
-                        {% trans "Enable Tumblr share button?" %}
-                    </label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox"
-                                   name="has_tumblr_share_button"
-                                   class="is-valid custom-control-input"
-                                   id="id_has_tumblr_share_button"
-                                   {% if petition.has_tumblr_share_button %}checked{% endif %}>
-                            <label class="custom-control-label" for="id_has_tumblr_share_button">{% trans "Enable Tumblr share button?" %}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="id_has_linkedin_share_button"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">
-                        {% trans "Enable LinkedIn share button?" %}
-                    </label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox"
-                                   name="has_linkedin_share_button"
-                                   class="is-valid custom-control-input"
-                                   id="id_has_linkedin_share_button"
-                                   {% if petition.has_linkedin_share_button %}checked{% endif %}>
-                            <label class="custom-control-label" for="id_has_linkedin_share_button">
-                                {% trans "Enable LinkedIn share button?" %}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="id_has_twitter_share_button"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">
-                        {% trans "Enable Twitter share button?" %}
-                    </label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox"
-                                   name="has_twitter_share_button"
-                                   class="is-valid custom-control-input"
-                                   id="id_has_twitter_share_button"
-                                   {% if petition.has_twitter_share_button %}checked{% endif %}>
-                            <label class="custom-control-label" for="id_has_twitter_share_button">
-                                {% trans "Enable Twitter share button?" %}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="id_has_mastodon_share_button"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">
-                        {% trans "Enable Mastodon share button?" %}
-                    </label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox"
-                                   name="has_mastodon_share_button"
-                                   class="is-valid custom-control-input"
-                                   id="id_has_mastodon_share_button"
-                                   {% if petition.has_mastodon_share_button %}checked{% endif %}>
-                            <label class="custom-control-label" for="id_has_mastodon_share_button">
-                                {% trans "Enable Mastodon share button?" %}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="id_has_whatsapp_share_button"
-                           class="col-sm-12 col-md-3 col-lg-2 col-form-label">
-                        {% trans "Enable Whatsapp share button?" %}
-                    </label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox"
-                                   name="has_whatsapp_share_button"
-                                   class="is-valid custom-control-input"
-                                   id="id_has_whatsapp_share_button"
-                                   {% if petition.has_whatsapp_share_button %}checked{% endif %}>
-                            <label class="custom-control-label" for="id_has_whatsapp_share_button">
-                                {% trans "Enable Whatsapp share button?" %}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="input-group">
-                        <input type="checkbox"
-                               name="remove_twitter_image"
-                               id="remove_twitter_image"
-                               hidden>
-                        <label for="inputGroupFileAddon01"
-                               class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Twitter image" %}</label>
-                        <div class="input-group-prepend">
-                            <a class="input-group-text" id="inputGroupFileAddon01">{% trans "Upload" %}</a>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file"
-                                   class="custom-file-input"
-                                   id="id_twitter_image"
-                                   aria-describedby="inputGroupFileAddon01"
-                                   name="twitter_image">
-                            <label class="custom-file-label" for="id_twitter_image">{% trans "Choose file" %}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="img_preview" class="col-sm-12 col-md-3 col-lg-2 col-form-label"></label>
-                    <div class="col-sm-12 col-md-9 col-lg-10">
-                        <div class="card"
-                             id="twitter_img_card"
-                             style="width: 18rem"
-                             {% if not petition.twitter_image %}hidden{% endif %}>
-                            <div class="card-header">{% trans "Image" %}</div>
-                            <div class="card-body mx-auto text-center">
-                                <div class="card-text">
-                                    {% if petition.twitter_image %}
-                                        <img class="img-thumbnail img-fluid"
-                                             alt="uploaded image preview"
-                                             src="{{ petition.twitter_image }}"
-                                             style="max-width: 200px;
-                                                    max-height: 200px"
-                                             id="img_preview" />
-                                    {% else %}
-                                        <img class="img-thumbnail img-fluid"
-                                             alt="cloud clipart"
-                                             src="{% vendor_static "open-iconic" "_zip/open-iconic-1.1.1/png/cloud-upload-8x.png" %}"
-                                             style="max-width: 200px;
-                                                    max-height: 200px"
-                                             id="img_preview" />
-                                    {% endif %}
-                                </div>
-                                <br />
-                                <button type="button" class="btn btn-danger" id="twitter_img_remove_btn">
-                                    <span class="oi oi-trash">{% trans "Remove image" %}</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button name="social_network_form_submitted"
-                        class="btn btn-primary"
-                        value="yes"
-                        type="submit">{% trans "Save" %}</button>
-            </form>
-            <p>
-                <div class="alert alert-info">
-                    {% blocktrans %}
+                <br />
+                <button type="button" class="btn btn-danger" id="twitter_img_remove_btn">
+                  <span class="oi oi-trash">{% trans "Remove image" %}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button name="social_network_form_submitted"
+                class="btn btn-primary"
+                value="yes"
+                type="submit">{% trans "Save" %}</button>
+      </form>
+      <p>
+        <div class="alert alert-info">
+          {% blocktrans %}
                 A permlink (permanent link) is what allows you to share your petition with a nice link
                 containing a meaningful small title instead of a number.
                 With a permlink your petition can be accessible via a link like:
             {% endblocktrans %}
-                    <b>
-                        {{ example_url }}
-                    </b>
-                </div>
-                <form action="{% url "petitions:add_slug" petition.id %}"
-                      method="post"
-                      class="form-inline">
-                    {% csrf_token %}
-                    <table class="table table-striped" id="slugTable">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>{% trans "Permlinks" %}</th>
-                                <th>{% trans "Actions" %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for slug in petition.slugmodel_set.all %}
-                                <tr>
-                                    <td>
-                                        {{ slug_prefix }}/<b>{{ slug }}</b>
-                                    </td>
-                                    <td data-slugid="{{ slug.id }}">
-                                        <input type="button"
-                                               class="btn btn-danger"
-                                               data-action="slugDelete"
-                                               value="{% trans "Delete" %}">
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </form>
-            </p>
-            <button class="btn btn-success" id="addSlug">
-                <span class="oi oi-plus"></span>
-            </button>
+          <b>
+            {{ example_url }}
+          </b>
         </div>
-        <div class="tab-pane fade"
-             id="style_form"
-             role="tabpanel"
-             aria-labelledby="style-form-list">
-            <form method="post" id="form_style">
-                {% csrf_token %}
-                {% include "ui/forms/bs4.html" with form=style_form %}
-                <button name="style_form_submitted"
-                        class="btn btn-primary"
-                        value="yes"
-                        type="submit">{% trans "Save" %}</button>
-            </form>
-        </div>
-        <div class="tab-pane fade"
-             id="email_form"
-             role="tabpanel"
-             aria-labelledby="list-email-form-list">
-            <form method="post" id="form_email">
-                {% csrf_token %}
-                {% include "ui/forms/bs4.html" with form=email_form %}
-                <button name="email_form_submitted"
-                        class="btn btn-primary"
-                        value="yes"
-                        type="submit">{% trans "Save" %}</button>
-            </form>
-        </div>
-        <div class="tab-pane fade"
-             id="newsletter_form"
-             role="tabpanel"
-             aria-labelledby="list-newsletter-form-list">
-            <form method="post" id="form_newsletter">
-                {% csrf_token %}
-                {% include "ui/forms/bs4.html" with form=newsletter_form %}
-                <button name="newsletter_form_submitted"
-                        class="btn btn-primary"
-                        value="yes"
-                        type="submit">{% trans "Save" %}</button>
-            </form>
-        </div>
-        <div class="tab-pane fade"
-             id="preview"
-             role="tabpanel"
-             aria-labelledby="list-preview-list"
-             data-src="{{ petition.url }}">
-            <div class="alert alert-warning" role="alert">
-                {% blocktrans %}
+        <form action="{% url "petitions:slug:add" petition.id %}"
+              method="post"
+              class="form-inline">
+          {% csrf_token %}
+          <table class="table table-striped" id="slugTable">
+            <thead class="thead-light">
+              <tr>
+                <th>{% trans "Permlinks" %}</th>
+                <th>{% trans "Actions" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for slug in petition.slugmodel_set.all %}
+                <tr>
+                  <td>
+                    {{ slug_prefix }}/<b>{{ slug }}</b>
+                  </td>
+                  <td data-slugid="{{ slug.id }}">
+                    <input type="button"
+                           class="btn btn-danger"
+                           data-action="slugDelete"
+                           value="{% trans "Delete" %}">
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+      </p>
+      <button class="btn btn-success" id="addSlug">
+        <span class="oi oi-plus"></span>
+      </button>
+    </div>
+    <div class="tab-pane fade"
+         id="style_form"
+         role="tabpanel"
+         aria-labelledby="style-form-list">
+      <form method="post" id="form_style">
+        {% csrf_token %}
+        {% include "ui/forms/bs4.html" with form=style_form %}
+        <button name="style_form_submitted"
+                class="btn btn-primary"
+                value="yes"
+                type="submit">{% trans "Save" %}</button>
+      </form>
+    </div>
+    <div class="tab-pane fade"
+         id="email_form"
+         role="tabpanel"
+         aria-labelledby="list-email-form-list">
+      <form method="post" id="form_email">
+        {% csrf_token %}
+        {% include "ui/forms/bs4.html" with form=email_form %}
+        <button name="email_form_submitted"
+                class="btn btn-primary"
+                value="yes"
+                type="submit">{% trans "Save" %}</button>
+      </form>
+    </div>
+    <div class="tab-pane fade"
+         id="newsletter_form"
+         role="tabpanel"
+         aria-labelledby="list-newsletter-form-list">
+      <form method="post" id="form_newsletter">
+        {% csrf_token %}
+        {% include "ui/forms/bs4.html" with form=newsletter_form %}
+        <button name="newsletter_form_submitted"
+                class="btn btn-primary"
+                value="yes"
+                type="submit">{% trans "Save" %}</button>
+      </form>
+    </div>
+    <div class="tab-pane fade"
+         id="preview"
+         role="tabpanel"
+         aria-labelledby="list-preview-list"
+         data-src="{{ petition.url }}">
+      <div class="alert alert-warning" role="alert">
+        {% blocktrans %}
             Beware: this preview shows the current state of the petition.<br />
             If you modified some settings, please save if you want to see them in the preview.
             {% endblocktrans %}
-            </div>
-            <div class="embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item" src=""></iframe>
-            </div>
-        </div>
+      </div>
+      <div class="embed-responsive embed-responsive-4by3">
+        <iframe class="embed-responsive-item" src=""></iframe>
+      </div>
     </div>
+  </div>
 {% endblock edit_content %}
 {% block extra_js %}
-    {{ block.super }}
-    <script src="{% static "vendor/bs-custom-file-input-1.3.4/bs-custom-file-input.min.js" %}"></script>
-    <script>
+  {{ block.super }}
+  <script src="{% static "vendor/bs-custom-file-input-1.3.4/bs-custom-file-input.min.js" %}"></script>
+  <script>
 function readURL(input) {
   if (input.files && input.files[0]) {
     const reader = new FileReader();
@@ -613,7 +599,7 @@ $(function () {
 $(function () {
   $('input[data-action="slugDelete"]').on('click', function () {
     const slugId = $(this).closest('td[data-slugid]').data('slugid');
-    window.location = "{% url "petitions:del_slug" petition.id %}" + "?slugid=" + slugId;
+    window.location = "{% url "petitions:slug:delete" petition.id %}" + "?slugid=" + slugId;
   });
 });
 
@@ -665,5 +651,5 @@ var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 function get_csrf_token() {
   return csrftoken;
 }
-    </script>
+  </script>
 {% endblock extra_js %}

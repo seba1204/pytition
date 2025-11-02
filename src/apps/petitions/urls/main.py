@@ -11,12 +11,13 @@ Note
 
 from __future__ import annotations
 
+from django.urls import include, path
 from django.views.generic import RedirectView
 
 from apps.core.route import Route, build_urlpatterns, validate_bijection
 from apps.petitions import forms as PF
 from apps.petitions import views as PV
-from apps.petitions.routes import PetitionsRoute
+from apps.petitions.routes import SLUG_NS, PetitionsRoute
 
 app_name = "petitions"
 
@@ -39,8 +40,6 @@ ROUTES: dict[PetitionsRoute, Route] = {
     PetitionsRoute.PUBLISH: Route(f"{PID}/publish/", PV.publish),
     PetitionsRoute.UNPUBLISH: Route(f"{PID}/unpublish/", PV.unpublish),
     PetitionsRoute.EDIT: Route(f"{PID}/edit/", PV.edit),
-    PetitionsRoute.ADD_SLUG: Route(f"{PID}/slug/add/", PV.add_slug),
-    PetitionsRoute.DEL_SLUG: Route(f"{PID}/slug/del/", PV.del_slug),
     PetitionsRoute.TRANSFER: Route(f"{PID}/transfer/", PV.transfer),
     PetitionsRoute.DETAIL: Route(f"{PID}/", PV.detail),
 }
@@ -50,3 +49,7 @@ validate_bijection(PetitionsRoute, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
 urlpatterns = build_urlpatterns(ROUTES)
+
+urlpatterns += [
+    path(f"{PID}/slug/", include("apps.petitions.urls.slug", namespace=SLUG_NS))
+]
