@@ -81,7 +81,7 @@ class GoSendConfirmationEmailViewTest(TestCase):
             reverse(SignatureRoute.RESEND_EMAIL, args=[petition.id, signature.id]),
             follow=True,
         )
-        # self.assertRedirects(
-        #     response,
-        #     reverse(f"admin:{app_label}_signature_change", args=[signature.id]),
-        # )
+        self.assertRedirects(
+            response,
+            reverse(f"admin:{app_label}_signature_change", args=[signature.id]),
+        )
