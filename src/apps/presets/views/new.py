@@ -49,8 +49,8 @@ def new(request: HttpRequest) -> HttpResponse:
     pytitionuser: PytitionUser = get_session_user(request)
     ctx: _NewPresetContext = {"user": pytitionuser}
 
-    # get orgslugname from get parameters
-    orgslugname = request.GET.get("org", None)
+    # get orgslugname from get OR post parameters
+    orgslugname = request.GET.get("org", "") or request.POST.get("org", "")
 
     if orgslugname:
         redirection: str = PresetRoutes.NEW

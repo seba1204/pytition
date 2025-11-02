@@ -34,11 +34,15 @@ class PetitionViewTest(TestCase):
         # GET request just shows the page
         # Not logged
         org = Organization.objects.get(name="RAP")
-        response = self.client.get(reverse(f"{PresetRoutes.NEW}?org={org.slugname}"))
+        response = self.client.get(
+            reverse(PresetRoutes.NEW), data={"org": org.slugname}
+        )
         self.assertEqual(response.status_code, 302)
         # Logged
         self.login("julia")
-        response = self.client.get(reverse(f"{PresetRoutes.NEW}?org={org.slugname}"))
+        response = self.client.get(
+            reverse(PresetRoutes.NEW), data={"org": org.slugname}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "presets/new.html")
 
@@ -46,10 +50,8 @@ class PetitionViewTest(TestCase):
         self.login("julia")
         org = Organization.objects.get(name="RAP")
         self.assertEqual(org.petitiontemplate_set.count(), 0)
-        data = {"template_name": "This is a default template"}
-        response = self.client.post(
-            reverse(f"{PresetRoutes.NEW}?org={org.slugname}"), data
-        )
+        data = {"template_name": "This is a default template", "org": org.slugname}
+        response = self.client.post(reverse(PresetRoutes.NEW), data)
         self.assertEqual(org.petitiontemplate_set.count(), 1)
         self.assertEqual(response.status_code, 302)
         pt = org.petitiontemplate_set.first()
