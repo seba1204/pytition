@@ -13,7 +13,7 @@ from apps.organizations.models import Organization
 # /org/<slug:orgslugname>/invite_dismiss
 # Dismiss the invitation to an organization
 @login_required
-def invite_dismiss(request: HttpRequest, orgslugname: str) -> HttpResponse:
+def dismiss(request: HttpRequest, orgslugname: str) -> HttpResponse:
     """
     View function to dismiss an invitation to an organization.
 

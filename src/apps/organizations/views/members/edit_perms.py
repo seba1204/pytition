@@ -19,9 +19,7 @@ from apps.organizations.routes import OrgRoute
 # PATH : org/<slug:orgslugname>/edit_user_permissions/<slug:user_name>
 # Show a webpage to edit permissions
 @login_required
-def edit_user_perms(
-    request: HttpRequest, orgslugname: str, user_name: str
-) -> HttpResponse:
+def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpResponse:
     """
     View function to show and edit user permissions in an organization.
 

@@ -11,7 +11,7 @@ Note
 
 from __future__ import annotations
 
-from django.urls import URLPattern, reverse_lazy
+from django.urls import reverse_lazy
 
 from apps.accounts import views as AV  # account views
 from apps.accounts.forms import PytitionUserCreationForm
@@ -47,4 +47,4 @@ ROUTES: dict[AccountsRoute, Route] = {
 validate_bijection(AccountsRoute, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
-urlpatterns: list[URLPattern] = build_urlpatterns(ROUTES)
+urlpatterns = build_urlpatterns(ROUTES)

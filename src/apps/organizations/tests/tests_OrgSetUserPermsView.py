@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from apps.accounts.models import Permission, PytitionUser
 from apps.core.tests.utils import add_default_data
-from apps.organizations.routes import OrgRoute
+from apps.organizations.routes import OrgMemberRoute
 
 
 class OrgSetUserPermsViewTest(TestCase):
@@ -26,7 +26,7 @@ class OrgSetUserPermsViewTest(TestCase):
         _julia = self.login("julia")
         response = self.client.get(
             reverse(
-                OrgRoute.SET_USER_PERMS,
+                OrgMemberRoute.SET_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
             follow=True,
@@ -34,7 +34,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                OrgRoute.EDIT_USER_PERMS,
+                OrgMemberRoute.EDIT_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
         )
@@ -48,7 +48,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertEqual(julia_perms.can_remove_members, True)
         response = self.client.post(
             reverse(
-                OrgRoute.SET_USER_PERMS,
+                OrgMemberRoute.SET_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
             data,
@@ -57,7 +57,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                OrgRoute.EDIT_USER_PERMS,
+                OrgMemberRoute.EDIT_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
         )
@@ -76,7 +76,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertEqual(julia_perms.can_modify_permissions, True)
         response = self.client.post(
             reverse(
-                OrgRoute.SET_USER_PERMS,
+                OrgMemberRoute.SET_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
             data,
@@ -85,7 +85,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                OrgRoute.EDIT_USER_PERMS,
+                OrgMemberRoute.EDIT_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             ),
         )
@@ -114,7 +114,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertEqual(julia_perms.can_modify_permissions, True)
         response = self.client.post(
             reverse(
-                OrgRoute.SET_USER_PERMS,
+                OrgMemberRoute.SET_PERMS,
                 kwargs={"orgslugname": "alternatiba", "user_name": "julia"},
             ),
             data,
@@ -123,7 +123,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                OrgRoute.EDIT_USER_PERMS,
+                OrgMemberRoute.EDIT_PERMS,
                 kwargs={"orgslugname": "alternatiba", "user_name": "julia"},
             ),
         )
@@ -152,7 +152,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertEqual(julia_perms.can_modify_permissions, True)
         response = self.client.post(
             reverse(
-                OrgRoute.SET_USER_PERMS,
+                OrgMemberRoute.SET_PERMS,
                 kwargs={"orgslugname": "les-amis-de-la-terre", "user_name": "julia"},
             ),
             data,
@@ -161,7 +161,7 @@ class OrgSetUserPermsViewTest(TestCase):
         self.assertRedirects(
             response,
             reverse(
-                OrgRoute.EDIT_USER_PERMS,
+                OrgMemberRoute.EDIT_PERMS,
                 kwargs={"orgslugname": "les-amis-de-la-terre", "user_name": "julia"},
             ),
         )

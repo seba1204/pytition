@@ -1,16 +1,4 @@
-"""
-Petitions route names (single textual source of truth).
-
-Members are fully-qualified route names like "organizations:add_user", so they
-can be used directly in :func:`django.urls.reverse` and in `{% url %}` without
-accessing `.value`.
-
-Notes
------
-- Keep the namespace string in a single place (module-level constant).
-- Use a private class constant `_NS` to avoid repetition in member values.
-- Enum members must be unique and stable (safe for refactor and autocomplete).
-"""
+"""Petitions route names (single textual source of truth)."""
 
 from __future__ import annotations
 

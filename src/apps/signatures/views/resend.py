@@ -9,7 +9,7 @@ from apps.signatures.models import Signature
 # resend/<int:signature_id>
 # resend the signature confirmation email
 @login_required
-def resend(request: HttpRequest, signature_id: int) -> HttpResponse:
+def resend(request: HttpRequest, petition_id: int, signature_id: int) -> HttpResponse:
     """
     Resend the confirmation email for a signature.
 

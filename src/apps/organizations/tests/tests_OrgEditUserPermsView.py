@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from apps.accounts.models import PytitionUser
 from apps.core.tests.utils import add_default_data
-from apps.organizations.routes import OrgRoute
+from apps.organizations.routes import OrgMemberRoute
 
 
 class OrgEditUserPermsViewTest(TestCase):
@@ -25,7 +25,7 @@ class OrgEditUserPermsViewTest(TestCase):
         _julia = self.login("julia")
         response = self.client.get(
             reverse(
-                OrgRoute.EDIT_USER_PERMS,
+                OrgMemberRoute.EDIT_PERMS,
                 kwargs={"orgslugname": "rap", "user_name": "julia"},
             )
         )

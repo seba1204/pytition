@@ -16,7 +16,7 @@ from apps.organizations.models import Organization
 # /org/<slug:orgslugname>/delete_member
 # Remove a member from an organization
 @login_required
-def delete_member(request: HttpRequest, orgslugname: str) -> JsonResponse:
+def delete(request: HttpRequest, orgslugname: str) -> JsonResponse:
     """
     View function to delete a member from an organization.
 

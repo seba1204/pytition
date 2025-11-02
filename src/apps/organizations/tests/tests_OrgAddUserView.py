@@ -4,7 +4,7 @@ from django.urls import reverse
 from apps.accounts.models import PytitionUser
 from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
-from apps.organizations.routes import OrgRoute
+from apps.organizations.routes import OrgMemberRoute
 
 
 class OrgAddUserViewTest(TestCase):
@@ -23,7 +23,7 @@ class OrgAddUserViewTest(TestCase):
         """Let's try to add user max to org RAP."""
         _julia = self.login("julia")
         response = self.client.get(
-            reverse(OrgRoute.ADD_USER, args=["rap"]) + "?user=max"
+            reverse(OrgMemberRoute.ADD, args=["rap"]) + "?user=max"
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/json")
@@ -37,7 +37,7 @@ class OrgAddUserViewTest(TestCase):
         # John is not in RAP org
         self.login("john")
         response = self.client.get(
-            reverse(OrgRoute.ADD_USER, args=["rap"]) + "?user=max"
+            reverse(OrgMemberRoute.ADD, args=["rap"]) + "?user=max"
         )
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")
@@ -45,14 +45,14 @@ class OrgAddUserViewTest(TestCase):
         self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         response = self.client.get(
-            reverse(OrgRoute.ADD_USER, args=[org.slugname]) + "?user=john"
+            reverse(OrgMemberRoute.ADD, args=[org.slugname]) + "?user=john"
         )
         self.assertEqual(response.status_code, 403)
         self.assertEqual(response["Content-Type"], "application/json")
         # Try to add someone already in the Org
         self.login("julia")
         response = self.client.get(
-            reverse(OrgRoute.ADD_USER, args=[org.slugname]) + "?user=max"
+            reverse(OrgMemberRoute.ADD, args=[org.slugname]) + "?user=max"
         )
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response["Content-Type"], "application/json")

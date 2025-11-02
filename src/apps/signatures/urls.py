@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from django.urls import URLPattern
-
 from apps.core.route import Route, build_urlpatterns, validate_bijection
 from apps.signatures import views as SV
 from apps.signatures.routes import SignatureRoute
@@ -27,4 +25,4 @@ ROUTES: dict[SignatureRoute, Route] = {
 validate_bijection(SignatureRoute, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
-urlpatterns: list[URLPattern] = build_urlpatterns(ROUTES)
+urlpatterns = build_urlpatterns(ROUTES)

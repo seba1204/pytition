@@ -11,7 +11,6 @@ Note
 
 from __future__ import annotations
 
-from django.urls import URLPattern
 from django.views.generic import RedirectView
 
 from apps.core.route import Route, build_urlpatterns, validate_bijection
@@ -50,4 +49,4 @@ ROUTES: dict[PetitionsRoute, Route] = {
 validate_bijection(PetitionsRoute, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
-urlpatterns: list[URLPattern] = build_urlpatterns(ROUTES)
+urlpatterns = build_urlpatterns(ROUTES)

@@ -2,7 +2,7 @@
 function addUser(user) {
     $("#user_search_result").html("<span class=\"oi oi-cog\" title=\"waiting\" aria-hidden=\"true\"></span>");
     $.ajax({
-        url: "{% url "org:add_user" org.slugname %}?user=" + user,
+        url: "{% url "org:members:add" org.slugname %}?user=" + user,
         dataType: "json",
     }).done(function(data) {
         $("#user_search_result").html("");
@@ -73,7 +73,7 @@ $(document).ready(function(){
 $(function () {
     $('[data-action="delete-member"]').on('click', function () {
        var member_name = $(this).closest("[data-member]").data("member");
-       $.ajax("{% url "org:delete_member" org.slugname %}?member=" + member_name).done(function () {
+        $.ajax("{% url "org:members:delete" org.slugname %}?member=" + member_name).done(function () {
         if (member_name == "{{ user.name }}")
                window.location = "{% url "accounts:dashboard" %}";
         else

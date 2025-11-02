@@ -67,7 +67,7 @@ def _check_org_context(
 # PATH : org/<slug:orgslugname>/add_user
 # Add an user to an organization
 @login_required
-def add_user(request: HttpRequest, orgslugname: str) -> JsonResponse:
+def add(request: HttpRequest, orgslugname: str) -> JsonResponse:
     """
     View function to add a user to an organization.
 

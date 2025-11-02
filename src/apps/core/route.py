@@ -3,7 +3,7 @@ Lightweight helpers for string-based, namespaced route enums.
 
 This module intentionally avoids custom meta classes or enum bases.
 Each app declares a plain `StrEnum` whose members are fully-qualified route
-names (e.g., "organizations:add_user"). These members are strings, so they can
+names (e.g., "org:new"). These members are strings, so they can
 be passed directly to :func:`django.urls.reverse` and the `{% url %}` tag.
 
 This module provides:
@@ -14,7 +14,7 @@ This module provides:
 
 Examples
 --------
->>> short_name("organizations:add_user")
+>>> short_name("org:new")
 'add_user'
 """
 
@@ -26,7 +26,7 @@ from enum import StrEnum
 from typing import TypeVar
 
 from django.http import HttpResponseBase
-from django.urls import URLPattern, path
+from django.urls import URLPattern, URLResolver, path
 
 # --------------------------------------------------------------------------- #
 # Types
@@ -63,9 +63,6 @@ class Route:
 # --------------------------------------------------------------------------- #
 
 
-SPLIT_PARTS_COUNT = 2
-
-
 def short_name(full: str) -> str:
     """
     Extract the short route name from a fully-qualified name.
@@ -73,7 +70,8 @@ def short_name(full: str) -> str:
     Parameters
     ----------
     full : str
-        Fully-qualified name of the form "<namespace>:<short>" or "<short>".
+        Fully-qualified name of the form "<namespace>:<sub_namespace>:<short>"
+        or "<short>".
 
     Returns
     -------
@@ -83,16 +81,17 @@ def short_name(full: str) -> str:
 
     Examples
     --------
-    >>> short_name("organizations:add_user")
-    'add_user'
-    >>> short_name("dashboard")
+    >>> short_name("org:new")
+    'new'
+    >>> short_name("org:dashboard")
     'dashboard'
     """
-    parts = full.split(":", 1)
-    return parts[1] if len(parts) == SPLIT_PARTS_COUNT else full
+    parts = full.split(":")
+    # return last part if multiple, else the whole string
+    return parts[-1] if len(parts) > 1 else full
 
 
-def build_urlpatterns(mapping: Mapping[E, Route]) -> list[URLPattern]:
+def build_urlpatterns(mapping: Mapping[E, Route]) -> list[URLPattern | URLResolver]:
     """
     Build Django `urlpatterns` from a mapping of enum members to routes.
 
@@ -112,7 +111,7 @@ def build_urlpatterns(mapping: Mapping[E, Route]) -> list[URLPattern]:
     list of django.urls.URLPattern
         URL patterns with short names.
     """
-    patterns: list[URLPattern] = []
+    patterns: list[URLPattern | URLResolver] = []
     for member, route in mapping.items():
         name = short_name(str(member))
         patterns.append(path(route.pattern, route.view, name=name))

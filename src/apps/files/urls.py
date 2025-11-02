@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from django.urls import URLPattern
-
 from apps.core.route import Route, build_urlpatterns, validate_bijection
 from apps.files import views as MdV
 from apps.files.routes import FilesRoute
@@ -20,4 +18,4 @@ ROUTES: dict[FilesRoute, Route] = {
 validate_bijection(FilesRoute, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
-urlpatterns: list[URLPattern] = build_urlpatterns(ROUTES)
+urlpatterns = build_urlpatterns(ROUTES)

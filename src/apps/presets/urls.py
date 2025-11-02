@@ -7,8 +7,6 @@ and view, validates the bijection, and exposes `urlpatterns`.
 
 from __future__ import annotations
 
-from django.urls import URLPattern
-
 from apps.core.route import Route, build_urlpatterns, validate_bijection
 from apps.presets import views as PrV
 from apps.presets.routes import PresetRoutes
@@ -32,4 +30,4 @@ ROUTES: dict[PresetRoutes, Route] = {
 validate_bijection(PresetRoutes, ROUTES)
 
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
-urlpatterns: list[URLPattern] = build_urlpatterns(ROUTES)
+urlpatterns = build_urlpatterns(ROUTES)

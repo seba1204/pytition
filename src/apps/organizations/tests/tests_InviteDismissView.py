@@ -5,7 +5,7 @@ from apps.accounts.models import Permission, PytitionUser
 from apps.accounts.routes import AccountsRoute
 from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
-from apps.organizations.routes import OrgRoute
+from apps.organizations.routes import OrgInvitationRoute, OrgMemberRoute
 
 
 class InviteDismissViewTest(TestCase):
@@ -30,14 +30,15 @@ class InviteDismissViewTest(TestCase):
         julia_perms.can_add_members = True
         julia_perms.save()
         response = self.client.get(
-            reverse(OrgRoute.ADD_USER, args=["rap"]) + "?user=max"
+            reverse(OrgMemberRoute.ADD, args=["rap"]) + "?user=max"
         )
         self.assertEqual(response.status_code, 200)
         self.logout()
         max = self.login("max")
         # max dismisses julia's invitation
         response = self.client.get(
-            reverse(OrgRoute.INVITE_DISMISS, kwargs={"orgslugname": "rap"}), follow=True
+            reverse(OrgInvitationRoute.DISMISS, kwargs={"orgslugname": "rap"}),
+            follow=True,
         )
         self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
         rap = Organization.objects.get(slugname="rap")

@@ -15,7 +15,7 @@ from apps.organizations.models import Organization
 # Accept an invitation to an organization
 # Called from /user/dashboard
 @login_required
-def invite_accept(request: HttpRequest, orgslugname: str) -> HttpResponse:
+def accept(request: HttpRequest, orgslugname: str) -> HttpResponse:
     """
     Accept an invitation to an organization.
 

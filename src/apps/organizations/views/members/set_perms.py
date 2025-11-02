@@ -15,7 +15,7 @@ from apps.accounts.models import Permission, PytitionUser
 from apps.accounts.routes import AccountsRoute
 from apps.accounts.services import get_session_user
 from apps.organizations.models import Organization
-from apps.organizations.routes import OrgRoute
+from apps.organizations.routes import OrgMemberRoute, OrgRoute
 
 # PATH /org/<slug:orgslugname>/set_user_permissions/<slug:user_name>
 # Set a permission for an user
@@ -26,7 +26,7 @@ from apps.organizations.routes import OrgRoute
 # Too many return statements (7 > 6)
 # Too many branches (13 > 12)
 # Too many statements (54 > 50)
-def set_user_perms(  # noqa
+def set_perms(  # noqa
     request: HttpRequest, orgslugname: str, user_name: str
 ) -> HttpResponse:
     """
@@ -62,7 +62,7 @@ def set_user_perms(  # noqa
             request,
             _("You are not allowed to modify this organization members' permissions"),
         )
-        return redirect(OrgRoute.EDIT_USER_PERMS, orgslugname, user_name)
+        return redirect(OrgMemberRoute.EDIT_PERMS, orgslugname, user_name)
 
     try:
         member = PytitionUser.objects.get(user__username=user_name)
@@ -148,4 +148,4 @@ def set_user_perms(  # noqa
             messages.success(request, _("Permissions successfully changed!"))
         permissions.save()
 
-    return redirect(OrgRoute.EDIT_USER_PERMS, orgslugname, user_name)
+    return redirect(OrgMemberRoute.EDIT_PERMS, orgslugname, user_name)
