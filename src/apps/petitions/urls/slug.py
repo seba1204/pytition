@@ -13,8 +13,8 @@ app_name = "petitions.slug"
 # --------------------------------------------------------------------------- #
 
 ROUTES: dict[PetitionsSlugRoute, Route] = {
-    PetitionsSlugRoute.ADD: Route("accept/", SV.add),
-    PetitionsSlugRoute.DELETE: Route("dismiss/", SV.delete),
+    PetitionsSlugRoute.ADD: Route("add/", SV.add),
+    PetitionsSlugRoute.DELETE: Route("delete/", SV.delete),
 }
 
 # Fail fast at import time (CI-friendly)
