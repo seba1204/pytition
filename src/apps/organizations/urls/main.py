@@ -8,7 +8,6 @@ from apps.core.route import Route, build_urlpatterns, validate_bijection
 from apps.organizations import views as OV
 from apps.organizations.routes import INVITATIONS_NS, MEMBERS_NS, OrgRoute
 from apps.petitions import views as PV
-from apps.presets import views as PrV
 
 app_name = "organizations"
 
@@ -23,8 +22,7 @@ ROUTES: dict[OrgRoute, Route] = {
     OrgRoute.PROFILE: Route(f"{SLUG}", OV.profile),
     OrgRoute.DASHBOARD: Route(f"{SLUG}/dashboard", OV.dashboard),
     OrgRoute.LEAVE: Route(f"{SLUG}/leave", OV.leave),
-    # TODO: should be merged with "/presets/new", cf. ticket #52
-    OrgRoute.NEW_TEMPLATE: Route(f"{SLUG}/new_template", PrV.new),
+    # LEGACY
     OrgRoute.SLUG_SHOW_PETITION: Route(
         f"{SLUG}/<slug:petitionname>", PV.slug_show_petition
     ),

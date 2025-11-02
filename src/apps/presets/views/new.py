@@ -15,7 +15,6 @@ from django.utils.translation import gettext as _
 from apps.accounts.models import Permission, PytitionUser
 from apps.accounts.services import get_session_user
 from apps.organizations.models import Organization
-from apps.organizations.routes import OrgRoute
 from apps.presets.models import PetitionTemplate
 from apps.presets.routes import PresetRoutes
 
@@ -27,12 +26,10 @@ class _NewPresetContext(TypedDict, total=False):
     base_template: str
 
 
-# /org/<slug:orgslugname>/new_template
-# /user/new_template
 # Create a new template
 # TODO: merge both endpoints into one `/presets/new`, wether user or org.
 @login_required
-def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
+def new(request: HttpRequest) -> HttpResponse:
     """
     View function to create a new petition preset.
 
@@ -52,8 +49,11 @@ def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
     pytitionuser: PytitionUser = get_session_user(request)
     ctx: _NewPresetContext = {"user": pytitionuser}
 
+    # get orgslugname from get parameters
+    orgslugname = request.GET.get("org", None)
+
     if orgslugname:
-        redirection: str = OrgRoute.NEW_TEMPLATE
+        redirection: str = PresetRoutes.NEW
         try:
             org = Organization.objects.get(slugname=orgslugname)
             ctx["org"] = org

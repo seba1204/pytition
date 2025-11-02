@@ -29,7 +29,7 @@
               <h4>
                 <span class="oi oi-layers"></span> {% trans "Petition templates" %} ({{ org.petitiontemplate_set.count }})
               </h4>
-              <a href="{% url "org:new_template" org.slugname %}"
+              <a href="{% url "presets:new" %}?org={{ org.slugname }}"
                  class="btn btn-outline-primary btn-sm"
                  data-toggle="tooltip"
                  title="{% trans "Create a new petition template" %}">{% trans "New template" %}</a>

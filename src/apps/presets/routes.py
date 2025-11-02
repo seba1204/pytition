@@ -17,7 +17,7 @@ class PresetRoutes(StrEnum):
     Each member is a string equal to "<namespace>:<short>".
     """
 
-    NEW = _NS + "new"  # old user_new_template
-    EDIT = _NS + "edit"  # old edit_template
-    TOGGLE_FAV = _NS + "toggle_fav"  # old template_fav_toggle
-    DELETE = _NS + "delete"  # old template_delete
+    NEW = _NS + "new"
+    EDIT = _NS + "edit"
+    TOGGLE_FAV = _NS + "toggle_fav"
+    DELETE = _NS + "delete"

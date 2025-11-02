@@ -7,7 +7,6 @@ from django.urls import reverse
 from apps.accounts.models import Permission, PytitionUser
 from apps.core.tests.utils import add_default_data
 from apps.organizations.models import Organization
-from apps.organizations.routes import OrgRoute
 from apps.presets.models import PetitionTemplate
 from apps.presets.routes import PresetRoutes
 
@@ -35,11 +34,11 @@ class PetitionViewTest(TestCase):
         # GET request just shows the page
         # Not logged
         org = Organization.objects.get(name="RAP")
-        response = self.client.get(reverse(OrgRoute.NEW_TEMPLATE, args=[org.slugname]))
+        response = self.client.get(reverse(f"{PresetRoutes.NEW}?org={org.slugname}"))
         self.assertEqual(response.status_code, 302)
         # Logged
         self.login("julia")
-        response = self.client.get(reverse(OrgRoute.NEW_TEMPLATE, args=[org.slugname]))
+        response = self.client.get(reverse(f"{PresetRoutes.NEW}?org={org.slugname}"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "presets/new.html")
 
@@ -49,7 +48,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(org.petitiontemplate_set.count(), 0)
         data = {"template_name": "This is a default template"}
         response = self.client.post(
-            reverse(OrgRoute.NEW_TEMPLATE, args=[org.slugname]), data
+            reverse(f"{PresetRoutes.NEW}?org={org.slugname}"), data
         )
         self.assertEqual(org.petitiontemplate_set.count(), 1)
         self.assertEqual(response.status_code, 302)
