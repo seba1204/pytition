@@ -30,16 +30,15 @@ class PetitionAdminForm(ModelForm):
                 "the page footer"
             ),
             "twitter_description": gettext_lazy(
-                "This is the description of the petition, it will be displayed in "
-                "Twitter/Facebook cards when the link is posted to social networks."
-                "To be tested via https://cards-dev.twitter.com/validator and"
-                "https://developers.facebook.com/tools/debug/"
+                "This is the description of the petition, it will be displayed when "
+                "sharing on social media. "
+                "You can preview it via some tools such as "
+                "https://toolsaday.com/seo/open-graph (be aware of trackers!)"
             ),
             "twitter_image": gettext_lazy(
-                "Picture displayed in Twitter/Facebook cards when the link is posted to"
-                "social networks. To be tested via "
-                "https://cards-dev.twitter.com/validator and "
-                "https://developers.facebook.com/tools/debug/"
+                "Picture displayed when shared on social media. "
+                "You can preview it via some tools such as "
+                "https://toolsaday.com/seo/open-graph (be aware of trackers!)"
             ),
             "has_newsletter": gettext_lazy(
                 "Allow to chose whether the newsletter subscription "
