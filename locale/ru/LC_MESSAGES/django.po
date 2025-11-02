@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-15 21:12+0200\n"
+"POT-Creation-Date: 2025-11-02 22:53+0100\n"
 "PO-Revision-Date: 2020-10-13 00:51+0000\n"
 "Last-Translator: Валентин Бородко <valya.spaces@gmail.com>\n"
 "Language-Team: Russian <https://weblate.framasoft.org/projects/pytition/"
@@ -16,707 +16,290 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.1\n"
 
-#: pytition/petition/admin.py:21 pytition/petition/models.py:87
-#: pytition/petition/models.py:502
+#: src/apps/accounts/admin.py:13
+#: src/apps/organizations/models/organizations.py:18
+#: src/apps/presets/models/petition_template.py:35
 msgid "Name"
 msgstr "Имя"
 
-#: pytition/petition/admin.py:39
-msgid "Number of petitions"
-msgstr ""
-
-#: pytition/petition/admin.py:40
-msgid "Number of members"
-msgstr ""
-
-#: pytition/petition/admin.py:49
-msgid "Error: {}"
-msgstr "Ошибка: {}"
-
-#: pytition/petition/admin.py:57
-msgid "Confirm the signatures"
-msgstr ""
-
-#: pytition/petition/admin.py:58
-msgid "Send the confirmation email once again"
-msgstr ""
-
-#: pytition/petition/admin.py:85 pytition/petition/admin.py:225
-msgid ""
-"This is a gradient color. If selected, the background color will be a "
-"gradient color. If not, the background color will be a monochrome background "
-"color."
-msgstr ""
-
-#: pytition/petition/admin.py:86 pytition/petition/admin.py:87
-#: pytition/petition/admin.py:226 pytition/petition/admin.py:227
-msgid "Only used if gradient is selected"
-msgstr ""
-
-#: pytition/petition/admin.py:88 pytition/petition/admin.py:228
-msgid ""
-"Put a bullet point list of links, it will appear horizontally in the page "
-"footer"
-msgstr ""
-
-#: pytition/petition/admin.py:89 pytition/petition/admin.py:229
-msgid ""
-"This is the description of the petition, it will be displayed in Twitter/"
-"Facebook cards when the link is posted to social networks. To be tested via "
-"https://cards-dev.twitter.com/validator and https://developers.facebook.com/"
-"tools/debug/"
-msgstr ""
-
-#: pytition/petition/admin.py:90 pytition/petition/admin.py:230
-msgid ""
-"Picture displayed in Twitter/Facebook cards when the link is posted to "
-"social networks. To be tested via https://cards-dev.twitter.com/validator "
-"and https://developers.facebook.com/tools/debug/"
-msgstr ""
-
-#: pytition/petition/admin.py:91 pytition/petition/admin.py:231
-msgid ""
-"Allow to chose whether the newsletter subscription checkbox is shown or not"
-msgstr ""
-
-#: pytition/petition/admin.py:92 pytition/petition/admin.py:232
-msgid ""
-"Only in case subscription to the newsletter via HTTP POST or GET methods. "
-"Put here data to be sent, using Python dictionary syntax. e.g.: <br>\n"
-"                    {'_wpcf7': 21,<br>\n"
-"                    '_wpcf7_version': '4.9',<br>\n"
-"                    '_wpcf7_locale': 'fr_FR',<br>\n"
-"                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-"                    '_wpcf7_container_post': '5398',<br>\n"
-"                    'your-email': ''<br>\n"
-"                    }"
-msgstr ""
-
-#: pytition/petition/admin.py:100 pytition/petition/admin.py:240
-msgid ""
-"Only when HTTP POST or GET subscription method is used. Name of the field to "
-"send via GET or POST, containing the email address to subscribe. Following "
-"the example of preceding form field, that would be 'your-email'"
-msgstr ""
-
-#: pytition/petition/admin.py:101 pytition/petition/admin.py:241
-msgid ""
-"Only when HTTP POST or GET subscription method is used. Adresse HTTP à "
-"requêter via GET ou POST pour enregistrer quelqu'un sur la newsletter"
-msgstr ""
-
-#: pytition/petition/admin.py:102 pytition/petition/admin.py:242
-msgid ""
-"Only when EMAIL subscription method is used. Inscrire ici la syntaxe de "
-"sujet du mail qui permet d'inscrire quelqu'un à la newsletter. Indiquez {} à "
-"la place où le mail du signataire doit être inséré. Ex: 'ADD NOM_LISTE {} "
-"NOM_SIGNATAIRE'"
-msgstr ""
-
-#: pytition/petition/admin.py:103 pytition/petition/admin.py:243
-msgid ""
-"Only when EMAIL subscription method is used. L'expéditeur du mail qui permet "
-"d'enregistrer quelqu'un à la newsletter. Il s'agit généralement d'une "
-"adresse qui est administratrice de la liste SYMPA ou MAILMAN"
-msgstr ""
-
-#: pytition/petition/admin.py:104 pytition/petition/admin.py:244
-msgid ""
-"Only when EMAIL subscription method is used. Adresse email d'administration "
-"de la liste, ex : sympa@NOM_LISTE.listes.vox.coop"
-msgstr ""
-
-#: pytition/petition/admin.py:105 pytition/petition/admin.py:245
-msgid ""
-"This selects the newsletter subscription method. It is either HTTP GET or "
-"POST or via sending EMAIL to the newsletter admin address"
-msgstr ""
-
-#: pytition/petition/admin.py:106 pytition/petition/admin.py:246
-msgid ""
-"If checked, the petition is published and accessible on the website by "
-"everybody. If not checked, the petition is only accessible by logged in "
-"users, others will get a 404 error."
-msgstr ""
-
-#: pytition/petition/admin.py:107 pytition/petition/admin.py:247
-msgid "E.g.: I want to receive updates or informations from this organization."
-msgstr ""
-
-#: pytition/petition/admin.py:108 pytition/petition/admin.py:248
-msgid ""
-"E.g.: Your data will stay strictly confidential and will not be sold, given "
-"away or exchanged with third parties. Informations about this campaign as "
-"well as other news about this organization will be sent to you if you "
-"checked the checkbox. You can unsubscribe at any moment."
-msgstr ""
-
-#: pytition/petition/admin.py:109 pytition/petition/admin.py:249
-msgid ""
-"The twitter account handle of the organization, starting with the '@' "
-"symbol. E.g.: @RAP_Asso. This is necessary in order to attribute the "
-"'Twitter Card' to the correct account. See https://developer.twitter.com/en/"
-"docs/tweets/optimize-with-cards/overview/summary"
-msgstr ""
-
-#: pytition/petition/admin.py:110 pytition/petition/admin.py:250
-msgid "Check if you want to use your own E-Mail SMTP account."
-msgstr ""
-
-#: pytition/petition/admin.py:111 pytition/petition/admin.py:251
-msgid "e.g.: petition@mydomain.tld"
-msgstr ""
-
-#: pytition/petition/admin.py:112 pytition/petition/admin.py:252
-msgid "If you don't have a real email account, leave 'localhost'."
-msgstr ""
-
-#: pytition/petition/admin.py:113 pytition/petition/admin.py:253
-msgid ""
-"25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS if "
-"the email server supports it."
-msgstr ""
-
-#: pytition/petition/admin.py:114 pytition/petition/admin.py:115
-#: pytition/petition/admin.py:254 pytition/petition/admin.py:255
-msgid "Leave empty if you don't use any account autentication."
-msgstr ""
-
-#: pytition/petition/admin.py:116 pytition/petition/admin.py:256
-msgid ""
-"SMTP connection encrypted via TLS, prefer this rather than STARTTLS if "
-"possible. Don't check both. The 2 settings are mutually exclusive."
-msgstr ""
-
-#: pytition/petition/admin.py:117 pytition/petition/admin.py:257
-msgid ""
-"Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage. Ne pas "
-"cocher les 2. Les 2 réglages sont mutuellement exclusifs."
-msgstr ""
-
-#: pytition/petition/admin.py:120
-msgid "Petition title"
-msgstr ""
-
-#: pytition/petition/admin.py:121 pytition/petition/admin.py:261
-msgid "Petition text"
-msgstr ""
-
-#: pytition/petition/admin.py:122 pytition/petition/admin.py:262
-msgid "Side text, on top of form"
-msgstr ""
-
-#: pytition/petition/admin.py:123 pytition/petition/admin.py:263
-msgid "Signature target number"
-msgstr ""
-
-#: pytition/petition/admin.py:124
-msgid "Number of paper (or other external medium) signatures"
-msgstr ""
-
-#: pytition/petition/admin.py:125
-msgid "Enable paper signatures accounting"
-msgstr ""
-
-#: pytition/petition/admin.py:126 pytition/petition/admin.py:264
-msgid "Direction of linear gradient for background color"
-msgstr ""
-
-#: pytition/petition/admin.py:127 pytition/petition/admin.py:265
-msgid "Source color for linear gradient"
-msgstr ""
-
-#: pytition/petition/admin.py:128 pytition/petition/admin.py:266
-msgid "Destinatoin color for linear gradient"
-msgstr ""
-
-#: pytition/petition/admin.py:129 pytition/petition/admin.py:267
-msgid "Color for monochrome background color"
-msgstr ""
-
-#: pytition/petition/admin.py:130 pytition/petition/admin.py:268
-msgid "Footer text"
-msgstr ""
-
-#: pytition/petition/admin.py:131 pytition/petition/admin.py:269
-msgid "Footer links"
-msgstr ""
-
-#: pytition/petition/admin.py:132 pytition/petition/admin.py:270
-msgid "Description for Twitter/Facebook cards"
-msgstr ""
-
-#: pytition/petition/admin.py:133 pytition/petition/admin.py:271
-msgid "Picture for Twitter/Facebook cards"
-msgstr ""
-
-#: pytition/petition/admin.py:134 pytition/petition/admin.py:272
-msgid "Is the petition associated with a newsletter?"
-msgstr ""
-
-#: pytition/petition/admin.py:135 pytition/petition/admin.py:273
-msgid ""
-"Data structure to be sent in order to subscribe someone to the newsletter in "
-"case of HTTP method"
-msgstr ""
-
-#: pytition/petition/admin.py:136 pytition/petition/admin.py:274
-msgid ""
-"Name of the field which should contain the email value in the PHP data "
-"structure"
-msgstr ""
-
-#: pytition/petition/admin.py:137 pytition/petition/admin.py:275
-msgid "HTTP URL for newsletter subscription"
-msgstr ""
-
-#: pytition/petition/admin.py:138 pytition/petition/admin.py:276
-msgid "Email subject for newsletter subscription command"
-msgstr ""
-
-#: pytition/petition/admin.py:139 pytition/petition/admin.py:277
-msgid "FROM field for newsletter subscription command"
-msgstr ""
-
-#: pytition/petition/admin.py:140 pytition/petition/admin.py:278
-msgid "TO field for newsletter subscription command"
-msgstr ""
-
-#: pytition/petition/admin.py:141 pytition/petition/admin.py:279
-msgid "Newsletter subscription method"
-msgstr ""
-
-#: pytition/petition/admin.py:142 pytition/petition/admin.py:280
-msgid "Puslibhed"
-msgstr ""
-
-#: pytition/petition/admin.py:143 pytition/petition/admin.py:281
-msgid "Form label text of newsletter subscription checkbox"
-msgstr ""
-
-#: pytition/petition/admin.py:144 pytition/petition/admin.py:282
-msgid "Sign form footer text"
-msgstr ""
-
-#: pytition/petition/admin.py:145 pytition/petition/admin.py:283
-msgid "Organization Twitter handle"
-msgstr ""
-
-#: pytition/petition/admin.py:146 pytition/petition/admin.py:284
-msgid "Use custom e-mail settings?"
-msgstr ""
-
-#: pytition/petition/admin.py:147 pytition/petition/admin.py:285
-msgid "Confirmation email Reply-to address"
-msgstr ""
-
-#: pytition/petition/admin.py:148 pytition/petition/admin.py:286
-msgid "SMTP server hostname"
-msgstr ""
-
-#: pytition/petition/admin.py:149 pytition/petition/admin.py:287
-msgid "SMTP port"
-msgstr ""
-
-#: pytition/petition/admin.py:150 pytition/petition/admin.py:288
-msgid "SMTP username"
-msgstr ""
-
-#: pytition/petition/admin.py:151 pytition/petition/admin.py:289
-msgid "SMTP password"
-msgstr ""
-
-#: pytition/petition/admin.py:152 pytition/petition/admin.py:290
-msgid "SMTP via TLS?"
-msgstr ""
-
-#: pytition/petition/admin.py:153 pytition/petition/admin.py:291
-msgid "SMTP via STARTTLS?"
-msgstr ""
-
-#: pytition/petition/admin.py:164
-msgid "To whom is this petition?"
-msgstr ""
-
-#: pytition/petition/admin.py:169 pytition/petition/admin.py:305
-msgid "Content of the petition"
-msgstr ""
-
-#: pytition/petition/admin.py:175 pytition/petition/admin.py:310
-msgid "Background color"
-msgstr ""
-
-#: pytition/petition/admin.py:180 pytition/petition/admin.py:315
-msgid "Setup of the newsletter associated to the petition"
-msgstr ""
-
-#: pytition/petition/admin.py:191 pytition/petition/admin.py:326
-msgid "Confirmation email setup"
-msgstr ""
-
-#: pytition/petition/admin.py:196 pytition/petition/admin.py:331
-msgid "Petition meta-data for social networks"
-msgstr ""
-
-#: pytition/petition/admin.py:200
-msgid "Publish the petition"
-msgstr ""
-
-#: pytition/petition/admin.py:208
-msgid "Unconfirmed signatures"
-msgstr ""
-
-#: pytition/petition/admin.py:212
-msgid "Confirmed signatures"
-msgstr ""
-
-#: pytition/petition/admin.py:260
-msgid "Petition template name"
-msgstr ""
-
-#: pytition/petition/admin.py:300
-msgid "To whom is this petition template?"
-msgstr ""
-
-#: pytition/petition/forms.py:24
-msgid "First name *"
-msgstr ""
-
-#: pytition/petition/forms.py:25
-msgid "Last name *"
-msgstr ""
-
-#: pytition/petition/forms.py:26 pytition/petition/models.py:441
-msgid "Phone number"
-msgstr ""
-
-#: pytition/petition/forms.py:27
-msgid "Email address *"
-msgstr ""
-
-#: pytition/petition/forms.py:66
-msgid "There is already a petition with this title"
-msgstr ""
-
-#: pytition/petition/forms.py:78
-msgid "You should either provide an org name or a user name"
-msgstr ""
-
-#: pytition/petition/forms.py:89
-msgid "Publish the petition now?"
-msgstr ""
-
-#: pytition/petition/forms.py:90
-#: pytition/petition/templates/petition/new_petition_step3.html:26
-msgid "Save & Configure"
-msgstr ""
-
-#: pytition/petition/forms.py:117
-msgid ""
-"Your contact email. It will be used as \"Reply-To\" field of the "
-"confirmation email sent to signatories. People responding to confirmation "
-"email will in fact respond to this address."
-msgstr ""
-
-#: pytition/petition/forms.py:134
-msgid "Does this petition have a newsletter?"
-msgstr ""
-
-#: pytition/petition/forms.py:148
-msgid "Use TLS?"
-msgstr ""
-
-#: pytition/petition/forms.py:149
-msgid "Use STARTTLS?"
-msgstr ""
-
-#: pytition/petition/forms.py:161
-msgid "You cannot select both TLS and STARTTLS."
-msgstr ""
-
-#: pytition/petition/forms.py:164
-msgid "SMTP port must be >= 1 and <= 65535"
-msgstr ""
-
-#: pytition/petition/forms.py:196
+#: src/apps/accounts/forms/create.py:45
 msgid "Wrong answer"
 msgstr ""
 
-#: pytition/petition/forms.py:240
-#: pytition/petition/templates/petition/account_settings.html:95
+#: src/apps/accounts/forms/delete.py:15
+#: src/apps/accounts/templates/accounts/settings.html:140
 msgid "DROP MY ACCOUNT"
 msgstr ""
 
-#: pytition/petition/forms.py:241
+#: src/apps/accounts/forms/delete.py:19
 msgid "You miss-typed the validation code"
 msgstr ""
 
-#: pytition/petition/forms.py:255
-msgid "This is an invalid Organization name. Please try something else."
-msgstr ""
-
-#: pytition/petition/helpers.py:45 pytition/petition/views.py:355
-#: pytition/petition/views.py:378 pytition/petition/views.py:383
-#: pytition/petition/views.py:406 pytition/petition/views.py:499
-#: pytition/petition/views.py:509 pytition/petition/views.py:525
-#: pytition/petition/views.py:533
-msgid "not found"
-msgstr ""
-
-#: pytition/petition/helpers.py:52 pytition/petition/views.py:921
-msgid "You are not part of this organization"
-msgstr ""
-
-#: pytition/petition/helpers.py:61
-msgid "Petition does not exist"
-msgstr ""
-
-#: pytition/petition/helpers.py:77
-msgid "This Petition has been moderated!"
-msgstr ""
-
-#: pytition/petition/helpers.py:79
-msgid "This Petition is not published yet!"
-msgstr ""
-
-#: pytition/petition/helpers.py:100
-msgid "Confirm your signature to our petition"
-msgstr ""
-
-#: pytition/petition/helpers.py:111
-msgid "Account created !"
-msgstr ""
-
-#: pytition/petition/models.py:27 pytition/petition/models.py:88
-msgid "Default petition template"
-msgstr ""
-
-#: pytition/petition/models.py:175
-#: pytition/petition/templates/layouts/wizard_layout.html:18
-msgid "Title"
-msgstr ""
-
-#: pytition/petition/models.py:310
-msgid "Thank you for confirming your signature!"
-msgstr ""
-
-#: pytition/petition/models.py:419
-msgid "This petition is buggy. Sorry about that!"
-msgstr ""
-
-#: pytition/petition/models.py:439
-#: pytition/petition/templates/petition/signature_data.html:85
-msgid "First name"
-msgstr ""
-
-#: pytition/petition/models.py:440
-#: pytition/petition/templates/petition/signature_data.html:86
-msgid "Last name"
-msgstr ""
-
-#: pytition/petition/models.py:442
-msgid "Email address"
-msgstr ""
-
-#: pytition/petition/models.py:444
-msgid "Confirmed"
-msgstr ""
-
-#: pytition/petition/models.py:445
-msgid "Petition"
-msgstr ""
-
-#: pytition/petition/models.py:446
-msgid "Subscribed to mailing list"
-msgstr ""
-
-#: pytition/petition/models.py:447
-#: pytition/petition/templates/petition/signature_data.html:91
-msgid "Date"
-msgstr ""
-
-#: pytition/petition/models.py:453
-msgid "You already signed the petition"
-msgstr ""
-
-#: pytition/petition/models.py:569
-msgid "A permlink cannot be empty. Please enter something."
-msgstr ""
-
-#: pytition/petition/models.py:580
+#: src/apps/accounts/models/permission.py:13
 msgid "Organization related to these permissions"
 msgstr ""
 
-#: pytition/petition/models.py:581
+#: src/apps/accounts/models/permission.py:18
 msgid "User related to these permissions"
 msgstr ""
 
-#: pytition/petition/models.py:655
-msgid "message"
+#: src/apps/accounts/models/permission.py:36
+msgid "Permission"
 msgstr ""
 
-#: pytition/petition/templates/layouts/base.html:12
-msgid "Homepage"
+#: src/apps/accounts/models/permission.py:37
+msgid "Permissions"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav-useractions.html:13
-msgid "Your dashboard"
+#: src/apps/accounts/models/pytition_user.py:27
+#: src/apps/organizations/models/organizations.py:28
+msgid "Default petition template"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav-useractions.html:27
-msgid "New Petition"
+#: src/apps/accounts/models/pytition_user.py:35
+msgid "Pytition User"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav-useractions.html:31
-msgid "New Organization"
+#: src/apps/accounts/models/pytition_user.py:36
+msgid "Pytition Users"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav-useractions.html:36
-msgid "Settings"
+#: src/apps/accounts/services.py:44 src/apps/accounts/views/profile.py:41
+#: src/apps/organizations/views/invitations/accept.py:45
+#: src/apps/organizations/views/invitations/accept.py:55
+#: src/apps/organizations/views/invitations/dismiss.py:44
+#: src/apps/organizations/views/invitations/dismiss.py:52
+#: src/apps/organizations/views/leave.py:42
+#: src/apps/organizations/views/leave.py:48
+#: src/apps/organizations/views/profile.py:41
+msgid "not found"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav-useractions.html:40
-msgid "Logout"
+#: src/apps/accounts/templates/accounts/base.html:12
+#: src/apps/organizations/templates/org/base.html:18
+#: src/apps/petitions/models/petition.py:117
+msgid "Petitions"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav-useractions.html:47
-#: pytition/petition/templates/registration/login.html:31
-msgid "Login"
+#: src/apps/accounts/templates/accounts/base.html:18
+#: src/apps/petitions/templates/petitions/list.html:16
+msgid "Create a new petition"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:16
-msgid "Report to moderation"
+#: src/apps/accounts/templates/accounts/base.html:18
+#: src/apps/organizations/templates/org/base.html:21
+msgid "New petition"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:39
-#: pytition/petition/templates/layouts/nav_dashboard.html:33
-msgid "Search for petition"
+#: src/apps/accounts/templates/accounts/base.html:26
+#: src/apps/organizations/templates/org/base.html:30
+msgid "Petition templates"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:41
-#: pytition/petition/templates/layouts/nav_dashboard.html:35
-msgid "Search"
+#: src/apps/accounts/templates/accounts/base.html:31
+#: src/apps/organizations/templates/org/base.html:35
+msgid "Create a new petition template"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:54
-msgid "Thank you for your reporting!"
+#: src/apps/accounts/templates/accounts/base.html:31
+#: src/apps/organizations/templates/org/base.html:35
+msgid "New template"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:55
-msgid "Reporting failed, please retry later."
+#: src/apps/accounts/templates/accounts/base.html:40
+msgid "Your public profile"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:59
-msgid "Report this petition to moderation"
+#: src/apps/accounts/templates/accounts/dashboard.html:3
+msgid "Your petitions"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:65
-msgid "Why do you want to report this petition?"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:7
+#, python-format
+msgid ""
+"\n"
+"        <h2>%(org)s: permissions of member %(member)s</h2>\n"
+"    "
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:76
-msgid "You are about to report this petition to moderation."
+#: src/apps/accounts/templates/accounts/edit_permissions.html:13
+msgid "Permission name"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:81
-msgid "Report"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:14
+msgid "Authorized?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav.html:82
-#: pytition/petition/templates/petition/petition_list.html:109
-#: pytition/petition/templates/petition/transfer_petition.html:63
-msgid "Cancel"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:18
+msgid "Can remove member?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/nav_dashboard.html:8
-#: pytition/petition/templates/layouts/nav_dashboard.html:10
-#: pytition/petition/templates/petition/back_to_dashboard.html:3
-#: pytition/petition/templates/petition/back_to_dashboard.html:5
-msgid "Back to dashboard"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:31
+msgid "Can invite new members?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/wizard_layout.html:15
-msgid "Create a new petition!"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:44
+msgid "Can create petitions?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/wizard_layout.html:19
-msgid "Give a title to your petition"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:57
+msgid "Can modify petitions?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/wizard_layout.html:20
-#: pytition/petition/templates/petition/edit_petition.html:55
-#: pytition/petition/templates/petition/edit_petition.html:261
-#: pytition/petition/templates/petition/edit_petition.html:267
-msgid "Content"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:70
+msgid "Can delete petitions?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/wizard_layout.html:21
-msgid "Write your petition content"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:83
+msgid "Can create petition templates?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/wizard_layout.html:22
-msgid "Publish"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:96
+msgid "Can modify petition templates?"
 msgstr ""
 
-#: pytition/petition/templates/layouts/wizard_layout.html:23
-msgid "Save your petition and publish it if it's ready"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:109
+msgid "Can delete petition templates?"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:10
-msgid "Personal Settings"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:122
+msgid "Can view signatures?"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:11
-#: pytition/petition/templates/petition/account_settings.html:21
-msgid "Personal Information"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:135
+msgid "Can modify signatures?"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:12
-msgid "Change Password"
+#: src/apps/accounts/templates/accounts/edit_permissions.html:148
+msgid "Can delete signatures?"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:13
-#: pytition/petition/templates/petition/account_settings.html:41
-#: pytition/petition/templates/petition/user_org_list.html:4
+#: src/apps/accounts/templates/accounts/edit_permissions.html:161
+msgid "Can modify permissions?"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/edit_permissions.html:174
+msgid "Validate those new permissions"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/edit_permissions.html:175
+msgid "Return to dashboard"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/invitations.html:4
+msgid "Invitations"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/invitations.html:15
+#, python-format
+msgid ""
+"\n"
+"                    You are invited to <strong>&nbsp;%(orgname)s</strong>\n"
+"                "
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/invitations.html:21
+msgid "Join"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/invitations.html:25
+msgid "Dismiss"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/org_list.html:5
+#: src/apps/accounts/templates/accounts/settings.html:29
+#: src/apps/accounts/templates/accounts/settings.html:74
+#: src/apps/organizations/models/organizations.py:40
 msgid "Organizations"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:14
+#: src/apps/accounts/templates/accounts/org_list.html:11
+msgid "Create a new organization"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/org_list.html:11
+msgid "New organization"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/profile.html:5
+#, python-format
+msgid ""
+"\n"
+"    %(name)s\"s profile\n"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/profile.html:24
+#: src/apps/core/templates/core/index.html:32
+#: src/apps/organizations/templates/org/profile.html:24
+msgid "Last Created"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/profile.html:27
+#: src/apps/core/templates/core/index.html:35
+#: src/apps/organizations/templates/org/profile.html:27
+msgid "First Created"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/profile.html:30
+msgid ""
+"\n"
+"        This user has not created any petition yet\n"
+"    "
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/register.html:15
+msgid "Register"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/settings.html:11
+msgid "Personal Settings"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/settings.html:17
+#: src/apps/accounts/templates/accounts/settings.html:44
+msgid "Personal Information"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/settings.html:23
+msgid "Change Password"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/settings.html:35
 msgid "Delete your account"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:25
+#: src/apps/accounts/templates/accounts/settings.html:52
 msgid "Update"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:31
-#: pytition/petition/templates/petition/account_settings.html:35
+#: src/apps/accounts/templates/accounts/settings.html:60
+#: src/apps/accounts/templates/accounts/settings.html:68
 msgid "Change password"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:63
+#: src/apps/accounts/templates/accounts/settings.html:105
 msgid ""
 "You cannot leave an organization where you are either the last administrator "
 "or the last member"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:72
+#: src/apps/accounts/templates/accounts/settings.html:114
 msgid "You are not part of any organization"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:75
+#: src/apps/accounts/templates/accounts/settings.html:118
 msgid "Create an Organization"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:80
+#: src/apps/accounts/templates/accounts/settings.html:126
 msgid "Delete Account"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:89
+#: src/apps/accounts/templates/accounts/settings.html:134
 msgid ""
 "\n"
 "                                            WARNING: If you do this, your "
@@ -727,131 +310,1236 @@ msgid ""
 "                                        "
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:102
-#: pytition/petition/templates/petition/edit_petition.html:167
-#: pytition/petition/templates/petition/petition_list.html:108
-#: pytition/petition/templates/petition/template_list.html:40
+#: src/apps/accounts/templates/accounts/settings.html:151
+#: src/apps/petitions/templates/petitions/edit.html:327
+#: src/apps/petitions/templates/petitions/list.html:131
+#: src/apps/presets/templates/presets/list.html:75
 msgid "Delete"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:115
+#: src/apps/accounts/templates/accounts/settings.html:168
 msgid "Leaving an organization"
 msgstr ""
 
-#: pytition/petition/templates/petition/account_settings.html:121
+#: src/apps/accounts/templates/accounts/settings.html:174
 msgid "Are you sure you want to leave"
 msgstr ""
 
-#: pytition/petition/templates/petition/confirmation_email.html:10
+#: src/apps/accounts/views/register.py:40
+#, python-brace-format
+msgid "How much is {a} + {b}?"
+msgstr ""
+
+#: src/apps/accounts/views/settings.py:65
+msgid "You successfully changed your password!"
+msgstr ""
+
+#: src/apps/consents/admin.py:8
+msgid "Confirm the signatures"
+msgstr ""
+
+#: src/apps/consents/admin.py:15
+msgid "Error: {}"
+msgstr "Ошибка: {}"
+
+#: src/apps/consents/forms/newsletter.py:15
+msgid "Does this petition have a newsletter?"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:40
+msgid "Use TLS?"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:43
+msgid "Use STARTTLS?"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:62
+#: src/apps/consents/forms/newsletter.py:68
+msgid "You cannot select both TLS and STARTTLS."
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:82
+#, python-brace-format
+msgid "Port must be between 1 and {MAX_PORT_NUMBER}."
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:89
+msgid "Port must be an integer."
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:101
+msgid "This field is required for HTTP subscription."
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:113
+msgid "Provide either a subscription URL or HTTP data."
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:124
+msgid "Please provide the list admin address."
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:131
+msgid "Please provide the subscription subject template."
+msgstr ""
+
+#: src/apps/consents/views/export.py:55
+msgid "No newsletter subscription yet!"
+msgstr ""
+
+#: src/apps/core/templates/core/index.html:13
+msgid "Welcome to Pytition"
+msgstr ""
+
+#: src/apps/core/templates/core/index.html:14
+msgid "Make things change!"
+msgstr ""
+
+#: src/apps/core/templates/core/index.html:20
+msgid "Create a petition"
+msgstr ""
+
+#: src/apps/core/templates/core/index.html:27
+msgid "View latest petitions"
+msgstr ""
+
+#: src/apps/core/templates/layouts/base.html:13
+msgid "A platform for creating and signing petitions."
+msgstr ""
+
+#: src/apps/core/templates/layouts/base.html:15
+msgid "petition, activism, signature, campaign"
+msgstr ""
+
+#: src/apps/core/templates/layouts/base.html:19
+msgid "Homepage"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav-useractions.html:20
+msgid "Your dashboard"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav-useractions.html:34
+msgid "New Petition"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav-useractions.html:39
+msgid "New Organization"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav-useractions.html:45
+msgid "Settings"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav-useractions.html:49
+msgid "Logout"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav-useractions.html:57
+#: src/apps/core/templates/registration/login.html:41
+msgid "Login"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:25
+msgid "Report to moderation"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:54
+#: src/apps/core/templates/layouts/nav_dashboard.html:52
+msgid "Search for petition"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:58
+#: src/apps/core/templates/layouts/nav_dashboard.html:56
+msgid "Search"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:71
+msgid "Thank you for your reporting!"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:72
+msgid "Reporting failed, please retry later."
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:76
+msgid "Report this petition to moderation"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:81
+msgid "Why do you want to report this petition?"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:92
+msgid "You are about to report this petition to moderation."
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:99
+msgid "Report"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav.html:100
+#: src/apps/petitions/templates/petitions/list.html:132
+#: src/apps/petitions/templates/petitions/transfer.html:71
+msgid "Cancel"
+msgstr ""
+
+#: src/apps/core/templates/layouts/nav_dashboard.html:11
+#: src/apps/core/templates/layouts/nav_dashboard.html:15
+msgid "Back to dashboard"
+msgstr ""
+
+#: src/apps/core/templates/layouts/wizard_layout.html:14
+msgid "Create a new petition!"
+msgstr ""
+
+#: src/apps/core/templates/layouts/wizard_layout.html:18
+#: src/apps/petitions/models/petition.py:51
+#: src/apps/petitions/templates/petitions/new_step1.html:15
+msgid "Title"
+msgstr ""
+
+#: src/apps/core/templates/layouts/wizard_layout.html:20
+msgid "Give a title to your petition"
+msgstr ""
+
+#: src/apps/core/templates/layouts/wizard_layout.html:23
+#: src/apps/petitions/templates/petitions/edit.html:56
+#: src/apps/petitions/templates/petitions/edit.html:449
+#: src/apps/petitions/templates/petitions/edit.html:455
+msgid "Content"
+msgstr ""
+
+#: src/apps/core/templates/layouts/wizard_layout.html:25
+msgid "Write your petition content"
+msgstr ""
+
+#: src/apps/core/templates/layouts/wizard_layout.html:28
+msgid "Publish"
+msgstr ""
+
+#: src/apps/core/templates/layouts/wizard_layout.html:30
+msgid "Save your petition and publish it if it's ready"
+msgstr ""
+
+#: src/apps/core/templates/registration/login.html:7
+msgid "Please sign in"
+msgstr ""
+
+#: src/apps/core/templates/registration/login.html:10
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: src/apps/core/templates/registration/login.html:46
+msgid "No account?"
+msgstr ""
+
+#: src/apps/core/templates/registration/login.html:46
+msgid "Register!"
+msgstr ""
+
+#: src/apps/core/templates/registration/login.html:50
+msgid "I forgot my password!"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_done.html:4
+msgid "Email Sent"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_done.html:10
+msgid "Check your inbox."
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_done.html:11
+msgid ""
+"We've emailed you instructions for setting your password. You should receive "
+"the email shortly!"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_form.html:4
+msgid "Forgot Your Password?"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_form.html:10
+msgid "Forgot your password?"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_form.html:11
+msgid ""
+"Enter your email address below, and we'll email instructions for setting a "
+"new one."
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_form.html:15
+msgid "Email"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_form.html:21
+msgid "email@example.com"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_form.html:24
+msgid "Send me instructions!"
+msgstr ""
+
+#: src/apps/core/templates/ui/components/demo_text.html:3
+msgid ""
+"<span style=\"color: red;font-weight: bold;\">Demonstration website (please "
+"DON'T put real petitions here!)</span> <br /> This tool is free and open-"
+"source software, you can install it on your server too! <br> Download the "
+"source code on <a href=\"https://github.com/pytition/pytition\">GitHub</a> "
+"<br> Documentation is available on <a href=\"https://pytition.readthedocs."
+"io\">ReadTheDocs</a>"
+msgstr ""
+
+#: src/apps/core/views/index.py:18
+msgid "You must set an INDEX_PAGE config in your settings"
+msgstr ""
+
+#: src/apps/core/views/index.py:23
+msgid "You must set an INDEX_PAGE_USER config in your settings"
+msgstr ""
+
+#: src/apps/core/views/index.py:27
+msgid "You must set an INDEX_PAGE_ORGA config in your settings"
+msgstr ""
+
+#: src/apps/moderation/models/moderation_reason.py:8
+msgid "message"
+msgstr ""
+
+#: src/apps/notifications/admin.py:9
+msgid "Send the confirmation email once again"
+msgstr ""
+
+#: src/apps/notifications/forms/email.py:15
+msgid ""
+"Your contact email. It will be used as \"Reply-To\" field of the "
+"confirmation email sent to signatories. People responding to confirmation "
+"email will in fact respond to this address."
+msgstr ""
+
+#: src/apps/notifications/services.py:42
+msgid "Confirm your signature to our petition"
+msgstr ""
+
+#: src/apps/notifications/services.py:66
+msgid "Account created !"
+msgstr ""
+
+#: src/apps/notifications/templates/notifications/confirmation_email.html:7
+msgid "Email Confirmation"
+msgstr ""
+
+#: src/apps/notifications/templates/notifications/confirmation_email.html:9
+msgid "Confirm your signature by clicking the provided link."
+msgstr ""
+
+#: src/apps/notifications/templates/notifications/confirmation_email.html:11
+msgid "confirmation, email, signature, petition"
+msgstr ""
+
+#: src/apps/notifications/templates/notifications/confirmation_email.html:14
 msgid "Thank you"
 msgstr ""
 
-#: pytition/petition/templates/petition/confirmation_email.html:12
+#: src/apps/notifications/templates/notifications/confirmation_email.html:15
 msgid ""
 "\n"
 "Now, in order to confirm your signature, you only need to click here :\n"
 msgstr ""
 
-#: pytition/petition/templates/petition/confirmation_email.html:17
+#: src/apps/notifications/templates/notifications/confirmation_email.html:20
 msgid "See you soon!"
 msgstr ""
 
-#: pytition/petition/templates/petition/demo_text.html:3
-msgid ""
-"<span style=\"color: red;font-weight: bold;\">Demonstration website (please "
-"DON'T put real petitions here!)</span><br/> This tool is free and open-"
-"source software, you can install it on your server too!<br> Download the "
-"source code on <a href=\"https://github.com/pytition/pytition\">GitHub</"
-"a><br> Documentation is available on <a href=\"https://pytition.readthedocs."
-"io\">ReadTheDocs</a>"
+#: src/apps/organizations/admin.py:13
+msgid "Number of petitions"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:28
+#: src/apps/organizations/admin.py:17
+msgid "Number of members"
+msgstr ""
+
+#: src/apps/organizations/forms.py:23
+msgid "This is an invalid Organization name. Please try something else."
+msgstr ""
+
+#: src/apps/organizations/models/organizations.py:39
+msgid "Organization"
+msgstr ""
+
+#: src/apps/organizations/templates/org/create.html:6
+msgid "Create an organization"
+msgstr ""
+
+#: src/apps/organizations/templates/org/create.html:14
+#: src/apps/presets/templates/presets/new.html:42
+msgid "Create"
+msgstr ""
+
+#: src/apps/organizations/templates/org/dashboard.html:4
+#, python-format
+msgid ""
+"\n"
+"        Petitions of '%(orgname)s'\n"
+"    "
+msgstr ""
+
+#: src/apps/organizations/templates/org/invite_user.html:5
+msgid "Invite user"
+msgstr ""
+
+#: src/apps/organizations/templates/org/invite_user.html:10
+msgid "Username"
+msgstr ""
+
+#: src/apps/organizations/templates/org/member_list.html:4
+msgid "Members"
+msgstr ""
+
+#: src/apps/organizations/templates/org/member_list.html:13
+msgid ""
+"You cannot edit this member's permissions, you don't have the correct "
+"permission"
+msgstr ""
+
+#: src/apps/organizations/templates/org/member_list.html:13
+msgid "Edit this member's permissions"
+msgstr ""
+
+#: src/apps/organizations/templates/org/member_list.html:18
+msgid ""
+"You cannot remove this member from the organization, you don't have the "
+"correct permission"
+msgstr ""
+
+#: src/apps/organizations/templates/org/member_list.html:18
+msgid "Remove this member from the organization."
+msgstr ""
+
+#: src/apps/organizations/templates/org/member_list.html:30
+msgid "Unable to remove this member from the organization."
+msgstr ""
+
+#: src/apps/organizations/templates/org/profile.html:5
+#, python-format
+msgid ""
+"\n"
+"        %(name)s\"s profile\n"
+"    "
+msgstr ""
+
+#: src/apps/organizations/views/dashboard.py:40
+msgid "This organization does not exist: '{}'"
+msgstr ""
+
+#: src/apps/organizations/views/dashboard.py:49
+msgid "You are not part of this organization: '{}'"
+msgstr ""
+
+#: src/apps/organizations/views/dashboard.py:60
+#: src/apps/organizations/views/members/edit_perms.py:92
+#: src/apps/petitions/forms/creation_wizard.py:263
+#: src/apps/presets/views/edit.py:66 src/apps/presets/views/new.py:74
+#: src/apps/signatures/views/list.py:111
+#, python-brace-format
+msgid ""
+"Internal error, cannot find your permissions attached to this organization "
+"('{orgname}')"
+msgstr ""
+
+#: src/apps/organizations/views/leave.py:54
+msgid "Impossible to leave this organization, you are the last administrator"
+msgstr ""
+
+#: src/apps/organizations/views/leave.py:62
+msgid "Impossible to leave this organization, you are the last member"
+msgstr ""
+
+#: src/apps/organizations/views/members/add.py:43
+msgid "This user does not exist (any longer?)"
+msgstr ""
+
+#: src/apps/organizations/views/members/add.py:47
+msgid "This organization does not exist (any longer?)"
+msgstr ""
+
+#: src/apps/organizations/views/members/add.py:50
+msgid "You are not part of this organization."
+msgstr ""
+
+#: src/apps/organizations/views/members/add.py:54
+msgid "You are not allowed to invite new members into this organization."
+msgstr ""
+
+#: src/apps/organizations/views/members/add.py:59
+#, python-brace-format
+msgid "User is already member of {orgname} organization"
+msgstr ""
+
+#: src/apps/organizations/views/members/add.py:98
+#, python-brace-format
+msgid "You invited {username} to join {orgname}"
+msgstr ""
+
+#: src/apps/organizations/views/members/add.py:106
+msgid "An error occurred"
+msgstr ""
+
+#: src/apps/organizations/views/members/delete.py:39
+#: src/apps/organizations/views/members/set_perms.py:70
+msgid "User does not exist"
+msgstr ""
+
+#: src/apps/organizations/views/members/delete.py:46
+#: src/apps/organizations/views/members/set_perms.py:42
+#: src/apps/petitions/forms/creation_wizard.py:248
+#: src/apps/presets/views/new.py:61
+msgid "Organization does not exist"
+msgstr ""
+
+#: src/apps/organizations/views/members/edit_perms.py:52
+#, python-brace-format
+msgid "User '{name}' does not exist"
+msgstr ""
+
+#: src/apps/organizations/views/members/edit_perms.py:60
+#, python-brace-format
+msgid "Organization '{name}' does not exist"
+msgstr ""
+
+#: src/apps/organizations/views/members/edit_perms.py:67
+#, python-brace-format
+msgid "The user '{username}' is not member of this organization ({orgname})."
+msgstr ""
+
+#: src/apps/organizations/views/members/edit_perms.py:81
+msgid ""
+"Internal error, this member does not have permissions attached to this "
+"organization."
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:45
+msgid "You are not part of this organization"
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:54
+msgid ""
+"Fatal error, you don't have permissions attached to you for this organization"
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:63
+msgid "You are not allowed to modify this organization members' permissions"
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:77
+#, python-brace-format
+msgid "This user is not part of organization '{orgname}'"
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:90
+msgid ""
+"Fatal error, this user does not have permissions attached for this "
+"organization"
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:131
+msgid ""
+"You cannot remove your ability to change permissions on this Organization "
+"because you are the only one left who can do this. Give the permission to "
+"someone else before removing yours."
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:142
+msgid ""
+"You cannot remove your ability to change permissions on this Organization "
+"because you are the only member left."
+msgstr ""
+
+#: src/apps/organizations/views/members/set_perms.py:148
+msgid "Permissions successfully changed!"
+msgstr ""
+
+#: src/apps/organizations/views/new.py:36
+msgid "Only super users can create an organization."
+msgstr ""
+
+#: src/apps/organizations/views/new.py:60
+msgid "You successfully created organization '{}'"
+msgstr ""
+
+#: src/apps/petitions/admin.py:22
+msgid ""
+"This is a gradient color. If selected, the background color will be a "
+"gradient color. If not, the background color will be a monochrome background "
+"color."
+msgstr ""
+
+#: src/apps/petitions/admin.py:26 src/apps/petitions/admin.py:27
+#: src/apps/presets/admin.py:25 src/apps/presets/admin.py:26
+msgid "Only used if gradient is selected"
+msgstr ""
+
+#: src/apps/petitions/admin.py:29
+msgid ""
+"Put a bullet point list of links, it will appear horizontally in the page "
+"footer"
+msgstr ""
+
+#: src/apps/petitions/admin.py:33
+msgid ""
+"This is the description of the petition, it will be displayed in Twitter/"
+"Facebook cards when the link is posted to social networks.To be tested via "
+"https://cards-dev.twitter.com/validator andhttps://developers.facebook.com/"
+"tools/debug/"
+msgstr ""
+
+#: src/apps/petitions/admin.py:39
+msgid ""
+"Picture displayed in Twitter/Facebook cards when the link is posted tosocial "
+"networks. To be tested via https://cards-dev.twitter.com/validator and "
+"https://developers.facebook.com/tools/debug/"
+msgstr ""
+
+#: src/apps/petitions/admin.py:45
+msgid ""
+"Allow to chose whether the newsletter subscription checkbox is shown or not"
+msgstr ""
+
+#: src/apps/petitions/admin.py:48
+msgid ""
+"Only in case \"\n"
+"            \"subscription to the newsletter via HTTP POST or GET methods."
+"\"\n"
+"            \"Put here data to be sent, using Python dictionary syntax. e."
+"g.: <br>\n"
+"                    {'_wpcf7': 21,<br>\n"
+"                    '_wpcf7_version': '4.9',<br>\n"
+"                    '_wpcf7_locale': 'fr_FR',<br>\n"
+"                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
+"                    '_wpcf7_container_post': '5398',<br>\n"
+"                    'your-email': ''<br>\n"
+"                    }"
+msgstr ""
+
+#: src/apps/petitions/admin.py:59
+msgid ""
+"Only when HTTP POST or GET subscription method is used. Name of the field to "
+"send via GET or POST, containing the emailaddress to subscribe. Following "
+"the example of preceding form field,that would be 'your-email'"
+msgstr ""
+
+#: src/apps/petitions/admin.py:65
+msgid ""
+"Only when HTTP POST or GET subscription method is used.Adresse HTTP à "
+"requêter via GET ou POST pourenregistrer quelqu'un sur la newsletter"
+msgstr ""
+
+#: src/apps/petitions/admin.py:70
+msgid ""
+"Only when EMAIL subscription method is used.Inscrire ici la syntaxe de sujet "
+"du mail qui permet d'inscrirequelqu'un à la newsletter. Indiquez {} à la "
+"place où le mail dusignataire doit être inséré. Ex: 'ADD NOM_LISTE {} "
+"NOM_SIGNATAIRE'"
+msgstr ""
+
+#: src/apps/petitions/admin.py:76 src/apps/presets/admin.py:75
+msgid ""
+"Only when EMAIL subscription method is used. L'expéditeur du mail quipermet "
+"d'enregistrer quelqu'un à la newsletter. Il s'agit généralementd'une adresse "
+"qui est administratrice de la liste SYMPA ou MAILMAN"
+msgstr ""
+
+#: src/apps/petitions/admin.py:81 src/apps/presets/admin.py:80
+msgid ""
+"Only when EMAIL subscription method is used. Adresse emaild'administration "
+"de la liste, ex : sympa@NOM_LISTE.listes.vox.coop"
+msgstr ""
+
+#: src/apps/petitions/admin.py:85
+msgid ""
+"This selects the newsletter subscription method. It is eitherHTTP GET or "
+"POST or via sending EMAIL to the newsletter admin address"
+msgstr ""
+
+#: src/apps/petitions/admin.py:89 src/apps/presets/admin.py:88
+msgid ""
+"If checked, the petition is published and accessible on the website "
+"byeverybody. If not checked, the petition is only accessible by loggedin "
+"users, others will get a 404 error."
+msgstr ""
+
+#: src/apps/petitions/admin.py:94
+msgid "E.g.: I want to receive updates or informations from this organization"
+msgstr ""
+
+#: src/apps/petitions/admin.py:97 src/apps/presets/admin.py:96
+msgid ""
+"E.g.: Your data will stay strictly confidential and will not be sold,given "
+"away or exchanged with third parties. Informations about thiscampaign as "
+"well as other news about this organization will be sent toyou if you checked "
+"the checkbox. You can unsubscribe at any moment."
+msgstr ""
+
+#: src/apps/petitions/admin.py:103
+msgid ""
+"The twitter account handle of the organization, starting with the'@' symbol. "
+"E.g.: @RAP_Asso. This is necessary in order to attributethe 'Twitter Card' "
+"to the correct account. Seehttps://developer.twitter.com/en/docs/tweets/"
+"optimize-with-cards/overview/summary"
+msgstr ""
+
+#: src/apps/petitions/admin.py:109 src/apps/presets/admin.py:108
+msgid "Check if you want to use your own E-Mail SMTP account."
+msgstr ""
+
+#: src/apps/petitions/admin.py:111 src/apps/presets/admin.py:110
+msgid "e.g.: petition@mydomain.tld"
+msgstr ""
+
+#: src/apps/petitions/admin.py:113 src/apps/presets/admin.py:112
+msgid "If you don't have a real email account, leave 'localhost'."
+msgstr ""
+
+#: src/apps/petitions/admin.py:116 src/apps/presets/admin.py:115
+msgid ""
+"25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLSif the "
+"email server supports it."
+msgstr ""
+
+#: src/apps/petitions/admin.py:120 src/apps/petitions/admin.py:123
+#: src/apps/presets/admin.py:119 src/apps/presets/admin.py:122
+msgid "Leave empty if you don't use any account autentication."
+msgstr ""
+
+#: src/apps/petitions/admin.py:126 src/apps/presets/admin.py:125
+msgid ""
+"SMTP connection encrypted via TLS, prefer this rather than STARTTLS "
+"ifpossible. Don't check both. The 2 settings are mutually exclusive."
+msgstr ""
+
+#: src/apps/petitions/admin.py:130 src/apps/presets/admin.py:129
+msgid ""
+"Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage.Ne pas "
+"cocher les 2. Les 2 réglages sont mutuellement exclusifs."
+msgstr ""
+
+#: src/apps/petitions/admin.py:135
+msgid "Petition title"
+msgstr ""
+
+#: src/apps/petitions/admin.py:136 src/apps/presets/admin.py:135
+msgid "Petition text"
+msgstr ""
+
+#: src/apps/petitions/admin.py:137 src/apps/presets/admin.py:136
+msgid "Side text, on top of form"
+msgstr ""
+
+#: src/apps/petitions/admin.py:138 src/apps/presets/admin.py:137
+msgid "Signature target number"
+msgstr ""
+
+#: src/apps/petitions/admin.py:140
+msgid "Number of paper (or other external medium) signatures"
+msgstr ""
+
+#: src/apps/petitions/admin.py:143
+msgid "Enable paper signatures accounting"
+msgstr ""
+
+#: src/apps/petitions/admin.py:146 src/apps/presets/admin.py:139
+msgid "Direction of linear gradient for background color"
+msgstr ""
+
+#: src/apps/petitions/admin.py:148 src/apps/presets/admin.py:141
+msgid "Source color for linear gradient"
+msgstr ""
+
+#: src/apps/petitions/admin.py:149 src/apps/presets/admin.py:142
+msgid "Destinatoin color for linear gradient"
+msgstr ""
+
+#: src/apps/petitions/admin.py:150 src/apps/presets/admin.py:143
+msgid "Color for monochrome background color"
+msgstr ""
+
+#: src/apps/petitions/admin.py:151 src/apps/presets/admin.py:144
+msgid "Footer text"
+msgstr ""
+
+#: src/apps/petitions/admin.py:152 src/apps/presets/admin.py:145
+msgid "Footer links"
+msgstr ""
+
+#: src/apps/petitions/admin.py:154 src/apps/presets/admin.py:147
+msgid "Description for Twitter/Facebook cards"
+msgstr ""
+
+#: src/apps/petitions/admin.py:156 src/apps/presets/admin.py:149
+msgid "Picture for Twitter/Facebook cards"
+msgstr ""
+
+#: src/apps/petitions/admin.py:158 src/apps/presets/admin.py:151
+msgid "Is the petition associated with a newsletter?"
+msgstr ""
+
+#: src/apps/petitions/admin.py:161 src/apps/presets/admin.py:154
+msgid ""
+"Data structure to be sent in order to subscribe someone to thenewsletter in "
+"case of HTTP method"
+msgstr ""
+
+#: src/apps/petitions/admin.py:165
+msgid ""
+"Name of the field which should contain the email value in the PHPdata "
+"structure"
+msgstr ""
+
+#: src/apps/petitions/admin.py:169 src/apps/presets/admin.py:162
+msgid "HTTP URL for newsletter subscription"
+msgstr ""
+
+#: src/apps/petitions/admin.py:172 src/apps/presets/admin.py:165
+msgid "Email subject for newsletter subscription command"
+msgstr ""
+
+#: src/apps/petitions/admin.py:175 src/apps/presets/admin.py:168
+msgid "FROM field for newsletter subscription command"
+msgstr ""
+
+#: src/apps/petitions/admin.py:178 src/apps/presets/admin.py:171
+msgid "TO field for newsletter subscription command"
+msgstr ""
+
+#: src/apps/petitions/admin.py:181 src/apps/presets/admin.py:174
+msgid "Newsletter subscription method"
+msgstr ""
+
+#: src/apps/petitions/admin.py:183 src/apps/presets/admin.py:176
+msgid "Puslibhed"
+msgstr ""
+
+#: src/apps/petitions/admin.py:185 src/apps/presets/admin.py:178
+msgid "Form label text of newsletter subscription checkbox"
+msgstr ""
+
+#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:180
+msgid "Sign form footer text"
+msgstr ""
+
+#: src/apps/petitions/admin.py:188 src/apps/presets/admin.py:181
+msgid "Organization Twitter handle"
+msgstr ""
+
+#: src/apps/petitions/admin.py:189 src/apps/presets/admin.py:182
+msgid "Use custom e-mail settings?"
+msgstr ""
+
+#: src/apps/petitions/admin.py:191 src/apps/presets/admin.py:184
+msgid "Confirmation email Reply-to address"
+msgstr ""
+
+#: src/apps/petitions/admin.py:193 src/apps/presets/admin.py:186
+msgid "SMTP server hostname"
+msgstr ""
+
+#: src/apps/petitions/admin.py:194 src/apps/presets/admin.py:187
+msgid "SMTP port"
+msgstr ""
+
+#: src/apps/petitions/admin.py:195 src/apps/presets/admin.py:188
+msgid "SMTP username"
+msgstr ""
+
+#: src/apps/petitions/admin.py:196 src/apps/presets/admin.py:189
+msgid "SMTP password"
+msgstr ""
+
+#: src/apps/petitions/admin.py:197 src/apps/presets/admin.py:190
+msgid "SMTP via TLS?"
+msgstr ""
+
+#: src/apps/petitions/admin.py:199 src/apps/presets/admin.py:192
+msgid "SMTP via STARTTLS?"
+msgstr ""
+
+#: src/apps/petitions/admin.py:215
+msgid "To whom is this petition?"
+msgstr ""
+
+#: src/apps/petitions/admin.py:217 src/apps/presets/admin.py:206
+msgid "Content of the petition"
+msgstr ""
+
+#: src/apps/petitions/admin.py:233 src/apps/presets/admin.py:220
+msgid "Background color"
+msgstr ""
+
+#: src/apps/petitions/admin.py:244 src/apps/presets/admin.py:231
+msgid "Setup of the newsletter associated to the petition"
+msgstr ""
+
+#: src/apps/petitions/admin.py:266 src/apps/presets/admin.py:253
+msgid "Confirmation email setup"
+msgstr ""
+
+#: src/apps/petitions/admin.py:270 src/apps/presets/admin.py:257
+msgid "Petition meta-data for social networks"
+msgstr ""
+
+#: src/apps/petitions/admin.py:273
+msgid "Publish the petition"
+msgstr ""
+
+#: src/apps/petitions/admin.py:276
+msgid "Unconfirmed signatures"
+msgstr ""
+
+#: src/apps/petitions/admin.py:280
+msgid "Confirmed signatures"
+msgstr ""
+
+#: src/apps/petitions/forms/content.py:25
+msgid "Show publication date"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_steps.py:22
+msgid "Title is required and must be a string."
+msgstr ""
+
+#: src/apps/petitions/forms/creation_steps.py:38
+msgid "There is already a petition with this title"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_steps.py:52
+msgid "You should either provide an org name or a user name"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_steps.py:65
+msgid "Publish the petition now?"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_steps.py:66
+#: src/apps/petitions/templates/petitions/new_step3.html:35
+msgid "Save & Configure"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_steps.py:69
+msgid "Use template"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_steps.py:72
+msgid "Template id"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_wizard.py:100
+msgid "Users are not allowed to create their own petitions."
+msgstr ""
+
+#: src/apps/petitions/forms/creation_wizard.py:172
+msgid "Cannot find this organization"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_wizard.py:199
+msgid "This template does not belong to your organization"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_wizard.py:211
+msgid ""
+"You don't have the permission to create a new petition in this Organization"
+msgstr ""
+
+#: src/apps/petitions/forms/creation_wizard.py:229
+msgid "This template does not belong to you"
+msgstr ""
+
+#: src/apps/petitions/helpers.py:25
+msgid "Petition does not exist"
+msgstr ""
+
+#: src/apps/petitions/helpers.py:50
+msgid "This Petition has been moderated!"
+msgstr ""
+
+#: src/apps/petitions/helpers.py:52
+msgid "This Petition is not published yet!"
+msgstr ""
+
+#: src/apps/petitions/models/petition.py:116
+#: src/apps/signatures/models/signature.py:30
+msgid "Petition"
+msgstr ""
+
+#: src/apps/petitions/models/petition.py:250
+msgid "Thank you for confirming your signature!"
+msgstr ""
+
+#: src/apps/petitions/models/petition.py:359
+msgid "This petition is missing an organization owner."
+msgstr ""
+
+#: src/apps/petitions/models/petition.py:368
+msgid "This petition is missing a user owner."
+msgstr ""
+
+#: src/apps/petitions/models/petition.py:371
+msgid "This petition is buggy. Sorry about that!"
+msgstr ""
+
+#: src/apps/petitions/models/slug.py:25
+msgid "Slug"
+msgstr ""
+
+#: src/apps/petitions/models/slug.py:26
+msgid "Slugs"
+msgstr ""
+
+#: src/apps/petitions/models/slug.py:31
+msgid "A permalink cannot be empty. Please enter something."
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:24
+#: src/apps/signatures/templates/signatures/change_form.html:23
+msgid "Home"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:34
+#: src/apps/signatures/templates/signatures/change_form.html:33
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:50
+#: src/apps/signatures/templates/signatures/change_form.html:49
+msgid "History"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:54
+#: src/apps/signatures/templates/signatures/change_form.html:53
+msgid "View on site"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:65
+msgid "Generate confirmed signatures CSV file"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:68
+msgid "Generate ALL-signatures CSV file"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:71
+msgid "Preview the petition"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:75
+msgid "Show the signatures"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:78
+msgid "Show unconfirmed signatures"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:101
+#: src/apps/signatures/templates/signatures/change_form.html:85
+msgid "Please correct the error below."
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:103
+#: src/apps/signatures/templates/signatures/change_form.html:87
+msgid "Please correct the errors below."
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:79
+#: src/apps/petitions/templates/petitions/detail.html:101
+msgid "Thank you!"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:83
+msgid ""
+"Thank you for signing this petition! Your signature will be accounted for as "
+"soon as you click on the link in the e-mail we've just sent you."
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:90
+#: src/apps/petitions/templates/petitions/detail.html:111
+#: src/apps/signatures/templates/signatures/data.html:54
+#: src/apps/signatures/templates/signatures/data.html:70
+msgid "Ok"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:105
+msgid ""
+"Thank you for confirming your signature to this petition! Your signature is "
+"now accounted for. See you soon!"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:127
+msgid "Instance address"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:134
+msgid "Enter your Mastodon instance's address"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:142
+#: src/apps/presets/templates/presets/list.html:74
+msgid "Close"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:143
+msgid "Share"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:153
+msgid "SIGN"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:159
+msgid "Careful!"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:160
+msgid ""
+"This petition is not published yet. You can only see it because you are "
+"logged-in as either its creator or a member of the organization which "
+"created it. Other visitors won\"t be able to see it."
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:172
+msgid "This petition is moderated. You only see it because you are its creator"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:246
+#: src/apps/petitions/templates/petitions/detail.html:289
+#: src/apps/petitions/templates/petitions/detail.html:303
+#: src/apps/petitions/templates/petitions/detail.html:317
+msgid "Sign the petition!"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:357
+msgid "Published on: "
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/edit.html:25
 msgid "Petition settings"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:46
-#: pytition/petition/templates/petition/petition_list.html:56
+#: src/apps/petitions/templates/petitions/edit.html:42
+#: src/apps/petitions/templates/petitions/list.html:60
 msgid "Not published"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:48
-#: pytition/petition/templates/petition/petition_list.html:58
+#: src/apps/petitions/templates/petitions/edit.html:44
+#: src/apps/petitions/templates/petitions/list.html:62
 msgid "Published"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:57
-#: pytition/petition/templates/petition/edit_petition.html:275
-#: pytition/petition/templates/petition/edit_petition.html:281
+#: src/apps/petitions/templates/petitions/edit.html:61
+#: src/apps/petitions/templates/petitions/edit.html:464
+#: src/apps/petitions/templates/petitions/edit.html:470
 msgid "Style & Look"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:59
-#: pytition/petition/templates/petition/edit_petition.html:303
-#: pytition/petition/templates/petition/edit_petition.html:309
+#: src/apps/petitions/templates/petitions/edit.html:66
+#: src/apps/petitions/templates/petitions/edit.html:494
+#: src/apps/petitions/templates/petitions/edit.html:500
 msgid "Social Networks"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:61
-#: pytition/petition/templates/petition/edit_petition.html:289
-#: pytition/petition/templates/petition/edit_petition.html:295
+#: src/apps/petitions/templates/petitions/edit.html:71
+#: src/apps/petitions/templates/petitions/edit.html:479
+#: src/apps/petitions/templates/petitions/edit.html:485
 msgid "E-mail setup"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:63
-#: pytition/petition/templates/petition/edit_petition.html:317
-#: pytition/petition/templates/petition/edit_petition.html:323
+#: src/apps/petitions/templates/petitions/edit.html:76
+#: src/apps/petitions/templates/petitions/edit.html:509
+#: src/apps/petitions/templates/petitions/edit.html:515
 msgid "Newsletter setup"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:65
+#: src/apps/petitions/templates/petitions/edit.html:81
 msgid "Preview petition"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:72
-#: pytition/petition/templates/petition/edit_petition.html:141
-#: pytition/petition/templates/petition/edit_petition.html:180
-#: pytition/petition/templates/petition/edit_petition.html:187
-#: pytition/petition/templates/petition/edit_petition.html:194
-#: pytition/petition/templates/petition/new_petition_step3.html:30
+#: src/apps/petitions/templates/petitions/edit.html:94
+#: src/apps/petitions/templates/petitions/edit.html:293
+#: src/apps/petitions/templates/petitions/edit.html:349
+#: src/apps/petitions/templates/petitions/edit.html:362
+#: src/apps/petitions/templates/petitions/edit.html:375
+#: src/apps/petitions/templates/petitions/new_step3.html:39
+#: src/apps/petitions/templates/petitions/new_step3.html:40
 msgid "Save"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:80
+#: src/apps/petitions/templates/petitions/edit.html:105
 msgid "Twitter description"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:87
+#: src/apps/petitions/templates/petitions/edit.html:117
 msgid "Org twitter handle"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:94
-#: pytition/petition/templates/petition/edit_petition.html:99
-msgid "Enable share buttons?"
+#: src/apps/petitions/templates/petitions/edit.html:129
+#: src/apps/petitions/templates/petitions/edit.html:137
+msgid "Enable email share button?"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:106
+#: src/apps/petitions/templates/petitions/edit.html:143
+#: src/apps/petitions/templates/petitions/edit.html:152
+msgid "Enable Facebook share button?"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/edit.html:159
+#: src/apps/petitions/templates/petitions/edit.html:167
+msgid "Enable Tumblr share button?"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/edit.html:173
+#: src/apps/petitions/templates/petitions/edit.html:182
+msgid "Enable LinkedIn share button?"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/edit.html:189
+#: src/apps/petitions/templates/petitions/edit.html:198
+msgid "Enable Twitter share button?"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/edit.html:205
+#: src/apps/petitions/templates/petitions/edit.html:214
+msgid "Enable Mastodon share button?"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/edit.html:221
+#: src/apps/petitions/templates/petitions/edit.html:230
+msgid "Enable Whatsapp share button?"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/edit.html:242
 msgid "Twitter image"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:108
+#: src/apps/petitions/templates/petitions/edit.html:244
 msgid "Upload"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:113
-#: pytition/petition/templates/petition/edit_petition.html:230
+#: src/apps/petitions/templates/petitions/edit.html:252
+#: src/apps/petitions/templates/petitions/edit.html:415
 msgid "Choose file"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:121
+#: src/apps/petitions/templates/petitions/edit.html:263
 msgid "Image"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:132
+#: src/apps/petitions/templates/petitions/edit.html:284
 msgid "Remove image"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:145
+#: src/apps/petitions/templates/petitions/edit.html:297
 msgid ""
 "\n"
 "                A permlink (permanent link) is what allows you to share your "
@@ -862,15 +1550,15 @@ msgid ""
 "            "
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:159
+#: src/apps/petitions/templates/petitions/edit.html:313
 msgid "Permlinks"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:160
+#: src/apps/petitions/templates/petitions/edit.html:314
 msgid "Actions"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:200
+#: src/apps/petitions/templates/petitions/edit.html:384
 msgid ""
 "\n"
 "            Beware: this preview shows the current state of the petition."
@@ -880,692 +1568,561 @@ msgid ""
 "            "
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:262
-#: pytition/petition/templates/petition/edit_petition.html:276
-#: pytition/petition/templates/petition/edit_petition.html:290
-#: pytition/petition/templates/petition/edit_petition.html:304
-#: pytition/petition/templates/petition/edit_petition.html:318
+#: src/apps/petitions/templates/petitions/edit.html:450
+#: src/apps/petitions/templates/petitions/edit.html:465
+#: src/apps/petitions/templates/petitions/edit.html:480
+#: src/apps/petitions/templates/petitions/edit.html:495
+#: src/apps/petitions/templates/petitions/edit.html:510
 msgid "unsaved"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_petition.html:403
+#: src/apps/petitions/templates/petitions/edit.html:591
 msgid "OK"
 msgstr ""
 
-#: pytition/petition/templates/petition/edit_template.html:5
-msgid "Template settings"
-msgstr ""
-
-#: pytition/petition/templates/petition/generic_petition_list.html:37
+#: src/apps/petitions/templates/petitions/generic_list.html:40
 msgid "Sign!"
 msgstr ""
 
-#: pytition/petition/templates/petition/generic_petition_list.html:42
+#: src/apps/petitions/templates/petitions/generic_list.html:44
 #, python-format
 msgid ""
 "\n"
-"              %(signature_number)s signature\n"
-"            "
+"          %(signature_number)s signature\n"
+"          "
 msgid_plural ""
 "\n"
-"              %(signature_number)s signatures\n"
-"            "
+"          %(signature_number)s signatures\n"
+"          "
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: pytition/petition/templates/petition/index.html:11
-msgid "Welcome to Pytition"
-msgstr ""
-
-#: pytition/petition/templates/petition/index.html:12
-msgid "Make things change!"
-msgstr ""
-
-#: pytition/petition/templates/petition/index.html:17
-msgid "Create a petition"
-msgstr ""
-
-#: pytition/petition/templates/petition/index.html:23
-msgid "View latest petitions"
-msgstr ""
-
-#: pytition/petition/templates/petition/index.html:27
-#: pytition/petition/templates/petition/org_profile.html:24
-#: pytition/petition/templates/petition/user_profile.html:24
-msgid "Last Created"
-msgstr ""
-
-#: pytition/petition/templates/petition/index.html:29
-#: pytition/petition/templates/petition/org_profile.html:26
-#: pytition/petition/templates/petition/user_profile.html:26
-msgid "First Created"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_petition_step1.html:35
-#: pytition/petition/templates/petition/new_petition_step2.html:41
-msgid "Next"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_petition_step2.html:39
-#: pytition/petition/templates/petition/new_petition_step3.html:47
-msgid "Previous step"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_petition_step3.html:46
-msgid "First step"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_template.html:7
-msgid "Create a petition template"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_template.html:19
-msgid "Beware, you are creating a template, not a petition!"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_template.html:20
-msgid ""
-"\n"
-"                          <p class=\"mb-0\">A petition template allows you "
-"to put default values for future petitions.<br/>\n"
-"                          For instance you might want to re-use the same e-"
-"mail SMTP account accross several petitions.</p>\n"
-"                      "
-msgstr ""
-
-#: pytition/petition/templates/petition/new_template.html:34
-msgid "Template name"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_template.html:36
-msgid "My template name"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_template.html:37
-msgid "Each template must have a different name"
-msgstr ""
-
-#: pytition/petition/templates/petition/new_template.html:39
-#: pytition/petition/templates/petition/org_create.html:16
-msgid "Create"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_base.html:16
-#: pytition/petition/templates/petition/user_base.html:11
-msgid "Petitions"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_base.html:17
-#: pytition/petition/templates/petition/user_base.html:12
-msgid "New petition"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_base.html:25
-#: pytition/petition/templates/petition/user_base.html:19
-msgid "Petition templates"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_base.html:26
-#: pytition/petition/templates/petition/user_base.html:20
-msgid "Create a new petition template"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_base.html:26
-#: pytition/petition/templates/petition/user_base.html:20
-msgid "New template"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_create.html:7
-msgid "Create an organization"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_dashboard.html:5
-#, python-format
-msgid ""
-"\n"
-"        Petitions of '%(orgname)s'\n"
-"    "
-msgstr ""
-
-#: pytition/petition/templates/petition/org_invite_user.html:5
-msgid "Invite user"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_invite_user.html:10
-msgid "Username"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_member_list.html:3
-msgid "Members"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_member_list.html:11
-msgid ""
-"You cannot edit this member's permissions, you don\\'t have the correct "
-"permission"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_member_list.html:15
-msgid "Edit this member's permissions"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_member_list.html:23
-msgid ""
-"You cannot remove this member from the organization, you don\\'t have the "
-"correct permission"
-msgstr ""
-
-#: pytition/petition/templates/petition/org_member_list.html:26
-msgid "Remove this member from the organization."
-msgstr ""
-
-#: pytition/petition/templates/petition/org_member_list.html:39
-msgid "Unable to remove this member from the organization."
-msgstr ""
-
-#: pytition/petition/templates/petition/org_profile.html:5
-#, python-format
-msgid ""
-"\n"
-"        %(name)s's profile\n"
-"    "
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:19
-#: pytition/petition/templates/petition/signature_change_form.html:18
-msgid "Home"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:22
-#: pytition/petition/templates/petition/signature_change_form.html:21
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:34
-#: pytition/petition/templates/petition/signature_change_form.html:33
-msgid "History"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:36
-#: pytition/petition/templates/petition/signature_change_form.html:35
-msgid "View on site"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:43
-msgid "Generate confirmed signatures CSV file"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:46
-msgid "Generate ALL-signatures CSV file"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:48
-msgid "Preview the petition"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:50
-msgid "Show the signatures"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:51
-msgid "Show unconfirmed signatures"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:61
-#: pytition/petition/templates/petition/signature_change_form.html:52
-msgid "Please correct the error below."
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_change_form.html:61
-#: pytition/petition/templates/petition/signature_change_form.html:52
-msgid "Please correct the errors below."
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:90
-#: pytition/petition/templates/petition/petition_detail.html:115
-msgid "Thank you!"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:95
-msgid ""
-"Thank you for signing this petition! Your signature will be accounted for as "
-"soon as you click on the link in the e-mail we've just sent you."
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:103
-#: pytition/petition/templates/petition/petition_detail.html:127
-#: pytition/petition/templates/petition/signature_data.html:53
-#: pytition/petition/templates/petition/signature_data.html:72
-msgid "Ok"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:120
-msgid ""
-"Thank you for confirming your signature to this petition! Your signature is "
-"now accounted for. See you soon!"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:139
-msgid "Instance address"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:146
-msgid "Enter your Mastodon instance's address"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:151
-#: pytition/petition/templates/petition/template_list.html:39
-msgid "Close"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:152
-msgid "Share"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:163
-msgid "SIGN"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:171
-msgid "This petition is moderated. You only see it because you are its creator"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_detail.html:256
-#: pytition/petition/templates/petition/petition_detail.html:283
-#: pytition/petition/templates/petition/petition_detail.html:292
-#: pytition/petition/templates/petition/petition_detail.html:301
-msgid "Sign the petition!"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_list.html:14
+#: src/apps/petitions/templates/petitions/list.html:12
 msgid "You don't have any petitions yet"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:16
-#: pytition/petition/templates/petition/user_base.html:12
-msgid "Create a new petition"
-msgstr ""
-
-#: pytition/petition/templates/petition/petition_list.html:63
+#: src/apps/petitions/templates/petitions/list.html:68
 msgid "This petition is moderated"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:69
+#: src/apps/petitions/templates/petitions/list.html:76
 msgid "View petition"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:73
+#: src/apps/petitions/templates/petitions/list.html:83
 msgid "Edit petition"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:75
+#: src/apps/petitions/templates/petitions/list.html:88
 msgid "View signatures"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:79
+#: src/apps/petitions/templates/petitions/list.html:95
 msgid "Transfer this petition"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:82
+#: src/apps/petitions/templates/petitions/list.html:99
 msgid "Delete the petition"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:97
+#: src/apps/petitions/templates/petitions/list.html:119
 msgid "Delete petition?"
 msgstr ""
 
-#: pytition/petition/templates/petition/petition_list.html:102
+#: src/apps/petitions/templates/petitions/list.html:123
 #, python-format
 msgid ""
 "\n"
-"            Do you really want to delete petition '%(title)s'\n"
+"            Do you really want to delete petition \"%(title)s\"\n"
 "          "
 msgstr ""
 
-#: pytition/petition/templates/petition/signature_data.html:7
-msgid "Signatures"
+#: src/apps/petitions/templates/petitions/new_step1.html:29
+#: src/apps/petitions/templates/petitions/new_step2.html:39
+msgid "Next"
 msgstr ""
 
-#: pytition/petition/templates/petition/signature_data.html:22
-msgid "Export <strong>ALL</strong> signatures as CSV"
+#: src/apps/petitions/templates/petitions/new_step2.html:37
+#: src/apps/petitions/templates/petitions/new_step3.html:66
+msgid "Previous step"
 msgstr ""
 
-#: pytition/petition/templates/petition/signature_data.html:26
-msgid "Export <strong>confirmed</strong> signatures as CSV"
+#: src/apps/petitions/templates/petitions/new_step3.html:26
+msgid "Petition logo placeholder"
 msgstr ""
 
-#: pytition/petition/templates/petition/signature_data.html:32
-#: pytition/petition/templates/petition/signature_data.html:67
-msgid "Re-send confirmation e-mail to all unconfirmed"
+#: src/apps/petitions/templates/petitions/new_step3.html:61
+msgid "First step"
 msgstr ""
 
-#: pytition/petition/templates/petition/signature_data.html:37
-msgid "Subscribe signatories to the newsletter"
-msgstr ""
-
-#: pytition/petition/templates/petition/signature_data.html:44
-msgid ""
-"copy/paste the following text block into Sympa's mass-subscribe formular"
-msgstr ""
-
-#: pytition/petition/templates/petition/signature_data.html:64
-msgid "Re-send selected confirmation e-mail"
-msgstr ""
-
-#: pytition/petition/templates/petition/signature_data.html:65
-msgid "Delete selected signatures"
-msgstr ""
-
-#: pytition/petition/templates/petition/signature_data.html:87
-msgid "E-Mail"
-msgstr ""
-
-#: pytition/petition/templates/petition/signature_data.html:88
-msgid "Phone"
-msgstr ""
-
-#: pytition/petition/templates/petition/signature_data.html:89
-msgid "Confirmed?"
-msgstr ""
-
-#: pytition/petition/templates/petition/signature_data.html:90
-msgid "Subscribed to newsletter?"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:9
-msgid "This is the default template. Click here to unmark it as default"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:11
-msgid "Mark this template as default"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:13
-msgid "Edit template"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:21
-msgid "Create a new petition using this template"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:22
-msgid "Delete template"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:29
-msgid "Delete this template?"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:35
-msgid "You are about to delete the following petition template:"
-msgstr ""
-
-#: pytition/petition/templates/petition/template_list.html:36
-msgid "Do you really want to do this?"
-msgstr ""
-
-#: pytition/petition/templates/petition/transfer_petition.html:8
+#: src/apps/petitions/templates/petitions/transfer.html:7
 msgid "Transfer petition"
 msgstr ""
 
-#: pytition/petition/templates/petition/transfer_petition.html:14
+#: src/apps/petitions/templates/petitions/transfer.html:13
 msgid "You are going to transfer this petition to someone else:"
 msgstr ""
 
-#: pytition/petition/templates/petition/transfer_petition.html:25
+#: src/apps/petitions/templates/petitions/transfer.html:25
 msgid ""
 "Enter the name of the user or organization you want to give the petition to:"
 msgstr ""
 
-#: pytition/petition/templates/petition/transfer_petition.html:26
+#: src/apps/petitions/templates/petitions/transfer.html:29
 msgid "User or Organization name"
 msgstr ""
 
-#: pytition/petition/templates/petition/transfer_petition.html:39
+#: src/apps/petitions/templates/petitions/transfer.html:44
 msgid "Transfer this petition?"
 msgstr ""
 
-#: pytition/petition/templates/petition/transfer_petition.html:45
+#: src/apps/petitions/templates/petitions/transfer.html:49
 msgid "Do you really want to transfer the following petition?"
 msgstr ""
 
-#: pytition/petition/templates/petition/transfer_petition.html:53
+#: src/apps/petitions/templates/petitions/transfer.html:57
 msgid "It will be transfered to:"
 msgstr ""
 
-#: pytition/petition/templates/petition/transfer_petition.html:62
+#: src/apps/petitions/templates/petitions/transfer.html:70
 msgid "Transfer"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_base.html:28
-msgid "Your public profile"
+#: src/apps/petitions/views/edit.py:44
+msgid "You are not allowed to edit this petition"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_dashboard.html:4
-msgid "Your petitions"
+#: src/apps/petitions/views/edit.py:267 src/apps/petitions/views/edit.py:291
+msgid "save-the-kittens-from-bad-wolf"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:6
-#, python-format
+#: src/apps/petitions/views/show_petition.py:58
+#: src/apps/petitions/views/show_petition.py:65
+#: src/apps/petitions/views/show_petition.py:67
+msgid "Sorry, we are not able to find this petition"
+msgstr ""
+
+#: src/apps/petitions/views/slug/add.py:24
+#: src/apps/petitions/views/slug/delete.py:26
+msgid "This petition does not exist (anymore?)."
+msgstr ""
+
+#: src/apps/petitions/views/slug/add.py:30
+msgid "You entered an empty slug text"
+msgstr ""
+
+#: src/apps/petitions/views/slug/add.py:38
+msgid "Successful addition of the slug '{}'!"
+msgstr ""
+
+#: src/apps/petitions/views/slug/add.py:42
+msgid "The slug '{}' already exists!"
+msgstr ""
+
+#: src/apps/petitions/views/slug/add.py:49
+#: src/apps/petitions/views/slug/delete.py:41
+msgid "You don't have the permission to modify petitions"
+msgstr ""
+
+#: src/apps/petitions/views/slug/delete.py:39
+msgid "Successful deletion of a slug"
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:40
+msgid "This petition does not exist."
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:52
+msgid ""
+"You don't have the permission to transfer a petition from Organization '{}'"
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:62
+msgid "You don't have the permission to transfer this petition"
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:77
+msgid "Incorrect request, something went wrong."
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:91
+msgid ""
+"Users are not allowed to transfer petitions to organizations on this "
+"instance."
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:103
+msgid "You tried to transfer a petition to a non-exiting account"
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:111
+msgid "Petition successfully transfered!"
+msgstr ""
+
+#: src/apps/petitions/views/transfer.py:115
+msgid "Something went wrong while transferring this petition."
+msgstr ""
+
+#: src/apps/presets/admin.py:21
+msgid ""
+"This is a gradient color. If selected, the background color will be "
+"agradient color. If not, the background color will be a monochromebackground "
+"color."
+msgstr ""
+
+#: src/apps/presets/admin.py:28
+msgid ""
+"Put a bullet point list of links, it will appear horizontally in thepage "
+"footer"
+msgstr ""
+
+#: src/apps/presets/admin.py:32
+msgid ""
+"This is the description of the petition, it will be displayed inTwitter/"
+"Facebook cards when the link is posted to social networks.To be tested via "
+"https://cards-dev.twitter.com/validator andhttps://developers.facebook.com/"
+"tools/debug/"
+msgstr ""
+
+#: src/apps/presets/admin.py:38
+msgid ""
+"Picture displayed in Twitter/Facebook cards when the link is posted tosocial "
+"networks. To be tested viahttps://cards-dev.twitter.com/validator andhttps://"
+"developers.facebook.com/tools/debug/"
+msgstr ""
+
+#: src/apps/presets/admin.py:44
+msgid ""
+"Allow to chose whether the newsletter subscription checkbox is shownor not"
+msgstr ""
+
+#: src/apps/presets/admin.py:47
+msgid ""
+"Only in case subscription\"\n"
+"            \"to the newsletter via HTTP POST or GET methods. Put here data "
+"to be sent,\"\n"
+"            \"using Python dictionary syntax. e.g.: <br>\n"
+"                    {'_wpcf7': 21,<br>\n"
+"                    '_wpcf7_version': '4.9',<br>\n"
+"                    '_wpcf7_locale': 'fr_FR',<br>\n"
+"                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
+"                    '_wpcf7_container_post': '5398',<br>\n"
+"                    'your-email': ''<br>\n"
+"                    }"
+msgstr ""
+
+#: src/apps/presets/admin.py:58
+msgid ""
+"Only when HTTP POST or GET subscription method is used. Name of thefield to "
+"send via GET or POST, containing the email address tosubscribe. Following "
+"the example of preceding form field, that wouldbe 'your-email'"
+msgstr ""
+
+#: src/apps/presets/admin.py:64
+msgid ""
+"Only when HTTP POST or GET subscription method is used.Adresse HTTP à "
+"requêter via GET ou POST pour enregistrer quelqu'unsur la newsletter"
+msgstr ""
+
+#: src/apps/presets/admin.py:69
+msgid ""
+"Only when EMAIL subscription method is used. Inscrire ici la syntaxede sujet "
+"du mail qui permet d'inscrire quelqu'un à la newsletter.Indiquez {} à la "
+"place où le mail du signataire doit être inséré.Ex: 'ADD NOM_LISTE {} "
+"NOM_SIGNATAIRE'"
+msgstr ""
+
+#: src/apps/presets/admin.py:84
+msgid ""
+"This selects the newsletter subscription method. It is either HTTP GETor "
+"POST or via sending EMAIL to the newsletter admin address"
+msgstr ""
+
+#: src/apps/presets/admin.py:93
+msgid "E.g.: I want to receive updates or informations from thisorganization."
+msgstr ""
+
+#: src/apps/presets/admin.py:102
+msgid ""
+"The twitter account handle of the organization, starting with the '@'symbol. "
+"E.g.: @RAP_Asso. This is necessary in order to attribute the'Twitter Card' "
+"to the correct account. Seehttps://developer.twitter.com/en/docs/tweets/"
+"optimize-with-cards/overview/summary"
+msgstr ""
+
+#: src/apps/presets/admin.py:134
+msgid "Petition template name"
+msgstr ""
+
+#: src/apps/presets/admin.py:158
+msgid ""
+"Name of the field which should contain the email value in the PHP "
+"datastructure"
+msgstr ""
+
+#: src/apps/presets/admin.py:202
+msgid "To whom is this petition template?"
+msgstr ""
+
+#: src/apps/presets/models/petition_template.py:93
+msgid "Petition Template"
+msgstr ""
+
+#: src/apps/presets/models/petition_template.py:94
+msgid "Petition Templates"
+msgstr ""
+
+#: src/apps/presets/services.py:112
+msgid "This template does not exist"
+msgstr ""
+
+#: src/apps/presets/templates/presets/edit.html:4
+msgid "Template settings"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:19
+msgid "This is the default template. Click here to unmark it as default"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:26
+msgid "Mark this template as default"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:33
+msgid "Edit template"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:39
+msgid "Create a new petition using this template"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:46
+msgid "Delete template"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:62
+msgid "Delete this template?"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:68
+msgid "You are about to delete the following petition template:"
+msgstr ""
+
+#: src/apps/presets/templates/presets/list.html:70
+msgid "Do you really want to do this?"
+msgstr ""
+
+#: src/apps/presets/templates/presets/new.html:6
+msgid "Create a petition template"
+msgstr ""
+
+#: src/apps/presets/templates/presets/new.html:18
+msgid "Beware, you are creating a template, not a petition!"
+msgstr ""
+
+#: src/apps/presets/templates/presets/new.html:19
 msgid ""
 "\n"
-"        <h2>%(org)s: permissions of member %(member)s</h2>\n"
-"    "
+"                          <p class=\"mb-0\">A petition template allows you "
+"to put default values for future petitions.<br />\n"
+"                          For instance you might want to re-use the same e-"
+"mail SMTP account across several petitions.</p>\n"
+"                      "
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:12
-msgid "Permission name"
+#: src/apps/presets/templates/presets/new.html:33
+msgid "Template name"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:13
-msgid "Authorized?"
+#: src/apps/presets/templates/presets/new.html:38
+msgid "My template name"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:17
-msgid "Can remove member?"
+#: src/apps/presets/templates/presets/new.html:40
+msgid "Each template must have a different name"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:26
-msgid "Can invite new members?"
+#: src/apps/presets/views/edit.py:72
+msgid "You are not allowed to edit this template"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:35
-msgid "Can create petitions?"
+#: src/apps/presets/views/fav.py:39
+msgid "You are not allowed to change this user's default template"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:44
-msgid "Can modify petitions?"
+#: src/apps/presets/views/new.py:65
+msgid "You are not allowed to view this organization dashboard"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:53
-msgid "Can delete petitions?"
+#: src/apps/presets/views/new.py:83
+msgid "You don't have the permission to create a Template in this organization"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:62
-msgid "Can create petition templates?"
+#: src/apps/presets/views/new.py:103
+msgid "You need to provide a template name."
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:71
-msgid "Can modify petition templates?"
+#: src/apps/signatures/forms.py:32
+msgid "First name *"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:80
-msgid "Can delete petition templates?"
+#: src/apps/signatures/forms.py:39
+msgid "Last name *"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:89
-msgid "Can view signatures?"
+#: src/apps/signatures/forms.py:46 src/apps/signatures/models/signature.py:22
+msgid "Phone number"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:98
-msgid "Can modify signatures?"
+#: src/apps/signatures/forms.py:53
+msgid "Email address *"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:107
-msgid "Can delete signatures?"
+#: src/apps/signatures/models/signature.py:18
+#: src/apps/signatures/templates/signatures/data.html:86
+msgid "First name"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:116
-msgid "Can modify permissions?"
+#: src/apps/signatures/models/signature.py:20
+#: src/apps/signatures/templates/signatures/data.html:87
+msgid "Last name"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:125
-msgid "Validate those new permissions"
+#: src/apps/signatures/models/signature.py:24
+msgid "Email address"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_edit_permissions.html:126
-msgid "Return to dashboard"
+#: src/apps/signatures/models/signature.py:27
+msgid "Confirmed"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_invitations.html:4
-msgid "Invitations"
+#: src/apps/signatures/models/signature.py:33
+msgid "Subscribed to mailing list"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_invitations.html:14
-#, python-format
+#: src/apps/signatures/models/signature.py:36
+#: src/apps/signatures/templates/signatures/data.html:92
+msgid "Date"
+msgstr ""
+
+#: src/apps/signatures/models/signature.py:42
+msgid "Signature"
+msgstr ""
+
+#: src/apps/signatures/models/signature.py:43
+#: src/apps/signatures/templates/signatures/data.html:6
+msgid "Signatures"
+msgstr ""
+
+#: src/apps/signatures/models/signature.py:53
+msgid "You already signed the petition"
+msgstr ""
+
+#: src/apps/signatures/templates/signatures/data.html:24
+msgid "Export <strong>ALL</strong> signatures as CSV"
+msgstr ""
+
+#: src/apps/signatures/templates/signatures/data.html:29
+msgid "Export <strong>confirmed</strong> signatures as CSV"
+msgstr ""
+
+#: src/apps/signatures/templates/signatures/data.html:35
+#: src/apps/signatures/templates/signatures/data.html:66
+msgid "Re-send confirmation e-mail to all unconfirmed"
+msgstr ""
+
+#: src/apps/signatures/templates/signatures/data.html:44
+msgid "Subscribe signatories to the newsletter"
+msgstr ""
+
+#: src/apps/signatures/templates/signatures/data.html:49
 msgid ""
-"\n"
-"                    You are invited to <strong>&nbsp;%(orgname)s</strong>\n"
-"                "
+"copy/paste the following text block into Sympa's mass-subscribe formular"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_invitations.html:19
-msgid "Join"
+#: src/apps/signatures/templates/signatures/data.html:64
+msgid "Re-send selected confirmation e-mail"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_invitations.html:20
-msgid "Dismiss"
+#: src/apps/signatures/templates/signatures/data.html:65
+msgid "Delete selected signatures"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_org_list.html:5
-msgid "Create a new organization"
+#: src/apps/signatures/templates/signatures/data.html:88
+msgid "E-Mail"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_org_list.html:5
-msgid "New organization"
+#: src/apps/signatures/templates/signatures/data.html:89
+msgid "Phone"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_profile.html:5
-#, python-format
-msgid ""
-"\n"
-"    %(name)s's profile\n"
+#: src/apps/signatures/templates/signatures/data.html:90
+msgid "Confirmed?"
 msgstr ""
 
-#: pytition/petition/templates/petition/user_profile.html:29
-msgid ""
-"\n"
-"        This user has not created any petition yet\n"
-"    "
+#: src/apps/signatures/templates/signatures/data.html:91
+msgid "Subscribed to newsletter?"
 msgstr ""
 
-#: pytition/petition/templates/registration/confirmation_email.html:10
-msgid "Welcome"
-msgstr ""
-
-#: pytition/petition/templates/registration/confirmation_email.html:12
-#, python-format
-msgid ""
-"\n"
-"You successfully created your account ! Your login is %(username)s\n"
-msgstr ""
-
-#: pytition/petition/templates/registration/login.html:8
-msgid "Please sign in"
-msgstr ""
-
-#: pytition/petition/templates/registration/login.html:11
-msgid "Your username and password didn't match. Please try again."
-msgstr ""
-
-#: pytition/petition/templates/registration/login.html:35
-msgid "No account?"
-msgstr ""
-
-#: pytition/petition/templates/registration/login.html:35
-msgid "Register!"
-msgstr ""
-
-#: pytition/petition/templates/registration/login.html:37
-msgid "I forgot my password!"
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_done.html:4
-msgid "Email Sent"
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_done.html:10
-msgid "Check your inbox."
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_done.html:11
-msgid ""
-"We've emailed you instructions for setting your password. You should receive "
-"the email shortly!"
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_form.html:4
-msgid "Forgot Your Password?"
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_form.html:10
-msgid "Forgot your password?"
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_form.html:11
-msgid ""
-"Enter your email address below, and we'll email instructions for setting a "
-"new one."
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_form.html:15
-msgid "Email"
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_form.html:17
-msgid "email@example.com"
-msgstr ""
-
-#: pytition/petition/templates/registration/password_reset_form.html:20
-msgid "Send me instructions!"
-msgstr ""
-
-#: pytition/petition/templates/registration/register.html:16
-msgid "Register"
-msgstr ""
-
-#: pytition/petition/views.py:51
-msgid "You must set an INDEX_PAGE config in your settings"
-msgstr ""
-
-#: pytition/petition/views.py:56
-msgid "You must set an INDEX_PAGE_USER config in your settings"
-msgstr ""
-
-#: pytition/petition/views.py:61
-msgid "You must set an INDEX_PAGE_ORGA config in your settings"
-msgstr ""
-
-#: pytition/petition/views.py:118
-msgid "No newsletter subscription yet!"
-msgstr ""
-
-#: pytition/petition/views.py:201
+#: src/apps/signatures/views/confirm.py:41
 msgid ""
 "Error: This confirmation code is invalid. Maybe you've already confirmed?"
 msgstr ""
 
-#: pytition/petition/views.py:208
+#: src/apps/signatures/views/confirm.py:51
 msgid "Error: This confirmation code is invalid."
 msgstr ""
 
-#: pytition/petition/views.py:281
+#: src/apps/signatures/views/list.py:86
+msgid "You are not allowed to view this petition's signatures."
+msgstr ""
+
+#: src/apps/signatures/views/list.py:94
+msgid "Internal error, cannot find the organization owning this petition."
+msgstr ""
+
+#: src/apps/signatures/views/list.py:100
+msgid "You are not member of the following organization: '{}'"
+msgstr ""
+
+#: src/apps/signatures/views/list.py:119
+msgid "You are not allowed to view signatures in this organization"
+msgstr ""
+
+#: src/apps/signatures/views/list.py:227 src/apps/signatures/views/list.py:268
+msgid "An error happened while trying to re-send confirmation emails"
+msgstr ""
+
+#: src/apps/signatures/views/list.py:231
+msgid "You successfully re-sent all confirmation emails"
+msgstr ""
+
+#: src/apps/signatures/views/list.py:239
+msgid "No signatures were selected for the requested action."
+msgstr ""
+
+#: src/apps/signatures/views/list.py:253
+msgid "You don't have permission to delete some or all of selected signatures"
+msgstr ""
+
+#: src/apps/signatures/views/list.py:259
+msgid "You successfully deleted all selected signatures"
+msgstr ""
+
+#: src/apps/signatures/views/list.py:273
+msgid "You successfully re-sent all selected confirmation emails"
+msgstr ""
+
+#: src/apps/signatures/views/list.py:278
+msgid "Unknown action requested."
+msgstr ""
+
+#: src/apps/signatures/views/new.py:65
 msgid "Too many signatures from your IP address, please try again later."
 msgstr ""
 
-#: pytition/petition/views.py:289
+#: src/apps/signatures/views/new.py:77
 msgid ""
 "Thank you for signing this petition, an email has just been sent to you at "
 "your address '{}' in order to confirm your signature.<br>You will need to "
@@ -1573,318 +2130,22 @@ msgid ""
 "in your Inbox, please have a look in your Spam box."
 msgstr ""
 
-#: pytition/petition/views.py:308
-msgid "This organization does not exist: '{}'"
-msgstr ""
-
-#: pytition/petition/views.py:314
-msgid "You are not part of this organization: '{}'"
-msgstr ""
-
-#: pytition/petition/views.py:322 pytition/petition/views.py:562
-#: pytition/petition/views.py:615 pytition/petition/views.py:876
-#: pytition/petition/views.py:1117 pytition/petition/views.py:1378
-#, python-brace-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('{orgname}')"
-msgstr ""
-
-#: pytition/petition/views.py:386
-msgid "Impossible to leave this organisation, you are the last administrator"
-msgstr ""
-
-#: pytition/petition/views.py:389
-msgid "Impossible to leave this organisation, you are the last member"
-msgstr ""
-
-#: pytition/petition/views.py:453
-msgid "This user does not exist (anylonger?)"
-msgstr ""
-
-#: pytition/petition/views.py:459
-msgid "This organization does not exist (anylonger?)"
-msgstr ""
-
-#: pytition/petition/views.py:465
-msgid "You are not part of this organization."
-msgstr ""
-
-#: pytition/petition/views.py:469
-#, python-brace-format
-msgid "User is already member of {orgname} organization"
-msgstr ""
-
-#: pytition/petition/views.py:473
-msgid "You are not allowed to invite new members into this organization."
-msgstr ""
-
-#: pytition/petition/views.py:480
-msgid "An error occured"
-msgstr ""
-
-#: pytition/petition/views.py:483
-#, python-brace-format
-msgid "You invited {username} to join {orgname}"
-msgstr ""
-
-#: pytition/petition/views.py:552 pytition/petition/views.py:819
-#: pytition/petition/views.py:902 pytition/petition/views.py:1104
-msgid "Organization does not exist"
-msgstr ""
-
-#: pytition/petition/views.py:555
-msgid "You are not allowed to view this organization dashboard"
-msgstr ""
-
-#: pytition/petition/views.py:566
-msgid "You don't have the permission to create a Template in this organization"
-msgstr ""
-
-#: pytition/petition/views.py:583
-msgid "You need to provide a template name."
-msgstr ""
-
-#: pytition/petition/views.py:595
-msgid "You need to provide the template id to modify"
-msgstr ""
-
-#: pytition/petition/views.py:600
-msgid "This template does not exist"
-msgstr ""
-
-#: pytition/petition/views.py:619
-msgid "You are not allowed to edit this organization's templates"
-msgstr ""
-
-#: pytition/petition/views.py:624
-msgid "You are not allowed to edit this user's templates"
-msgstr ""
-
-#: pytition/petition/views.py:793
-msgid "You are not allowed to change this user's default template"
-msgstr ""
-
-#: pytition/petition/views.py:812 pytition/petition/views.py:896
-msgid "User does not exist"
-msgstr ""
-
-#: pytition/petition/views.py:852
-#, python-brace-format
-msgid "User '{name}' does not exist"
-msgstr ""
-
-#: pytition/petition/views.py:858
-#, python-brace-format
-msgid "Organization '{name}' does not exist"
-msgstr ""
-
-#: pytition/petition/views.py:861
-#, python-brace-format
-msgid "The user '{username}' is not member of this organization ({orgname})."
-msgstr ""
-
-#: pytition/petition/views.py:869
-msgid ""
-"Internal error, this member does not have permissions attached to this "
-"organization."
-msgstr ""
-
-#: pytition/petition/views.py:905
-#, python-brace-format
-msgid "This user is not part of organization '{orgname}'"
-msgstr ""
-
-#: pytition/petition/views.py:911
-msgid ""
-"Fatal error, this user does not have permissions attached for this "
-"organization"
-msgstr ""
-
-#: pytition/petition/views.py:917
-msgid ""
-"Fatal error, you don't have permissions attached to you for this organization"
-msgstr ""
-
-#: pytition/petition/views.py:925
-msgid "You are not allowed to modify this organization members' permissions"
-msgstr ""
-
-#: pytition/petition/views.py:953
-msgid ""
-"You cannot remove your ability to change permissions on this Organization "
-"because you are the only one left who can do this. Give the permission to "
-"someone else before removing yours."
-msgstr ""
-
-#: pytition/petition/views.py:958
-msgid ""
-"You cannot remove your ability to change permissions on this Organization "
-"because you are the only member left."
-msgstr ""
-
-#: pytition/petition/views.py:962
-msgid "Permissions successfully changed!"
-msgstr ""
-
-#: pytition/petition/views.py:983
-msgid "Users are not allowed to create their own petitions."
-msgstr ""
-
-#: pytition/petition/views.py:1050
-msgid "Cannot find this organization"
-msgstr ""
-
-#: pytition/petition/views.py:1068
-msgid "This template does not belong to your organization"
-msgstr ""
-
-#: pytition/petition/views.py:1077
-msgid ""
-"You don't have the permission to create a new petition in this Organization"
-msgstr ""
-
-#: pytition/petition/views.py:1087
-msgid "This template does not belong to you"
-msgstr ""
-
-#: pytition/petition/views.py:1214
-msgid "You are not allowed to edit this petition"
-msgstr ""
-
-#: pytition/petition/views.py:1331 pytition/petition/views.py:1343
-msgid "save-the-kittens-from-bad-wolf"
-msgstr ""
-
-#: pytition/petition/views.py:1366
-msgid "You are not allowed to view this petition's signatures."
-msgstr ""
-
-#: pytition/petition/views.py:1373
-msgid "You are not member of the following organization: '{}'"
-msgstr ""
-
-#: pytition/petition/views.py:1382
-msgid "You are not allowed to view signatures in this organization"
-msgstr ""
-
-#: pytition/petition/views.py:1405
-msgid "You don't have permission to delete some or all of selected signatures"
-msgstr ""
-
-#: pytition/petition/views.py:1407
-msgid "You successfully deleted all selected signatures"
-msgstr ""
-
-#: pytition/petition/views.py:1416 pytition/petition/views.py:1427
-msgid "An error happened while trying to re-send confirmation emails"
-msgstr ""
-
-#: pytition/petition/views.py:1418
-msgid "You successfully re-sent all selected confirmation emails"
-msgstr ""
-
-#: pytition/petition/views.py:1429
-msgid "You successfully re-sent all confirmation emails"
-msgstr ""
-
-#: pytition/petition/views.py:1475
-msgid "You successfully changed your password!"
-msgstr ""
-
-#: pytition/petition/views.py:1513
-msgid "Only super users can create an organization."
-msgstr ""
-
-#: pytition/petition/views.py:1526
-msgid "You successfully created organization '{}'"
-msgstr ""
-
-#: pytition/petition/views.py:1550 pytition/petition/views.py:1557
-#: pytition/petition/views.py:1559
-msgid "Sorry, we are not able to find this petition"
-msgstr ""
-
-#: pytition/petition/views.py:1590 pytition/petition/views.py:1624
-msgid "This petition does not exist (anymore?)."
-msgstr ""
-
-#: pytition/petition/views.py:1596
-msgid "You entered an empty slug text"
-msgstr ""
-
-#: pytition/petition/views.py:1603
-msgid "Successful addition of the slug '{}'!"
-msgstr ""
-
-#: pytition/petition/views.py:1605
-msgid "The slug '{}' already exists!"
-msgstr ""
-
-#: pytition/petition/views.py:1610 pytition/petition/views.py:1636
-msgid "You don't have the permission to modify petitions"
-msgstr ""
-
-#: pytition/petition/views.py:1634
-msgid "Successful deletion of a slug"
-msgstr ""
-
-#: pytition/petition/views.py:1669
-msgid "This petition does not exist."
-msgstr ""
-
-#: pytition/petition/views.py:1678
-msgid ""
-"You don't have the permission to transfer a petition from Organization '{}'"
-msgstr ""
-
-#: pytition/petition/views.py:1682
-msgid "You don't have the permission to transfer this petition"
-msgstr ""
-
-#: pytition/petition/views.py:1701
-msgid "Incorrect request, something went wrong."
-msgstr ""
-
-#: pytition/petition/views.py:1710
-msgid ""
-"Users are not allowed to transfer petitions to organizations on this "
-"instance."
-msgstr ""
-
-#: pytition/petition/views.py:1718
-msgid "You tried to transfer a petition to a non-exiting account"
-msgstr ""
-
-#: pytition/petition/views.py:1724
-msgid "Petition successfully transfered!"
-msgstr ""
-
-#: pytition/petition/views.py:1727
-msgid "Something went wrong while transferring this petition."
-msgstr ""
-
-#: pytition/petition/views.py:1764
-#, python-brace-format
-msgid "How much is {a} + {b}?"
-msgstr ""
-
-#: pytition/pytition/settings/base.py:242
+#: src/config/settings/django.py:175
 msgid "English"
 msgstr ""
 
-#: pytition/pytition/settings/base.py:243
+#: src/config/settings/django.py:176
 msgid "Spanish"
 msgstr ""
 
-#: pytition/pytition/settings/base.py:244
+#: src/config/settings/django.py:177
 msgid "French"
 msgstr ""
 
-#: pytition/pytition/settings/base.py:245
+#: src/config/settings/django.py:178
 msgid "Italian"
 msgstr ""
 
-#: pytition/pytition/settings/base.py:246
+#: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr ""
