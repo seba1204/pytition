@@ -1,0 +1,108 @@
+flowchart LR
+  n_42099b4af021["/"]
+  n_5bf8b1c25aee["files"]
+  n_c27394cf7e94["upload"]
+  n_7b84d080cd4a["moderation"]
+  n_81bd29fb3966["report/petition/&lt;int:petition_id&gt;"]
+  n_19913114a5a6["org"]
+  n_d0c86c51e7ec["create"]
+  n_ff361b62cd36["&lt;slug:orgslugname&gt;"]
+  n_39bfa17d710e["dashboard"]
+  n_4f4e05c8ba7d["leave"]
+  n_dcc756cd2efb["new_template"]
+  n_18836cf6ee37["&lt;slug:petitionname&gt;"]
+  n_c3a2d2d79c45["members"]
+  n_38d7971d6714["add"]
+  n_490ef55ab02d["delete"]
+  n_8b6542f948f3["&lt;user_name&gt;/perms/edit"]
+  n_aa5642e6dcb7["&lt;user_name&gt;/perms/set"]
+  n_1e3816490699["invitations"]
+  n_122b0f8e46a4["accept"]
+  n_015e4d246142["dismiss"]
+  n_36f2ffdc0d74["presets"]
+  n_ec1a4ba8851a["new"]
+  n_cb8bf9ac898d["&lt;int:preset_id&gt;/edit"]
+  n_f53bb73b0b58["&lt;int:preset_id&gt;/fav"]
+  n_ad354359a2f6["&lt;int:preset_id&gt;/delete"]
+  n_9eec8ea452c2["search"]
+  n_fee93fd51da3["profiles"]
+  n_851d0a7305e5["users"]
+  n_84792b42cddd["user"]
+  n_0d950b1f2ab4["dashboard"]
+  n_52fb4f3db94c["settings"]
+  n_553613453467["register"]
+  n_29c143d48604["&lt;user_name&gt;"]
+  n_b25604997e63["consents"]
+  n_1411ad9501cb["export"]
+  n_c76cc75c55ff["signatures"]
+  n_75a0bb16eb8c["new"]
+  n_e64658e56d11["list"]
+  n_b3f8709ed2c2["export"]
+  n_331733fb962b["confirm/&lt;confirmation_hash&gt;"]
+  n_47a734d78364["resend/&lt;int:signature_id&gt;"]
+  n_d07a5d7e36bb["p"]
+  n_9b5146163f62["new"]
+  n_247a7e521568["delete"]
+  n_fab8b84328ac["publish"]
+  n_0cdf121ea5ad["unpublish"]
+  n_b31cf5d6eaf7["edit"]
+  n_a9a4e6767cc2["transfer"]
+  n_4a807242cb02["&lt;int:petition_id&gt;"]
+  n_e4d023002d6e["slug"]
+  n_81f1d801b818["accept"]
+  n_88783ebfc35a["dismiss"]
+  n_cc0eefb6920c["petition/org/&lt;orgslugname&gt;/&lt;slug:petitionname&gt;"]
+  n_036c03e9d3b8["petition/user/&lt;username&gt;/&lt;slug:petitionname&gt;"]
+  n_42099b4af021 --> n_5bf8b1c25aee
+  n_42099b4af021 --> n_7b84d080cd4a
+  n_42099b4af021 --> n_19913114a5a6
+  n_42099b4af021 --> n_d07a5d7e36bb
+  n_42099b4af021 --> n_cc0eefb6920c
+  n_42099b4af021 --> n_036c03e9d3b8
+  n_42099b4af021 --> n_36f2ffdc0d74
+  n_42099b4af021 --> n_9eec8ea452c2
+  n_42099b4af021 --> n_84792b42cddd
+  n_5bf8b1c25aee --> n_c27394cf7e94
+  n_7b84d080cd4a --> n_81bd29fb3966
+  n_19913114a5a6 --> n_ff361b62cd36
+  n_19913114a5a6 --> n_d0c86c51e7ec
+  n_ff361b62cd36 --> n_18836cf6ee37
+  n_ff361b62cd36 --> n_39bfa17d710e
+  n_ff361b62cd36 --> n_1e3816490699
+  n_ff361b62cd36 --> n_4f4e05c8ba7d
+  n_ff361b62cd36 --> n_c3a2d2d79c45
+  n_ff361b62cd36 --> n_dcc756cd2efb
+  n_1e3816490699 --> n_122b0f8e46a4
+  n_1e3816490699 --> n_015e4d246142
+  n_c3a2d2d79c45 --> n_8b6542f948f3
+  n_c3a2d2d79c45 --> n_aa5642e6dcb7
+  n_c3a2d2d79c45 --> n_38d7971d6714
+  n_c3a2d2d79c45 --> n_490ef55ab02d
+  n_d07a5d7e36bb --> n_4a807242cb02
+  n_d07a5d7e36bb --> n_9b5146163f62
+  n_4a807242cb02 --> n_b25604997e63
+  n_4a807242cb02 --> n_247a7e521568
+  n_4a807242cb02 --> n_b31cf5d6eaf7
+  n_4a807242cb02 --> n_fab8b84328ac
+  n_4a807242cb02 --> n_c76cc75c55ff
+  n_4a807242cb02 --> n_e4d023002d6e
+  n_4a807242cb02 --> n_a9a4e6767cc2
+  n_4a807242cb02 --> n_0cdf121ea5ad
+  n_b25604997e63 --> n_1411ad9501cb
+  n_c76cc75c55ff --> n_331733fb962b
+  n_c76cc75c55ff --> n_b3f8709ed2c2
+  n_c76cc75c55ff --> n_e64658e56d11
+  n_c76cc75c55ff --> n_75a0bb16eb8c
+  n_c76cc75c55ff --> n_47a734d78364
+  n_e4d023002d6e --> n_81f1d801b818
+  n_e4d023002d6e --> n_88783ebfc35a
+  n_36f2ffdc0d74 --> n_ad354359a2f6
+  n_36f2ffdc0d74 --> n_cb8bf9ac898d
+  n_36f2ffdc0d74 --> n_f53bb73b0b58
+  n_36f2ffdc0d74 --> n_ec1a4ba8851a
+  n_9eec8ea452c2 --> n_fee93fd51da3
+  n_9eec8ea452c2 --> n_851d0a7305e5
+  n_84792b42cddd --> n_29c143d48604
+  n_84792b42cddd --> n_0d950b1f2ab4
+  n_84792b42cddd --> n_553613453467
+  n_84792b42cddd --> n_52fb4f3db94c

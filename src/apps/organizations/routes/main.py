@@ -21,5 +21,7 @@ class OrgRoute(StrEnum):
     PROFILE = _NS + "profile"
     DASHBOARD = _NS + "dashboard"
     LEAVE = _NS + "leave"
+    # TODO: move it to presets routes
     NEW_TEMPLATE = _NS + "new_template"
+    # LEGACY
     SLUG_SHOW_PETITION = _NS + "slug_show_petition"

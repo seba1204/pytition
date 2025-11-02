@@ -22,19 +22,54 @@ from django.urls import include, path
 from django.urls.resolvers import URLPattern, URLResolver
 from django.views.generic import RedirectView
 
+from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
+from apps.consents.routes import NAMESPACE as CONSENT_NS
+from apps.core import views as CV
+from apps.core.routes import SEARCH_NS
 from apps.core.views import index
+from apps.files.routes import NAMESPACE as FILES_NS
+from apps.moderation.routes import NAMESPACE as MOD_NS
+from apps.organizations.routes import NAMESPACE as ORG_NS
+from apps.petitions import views as PV
+from apps.petitions.routes import NAMESPACE as PET_NS
+from apps.presets.routes import NAMESPACE as PRESET_NS
+from apps.signatures.routes import NAMESPACE as SIGN_NS
 
 urlpatterns: list[URLPattern | URLResolver]
 
+PID = "<int:petition_id>"
+
 urlpatterns = [
     path("", index, name="index"),
-    path("petition/", include("apps.petition.urls")),
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
     path("", include("django.contrib.auth.urls")),
     # Maintenance mode URLs (3rd party app)
     path("maintenance-mode/", include("maintenance_mode.urls")),
+    path("", CV.index, name="index"),
+    path("files/", include("apps.files.urls", namespace=FILES_NS)),
+    path("moderation/", include("apps.moderation.urls", namespace=MOD_NS)),
+    path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
+    path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
+    path("search/", include("apps.core.urls.search", namespace=SEARCH_NS)),
+    path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
+    path(f"p/{PID}/consents/", include("apps.consents.urls", namespace=CONSENT_NS)),
+    path(f"p/{PID}/signatures/", include("apps.signatures.urls", namespace=SIGN_NS)),
+    path("p/", include("apps.petitions.urls", namespace=PET_NS)),
+    # ──────────────────────────────────────────────────────────────────────────────────
+    # LEGACY: show a petition by its owner (user/org)
+    # ──────────────────────────────────────────────────────────────────────────────────
+    path(
+        "petition/org/<orgslugname>/<slug:petitionname>",
+        PV.slug_show_petition,
+        name="slug_show_petition",
+    ),
+    path(
+        "petition/user/<username>/<slug:petitionname>",
+        PV.slug_show_petition,
+        name="slug_show_petition",
+    ),
 ]
 
 

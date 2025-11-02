@@ -30,7 +30,7 @@ PID = "<int:petition_id>"
 ROUTES: dict[PetitionsRoute, Route] = {
     # collections
     PetitionsRoute.ALL_PETITIONS: Route(
-        "all", RedirectView.as_view(pattern_name="index", permanent=False)
+        "all/", RedirectView.as_view(pattern_name="index", permanent=False)
     ),
     PetitionsRoute.NEW: Route(
         "new/", PF.PetitionCreationWizard.as_view(PF.WizardForms)
