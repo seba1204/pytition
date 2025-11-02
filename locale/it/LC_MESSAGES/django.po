@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-02 22:53+0100\n"
+"POT-Creation-Date: 2025-11-02 23:36+0100\n"
 "PO-Revision-Date: 2023-03-09 13:35+0000\n"
 "Last-Translator: lost_geographer <david@chionne.eu>\n"
 "Language-Team: Italian <https://weblate.framasoft.org/projects/pytition/"
@@ -438,11 +438,7 @@ msgstr "Petizioni recenti"
 msgid "A platform for creating and signing petitions."
 msgstr ""
 
-#: src/apps/core/templates/layouts/base.html:15
-msgid "petition, activism, signature, campaign"
-msgstr ""
-
-#: src/apps/core/templates/layouts/base.html:19
+#: src/apps/core/templates/layouts/base.html:17
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -691,17 +687,11 @@ msgstr "Dati personali"
 msgid "Confirm your signature by clicking the provided link."
 msgstr "Conferma la tua firma per questa petizione"
 
-#: src/apps/notifications/templates/notifications/confirmation_email.html:11
-#, fuzzy
-#| msgid "Confirmation email setup"
-msgid "confirmation, email, signature, petition"
-msgstr "Impostazioni email di conferma"
-
-#: src/apps/notifications/templates/notifications/confirmation_email.html:14
+#: src/apps/notifications/templates/notifications/confirmation_email.html:12
 msgid "Thank you"
 msgstr "Grazie"
 
-#: src/apps/notifications/templates/notifications/confirmation_email.html:15
+#: src/apps/notifications/templates/notifications/confirmation_email.html:13
 msgid ""
 "\n"
 "Now, in order to confirm your signature, you only need to click here :\n"
@@ -709,7 +699,7 @@ msgstr ""
 "\n"
 "Clicca qui per confermare la tua firma\n"
 
-#: src/apps/notifications/templates/notifications/confirmation_email.html:20
+#: src/apps/notifications/templates/notifications/confirmation_email.html:18
 msgid "See you soon!"
 msgstr "A presto!"
 
@@ -1000,47 +990,27 @@ msgid ""
 msgstr ""
 "Inserire un elenco puntato di link; apparirà in orizzontale a piè di pagina"
 
-#: src/apps/petitions/admin.py:33
-#, fuzzy
-#| msgid ""
-#| "This is the description of the petition, it will be displayed in Twitter/"
-#| "Facebook cards when the link is posted to social networks. To be tested "
-#| "via https://cards-dev.twitter.com/validator and https://developers."
-#| "facebook.com/tools/debug/"
+#: src/apps/petitions/admin.py:33 src/apps/presets/admin.py:32
 msgid ""
-"This is the description of the petition, it will be displayed in Twitter/"
-"Facebook cards when the link is posted to social networks.To be tested via "
-"https://cards-dev.twitter.com/validator andhttps://developers.facebook.com/"
-"tools/debug/"
+"This is the description of the petition, it will be displayed when sharing "
+"on social media. You can preview it via some tools such as https://toolsaday."
+"com/seo/open-graph (be aware of trackers!)"
 msgstr ""
-"Questa è la descrizione della petizione che apparirà sulle cards Twitter/"
-"Facebook qualora il link venga pubblicato sui social network. Test su "
-"https://cards-dev.twitter.com/validator e https://developers.facebook.com/"
-"tools/debug/"
 
-#: src/apps/petitions/admin.py:39
-#, fuzzy
-#| msgid ""
-#| "Picture displayed in Twitter/Facebook cards when the link is posted to "
-#| "social networks. To be tested via https://cards-dev.twitter.com/validator "
-#| "and https://developers.facebook.com/tools/debug/"
+#: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
 msgid ""
-"Picture displayed in Twitter/Facebook cards when the link is posted tosocial "
-"networks. To be tested via https://cards-dev.twitter.com/validator and "
-"https://developers.facebook.com/tools/debug/"
+"Picture displayed when shared on social media. You can preview it via some "
+"tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)"
 msgstr ""
-"Immagine che apparirà sulle cards Twitter/Facebook qualora il link venga "
-"pubblicato sui social network. Test su https://cards-dev.twitter.com/"
-"validator e https://developers.facebook.com/tools/debug/"
 
-#: src/apps/petitions/admin.py:45
+#: src/apps/petitions/admin.py:44
 msgid ""
 "Allow to chose whether the newsletter subscription checkbox is shown or not"
 msgstr ""
 "Permette di scegliere se mostrare o meno la casella da spuntare per "
 "l'iscrizione alla newsletter"
 
-#: src/apps/petitions/admin.py:48
+#: src/apps/petitions/admin.py:47
 #, fuzzy
 #| msgid ""
 #| "Only in case subscription to the newsletter via HTTP POST or GET methods. "
@@ -1077,7 +1047,7 @@ msgstr ""
 "                    'your-email': ''<br>\n"
 "                    }"
 
-#: src/apps/petitions/admin.py:59
+#: src/apps/petitions/admin.py:58
 #, fuzzy
 #| msgid ""
 #| "Only when HTTP POST or GET subscription method is used. Name of the field "
@@ -1093,7 +1063,7 @@ msgstr ""
 "desidera iscrivere. Con riferimento all'esempio del campo precedente, "
 "sarebbe \"your-email\""
 
-#: src/apps/petitions/admin.py:65
+#: src/apps/petitions/admin.py:64
 #, fuzzy
 #| msgid ""
 #| "Only when HTTP POST or GET subscription method is used. Adresse HTTP à "
@@ -1105,7 +1075,7 @@ msgstr ""
 "Solo quando si utilizzano i metodi di iscrizione HTTP POST o GET. Richiedere "
 "indirizzo HTTP via GET o POST per iscrivere qualcuno sulla newsletter"
 
-#: src/apps/petitions/admin.py:70
+#: src/apps/petitions/admin.py:69
 #, fuzzy
 #| msgid ""
 #| "Only when EMAIL subscription method is used. Inscrire ici la syntaxe de "
@@ -1123,7 +1093,7 @@ msgstr ""
 "Indicate {} al posto dell'indirizzo email del firmatario da inserire. Ex: "
 "'ADD NOME_LISTA {} NOME_FIRMATARIO'"
 
-#: src/apps/petitions/admin.py:76 src/apps/presets/admin.py:75
+#: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
 #, fuzzy
 #| msgid ""
 #| "Only when EMAIL subscription method is used. L'expéditeur du mail qui "
@@ -1138,7 +1108,7 @@ msgstr ""
 "permette di iscrivere qualcuno alla newsletter. Normalmente si tratta di un "
 "indirizzo amministratore della lista SYMPA o MAILMAN"
 
-#: src/apps/petitions/admin.py:81 src/apps/presets/admin.py:80
+#: src/apps/petitions/admin.py:80 src/apps/presets/admin.py:79
 #, fuzzy
 #| msgid ""
 #| "Only when EMAIL subscription method is used. Adresse email "
@@ -1150,7 +1120,7 @@ msgstr ""
 "Solo quando si usa il metodo di iscrizione EMAIL. Indirizzo email "
 "dell'amministratore della lista, es: sympa@NOME_LISTA.listes.vox.coop"
 
-#: src/apps/petitions/admin.py:85
+#: src/apps/petitions/admin.py:84
 #, fuzzy
 #| msgid ""
 #| "This selects the newsletter subscription method. It is either HTTP GET or "
@@ -1163,7 +1133,7 @@ msgstr ""
 "POST, o attraverso invio di EMAIL all'indirizzo dell'amministratore della "
 "newsletter"
 
-#: src/apps/petitions/admin.py:89 src/apps/presets/admin.py:88
+#: src/apps/petitions/admin.py:88 src/apps/presets/admin.py:87
 #, fuzzy
 #| msgid ""
 #| "If checked, the petition is published and accessible on the website by "
@@ -1178,7 +1148,7 @@ msgstr ""
 "non spuntata, la petizione sarà accessibile ai soli utenti registrati; gli "
 "altri vedranno un errore 404."
 
-#: src/apps/petitions/admin.py:94
+#: src/apps/petitions/admin.py:93
 #, fuzzy
 #| msgid ""
 #| "E.g.: I want to receive updates or informations from this organization."
@@ -1186,7 +1156,7 @@ msgid "E.g.: I want to receive updates or informations from this organization"
 msgstr ""
 "Es.: Desidero ricevere aggiornamenti e informazioni da questa organizzazione."
 
-#: src/apps/petitions/admin.py:97 src/apps/presets/admin.py:96
+#: src/apps/petitions/admin.py:96 src/apps/presets/admin.py:95
 #, fuzzy
 #| msgid ""
 #| "E.g.: Your data will stay strictly confidential and will not be sold, "
@@ -1205,7 +1175,7 @@ msgstr ""
 "questa organizzazione. Potete cancellare l'iscrizione alla newsletter in "
 "qualsiasi momento."
 
-#: src/apps/petitions/admin.py:103
+#: src/apps/petitions/admin.py:102
 #, fuzzy
 #| msgid ""
 #| "The twitter account handle of the organization, starting with the '@' "
@@ -1223,19 +1193,19 @@ msgstr ""
 "account. Vedi https://developer.twitter.com/en/docs/tweets/optimize-with-"
 "cards/overview/summary"
 
-#: src/apps/petitions/admin.py:109 src/apps/presets/admin.py:108
+#: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
 msgid "Check if you want to use your own E-Mail SMTP account."
 msgstr "Spuntate se volete usare il vostro server SMTP."
 
-#: src/apps/petitions/admin.py:111 src/apps/presets/admin.py:110
+#: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
 msgid "e.g.: petition@mydomain.tld"
 msgstr "Es.: petition@mydomain.tld"
 
-#: src/apps/petitions/admin.py:113 src/apps/presets/admin.py:112
+#: src/apps/petitions/admin.py:112 src/apps/presets/admin.py:111
 msgid "If you don't have a real email account, leave 'localhost'."
 msgstr "Se non avete un vero indirizzo email, lasciate 'localhost'."
 
-#: src/apps/petitions/admin.py:116 src/apps/presets/admin.py:115
+#: src/apps/petitions/admin.py:115 src/apps/presets/admin.py:114
 #, fuzzy
 #| msgid ""
 #| "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS if "
@@ -1247,12 +1217,12 @@ msgstr ""
 "25 per une connessione in chiaro (non criptata), 587 per STARTTLS, 465 per "
 "TLS. Scelta consigliata: TLS (se il server di posta lo supporta)."
 
-#: src/apps/petitions/admin.py:120 src/apps/petitions/admin.py:123
-#: src/apps/presets/admin.py:119 src/apps/presets/admin.py:122
+#: src/apps/petitions/admin.py:119 src/apps/petitions/admin.py:122
+#: src/apps/presets/admin.py:118 src/apps/presets/admin.py:121
 msgid "Leave empty if you don't use any account autentication."
 msgstr "Lasciare campo vuoto se non usate un'autenticazione per l'account."
 
-#: src/apps/petitions/admin.py:126 src/apps/presets/admin.py:125
+#: src/apps/petitions/admin.py:125 src/apps/presets/admin.py:124
 #, fuzzy
 #| msgid ""
 #| "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if "
@@ -1264,7 +1234,7 @@ msgstr ""
 "Scelta consigliata: connessione criptata via TLS piuttosto che STARTTLS (se "
 "possibile). Selezionare una sola opzione."
 
-#: src/apps/petitions/admin.py:130 src/apps/presets/admin.py:129
+#: src/apps/petitions/admin.py:129 src/apps/presets/admin.py:128
 #, fuzzy
 #| msgid ""
 #| "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage. Ne pas "
@@ -1276,67 +1246,67 @@ msgstr ""
 "Scelta consigliata: TLS (piuttosto che la connessione criptata SMTP via "
 "STARTTLS). Selezionare una sola opzione."
 
-#: src/apps/petitions/admin.py:135
+#: src/apps/petitions/admin.py:134
 msgid "Petition title"
 msgstr "Titolo della petizione"
 
-#: src/apps/petitions/admin.py:136 src/apps/presets/admin.py:135
+#: src/apps/petitions/admin.py:135 src/apps/presets/admin.py:134
 msgid "Petition text"
 msgstr "Testo della petizione"
 
-#: src/apps/petitions/admin.py:137 src/apps/presets/admin.py:136
+#: src/apps/petitions/admin.py:136 src/apps/presets/admin.py:135
 msgid "Side text, on top of form"
 msgstr "Testo a lato, sopra il modulo"
 
-#: src/apps/petitions/admin.py:138 src/apps/presets/admin.py:137
+#: src/apps/petitions/admin.py:137 src/apps/presets/admin.py:136
 msgid "Signature target number"
 msgstr "Numero di firme da raggiungere"
 
-#: src/apps/petitions/admin.py:140
+#: src/apps/petitions/admin.py:139
 msgid "Number of paper (or other external medium) signatures"
 msgstr "Numero di firme cartacee (o altri media esterni)"
 
-#: src/apps/petitions/admin.py:143
+#: src/apps/petitions/admin.py:142
 msgid "Enable paper signatures accounting"
 msgstr "Attiva conteggio di firme cartacee"
 
-#: src/apps/petitions/admin.py:146 src/apps/presets/admin.py:139
+#: src/apps/petitions/admin.py:145 src/apps/presets/admin.py:138
 msgid "Direction of linear gradient for background color"
 msgstr "Direzione della sfumatura lineare per il colore di sfondo"
 
-#: src/apps/petitions/admin.py:148 src/apps/presets/admin.py:141
+#: src/apps/petitions/admin.py:147 src/apps/presets/admin.py:140
 msgid "Source color for linear gradient"
 msgstr "Colore di partenza per la sfumatura lineare"
 
-#: src/apps/petitions/admin.py:149 src/apps/presets/admin.py:142
+#: src/apps/petitions/admin.py:148 src/apps/presets/admin.py:141
 msgid "Destinatoin color for linear gradient"
 msgstr "Colore di arrivo per la sfumatura lineare"
 
-#: src/apps/petitions/admin.py:150 src/apps/presets/admin.py:143
+#: src/apps/petitions/admin.py:149 src/apps/presets/admin.py:142
 msgid "Color for monochrome background color"
 msgstr "Colore per sfondo monocromatico"
 
-#: src/apps/petitions/admin.py:151 src/apps/presets/admin.py:144
+#: src/apps/petitions/admin.py:150 src/apps/presets/admin.py:143
 msgid "Footer text"
 msgstr "Testo a piè di pagina"
 
-#: src/apps/petitions/admin.py:152 src/apps/presets/admin.py:145
+#: src/apps/petitions/admin.py:151 src/apps/presets/admin.py:144
 msgid "Footer links"
 msgstr "Link a piè di pagina"
 
-#: src/apps/petitions/admin.py:154 src/apps/presets/admin.py:147
+#: src/apps/petitions/admin.py:153 src/apps/presets/admin.py:146
 msgid "Description for Twitter/Facebook cards"
 msgstr "Descrizione per le Twitter/Facebook cards"
 
-#: src/apps/petitions/admin.py:156 src/apps/presets/admin.py:149
+#: src/apps/petitions/admin.py:155 src/apps/presets/admin.py:148
 msgid "Picture for Twitter/Facebook cards"
 msgstr "Immagine per le Twitter/Facebook cards"
 
-#: src/apps/petitions/admin.py:158 src/apps/presets/admin.py:151
+#: src/apps/petitions/admin.py:157 src/apps/presets/admin.py:150
 msgid "Is the petition associated with a newsletter?"
 msgstr "Questa petizione è associata a una newsletter?"
 
-#: src/apps/petitions/admin.py:161 src/apps/presets/admin.py:154
+#: src/apps/petitions/admin.py:160 src/apps/presets/admin.py:153
 #, fuzzy
 #| msgid ""
 #| "Data structure to be sent in order to subscribe someone to the newsletter "
@@ -1348,7 +1318,7 @@ msgstr ""
 "Struttura di dati da mandare per abbonare qualcuno a una newsletter (se si "
 "usa il metodo HTTP)"
 
-#: src/apps/petitions/admin.py:165
+#: src/apps/petitions/admin.py:164
 #, fuzzy
 #| msgid ""
 #| "Name of the field which should contain the email value in the PHP data "
@@ -1359,110 +1329,110 @@ msgid ""
 msgstr ""
 "Nome del campo che contiene l'indirizzo email nella struttura di dati PHP"
 
-#: src/apps/petitions/admin.py:169 src/apps/presets/admin.py:162
+#: src/apps/petitions/admin.py:168 src/apps/presets/admin.py:161
 msgid "HTTP URL for newsletter subscription"
 msgstr "URL HTTP per iscrizione alla newsletter"
 
-#: src/apps/petitions/admin.py:172 src/apps/presets/admin.py:165
+#: src/apps/petitions/admin.py:171 src/apps/presets/admin.py:164
 msgid "Email subject for newsletter subscription command"
 msgstr "Oggetto dell'email che contiene il link di iscrizione alla newsletter"
 
-#: src/apps/petitions/admin.py:175 src/apps/presets/admin.py:168
+#: src/apps/petitions/admin.py:174 src/apps/presets/admin.py:167
 msgid "FROM field for newsletter subscription command"
 msgstr "Mittente dell'email che contiene il link di iscrizione alla newsletter"
 
-#: src/apps/petitions/admin.py:178 src/apps/presets/admin.py:171
+#: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:170
 msgid "TO field for newsletter subscription command"
 msgstr ""
 "Destinatario dell'email che contiene il link di iscrizione alla newsletter"
 
-#: src/apps/petitions/admin.py:181 src/apps/presets/admin.py:174
+#: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:173
 msgid "Newsletter subscription method"
 msgstr "Metodo di iscrizione alla newsletter"
 
-#: src/apps/petitions/admin.py:183 src/apps/presets/admin.py:176
+#: src/apps/petitions/admin.py:182 src/apps/presets/admin.py:175
 msgid "Puslibhed"
 msgstr "Pubblicata"
 
-#: src/apps/petitions/admin.py:185 src/apps/presets/admin.py:178
+#: src/apps/petitions/admin.py:184 src/apps/presets/admin.py:177
 msgid "Form label text of newsletter subscription checkbox"
 msgstr ""
 "Testo dell'etichetta della casella da spuntare per l'iscrizione alla "
 "newsletter"
 
-#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:180
+#: src/apps/petitions/admin.py:186 src/apps/presets/admin.py:179
 msgid "Sign form footer text"
 msgstr "Testo a piè di pagina del modulo da firmare"
 
-#: src/apps/petitions/admin.py:188 src/apps/presets/admin.py:181
+#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:180
 msgid "Organization Twitter handle"
 msgstr "Nome utente dell'organizzazione su Twitter"
 
-#: src/apps/petitions/admin.py:189 src/apps/presets/admin.py:182
+#: src/apps/petitions/admin.py:188 src/apps/presets/admin.py:181
 msgid "Use custom e-mail settings?"
 msgstr "Utilizzare impostazioni personalizzate per l'email?"
 
-#: src/apps/petitions/admin.py:191 src/apps/presets/admin.py:184
+#: src/apps/petitions/admin.py:190 src/apps/presets/admin.py:183
 msgid "Confirmation email Reply-to address"
 msgstr "Indirizzo per ricevere email di conferma"
 
-#: src/apps/petitions/admin.py:193 src/apps/presets/admin.py:186
+#: src/apps/petitions/admin.py:192 src/apps/presets/admin.py:185
 msgid "SMTP server hostname"
 msgstr "Nome dell'host del server SMTP"
 
-#: src/apps/petitions/admin.py:194 src/apps/presets/admin.py:187
+#: src/apps/petitions/admin.py:193 src/apps/presets/admin.py:186
 msgid "SMTP port"
 msgstr "Porta SMTP"
 
-#: src/apps/petitions/admin.py:195 src/apps/presets/admin.py:188
+#: src/apps/petitions/admin.py:194 src/apps/presets/admin.py:187
 msgid "SMTP username"
 msgstr "Nome utente SMTP"
 
-#: src/apps/petitions/admin.py:196 src/apps/presets/admin.py:189
+#: src/apps/petitions/admin.py:195 src/apps/presets/admin.py:188
 msgid "SMTP password"
 msgstr "Password SMTP"
 
-#: src/apps/petitions/admin.py:197 src/apps/presets/admin.py:190
+#: src/apps/petitions/admin.py:196 src/apps/presets/admin.py:189
 msgid "SMTP via TLS?"
 msgstr "SMTP via TLS?"
 
-#: src/apps/petitions/admin.py:199 src/apps/presets/admin.py:192
+#: src/apps/petitions/admin.py:198 src/apps/presets/admin.py:191
 msgid "SMTP via STARTTLS?"
 msgstr "SMTP via STARTTLS?"
 
-#: src/apps/petitions/admin.py:215
+#: src/apps/petitions/admin.py:214
 msgid "To whom is this petition?"
 msgstr "Chi è l'autore di questa petizione?"
 
-#: src/apps/petitions/admin.py:217 src/apps/presets/admin.py:206
+#: src/apps/petitions/admin.py:216 src/apps/presets/admin.py:205
 msgid "Content of the petition"
 msgstr "Contenuto della petizione"
 
-#: src/apps/petitions/admin.py:233 src/apps/presets/admin.py:220
+#: src/apps/petitions/admin.py:232 src/apps/presets/admin.py:219
 msgid "Background color"
 msgstr "Colore di sfondo"
 
-#: src/apps/petitions/admin.py:244 src/apps/presets/admin.py:231
+#: src/apps/petitions/admin.py:243 src/apps/presets/admin.py:230
 msgid "Setup of the newsletter associated to the petition"
 msgstr "Impostazioni della newsletter associata alla petizione"
 
-#: src/apps/petitions/admin.py:266 src/apps/presets/admin.py:253
+#: src/apps/petitions/admin.py:265 src/apps/presets/admin.py:252
 msgid "Confirmation email setup"
 msgstr "Impostazioni email di conferma"
 
-#: src/apps/petitions/admin.py:270 src/apps/presets/admin.py:257
+#: src/apps/petitions/admin.py:269 src/apps/presets/admin.py:256
 msgid "Petition meta-data for social networks"
 msgstr "Metadati della petizione per i social network"
 
-#: src/apps/petitions/admin.py:273
+#: src/apps/petitions/admin.py:272
 msgid "Publish the petition"
 msgstr "Pubblica la petizione"
 
-#: src/apps/petitions/admin.py:276
+#: src/apps/petitions/admin.py:275
 msgid "Unconfirmed signatures"
 msgstr "Firme non confermate"
 
-#: src/apps/petitions/admin.py:280
+#: src/apps/petitions/admin.py:279
 msgid "Confirmed signatures"
 msgstr "Firme confermate"
 
@@ -2125,40 +2095,7 @@ msgid ""
 msgstr ""
 "Inserire un elenco puntato di link; apparirà in orizzontale a piè di pagina"
 
-#: src/apps/presets/admin.py:32
-#, fuzzy
-#| msgid ""
-#| "This is the description of the petition, it will be displayed in Twitter/"
-#| "Facebook cards when the link is posted to social networks. To be tested "
-#| "via https://cards-dev.twitter.com/validator and https://developers."
-#| "facebook.com/tools/debug/"
-msgid ""
-"This is the description of the petition, it will be displayed inTwitter/"
-"Facebook cards when the link is posted to social networks.To be tested via "
-"https://cards-dev.twitter.com/validator andhttps://developers.facebook.com/"
-"tools/debug/"
-msgstr ""
-"Questa è la descrizione della petizione che apparirà sulle cards Twitter/"
-"Facebook qualora il link venga pubblicato sui social network. Test su "
-"https://cards-dev.twitter.com/validator e https://developers.facebook.com/"
-"tools/debug/"
-
-#: src/apps/presets/admin.py:38
-#, fuzzy
-#| msgid ""
-#| "Picture displayed in Twitter/Facebook cards when the link is posted to "
-#| "social networks. To be tested via https://cards-dev.twitter.com/validator "
-#| "and https://developers.facebook.com/tools/debug/"
-msgid ""
-"Picture displayed in Twitter/Facebook cards when the link is posted tosocial "
-"networks. To be tested viahttps://cards-dev.twitter.com/validator andhttps://"
-"developers.facebook.com/tools/debug/"
-msgstr ""
-"Immagine che apparirà sulle cards Twitter/Facebook qualora il link venga "
-"pubblicato sui social network. Test su https://cards-dev.twitter.com/"
-"validator e https://developers.facebook.com/tools/debug/"
-
-#: src/apps/presets/admin.py:44
+#: src/apps/presets/admin.py:43
 #, fuzzy
 #| msgid ""
 #| "Allow to chose whether the newsletter subscription checkbox is shown or "
@@ -2169,7 +2106,7 @@ msgstr ""
 "Permette di scegliere se mostrare o meno la casella da spuntare per "
 "l'iscrizione alla newsletter"
 
-#: src/apps/presets/admin.py:47
+#: src/apps/presets/admin.py:46
 #, fuzzy
 #| msgid ""
 #| "Only in case subscription to the newsletter via HTTP POST or GET methods. "
@@ -2205,7 +2142,7 @@ msgstr ""
 "                    'your-email': ''<br>\n"
 "                    }"
 
-#: src/apps/presets/admin.py:58
+#: src/apps/presets/admin.py:57
 #, fuzzy
 #| msgid ""
 #| "Only when HTTP POST or GET subscription method is used. Name of the field "
@@ -2221,7 +2158,7 @@ msgstr ""
 "desidera iscrivere. Con riferimento all'esempio del campo precedente, "
 "sarebbe \"your-email\""
 
-#: src/apps/presets/admin.py:64
+#: src/apps/presets/admin.py:63
 #, fuzzy
 #| msgid ""
 #| "Only when HTTP POST or GET subscription method is used. Adresse HTTP à "
@@ -2233,7 +2170,7 @@ msgstr ""
 "Solo quando si utilizzano i metodi di iscrizione HTTP POST o GET. Richiedere "
 "indirizzo HTTP via GET o POST per iscrivere qualcuno sulla newsletter"
 
-#: src/apps/presets/admin.py:69
+#: src/apps/presets/admin.py:68
 #, fuzzy
 #| msgid ""
 #| "Only when EMAIL subscription method is used. Inscrire ici la syntaxe de "
@@ -2251,7 +2188,7 @@ msgstr ""
 "Indicate {} al posto dell'indirizzo email del firmatario da inserire. Ex: "
 "'ADD NOME_LISTA {} NOME_FIRMATARIO'"
 
-#: src/apps/presets/admin.py:84
+#: src/apps/presets/admin.py:83
 #, fuzzy
 #| msgid ""
 #| "This selects the newsletter subscription method. It is either HTTP GET or "
@@ -2264,7 +2201,7 @@ msgstr ""
 "POST, o attraverso invio di EMAIL all'indirizzo dell'amministratore della "
 "newsletter"
 
-#: src/apps/presets/admin.py:93
+#: src/apps/presets/admin.py:92
 #, fuzzy
 #| msgid ""
 #| "E.g.: I want to receive updates or informations from this organization."
@@ -2272,7 +2209,7 @@ msgid "E.g.: I want to receive updates or informations from thisorganization."
 msgstr ""
 "Es.: Desidero ricevere aggiornamenti e informazioni da questa organizzazione."
 
-#: src/apps/presets/admin.py:102
+#: src/apps/presets/admin.py:101
 #, fuzzy
 #| msgid ""
 #| "The twitter account handle of the organization, starting with the '@' "
@@ -2290,11 +2227,11 @@ msgstr ""
 "account. Vedi https://developer.twitter.com/en/docs/tweets/optimize-with-"
 "cards/overview/summary"
 
-#: src/apps/presets/admin.py:134
+#: src/apps/presets/admin.py:133
 msgid "Petition template name"
 msgstr "Nome del modello di layout della petizione"
 
-#: src/apps/presets/admin.py:158
+#: src/apps/presets/admin.py:157
 #, fuzzy
 #| msgid ""
 #| "Name of the field which should contain the email value in the PHP data "
@@ -2305,7 +2242,7 @@ msgid ""
 msgstr ""
 "Nome del campo che contiene l'indirizzo email nella struttura di dati PHP"
 
-#: src/apps/presets/admin.py:202
+#: src/apps/presets/admin.py:201
 msgid "To whom is this petition template?"
 msgstr "Chi è l'autore del modello di layout di questa petizione?"
 
@@ -2634,6 +2571,73 @@ msgstr "Italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitano"
+
+#, fuzzy
+#~| msgid "Confirmation email setup"
+#~ msgid "confirmation, email, signature, petition"
+#~ msgstr "Impostazioni email di conferma"
+
+#, fuzzy
+#~| msgid ""
+#~| "This is the description of the petition, it will be displayed in Twitter/"
+#~| "Facebook cards when the link is posted to social networks. To be tested "
+#~| "via https://cards-dev.twitter.com/validator and https://developers."
+#~| "facebook.com/tools/debug/"
+#~ msgid ""
+#~ "This is the description of the petition, it will be displayed in Twitter/"
+#~ "Facebook cards when the link is posted to social networks.To be tested "
+#~ "via https://cards-dev.twitter.com/validator andhttps://developers."
+#~ "facebook.com/tools/debug/"
+#~ msgstr ""
+#~ "Questa è la descrizione della petizione che apparirà sulle cards Twitter/"
+#~ "Facebook qualora il link venga pubblicato sui social network. Test su "
+#~ "https://cards-dev.twitter.com/validator e https://developers.facebook.com/"
+#~ "tools/debug/"
+
+#, fuzzy
+#~| msgid ""
+#~| "Picture displayed in Twitter/Facebook cards when the link is posted to "
+#~| "social networks. To be tested via https://cards-dev.twitter.com/"
+#~| "validator and https://developers.facebook.com/tools/debug/"
+#~ msgid ""
+#~ "Picture displayed in Twitter/Facebook cards when the link is posted "
+#~ "tosocial networks. To be tested via https://cards-dev.twitter.com/"
+#~ "validator and https://developers.facebook.com/tools/debug/"
+#~ msgstr ""
+#~ "Immagine che apparirà sulle cards Twitter/Facebook qualora il link venga "
+#~ "pubblicato sui social network. Test su https://cards-dev.twitter.com/"
+#~ "validator e https://developers.facebook.com/tools/debug/"
+
+#, fuzzy
+#~| msgid ""
+#~| "This is the description of the petition, it will be displayed in Twitter/"
+#~| "Facebook cards when the link is posted to social networks. To be tested "
+#~| "via https://cards-dev.twitter.com/validator and https://developers."
+#~| "facebook.com/tools/debug/"
+#~ msgid ""
+#~ "This is the description of the petition, it will be displayed inTwitter/"
+#~ "Facebook cards when the link is posted to social networks.To be tested "
+#~ "via https://cards-dev.twitter.com/validator andhttps://developers."
+#~ "facebook.com/tools/debug/"
+#~ msgstr ""
+#~ "Questa è la descrizione della petizione che apparirà sulle cards Twitter/"
+#~ "Facebook qualora il link venga pubblicato sui social network. Test su "
+#~ "https://cards-dev.twitter.com/validator e https://developers.facebook.com/"
+#~ "tools/debug/"
+
+#, fuzzy
+#~| msgid ""
+#~| "Picture displayed in Twitter/Facebook cards when the link is posted to "
+#~| "social networks. To be tested via https://cards-dev.twitter.com/"
+#~| "validator and https://developers.facebook.com/tools/debug/"
+#~ msgid ""
+#~ "Picture displayed in Twitter/Facebook cards when the link is posted "
+#~ "tosocial networks. To be tested viahttps://cards-dev.twitter.com/"
+#~ "validator andhttps://developers.facebook.com/tools/debug/"
+#~ msgstr ""
+#~ "Immagine che apparirà sulle cards Twitter/Facebook qualora il link venga "
+#~ "pubblicato sui social network. Test su https://cards-dev.twitter.com/"
+#~ "validator e https://developers.facebook.com/tools/debug/"
 
 #~ msgid "SMTP port must be >= 1 and <= 65535"
 #~ msgstr "La porta SMTP deve essere >= 1 e <= 65535"
