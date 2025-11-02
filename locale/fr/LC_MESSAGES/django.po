@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-02 22:53+0100\n"
 "PO-Revision-Date: 2025-11-02 22:32+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
 "Language: fr\n"
@@ -48,16 +47,12 @@ msgid "User related to these permissions"
 msgstr "Utilisateur lié à ces permissions"
 
 #: src/apps/accounts/models/permission.py:36
-#, fuzzy
-#| msgid "Permission name"
 msgid "Permission"
-msgstr "Nom de la permission"
+msgstr "Permission"
 
 #: src/apps/accounts/models/permission.py:37
-#, fuzzy
-#| msgid "Permission name"
 msgid "Permissions"
-msgstr "Nom de la permission"
+msgstr "Permissions"
 
 #: src/apps/accounts/models/pytition_user.py:27
 #: src/apps/organizations/models/organizations.py:28
@@ -65,16 +60,12 @@ msgid "Default petition template"
 msgstr "Gabarit de pétition par défaut"
 
 #: src/apps/accounts/models/pytition_user.py:35
-#, fuzzy
-#| msgid "Petitions"
 msgid "Pytition User"
-msgstr "Pétitions"
+msgstr "Utilisateur·rice de Pytition"
 
 #: src/apps/accounts/models/pytition_user.py:36
-#, fuzzy
-#| msgid "Petition settings"
 msgid "Pytition Users"
-msgstr "Paramètres de la pétition"
+msgstr "Utilisateur·rices de Pytition"
 
 #: src/apps/accounts/services.py:44 src/apps/accounts/views/profile.py:41
 #: src/apps/organizations/views/invitations/accept.py:45
@@ -393,27 +384,27 @@ msgstr "Vous ne pouvez pas choisir TLS et STARTTLS simultanément."
 #: src/apps/consents/forms/newsletter.py:82
 #, python-brace-format
 msgid "Port must be between 1 and {MAX_PORT_NUMBER}."
-msgstr ""
+msgstr "Le port doit être compris entre 1 et {MAX_PORT_NUMBER}."
 
 #: src/apps/consents/forms/newsletter.py:89
 msgid "Port must be an integer."
-msgstr ""
+msgstr "Le port doit être un nombre entier."
 
 #: src/apps/consents/forms/newsletter.py:101
 msgid "This field is required for HTTP subscription."
-msgstr ""
+msgstr "Ce champ est requis pour l’abonnement HTTP."
 
 #: src/apps/consents/forms/newsletter.py:113
 msgid "Provide either a subscription URL or HTTP data."
-msgstr ""
+msgstr "Fournissez soit une URL, soit des données HTTP."
 
 #: src/apps/consents/forms/newsletter.py:124
 msgid "Please provide the list admin address."
-msgstr ""
+msgstr "Veuillez fournir l'adresse de l'administrateur de la liste."
 
 #: src/apps/consents/forms/newsletter.py:131
 msgid "Please provide the subscription subject template."
-msgstr ""
+msgstr "Veuillez fournir le modèle d'objet de l'abonnement."
 
 #: src/apps/consents/views/export.py:55
 msgid "No newsletter subscription yet!"
@@ -437,7 +428,7 @@ msgstr "Voir les dernières pétitions"
 
 #: src/apps/core/templates/layouts/base.html:13
 msgid "A platform for creating and signing petitions."
-msgstr ""
+msgstr "Une plateforme pour créer et signer des pétitions."
 
 #: src/apps/core/templates/layouts/base.html:15
 msgid "petition, activism, signature, campaign"
@@ -680,16 +671,12 @@ msgid "Account created !"
 msgstr "Compte créé !"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:7
-#, fuzzy
-#| msgid "Personal Information"
 msgid "Email Confirmation"
-msgstr "Informations personnelles"
+msgstr "Email de confirmation."
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:9
-#, fuzzy
-#| msgid "Confirm your signature to our petition"
 msgid "Confirm your signature by clicking the provided link."
-msgstr "Confirmez votre signature à notre pétition"
+msgstr "Confirmez votre signature en cliquant sur le lien fourni."
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:11
 #, fuzzy
@@ -726,10 +713,8 @@ msgid "This is an invalid Organization name. Please try something else."
 msgstr "Nom d'organisation invalide, essayez autre chose."
 
 #: src/apps/organizations/models/organizations.py:39
-#, fuzzy
-#| msgid "Organizations"
 msgid "Organization"
-msgstr "Organisations"
+msgstr "Collectif"
 
 #: src/apps/organizations/templates/org/create.html:6
 msgid "Create an organization"
@@ -821,32 +806,22 @@ msgstr ""
 "organisation ('{orgname}')"
 
 #: src/apps/organizations/views/leave.py:54
-#, fuzzy
-#| msgid ""
-#| "Impossible to leave this organisation, you are the last administrator"
 msgid "Impossible to leave this organization, you are the last administrator"
 msgstr ""
-"Vous ne pouvez pas quitter cette organisation, il ne reste plus que vous en "
-"administrateur"
+"Vous ne pouvez pas quitter ce collectif, il ne reste plus que vous en "
+"administrateur·rice"
 
 #: src/apps/organizations/views/leave.py:62
-#, fuzzy
-#| msgid "Impossible to leave this organisation, you are the last member"
 msgid "Impossible to leave this organization, you are the last member"
-msgstr ""
-"Vous ne pouvez pas quitter cette organisation, vous êtes le dernier membre"
+msgstr "Vous ne pouvez pas quitter ce collectif, vous êtes le dernier membre"
 
 #: src/apps/organizations/views/members/add.py:43
-#, fuzzy
-#| msgid "This user does not exist (anylonger?)"
 msgid "This user does not exist (any longer?)"
-msgstr "Cet utilisateur n'existe pas (plus ?)"
+msgstr "Cet·te utilisateur·rice n'existe pas (plus ?)"
 
 #: src/apps/organizations/views/members/add.py:47
-#, fuzzy
-#| msgid "This organization does not exist (anylonger?)"
 msgid "This organization does not exist (any longer?)"
-msgstr "Cette organisation n'existe pas (plus ?)"
+msgstr "Ce collectif n'existe pas (plus ?)"
 
 #: src/apps/organizations/views/members/add.py:50
 msgid "You are not part of this organization."
