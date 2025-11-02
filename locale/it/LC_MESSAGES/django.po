@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-02 23:36+0100\n"
-"PO-Revision-Date: 2023-03-09 13:35+0000\n"
-"Last-Translator: lost_geographer <david@chionne.eu>\n"
-"Language-Team: Italian <https://weblate.framasoft.org/projects/pytition/"
-"pytitions/it/>\n"
+"PO-Revision-Date: 2025-11-03 02:10+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
+"Language-Team: Italian <https://translate.sebastienpont.fr/projects/pytition/"
+"depot-git/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.2\n"
+"X-Generator: Weblate 5.14\n"
 
 #: src/apps/accounts/admin.py:13
 #: src/apps/organizations/models/organizations.py:18
@@ -240,10 +241,7 @@ msgid "New organization"
 msgstr "Nuova organizzazione"
 
 #: src/apps/accounts/templates/accounts/profile.html:5
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "    %(name)s's profile\n"
+#, python-format
 msgid ""
 "\n"
 "    %(name)s\"s profile\n"
@@ -614,14 +612,6 @@ msgid "Send me instructions!"
 msgstr "Mandatemi le istruzioni!"
 
 #: src/apps/core/templates/ui/components/demo_text.html:3
-#, fuzzy
-#| msgid ""
-#| "<span style=\"color: red;font-weight: bold;\">Demonstration website "
-#| "(please DON'T put real petitions here!)</span><br/> This tool is free and "
-#| "open-source software, you can install it on your server too!<br> Download "
-#| "the source code on <a href=\"https://github.com/pytition/"
-#| "pytition\">GitHub</a><br> Documentation is available on <a href=\"https://"
-#| "pytition.readthedocs.io\">ReadTheDocs</a>"
 msgid ""
 "<span style=\"color: red;font-weight: bold;\">Demonstration website (please "
 "DON'T put real petitions here!)</span> <br /> This tool is free and open-"
@@ -630,12 +620,12 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
-"<span style=\"color: red;font-weight: bold;\">Sito web di dimostrazione (per "
-"favore NON inserire petizioni reali qui!)</span><br/> Questo strumento è un "
-"software gratuito e open-source, che puoi installare anche sul tuo server!"
-"<br> Scaricare il codice sorgente su <a href=\"https://github.com/pytition/"
-"pytition\">GitHub</a><br> La documentazione è disponibile su <a "
-"href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
+"<span style=\"color: red;font-weight: bold;\">Sito web di dimostrazione "
+"(per favore NON inserire petizioni reali qui!)</span><br/> Questo strumento "
+"è un software gratuito e open-source, che puoi installare anche sul tuo "
+"server!<br> Scaricare il codice sorgente su <a href="
+"\"https://github.com/pytition/pytition\">GitHub</a><br> La documentazione è "
+"disponibile su <a href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -756,10 +746,6 @@ msgid "Members"
 msgstr "Membri"
 
 #: src/apps/organizations/templates/org/member_list.html:13
-#, fuzzy
-#| msgid ""
-#| "You cannot edit this member's permissions, you don\\'t have the correct "
-#| "permission"
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission"
@@ -770,10 +756,6 @@ msgid "Edit this member's permissions"
 msgstr "Modifica le autorizzazioni di questo membro"
 
 #: src/apps/organizations/templates/org/member_list.html:18
-#, fuzzy
-#| msgid ""
-#| "You cannot remove this member from the organization, you don\\'t have the "
-#| "correct permission"
 msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission"
@@ -788,11 +770,7 @@ msgid "Unable to remove this member from the organization."
 msgstr "Impossibile rimuovere questo utente dall'organizzazione."
 
 #: src/apps/organizations/templates/org/profile.html:5
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "        %(name)s's profile\n"
-#| "    "
+#, python-format
 msgid ""
 "\n"
 "        %(name)s\"s profile\n"
@@ -1011,17 +989,6 @@ msgstr ""
 "l'iscrizione alla newsletter"
 
 #: src/apps/petitions/admin.py:47
-#, fuzzy
-#| msgid ""
-#| "Only in case subscription to the newsletter via HTTP POST or GET methods. "
-#| "Put here data to be sent, using Python dictionary syntax. e.g.: <br>\n"
-#| "                    {'_wpcf7': 21,<br>\n"
-#| "                    '_wpcf7_version': '4.9',<br>\n"
-#| "                    '_wpcf7_locale': 'fr_FR',<br>\n"
-#| "                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-#| "                    '_wpcf7_container_post': '5398',<br>\n"
-#| "                    'your-email': ''<br>\n"
-#| "                    }"
 msgid ""
 "Only in case \"\n"
 "            \"subscription to the newsletter via HTTP POST or GET methods."
@@ -1149,9 +1116,6 @@ msgstr ""
 "altri vedranno un errore 404."
 
 #: src/apps/petitions/admin.py:93
-#, fuzzy
-#| msgid ""
-#| "E.g.: I want to receive updates or informations from this organization."
 msgid "E.g.: I want to receive updates or informations from this organization"
 msgstr ""
 "Es.: Desidero ricevere aggiornamenti e informazioni da questa organizzazione."
@@ -1235,16 +1199,13 @@ msgstr ""
 "possibile). Selezionare una sola opzione."
 
 #: src/apps/petitions/admin.py:129 src/apps/presets/admin.py:128
-#, fuzzy
-#| msgid ""
-#| "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage. Ne pas "
-#| "cocher les 2. Les 2 réglages sont mutuellement exclusifs."
 msgid ""
 "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage.Ne pas "
 "cocher les 2. Les 2 réglages sont mutuellement exclusifs."
 msgstr ""
-"Scelta consigliata: TLS (piuttosto che la connessione criptata SMTP via "
-"STARTTLS). Selezionare una sola opzione."
+"Scelta consigliata: TLS "
+"(piuttosto che la connessione criptata SMTP via STARTTLS). Selezionare una "
+"sola opzione."
 
 #: src/apps/petitions/admin.py:134
 msgid "Petition title"
@@ -1923,11 +1884,7 @@ msgid "Delete petition?"
 msgstr "Eliminare petizione?"
 
 #: src/apps/petitions/templates/petitions/list.html:123
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "            Do you really want to delete petition '%(title)s'\n"
-#| "          "
+#, python-format
 msgid ""
 "\n"
 "            Do you really want to delete petition \"%(title)s\"\n"
@@ -2107,17 +2064,6 @@ msgstr ""
 "l'iscrizione alla newsletter"
 
 #: src/apps/presets/admin.py:46
-#, fuzzy
-#| msgid ""
-#| "Only in case subscription to the newsletter via HTTP POST or GET methods. "
-#| "Put here data to be sent, using Python dictionary syntax. e.g.: <br>\n"
-#| "                    {'_wpcf7': 21,<br>\n"
-#| "                    '_wpcf7_version': '4.9',<br>\n"
-#| "                    '_wpcf7_locale': 'fr_FR',<br>\n"
-#| "                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-#| "                    '_wpcf7_container_post': '5398',<br>\n"
-#| "                    'your-email': ''<br>\n"
-#| "                    }"
 msgid ""
 "Only in case subscription\"\n"
 "            \"to the newsletter via HTTP POST or GET methods. Put here data "
@@ -2309,14 +2255,6 @@ msgid "Beware, you are creating a template, not a petition!"
 msgstr "Attenzione, stai creando un modello di layout, NON una petizione!"
 
 #: src/apps/presets/templates/presets/new.html:19
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                          <p class=\"mb-0\">A petition template allows "
-#| "you to put default values for future petitions.<br/>\n"
-#| "                          For instance you might want to re-use the same "
-#| "e-mail SMTP account accross several petitions.</p>\n"
-#| "                      "
 msgid ""
 "\n"
 "                          <p class=\"mb-0\">A petition template allows you "
