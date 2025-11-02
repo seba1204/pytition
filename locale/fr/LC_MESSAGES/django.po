@@ -9,7 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-02 22:53+0100\n"
 "PO-Revision-Date: 2025-11-02 22:32+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
 "Language: fr\n"
@@ -240,16 +241,13 @@ msgid "New organization"
 msgstr "Nouvelle organisation"
 
 #: src/apps/accounts/templates/accounts/profile.html:5
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "    %(name)s's profile\n"
+#, python-format
 msgid ""
 "\n"
 "    %(name)s\"s profile\n"
 msgstr ""
 "\n"
-"        Profil de %(name)s\n"
+"    Profil de %(name)s\n"
 
 #: src/apps/accounts/templates/accounts/profile.html:24
 #: src/apps/core/templates/core/index.html:32
@@ -622,14 +620,6 @@ msgid "Send me instructions!"
 msgstr "Envoyez-moi les instructions !"
 
 #: src/apps/core/templates/ui/components/demo_text.html:3
-#, fuzzy
-#| msgid ""
-#| "<span style=\"color: red;font-weight: bold;\">Demonstration website "
-#| "(please DON'T put real petitions here!)</span><br/> This tool is free and "
-#| "open-source software, you can install it on your server too!<br> Download "
-#| "the source code on <a href=\"https://github.com/pytition/"
-#| "pytition\">GitHub</a><br> Documentation is available on <a href=\"https://"
-#| "pytition.readthedocs.io\">ReadTheDocs</a>"
 msgid ""
 "<span style=\"color: red;font-weight: bold;\">Demonstration website (please "
 "DON'T put real petitions here!)</span> <br /> This tool is free and open-"
@@ -638,12 +628,12 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
-"<span style=\"color: red;font-weight: bold;\">Site de démonstration (ne "
-"publiez PAS de vrais pétitions ici !)</span><br/> Cet outil est un logiciel "
-"libre, vous pouvez l'installer sur votre propre serveur !<br> Télécharger le "
-"code source sur <a href=\"https://github.com/pytition/pytition\">GitHub</"
-"a><br> La documentation est disponible sur <a href=\"https://pytition."
-"readthedocs.io\">ReadTheDocs</a>"
+"<span style=\"color: red;font-weight: bold;\">Site de démonstration "
+"(ne publiez PAS de vrais pétitions ici !)</span><br/> Cet outil est un "
+"logiciel libre, vous pouvez l'installer sur votre propre serveur !<br> "
+"Télécharger le code source sur <a href="
+"\"https://github.com/pytition/pytition\">GitHub</a><br> La documentation est "
+"disponible sur <a href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -774,10 +764,6 @@ msgid "Members"
 msgstr "Membres"
 
 #: src/apps/organizations/templates/org/member_list.html:13
-#, fuzzy
-#| msgid ""
-#| "You cannot edit this member's permissions, you don\\'t have the correct "
-#| "permission"
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission"
@@ -788,10 +774,6 @@ msgid "Edit this member's permissions"
 msgstr "Modifier les droits de cet utilisateur"
 
 #: src/apps/organizations/templates/org/member_list.html:18
-#, fuzzy
-#| msgid ""
-#| "You cannot remove this member from the organization, you don\\'t have the "
-#| "correct permission"
 msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission"
@@ -807,11 +789,7 @@ msgid "Unable to remove this member from the organization."
 msgstr "Impossible d'enlever cet utilisateur de l'organisation."
 
 #: src/apps/organizations/templates/org/profile.html:5
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "        %(name)s's profile\n"
-#| "    "
+#, python-format
 msgid ""
 "\n"
 "        %(name)s\"s profile\n"
@@ -1012,12 +990,6 @@ msgstr ""
 "de page"
 
 #: src/apps/petitions/admin.py:33
-#, fuzzy
-#| msgid ""
-#| "This is the description of the petition, it will be displayed in Twitter/"
-#| "Facebook cards when the link is posted to social networks. To be tested "
-#| "via https://cards-dev.twitter.com/validator and https://developers."
-#| "facebook.com/tools/debug/"
 msgid ""
 "This is the description of the petition, it will be displayed in Twitter/"
 "Facebook cards when the link is posted to social networks.To be tested via "
@@ -1026,8 +998,8 @@ msgid ""
 msgstr ""
 "C'est la description de la pétition, elle sera affichée dans les affichettes "
 "Twitter/Facebook quand le lien est posté sur les réseaux sociaux. A tester "
-"avec https://cards-dev.twitter.com/validator et https://developers.facebook."
-"com/tools/debug/"
+"avec https://cards-dev.twitter.com/validator et https://"
+"developers.facebook.com/tools/debug/"
 
 #: src/apps/petitions/admin.py:39
 #, fuzzy
@@ -1052,17 +1024,6 @@ msgstr ""
 "est affichée ou pas"
 
 #: src/apps/petitions/admin.py:48
-#, fuzzy
-#| msgid ""
-#| "Only in case subscription to the newsletter via HTTP POST or GET methods. "
-#| "Put here data to be sent, using Python dictionary syntax. e.g.: <br>\n"
-#| "                    {'_wpcf7': 21,<br>\n"
-#| "                    '_wpcf7_version': '4.9',<br>\n"
-#| "                    '_wpcf7_locale': 'fr_FR',<br>\n"
-#| "                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-#| "                    '_wpcf7_container_post': '5398',<br>\n"
-#| "                    'your-email': ''<br>\n"
-#| "                    }"
 msgid ""
 "Only in case \"\n"
 "            \"subscription to the newsletter via HTTP POST or GET methods."
@@ -1079,7 +1040,7 @@ msgid ""
 msgstr ""
 "Seulement en cas d'abonnement à la liste de diffusion via la méthode HTTP "
 "POST ou GET. Indiquez ici les données à envoyer, en utilisant la syntaxe des "
-"dictionnaires Python. ex.  : <br>\n"
+"dictionnaires Python. ex.  : <br>\n"
 "                    {'_wpcf7': 21,<br>\n"
 "                    '_wpcf7_version': '4.9',<br>\n"
 "                    '_wpcf7_locale': 'fr_FR',<br>\n"
@@ -1191,12 +1152,9 @@ msgstr ""
 "identifié, les autres verront une erreur HTTP 404."
 
 #: src/apps/petitions/admin.py:94
-#, fuzzy
-#| msgid ""
-#| "E.g.: I want to receive updates or informations from this organization."
 msgid "E.g.: I want to receive updates or informations from this organization"
 msgstr ""
-"Ex. : Je souhaite recevoir les actualités et informations à propos de cette "
+"Ex. : Je souhaite recevoir les actualités et informations à propos de cette "
 "organisation."
 
 #: src/apps/petitions/admin.py:97 src/apps/presets/admin.py:96
@@ -1280,10 +1238,6 @@ msgstr ""
 "incompatibles entre eux."
 
 #: src/apps/petitions/admin.py:130 src/apps/presets/admin.py:129
-#, fuzzy
-#| msgid ""
-#| "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage. Ne pas "
-#| "cocher les 2. Les 2 réglages sont mutuellement exclusifs."
 msgid ""
 "Connexion SMTP chiffrée via STARTTLS, préférez TLS à ce réglage.Ne pas "
 "cocher les 2. Les 2 réglages sont mutuellement exclusifs."
@@ -1980,18 +1934,14 @@ msgid "Delete petition?"
 msgstr "Supprimer la pétition ?"
 
 #: src/apps/petitions/templates/petitions/list.html:123
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "            Do you really want to delete petition '%(title)s'\n"
-#| "          "
+#, python-format
 msgid ""
 "\n"
 "            Do you really want to delete petition \"%(title)s\"\n"
 "          "
 msgstr ""
 "\n"
-"Voulez-vous vraiment supprimer la pétition  '%(title)s'\n"
+"            Voulez-vous vraiment supprimer la pétition  '%(title)s'\n"
 "          "
 
 #: src/apps/petitions/templates/petitions/new_step1.html:29
@@ -2200,17 +2150,6 @@ msgstr ""
 "est affichée ou pas"
 
 #: src/apps/presets/admin.py:47
-#, fuzzy
-#| msgid ""
-#| "Only in case subscription to the newsletter via HTTP POST or GET methods. "
-#| "Put here data to be sent, using Python dictionary syntax. e.g.: <br>\n"
-#| "                    {'_wpcf7': 21,<br>\n"
-#| "                    '_wpcf7_version': '4.9',<br>\n"
-#| "                    '_wpcf7_locale': 'fr_FR',<br>\n"
-#| "                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-#| "                    '_wpcf7_container_post': '5398',<br>\n"
-#| "                    'your-email': ''<br>\n"
-#| "                    }"
 msgid ""
 "Only in case subscription\"\n"
 "            \"to the newsletter via HTTP POST or GET methods. Put here data "
@@ -2226,7 +2165,7 @@ msgid ""
 msgstr ""
 "Seulement en cas d'abonnement à la liste de diffusion via la méthode HTTP "
 "POST ou GET. Indiquez ici les données à envoyer, en utilisant la syntaxe des "
-"dictionnaires Python. ex.  : <br>\n"
+"dictionnaires Python. ex.  : <br>\n"
 "                    {'_wpcf7': 21,<br>\n"
 "                    '_wpcf7_version': '4.9',<br>\n"
 "                    '_wpcf7_locale': 'fr_FR',<br>\n"
@@ -2400,14 +2339,6 @@ msgid "Beware, you are creating a template, not a petition!"
 msgstr "Attention, vous êtes en train de créer un gabarit, pas une pétition !"
 
 #: src/apps/presets/templates/presets/new.html:19
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                          <p class=\"mb-0\">A petition template allows "
-#| "you to put default values for future petitions.<br/>\n"
-#| "                          For instance you might want to re-use the same "
-#| "e-mail SMTP account accross several petitions.</p>\n"
-#| "                      "
 msgid ""
 "\n"
 "                          <p class=\"mb-0\">A petition template allows you "
