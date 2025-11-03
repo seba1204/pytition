@@ -3,9 +3,8 @@ msgstr ""
 "Project-Id-Version: Occitan (Pytition)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:54+0100\n"
-"PO-Revision-Date: 2025-11-03 04:47+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 04:57+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Occitan <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/oc/>\n"
 "Language: oc\n"
@@ -1033,8 +1032,6 @@ msgstr ""
 "cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
-#, fuzzy
-#| msgid "Check if you want to use your own E-Mail SMTP account."
 msgid "Check if you want to use your own Email SMTP account."
 msgstr "Marcatz amb una crotz se volètz utilizar vòstre pròpri servidor SMTP."
 
