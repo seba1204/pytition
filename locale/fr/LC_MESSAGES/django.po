@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
-"PO-Revision-Date: 2025-11-02 22:32+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-03 02:21+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
 "Language: fr\n"
@@ -193,8 +194,6 @@ msgid "Return to dashboard"
 msgstr "Retour au tableau de bord"
 
 #: src/apps/accounts/templates/accounts/invitations.html:5
-#, fuzzy
-#| msgid "Invitations"
 msgid "Invitation"
 msgid_plural "Invitations"
 msgstr[0] "Invitations"
@@ -238,14 +237,9 @@ msgstr "Nouvelle organisation"
 
 #: src/apps/accounts/templates/accounts/profile.html:5
 #: src/apps/organizations/templates/org/profile.html:5
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "    %(name)s\"s profile\n"
+#, python-format
 msgid "%(name)s\"s profile"
-msgstr ""
-"\n"
-"    Profil de %(name)s\n"
+msgstr "Profil de %(name)s"
 
 #: src/apps/accounts/templates/accounts/profile.html:24
 #: src/apps/core/templates/core/index.html:32
@@ -260,16 +254,8 @@ msgid "First Created"
 msgstr "Les plus anciennes"
 
 #: src/apps/accounts/templates/accounts/profile.html:30
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "        This user has not created any petition yet\n"
-#| "    "
 msgid "This user has not created any petition yet."
-msgstr ""
-"\n"
-"        Cet utilisateur n'a pas encore créé de pétition\n"
-"   "
+msgstr "Cet utilisateur n'a pas encore créé de pétition"
 
 #: src/apps/accounts/templates/accounts/register.html:15
 msgid "Register"
@@ -302,10 +288,6 @@ msgid "Change password"
 msgstr "Changer de mot de passe"
 
 #: src/apps/accounts/templates/accounts/settings.html:105
-#, fuzzy
-#| msgid ""
-#| "You cannot leave an organization where you are either the last "
-#| "administrator or the last member"
 msgid ""
 "You cannot leave an organization where you are either the last administrator "
 "or the last member."
@@ -314,8 +296,6 @@ msgstr ""
 "administrateur ou le dernier membre"
 
 #: src/apps/accounts/templates/accounts/settings.html:114
-#, fuzzy
-#| msgid "You are not part of any organization"
 msgid "You are not part of any organization."
 msgstr "Vous ne faites partie d'aucune organisation"
 
@@ -672,11 +652,6 @@ msgid "Send the confirmation email once again"
 msgstr "Renvoyer les e-mails de confirmation à nouveau"
 
 #: src/apps/notifications/forms/email.py:16
-#, fuzzy
-#| msgid ""
-#| "Your contact email. It will be used as \"Reply-To\" field of the "
-#| "confirmation email sent to signatories. People responding to confirmation "
-#| "email will in fact respond to this address."
 msgid ""
 "Your contact email. It will be used as 'Reply-To' field of the confirmation "
 "email sent to signatories. People responding to confirmation email will in "
@@ -707,14 +682,9 @@ msgid "Thank you"
 msgstr "Merci"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:13
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Now, in order to confirm your signature, you only need to click here :\n"
 msgid "Now, in order to confirm your signature, you only need to click here :"
 msgstr ""
-"\n"
-"Pour confirmer votre signature, il vous reste simplement à cliquer ici : \n"
+"Pour confirmer votre signature, il vous reste simplement à cliquer ici :"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:18
 msgid "See you soon!"
@@ -767,10 +737,6 @@ msgid "Members"
 msgstr "Membres"
 
 #: src/apps/organizations/templates/org/member_list.html:13
-#, fuzzy
-#| msgid ""
-#| "You cannot edit this member's permissions, you don't have the correct "
-#| "permission"
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission."
@@ -781,10 +747,6 @@ msgid "Edit this member's permissions"
 msgstr "Modifier les droits de cet utilisateur"
 
 #: src/apps/organizations/templates/org/member_list.html:18
-#, fuzzy
-#| msgid ""
-#| "You cannot remove this member from the organization, you don't have the "
-#| "correct permission"
 msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission."
@@ -984,10 +946,6 @@ msgid "Only used if gradient is selected"
 msgstr "Seulement utilisé si un gradient est sélectionné"
 
 #: src/apps/petitions/admin.py:29 src/apps/presets/admin.py:28
-#, fuzzy
-#| msgid ""
-#| "Put a bullet point list of links, it will appear horizontally in the page "
-#| "footer"
 msgid ""
 "Put a bullet point list of links, it will appear horizontally in the page "
 "footer."
@@ -1001,18 +959,20 @@ msgid ""
 "on social media. You can preview it via some tools such as https://toolsaday."
 "com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"Il s'agit de la description de la pétition qui sera affichée lors du partage "
+"sur les réseaux sociaux. Vous pouvez la prévisualiser à l'aide d'outils tels "
+"que https://toolsaday.com/seo/open-graph (attention aux traceurs !)."
 
 #: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
 msgid ""
 "Picture displayed when shared on social media. You can preview it via some "
 "tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"Image affichée lors du partage sur les réseaux sociaux. Vous pouvez la "
+"prévisualiser à l'aide d'outils tels que https://toolsaday.com/seo/open-"
+"graph (attention aux traceurs !)"
 
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
-#, fuzzy
-#| msgid ""
-#| "Allow to chose whether the newsletter subscription checkbox is shown or "
-#| "not"
 msgid ""
 "Allow to chose whether the newsletter subscription checkbox is shown or not."
 msgstr ""
@@ -1020,20 +980,6 @@ msgstr ""
 "est affichée ou pas"
 
 #: src/apps/petitions/admin.py:47 src/apps/presets/admin.py:46
-#, fuzzy
-#| msgid ""
-#| "Only in case \"\n"
-#| "            \"subscription to the newsletter via HTTP POST or GET methods."
-#| "\"\n"
-#| "            \"Put here data to be sent, using Python dictionary syntax. e."
-#| "g.: <br>\n"
-#| "                    {'_wpcf7': 21,<br>\n"
-#| "                    '_wpcf7_version': '4.9',<br>\n"
-#| "                    '_wpcf7_locale': 'fr_FR',<br>\n"
-#| "                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-#| "                    '_wpcf7_container_post': '5398',<br>\n"
-#| "                    'your-email': ''<br>\n"
-#| "                    }"
 msgid ""
 "Only in case \"\n"
 "            \"subscription to the newsletter via HTTP POST or GET methods. "
@@ -1060,11 +1006,6 @@ msgstr ""
 "                    }"
 
 #: src/apps/petitions/admin.py:58 src/apps/presets/admin.py:57
-#, fuzzy
-#| msgid ""
-#| "Only when HTTP POST or GET subscription method is used. Name of the field "
-#| "to send via GET or POST, containing the email address to subscribe. "
-#| "Following the example of preceding form field, that would be 'your-email'"
 msgid ""
 "Only when HTTP POST or GET subscription method is used. Name of the field to "
 "send via GET or POST, containing the email address to subscribe. Following "
@@ -1134,10 +1075,6 @@ msgstr ""
 "d'administration de la liste, ex. : sympa@NOM_LISTE.listes.vox.coop"
 
 #: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
-#, fuzzy
-#| msgid ""
-#| "This selects the newsletter subscription method. It is either HTTP GET or "
-#| "POST or via sending EMAIL to the newsletter admin address"
 msgid ""
 "This selects the newsletter subscription method. It is either HTTP GET or "
 "POST or via sending EMAIL to the newsletter admin address."
@@ -1162,28 +1099,19 @@ msgstr ""
 "identifié, les autres verront une erreur HTTP 404."
 
 #: src/apps/petitions/admin.py:93 src/apps/presets/admin.py:92
-#, fuzzy
-#| msgid ""
-#| "E.g.: I want to receive updates or informations from this organization"
 msgid "E.g.: I want to receive updates or information from this organization."
 msgstr ""
 "Ex. : Je souhaite recevoir les actualités et informations à propos de cette "
 "organisation."
 
 #: src/apps/petitions/admin.py:96 src/apps/presets/admin.py:95
-#, fuzzy
-#| msgid ""
-#| "E.g.: Your data will stay strictly confidential and will not be sold, "
-#| "given away or exchanged with third parties. Informations about this "
-#| "campaign as well as other news about this organization will be sent to "
-#| "you if you checked the checkbox. You can unsubscribe at any moment."
 msgid ""
 "E.g.: Your data will stay strictly confidential and will not be sold, given "
 "away or exchanged with third parties. Information about this campaign as "
 "well as other news about this organization will be sent to you if you "
 "checked the checkbox. You can unsubscribe at any moment."
 msgstr ""
-"Ex. : Vos données resteront strictement confidentielles et ne seront ni "
+"Ex. : Vos données resteront strictement confidentielles et ne seront ni "
 "vendues, ni données, ni échangées avec des organisations tierces. Des "
 "informations à propos de cette campagne ainsi que d'autres actualités à "
 "propos de cette organisation vous seront envoyées si vous cochez cette case. "
@@ -1475,14 +1403,10 @@ msgid "Title is required and must be a string."
 msgstr ""
 
 #: src/apps/petitions/forms/creation_steps.py:38
-#, fuzzy
-#| msgid "There is already a petition with this title"
 msgid "There is already a petition with this title."
 msgstr "Il y a déjà une pétition avec ce titre"
 
 #: src/apps/petitions/forms/creation_steps.py:52
-#, fuzzy
-#| msgid "You should either provide an org name or a user name"
 msgid "You should either provide an org name or a user name."
 msgstr ""
 "Vous devez obligatoirement mettre soit un nom d'utilisateur soit un nom "
@@ -1515,22 +1439,14 @@ msgstr ""
 "Les utilisateurs ne sont pas autorisés à créer leurs propres pétitions."
 
 #: src/apps/petitions/forms/creation_wizard.py:172
-#, fuzzy
-#| msgid "Cannot find this organization"
 msgid "Cannot find this organization."
 msgstr "Impossible de trouver cette organisation"
 
 #: src/apps/petitions/forms/creation_wizard.py:200
-#, fuzzy
-#| msgid "This template does not belong to your organization"
 msgid "This template does not belong to your organization."
 msgstr "Ce gabarit de pétition n'appartient pas à votre organisation"
 
 #: src/apps/petitions/forms/creation_wizard.py:214
-#, fuzzy
-#| msgid ""
-#| "You don't have the permission to create a new petition in this "
-#| "Organization"
 msgid ""
 "You don't have the permission to create a new petition in this Organization."
 msgstr ""
@@ -1538,8 +1454,6 @@ msgstr ""
 "organisation"
 
 #: src/apps/petitions/forms/creation_wizard.py:232
-#, fuzzy
-#| msgid "This template does not belong to you"
 msgid "This template does not belong to you."
 msgstr "Ce gabarit de pétition ne vous appartient pas"
 
@@ -1564,8 +1478,6 @@ msgstr ""
 "organisation ('{orgname}')"
 
 #: src/apps/petitions/helpers.py:25
-#, fuzzy
-#| msgid "Petition does not exist"
 msgid "Petition does not exist."
 msgstr "Cette pétition n'existe pas"
 
@@ -1729,9 +1641,6 @@ msgid ""
 msgstr ""
 
 #: src/apps/petitions/templates/petitions/detail.html:173
-#, fuzzy
-#| msgid ""
-#| "This petition is moderated. You only see it because you are its creator"
 msgid ""
 "This petition is moderated. You only see it because you are its creator."
 msgstr ""
@@ -1894,28 +1803,17 @@ msgid "Remove image"
 msgstr "Supprimer l'image"
 
 #: src/apps/petitions/templates/petitions/edit.html:297
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                A permlink (permanent link) is what allows you to share "
-#| "your petition with a nice link\n"
-#| "                containing a meaningful small title instead of a number.\n"
-#| "                With a permlink your petition can be accessible via a "
-#| "link like:\n"
-#| "            "
 msgid ""
 "A permalink (permanent link) is what allows you to share your petition with "
 "a nice link containing a meaningful small title instead of a number. With a "
 "permalink your petition can be accessible via a link like:"
 msgstr ""
-"\n"
-"                Un permalien (lien permanent) permet de partager votre "
-"pétition avec une url plus parlante\n"
+"Un permalien (lien permanent) permet de partager votre pétition avec une url "
+"plus parlante\n"
 "                contenant un titre petit et ayant du sens, au lieu d'un "
 "nombre.\n"
 "                Avec un permalien votre pétition est accessible à l'aide "
-"d'un lien du type :\n"
-"            "
+"d'un lien du type :"
 
 #: src/apps/petitions/templates/petitions/edit.html:313
 #, fuzzy
@@ -1928,24 +1826,14 @@ msgid "Actions"
 msgstr "Actions"
 
 #: src/apps/petitions/templates/petitions/edit.html:384
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "            Beware: this preview shows the current state of the petition."
-#| "<br />\n"
-#| "            If you modified some settings, please save if you want to see "
-#| "them in the preview.\n"
-#| "            "
 msgid ""
 "Beware: this preview shows the current state of the petition. <br /> If you "
 "modified some settings, please save if you want to see them in the preview."
 msgstr ""
-"\n"
-"            Attention : cette prévisualisation affiche l'état actuel de la "
-"pétition.<br />\n"
+"Attention : cette prévisualisation affiche l'état actuel de la pétition.<br "
+"/>\n"
 "\tSi vous modifiez certains paramètres, veillez à bien sauvegarder avant "
-"d'afficher la prévisualisation.\n"
-"            "
+"d'afficher la prévisualisation."
 
 #: src/apps/petitions/templates/petitions/edit.html:451
 #: src/apps/petitions/templates/petitions/edit.html:466
@@ -1985,8 +1873,6 @@ msgstr[1] ""
 "            "
 
 #: src/apps/petitions/templates/petitions/list.html:12
-#, fuzzy
-#| msgid "You don't have any petitions yet"
 msgid "You don't have any petitions yet."
 msgstr "Vous n'avez pas encore de pétition"
 
@@ -2087,8 +1973,6 @@ msgid "Transfer"
 msgstr "Transférer"
 
 #: src/apps/petitions/views/edit.py:44
-#, fuzzy
-#| msgid "You are not allowed to edit this petition"
 msgid "You are not allowed to edit this petition."
 msgstr "Vous n'êtes pas le propriétaire de cette pétition"
 
@@ -2099,8 +1983,6 @@ msgstr "sauver-les-chatons-du-grand-mechant-loup"
 #: src/apps/petitions/views/show_petition.py:58
 #: src/apps/petitions/views/show_petition.py:65
 #: src/apps/petitions/views/show_petition.py:67
-#, fuzzy
-#| msgid "Sorry, we are not able to find this petition"
 msgid "Sorry, we are not able to find this petition."
 msgstr "Désolé, nous n'avons pas trouvé cette pétition"
 
@@ -2147,8 +2029,6 @@ msgstr ""
 "organisation"
 
 #: src/apps/petitions/views/transfer.py:63
-#, fuzzy
-#| msgid "You don't have the permission to transfer this petition"
 msgid "You don't have the permission to transfer this petition."
 msgstr "Vous n'êtes pas autorisé à transférer cette pétition"
 
@@ -2165,8 +2045,6 @@ msgstr ""
 "organisations sur cette instance."
 
 #: src/apps/petitions/views/transfer.py:104
-#, fuzzy
-#| msgid "You tried to transfer a petition to a non-exiting account"
 msgid "You tried to transfer a petition to a non-exiting account."
 msgstr ""
 "Vous avez tenté de transférer une pétition vers un compte qui n'existe pas"
@@ -2196,8 +2074,6 @@ msgid "Petition Templates"
 msgstr "Gabarit de pétition"
 
 #: src/apps/presets/services.py:112
-#, fuzzy
-#| msgid "This template does not exist"
 msgid "This template does not exist."
 msgstr "Ce gabarit de pétition n'existe pas"
 
@@ -2206,8 +2082,6 @@ msgid "Template settings"
 msgstr "Paramètres du gabarit"
 
 #: src/apps/presets/templates/presets/list.html:19
-#, fuzzy
-#| msgid "This is the default template. Click here to unmark it as default"
 msgid "This is the default template. Click here to unmark it as default."
 msgstr "Ceci est le gabarit par défaut. Cliquer ici pour le désélectionner"
 
@@ -2220,8 +2094,6 @@ msgid "Edit template"
 msgstr "Modifier le gabarit de pétition"
 
 #: src/apps/presets/templates/presets/list.html:39
-#, fuzzy
-#| msgid "Create a new petition using this template"
 msgid "Create a new petition using this template."
 msgstr "Créer une nouvelle pétition en utilisant ce gabarit"
 
@@ -2299,15 +2171,11 @@ msgstr ""
 "Vous n'êtes pas autorisé-e à modifier les gabarits de cet utilisateur-ice"
 
 #: src/apps/presets/views/fav.py:39
-#, fuzzy
-#| msgid "You are not allowed to change this user's default template"
 msgid "You are not allowed to change this user's default template."
 msgstr ""
 "Vous n'êtes pas autorisé à modifier le gabarit par défaut de cet utilisateur"
 
 #: src/apps/presets/views/new.py:65
-#, fuzzy
-#| msgid "You are not allowed to view this organization dashboard"
 msgid "You are not allowed to view this organization dashboard."
 msgstr ""
 "Vous n'avez pas l'autorisation de visualiser le tableau de bord de cette "
@@ -2484,21 +2352,14 @@ msgstr ""
 "organisation ('{orgname}')"
 
 #: src/apps/signatures/views/list.py:119
-#, fuzzy
-#| msgid "You are not allowed to view signatures in this organization"
 msgid "You are not allowed to view signatures in this organization."
-msgstr ""
-"Vous n'avez pas les droits de voir les signatures de cette organisation"
+msgstr "Vous n'avez pas les droits de voir les signatures de cette organisation"
 
 #: src/apps/signatures/views/list.py:227 src/apps/signatures/views/list.py:268
-#, fuzzy
-#| msgid "An error happened while trying to re-send confirmation emails"
 msgid "An error happened while trying to re-send confirmation emails."
 msgstr "Une erreur est survenue lors du renvoie des e-mails de confirmation"
 
 #: src/apps/signatures/views/list.py:231
-#, fuzzy
-#| msgid "You successfully re-sent all confirmation emails"
 msgid "You successfully re-sent all confirmation emails."
 msgstr "Vous avez renvoyé avec succès tous les e-mails de confirmation"
 
@@ -2507,23 +2368,16 @@ msgid "No signatures were selected for the requested action."
 msgstr ""
 
 #: src/apps/signatures/views/list.py:253
-#, fuzzy
-#| msgid ""
-#| "You don't have permission to delete some or all of selected signatures"
 msgid "You don't have permission to delete some or all of selected signatures."
 msgstr ""
 "Vous n'avez pas la permission de supprimer toutes ou partie des signatures "
 "sélectionnées"
 
 #: src/apps/signatures/views/list.py:259
-#, fuzzy
-#| msgid "You successfully deleted all selected signatures"
 msgid "You successfully deleted all selected signatures."
 msgstr "Vous avez supprimé toutes les signatures sélectionnées avec succès"
 
 #: src/apps/signatures/views/list.py:273
-#, fuzzy
-#| msgid "You successfully re-sent all selected confirmation emails"
 msgid "You successfully re-sent all selected confirmation emails."
 msgstr ""
 "Vous avez renvoyé tous les e-mail de confirmation sélectionnés avec succès"
@@ -2538,12 +2392,7 @@ msgstr ""
 "Trop de signatures depuis votre adresse IP, merci de venir signer plus tard."
 
 #: src/apps/signatures/views/new.py:77
-#, fuzzy, python-format
-#| msgid ""
-#| "Thank you for signing this petition, an email has just been sent to you "
-#| "at your address '{}' in order to confirm your signature.<br>You will need "
-#| "to click on the confirmation link in the email.<br>If you cannot find the "
-#| "email in your Inbox, please have a look in your Spam box."
+#, python-format
 msgid ""
 "Thank you for signing this petition, an email has just been sent to you at "
 "your address %(email)s in order to confirm your signature.<br>You will need "
@@ -2551,10 +2400,10 @@ msgid ""
 "email in your Inbox, please have a look in your Spam box."
 msgstr ""
 "Nous vous remercions d'avoir signé cette pétition, un e-mail vous a été "
-"envoyé à votre adresse '{}' pour que vous puissiez confirmer votre signature."
-"<br>Vous devrez cliquer sur le lien de confirmation dans cet e-mail.<br>Si "
-"vous ne trouvez pas l'e-mail dans votre boite de réception, regardez dans "
-"votre dossier spam/indésirable svp."
+"envoyé à votre adresse '{}' pour que vous puissiez confirmer votre "
+"signature.<br>Vous devrez cliquer sur le lien de confirmation dans cet e-"
+"mail.<br>Si vous ne trouvez pas l'e-mail dans votre boite de réception, "
+"regardez dans votre dossier spam/indésirable svp."
 
 #: src/config/settings/django.py:175
 msgid "English"
