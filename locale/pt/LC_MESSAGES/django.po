@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:54+0100\n"
-"PO-Revision-Date: 2025-11-03 04:54+0000\n"
+"PO-Revision-Date: 2025-11-03 04:57+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
 "pytition/depot-git/pt/>\n"
@@ -1030,8 +1030,6 @@ msgstr ""
 "docs/tweets/optimize-with-cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
-#, fuzzy
-#| msgid "Check if you want to use your own E-Mail SMTP account."
 msgid "Check if you want to use your own Email SMTP account."
 msgstr "Verifique se deseja utilizar a sua própria conta SMTP de e-mail."
 
