@@ -1,0 +1,14 @@
+{% set current_lang = language or (config.language if config else "en") %}
+<div class="pst-navbar-icon pst-navbar-end-item">
+    <label for="lang-select" class="sr-only">Language</label>
+    <select id="lang-select"
+            onchange=" (function(){ const lang=this.value; const pg='{{ pagename }}'.replace(/^\/+/,''); const base='{{ pathto('', 1) }}'; // base vers la racine build const tgt=(lang ? base + lang + '/' + pg + (pg.endsWith('.html')?'':'.html') : base + pg + '.html'); window.location.href=tgt; }).call(this)"
+            class="rounded px-2 py-1"
+            title="Language">
+        {% for item in i18n_locales %}
+            <option value="{{ item.code }}" {{ 'selected' if item.code == current_lang }}>
+                {{ item.flag }} {{ item.name }}
+            </option>
+        {% endfor %}
+    </select>
+</div>

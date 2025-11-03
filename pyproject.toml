@@ -44,14 +44,15 @@ bs-custom-file-input = "1.3.4"
 
 
 
+
 [tool.pdm]
 distribution = false
 
 [tool.pdm.scripts]
 manage = "python manage.py"
 test-fast = "pdm run manage test apps --parallel auto --keepdb --noinput"
-graph-models = "pdm run manage graph_models accounts organizations petitions signatures presets moderation petition --group-models --verbose-names --inheritance --arrow-shape crow --output doc/er.svg"
-graph-urls = "pdm run manage graph_urls --outfile doc/urls.mmd"
+graph-models = "pdm run manage graph_models accounts organizations petitions signatures presets moderation petition --group-models --verbose-names --inheritance --arrow-shape crow --output docs/source/_static/models.svg"
+graph-urls = "pdm run manage graph_urls --outfile docs/source/_static/urls.mmd"
 # Sphinx - build (HTML)
 docs-build = "sphinx-build -b html docs/source docs/build/html -j auto"
 # Sphinx - live reload
@@ -88,6 +89,7 @@ docs = [
     "sphinx-autodoc-typehints>=3.5.2",
     "linkify-it-py>=2.0.3",
     "sphinx-multiversion>=0.2.4",
+    "sphinx-intl>=2.3.2",
 ]
 typecheck = [
     "django-stubs>=5.2.7",

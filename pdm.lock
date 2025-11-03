@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:336b15cef63eac67e6359236a9bdd9f1c3a33b166f3d7513c9193634fc21b13f"
+content_hash = "sha256:8e50c75f6f872eb9ebea4ffc642b066a7224690eb0b1fded69e2923dd6dc4832"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -1864,6 +1864,22 @@ dependencies = [
 files = [
     {file = "sphinx_design-0.6.1-py3-none-any.whl", hash = "sha256:b11f37db1a802a183d61b159d9a202314d4d2fe29c163437001324fe2f19549c"},
     {file = "sphinx_design-0.6.1.tar.gz", hash = "sha256:b44eea3719386d04d765c1a8257caca2b3e6f8421d7b3a5e742c0fd45f84e632"},
+]
+
+[[package]]
+name = "sphinx-intl"
+version = "2.3.2"
+requires_python = ">=3.9"
+summary = "Sphinx utility that make it easy to translate and to apply translation."
+groups = ["docs"]
+dependencies = [
+    "babel>=2.9.0",
+    "click>=8.0.0",
+    "sphinx",
+]
+files = [
+    {file = "sphinx_intl-2.3.2-py3-none-any.whl", hash = "sha256:f0082f9383066bab8406129a2ed531d21c38706d08467bf5ca3714e8914bb2be"},
+    {file = "sphinx_intl-2.3.2.tar.gz", hash = "sha256:04b0d8ea04d111a7ba278b17b7b3fe9625c58b6f8ffb78bb8a1dd1288d88c1c7"},
 ]
 
 [[package]]

@@ -12,3 +12,12 @@ For developers who want to contribute to the codebase.
 ```{todo}
 Implement developer guide content here.
 ```
+
+## Wat's next?
+
+```{toctree}
+:maxdepth: 2
+:caption: Contents:
+
+conventions
+```

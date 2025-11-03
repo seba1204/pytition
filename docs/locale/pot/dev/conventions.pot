@@ -1,0 +1,32 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025, Team Pytition
+# This file is distributed under the same license as the Pytition package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Pytition 2.10.0-18-gf9dc29a\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-03 19:54+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/dev/conventions.md:1
+#: d5da243b2eac4920b7e5862576b99003
+msgid "Conventions"
+msgstr ""
+
+#: ../../source/dev/conventions.md:3
+#: 41c704089953464da0767f5de330aef5
+msgid "This document describes the coding conventions followed in the Pytition project. Adhering to these conventions helps maintain code quality, readability, and consistency across the codebase."
+msgstr ""
+
+#: ../../source/dev/conventions.md:5
+#: 20e9e1d281cc4718ae790824cf5f4cab
+msgid "Python Code Style"
+msgstr ""

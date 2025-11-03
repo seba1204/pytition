@@ -146,3 +146,10 @@ ASSETS_PWA_THEME_COLOR = "#0d6efd"
 ASSETS_PWA_BG_COLOR = "#ffffff"
 ASSETS_PWA_START_URL = "/"
 ASSETS_PWA_DISPLAY = "standalone"
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Documentation i18n setup
+# ──────────────────────────────────────────────────────────────────────────────
+
+SPHINX_LANGUAGE = "en"

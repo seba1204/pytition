@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 import django
+from django.conf import settings as dj_settings
 
 # -- Chemins & Django ------------------------------------------------------------------
 sys.path.insert(0, str(Path("..", "..", "src").resolve()))
@@ -91,11 +92,62 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 html_theme_options = {
     "logo": {"text": "Pytition"},
-    "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    "navbar_end": ["theme-switcher", "custom-lang-switcher", "navbar-icon-links"],
     "use_edit_page_button": False,
 }
 html_context = {
     "default_mode": "auto",
+}
+
+# --- i18n ---------------------------------------------------------------------
+# *.po files are located at docs/locale/<lang>/LC_MESSAGES/*.po
+locale_dirs = [str(Path(__file__).parent.parent / "locale")]
+gettext_compact = False  # one file par module
+gettext_uuid = True  # avoid name clashes
+gettext_additional_targets = ["literal-block"]  # also translate les blocs de code
+
+# Default language
+language = os.environ.get("SPHINX_LANGUAGE", "en")
+
+# Get the list of available languages from Django settings
+AVAILABLE_LANGS = [
+    code for code, _name in getattr(dj_settings, "LANGUAGES", [("en", "English")])
+]
+
+
+# Function to get flag emoji for a given language code
+def _flag(code):
+    return {
+        "en": "🇬🇧",
+        "fr": "🇫🇷",
+        "es": "🇪🇸",
+        "de": "🇩🇪",
+        "it": "🇮🇹",
+        "pt": "🇵🇹",
+        "nl": "🇳🇱",
+        "pl": "🇵🇱",
+        "cs": "🇨🇿",
+        "sv": "🇸🇪",
+        "fi": "🇫🇮",
+        "ru": "🇷🇺",
+        "uk": "🇺🇦",
+        "tr": "🇹🇷",
+        "ja": "🇯🇵",
+        "ko": "🇰🇷",
+    }.get(code.split("-")[0], "🌐")
+
+
+html_context = {
+    **html_context,
+    "i18n_locales": [
+        {
+            "code": code,
+            "name": dict(getattr(dj_settings, "LANGUAGES", [])).get(code, code),
+            "flag": _flag(code),
+        }
+        for code in AVAILABLE_LANGS
+    ],
+    "default_lang": AVAILABLE_LANGS[0] if AVAILABLE_LANGS else "en",
 }
 
 # -- Misc ------------------------------------------------------------------------------
