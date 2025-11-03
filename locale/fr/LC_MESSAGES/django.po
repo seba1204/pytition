@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:26+0100\n"
-"PO-Revision-Date: 2025-11-03 04:07+0000\n"
-"Last-Translator: Weblate Admin <admin@spont.me>\n"
+"PO-Revision-Date: 2025-11-03 04:26+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
 "Language: fr\n"
@@ -721,14 +722,12 @@ msgid "Unable to remove this member from the organization."
 msgstr "Impossible d'enlever cet utilisateur de l'organisation."
 
 #: src/apps/organizations/views/dashboard.py:41
-#, fuzzy, python-format
-#| msgid "This organization does not exist: '%(orgname)s'"
+#, python-format
 msgid "This organization does not exist: %(orgname)s."
 msgstr "L'organisation '%(orgname)s' n'existe pas"
 
 #: src/apps/organizations/views/dashboard.py:52
-#, fuzzy, python-format
-#| msgid "You are not part of this organization: '%(orgname)s'"
+#, python-format
 msgid "You are not part of this organization: %(orgname)s."
 msgstr "Vous n'êtes pas membre de l'organisation '%(orgname)s'"
 
@@ -1500,11 +1499,6 @@ msgid "Careful!"
 msgstr "Attention !"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
-#, fuzzy
-#| msgid ""
-#| "This petition is not published yet. You can only see it because you are "
-#| "logged-in as either its creator or a member of the organization which "
-#| "created it. Other visitors won\"t be able to see it."
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
@@ -1971,8 +1965,6 @@ msgid "Each template must have a different name"
 msgstr "Tous les gabarits doivent avoir un nom différent"
 
 #: src/apps/presets/views/edit.py:73
-#, fuzzy
-#| msgid "You are not allowed to edit this template"
 msgid "You are not allowed to edit this template."
 msgstr "Vous n'êtes pas autorisé à modifier ce gabarit"
 
