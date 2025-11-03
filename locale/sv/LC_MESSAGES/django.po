@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
-"PO-Revision-Date: 2025-11-03 06:07+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 06:25+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/sv/>\n"
 "Language: sv\n"
@@ -86,7 +86,7 @@ msgstr "Petitioner"
 #: src/apps/accounts/templates/accounts/base.html:18
 #: src/apps/petitions/templates/petitions/list.html:16
 msgid "Create a new petition"
-msgstr "Skapa en ny petition!"
+msgstr "Skapa en ny petition"
 
 #: src/apps/accounts/templates/accounts/base.html:18
 #: src/apps/core/templates/layouts/nav-useractions.html:34
@@ -259,7 +259,7 @@ msgstr "Personuppgifter"
 
 #: src/apps/accounts/templates/accounts/settings.html:23
 msgid "Change Password"
-msgstr "Ändra lösenord"
+msgstr "Ändra Llösenord"
 
 #: src/apps/accounts/templates/accounts/settings.html:35
 msgid "Delete your account"
@@ -503,7 +503,7 @@ msgstr "Publicera"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:30
 msgid "Save your petition and publish it if it's ready"
-msgstr "Spara din petition och publicera den när den är klar."
+msgstr "Spara din petition och publicera den när den är klar"
 
 #: src/apps/core/templates/registration/login.html:7
 msgid "Please sign in"
@@ -585,15 +585,15 @@ msgstr ""
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
-msgstr "Du måste ställa in INDEX_PAGE i dina inställningar."
+msgstr "Du måste ställa in INDEX_PAGE i dina inställningar"
 
 #: src/apps/core/views/index.py:23
 msgid "You must set an INDEX_PAGE_USER config in your settings"
-msgstr "Du måste ställa in INDEX_PAGE_USER i dina inställningar."
+msgstr "Du måste ställa in INDEX_PAGE_USER i dina inställningar"
 
 #: src/apps/core/views/index.py:27
 msgid "You must set an INDEX_PAGE_ORGA config in your settings"
-msgstr "Du måste ställa in INDEX_PAGE_ORGA i dina inställningar."
+msgstr "Du måste ställa in INDEX_PAGE_ORGA i dina inställningar"
 
 #: src/apps/notifications/admin.py:9
 msgid "Send the confirmation email once again"
@@ -724,25 +724,23 @@ msgstr ""
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
 msgstr ""
-"Det är omöjligt att lämna denna organisation, du är den sista "
-"administratören."
+"Det är omöjligt att lämna denna organisation, du är den sista administratören"
 
 #: src/apps/organizations/views/leave.py:62
 msgid "Impossible to leave this organization, you are the last member"
-msgstr ""
-"Det är omöjligt att lämna denna organisation, du är den sista medlemmen."
+msgstr "Det är omöjligt att lämna denna organisation, du är den sista medlemmen"
 
 #: src/apps/organizations/views/members/add.py:43
 msgid "This user does not exist (any longer?)"
-msgstr "Denna användare finns inte (längre?)."
+msgstr "Denna användare finns inte (längre?)"
 
 #: src/apps/organizations/views/members/add.py:47
 msgid "This organization does not exist (any longer?)"
-msgstr "Denna organisation finns inte (längre?)."
+msgstr "Denna organisation finns inte (längre?)"
 
 #: src/apps/organizations/views/members/add.py:50
 msgid "You are not part of this organization."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du är inte med i den här organisationen."
 
 #: src/apps/organizations/views/members/add.py:54
 msgid "You are not allowed to invite new members into this organization."
@@ -780,7 +778,7 @@ msgstr "Användarens '%(name)s' finns inte"
 #: src/apps/organizations/views/members/edit_perms.py:60
 #, python-format
 msgid "Organization '%(name)s' does not exist"
-msgstr "Organisationen ”%(name)s ” existerar inte."
+msgstr "Organisationen ”%(name)s ” existerar inte"
 
 #: src/apps/organizations/views/members/edit_perms.py:67
 #, python-format
@@ -802,11 +800,11 @@ msgstr "Du är inte med i den här organisationen"
 #: src/apps/organizations/views/members/set_perms.py:54
 msgid ""
 "Fatal error, you don't have permissions attached to you for this organization"
-msgstr "Allvarligt fel, du har inte behörighet för denna organisation."
+msgstr "Allvarligt fel, du har inte behörighet för denna organisation"
 
 #: src/apps/organizations/views/members/set_perms.py:63
 msgid "You are not allowed to modify this organization members' permissions"
-msgstr "Du får inte ändra behörigheterna för medlemmarna i denna organisation."
+msgstr "Du får inte ändra behörigheterna för medlemmarna i denna organisation"
 
 #: src/apps/organizations/views/members/set_perms.py:76
 #, python-format
@@ -818,7 +816,7 @@ msgid ""
 "Fatal error, this user does not have permissions attached for this "
 "organization"
 msgstr ""
-"Allvarligt fel, denna användare har inte behörighet för denna organisation."
+"Allvarligt fel, denna användare har inte behörighet för denna organisation"
 
 #: src/apps/organizations/views/members/set_perms.py:128
 msgid ""
@@ -870,7 +868,7 @@ msgstr "Används bara om en gradient har valts"
 msgid ""
 "Put a bullet point list of links, it will appear horizontally in the page "
 "footer."
-msgstr "Gör en punktlista med länkar som kommer visas horisontellt i sidfoten"
+msgstr "Gör en punktlista med länkar som kommer visas horisontellt i sidfoten."
 
 #: src/apps/petitions/admin.py:33 src/apps/presets/admin.py:32
 msgid ""
@@ -1134,7 +1132,7 @@ msgid ""
 "case of HTTP method"
 msgstr ""
 "Datastruktur som ska skickas för att prenumerera på nyhetsbrevet vid "
-"användning av HTTP-metoden."
+"användning av HTTP-metoden"
 
 #: src/apps/petitions/admin.py:164 src/apps/presets/admin.py:163
 msgid ""
@@ -1261,7 +1259,7 @@ msgstr "Titel är obligatorisk och måste vara en sträng."
 
 #: src/apps/petitions/forms/creation_steps.py:38
 msgid "There is already a petition with this title."
-msgstr "Det finns redan en petition med samma rubrik"
+msgstr "Det finns redan en petition med samma rubrik."
 
 #: src/apps/petitions/forms/creation_steps.py:52
 msgid "You should either provide an org name or a user name."
@@ -1312,7 +1310,7 @@ msgstr "Organisationen finns inte."
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
-msgstr "Petitionen finns inte"
+msgstr "Petitionen finns inte."
 
 #: src/apps/petitions/helpers.py:50
 msgid "This Petition has been moderated!"
@@ -1665,7 +1663,7 @@ msgstr "Du har inga petitioner ännu."
 
 #: src/apps/petitions/templates/petitions/list.html:68
 msgid "This petition is moderated"
-msgstr "Denna petition modereras."
+msgstr "Denna petition modereras"
 
 #: src/apps/petitions/templates/petitions/list.html:76
 msgid "View petition"
@@ -1771,7 +1769,7 @@ msgstr "Denna petition finns inte (längre?)."
 
 #: src/apps/petitions/views/slug/add.py:30
 msgid "You entered an empty slug text"
-msgstr "Du har angett en tom slug-text."
+msgstr "Du har angett en tom slug-text"
 
 #: src/apps/petitions/views/slug/add.py:38
 msgid "Successful addition of the slug '{}'!"
@@ -1784,11 +1782,11 @@ msgstr "Sluggen '{}' finns redan!"
 #: src/apps/petitions/views/slug/add.py:49
 #: src/apps/petitions/views/slug/delete.py:41
 msgid "You don't have the permission to modify petitions"
-msgstr "Du har inte behörighet att ändra petitioner."
+msgstr "Du har inte behörighet att ändra petitioner"
 
 #: src/apps/petitions/views/slug/delete.py:39
 msgid "Successful deletion of a slug"
-msgstr "Successful deletion of a slug"
+msgstr "Slutför borttagning av en slug"
 
 #: src/apps/petitions/views/transfer.py:40
 msgid "This petition does not exist."
@@ -1912,7 +1910,7 @@ msgstr "Mitt mallnamn"
 
 #: src/apps/presets/templates/presets/new.html:43
 msgid "Each template must have a different name"
-msgstr "Varje mall måste ha ett unikt namn."
+msgstr "Varje mall måste ha ett unikt namn"
 
 #: src/apps/presets/views/edit.py:73
 msgid "You are not allowed to edit this template."
@@ -1937,7 +1935,7 @@ msgstr ""
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
-msgstr "Du har inte behörighet att skapa en mall i denna organisation."
+msgstr "Du har inte behörighet att skapa en mall i denna organisation"
 
 #: src/apps/presets/views/new.py:104
 msgid "You need to provide a template name."
@@ -2039,7 +2037,7 @@ msgstr "Telefon"
 
 #: src/apps/signatures/templates/signatures/data.html:90
 msgid "Confirmed?"
-msgstr "Bekräftad"
+msgstr "Bekräftad?"
 
 #: src/apps/signatures/templates/signatures/data.html:91
 msgid "Subscribed to newsletter?"
