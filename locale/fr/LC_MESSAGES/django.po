@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
-"PO-Revision-Date: 2025-11-03 05:41+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 05:53+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/fr/>\n"
 "Language: fr\n"
@@ -345,8 +344,7 @@ msgstr "Erreur : %(error)s"
 
 #: src/apps/consents/forms/newsletter.py:15
 msgid "Does this petition have a newsletter?"
-msgstr ""
-"Cette pétition est-elle associée à une liste de diffusion (newsletter) ?"
+msgstr "Cette pétition dispose-t-elle d'une newsletter ?"
 
 #: src/apps/consents/forms/newsletter.py:40
 msgid "Use TLS?"
