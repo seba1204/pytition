@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:54+0100\n"
-"PO-Revision-Date: 2025-11-03 04:47+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 04:57+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
 "Language: fr\n"
@@ -260,7 +259,7 @@ msgstr "Informations personnelles"
 
 #: src/apps/accounts/templates/accounts/settings.html:23
 msgid "Change Password"
-msgstr "Changer de mot de passe"
+msgstr "Changer de Mot de passe"
 
 #: src/apps/accounts/templates/accounts/settings.html:35
 msgid "Delete your account"
@@ -517,7 +516,7 @@ msgstr "Sauvegardez votre pétition et publiez-la si elle est prête"
 
 #: src/apps/core/templates/registration/login.html:7
 msgid "Please sign in"
-msgstr "Connexion"
+msgstr "Veuillez vous connecter"
 
 #: src/apps/core/templates/registration/login.html:10
 msgid "Your username and password didn't match. Please try again."
@@ -1048,8 +1047,6 @@ msgstr ""
 "tweets/optimize-with-cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
-#, fuzzy
-#| msgid "Check if you want to use your own E-Mail SMTP account."
 msgid "Check if you want to use your own Email SMTP account."
 msgstr "Cochez si vous voulez utiliser votre propre serveur SMTP."
 
