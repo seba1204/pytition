@@ -264,7 +264,7 @@ class PetitionCreationWizard(SessionWizardView):
                 raise Http404(
                     _(
                         "Internal error, cannot find your permissions attached to "
-                        "this organization ('%(orgname)s')."
+                        "this organization (%(orgname)s)."
                     )
                     % {"orgname": org.name}
                 ) from None

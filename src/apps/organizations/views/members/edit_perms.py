@@ -89,7 +89,7 @@ def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpRe
         return HttpResponse(
             _(
                 "Internal error, cannot find your permissions attached to this "
-                "organization ('%(orgname)s')"
+                "organization (%(orgname)s)."
             )
             % {"orgname": org.name},
             status=500,

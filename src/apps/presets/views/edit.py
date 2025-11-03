@@ -64,12 +64,13 @@ def edit(request: HttpRequest, preset_id: int) -> HttpResponse:
         return HttpResponse(
             _(
                 "Internal error, cannot find your permissions attached to this "
-                "organization ('{orgname}')"
-            ).format(orgname=(template.org.name if template.org else "")),
+                "organization (%(orgname)s)."
+            )
+            % {"orgname": template.org.name if template.org else "N/A"},
             status=500,
         )
     except Exception:
-        return HttpResponseForbidden(_("You are not allowed to edit this template"))
+        return HttpResponseForbidden(_("You are not allowed to edit this template."))
 
     # Form configuration (name, FormClass, saver, exclude_initial_fields, uses_files)
     FormCfg = tuple[
