@@ -7,8 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
 "PO-Revision-Date: 2025-11-02 22:32+0000\n"
+=======
+"POT-Creation-Date: 2025-11-02 23:36+0100\n"
+"PO-Revision-Date: 2025-11-03 02:10+0000\n"
+>>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
@@ -1001,12 +1006,18 @@ msgid ""
 "on social media. You can preview it via some tools such as https://toolsaday."
 "com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"Il s'agit de la description de la pétition qui sera affichée lors du partage "
+"sur les réseaux sociaux. Vous pouvez la prévisualiser à l'aide d'outils tels "
+"que https://toolsaday.com/seo/open-graph (attention aux traceurs !)."
 
 #: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
 msgid ""
 "Picture displayed when shared on social media. You can preview it via some "
 "tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"Image affichée lors du partage sur les réseaux sociaux. Vous pouvez la "
+"prévisualiser à l'aide d'outils tels que https://toolsaday.com/seo/open-"
+"graph (attention aux traceurs !)"
 
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
 #, fuzzy
