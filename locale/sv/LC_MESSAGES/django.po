@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
-"PO-Revision-Date: 2025-11-03 05:53+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-03 06:03+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/sv/>\n"
 "Language: sv\n"
@@ -127,60 +127,74 @@ msgid "Permission name"
 msgstr "Tillståndsnamn"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:16
+#, fuzzy
 msgid "Authorized?"
-msgstr ""
+msgstr "Auktoriserad?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:20
+#, fuzzy
 msgid "Can remove member?"
-msgstr ""
+msgstr "Kan man ta bort medlemmar?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:33
+#, fuzzy
 msgid "Can invite new members?"
-msgstr ""
+msgstr "Kan man bjuda in nya medlemmar?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:46
+#, fuzzy
 msgid "Can create petitions?"
-msgstr ""
+msgstr "Kan skapa petitioner?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:59
+#, fuzzy
 msgid "Can modify petitions?"
-msgstr ""
+msgstr "Kan man ändra petitioner?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:72
+#, fuzzy
 msgid "Can delete petitions?"
-msgstr ""
+msgstr "Kan man radera petitioner?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:85
+#, fuzzy
 msgid "Can create petition templates?"
-msgstr ""
+msgstr "Kan man skapa mallar för namninsamlingar?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:98
+#, fuzzy
 msgid "Can modify petition templates?"
-msgstr ""
+msgstr "Kan man ändra mallarna för namninsamlingar?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:111
+#, fuzzy
 msgid "Can delete petition templates?"
-msgstr ""
+msgstr "Kan man radera mallar för namninsamlingar?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:124
+#, fuzzy
 msgid "Can view signatures?"
-msgstr ""
+msgstr "Kan man se underskrifter?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:137
+#, fuzzy
 msgid "Can modify signatures?"
-msgstr ""
+msgstr "Kan man ändra underskrifter?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:150
+#, fuzzy
 msgid "Can delete signatures?"
-msgstr ""
+msgstr "Kan man radera underskrifter?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:163
+#, fuzzy
 msgid "Can modify permissions?"
-msgstr ""
+msgstr "Kan ändra behörigheter?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:176
+#, fuzzy
 msgid "Validate those new permissions"
-msgstr ""
+msgstr "Bekräfta dessa nya behörigheter"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:177
 #: src/apps/core/templates/layouts/nav_dashboard.html:11
@@ -193,31 +207,35 @@ msgstr "Tillbaka till sammanställningen"
 #| msgid "New Organization"
 msgid "Invitation"
 msgid_plural "Invitations"
-msgstr[0] "Ny organisation"
-msgstr[1] "Ny organisation"
+msgstr[0] "Inbjudan"
+msgstr[1] "Inbjudningar"
 
 #: src/apps/accounts/templates/accounts/invitations.html:21
-#, python-format
+#, fuzzy, python-format
 msgid "You are invited to <strong>&nbsp;%(orgname)s</strong>"
-msgstr ""
+msgstr "Du är inbjuden att <strong>&nbsp;%(orgname)s</strong>"
 
 #: src/apps/accounts/templates/accounts/invitations.html:27
+#, fuzzy
 msgid "Join"
-msgstr ""
+msgstr "Gå med"
 
 #: src/apps/accounts/templates/accounts/invitations.html:31
+#, fuzzy
 msgid "Dismiss"
-msgstr ""
+msgstr "Avvisa"
 
 #: src/apps/accounts/templates/accounts/org_list.html:5
 #: src/apps/accounts/templates/accounts/settings.html:29
 #: src/apps/accounts/templates/accounts/settings.html:74
+#, fuzzy
 msgid "Organizations"
-msgstr ""
+msgstr "Organisationer"
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
+#, fuzzy
 msgid "Create a new organization"
-msgstr ""
+msgstr "Skapa en ny organisation"
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
 #: src/apps/core/templates/layouts/nav-useractions.html:39
@@ -226,9 +244,9 @@ msgstr "Ny organisation"
 
 #: src/apps/accounts/templates/accounts/profile.html:5
 #: src/apps/organizations/templates/org/profile.html:5
-#, python-format
+#, fuzzy, python-format
 msgid "%(name)s\"s profile"
-msgstr ""
+msgstr "%(name)s\"s profil"
 
 #: src/apps/accounts/templates/accounts/profile.html:24
 #: src/apps/core/templates/core/index.html:32
@@ -236,7 +254,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Last name"
 msgid "Last Created"
-msgstr "Efternamn"
+msgstr "Senast skapad"
 
 #: src/apps/accounts/templates/accounts/profile.html:27
 #: src/apps/core/templates/core/index.html:35
@@ -244,94 +262,114 @@ msgstr "Efternamn"
 #, fuzzy
 #| msgid "First name"
 msgid "First Created"
-msgstr "Förnamn"
+msgstr "Skapades först"
 
 #: src/apps/accounts/templates/accounts/profile.html:30
+#, fuzzy
 msgid "This user has not created any petition yet."
-msgstr ""
+msgstr "Denna användare har ännu inte skapat någon petition."
 
 #: src/apps/accounts/templates/accounts/register.html:15
+#, fuzzy
 msgid "Register"
-msgstr ""
+msgstr "Registrera dig"
 
 #: src/apps/accounts/templates/accounts/settings.html:11
+#, fuzzy
 msgid "Personal Settings"
-msgstr ""
+msgstr "Personliga inställningar"
 
 #: src/apps/accounts/templates/accounts/settings.html:17
 #: src/apps/accounts/templates/accounts/settings.html:44
+#, fuzzy
 msgid "Personal Information"
-msgstr ""
+msgstr "Personuppgifter"
 
 #: src/apps/accounts/templates/accounts/settings.html:23
+#, fuzzy
 msgid "Change Password"
-msgstr ""
+msgstr "Ändra lösenord"
 
 #: src/apps/accounts/templates/accounts/settings.html:35
+#, fuzzy
 msgid "Delete your account"
-msgstr ""
+msgstr "Ta bort ditt konto"
 
 #: src/apps/accounts/templates/accounts/settings.html:52
+#, fuzzy
 msgid "Update"
-msgstr ""
+msgstr "Uppdatering"
 
 #: src/apps/accounts/templates/accounts/settings.html:60
 #: src/apps/accounts/templates/accounts/settings.html:68
+#, fuzzy
 msgid "Change password"
-msgstr ""
+msgstr "Ändra lösenord"
 
 #: src/apps/accounts/templates/accounts/settings.html:105
+#, fuzzy
 msgid ""
 "You cannot leave an organization where you are either the last administrator "
 "or the last member."
 msgstr ""
+"Du kan inte lämna en organisation där du är den sista administratören eller "
+"den sista medlemmen."
 
 #: src/apps/accounts/templates/accounts/settings.html:114
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "You are not part of any organization."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du tillhör ingen organisation."
 
 #: src/apps/accounts/templates/accounts/settings.html:118
 #: src/apps/organizations/templates/org/create.html:6
+#, fuzzy
 msgid "Create an organization"
-msgstr ""
+msgstr "Skapa en organisation"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
+#, fuzzy
 msgid "Delete account"
-msgstr ""
+msgstr "Radera konto"
 
 #: src/apps/accounts/templates/accounts/settings.html:134
+#, fuzzy
 msgid ""
 "WARNING: If you do this, your data will be permanently deleted. <br /> "
 "Please, confirm you understand the risks by entering the following sentence "
 "in the validation field:"
 msgstr ""
+"VARNING: Om du gör detta kommer dina data att raderas permanent. <br /> "
+"Bekräfta att du förstår riskerna genom att skriva följande mening i "
+"valideringsfältet:"
 
 #: src/apps/accounts/templates/accounts/settings.html:152
 #: src/apps/petitions/templates/petitions/edit.html:327
 #: src/apps/petitions/templates/petitions/list.html:131
 #: src/apps/presets/templates/presets/list.html:75
+#, fuzzy
 msgid "Delete"
-msgstr ""
+msgstr "Radera"
 
 #: src/apps/accounts/templates/accounts/settings.html:169
+#, fuzzy
 msgid "Leaving an organization"
-msgstr ""
+msgstr "Lämna en organisation"
 
 #: src/apps/accounts/templates/accounts/settings.html:175
-#, python-format
+#, fuzzy, python-format
 msgid "Are you sure you want to leave %(orgname)s?"
-msgstr ""
+msgstr "Är du säker på att du vill lämna %(orgname)s?"
 
 #: src/apps/accounts/views/register.py:40
-#, python-format
+#, fuzzy, python-format
 msgid "How much is %(a)d + %(b)d?"
-msgstr ""
+msgstr "Hur mycket är %(a)d + %(b)d?"
 
 #: src/apps/accounts/views/settings.py:65
+#, fuzzy
 msgid "You successfully changed your password!"
-msgstr ""
+msgstr "Du har ändrat ditt lösenord!"
 
 #. Translators: Admin action to confirm signatures
 #: src/apps/consents/admin.py:9
@@ -339,9 +377,9 @@ msgid "Confirm the signatures"
 msgstr "Bekräfta underskrifterna"
 
 #: src/apps/consents/admin.py:16
-#, python-format
+#, fuzzy, python-format
 msgid "Error: %(error)s"
-msgstr ""
+msgstr "Fel: %(error)s"
 
 #: src/apps/consents/forms/newsletter.py:15
 msgid "Does this petition have a newsletter?"
@@ -361,55 +399,66 @@ msgid "You cannot select both TLS and STARTTLS."
 msgstr "Du kan inte välja både TLS och STARTTLS."
 
 #: src/apps/consents/forms/newsletter.py:82
-#, python-format
+#, fuzzy, python-format
 msgid "Port must be between 1 and %(max)d."
-msgstr ""
+msgstr "Porten måste vara mellan 1 och %(max)d."
 
 #: src/apps/consents/forms/newsletter.py:90
+#, fuzzy
 msgid "Port must be an integer."
-msgstr ""
+msgstr "Porten måste vara ett heltal."
 
 #: src/apps/consents/forms/newsletter.py:102
+#, fuzzy
 msgid "This field is required for HTTP subscription."
-msgstr ""
+msgstr "Detta fält är obligatoriskt för HTTP-prenumeration."
 
 #: src/apps/consents/forms/newsletter.py:114
+#, fuzzy
 msgid "Provide either a subscription URL or HTTP data."
-msgstr ""
+msgstr "Ange antingen en prenumerations-URL eller HTTP-data."
 
 #. Translators: Newsletter subscription - mail to address
 #: src/apps/consents/forms/newsletter.py:126
+#, fuzzy
 msgid "Please provide the list admin address."
-msgstr ""
+msgstr "Ange listans administratörsadress."
 
 #. Translators: Newsletter subscription - mail subject template
 #: src/apps/consents/forms/newsletter.py:135
+#, fuzzy
 msgid "Please provide the subscription subject template."
-msgstr ""
+msgstr "Vänligen ange mallen för prenumerationens ämne."
 
 #: src/apps/consents/views/export.py:55
+#, fuzzy
 msgid "No newsletter subscription yet!"
-msgstr ""
+msgstr "Ingen nyhetsbrevsprenumeration ännu!"
 
 #: src/apps/core/templates/core/index.html:13
+#, fuzzy
 msgid "Welcome to Pytition"
-msgstr ""
+msgstr "Välkommen till Pytition"
 
 #: src/apps/core/templates/core/index.html:14
+#, fuzzy
 msgid "Make things change!"
-msgstr ""
+msgstr "Få saker att förändras!"
 
 #: src/apps/core/templates/core/index.html:20
+#, fuzzy
 msgid "Create a petition"
-msgstr ""
+msgstr "Skapa en petition"
 
 #: src/apps/core/templates/core/index.html:27
+#, fuzzy
 msgid "View latest petitions"
-msgstr ""
+msgstr "Visa senaste petitioner"
 
 #: src/apps/core/templates/layouts/base.html:13
+#, fuzzy
 msgid "A platform for creating and signing petitions."
-msgstr ""
+msgstr "En plattform för att skapa och underteckna petitioner."
 
 #: src/apps/core/templates/layouts/base.html:17
 msgid "Homepage"
@@ -433,8 +482,9 @@ msgid "Login"
 msgstr "Logga in"
 
 #: src/apps/core/templates/layouts/nav.html:25
+#, fuzzy
 msgid "Report to moderation"
-msgstr ""
+msgstr "Rapportera till moderator"
 
 #: src/apps/core/templates/layouts/nav.html:54
 #: src/apps/core/templates/layouts/nav_dashboard.html:52
@@ -450,37 +500,41 @@ msgstr "Sök"
 #, fuzzy
 #| msgid "Thank you for confirming your signature!"
 msgid "Thank you for your reporting!"
-msgstr "Tack för att du har bekräftat din signatur!"
+msgstr "Tack för din rapport!"
 
 #: src/apps/core/templates/layouts/nav.html:72
+#, fuzzy
 msgid "Reporting failed, please retry later."
-msgstr ""
+msgstr "Rapporteringen misslyckades, försök igen senare."
 
 #: src/apps/core/templates/layouts/nav.html:76
+#, fuzzy
 msgid "Report this petition to moderation"
-msgstr ""
+msgstr "Anmäl denna petition till moderatorn"
 
 #: src/apps/core/templates/layouts/nav.html:81
 #, fuzzy
 #| msgid "To whom is this petition?"
 msgid "Why do you want to report this petition?"
-msgstr "Vem riktar sig petitionen till?"
+msgstr "Varför vill du rapportera denna petition?"
 
 #: src/apps/core/templates/layouts/nav.html:92
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "You are about to report this petition to moderation."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du är på väg att rapportera denna petition till moderatorn."
 
 #: src/apps/core/templates/layouts/nav.html:99
+#, fuzzy
 msgid "Report"
-msgstr ""
+msgstr "Rapportera"
 
 #: src/apps/core/templates/layouts/nav.html:100
 #: src/apps/petitions/templates/petitions/list.html:132
 #: src/apps/petitions/templates/petitions/transfer.html:68
+#, fuzzy
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:14
 msgid "Create a new petition!"
@@ -503,76 +557,96 @@ msgid "Content"
 msgstr "Innehåll"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:25
+#, fuzzy
 msgid "Write your petition content"
-msgstr ""
+msgstr "Skriv innehållet i din petition"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:28
 msgid "Publish"
 msgstr "Publicera"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:30
+#, fuzzy
 msgid "Save your petition and publish it if it's ready"
-msgstr ""
+msgstr "Spara din petition och publicera den när den är klar."
 
 #: src/apps/core/templates/registration/login.html:7
+#, fuzzy
 msgid "Please sign in"
-msgstr ""
+msgstr "Vänligen logga in"
 
 #: src/apps/core/templates/registration/login.html:10
+#, fuzzy
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Ditt användarnamn och lösenord stämde inte överens. Försök igen."
 
 #: src/apps/core/templates/registration/login.html:46
+#, fuzzy
 msgid "No account?"
-msgstr ""
+msgstr "Inget konto?"
 
 #: src/apps/core/templates/registration/login.html:46
+#, fuzzy
 msgid "Register!"
-msgstr ""
+msgstr "Registrera dig!"
 
 #: src/apps/core/templates/registration/login.html:50
+#, fuzzy
 msgid "I forgot my password!"
-msgstr ""
+msgstr "Jag har glömt mitt lösenord!"
 
 #: src/apps/core/templates/registration/password_reset_done.html:4
+#, fuzzy
 msgid "Email Sent"
-msgstr ""
+msgstr "E-post skickad"
 
 #: src/apps/core/templates/registration/password_reset_done.html:10
+#, fuzzy
 msgid "Check your inbox."
-msgstr ""
+msgstr "Kolla din inkorg."
 
 #: src/apps/core/templates/registration/password_reset_done.html:11
+#, fuzzy
 msgid ""
 "We've emailed you instructions for setting your password. You should receive "
 "the email shortly!"
 msgstr ""
+"Vi har skickat instruktioner för att ställa in ditt lösenord via e-post. Du "
+"bör få e-postmeddelandet inom kort!"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
 #: src/apps/core/templates/registration/password_reset_form.html:10
+#, fuzzy
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Har du glömt ditt lösenord?"
 
 #: src/apps/core/templates/registration/password_reset_form.html:11
+#, fuzzy
 msgid ""
 "Enter your email address below, and we'll email instructions for setting a "
 "new one."
 msgstr ""
+"Ange din e-postadress nedan så skickar vi instruktioner för hur du skapar en "
+"ny."
 
 #: src/apps/core/templates/registration/password_reset_form.html:15
 #: src/apps/signatures/templates/signatures/data.html:88
+#, fuzzy
 msgid "Email"
-msgstr ""
+msgstr "E-post"
 
 #: src/apps/core/templates/registration/password_reset_form.html:21
+#, fuzzy
 msgid "email@example.com"
-msgstr ""
+msgstr "email@example.com"
 
 #: src/apps/core/templates/registration/password_reset_form.html:24
+#, fuzzy
 msgid "Send me instructions!"
-msgstr ""
+msgstr "Skicka instruktioner till mig!"
 
 #: src/apps/core/templates/ui/components/demo_text.html:3
+#, fuzzy
 msgid ""
 "<span style=\"color: red;font-weight: bold;\">Demonstration website (please "
 "DON'T put real petitions here!)</span> <br /> This tool is free and open-"
@@ -581,59 +655,77 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
+"<span style=\"color: red;font-weight: bold;\">Demonstrationswebbplats "
+"(lägg INTE riktiga petitioner här!)</span> <br /> Detta verktyg är gratis "
+"och öppen källkod, du kan också installera det på din server! <br> Ladda ner "
+"källkoden på <a href=\"https://github.com/pytition/pytition\">GitHub</a> "
+"<br> Dokumentation finns tillgänglig på <a href="
+"\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
+#, fuzzy
 msgid "You must set an INDEX_PAGE config in your settings"
-msgstr ""
+msgstr "Du måste ställa in INDEX_PAGE i dina inställningar."
 
 #: src/apps/core/views/index.py:23
+#, fuzzy
 msgid "You must set an INDEX_PAGE_USER config in your settings"
-msgstr ""
+msgstr "Du måste ställa in INDEX_PAGE_USER i dina inställningar."
 
 #: src/apps/core/views/index.py:27
+#, fuzzy
 msgid "You must set an INDEX_PAGE_ORGA config in your settings"
-msgstr ""
+msgstr "Du måste ställa in INDEX_PAGE_ORGA i dina inställningar."
 
 #: src/apps/notifications/admin.py:9
 msgid "Send the confirmation email once again"
 msgstr "Skicka e-postmeddelandet för bekräftelse en gång till"
 
 #: src/apps/notifications/forms/email.py:16
+#, fuzzy
 msgid ""
 "Your contact email. It will be used as 'Reply-To' field of the confirmation "
 "email sent to signatories. People responding to confirmation email will in "
 "fact respond to this address."
 msgstr ""
+"Din kontakt-e-postadress. Den kommer att användas som fältet ”Svara till” i "
+"bekräftelsemejlet som skickas till undertecknarna. Personer som svarar på "
+"bekräftelsemejlet kommer i själva verket att svara till denna adress."
 
 #: src/apps/notifications/services.py:42
 msgid "Confirm your signature to our petition"
 msgstr "Bekräfta att du vill skriva under vår petition"
 
 #: src/apps/notifications/services.py:66
+#, fuzzy
 msgid "Account created !"
-msgstr ""
+msgstr "Konto skapat!"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:7
+#, fuzzy
 msgid "Email Confirmation"
-msgstr ""
+msgstr "E-postbekräftelse"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:9
 #, fuzzy
 #| msgid "Confirm your signature to our petition"
 msgid "Confirm your signature by clicking the provided link."
-msgstr "Bekräfta att du vill skriva under vår petition"
+msgstr "Bekräfta din underskrift genom att klicka på den angivna länken."
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:12
+#, fuzzy
 msgid "Thank you"
-msgstr ""
+msgstr "Tack"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:13
+#, fuzzy
 msgid "Now, in order to confirm your signature, you only need to click here :"
-msgstr ""
+msgstr "Nu behöver du bara klicka här för att bekräfta din underskrift:"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:18
+#, fuzzy
 msgid "See you soon!"
-msgstr ""
+msgstr "Vi ses snart!"
 
 #: src/apps/organizations/admin.py:13
 msgid "Number of petitions"
@@ -644,207 +736,252 @@ msgid "Number of members"
 msgstr "Antal medlemmar"
 
 #: src/apps/organizations/forms.py:23
+#, fuzzy
 msgid "This is an invalid Organization name. Please try something else."
-msgstr ""
+msgstr "Detta är ett ogiltigt organisationsnamn. Försök med något annat."
 
 #. Translators: This is the label for a button that submits a form to create a new organization.
 #: src/apps/organizations/templates/org/create.html:15
 #: src/apps/presets/templates/presets/new.html:45
+#, fuzzy
 msgid "Create"
-msgstr ""
+msgstr "Skapa"
 
 #: src/apps/organizations/templates/org/dashboard.html:4
-#, python-format
+#, fuzzy, python-format
 msgid "Petitions of '%(orgname)s'"
-msgstr ""
+msgstr "Petitioner från \"%(orgname)s\""
 
 #: src/apps/organizations/templates/org/invite_user.html:6
+#, fuzzy
 msgid "Invite user"
-msgstr ""
+msgstr "Bjud in användare"
 
 #: src/apps/organizations/templates/org/invite_user.html:16
+#, fuzzy
 msgid "Username"
-msgstr ""
+msgstr "Användarnamn"
 
 #: src/apps/organizations/templates/org/member_list.html:4
+#, fuzzy
 msgid "Members"
-msgstr ""
+msgstr "Medlemmar"
 
 #: src/apps/organizations/templates/org/member_list.html:13
+#, fuzzy
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission."
 msgstr ""
+"Du kan inte redigera denna medlems behörigheter, du har inte rätt behörighet."
 
 #: src/apps/organizations/templates/org/member_list.html:13
+#, fuzzy
 msgid "Edit this member's permissions"
-msgstr ""
+msgstr "Redigera denna medlems behörigheter"
 
 #: src/apps/organizations/templates/org/member_list.html:18
+#, fuzzy
 msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission."
 msgstr ""
+"Du kan inte ta bort denna medlem från organisationen, du har inte rätt "
+"behörighet."
 
 #: src/apps/organizations/templates/org/member_list.html:18
+#, fuzzy
 msgid "Remove this member from the organization."
-msgstr ""
+msgstr "Ta bort denna medlem från organisationen."
 
 #: src/apps/organizations/templates/org/member_list.html:30
+#, fuzzy
 msgid "Unable to remove this member from the organization."
-msgstr ""
+msgstr "Det går inte att ta bort denna medlem från organisationen."
 
 #: src/apps/organizations/views/dashboard.py:41
 #, fuzzy, python-format
 #| msgid "Petition does not exist"
 msgid "This organization does not exist: %(orgname)s."
-msgstr "Petitionen finns inte"
+msgstr "Denna organisation finns inte: %(orgname)s."
 
 #: src/apps/organizations/views/dashboard.py:52
 #, fuzzy, python-format
 #| msgid "You are not part of this organization"
 msgid "You are not part of this organization: %(orgname)s."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du är inte medlem i denna organisation: %(orgname)s."
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
 #: src/apps/petitions/forms/creation_wizard.py:266
 #: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "(%(orgname)s)."
 msgstr ""
+"Internt fel, kan inte hitta dina behörigheter kopplade till denna "
+"organisation (%(orgname)s)."
 
 #: src/apps/organizations/views/leave.py:54
+#, fuzzy
 msgid "Impossible to leave this organization, you are the last administrator"
 msgstr ""
+"Det är omöjligt att lämna denna organisation, du är den sista "
+"administratören."
 
 #: src/apps/organizations/views/leave.py:62
+#, fuzzy
 msgid "Impossible to leave this organization, you are the last member"
 msgstr ""
+"Det är omöjligt att lämna denna organisation, du är den sista medlemmen."
 
 #: src/apps/organizations/views/members/add.py:43
+#, fuzzy
 msgid "This user does not exist (any longer?)"
-msgstr ""
+msgstr "Denna användare finns inte (längre?)."
 
 #: src/apps/organizations/views/members/add.py:47
+#, fuzzy
 msgid "This organization does not exist (any longer?)"
-msgstr ""
+msgstr "Denna organisation finns inte (längre?)."
 
 #: src/apps/organizations/views/members/add.py:50
 msgid "You are not part of this organization."
 msgstr "Du är inte med i den här organisationen"
 
 #: src/apps/organizations/views/members/add.py:54
+#, fuzzy
 msgid "You are not allowed to invite new members into this organization."
-msgstr ""
+msgstr "Du får inte bjuda in nya medlemmar till denna organisation."
 
 #: src/apps/organizations/views/members/add.py:59
-#, python-format
+#, fuzzy, python-format
 msgid "User is already member of %(orgname)s organization."
-msgstr ""
+msgstr "Användaren är redan medlem i organisationen %(orgname)s."
 
 #: src/apps/organizations/views/members/add.py:97
-#, python-format
+#, fuzzy, python-format
 msgid "You invited %(username)s to join %(orgname)s"
-msgstr ""
+msgstr "Du har bjudit in %(username)s att gå med %(orgname)s"
 
 #: src/apps/organizations/views/members/add.py:106
+#, fuzzy
 msgid "An error occurred"
-msgstr ""
+msgstr "Ett fel uppstod"
 
 #: src/apps/organizations/views/members/delete.py:39
 #: src/apps/organizations/views/members/set_perms.py:70
+#, fuzzy
 msgid "User does not exist"
-msgstr ""
+msgstr "Användaren finns inte"
 
 #: src/apps/organizations/views/members/delete.py:46
 #: src/apps/organizations/views/members/set_perms.py:42
+#, fuzzy
 msgid "Organization does not exist"
-msgstr ""
+msgstr "Organisationen finns inte"
 
 #: src/apps/organizations/views/members/edit_perms.py:52
 #, fuzzy, python-format
 #| msgid "Petition does not exist"
 msgid "User '%(name)s' does not exist"
-msgstr "Petitionen finns inte"
+msgstr "Användarens '%(name)s' finns inte"
 
 #: src/apps/organizations/views/members/edit_perms.py:60
 #, fuzzy, python-format
 #| msgid "Petition does not exist"
 msgid "Organization '%(name)s' does not exist"
-msgstr "Petitionen finns inte"
+msgstr "Organisationen ”%(name)s ” existerar inte."
 
 #: src/apps/organizations/views/members/edit_perms.py:67
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The user '%(username)s' is not member of this organization (%(orgname)s)."
 msgstr ""
+"Användaren '%(username)s' är inte medlem i denna organisation (%(orgname)s)."
 
 #: src/apps/organizations/views/members/edit_perms.py:80
+#, fuzzy
 msgid ""
 "Internal error, this member does not have permissions attached to this "
 "organization."
-msgstr ""
+msgstr "Internt fel, denna medlem har inte behörighet till denna organisation."
 
 #: src/apps/organizations/views/members/set_perms.py:45
 msgid "You are not part of this organization"
 msgstr "Du är inte med i den här organisationen"
 
 #: src/apps/organizations/views/members/set_perms.py:54
+#, fuzzy
 msgid ""
 "Fatal error, you don't have permissions attached to you for this organization"
-msgstr ""
+msgstr "Allvarligt fel, du har inte behörighet för denna organisation."
 
 #: src/apps/organizations/views/members/set_perms.py:63
+#, fuzzy
 msgid "You are not allowed to modify this organization members' permissions"
-msgstr ""
+msgstr "Du får inte ändra behörigheterna för medlemmarna i denna organisation."
 
 #: src/apps/organizations/views/members/set_perms.py:76
 #, fuzzy, python-format
 #| msgid "You are not part of this organization"
 msgid "This user is not part of organization '%(orgname)s'"
-msgstr "Du är inte med i den här organisationen"
+msgstr "Denna användare tillhör inte organisationen '%(orgname)s'"
 
 #: src/apps/organizations/views/members/set_perms.py:87
+#, fuzzy
 msgid ""
 "Fatal error, this user does not have permissions attached for this "
 "organization"
 msgstr ""
+"Allvarligt fel, denna användare har inte behörighet för denna organisation."
 
 #: src/apps/organizations/views/members/set_perms.py:128
+#, fuzzy
 msgid ""
 "You cannot remove your ability to change permissions on this Organization "
 "because you are the only one left who can do this. Give the permission to "
 "someone else before removing yours."
 msgstr ""
+"Du kan inte ta bort din rätt att ändra behörigheter för denna organisation "
+"eftersom du är den enda som kan göra det. Ge behörigheten till någon annan "
+"innan du tar bort din."
 
 #: src/apps/organizations/views/members/set_perms.py:139
+#, fuzzy
 msgid ""
 "You cannot remove your ability to change permissions on this Organization "
 "because you are the only member left."
 msgstr ""
+"Du kan inte ta bort din möjlighet att ändra behörigheter för denna "
+"organisation eftersom du är den enda kvarvarande medlemmen."
 
 #: src/apps/organizations/views/members/set_perms.py:145
+#, fuzzy
 msgid "Permissions successfully changed!"
-msgstr ""
+msgstr "Behörigheterna har ändrats!"
 
 #: src/apps/organizations/views/new.py:36
+#, fuzzy
 msgid "Only super users can create an organization."
-msgstr ""
+msgstr "Endast superanvändare kan skapa en organisation."
 
 #: src/apps/organizations/views/new.py:60
-#, python-format
+#, fuzzy, python-format
 msgid "You successfully created organization '%(orgname)s'"
-msgstr ""
+msgstr "Du har skapat organisationen \"%(orgname)s\""
 
 #: src/apps/petitions/admin.py:22 src/apps/presets/admin.py:21
+#, fuzzy
 msgid ""
 "This is a gradient color. If selected, the background color will be a "
 "gradient color. If not, the background color will be a monochrome background "
 "color."
 msgstr ""
+"Detta är en gradientfärg. Om den väljs kommer bakgrundsfärgen att vara en "
+"gradientfärg. Om inte, kommer bakgrundsfärgen att vara en monokrom "
+"bakgrundsfärg."
 
 #: src/apps/petitions/admin.py:26 src/apps/petitions/admin.py:27
 #: src/apps/presets/admin.py:25 src/apps/presets/admin.py:26
@@ -858,24 +995,36 @@ msgid ""
 msgstr "Gör en punktlista med länkar som kommer visas horisontellt i sidfoten"
 
 #: src/apps/petitions/admin.py:33 src/apps/presets/admin.py:32
+#, fuzzy
 msgid ""
 "This is the description of the petition, it will be displayed when sharing "
 "on social media. You can preview it via some tools such as https://toolsaday."
 "com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"Detta är beskrivningen av petitionen, den kommer att visas när den delas på "
+"sociala medier. Du kan förhandsgranska den med hjälp av verktyg som https://"
+"toolsaday.com/seo/open-graph (var uppmärksam på spårare!)."
 
 #: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
+#, fuzzy
 msgid ""
 "Picture displayed when shared on social media. You can preview it via some "
 "tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"Bild som visas när den delas på sociala medier. Du kan förhandsgranska den "
+"med hjälp av verktyg som https://toolsaday.com/seo/open-graph "
+"(var uppmärksam på spårare!)."
 
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
+#, fuzzy
 msgid ""
 "Allow to chose whether the newsletter subscription checkbox is shown or not."
 msgstr ""
+"Möjlighet att välja om kryssrutan för prenumeration på nyhetsbrev ska visas "
+"eller inte."
 
 #: src/apps/petitions/admin.py:47 src/apps/presets/admin.py:46
+#, fuzzy
 msgid ""
 "Only in case \"\n"
 "            \"subscription to the newsletter via HTTP POST or GET methods. "
@@ -890,53 +1039,95 @@ msgid ""
 "                    'your-email': ''<br>\n"
 "                    }"
 msgstr ""
+"Endast i fallet \"\n"
+"            "
+"\"prenumeration på nyhetsbrevet via HTTP POST- eller GET-metoder. \"\n"
+"            \"Ange här data som ska skickas, med hjälp av Python-"
+"ordbokssyntax. t.ex.: <br>\n"
+"                    {'_wpcf7': 21,<br>\n"
+"                    '_wpcf7_version': '4.9',<br>\n"
+"                    '_wpcf7_locale': 'fr_FR',<br>\n"
+"                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
+"                    '_wpcf7_container_post': '5398',<br>\n"
+"                    'your-email': ''<br>\n"
+"                    }"
 
 #: src/apps/petitions/admin.py:58 src/apps/presets/admin.py:57
+#, fuzzy
 msgid ""
 "Only when HTTP POST or GET subscription method is used. Name of the field to "
 "send via GET or POST, containing the email address to subscribe. Following "
 "the example of preceding form field, that would be 'your-email'."
 msgstr ""
+"Endast när HTTP POST- eller GET-prenumerationsmetoden används. Namnet på "
+"fältet som ska skickas via GET eller POST, innehållande e-postadressen som "
+"ska prenumereras på. Enligt exemplet i föregående formulärfält skulle det "
+"vara 'din-e-postadress'."
 
 #: src/apps/petitions/admin.py:64 src/apps/presets/admin.py:63
+#, fuzzy
 msgid ""
 "Only when HTTP POST or GET subscription method is used. HTTP address to "
 "query via GET or POST to subscribe someone to the newsletter."
 msgstr ""
+"Endast när HTTP POST- eller GET-prenumerationsmetoden används. HTTP-adress "
+"för att skicka en GET- eller POST-förfrågan för att prenumerera på "
+"nyhetsbrevet."
 
 #: src/apps/petitions/admin.py:69 src/apps/presets/admin.py:68
+#, fuzzy
 msgid ""
 "Only when EMAIL subscription method is used.Enter here the subject line "
 "syntax that allows you to subscribe someone to the newsletter. Indicate {} "
 "where the signer's email address should be inserted. E.g.: ‘ADD LIST_NAME {} "
 "SIGNER_NAME’"
 msgstr ""
+"Endast när E-POST-prenumerationsmetoden används. Ange här syntaxen för "
+"ämnesraden som gör att du kan prenumerera på nyhetsbrevet. Ange {} där "
+"undertecknarens e-postadress ska infogas. T.ex.: ”ADD LIST_NAME {} "
+"SIGNER_NAME”"
 
 #: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
+#, fuzzy
 msgid ""
 "Only when EMAIL subscription method is used. The sender of the email that "
 "allows someone to subscribe to the newsletter. This is usuallyan address "
 "that is the administrator of the SYMPA or MAILMAN list."
 msgstr ""
+"Endast när E-POST-prenumerationsmetoden används. Avsändaren av e-"
+"postmeddelandet som gör det möjligt för någon att prenumerera på "
+"nyhetsbrevet. Detta är vanligtvis en adress som är administratör för SYMPA- "
+"eller MAILMAN-listan."
 
 #: src/apps/petitions/admin.py:80 src/apps/presets/admin.py:79
+#, fuzzy
 msgid ""
 "Only when EMAIL subscription method is used. Email addressfor list "
 "administration, e.g.: sympa@NOM_LISTE.listes.vox.coop"
 msgstr ""
+"Endast när E-POST-prenumerationsmetoden används. E-postadress för "
+"listadministration, t.ex.: sympa@NOM_LISTE.listes.vox.coop"
 
 #: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
+#, fuzzy
 msgid ""
 "This selects the newsletter subscription method. It is either HTTP GET or "
 "POST or via sending EMAIL to the newsletter admin address."
 msgstr ""
+"Här väljer du hur du vill prenumerera på nyhetsbrevet. Det kan vara HTTP GET "
+"eller POST eller genom att skicka ett e-postmeddelande till nyhetsbrevets "
+"administratör."
 
 #: src/apps/petitions/admin.py:88 src/apps/presets/admin.py:87
+#, fuzzy
 msgid ""
 "If checked, the petition is published and accessible on the website by "
 "everybody. If not checked, the petition is only accessible by logged in "
 "users, others will get a 404 error."
 msgstr ""
+"Om denna ruta är markerad publiceras petitionen och blir tillgänglig för "
+"alla på webbplatsen. Om den inte är markerad är petitionen endast "
+"tillgänglig för inloggade användare, andra får ett 404-fel."
 
 #: src/apps/petitions/admin.py:93 src/apps/presets/admin.py:92
 msgid "E.g.: I want to receive updates or information from this organization."
@@ -945,24 +1136,36 @@ msgstr ""
 "organisationen."
 
 #: src/apps/petitions/admin.py:96 src/apps/presets/admin.py:95
+#, fuzzy
 msgid ""
 "E.g.: Your data will stay strictly confidential and will not be sold, given "
 "away or exchanged with third parties. Information about this campaign as "
 "well as other news about this organization will be sent to you if you "
 "checked the checkbox. You can unsubscribe at any moment."
 msgstr ""
+"Exempel: Dina uppgifter kommer att behandlas strikt konfidentiellt och "
+"kommer inte att säljas, ges bort eller utbytas med tredje part. Information "
+"om denna kampanj samt andra nyheter om denna organisation kommer att skickas "
+"till dig om du har kryssat i rutan. Du kan när som helst avsluta "
+"prenumerationen."
 
 #: src/apps/petitions/admin.py:102 src/apps/presets/admin.py:101
+#, fuzzy
 msgid ""
 "The twitter account handle of the organization, starting with the '@' "
 "symbol. E.g.: @RAP_Asso. This is necessary in order to attribute the "
 "'Twitter Card' to the correct account. See https://developer.twitter.com/en/"
 "docs/tweets/optimize-with-cards/overview/summary"
 msgstr ""
+"Organisationens Twitter-konto, som börjar med symbolen '@'. Exempel: @"
+"RAP_Asso. Detta är nödvändigt för att kunna koppla 'Twitter Card' till rätt "
+"konto. Se https://developer.twitter.com/en/docs/tweets/optimize-with-cards/"
+"overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
+#, fuzzy
 msgid "Check if you want to use your own Email SMTP account."
-msgstr ""
+msgstr "Kontrollera om du vill använda ditt eget e-post-SMTP-konto."
 
 #: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
 msgid "e.g.: petition@mydomain.tld"
@@ -981,27 +1184,33 @@ msgid ""
 "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS if "
 "the email server supports it."
 msgstr ""
-"25 för att ansluta i klartext, 587 för STARTTLS eller 465 för TLS. Använd "
-"TLS om e-postservern tillåter det."
+"25 för klartextanslutning, 587 för STARTTLS, 465 för TLS. Föredra TLS om e-"
+"postservern stöder det."
 
 #: src/apps/petitions/admin.py:119 src/apps/petitions/admin.py:122
 #: src/apps/presets/admin.py:118 src/apps/presets/admin.py:121
 #, fuzzy
 #| msgid "Leave empty if you don't use any account autentication."
 msgid "Leave empty if you don't use any account authentication."
-msgstr "Lämna fältet tomt om du inte behöver uppge inloggningsuppgifter."
+msgstr "Lämna tomt om du inte använder någon kontoautentisering."
 
 #: src/apps/petitions/admin.py:125 src/apps/presets/admin.py:124
+#, fuzzy
 msgid ""
 "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if "
 "possible. Don't check both. The 2 settings are mutually exclusive."
 msgstr ""
+"SMTP-anslutning krypterad via TLS, föredra detta framför STARTTLS om "
+"möjligt. Markera inte båda. De två inställningarna utesluter varandra."
 
 #: src/apps/petitions/admin.py:129 src/apps/presets/admin.py:128
+#, fuzzy
 msgid ""
 "Encrypted SMTP connection via STARTTLS, prefer TLS to this setting. Do not "
 "check both. The two settings are mutually exclusive."
 msgstr ""
+"Krypterad SMTP-anslutning via STARTTLS, föredra TLS framför denna "
+"inställning. Markera inte båda. De två inställningarna utesluter varandra."
 
 #: src/apps/petitions/admin.py:134 src/apps/presets/admin.py:133
 msgid "Petition title"
@@ -1012,8 +1221,9 @@ msgid "Petition text"
 msgstr "Petitionens brödtext"
 
 #: src/apps/petitions/admin.py:136 src/apps/presets/admin.py:135
+#, fuzzy
 msgid "Side text, on top of form"
-msgstr ""
+msgstr "Sidotext, ovanför formuläret"
 
 #: src/apps/petitions/admin.py:137 src/apps/presets/admin.py:136
 msgid "Signature target number"
@@ -1028,20 +1238,24 @@ msgid "Enable paper signatures accounting"
 msgstr "Tillåt signaturinsamling på papper"
 
 #: src/apps/petitions/admin.py:145 src/apps/presets/admin.py:144
+#, fuzzy
 msgid "Direction of linear gradient for background color"
-msgstr ""
+msgstr "Riktning för linjär gradient för bakgrundsfärg"
 
 #: src/apps/petitions/admin.py:147 src/apps/presets/admin.py:146
+#, fuzzy
 msgid "Source color for linear gradient"
-msgstr ""
+msgstr "Källfärg för linjär gradient"
 
 #: src/apps/petitions/admin.py:148 src/apps/presets/admin.py:147
+#, fuzzy
 msgid "Destination color for linear gradient"
-msgstr ""
+msgstr "Destinationsfärg för linjär gradient"
 
 #: src/apps/petitions/admin.py:149 src/apps/presets/admin.py:148
+#, fuzzy
 msgid "Color for monochrome background color"
-msgstr ""
+msgstr "Färg för monokrom bakgrundsfärg"
 
 #: src/apps/petitions/admin.py:150 src/apps/presets/admin.py:149
 msgid "Footer text"
@@ -1052,63 +1266,78 @@ msgid "Footer links"
 msgstr "Länkar i sidfoten"
 
 #: src/apps/petitions/admin.py:153 src/apps/presets/admin.py:152
+#, fuzzy
 msgid "Description for Twitter/Facebook cards"
-msgstr ""
+msgstr "Beskrivning för Twitter/Facebook-kort"
 
 #: src/apps/petitions/admin.py:155 src/apps/presets/admin.py:154
+#, fuzzy
 msgid "Picture for Twitter/Facebook cards"
-msgstr ""
+msgstr "Bild för Twitter/Facebook-kort"
 
 #: src/apps/petitions/admin.py:157 src/apps/presets/admin.py:156
+#, fuzzy
 msgid "Is the petition associated with a newsletter?"
-msgstr ""
+msgstr "Är petitionen kopplad till ett nyhetsbrev?"
 
 #: src/apps/petitions/admin.py:160 src/apps/presets/admin.py:159
+#, fuzzy
 msgid ""
 "Data structure to be sent in order to subscribe someone to the newsletter in "
 "case of HTTP method"
 msgstr ""
+"Datastruktur som ska skickas för att prenumerera på nyhetsbrevet vid "
+"användning av HTTP-metoden."
 
 #: src/apps/petitions/admin.py:164 src/apps/presets/admin.py:163
+#, fuzzy
 msgid ""
 "Name of the field which should contain the email value in the PHP data "
 "structure"
-msgstr ""
+msgstr "Namnet på fältet som ska innehålla e-postvärdet i PHP-datastrukturen"
 
 #: src/apps/petitions/admin.py:168 src/apps/presets/admin.py:167
+#, fuzzy
 msgid "HTTP URL for newsletter subscription"
-msgstr ""
+msgstr "HTTP-URL för prenumeration på nyhetsbrev"
 
 #: src/apps/petitions/admin.py:171 src/apps/presets/admin.py:170
+#, fuzzy
 msgid "Email subject for newsletter subscription command"
-msgstr ""
+msgstr "E-postämne för prenumeration på nyhetsbrev"
 
 #: src/apps/petitions/admin.py:174 src/apps/presets/admin.py:173
+#, fuzzy
 msgid "FROM field for newsletter subscription command"
-msgstr ""
+msgstr "FROM-fält för prenumeration på nyhetsbrev"
 
 #: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:176
+#, fuzzy
 msgid "TO field for newsletter subscription command"
-msgstr ""
+msgstr "TO-fält för prenumeration på nyhetsbrev"
 
 #: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:179
+#, fuzzy
 msgid "Newsletter subscription method"
-msgstr ""
+msgstr "Metod för prenumeration på nyhetsbrev"
 
 #: src/apps/petitions/admin.py:182
 #: src/apps/petitions/templates/petitions/edit.html:44
 #: src/apps/petitions/templates/petitions/list.html:62
 #: src/apps/presets/admin.py:181
+#, fuzzy
 msgid "Published"
-msgstr ""
+msgstr "Publicerad"
 
 #: src/apps/petitions/admin.py:184 src/apps/presets/admin.py:183
+#, fuzzy
 msgid "Form label text of newsletter subscription checkbox"
-msgstr ""
+msgstr "Formulärtext för kryssrutan för prenumeration på nyhetsbrev"
 
 #: src/apps/petitions/admin.py:186 src/apps/presets/admin.py:185
+#, fuzzy
 msgid "Sign form footer text"
-msgstr ""
+msgstr "Signera formulärets sidfotstext"
 
 #: src/apps/petitions/admin.py:187
 #: src/apps/petitions/templates/petitions/edit.html:117
@@ -1121,8 +1350,9 @@ msgid "Use custom e-mail settings?"
 msgstr "Vill du använda anpassade e-postinställningar?"
 
 #: src/apps/petitions/admin.py:190 src/apps/presets/admin.py:189
+#, fuzzy
 msgid "Confirmation email Reply-to address"
-msgstr ""
+msgstr "Bekräftelsemejl Svara till-adress"
 
 #: src/apps/petitions/admin.py:192 src/apps/presets/admin.py:191
 msgid "SMTP server hostname"
@@ -1185,20 +1415,23 @@ msgid "Confirmed signatures"
 msgstr "Bekräftade underskrifter"
 
 #: src/apps/petitions/forms/content.py:25
+#, fuzzy
 msgid "Show publication date"
-msgstr ""
+msgstr "Visa publiceringsdatum"
 
 #: src/apps/petitions/forms/creation_steps.py:22
+#, fuzzy
 msgid "Title is required and must be a string."
-msgstr ""
+msgstr "Titel är obligatorisk och måste vara en sträng."
 
 #: src/apps/petitions/forms/creation_steps.py:38
 msgid "There is already a petition with this title."
 msgstr "Det finns redan en petition med samma rubrik"
 
 #: src/apps/petitions/forms/creation_steps.py:52
+#, fuzzy
 msgid "You should either provide an org name or a user name."
-msgstr ""
+msgstr "Du måste ange antingen ett organisationsnamn eller ett användarnamn."
 
 #: src/apps/petitions/forms/creation_steps.py:65
 msgid "Publish the petition now?"
@@ -1210,42 +1443,48 @@ msgid "Save & Configure"
 msgstr "Spara och verkställ"
 
 #: src/apps/petitions/forms/creation_steps.py:72
+#, fuzzy
 msgid "Use template"
-msgstr ""
+msgstr "Använd mall"
 
 #: src/apps/petitions/forms/creation_steps.py:75
+#, fuzzy
 msgid "Template id"
-msgstr ""
+msgstr "Mall-id"
 
 #: src/apps/petitions/forms/creation_wizard.py:100
+#, fuzzy
 msgid "Users are not allowed to create their own petitions."
-msgstr ""
+msgstr "Användare får inte skapa egna petitioner."
 
 #: src/apps/petitions/forms/creation_wizard.py:172
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "Cannot find this organization."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Kan inte hitta denna organisation."
 
 #: src/apps/petitions/forms/creation_wizard.py:200
+#, fuzzy
 msgid "This template does not belong to your organization."
-msgstr ""
+msgstr "Denna mall tillhör inte din organisation."
 
 #: src/apps/petitions/forms/creation_wizard.py:214
+#, fuzzy
 msgid ""
 "You don't have the permission to create a new petition in this Organization."
-msgstr ""
+msgstr "Du har inte behörighet att skapa en ny petition i denna organisation."
 
 #: src/apps/petitions/forms/creation_wizard.py:232
+#, fuzzy
 msgid "This template does not belong to you."
-msgstr ""
+msgstr "Denna mall tillhör inte dig."
 
 #: src/apps/petitions/forms/creation_wizard.py:251
 #: src/apps/presets/views/new.py:61
 #, fuzzy
 #| msgid "Petition does not exist"
 msgid "Organization does not exist."
-msgstr "Petitionen finns inte"
+msgstr "Organisationen finns inte."
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
@@ -1255,7 +1494,7 @@ msgstr "Petitionen finns inte"
 #, fuzzy
 #| msgid "This Petition is not published yet!"
 msgid "This Petition has been moderated!"
-msgstr "Den här petitionen har inte publicerats än!"
+msgstr "Denna petition har modererats!"
 
 #: src/apps/petitions/helpers.py:52
 msgid "This Petition is not published yet!"
@@ -1269,168 +1508,200 @@ msgstr "Tack för att du har bekräftat din signatur!"
 #, fuzzy
 #| msgid "This Petition is not published yet!"
 msgid "This petition is missing an organization owner."
-msgstr "Den här petitionen har inte publicerats än!"
+msgstr "Denna petition saknar en organisationsägare."
 
 #: src/apps/petitions/models/petition.py:370
 #, fuzzy
 #| msgid "This Petition is not published yet!"
 msgid "This petition is missing a user owner."
-msgstr "Den här petitionen har inte publicerats än!"
+msgstr "Denna petition saknar en användarägare."
 
 #: src/apps/petitions/models/petition.py:373
+#, fuzzy
 msgid "This petition is buggy. Sorry about that!"
-msgstr ""
+msgstr "Denna petition är buggig. Vi ber om ursäkt för det!"
 
 #. Translators: Slug model verbose name (in the admin interface)
 #: src/apps/petitions/models/slug.py:26
+#, fuzzy
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
 #. Translators: Slug model verbose name (in the admin interface)
 #: src/apps/petitions/models/slug.py:28
+#, fuzzy
 msgid "Slugs"
-msgstr ""
+msgstr "Slugs"
 
 #: src/apps/petitions/models/slug.py:33
 #, fuzzy
 #| msgid "A permlink cannot be empty. Please enter something."
 msgid "A permalink cannot be empty. Please enter something."
-msgstr "Permalänken måste fyllas i."
+msgstr "En permalänk får inte vara tom. Ange något."
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:24
 #: src/apps/signatures/templates/signatures/change_form.html:23
+#, fuzzy
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:34
 #: src/apps/signatures/templates/signatures/change_form.html:33
-#, python-format
+#, fuzzy, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Lägg till %(name)s"
 
 #. Translators: "History" link in the admin change form page
 #. Translators: Link to the history page for this object in the admin interface
 #: src/apps/petitions/templates/petitions/admin/change_form.html:53
 #: src/apps/signatures/templates/signatures/change_form.html:52
+#, fuzzy
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:57
 #: src/apps/signatures/templates/signatures/change_form.html:56
+#, fuzzy
 msgid "View on site"
-msgstr ""
+msgstr "Visa på webbplatsen"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:68
+#, fuzzy
 msgid "Generate confirmed signatures CSV file"
-msgstr ""
+msgstr "Generera CSV-fil med bekräftade underskrifter"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:71
+#, fuzzy
 msgid "Generate ALL-signatures CSV file"
-msgstr ""
+msgstr "Skapa CSV-fil med ALLA signaturer"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:74
+#, fuzzy
 msgid "Preview the petition"
-msgstr ""
+msgstr "Förhandsgranska petitionen"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:78
 #, fuzzy
 #| msgid "Confirmed signatures"
 msgid "Show signatures"
-msgstr "Bekräftade underskrifter"
+msgstr "Visa underskrifter"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:81
+#, fuzzy
 msgid "Show unconfirmed signatures"
-msgstr ""
+msgstr "Visa obekräftade underskrifter"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:104
 #: src/apps/signatures/templates/signatures/change_form.html:88
+#, fuzzy
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Korrigera felet nedan."
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:106
 #: src/apps/signatures/templates/signatures/change_form.html:90
+#, fuzzy
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Korrigera felen nedan."
 
 #: src/apps/petitions/templates/petitions/detail.html:80
 #: src/apps/petitions/templates/petitions/detail.html:102
+#, fuzzy
 msgid "Thank you!"
-msgstr ""
+msgstr "Tack!"
 
 #: src/apps/petitions/templates/petitions/detail.html:84
+#, fuzzy
 msgid ""
 "Thank you for signing this petition! Your signature will be accounted for as "
 "soon as you click on the link in the e-mail we've just sent you."
 msgstr ""
+"Tack för att du undertecknade denna petition! Din underskrift registreras så "
+"snart du klickar på länken i det e-postmeddelande som vi just har skickat "
+"till dig."
 
 #: src/apps/petitions/templates/petitions/detail.html:91
 #: src/apps/petitions/templates/petitions/detail.html:112
 #: src/apps/signatures/templates/signatures/data.html:54
 #: src/apps/signatures/templates/signatures/data.html:70
+#, fuzzy
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: src/apps/petitions/templates/petitions/detail.html:106
+#, fuzzy
 msgid ""
 "Thank you for confirming your signature to this petition! Your signature is "
 "now accounted for. See you soon!"
 msgstr ""
+"Tack för att du bekräftade din underskrift på denna petition! Din "
+"underskrift är nu registrerad. Vi ses snart!"
 
 #: src/apps/petitions/templates/petitions/detail.html:128
 #, fuzzy
 #| msgid "Email address"
 msgid "Instance address"
-msgstr "E-postadress"
+msgstr "Instansadress"
 
 #: src/apps/petitions/templates/petitions/detail.html:135
+#, fuzzy
 msgid "Enter your Mastodon instance's address"
-msgstr ""
+msgstr "Ange adressen till din Mastodon-instans"
 
 #: src/apps/petitions/templates/petitions/detail.html:143
 #: src/apps/presets/templates/presets/list.html:74
+#, fuzzy
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: src/apps/petitions/templates/petitions/detail.html:144
+#, fuzzy
 msgid "Share"
-msgstr ""
+msgstr "Dela"
 
 #: src/apps/petitions/templates/petitions/detail.html:154
+#, fuzzy
 msgid "SIGN"
-msgstr ""
+msgstr "UNDERTEKN"
 
 #: src/apps/petitions/templates/petitions/detail.html:160
+#, fuzzy
 msgid "Careful!"
-msgstr ""
+msgstr "Var försiktig!"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
+#, fuzzy
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
 "created it. Other visitors won't be able to see it."
 msgstr ""
+"Denna petition har ännu inte publicerats. Du kan bara se den eftersom du är "
+"inloggad som antingen dess skapare eller medlem i den organisation som "
+"skapade den. Andra besökare kan inte se den."
 
 #: src/apps/petitions/templates/petitions/detail.html:173
+#, fuzzy
 msgid ""
 "This petition is moderated. You only see it because you are its creator."
-msgstr ""
+msgstr "Denna petition modereras. Du ser den bara eftersom du är dess skapare."
 
 #. Translators: shows current number of signatures on a petition
 #: src/apps/petitions/templates/petitions/detail.html:185
-#, python-format
+#, fuzzy, python-format
 msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] ""
+msgstr[0] "Redan <span id=\"nb-signatures\">%(count|localize)s</span> signatur."
 msgstr[1] ""
+"Redan <span id=\"nb-signatures\">%(count|localize)s</span> underskrifter."
 
 #. Translators: label before the numeric goal value
 #: src/apps/petitions/templates/petitions/detail.html:191
-#, python-format
+#, fuzzy, python-format
 msgctxt "petition stats"
 msgid "Goal: <span class=\"format-number\">%(target)s</span>"
-msgstr ""
+msgstr "Mål: <span class=\"format-number\">%(target)s</span>"
 
 #: src/apps/petitions/templates/petitions/detail.html:255
 #: src/apps/petitions/templates/petitions/detail.html:298
@@ -1439,50 +1710,57 @@ msgstr ""
 #, fuzzy
 #| msgid "Publish the petition"
 msgid "Sign the petition!"
-msgstr "Publicera petitionen"
+msgstr "Skriv under petitionen!"
 
 #: src/apps/petitions/templates/petitions/detail.html:367
 #, fuzzy
 #| msgid "Publish"
 msgid "Published on: "
-msgstr "Publicera"
+msgstr "Publicerad den: "
 
 #: src/apps/petitions/templates/petitions/edit.html:25
+#, fuzzy
 msgid "Petition settings"
-msgstr ""
+msgstr "Inställningar för namninsamlingar"
 
 #: src/apps/petitions/templates/petitions/edit.html:42
 #: src/apps/petitions/templates/petitions/list.html:60
+#, fuzzy
 msgid "Not published"
-msgstr ""
+msgstr "Ej publicerad"
 
 #: src/apps/petitions/templates/petitions/edit.html:61
 #: src/apps/petitions/templates/petitions/edit.html:465
 #: src/apps/petitions/templates/petitions/edit.html:471
+#, fuzzy
 msgid "Style & Look"
-msgstr ""
+msgstr "Stil och utseende"
 
 #: src/apps/petitions/templates/petitions/edit.html:66
 #: src/apps/petitions/templates/petitions/edit.html:495
 #: src/apps/petitions/templates/petitions/edit.html:501
+#, fuzzy
 msgid "Social Networks"
-msgstr ""
+msgstr "Sociala nätverk"
 
 #: src/apps/petitions/templates/petitions/edit.html:71
 #: src/apps/petitions/templates/petitions/edit.html:480
 #: src/apps/petitions/templates/petitions/edit.html:486
+#, fuzzy
 msgid "E-mail setup"
-msgstr ""
+msgstr "E-postinställningar"
 
 #: src/apps/petitions/templates/petitions/edit.html:76
 #: src/apps/petitions/templates/petitions/edit.html:510
 #: src/apps/petitions/templates/petitions/edit.html:516
+#, fuzzy
 msgid "Newsletter setup"
-msgstr ""
+msgstr "Nyhetsbrevsinställningar"
 
 #: src/apps/petitions/templates/petitions/edit.html:81
+#, fuzzy
 msgid "Preview petition"
-msgstr ""
+msgstr "Förhandsgranska petition"
 
 #: src/apps/petitions/templates/petitions/edit.html:94
 #: src/apps/petitions/templates/petitions/edit.html:293
@@ -1491,215 +1769,263 @@ msgstr ""
 #: src/apps/petitions/templates/petitions/edit.html:375
 #: src/apps/petitions/templates/petitions/new_step3.html:39
 #: src/apps/petitions/templates/petitions/new_step3.html:40
+#, fuzzy
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: src/apps/petitions/templates/petitions/edit.html:105
+#, fuzzy
 msgid "Twitter description"
-msgstr ""
+msgstr "Beskrivning på Twitter"
 
 #: src/apps/petitions/templates/petitions/edit.html:129
 #: src/apps/petitions/templates/petitions/edit.html:137
+#, fuzzy
 msgid "Enable email share button?"
-msgstr ""
+msgstr "Aktivera knappen för delning via e-post?"
 
 #: src/apps/petitions/templates/petitions/edit.html:143
 #: src/apps/petitions/templates/petitions/edit.html:152
+#, fuzzy
 msgid "Enable Facebook share button?"
-msgstr ""
+msgstr "Aktivera Facebook-delningsknappen?"
 
 #: src/apps/petitions/templates/petitions/edit.html:159
 #: src/apps/petitions/templates/petitions/edit.html:167
+#, fuzzy
 msgid "Enable Tumblr share button?"
-msgstr ""
+msgstr "Aktivera Tumblr-delningsknappen?"
 
 #: src/apps/petitions/templates/petitions/edit.html:173
 #: src/apps/petitions/templates/petitions/edit.html:182
+#, fuzzy
 msgid "Enable LinkedIn share button?"
-msgstr ""
+msgstr "Aktivera LinkedIn-delningsknappen?"
 
 #: src/apps/petitions/templates/petitions/edit.html:189
 #: src/apps/petitions/templates/petitions/edit.html:198
+#, fuzzy
 msgid "Enable Twitter share button?"
-msgstr ""
+msgstr "Aktivera Twitter-delningsknappen?"
 
 #: src/apps/petitions/templates/petitions/edit.html:205
 #: src/apps/petitions/templates/petitions/edit.html:214
+#, fuzzy
 msgid "Enable Mastodon share button?"
-msgstr ""
+msgstr "Aktivera Mastodon-delningsknappen?"
 
 #: src/apps/petitions/templates/petitions/edit.html:221
 #: src/apps/petitions/templates/petitions/edit.html:230
+#, fuzzy
 msgid "Enable Whatsapp share button?"
-msgstr ""
+msgstr "Aktivera Whatsapp-delningsknappen?"
 
 #: src/apps/petitions/templates/petitions/edit.html:242
+#, fuzzy
 msgid "Twitter image"
-msgstr ""
+msgstr "Twitter-bild"
 
 #: src/apps/petitions/templates/petitions/edit.html:244
+#, fuzzy
 msgid "Upload"
-msgstr ""
+msgstr "Ladda upp"
 
 #: src/apps/petitions/templates/petitions/edit.html:252
 #: src/apps/petitions/templates/petitions/edit.html:416
+#, fuzzy
 msgid "Choose file"
-msgstr ""
+msgstr "Välj fil"
 
 #: src/apps/petitions/templates/petitions/edit.html:263
+#, fuzzy
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: src/apps/petitions/templates/petitions/edit.html:284
+#, fuzzy
 msgid "Remove image"
-msgstr ""
+msgstr "Ta bort bild"
 
 #: src/apps/petitions/templates/petitions/edit.html:297
+#, fuzzy
 msgid ""
 "A permalink (permanent link) is what allows you to share your petition with "
 "a nice link containing a meaningful small title instead of a number. With a "
 "permalink your petition can be accessible via a link like:"
 msgstr ""
+"En permalänk (permanent länk) gör att du kan dela din petition med en snygg "
+"länk som innehåller en meningsfull liten titel istället för ett nummer. Med "
+"en permalänk kan din petition nås via en länk som:"
 
 #: src/apps/petitions/templates/petitions/edit.html:313
 #, fuzzy
 #| msgid "Footer links"
 msgid "Permalinks"
-msgstr "Länkar i sidfoten"
+msgstr "Permalänkar"
 
 #: src/apps/petitions/templates/petitions/edit.html:314
+#, fuzzy
 msgid "Actions"
-msgstr ""
+msgstr "Åtgärder"
 
 #: src/apps/petitions/templates/petitions/edit.html:384
+#, fuzzy
 msgid ""
 "Beware: this preview shows the current state of the petition. <br /> If you "
 "modified some settings, please save if you want to see them in the preview."
 msgstr ""
+"Observera: denna förhandsgranskning visar petitionens aktuella status. <br /"
+"> Om du har ändrat några inställningar, spara dem om du vill se dem i "
+"förhandsgranskningen."
 
 #: src/apps/petitions/templates/petitions/edit.html:451
 #: src/apps/petitions/templates/petitions/edit.html:466
 #: src/apps/petitions/templates/petitions/edit.html:481
 #: src/apps/petitions/templates/petitions/edit.html:496
 #: src/apps/petitions/templates/petitions/edit.html:511
+#, fuzzy
 msgid "unsaved"
-msgstr ""
+msgstr "osparad"
 
 #: src/apps/petitions/templates/petitions/edit.html:592
+#, fuzzy
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:40
+#, fuzzy
 msgid "Sign!"
-msgstr ""
+msgstr "Skriv under!"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:44
-#, python-format
+#, fuzzy, python-format
 msgid "%(signature_number)s signature"
 msgid_plural "%(signature_number)s signatures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(signature_number)s signatur"
+msgstr[1] "%(signature_number)s underskrifter"
 
 #: src/apps/petitions/templates/petitions/list.html:12
+#, fuzzy
 msgid "You don't have any petitions yet."
-msgstr ""
+msgstr "Du har inga petitioner ännu."
 
 #: src/apps/petitions/templates/petitions/list.html:68
 #, fuzzy
 #| msgid "This Petition is not published yet!"
 msgid "This petition is moderated"
-msgstr "Den här petitionen har inte publicerats än!"
+msgstr "Denna petition modereras."
 
 #: src/apps/petitions/templates/petitions/list.html:76
+#, fuzzy
 msgid "View petition"
-msgstr ""
+msgstr "Visa petition"
 
 #: src/apps/petitions/templates/petitions/list.html:83
+#, fuzzy
 msgid "Edit petition"
-msgstr ""
+msgstr "Redigera petition"
 
 #: src/apps/petitions/templates/petitions/list.html:88
+#, fuzzy
 msgid "View signatures"
-msgstr ""
+msgstr "Visa underskrifter"
 
 #: src/apps/petitions/templates/petitions/list.html:95
+#, fuzzy
 msgid "Transfer this petition"
-msgstr ""
+msgstr "Överför denna petition"
 
 #: src/apps/petitions/templates/petitions/list.html:99
+#, fuzzy
 msgid "Delete the petition"
-msgstr ""
+msgstr "Ta bort petitionen"
 
 #: src/apps/petitions/templates/petitions/list.html:119
+#, fuzzy
 msgid "Delete petition?"
-msgstr ""
+msgstr "Radera petition?"
 
 #: src/apps/petitions/templates/petitions/list.html:123
-#, python-format
+#, fuzzy, python-format
 msgid "Do you really want to delete petition \"%(title)s\"?"
-msgstr ""
+msgstr "Vill du verkligen ta bort petitionen \"%(title)s\"?"
 
 #: src/apps/petitions/templates/petitions/new_step1.html:29
 #: src/apps/petitions/templates/petitions/new_step2.html:39
+#, fuzzy
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: src/apps/petitions/templates/petitions/new_step2.html:37
 #: src/apps/petitions/templates/petitions/new_step3.html:66
+#, fuzzy
 msgid "Previous step"
-msgstr ""
+msgstr "Föregående steg"
 
 #: src/apps/petitions/templates/petitions/new_step3.html:26
+#, fuzzy
 msgid "Petition logo placeholder"
-msgstr ""
+msgstr "Platshållare för namninsamlingens logotyp"
 
 #: src/apps/petitions/templates/petitions/new_step3.html:61
+#, fuzzy
 msgid "First step"
-msgstr ""
+msgstr "Första steget"
 
 #: src/apps/petitions/templates/petitions/transfer.html:7
+#, fuzzy
 msgid "Transfer petition"
-msgstr ""
+msgstr "Överför petition"
 
 #: src/apps/petitions/templates/petitions/transfer.html:13
+#, fuzzy
 msgid "You are going to transfer this petition to someone else:"
-msgstr ""
+msgstr "Du kommer att överföra denna petition till någon annan:"
 
 #: src/apps/petitions/templates/petitions/transfer.html:25
+#, fuzzy
 msgid ""
 "Enter the name of the user or organization you want to give the petition to:"
 msgstr ""
+"Ange namnet på den användare eller organisation som du vill skicka "
+"petitionen till:"
 
 #: src/apps/petitions/templates/petitions/transfer.html:29
+#, fuzzy
 msgid "User or Organization name"
-msgstr ""
+msgstr "Användar- eller organisationsnamn"
 
 #: src/apps/petitions/templates/petitions/transfer.html:44
+#, fuzzy
 msgid "Transfer this petition?"
-msgstr ""
+msgstr "Överföra denna petition?"
 
 #: src/apps/petitions/templates/petitions/transfer.html:49
+#, fuzzy
 msgid "Do you really want to transfer the following petition?"
-msgstr ""
+msgstr "Vill du verkligen överföra följande petition?"
 
 #: src/apps/petitions/templates/petitions/transfer.html:55
+#, fuzzy
 msgid "It will be transfered to:"
-msgstr ""
+msgstr "Den kommer att överföras till:"
 
 #. Translators: Button to confirm the transfer of a petition
 #: src/apps/petitions/templates/petitions/transfer.html:67
+#, fuzzy
 msgid "Transfer"
-msgstr ""
+msgstr "Överföring"
 
 #: src/apps/petitions/views/edit.py:44
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "You are not allowed to edit this petition."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du har inte behörighet att redigera denna petition."
 
 #: src/apps/petitions/views/edit.py:267 src/apps/petitions/views/edit.py:291
+#, fuzzy
 msgid "save-the-kittens-from-bad-wolf"
-msgstr ""
+msgstr "rädda-kattungarna-från-den-elaka-vargen"
 
 #: src/apps/petitions/views/show_petition.py:58
 #: src/apps/petitions/views/show_petition.py:65
@@ -1707,192 +2033,230 @@ msgstr ""
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "Sorry, we are not able to find this petition."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Tyvärr kan vi inte hitta denna petition."
 
 #: src/apps/petitions/views/slug/add.py:24
 #: src/apps/petitions/views/slug/delete.py:26
+#, fuzzy
 msgid "This petition does not exist (anymore?)."
-msgstr ""
+msgstr "Denna petition finns inte (längre?)."
 
 #: src/apps/petitions/views/slug/add.py:30
+#, fuzzy
 msgid "You entered an empty slug text"
-msgstr ""
+msgstr "Du har angett en tom slug-text."
 
 #: src/apps/petitions/views/slug/add.py:38
+#, fuzzy
 msgid "Successful addition of the slug '{}'!"
-msgstr ""
+msgstr "Sluggen '{}' har lagts till!"
 
 #: src/apps/petitions/views/slug/add.py:42
+#, fuzzy
 msgid "The slug '{}' already exists!"
-msgstr ""
+msgstr "Sluggen '{}' finns redan!"
 
 #: src/apps/petitions/views/slug/add.py:49
 #: src/apps/petitions/views/slug/delete.py:41
+#, fuzzy
 msgid "You don't have the permission to modify petitions"
-msgstr ""
+msgstr "Du har inte behörighet att ändra petitioner."
 
 #: src/apps/petitions/views/slug/delete.py:39
+#, fuzzy
 msgid "Successful deletion of a slug"
-msgstr ""
+msgstr "Successful deletion of a slug"
 
 #: src/apps/petitions/views/transfer.py:40
+#, fuzzy
 msgid "This petition does not exist."
-msgstr ""
+msgstr "Denna petition finns inte."
 
 #: src/apps/petitions/views/transfer.py:52
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "You don't have the permission to transfer a petition from Organization "
 "%(org_name)s"
 msgstr ""
+"Du har inte behörighet att överföra en petition från organisationen. %"
+"(org_name)s"
 
 #: src/apps/petitions/views/transfer.py:63
+#, fuzzy
 msgid "You don't have the permission to transfer this petition."
-msgstr ""
+msgstr "Du har inte behörighet att överföra denna petition."
 
 #: src/apps/petitions/views/transfer.py:78
+#, fuzzy
 msgid "Incorrect request, something went wrong."
-msgstr ""
+msgstr "Felaktig begäran, något gick fel."
 
 #: src/apps/petitions/views/transfer.py:92
+#, fuzzy
 msgid ""
 "Users are not allowed to transfer petitions to organizations on this "
 "instance."
 msgstr ""
+"Användare får inte överföra petitioner till organisationer på denna instans."
 
 #: src/apps/petitions/views/transfer.py:104
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "You tried to transfer a petition to a non-exiting account."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du försökte överföra en petition till ett konto som inte finns."
 
 #: src/apps/petitions/views/transfer.py:112
+#, fuzzy
 msgid "Petition successfully transfered!"
-msgstr ""
+msgstr "Petitionen har överförts!"
 
 #: src/apps/petitions/views/transfer.py:116
+#, fuzzy
 msgid "Something went wrong while transferring this petition."
-msgstr ""
+msgstr "Något gick fel vid överföringen av denna petition."
 
 #: src/apps/presets/admin.py:207
+#, fuzzy
 msgid "To whom is this petition template?"
-msgstr ""
+msgstr "Vem är denna petitionmall avsedd för?"
 
 #. Translators: Petition template model name in models (admin interface)
 #: src/apps/presets/models/petition_template.py:95
 #, fuzzy
 #| msgid "Petition text"
 msgid "Petition template"
-msgstr "Petitionens brödtext"
+msgstr "Mall för petition"
 
 #. Translators: Petition template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
 #, fuzzy
 #| msgid "Petition text"
 msgid "Petition Templates"
-msgstr "Petitionens brödtext"
+msgstr "Petitionsmallar"
 
 #: src/apps/presets/services.py:112
 #, fuzzy
 #| msgid "Petition does not exist"
 msgid "This template does not exist."
-msgstr "Petitionen finns inte"
+msgstr "Denna mall finns inte."
 
 #: src/apps/presets/templates/presets/edit.html:4
+#, fuzzy
 msgid "Template settings"
-msgstr ""
+msgstr "Mallinställningar"
 
 #: src/apps/presets/templates/presets/list.html:19
+#, fuzzy
 msgid "This is the default template. Click here to unmark it as default."
-msgstr ""
+msgstr "Detta är standardmallen. Klicka här för att avmarkera den som standard."
 
 #: src/apps/presets/templates/presets/list.html:26
+#, fuzzy
 msgid "Mark this template as default"
-msgstr ""
+msgstr "Markera denna mall som standard"
 
 #: src/apps/presets/templates/presets/list.html:33
+#, fuzzy
 msgid "Edit template"
-msgstr ""
+msgstr "Redigera mall"
 
 #: src/apps/presets/templates/presets/list.html:39
 #, fuzzy
 #| msgid "Create a new petition!"
 msgid "Create a new petition using this template."
-msgstr "Skapa en ny petition!"
+msgstr "Skapa en ny petition med hjälp av denna mall."
 
 #: src/apps/presets/templates/presets/list.html:46
+#, fuzzy
 msgid "Delete template"
-msgstr ""
+msgstr "Ta bort mall"
 
 #: src/apps/presets/templates/presets/list.html:62
+#, fuzzy
 msgid "Delete this template?"
-msgstr ""
+msgstr "Ska denna mall raderas?"
 
 #: src/apps/presets/templates/presets/list.html:68
+#, fuzzy
 msgid "You are about to delete the following petition template:"
-msgstr ""
+msgstr "Du är på väg att radera följande petitionmall:"
 
 #: src/apps/presets/templates/presets/list.html:70
+#, fuzzy
 msgid "Do you really want to do this?"
-msgstr ""
+msgstr "Vill du verkligen göra detta?"
 
 #: src/apps/presets/templates/presets/new.html:6
+#, fuzzy
 msgid "Create a petition template"
-msgstr ""
+msgstr "Skapa en petitionmall"
 
 #: src/apps/presets/templates/presets/new.html:18
+#, fuzzy
 msgid "Beware, you are creating a template, not a petition!"
-msgstr ""
+msgstr "Observera att du skapar en mall, inte en petition!"
 
 #: src/apps/presets/templates/presets/new.html:20
+#, fuzzy
 msgid ""
 "A petition template allows you to put default values for future petitions. "
 "<br /> For instance you might want to re-use the same e-mail SMTP account "
 "across several petitions."
 msgstr ""
+"En petitionmall gör det möjligt att ange standardvärden för framtida "
+"petitioner. <br /> Du kanske till exempel vill återanvända samma e-post-SMTP-"
+"konto för flera petitioner."
 
 #: src/apps/presets/templates/presets/new.html:36
+#, fuzzy
 msgid "Template name"
-msgstr ""
+msgstr "Mallnamn"
 
 #: src/apps/presets/templates/presets/new.html:41
+#, fuzzy
 msgid "My template name"
-msgstr ""
+msgstr "Mitt mallnamn"
 
 #: src/apps/presets/templates/presets/new.html:43
+#, fuzzy
 msgid "Each template must have a different name"
-msgstr ""
+msgstr "Varje mall måste ha ett unikt namn."
 
 #: src/apps/presets/views/edit.py:73
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "You are not allowed to edit this template."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du får inte redigera denna mall."
 
 #: src/apps/presets/views/fav.py:39
+#, fuzzy
 msgid "You are not allowed to change this user's default template."
-msgstr ""
+msgstr "Du får inte ändra denna användares standardmall."
 
 #: src/apps/presets/views/new.py:65
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "You are not allowed to view this organization dashboard."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du har inte behörighet att visa denna organisations instrumentpanel."
 
 #: src/apps/presets/views/new.py:74
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "('%(orgname)s')."
 msgstr ""
+"Internt fel, kan inte hitta dina behörigheter kopplade till denna "
+"organisation ('%(orgname)s')."
 
 #: src/apps/presets/views/new.py:84
+#, fuzzy
 msgid "You don't have the permission to create a Template in this organization"
-msgstr ""
+msgstr "Du har inte behörighet att skapa en mall i denna organisation."
 
 #: src/apps/presets/views/new.py:104
+#, fuzzy
 msgid "You need to provide a template name."
-msgstr ""
+msgstr "Du måste ange ett mallnamn."
 
 #: src/apps/signatures/forms.py:32
 msgid "First name *"
@@ -1942,148 +2306,181 @@ msgid "Date"
 msgstr "Datum"
 
 #: src/apps/signatures/models/signature.py:44
+#, fuzzy
 msgid "Signature"
-msgstr ""
+msgstr "Signatur"
 
 #: src/apps/signatures/models/signature.py:45
 #: src/apps/signatures/templates/signatures/data.html:6
+#, fuzzy
 msgid "Signatures"
-msgstr ""
+msgstr "Underskrifter"
 
 #: src/apps/signatures/models/signature.py:55
 msgid "You already signed the petition"
 msgstr "Du har redan skrivit under petitionen"
 
 #: src/apps/signatures/templates/signatures/data.html:24
+#, fuzzy
 msgid "Export <strong>ALL</strong> signatures (CSV)"
-msgstr ""
+msgstr "Exportera <strong>ALLA</strong> underskrifter (CSV)"
 
 #: src/apps/signatures/templates/signatures/data.html:29
+#, fuzzy
 msgid "Export <strong>confirmed</strong> signatures (CSV)"
-msgstr ""
+msgstr "Exportera <strong>bekräftade</strong> underskrifter (CSV)"
 
 #: src/apps/signatures/templates/signatures/data.html:35
 #: src/apps/signatures/templates/signatures/data.html:66
+#, fuzzy
 msgid "Re-send confirmation e-mail to all unconfirmed"
-msgstr ""
+msgstr "Skicka bekräftelsemejl på nytt till alla obekräftade"
 
 #: src/apps/signatures/templates/signatures/data.html:44
+#, fuzzy
 msgid "Subscribe signatories to the newsletter"
-msgstr ""
+msgstr "Prenumerera på nyhetsbrevet för undertecknare"
 
 #: src/apps/signatures/templates/signatures/data.html:49
+#, fuzzy
 msgid "copy/paste the following text block into Sympa's mass-subscribe form"
 msgstr ""
+"Kopiera/klistra in följande textblock i Sympas massprenumerationsformulär"
 
 #: src/apps/signatures/templates/signatures/data.html:64
+#, fuzzy
 msgid "Re-send selected confirmation e-mail"
-msgstr ""
+msgstr "Skicka om valt bekräftelsemejl"
 
 #: src/apps/signatures/templates/signatures/data.html:65
+#, fuzzy
 msgid "Delete selected signatures"
-msgstr ""
+msgstr "Ta bort valda signaturer"
 
 #: src/apps/signatures/templates/signatures/data.html:89
+#, fuzzy
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: src/apps/signatures/templates/signatures/data.html:90
 msgid "Confirmed?"
 msgstr "Bekräftad"
 
 #: src/apps/signatures/templates/signatures/data.html:91
+#, fuzzy
 msgid "Subscribed to newsletter?"
-msgstr ""
+msgstr "Prenumererar du på nyhetsbrevet?"
 
 #: src/apps/signatures/views/confirm.py:41
+#, fuzzy
 msgid ""
 "Error: This confirmation code is invalid. Maybe you've already confirmed?"
-msgstr ""
+msgstr "Fel: Denna bekräftelsekod är ogiltig. Kanske har du redan bekräftat?"
 
 #: src/apps/signatures/views/confirm.py:51
+#, fuzzy
 msgid "Error: This confirmation code is invalid."
-msgstr ""
+msgstr "Fel: Denna bekräftelsekod är ogiltig."
 
 #: src/apps/signatures/views/list.py:86
+#, fuzzy
 msgid "You are not allowed to view this petition's signatures."
-msgstr ""
+msgstr "Du har inte behörighet att visa underskrifterna på denna petition."
 
 #: src/apps/signatures/views/list.py:94
+#, fuzzy
 msgid "Internal error, cannot find the organization owning this petition."
-msgstr ""
+msgstr "Internt fel, kan inte hitta organisationen som äger denna petition."
 
 #: src/apps/signatures/views/list.py:100
 #, fuzzy, python-format
 #| msgid "You are not part of this organization"
 msgid "You are not member of the following organization: %(orgname)s."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du är inte medlem i följande organisation: %(orgname)s."
 
 #: src/apps/signatures/views/list.py:119
 #, fuzzy
 #| msgid "You are not part of this organization"
 msgid "You are not allowed to view signatures in this organization."
-msgstr "Du är inte med i den här organisationen"
+msgstr "Du har inte behörighet att visa signaturer i denna organisation."
 
 #: src/apps/signatures/views/list.py:227 src/apps/signatures/views/list.py:268
+#, fuzzy
 msgid "An error happened while trying to re-send confirmation emails."
-msgstr ""
+msgstr "Ett fel uppstod när vi försökte skicka bekräftelsemejl igen."
 
 #: src/apps/signatures/views/list.py:231
+#, fuzzy
 msgid "You successfully re-sent all confirmation emails."
-msgstr ""
+msgstr "Du har skickat om alla bekräftelsemejl."
 
 #: src/apps/signatures/views/list.py:239
+#, fuzzy
 msgid "No signatures were selected for the requested action."
-msgstr ""
+msgstr "Inga signaturer valdes för den begärda åtgärden."
 
 #: src/apps/signatures/views/list.py:253
+#, fuzzy
 msgid "You don't have permission to delete some or all of selected signatures."
-msgstr ""
+msgstr "Du har inte behörighet att radera några eller alla valda signaturer."
 
 #: src/apps/signatures/views/list.py:259
+#, fuzzy
 msgid "You successfully deleted all selected signatures."
-msgstr ""
+msgstr "Du har raderat alla valda signaturer."
 
 #: src/apps/signatures/views/list.py:273
+#, fuzzy
 msgid "You successfully re-sent all selected confirmation emails."
-msgstr ""
+msgstr "Du har skickat om alla valda bekräftelsemejl."
 
 #: src/apps/signatures/views/list.py:278
+#, fuzzy
 msgid "Unknown action requested."
-msgstr ""
+msgstr "Okänd åtgärd begärd."
 
 #: src/apps/signatures/views/new.py:65
+#, fuzzy
 msgid "Too many signatures from your IP address, please try again later."
-msgstr ""
+msgstr "För många signaturer från din IP-adress, försök igen senare."
 
 #: src/apps/signatures/views/new.py:77
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Thank you for signing this petition, an email has just been sent to you at "
 "your address %(email)s in order to confirm your signature.<br>You will need "
 "to click on the confirmation link in the email.<br>If you cannot find the "
 "email in your Inbox, please have a look in your Spam box."
 msgstr ""
+"Tack för att du undertecknat denna petition. Ett e-postmeddelande har just "
+"skickats till din adress %(email)s för att bekräfta din underskrift.<br>Du "
+"måste klicka på bekräftelselänken i e-postmeddelandet.<br>Om du inte hittar "
+"e-postmeddelandet i din inkorg, kolla i din skräppostmapp."
 
 #: src/config/settings/django.py:175
+#, fuzzy
 msgid "English"
-msgstr ""
+msgstr "Engelska"
 
 #: src/config/settings/django.py:176
+#, fuzzy
 msgid "Spanish"
-msgstr ""
+msgstr "Spanska"
 
 #: src/config/settings/django.py:177
+#, fuzzy
 msgid "French"
-msgstr ""
+msgstr "Franska"
 
 #: src/config/settings/django.py:178
+#, fuzzy
 msgid "Italian"
-msgstr ""
+msgstr "Italienska"
 
 #: src/config/settings/django.py:179
+#, fuzzy
 msgid "Occitan"
-msgstr ""
+msgstr "Occitan"
 
 #, fuzzy
 #~| msgid "Organization Twitter handle"
