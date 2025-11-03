@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
-"PO-Revision-Date: 2020-09-30 19:51+0000\n"
-"Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
-"Language-Team: Swedish <https://weblate.framasoft.org/projects/pytition/"
-"pytitions/sv/>\n"
+"PO-Revision-Date: 2025-11-03 02:21+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
+"Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
+"depot-git/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1\n"
+"X-Generator: Weblate 5.14\n"
 
 #. Translators: Name of a Pytition user in the admin interface
 #. Translators: Petition Template name field in models (admin interface)
@@ -867,10 +868,6 @@ msgid "Only used if gradient is selected"
 msgstr "Används bara om en gradient har valts"
 
 #: src/apps/petitions/admin.py:29 src/apps/presets/admin.py:28
-#, fuzzy
-#| msgid ""
-#| "Put a bullet point list of links, it will appear horizontally in the page "
-#| "footer"
 msgid ""
 "Put a bullet point list of links, it will appear horizontally in the page "
 "footer."
@@ -958,9 +955,6 @@ msgid ""
 msgstr ""
 
 #: src/apps/petitions/admin.py:93 src/apps/presets/admin.py:92
-#, fuzzy
-#| msgid ""
-#| "E.g.: I want to receive updates or informations from this organization."
 msgid "E.g.: I want to receive updates or information from this organization."
 msgstr ""
 "Exempel: Jag vill få uppdateringar och annan information från den här "
@@ -1213,8 +1207,6 @@ msgid "Title is required and must be a string."
 msgstr ""
 
 #: src/apps/petitions/forms/creation_steps.py:38
-#, fuzzy
-#| msgid "There is already a petition with this title"
 msgid "There is already a petition with this title."
 msgstr "Det finns redan en petition med samma rubrik"
 
@@ -1278,8 +1270,6 @@ msgid ""
 msgstr ""
 
 #: src/apps/petitions/helpers.py:25
-#, fuzzy
-#| msgid "Petition does not exist"
 msgid "Petition does not exist."
 msgstr "Petitionen finns inte"
 
