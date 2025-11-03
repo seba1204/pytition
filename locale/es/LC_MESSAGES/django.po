@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:26+0100\n"
-"PO-Revision-Date: 2025-11-03 04:26+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 04:29+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Spanish <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/es/>\n"
 "Language: es\n"
@@ -256,7 +255,7 @@ msgstr "Informacion personal"
 
 #: src/apps/accounts/templates/accounts/settings.html:23
 msgid "Change Password"
-msgstr "Cambia la contraseña"
+msgstr "Cambia la Contraseña"
 
 #: src/apps/accounts/templates/accounts/settings.html:35
 msgid "Delete your account"
@@ -285,7 +284,7 @@ msgstr "No eres parte de ninguna organización."
 
 #: src/apps/accounts/templates/accounts/settings.html:118
 msgid "Create an Organization"
-msgstr "Crear una organización"
+msgstr "Crear una Organización"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
 msgid "Delete Account"
@@ -716,12 +715,12 @@ msgstr "No se puede eliminar a este miembro de la organización."
 #: src/apps/organizations/views/dashboard.py:41
 #, python-format
 msgid "This organization does not exist: %(orgname)s."
-msgstr "Esta organización no existe: '%(orgname)s'"
+msgstr "Esta organización no existe: '%(orgname)s'."
 
 #: src/apps/organizations/views/dashboard.py:52
 #, python-format
 msgid "You are not part of this organization: %(orgname)s."
-msgstr "No eres parte de esta organización: '%(orgname)s'"
+msgstr "No eres parte de esta organización: '%(orgname)s'."
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
@@ -1938,7 +1937,7 @@ msgstr "Cada plantilla debe tener un nombre diferente"
 
 #: src/apps/presets/views/edit.py:73
 msgid "You are not allowed to edit this template."
-msgstr "No se permite editar esta plantilla"
+msgstr "No se permite editar esta plantilla."
 
 #: src/apps/presets/views/fav.py:39
 msgid "You are not allowed to change this user's default template."
