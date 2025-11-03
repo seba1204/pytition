@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
 "PO-Revision-Date: 2025-11-03 02:21+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/sv/>\n"
 "Language: sv\n"
@@ -91,12 +90,12 @@ msgstr ""
 #: src/apps/accounts/templates/accounts/base.html:18
 #: src/apps/petitions/templates/petitions/list.html:16
 msgid "Create a new petition"
-msgstr ""
+msgstr "Skapa en ny petition!"
 
 #: src/apps/accounts/templates/accounts/base.html:18
 #: src/apps/organizations/templates/org/base.html:21
 msgid "New petition"
-msgstr ""
+msgstr "Ny petition"
 
 #: src/apps/accounts/templates/accounts/base.html:26
 #: src/apps/organizations/templates/org/base.html:30
@@ -223,7 +222,7 @@ msgstr ""
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
 msgid "New organization"
-msgstr ""
+msgstr "Ny organisation"
 
 #: src/apps/accounts/templates/accounts/profile.html:5
 #: src/apps/organizations/templates/org/profile.html:5
@@ -750,7 +749,7 @@ msgstr ""
 
 #: src/apps/organizations/views/members/add.py:50
 msgid "You are not part of this organization."
-msgstr ""
+msgstr "Du är inte med i den här organisationen"
 
 #: src/apps/organizations/views/members/add.py:54
 msgid "You are not allowed to invite new members into this organization."
@@ -2019,7 +2018,7 @@ msgstr ""
 
 #: src/apps/signatures/templates/signatures/data.html:90
 msgid "Confirmed?"
-msgstr ""
+msgstr "Bekräftad"
 
 #: src/apps/signatures/templates/signatures/data.html:91
 msgid "Subscribed to newsletter?"
