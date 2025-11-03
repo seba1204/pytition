@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Occitan (Pytition)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 03:12+0100\n"
+"POT-Creation-Date: 2025-11-03 05:26+0100\n"
 "PO-Revision-Date: 2025-11-03 04:25+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Occitan <https://translate.sebastienpont.fr/projects/pytition/"
@@ -546,9 +546,6 @@ msgstr ""
 "lèu l’e-mail !"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
-msgid "Forgot Your Password?"
-msgstr "Senhal oblidat ?"
-
 #: src/apps/core/templates/registration/password_reset_form.html:10
 msgid "Forgot your password?"
 msgstr "Senhal oblidat ?"
@@ -582,12 +579,12 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
-"<span style=\"color: red;font-weight: bold;\">Site web de demonstracion "
-"(i botetz pas res d’important aicí !)</span><br/> Aquesta aisinas es "
-"gratuita e open-source, la podètz installar sul vòstre servidor tanben !<br> "
-"Download the source code on <a href=\"https://github.com/pytition/pytition\""
-">GitHub</a><br> Documentacion disponibla a <a href="
-"\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
+"<span style=\"color: red;font-weight: bold;\">Site web de demonstracion (i "
+"botetz pas res d’important aicí !)</span><br/> Aquesta aisinas es gratuita e "
+"open-source, la podètz installar sul vòstre servidor tanben !<br> Download "
+"the source code on <a href=\"https://github.com/pytition/pytition\">GitHub</"
+"a><br> Documentacion disponibla a <a href=\"https://pytition.readthedocs."
+"io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -712,24 +709,28 @@ msgid "Unable to remove this member from the organization."
 msgstr "Impossible de tirar aqueste utilizaire de l’organizacion."
 
 #: src/apps/organizations/views/dashboard.py:41
-#, python-format
-msgid "This organization does not exist: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "This organization does not exist: '%(orgname)s'"
+msgid "This organization does not exist: %(orgname)s."
 msgstr "L’organizacion « %(orgname)s » existís pas"
 
 #: src/apps/organizations/views/dashboard.py:52
-#, python-format
-msgid "You are not part of this organization: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "You are not part of this organization: '%(orgname)s'"
+msgid "You are not part of this organization: %(orgname)s."
 msgstr "Sètz pas membre d'aquesta organizacion : « %(orgname)s »"
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
+#: src/apps/petitions/forms/creation_wizard.py:266
+#: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')"
+"(%(orgname)s)."
 msgstr ""
 "Error intèrna, impossible de trobar las autorizacions dins aquesta "
-"organizacion (%(orgname)s)"
+"organizacion (%(orgname)s)."
 
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
@@ -796,8 +797,8 @@ msgstr "L’organizacion «%(name)s » existís pas"
 msgid ""
 "The user '%(username)s' is not member of this organization (%(orgname)s)."
 msgstr ""
-"L’utilizaire « %(username)s   es pas membre de l’organizacion « %(orgname)s "
-"»."
+"L’utilizaire « %(username)s   es pas membre de l’organizacion "
+"« %(orgname)s »."
 
 #: src/apps/organizations/views/members/edit_perms.py:80
 msgid ""
@@ -965,8 +966,8 @@ msgid ""
 "SIGNER_NAME’"
 msgstr ""
 "Solament quand lo metòde d’abonament utilizat es CORRIÈL. Escriure aquí la "
-"sintaxi del subjècte del corrièl que permet d’inscrire qualqu’un a l’"
-"infoletra. Indicatz {} a la plaça ont lo corrièl del signatari deu èsser "
+"sintaxi del subjècte del corrièl que permet d’inscrire qualqu’un a "
+"l’infoletra. Indicatz {} a la plaça ont lo corrièl del signatari deu èsser "
 "inserit. Ex : 'ADD NOM_LISTA {} NOM_SIGNATARI'"
 
 #: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
@@ -984,8 +985,8 @@ msgid ""
 "Only when EMAIL subscription method is used. Email addressfor list "
 "administration, e.g.: sympa@NOM_LISTE.listes.vox.coop"
 msgstr ""
-"Solament quand lo metòde d’abonament utilizat es CORRIÈL. L’adreça d’"
-"administracion de la lista, ex. : sympa@NOM_LISTA.listas.vox.coop"
+"Solament quand lo metòde d’abonament utilizat es CORRIÈL. L’adreça "
+"d’administracion de la lista, ex. : sympa@NOM_LISTA.listas.vox.coop"
 
 #: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
 msgid ""
@@ -1032,10 +1033,10 @@ msgid ""
 "'Twitter Card' to the correct account. See https://developer.twitter.com/en/"
 "docs/tweets/optimize-with-cards/overview/summary"
 msgstr ""
-"Lo nom d’utilizaire Twitter de l’organizacion, comença pel simbòl « @ ». Ex. "
-": @RAP_Asso. Es necessari per atribuir la Twitter Card (cartelon) al bon "
-"compte.Veire https://developer.twitter.com/en/docs/tweets/"
-"optimize-with-cards/overview/summary"
+"Lo nom d’utilizaire Twitter de l’organizacion, comença pel simbòl « @ ». "
+"Ex. : @RAP_Asso. Es necessari per atribuir la Twitter Card (cartelon) al bon "
+"compte.Veire https://developer.twitter.com/en/docs/tweets/optimize-with-"
+"cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
 msgid "Check if you want to use your own E-Mail SMTP account."
@@ -1295,11 +1296,11 @@ msgstr "Publicar la peticion ara ?"
 msgid "Save & Configure"
 msgstr "Salvar & Configurar"
 
-#: src/apps/petitions/forms/creation_steps.py:69
+#: src/apps/petitions/forms/creation_steps.py:72
 msgid "Use template"
 msgstr "Utilizar lo modèl"
 
-#: src/apps/petitions/forms/creation_steps.py:72
+#: src/apps/petitions/forms/creation_steps.py:75
 msgid "Template id"
 msgstr "Identificant del modèl"
 
@@ -1330,16 +1331,6 @@ msgstr "Aqueste modèl de peticion vos aparten pas."
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
 msgstr "Aquesta organizacion existís pas."
-
-#: src/apps/petitions/forms/creation_wizard.py:266
-#: src/apps/presets/views/new.py:74
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')."
-msgstr ""
-"Error intèrna, impossible de trobar las autorizacions dins aquesta "
-"organizacion (%(orgname)s)."
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
@@ -1490,10 +1481,15 @@ msgid "Careful!"
 msgstr "Atencion !"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
+#, fuzzy
+#| msgid ""
+#| "This petition is not published yet. You can only see it because you are "
+#| "logged-in as either its creator or a member of the organization which "
+#| "created it. Other visitors won\"t be able to see it."
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
-"created it. Other visitors won\"t be able to see it."
+"created it. Other visitors won't be able to see it."
 msgstr ""
 "Aquesta peticion es pas encara publicada. La podètz veire solament perque "
 "sètz connectat coma son creator o membre de l’organizacion qu’a creada. Los "
@@ -1666,8 +1662,8 @@ msgid ""
 "Beware: this preview shows the current state of the petition. <br /> If you "
 "modified some settings, please save if you want to see them in the preview."
 msgstr ""
-"Atencion : aqueste apercebut mòstra pas que l’estat actual de la "
-"peticion.<br />Se modificatz un paramètre, volgatz salvar se volètz veire lo "
+"Atencion : aqueste apercebut mòstra pas que l’estat actual de la peticion."
+"<br />Se modificatz un paramètre, volgatz salvar se volètz veire lo "
 "cambiament dins l’apercebut."
 
 #: src/apps/petitions/templates/petitions/edit.html:451
@@ -1834,8 +1830,8 @@ msgid ""
 "You don't have the permission to transfer a petition from Organization "
 "%(org_name)s"
 msgstr ""
-"Avètz pas l’autorizacion de transferir una peticion dins l’organizacion « %"
-"(org_name)s »"
+"Avètz pas l’autorizacion de transferir una peticion dins l’organizacion "
+"« %(org_name)s »"
 
 #: src/apps/petitions/views/transfer.py:63
 msgid "You don't have the permission to transfer this petition."
@@ -1949,17 +1945,10 @@ msgstr "Nom de mon modèl"
 msgid "Each template must have a different name"
 msgstr "Totes los modèls devon aver un nom diferent"
 
-#: src/apps/presets/views/edit.py:66
-#, python-brace-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('{orgname}')"
-msgstr ""
-"Error intèrna, impossible de trobar las autorizacions dins aquesta "
-"organizacion ({orgname})"
-
-#: src/apps/presets/views/edit.py:72
-msgid "You are not allowed to edit this template"
+#: src/apps/presets/views/edit.py:73
+#, fuzzy
+#| msgid "You are not allowed to edit this template"
+msgid "You are not allowed to edit this template."
 msgstr "Sètz pas autorizat a modificar aqueste modèl"
 
 #: src/apps/presets/views/fav.py:39
@@ -1972,6 +1961,15 @@ msgid "You are not allowed to view this organization dashboard."
 msgstr ""
 "Avètz pas l'autorizacion de veire lo panèl de configuracion d'aquesta "
 "organizacion."
+
+#: src/apps/presets/views/new.py:74
+#, python-format
+msgid ""
+"Internal error, cannot find your permissions attached to this organization "
+"('%(orgname)s')."
+msgstr ""
+"Error intèrna, impossible de trobar las autorizacions dins aquesta "
+"organizacion (%(orgname)s)."
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
@@ -2117,15 +2115,6 @@ msgstr ""
 msgid "You are not member of the following organization: %(orgname)s."
 msgstr "Sètz pas membre de l’organizacion : « %(orgname)s »."
 
-#: src/apps/signatures/views/list.py:110
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"(%(orgname)s)."
-msgstr ""
-"Error intèrna, impossible de trobar las autorizacions dins aquesta "
-"organizacion (%(orgname)s)."
-
 #: src/apps/signatures/views/list.py:119
 msgid "You are not allowed to view signatures in this organization."
 msgstr ""
@@ -2154,7 +2143,8 @@ msgstr "Avètz suprimit corrèctament totas las signaturas seleccionadas."
 
 #: src/apps/signatures/views/list.py:273
 msgid "You successfully re-sent all selected confirmation emails."
-msgstr "Avètz tornat enviar corrèctament totas las confirmacions seleccionadas."
+msgstr ""
+"Avètz tornat enviar corrèctament totas las confirmacions seleccionadas."
 
 #: src/apps/signatures/views/list.py:278
 msgid "Unknown action requested."
@@ -2175,10 +2165,10 @@ msgid ""
 "email in your Inbox, please have a look in your Spam box."
 msgstr ""
 "Vos mercegem d’aver signat aquesta peticion, un corrièl es estat enviat a "
-"vòstra adreça %(email)s per que posquem confirmar vòstra "
-"signatura.<br>Devètz clicar sul ligam de confirmacion d’aqueste "
-"corrièl.<br>Se trobatz pas cap de corrièl dins vòstra bóstia de recepcion, "
-"agachatz dins lo dorsièr de corrièls indesirables se vos plai."
+"vòstra adreça %(email)s per que posquem confirmar vòstra signatura."
+"<br>Devètz clicar sul ligam de confirmacion d’aqueste corrièl.<br>Se trobatz "
+"pas cap de corrièl dins vòstra bóstia de recepcion, agachatz dins lo dorsièr "
+"de corrièls indesirables se vos plai."
 
 #: src/config/settings/django.py:175
 msgid "English"
@@ -2199,6 +2189,25 @@ msgstr "Italian"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitan"
+
+#~ msgid "Forgot Your Password?"
+#~ msgstr "Senhal oblidat ?"
+
+#, python-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('%(orgname)s')"
+#~ msgstr ""
+#~ "Error intèrna, impossible de trobar las autorizacions dins aquesta "
+#~ "organizacion (%(orgname)s)"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('{orgname}')"
+#~ msgstr ""
+#~ "Error intèrna, impossible de trobar las autorizacions dins aquesta "
+#~ "organizacion ({orgname})"
 
 #~ msgid "Error: {}"
 #~ msgstr "Error : {}"

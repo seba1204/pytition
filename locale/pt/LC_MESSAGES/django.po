@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 03:12+0100\n"
+"POT-Creation-Date: 2025-11-03 05:26+0100\n"
 "PO-Revision-Date: 2025-11-03 04:25+0000\n"
 "Last-Translator: Weblate Admin <admin@spont.me>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
@@ -552,9 +552,6 @@ msgstr ""
 "Deverá receber o e-mail em breve!"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
-msgid "Forgot Your Password?"
-msgstr "Esqueceu a sua palavra-passe?"
-
 #: src/apps/core/templates/registration/password_reset_form.html:10
 msgid "Forgot your password?"
 msgstr "Esqueceu a sua palavra-passe?"
@@ -592,10 +589,9 @@ msgstr ""
 "demonstração (por favor, NÃO coloque petições reais aqui!)&lt;/span&gt;&lt;"
 "br/&gt; Esta ferramenta é um software gratuito e de código aberto, você "
 "também pode instalá-la no seu servidor!&lt;br&gt; Descarregue o código-fonte "
-"em &lt;a href=&quot;https://github.com/pytition/"
-"pytition&quot;&gt;GitHub&lt;/a&gt;&lt;br&gt; A documentação está disponível "
-"em &lt;a "
-"href=&quot;https://pytition.readthedocs.io&quot;&gt;ReadTheDocs&lt;/a&gt;"
+"em &lt;a href=&quot;https://github.com/pytition/pytition&quot;&gt;GitHub&lt;/"
+"a&gt;&lt;br&gt; A documentação está disponível em &lt;a href=&quot;https://"
+"pytition.readthedocs.io&quot;&gt;ReadTheDocs&lt;/a&gt;"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -718,21 +714,25 @@ msgid "Unable to remove this member from the organization."
 msgstr "Não é possível remover este membro da organização."
 
 #: src/apps/organizations/views/dashboard.py:41
-#, python-format
-msgid "This organization does not exist: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "This organization does not exist: '%(orgname)s'"
+msgid "This organization does not exist: %(orgname)s."
 msgstr "Esta organização não existe: %(orgname)s"
 
 #: src/apps/organizations/views/dashboard.py:52
-#, python-format
-msgid "You are not part of this organization: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "You are not part of this organization: '%(orgname)s'"
+msgid "You are not part of this organization: %(orgname)s."
 msgstr "Você não faz parte desta organização : %(orgname)s"
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
+#: src/apps/petitions/forms/creation_wizard.py:266
+#: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')"
+"(%(orgname)s)."
 msgstr ""
 "Erro interno, não é possível encontrar as suas permissões associadas a esta "
 "organização ({orgname})"
@@ -929,8 +929,8 @@ msgid ""
 "                    }"
 msgstr ""
 "Apenas em caso da subscrição da newsletter via métodos HTTP POST ou GET. "
-"Coloque os dados para ser enviados, usando a syntax de dicionário Python. "
-"e.x.:e.g.: <br>\n"
+"Coloque os dados para ser enviados, usando a syntax de dicionário Python. e."
+"x.:e.g.: <br>\n"
 "                    {'_wpcf7': 21,<br>\n"
 "                    '_wpcf7_version': '4.9',<br>\n"
 "                    '_wpcf7_locale': 'fr_FR',<br>\n"
@@ -1031,8 +1031,8 @@ msgid ""
 "docs/tweets/optimize-with-cards/overview/summary"
 msgstr ""
 "O nome de utilizador da conta do Twitter da organização, começando com o "
-"símbolo «@». Por exemplo: @RAP_Asso. Isto é necessário para atribuir o «"
-"Twitter Card» à conta correta. Consulte https://developer.twitter.com/en/"
+"símbolo «@». Por exemplo: @RAP_Asso. Isto é necessário para atribuir o "
+"«Twitter Card» à conta correta. Consulte https://developer.twitter.com/en/"
 "docs/tweets/optimize-with-cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
@@ -1287,11 +1287,11 @@ msgstr "Publicar a petição agora?"
 msgid "Save & Configure"
 msgstr "Guardar e configurar"
 
-#: src/apps/petitions/forms/creation_steps.py:69
+#: src/apps/petitions/forms/creation_steps.py:72
 msgid "Use template"
 msgstr "Usar modelo"
 
-#: src/apps/petitions/forms/creation_steps.py:72
+#: src/apps/petitions/forms/creation_steps.py:75
 msgid "Template id"
 msgstr "ID do modelo"
 
@@ -1321,16 +1321,6 @@ msgstr "Este modelo não pertence a si."
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
 msgstr "A organização não existe"
-
-#: src/apps/petitions/forms/creation_wizard.py:266
-#: src/apps/presets/views/new.py:74
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')."
-msgstr ""
-"Erro interno, não é possível encontrar as suas permissões associadas a esta "
-"organização ({orgname})"
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
@@ -1481,10 +1471,15 @@ msgid "Careful!"
 msgstr "Cuidado!"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
+#, fuzzy
+#| msgid ""
+#| "This petition is not published yet. You can only see it because you are "
+#| "logged-in as either its creator or a member of the organization which "
+#| "created it. Other visitors won\"t be able to see it."
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
-"created it. Other visitors won\"t be able to see it."
+"created it. Other visitors won't be able to see it."
 msgstr ""
 "Esta petição ainda não foi publicada. Só pode vê-la porque está conectado "
 "como seu criador ou como membro da organização que a criou. Outros "
@@ -1502,7 +1497,8 @@ msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] "Já tem <span id=\"nb-signatures\">%(count|localize)s</span> assinatura."
+msgstr[0] ""
+"Já tem <span id=\"nb-signatures\">%(count|localize)s</span> assinatura."
 msgstr[1] ""
 "Já são <span id=\"nb-signatures\">%(count|localize)s</span> assinaturas."
 
@@ -1643,8 +1639,8 @@ msgid ""
 msgstr ""
 "Um permlink (link permanente) é o que permite que você compartilhe sua "
 "petição com um link agradável\n"
-"                contendo um pequeno título significativo em vez de um número."
-"\n"
+"                contendo um pequeno título significativo em vez de um "
+"número.\n"
 "                Com um permlink, sua petição pode ser acessada através de um "
 "link como:"
 
@@ -1943,17 +1939,10 @@ msgstr "Nome do meu modelo"
 msgid "Each template must have a different name"
 msgstr "Cada modelo deve ter um nome diferente"
 
-#: src/apps/presets/views/edit.py:66
-#, python-brace-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('{orgname}')"
-msgstr ""
-"Erro interno, não é possível encontrar as suas permissões associadas a esta "
-"organização ({orgname})"
-
-#: src/apps/presets/views/edit.py:72
-msgid "You are not allowed to edit this template"
+#: src/apps/presets/views/edit.py:73
+#, fuzzy
+#| msgid "You are not allowed to edit this template"
+msgid "You are not allowed to edit this template."
 msgstr "Não é permitido editar este modelo"
 
 #: src/apps/presets/views/fav.py:39
@@ -1963,6 +1952,15 @@ msgstr "Não é permitido alterar o modelo padrão deste utilizador."
 #: src/apps/presets/views/new.py:65
 msgid "You are not allowed to view this organization dashboard."
 msgstr "Não tem permissão para visualizar este painel da organização."
+
+#: src/apps/presets/views/new.py:74
+#, python-format
+msgid ""
+"Internal error, cannot find your permissions attached to this organization "
+"('%(orgname)s')."
+msgstr ""
+"Erro interno, não é possível encontrar as suas permissões associadas a esta "
+"organização ({orgname})"
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
@@ -2104,15 +2102,6 @@ msgstr ""
 msgid "You are not member of the following organization: %(orgname)s."
 msgstr "Não é membro da seguinte organização: %(orgname)s."
 
-#: src/apps/signatures/views/list.py:110
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"(%(orgname)s)."
-msgstr ""
-"Erro interno, não é possível encontrar as suas permissões associadas a esta "
-"organização ({orgname})"
-
 #: src/apps/signatures/views/list.py:119
 msgid "You are not allowed to view signatures in this organization."
 msgstr "Não tem permissão para visualizar assinaturas nesta organização."
@@ -2184,6 +2173,25 @@ msgstr "italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "occitano"
+
+#~ msgid "Forgot Your Password?"
+#~ msgstr "Esqueceu a sua palavra-passe?"
+
+#, python-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('%(orgname)s')"
+#~ msgstr ""
+#~ "Erro interno, não é possível encontrar as suas permissões associadas a "
+#~ "esta organização ({orgname})"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('{orgname}')"
+#~ msgstr ""
+#~ "Erro interno, não é possível encontrar as suas permissões associadas a "
+#~ "esta organização ({orgname})"
 
 #~ msgid "Error: {}"
 #~ msgstr "Erro: {}"

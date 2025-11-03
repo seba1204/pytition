@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 03:12+0100\n"
+"POT-Creation-Date: 2025-11-03 05:26+0100\n"
 "PO-Revision-Date: 2025-11-03 04:07+0000\n"
 "Last-Translator: Weblate Admin <admin@spont.me>\n"
 "Language-Team: Italian <https://translate.sebastienpont.fr/projects/pytition/"
@@ -195,8 +195,8 @@ msgstr[1] "Inviti"
 #, python-format
 msgid "You are invited to <strong>&nbsp;%(orgname)s</strong>"
 msgstr ""
-"Sei stato invitato a diventare membro dell'organizzazione <strong>&nbsp;%"
-"(orgname)s</strong>"
+"Sei stato invitato a diventare membro dell'organizzazione <strong>&nbsp;"
+"%(orgname)s</strong>"
 
 #: src/apps/accounts/templates/accounts/invitations.html:27
 msgid "Join"
@@ -552,9 +552,6 @@ msgstr ""
 "password. Dovresti riceverla a breve!"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
-msgid "Forgot Your Password?"
-msgstr "Hai dimenticato la Password?"
-
 #: src/apps/core/templates/registration/password_reset_form.html:10
 msgid "Forgot your password?"
 msgstr "Hai dimenticato la password?"
@@ -588,12 +585,12 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
-"<span style=\"color: red;font-weight: bold;\">Sito web di dimostrazione "
-"(per favore NON inserire petizioni reali qui!)</span><br/> Questo strumento "
-"è un software gratuito e open-source, che puoi installare anche sul tuo "
-"server!<br> Scaricare il codice sorgente su <a href="
-"\"https://github.com/pytition/pytition\">GitHub</a><br> La documentazione è "
-"disponibile su <a href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
+"<span style=\"color: red;font-weight: bold;\">Sito web di dimostrazione (per "
+"favore NON inserire petizioni reali qui!)</span><br/> Questo strumento è un "
+"software gratuito e open-source, che puoi installare anche sul tuo server!"
+"<br> Scaricare il codice sorgente su <a href=\"https://github.com/pytition/"
+"pytition\">GitHub</a><br> La documentazione è disponibile su <a "
+"href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -715,24 +712,28 @@ msgid "Unable to remove this member from the organization."
 msgstr "Impossibile rimuovere questo utente dall'organizzazione."
 
 #: src/apps/organizations/views/dashboard.py:41
-#, python-format
-msgid "This organization does not exist: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "This organization does not exist: '%(orgname)s'"
+msgid "This organization does not exist: %(orgname)s."
 msgstr "Questa organizzazione non esiste: %(orgname)s"
 
 #: src/apps/organizations/views/dashboard.py:52
-#, python-format
-msgid "You are not part of this organization: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "You are not part of this organization: '%(orgname)s'"
+msgid "You are not part of this organization: %(orgname)s."
 msgstr "Non fai parte dell'organizzazione %(orgname)s"
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
+#: src/apps/petitions/forms/creation_wizard.py:266
+#: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')"
+"(%(orgname)s)."
 msgstr ""
 "Errore interno, impossibile trovare le tue autorizzazioni in questa "
-"organizzazione (%(orgname)s)"
+"organizzazione (%(orgname)s)."
 
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
@@ -898,8 +899,8 @@ msgid ""
 msgstr ""
 "Questa è la descrizione della petizione, che verrà visualizzata quando la "
 "condividerai sui social media. Puoi visualizzarne un'anteprima tramite "
-"alcuni strumenti come https://toolsaday.com/seo/open-graph "
-"(fai attenzione ai tracker!)."
+"alcuni strumenti come https://toolsaday.com/seo/open-graph (fai attenzione "
+"ai tracker!)."
 
 #: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
 msgid ""
@@ -907,8 +908,8 @@ msgid ""
 "tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)."
 msgstr ""
 "Immagine visualizzata quando condivisa sui social media. È possibile "
-"visualizzarne l'anteprima tramite alcuni strumenti come https://"
-"toolsaday.com/seo/open-graph (attenzione ai tracker!)."
+"visualizzarne l'anteprima tramite alcuni strumenti come https://toolsaday."
+"com/seo/open-graph (attenzione ai tracker!)."
 
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
 msgid ""
@@ -972,8 +973,8 @@ msgid ""
 msgstr ""
 "Solo quando si utilizza il metodo di iscrizione tramite EMAIL. Inserisci qui "
 "la sintassi dell'oggetto che consente di iscrivere qualcuno alla newsletter. "
-"Indica {} dove deve essere inserito l'indirizzo e-mail del firmatario. Es.: “"
-"ADD LIST_NAME {} SIGNER_NAME”"
+"Indica {} dove deve essere inserito l'indirizzo e-mail del firmatario. Es.: "
+"“ADD LIST_NAME {} SIGNER_NAME”"
 
 #: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
 msgid ""
@@ -1039,8 +1040,8 @@ msgid ""
 msgstr ""
 "Il nome utente Twitter dell'organizzazione, che comincia con il simbolo '@'. "
 "Es.: @RAP_Asso. È necessario per attribuire la 'Twitter Card' al giusto "
-"account. Vedi https://developer.twitter.com/en/docs/tweets/"
-"optimize-with-cards/overview/summary"
+"account. Vedi https://developer.twitter.com/en/docs/tweets/optimize-with-"
+"cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
 msgid "Check if you want to use your own E-Mail SMTP account."
@@ -1072,8 +1073,8 @@ msgid ""
 "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if "
 "possible. Don't check both. The 2 settings are mutually exclusive."
 msgstr ""
-"Scelta consigliata: connessione criptata via TLS piuttosto che STARTTLS "
-"(se possibile). Selezionare una sola opzione."
+"Scelta consigliata: connessione criptata via TLS piuttosto che STARTTLS (se "
+"possibile). Selezionare una sola opzione."
 
 #: src/apps/petitions/admin.py:129 src/apps/presets/admin.py:128
 msgid ""
@@ -1149,8 +1150,8 @@ msgid ""
 "Data structure to be sent in order to subscribe someone to the newsletter in "
 "case of HTTP method"
 msgstr ""
-"Struttura di dati da mandare per abbonare qualcuno a una newsletter "
-"(se si usa il metodo HTTP)"
+"Struttura di dati da mandare per abbonare qualcuno a una newsletter (se si "
+"usa il metodo HTTP)"
 
 #: src/apps/petitions/admin.py:164 src/apps/presets/admin.py:163
 msgid ""
@@ -1294,11 +1295,11 @@ msgstr "Pubblicare la petizione ?"
 msgid "Save & Configure"
 msgstr "Salvare e configurare"
 
-#: src/apps/petitions/forms/creation_steps.py:69
+#: src/apps/petitions/forms/creation_steps.py:72
 msgid "Use template"
 msgstr "Usa modello"
 
-#: src/apps/petitions/forms/creation_steps.py:72
+#: src/apps/petitions/forms/creation_steps.py:75
 msgid "Template id"
 msgstr "ID modello"
 
@@ -1328,16 +1329,6 @@ msgstr "Questo modello di layout non ti appartiene."
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
 msgstr "Questa organizzazione non esiste."
-
-#: src/apps/petitions/forms/creation_wizard.py:266
-#: src/apps/presets/views/new.py:74
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')."
-msgstr ""
-"Errore interno, impossibile trovare le tue autorizzazioni in questa "
-"organizzazione (%(orgname)s)."
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
@@ -1489,10 +1480,15 @@ msgid "Careful!"
 msgstr "Attenzione!"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
+#, fuzzy
+#| msgid ""
+#| "This petition is not published yet. You can only see it because you are "
+#| "logged-in as either its creator or a member of the organization which "
+#| "created it. Other visitors won\"t be able to see it."
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
-"created it. Other visitors won\"t be able to see it."
+"created it. Other visitors won't be able to see it."
 msgstr ""
 "Questa petizione non è ancora stata pubblicata. Puoi vederla solo perché hai "
 "effettuato l'accesso come suo autore o come membro dell'organizzazione che "
@@ -1834,8 +1830,8 @@ msgid ""
 "You don't have the permission to transfer a petition from Organization "
 "%(org_name)s"
 msgstr ""
-"Non hai i diritti per trasferire una petizione dell'organizzazione %"
-"(org_name)s"
+"Non hai i diritti per trasferire una petizione dell'organizzazione "
+"%(org_name)s"
 
 #: src/apps/petitions/views/transfer.py:63
 msgid "You don't have the permission to transfer this petition."
@@ -1952,17 +1948,10 @@ msgstr "Il mio modello di layout"
 msgid "Each template must have a different name"
 msgstr "I modelli di layout devono avere nomi diversi"
 
-#: src/apps/presets/views/edit.py:66
-#, python-brace-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('{orgname}')"
-msgstr ""
-"Errore interno, impossibile trovare le tue autorizzazioni in questa "
-"organizzazione ('{orgname}')"
-
-#: src/apps/presets/views/edit.py:72
-msgid "You are not allowed to edit this template"
+#: src/apps/presets/views/edit.py:73
+#, fuzzy
+#| msgid "You are not allowed to edit this template"
+msgid "You are not allowed to edit this template."
 msgstr "Non è consentito modificare questo modello"
 
 #: src/apps/presets/views/fav.py:39
@@ -1975,6 +1964,15 @@ msgstr ""
 msgid "You are not allowed to view this organization dashboard."
 msgstr ""
 "Non sei autorizzato a visualizzare le impostazioni di questa organizzazione."
+
+#: src/apps/presets/views/new.py:74
+#, python-format
+msgid ""
+"Internal error, cannot find your permissions attached to this organization "
+"('%(orgname)s')."
+msgstr ""
+"Errore interno, impossibile trovare le tue autorizzazioni in questa "
+"organizzazione (%(orgname)s)."
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
@@ -2116,15 +2114,6 @@ msgstr ""
 msgid "You are not member of the following organization: %(orgname)s."
 msgstr "Non sei membro dell'organizzazione %(orgname)s."
 
-#: src/apps/signatures/views/list.py:110
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"(%(orgname)s)."
-msgstr ""
-"Errore interno, impossibile trovare le tue autorizzazioni in questa "
-"organizzazione (%(orgname)s)."
-
 #: src/apps/signatures/views/list.py:119
 msgid "You are not allowed to view signatures in this organization."
 msgstr "Non sei autorizzato a visualizzare le firme in questa organizzazione."
@@ -2194,6 +2183,25 @@ msgstr "Italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitano"
+
+#~ msgid "Forgot Your Password?"
+#~ msgstr "Hai dimenticato la Password?"
+
+#, python-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('%(orgname)s')"
+#~ msgstr ""
+#~ "Errore interno, impossibile trovare le tue autorizzazioni in questa "
+#~ "organizzazione (%(orgname)s)"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('{orgname}')"
+#~ msgstr ""
+#~ "Errore interno, impossibile trovare le tue autorizzazioni in questa "
+#~ "organizzazione ('{orgname}')"
 
 #~ msgid "Error: {}"
 #~ msgstr "Errore: {}"

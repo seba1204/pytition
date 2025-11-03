@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 03:12+0100\n"
+"POT-Creation-Date: 2025-11-03 05:26+0100\n"
 "PO-Revision-Date: 2020-07-01 07:51+0000\n"
 "Last-Translator: Joan Montané <joan@montane.cat>\n"
 "Language-Team: Catalan <https://weblate.framasoft.org/projects/pytition/"
@@ -543,9 +543,6 @@ msgid ""
 msgstr ""
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
-msgid "Forgot Your Password?"
-msgstr ""
-
 #: src/apps/core/templates/registration/password_reset_form.html:10
 msgid "Forgot your password?"
 msgstr ""
@@ -694,20 +691,22 @@ msgstr ""
 
 #: src/apps/organizations/views/dashboard.py:41
 #, python-format
-msgid "This organization does not exist: '%(orgname)s'"
+msgid "This organization does not exist: %(orgname)s."
 msgstr ""
 
 #: src/apps/organizations/views/dashboard.py:52
 #, python-format
-msgid "You are not part of this organization: '%(orgname)s'"
+msgid "You are not part of this organization: %(orgname)s."
 msgstr ""
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
+#: src/apps/petitions/forms/creation_wizard.py:266
+#: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')"
+"(%(orgname)s)."
 msgstr ""
 
 #: src/apps/organizations/views/leave.py:54
@@ -1190,11 +1189,11 @@ msgstr ""
 msgid "Save & Configure"
 msgstr ""
 
-#: src/apps/petitions/forms/creation_steps.py:69
+#: src/apps/petitions/forms/creation_steps.py:72
 msgid "Use template"
 msgstr ""
 
-#: src/apps/petitions/forms/creation_steps.py:72
+#: src/apps/petitions/forms/creation_steps.py:75
 msgid "Template id"
 msgstr ""
 
@@ -1222,14 +1221,6 @@ msgstr ""
 #: src/apps/petitions/forms/creation_wizard.py:251
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
-msgstr ""
-
-#: src/apps/petitions/forms/creation_wizard.py:266
-#: src/apps/presets/views/new.py:74
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')."
 msgstr ""
 
 #: src/apps/petitions/helpers.py:25
@@ -1382,7 +1373,7 @@ msgstr ""
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
-"created it. Other visitors won\"t be able to see it."
+"created it. Other visitors won't be able to see it."
 msgstr ""
 
 #: src/apps/petitions/templates/petitions/detail.html:173
@@ -1820,15 +1811,8 @@ msgstr ""
 msgid "Each template must have a different name"
 msgstr ""
 
-#: src/apps/presets/views/edit.py:66
-#, python-brace-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('{orgname}')"
-msgstr ""
-
-#: src/apps/presets/views/edit.py:72
-msgid "You are not allowed to edit this template"
+#: src/apps/presets/views/edit.py:73
+msgid "You are not allowed to edit this template."
 msgstr ""
 
 #: src/apps/presets/views/fav.py:39
@@ -1837,6 +1821,13 @@ msgstr ""
 
 #: src/apps/presets/views/new.py:65
 msgid "You are not allowed to view this organization dashboard."
+msgstr ""
+
+#: src/apps/presets/views/new.py:74
+#, python-format
+msgid ""
+"Internal error, cannot find your permissions attached to this organization "
+"('%(orgname)s')."
 msgstr ""
 
 #: src/apps/presets/views/new.py:84
@@ -1972,13 +1963,6 @@ msgstr ""
 #: src/apps/signatures/views/list.py:100
 #, python-format
 msgid "You are not member of the following organization: %(orgname)s."
-msgstr ""
-
-#: src/apps/signatures/views/list.py:110
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"(%(orgname)s)."
 msgstr ""
 
 #: src/apps/signatures/views/list.py:119

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 03:12+0100\n"
+"POT-Creation-Date: 2025-11-03 05:26+0100\n"
 "PO-Revision-Date: 2025-11-03 04:07+0000\n"
 "Last-Translator: Weblate Admin <admin@spont.me>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
@@ -195,8 +195,8 @@ msgstr[1] "Invitations"
 #, python-format
 msgid "You are invited to <strong>&nbsp;%(orgname)s</strong>"
 msgstr ""
-"Vous êtes invité à rejoindre l'organisation <strong>&nbsp;%(orgname)"
-"s</strong>"
+"Vous êtes invité à rejoindre l'organisation <strong>&nbsp;%(orgname)s</"
+"strong>"
 
 #: src/apps/accounts/templates/accounts/invitations.html:27
 msgid "Join"
@@ -554,9 +554,6 @@ msgstr ""
 "e-mail. Vous devriez bientôt recevoir l'e-mail !"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
-msgid "Forgot Your Password?"
-msgstr "Mot de passe oublié ?"
-
 #: src/apps/core/templates/registration/password_reset_form.html:10
 msgid "Forgot your password?"
 msgstr "Mot de passe oublié ?"
@@ -701,7 +698,8 @@ msgstr "Membres"
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission."
-msgstr "Vous n'avez pas les droits pour modifier les droits de cet utilisateur."
+msgstr ""
+"Vous n'avez pas les droits pour modifier les droits de cet utilisateur."
 
 #: src/apps/organizations/templates/org/member_list.html:13
 msgid "Edit this member's permissions"
@@ -723,24 +721,28 @@ msgid "Unable to remove this member from the organization."
 msgstr "Impossible d'enlever cet utilisateur de l'organisation."
 
 #: src/apps/organizations/views/dashboard.py:41
-#, python-format
-msgid "This organization does not exist: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "This organization does not exist: '%(orgname)s'"
+msgid "This organization does not exist: %(orgname)s."
 msgstr "L'organisation '%(orgname)s' n'existe pas"
 
 #: src/apps/organizations/views/dashboard.py:52
-#, python-format
-msgid "You are not part of this organization: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "You are not part of this organization: '%(orgname)s'"
+msgid "You are not part of this organization: %(orgname)s."
 msgstr "Vous n'êtes pas membre de l'organisation '%(orgname)s'"
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
+#: src/apps/petitions/forms/creation_wizard.py:266
+#: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')"
+"(%(orgname)s)."
 msgstr ""
 "Erreur interne, impossible de trouver vos permissions dans cette "
-"organisation ('%(orgname)s')"
+"organisation (%(orgname)s)."
 
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
@@ -809,8 +811,8 @@ msgstr "L'organisation %(name)s n'existe pas"
 msgid ""
 "The user '%(username)s' is not member of this organization (%(orgname)s)."
 msgstr ""
-"L'utilisateur %(username)s n'est pas membre de cette organisation (%(orgname)"
-"s)."
+"L'utilisateur %(username)s n'est pas membre de cette organisation "
+"(%(orgname)s)."
 
 #: src/apps/organizations/views/members/edit_perms.py:80
 msgid ""
@@ -1046,10 +1048,10 @@ msgid ""
 "'Twitter Card' to the correct account. See https://developer.twitter.com/en/"
 "docs/tweets/optimize-with-cards/overview/summary"
 msgstr ""
-"Le nom d'utilisateur Twitter de l'organisation, démarrant par le symbole '@"
-"'. Ex. : @RAP_Asso. C'est nécessaire afin d'attribuer la 'Twitter Card' "
-"(affichette) au bon compte. Cf https://developer.twitter.com/en/docs/tweets/"
-"optimize-with-cards/overview/summary"
+"Le nom d'utilisateur Twitter de l'organisation, démarrant par le symbole "
+"'@'. Ex. : @RAP_Asso. C'est nécessaire afin d'attribuer la 'Twitter "
+"Card' (affichette) au bon compte. Cf https://developer.twitter.com/en/docs/"
+"tweets/optimize-with-cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
 msgid "Check if you want to use your own E-Mail SMTP account."
@@ -1074,7 +1076,8 @@ msgstr ""
 #: src/apps/petitions/admin.py:119 src/apps/petitions/admin.py:122
 #: src/apps/presets/admin.py:118 src/apps/presets/admin.py:121
 msgid "Leave empty if you don't use any account authentication."
-msgstr "Laissez vide si vous n'utilisez pas d'identification pour votre compte."
+msgstr ""
+"Laissez vide si vous n'utilisez pas d'identification pour votre compte."
 
 #: src/apps/petitions/admin.py:125 src/apps/presets/admin.py:124
 msgid ""
@@ -1311,11 +1314,11 @@ msgstr "Publier la pétition maintenant ?"
 msgid "Save & Configure"
 msgstr "Sauvegarder et configurer"
 
-#: src/apps/petitions/forms/creation_steps.py:69
+#: src/apps/petitions/forms/creation_steps.py:72
 msgid "Use template"
 msgstr "Utiliser un gabarit"
 
-#: src/apps/petitions/forms/creation_steps.py:72
+#: src/apps/petitions/forms/creation_steps.py:75
 msgid "Template id"
 msgstr "Id du gabarit"
 
@@ -1347,16 +1350,6 @@ msgstr "Ce gabarit de pétition ne vous appartient pas."
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
 msgstr "Cette organisation n'existe pas."
-
-#: src/apps/petitions/forms/creation_wizard.py:266
-#: src/apps/presets/views/new.py:74
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')."
-msgstr ""
-"Erreur interne, impossible de trouver vos permissions dans cette "
-"organisation ('%(orgname)s')."
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
@@ -1507,10 +1500,15 @@ msgid "Careful!"
 msgstr "Attention !"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
+#, fuzzy
+#| msgid ""
+#| "This petition is not published yet. You can only see it because you are "
+#| "logged-in as either its creator or a member of the organization which "
+#| "created it. Other visitors won\"t be able to see it."
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
-"created it. Other visitors won\"t be able to see it."
+"created it. Other visitors won't be able to see it."
 msgstr ""
 "Cette pétition n'est pas encore publiée. Vous pouvez la voir uniquement "
 "parce que vous êtes connecté en tant que créateur ou membre de "
@@ -1530,8 +1528,10 @@ msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] "Déjà <span id=\"nb-signatures\">%(count|localize)s</span> signature."
-msgstr[1] "Déjà <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
+msgstr[0] ""
+"Déjà <span id=\"nb-signatures\">%(count|localize)s</span> signature."
+msgstr[1] ""
+"Déjà <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
 
 #. Translators: label before the numeric goal value
 #: src/apps/petitions/templates/petitions/detail.html:191
@@ -1970,17 +1970,10 @@ msgstr "Nom de mon gabarit"
 msgid "Each template must have a different name"
 msgstr "Tous les gabarits doivent avoir un nom différent"
 
-#: src/apps/presets/views/edit.py:66
-#, python-brace-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('{orgname}')"
-msgstr ""
-"Erreur interne, impossible de trouver vos permissions dans cette "
-"organisation ('{orgname}')"
-
-#: src/apps/presets/views/edit.py:72
-msgid "You are not allowed to edit this template"
+#: src/apps/presets/views/edit.py:73
+#, fuzzy
+#| msgid "You are not allowed to edit this template"
+msgid "You are not allowed to edit this template."
 msgstr "Vous n'êtes pas autorisé à modifier ce gabarit"
 
 #: src/apps/presets/views/fav.py:39
@@ -1993,6 +1986,15 @@ msgid "You are not allowed to view this organization dashboard."
 msgstr ""
 "Vous n'avez pas l'autorisation de visualiser le tableau de bord de cette "
 "organisation."
+
+#: src/apps/presets/views/new.py:74
+#, python-format
+msgid ""
+"Internal error, cannot find your permissions attached to this organization "
+"('%(orgname)s')."
+msgstr ""
+"Erreur interne, impossible de trouver vos permissions dans cette "
+"organisation ('%(orgname)s')."
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
@@ -2138,15 +2140,6 @@ msgstr ""
 msgid "You are not member of the following organization: %(orgname)s."
 msgstr "Vous n'êtes pas membre de l'organisation %(orgname)s."
 
-#: src/apps/signatures/views/list.py:110
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"(%(orgname)s)."
-msgstr ""
-"Erreur interne, impossible de trouver vos permissions dans cette "
-"organisation (%(orgname)s)."
-
 #: src/apps/signatures/views/list.py:119
 msgid "You are not allowed to view signatures in this organization."
 msgstr ""
@@ -2221,6 +2214,25 @@ msgstr "Italien"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitan"
+
+#~ msgid "Forgot Your Password?"
+#~ msgstr "Mot de passe oublié ?"
+
+#, python-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('%(orgname)s')"
+#~ msgstr ""
+#~ "Erreur interne, impossible de trouver vos permissions dans cette "
+#~ "organisation ('%(orgname)s')"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('{orgname}')"
+#~ msgstr ""
+#~ "Erreur interne, impossible de trouver vos permissions dans cette "
+#~ "organisation ('{orgname}')"
 
 #~ msgid "Error: {}"
 #~ msgstr "Erreur : {}"

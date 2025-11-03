@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 03:12+0100\n"
+"POT-Creation-Date: 2025-11-03 05:26+0100\n"
 "PO-Revision-Date: 2025-11-03 04:07+0000\n"
 "Last-Translator: Weblate Admin <admin@spont.me>\n"
 "Language-Team: Spanish <https://translate.sebastienpont.fr/projects/pytition/"
@@ -550,9 +550,6 @@ msgstr ""
 "contraseña. ¡Deberías recibir el correo electrónico en breve!"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
-msgid "Forgot Your Password?"
-msgstr "¿Olvidaste tu contraseña?"
-
 #: src/apps/core/templates/registration/password_reset_form.html:10
 msgid "Forgot your password?"
 msgstr "¿Olvidaste tu contraseña?"
@@ -589,10 +586,9 @@ msgstr ""
 "<span style = \"color: red; font-weight: bold;\"> Sitio web de demostración "
 "(¡NO pongas peticiones reales aquí!) </span> <br/> Esta herramienta es un "
 "software gratuito y de código abierto, puedes ¡instálelo también en su "
-"servidor! <br> Descargue el código fuente en <a href="
-"\"https://github.com/pytition/pytition\"> GitHub </a> <br> La documentación "
-"está disponible en <a href = \" https://pytition.readthedocs.io \"> "
-"ReadTheDocs </a>"
+"servidor! <br> Descargue el código fuente en <a href=\"https://github.com/"
+"pytition/pytition\"> GitHub </a> <br> La documentación está disponible en <a "
+"href = \" https://pytition.readthedocs.io \"> ReadTheDocs </a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -717,24 +713,28 @@ msgid "Unable to remove this member from the organization."
 msgstr "No se puede eliminar a este miembro de la organización."
 
 #: src/apps/organizations/views/dashboard.py:41
-#, python-format
-msgid "This organization does not exist: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "This organization does not exist: '%(orgname)s'"
+msgid "This organization does not exist: %(orgname)s."
 msgstr "Esta organización no existe: '%(orgname)s'"
 
 #: src/apps/organizations/views/dashboard.py:52
-#, python-format
-msgid "You are not part of this organization: '%(orgname)s'"
+#, fuzzy, python-format
+#| msgid "You are not part of this organization: '%(orgname)s'"
+msgid "You are not part of this organization: %(orgname)s."
 msgstr "No eres parte de esta organización: '%(orgname)s'"
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
+#: src/apps/petitions/forms/creation_wizard.py:266
+#: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')"
+"(%(orgname)s)."
 msgstr ""
 "Error interno, no puedo encontrar tus permisos adjuntos a esta organización "
-"(%(orgname)s)"
+"(%(orgname)s)."
 
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
@@ -989,8 +989,8 @@ msgid ""
 "administration, e.g.: sympa@NOM_LISTE.listes.vox.coop"
 msgstr ""
 "Solo cuando se utiliza el método de suscripción EMAIL. Dirección de correo "
-"electrónico de administración de la lista, ej: "
-"sympa@NOM_LISTE.listes.vox.coop"
+"electrónico de administración de la lista, ej: sympa@NOM_LISTE.listes.vox."
+"coop"
 
 #: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
 msgid ""
@@ -1293,11 +1293,11 @@ msgstr "¿Publicar la petición ahora?"
 msgid "Save & Configure"
 msgstr "Guardar y Configurar"
 
-#: src/apps/petitions/forms/creation_steps.py:69
+#: src/apps/petitions/forms/creation_steps.py:72
 msgid "Use template"
 msgstr "Utilizar plantilla"
 
-#: src/apps/petitions/forms/creation_steps.py:72
+#: src/apps/petitions/forms/creation_steps.py:75
 msgid "Template id"
 msgstr "ID de la plantilla"
 
@@ -1326,16 +1326,6 @@ msgstr "Esta plantilla no te pertenece."
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
 msgstr "La organización no existe."
-
-#: src/apps/petitions/forms/creation_wizard.py:266
-#: src/apps/presets/views/new.py:74
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('%(orgname)s')."
-msgstr ""
-"Error interno, no puedo encontrar tus permisos adjuntos a esta organización "
-"('%(orgname)s')."
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
@@ -1486,10 +1476,15 @@ msgid "Careful!"
 msgstr "¡Cuidado!"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
+#, fuzzy
+#| msgid ""
+#| "This petition is not published yet. You can only see it because you are "
+#| "logged-in as either its creator or a member of the organization which "
+#| "created it. Other visitors won\"t be able to see it."
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
-"created it. Other visitors won\"t be able to see it."
+"created it. Other visitors won't be able to see it."
 msgstr ""
 "Esta petición aún no se ha publicado. Solo puedes verla porque has iniciado "
 "sesión como su creador o como miembro de la organización que la ha creado. "
@@ -1947,17 +1942,10 @@ msgstr "El nombre de mi plantilla"
 msgid "Each template must have a different name"
 msgstr "Cada plantilla debe tener un nombre diferente"
 
-#: src/apps/presets/views/edit.py:66
-#, python-brace-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"('{orgname}')"
-msgstr ""
-"Error interno, no puedo encontrar tus permisos adjuntos a esta organización "
-"({orgname})"
-
-#: src/apps/presets/views/edit.py:72
-msgid "You are not allowed to edit this template"
+#: src/apps/presets/views/edit.py:73
+#, fuzzy
+#| msgid "You are not allowed to edit this template"
+msgid "You are not allowed to edit this template."
 msgstr "No se permite editar esta plantilla"
 
 #: src/apps/presets/views/fav.py:39
@@ -1968,6 +1956,15 @@ msgstr ""
 #: src/apps/presets/views/new.py:65
 msgid "You are not allowed to view this organization dashboard."
 msgstr "No tiene permiso para ver el panel de control de esta organización."
+
+#: src/apps/presets/views/new.py:74
+#, python-format
+msgid ""
+"Internal error, cannot find your permissions attached to this organization "
+"('%(orgname)s')."
+msgstr ""
+"Error interno, no puedo encontrar tus permisos adjuntos a esta organización "
+"('%(orgname)s')."
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
@@ -2109,15 +2106,6 @@ msgstr ""
 msgid "You are not member of the following organization: %(orgname)s."
 msgstr "No eres miembro de la siguiente organización: %(orgname)s."
 
-#: src/apps/signatures/views/list.py:110
-#, python-format
-msgid ""
-"Internal error, cannot find your permissions attached to this organization "
-"(%(orgname)s)."
-msgstr ""
-"Error interno, no puedo encontrar tus permisos adjuntos a esta organización "
-"(%(orgname)s)."
-
 #: src/apps/signatures/views/list.py:119
 msgid "You are not allowed to view signatures in this organization."
 msgstr "No tiene permiso para ver firmas en esta organización."
@@ -2193,6 +2181,25 @@ msgstr "Italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitano"
+
+#~ msgid "Forgot Your Password?"
+#~ msgstr "¿Olvidaste tu contraseña?"
+
+#, python-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('%(orgname)s')"
+#~ msgstr ""
+#~ "Error interno, no puedo encontrar tus permisos adjuntos a esta "
+#~ "organización (%(orgname)s)"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Internal error, cannot find your permissions attached to this "
+#~ "organization ('{orgname}')"
+#~ msgstr ""
+#~ "Error interno, no puedo encontrar tus permisos adjuntos a esta "
+#~ "organización ({orgname})"
 
 #~ msgid "Error: {}"
 #~ msgstr "Error: {}"
