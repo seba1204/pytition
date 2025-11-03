@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:47+0100\n"
+"POT-Creation-Date: 2025-11-03 05:54+0100\n"
 "PO-Revision-Date: 2025-11-03 04:54+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
@@ -563,6 +563,7 @@ msgstr ""
 "um novo."
 
 #: src/apps/core/templates/registration/password_reset_form.html:15
+#: src/apps/signatures/templates/signatures/data.html:88
 msgid "Email"
 msgstr "E-mail"
 
@@ -1029,7 +1030,9 @@ msgstr ""
 "docs/tweets/optimize-with-cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
-msgid "Check if you want to use your own E-Mail SMTP account."
+#, fuzzy
+#| msgid "Check if you want to use your own E-Mail SMTP account."
+msgid "Check if you want to use your own Email SMTP account."
 msgstr "Verifique se deseja utilizar a sua própria conta SMTP de e-mail."
 
 #: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
@@ -1644,8 +1647,8 @@ msgid ""
 "modified some settings, please save if you want to see them in the preview."
 msgstr ""
 "Atenção: esta pré-visualização mostra o estado atual da petição.<br />Se "
-"modificou algumas configurações, guarde-as se quiser vê-las na "
-"pré-visualização."
+"modificou algumas configurações, guarde-as se quiser vê-las na pré-"
+"visualização."
 
 #: src/apps/petitions/templates/petitions/edit.html:451
 #: src/apps/petitions/templates/petitions/edit.html:466
@@ -2045,10 +2048,6 @@ msgstr "Reenviar e-mail de confirmação selecionado"
 msgid "Delete selected signatures"
 msgstr "Eliminar assinaturas selecionadas"
 
-#: src/apps/signatures/templates/signatures/data.html:88
-msgid "E-Mail"
-msgstr "E-mail"
-
 #: src/apps/signatures/templates/signatures/data.html:89
 msgid "Phone"
 msgstr "Telefone"
@@ -2157,6 +2156,9 @@ msgstr "italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "occitano"
+
+#~ msgid "E-Mail"
+#~ msgstr "E-mail"
 
 #~ msgid "Return to dashboard"
 #~ msgstr "Voltar ao painel"

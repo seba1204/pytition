@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:47+0100\n"
+"POT-Creation-Date: 2025-11-03 05:54+0100\n"
 "PO-Revision-Date: 2020-07-01 07:51+0000\n"
 "Last-Translator: Joan Montané <joan@montane.cat>\n"
 "Language-Team: Catalan <https://weblate.framasoft.org/projects/pytition/"
@@ -552,6 +552,7 @@ msgid ""
 msgstr ""
 
 #: src/apps/core/templates/registration/password_reset_form.html:15
+#: src/apps/signatures/templates/signatures/data.html:88
 msgid "Email"
 msgstr ""
 
@@ -945,7 +946,7 @@ msgid ""
 msgstr ""
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
-msgid "Check if you want to use your own E-Mail SMTP account."
+msgid "Check if you want to use your own Email SMTP account."
 msgstr ""
 
 #: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
@@ -1919,10 +1920,6 @@ msgstr ""
 
 #: src/apps/signatures/templates/signatures/data.html:65
 msgid "Delete selected signatures"
-msgstr ""
-
-#: src/apps/signatures/templates/signatures/data.html:88
-msgid "E-Mail"
 msgstr ""
 
 #: src/apps/signatures/templates/signatures/data.html:89

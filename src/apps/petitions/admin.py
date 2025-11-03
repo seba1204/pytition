@@ -105,7 +105,7 @@ class PetitionAdminForm(ModelForm):
                 "https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary"
             ),
             "use_custom_email_settings": gettext_lazy(
-                "Check if you want to use your own E-Mail SMTP account."
+                "Check if you want to use your own Email SMTP account."
             ),
             "confirmation_email_reply": gettext_lazy("e.g.: petition@mydomain.tld"),
             "newsletter_subscribe_mail_smtp_host": gettext_lazy(

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:47+0100\n"
+"POT-Creation-Date: 2025-11-03 05:54+0100\n"
 "PO-Revision-Date: 2025-11-03 04:54+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Spanish <https://translate.sebastienpont.fr/projects/pytition/"
@@ -561,6 +561,7 @@ msgstr ""
 "instrucciones por correo electrónico para configurar una nueva."
 
 #: src/apps/core/templates/registration/password_reset_form.html:15
+#: src/apps/signatures/templates/signatures/data.html:88
 msgid "Email"
 msgstr "Email"
 
@@ -1032,7 +1033,9 @@ msgstr ""
 "en/docs/tweets/optimize-with-cards/overview/summary"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
-msgid "Check if you want to use your own E-Mail SMTP account."
+#, fuzzy
+#| msgid "Check if you want to use your own E-Mail SMTP account."
+msgid "Check if you want to use your own Email SMTP account."
 msgstr "Marque si desea usar su propia cuenta de correo electrónico SMTP."
 
 #: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
@@ -2050,10 +2053,6 @@ msgstr "Reenviar el correo electrónico de confirmación seleccionado"
 msgid "Delete selected signatures"
 msgstr "Eliminar firmas seleccionadas"
 
-#: src/apps/signatures/templates/signatures/data.html:88
-msgid "E-Mail"
-msgstr "E-Mail"
-
 #: src/apps/signatures/templates/signatures/data.html:89
 msgid "Phone"
 msgstr "Teléfono"
@@ -2166,6 +2165,9 @@ msgstr "Italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitano"
+
+#~ msgid "E-Mail"
+#~ msgstr "E-Mail"
 
 #~ msgid "Return to dashboard"
 #~ msgstr "Regresar al tablero"
