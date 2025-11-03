@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:47+0100\n"
-"PO-Revision-Date: 2025-11-03 04:31+0000\n"
+"PO-Revision-Date: 2025-11-03 04:47+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
 "memory@weblate.org>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
@@ -1849,10 +1849,8 @@ msgstr "A quem se destina este modelo de petição?"
 
 #. Translators: Petition template model name in models (admin interface)
 #: src/apps/presets/models/petition_template.py:95
-#, fuzzy
-#| msgid "Petition templates"
 msgid "Petition template"
-msgstr "Modelos de petições"
+msgstr "Modelos de Petições"
 
 #. Translators: Petition template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
