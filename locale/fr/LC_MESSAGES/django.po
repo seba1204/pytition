@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
-"PO-Revision-Date: 2025-11-03 02:50+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-03 04:07+0000\n"
+"Last-Translator: Weblate Admin <admin@spont.me>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
 "Language: fr\n"
@@ -96,7 +96,7 @@ msgstr "Nouvelle pétition"
 #: src/apps/accounts/templates/accounts/base.html:26
 #: src/apps/organizations/templates/org/base.html:30
 msgid "Petition templates"
-msgstr "Gabarit de pétition"
+msgstr "Gabarits de pétition"
 
 #: src/apps/accounts/templates/accounts/base.html:31
 #: src/apps/organizations/templates/org/base.html:35
@@ -188,7 +188,7 @@ msgstr "Retour au tableau de bord"
 #: src/apps/accounts/templates/accounts/invitations.html:5
 msgid "Invitation"
 msgid_plural "Invitations"
-msgstr[0] "Invitations"
+msgstr[0] "Invitation"
 msgstr[1] "Invitations"
 
 #: src/apps/accounts/templates/accounts/invitations.html:21
@@ -240,7 +240,7 @@ msgstr "Les plus anciennes"
 
 #: src/apps/accounts/templates/accounts/profile.html:30
 msgid "This user has not created any petition yet."
-msgstr "Cet utilisateur n'a pas encore créé de pétition"
+msgstr "Cet utilisateur n'a pas encore créé de pétition."
 
 #: src/apps/accounts/templates/accounts/register.html:15
 msgid "Register"
@@ -278,11 +278,11 @@ msgid ""
 "or the last member."
 msgstr ""
 "Vous ne pouvez pas quitter une organisation dont vous êtes le dernier "
-"administrateur ou le dernier membre"
+"administrateur ou le dernier membre."
 
 #: src/apps/accounts/templates/accounts/settings.html:114
 msgid "You are not part of any organization."
-msgstr "Vous ne faites partie d'aucune organisation"
+msgstr "Vous ne faites partie d'aucune organisation."
 
 #: src/apps/accounts/templates/accounts/settings.html:118
 msgid "Create an Organization"
@@ -290,7 +290,7 @@ msgstr "Créer une organisation"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
 msgid "Delete Account"
-msgstr "Supprimer votre compte"
+msgstr "Supprimer le compte"
 
 #: src/apps/accounts/templates/accounts/settings.html:134
 msgid ""
@@ -408,7 +408,7 @@ msgstr "Une plateforme pour créer et signer des pétitions."
 
 #: src/apps/core/templates/layouts/base.html:17
 msgid "Homepage"
-msgstr "Accueil"
+msgstr "Page d'accueil"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:20
 msgid "Your dashboard"
@@ -416,7 +416,7 @@ msgstr "Votre tableau de bord"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:34
 msgid "New Petition"
-msgstr "Nouvelle pétition"
+msgstr "Nouvelle Pétition"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:39
 msgid "New Organization"
@@ -639,7 +639,7 @@ msgstr "Compte créé !"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:7
 msgid "Email Confirmation"
-msgstr "Email de confirmation."
+msgstr "Email de confirmation"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:9
 msgid "Confirm your signature by clicking the provided link."
@@ -701,7 +701,7 @@ msgstr "Membres"
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission."
-msgstr "Vous n'avez pas les droits pour modifier les droits de cet utilisateur"
+msgstr "Vous n'avez pas les droits pour modifier les droits de cet utilisateur."
 
 #: src/apps/organizations/templates/org/member_list.html:13
 msgid "Edit this member's permissions"
@@ -712,7 +712,7 @@ msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission."
 msgstr ""
-"Vous n'avez pas les droits pour enlever cet utilisateur de l'organisation"
+"Vous n'avez pas les droits pour enlever cet utilisateur de l'organisation."
 
 #: src/apps/organizations/templates/org/member_list.html:18
 msgid "Remove this member from the organization."
@@ -773,7 +773,7 @@ msgstr ""
 #: src/apps/organizations/views/members/add.py:59
 #, python-format
 msgid "User is already member of %(orgname)s organization."
-msgstr "L'utilisateur est déjà membre de l'organisation %(orgname)s"
+msgstr "L'utilisateur est déjà membre de l'organisation %(orgname)s."
 
 #: src/apps/organizations/views/members/add.py:97
 #, python-format
@@ -897,7 +897,7 @@ msgid ""
 "footer."
 msgstr ""
 "Entrez une liste à puces de liens, elle apparaîtra horizontalement en pied "
-"de page"
+"de page."
 
 #: src/apps/petitions/admin.py:33 src/apps/presets/admin.py:32
 msgid ""
@@ -916,14 +916,14 @@ msgid ""
 msgstr ""
 "Image affichée lors du partage sur les réseaux sociaux. Vous pouvez la "
 "prévisualiser à l'aide d'outils tels que https://toolsaday.com/seo/open-"
-"graph (attention aux traceurs !)"
+"graph (attention aux traceurs !)."
 
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
 msgid ""
 "Allow to chose whether the newsletter subscription checkbox is shown or not."
 msgstr ""
 "Permet de choisir si la case à cocher d'inscription à la liste de diffusion "
-"est affichée ou pas"
+"est affichée ou pas."
 
 #: src/apps/petitions/admin.py:47 src/apps/presets/admin.py:46
 msgid ""
@@ -959,7 +959,7 @@ msgid ""
 msgstr ""
 "Seulement quand la méthode d'abonnement utilisée est HTTP POST ou GET. Nom "
 "du champ à envoyer via GET ou POST, contenant l'adresse e-mail à abonner. En "
-"suivant l'exemple du champ précédent, il s'agirait de 'your-email'"
+"suivant l'exemple du champ précédent, il s'agirait de 'your-email'."
 
 #: src/apps/petitions/admin.py:64 src/apps/presets/admin.py:63
 msgid ""
@@ -1008,7 +1008,7 @@ msgid ""
 msgstr ""
 "Sélectionne la méthode d'abonnement à la liste de diffusion. Peut-être soit "
 "HTTP GET ou POST ou via un envoi d'EMAIL à l'adresse d'administration de la "
-"liste de diffusion"
+"liste de diffusion."
 
 #: src/apps/petitions/admin.py:88 src/apps/presets/admin.py:87
 msgid ""
@@ -1294,13 +1294,13 @@ msgstr "Le titre est obligatoire et doit être une chaîne de caractères."
 
 #: src/apps/petitions/forms/creation_steps.py:38
 msgid "There is already a petition with this title."
-msgstr "Il y a déjà une pétition avec ce titre"
+msgstr "Il y a déjà une pétition avec ce titre."
 
 #: src/apps/petitions/forms/creation_steps.py:52
 msgid "You should either provide an org name or a user name."
 msgstr ""
 "Vous devez obligatoirement mettre soit un nom d'utilisateur soit un nom "
-"d'organisation"
+"d'organisation."
 
 #: src/apps/petitions/forms/creation_steps.py:65
 msgid "Publish the petition now?"
@@ -1326,27 +1326,27 @@ msgstr ""
 
 #: src/apps/petitions/forms/creation_wizard.py:172
 msgid "Cannot find this organization."
-msgstr "Impossible de trouver cette organisation"
+msgstr "Impossible de trouver cette organisation."
 
 #: src/apps/petitions/forms/creation_wizard.py:200
 msgid "This template does not belong to your organization."
-msgstr "Ce gabarit de pétition n'appartient pas à votre organisation"
+msgstr "Ce gabarit de pétition n'appartient pas à votre organisation."
 
 #: src/apps/petitions/forms/creation_wizard.py:214
 msgid ""
 "You don't have the permission to create a new petition in this Organization."
 msgstr ""
 "Vous n'avez pas la permission de créer une nouvelle pétition dans cette "
-"organisation"
+"organisation."
 
 #: src/apps/petitions/forms/creation_wizard.py:232
 msgid "This template does not belong to you."
-msgstr "Ce gabarit de pétition ne vous appartient pas"
+msgstr "Ce gabarit de pétition ne vous appartient pas."
 
 #: src/apps/petitions/forms/creation_wizard.py:251
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
-msgstr "Cette organisation n'existe pas"
+msgstr "Cette organisation n'existe pas."
 
 #: src/apps/petitions/forms/creation_wizard.py:266
 #: src/apps/presets/views/new.py:74
@@ -1356,11 +1356,11 @@ msgid ""
 "('%(orgname)s')."
 msgstr ""
 "Erreur interne, impossible de trouver vos permissions dans cette "
-"organisation ('{orgname}')"
+"organisation ('%(orgname)s')."
 
 #: src/apps/petitions/helpers.py:25
 msgid "Petition does not exist."
-msgstr "Cette pétition n'existe pas"
+msgstr "La pétition n'existe pas."
 
 #: src/apps/petitions/helpers.py:50
 msgid "This Petition has been moderated!"
@@ -1380,7 +1380,7 @@ msgstr "Cette pétition ne dispose pas d'un propriétaire d'organisation."
 
 #: src/apps/petitions/models/petition.py:370
 msgid "This petition is missing a user owner."
-msgstr "Cette pétition ne dispose pas d'un propriétaire d'organisation."
+msgstr "Cette pétition n'a pas de propriétaire."
 
 #: src/apps/petitions/models/petition.py:373
 msgid "This petition is buggy. Sorry about that!"
@@ -1538,7 +1538,7 @@ msgstr[1] "Déjà <span id=\"nb-signatures\">%(count|localize)s</span> signature
 #, python-format
 msgctxt "petition stats"
 msgid "Goal: <span class=\"format-number\">%(target)s</span>"
-msgstr "Objectif :<span class=\"format-number\">"
+msgstr "Objectif :<span class=\"format-number\">%(target)s</span>"
 
 #: src/apps/petitions/templates/petitions/detail.html:255
 #: src/apps/petitions/templates/petitions/detail.html:298
@@ -1668,12 +1668,10 @@ msgid ""
 "a nice link containing a meaningful small title instead of a number. With a "
 "permalink your petition can be accessible via a link like:"
 msgstr ""
-"Un permalien (lien permanent) permet de partager votre pétition avec une url "
-"plus parlante\n"
-"                contenant un titre petit et ayant du sens, au lieu d'un "
-"nombre.\n"
-"                Avec un permalien votre pétition est accessible à l'aide "
-"d'un lien du type :"
+"Un permalien (lien permanent) permet de partager votre pétition avec une URL "
+"plus parlante contenant un titre petit et ayant du sens, au lieu d'un "
+"nombre. Avec un permalien, votre pétition est accessible à l'aide d'un lien "
+"du type :"
 
 #: src/apps/petitions/templates/petitions/edit.html:313
 msgid "Permalinks"
@@ -1688,9 +1686,8 @@ msgid ""
 "Beware: this preview shows the current state of the petition. <br /> If you "
 "modified some settings, please save if you want to see them in the preview."
 msgstr ""
-"Attention : cette prévisualisation affiche l'état actuel de la pétition.<br "
-"/>\n"
-"\tSi vous modifiez certains paramètres, veillez à bien sauvegarder avant "
+"Attention : cette prévisualisation affiche l'état actuel de la pétition.<br /"
+">Si vous modifiez certains paramètres, veillez à bien sauvegarder avant "
 "d'afficher la prévisualisation."
 
 #: src/apps/petitions/templates/petitions/edit.html:451
@@ -1718,7 +1715,7 @@ msgstr[1] "%(signature_number)s signatures"
 
 #: src/apps/petitions/templates/petitions/list.html:12
 msgid "You don't have any petitions yet."
-msgstr "Vous n'avez pas encore de pétition"
+msgstr "Vous n'avez pas encore de pétition."
 
 #: src/apps/petitions/templates/petitions/list.html:68
 msgid "This petition is moderated"
@@ -1784,7 +1781,7 @@ msgid ""
 "Enter the name of the user or organization you want to give the petition to:"
 msgstr ""
 "Entrez le nom de l'utilisateur ou de l'organisation à qui vous voulez donner "
-"cette pétition : "
+"cette pétition :"
 
 #: src/apps/petitions/templates/petitions/transfer.html:29
 msgid "User or Organization name"
@@ -1809,7 +1806,7 @@ msgstr "Transférer"
 
 #: src/apps/petitions/views/edit.py:44
 msgid "You are not allowed to edit this petition."
-msgstr "Vous n'êtes pas le propriétaire de cette pétition"
+msgstr "Vous n'êtes pas le propriétaire de cette pétition."
 
 #: src/apps/petitions/views/edit.py:267 src/apps/petitions/views/edit.py:291
 msgid "save-the-kittens-from-bad-wolf"
@@ -1819,7 +1816,7 @@ msgstr "sauver-les-chatons-du-grand-mechant-loup"
 #: src/apps/petitions/views/show_petition.py:65
 #: src/apps/petitions/views/show_petition.py:67
 msgid "Sorry, we are not able to find this petition."
-msgstr "Désolé, nous n'avons pas trouvé cette pétition"
+msgstr "Désolé, nous n'avons pas trouvé cette pétition."
 
 #: src/apps/petitions/views/slug/add.py:24
 #: src/apps/petitions/views/slug/delete.py:26
@@ -1862,7 +1859,7 @@ msgstr ""
 
 #: src/apps/petitions/views/transfer.py:63
 msgid "You don't have the permission to transfer this petition."
-msgstr "Vous n'êtes pas autorisé à transférer cette pétition"
+msgstr "Vous n'êtes pas autorisé à transférer cette pétition."
 
 #: src/apps/petitions/views/transfer.py:78
 msgid "Incorrect request, something went wrong."
@@ -1879,7 +1876,7 @@ msgstr ""
 #: src/apps/petitions/views/transfer.py:104
 msgid "You tried to transfer a petition to a non-exiting account."
 msgstr ""
-"Vous avez tenté de transférer une pétition vers un compte qui n'existe pas"
+"Vous avez tenté de transférer une pétition vers un compte qui n'existe pas."
 
 #: src/apps/petitions/views/transfer.py:112
 msgid "Petition successfully transfered!"
@@ -1896,16 +1893,16 @@ msgstr "À qui appartient cette pétition ?"
 #. Translators: Petition Template model name in models (admin interface)
 #: src/apps/presets/models/petition_template.py:95
 msgid "Petition Template"
-msgstr "Gabarit de pétition"
+msgstr "Gabarit de Pétition"
 
 #. Translators: Petition Template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
 msgid "Petition Templates"
-msgstr "Gabarit de pétition"
+msgstr "Gabarits de Pétition"
 
 #: src/apps/presets/services.py:112
 msgid "This template does not exist."
-msgstr "Ce gabarit de pétition n'existe pas"
+msgstr "Ce gabarit de pétition n'existe pas."
 
 #: src/apps/presets/templates/presets/edit.html:4
 msgid "Template settings"
@@ -1913,7 +1910,7 @@ msgstr "Paramètres du gabarit"
 
 #: src/apps/presets/templates/presets/list.html:19
 msgid "This is the default template. Click here to unmark it as default."
-msgstr "Ceci est le gabarit par défaut. Cliquer ici pour le désélectionner"
+msgstr "Ceci est le gabarit par défaut. Cliquer ici pour le désélectionner."
 
 #: src/apps/presets/templates/presets/list.html:26
 msgid "Mark this template as default"
@@ -1925,7 +1922,7 @@ msgstr "Modifier le gabarit de pétition"
 
 #: src/apps/presets/templates/presets/list.html:39
 msgid "Create a new petition using this template."
-msgstr "Créer une nouvelle pétition en utilisant ce gabarit"
+msgstr "Créer une nouvelle pétition en utilisant ce gabarit."
 
 #: src/apps/presets/templates/presets/list.html:46
 msgid "Delete template"
@@ -1984,18 +1981,18 @@ msgstr ""
 
 #: src/apps/presets/views/edit.py:72
 msgid "You are not allowed to edit this template"
-msgstr "Vous n'êtes pas autorisé à modifier ce gabarit."
+msgstr "Vous n'êtes pas autorisé à modifier ce gabarit"
 
 #: src/apps/presets/views/fav.py:39
 msgid "You are not allowed to change this user's default template."
 msgstr ""
-"Vous n'êtes pas autorisé à modifier le gabarit par défaut de cet utilisateur"
+"Vous n'êtes pas autorisé à modifier le gabarit par défaut de cet utilisateur."
 
 #: src/apps/presets/views/new.py:65
 msgid "You are not allowed to view this organization dashboard."
 msgstr ""
 "Vous n'avez pas l'autorisation de visualiser le tableau de bord de cette "
-"organisation"
+"organisation."
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
@@ -2148,19 +2145,20 @@ msgid ""
 "(%(orgname)s)."
 msgstr ""
 "Erreur interne, impossible de trouver vos permissions dans cette "
-"organisation ('{orgname}')"
+"organisation (%(orgname)s)."
 
 #: src/apps/signatures/views/list.py:119
 msgid "You are not allowed to view signatures in this organization."
-msgstr "Vous n'avez pas les droits de voir les signatures de cette organisation"
+msgstr ""
+"Vous n'avez pas les droits de voir les signatures de cette organisation."
 
 #: src/apps/signatures/views/list.py:227 src/apps/signatures/views/list.py:268
 msgid "An error happened while trying to re-send confirmation emails."
-msgstr "Une erreur est survenue lors du renvoie des e-mails de confirmation"
+msgstr "Une erreur est survenue lors du renvoi des e-mails de confirmation."
 
 #: src/apps/signatures/views/list.py:231
 msgid "You successfully re-sent all confirmation emails."
-msgstr "Vous avez renvoyé avec succès tous les e-mails de confirmation"
+msgstr "Vous avez renvoyé avec succès tous les e-mails de confirmation."
 
 #: src/apps/signatures/views/list.py:239
 msgid "No signatures were selected for the requested action."
@@ -2170,16 +2168,16 @@ msgstr "Aucune signature n'a été sélectionnée pour l'action demandée."
 msgid "You don't have permission to delete some or all of selected signatures."
 msgstr ""
 "Vous n'avez pas la permission de supprimer toutes ou partie des signatures "
-"sélectionnées"
+"sélectionnées."
 
 #: src/apps/signatures/views/list.py:259
 msgid "You successfully deleted all selected signatures."
-msgstr "Vous avez supprimé toutes les signatures sélectionnées avec succès"
+msgstr "Vous avez supprimé toutes les signatures sélectionnées avec succès."
 
 #: src/apps/signatures/views/list.py:273
 msgid "You successfully re-sent all selected confirmation emails."
 msgstr ""
-"Vous avez renvoyé tous les e-mail de confirmation sélectionnés avec succès"
+"Vous avez renvoyé tous les e-mails de confirmation sélectionnés avec succès."
 
 #: src/apps/signatures/views/list.py:278
 msgid "Unknown action requested."
@@ -2199,7 +2197,7 @@ msgid ""
 "email in your Inbox, please have a look in your Spam box."
 msgstr ""
 "Nous vous remercions d'avoir signé cette pétition, un e-mail vous a été "
-"envoyé à votre adresse '{}' pour que vous puissiez confirmer votre "
+"envoyé à votre adresse %(email)s pour que vous puissiez confirmer votre "
 "signature.<br>Vous devrez cliquer sur le lien de confirmation dans cet e-"
 "mail.<br>Si vous ne trouvez pas l'e-mail dans votre boite de réception, "
 "regardez dans votre dossier spam/indésirable svp."
