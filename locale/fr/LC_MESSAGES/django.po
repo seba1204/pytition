@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:47+0100\n"
-"PO-Revision-Date: 2025-11-03 04:45+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-03 04:47+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/fr/>\n"
 "Language: fr\n"
@@ -1879,10 +1880,8 @@ msgstr "À qui appartient cette pétition ?"
 
 #. Translators: Petition template model name in models (admin interface)
 #: src/apps/presets/models/petition_template.py:95
-#, fuzzy
-#| msgid "Petition templates"
 msgid "Petition template"
-msgstr "Gabarits de pétition"
+msgstr "Gabarit de Pétition"
 
 #. Translators: Petition template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
