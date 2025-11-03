@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:54+0100\n"
+"POT-Creation-Date: 2025-11-03 05:58+0100\n"
 "PO-Revision-Date: 2025-11-03 04:57+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
@@ -89,6 +89,7 @@ msgid "Create a new petition"
 msgstr "Crie uma nova petição"
 
 #: src/apps/accounts/templates/accounts/base.html:18
+#: src/apps/core/templates/layouts/nav-useractions.html:34
 #: src/apps/organizations/templates/org/base.html:21
 msgid "New petition"
 msgstr "Nova petição"
@@ -217,6 +218,7 @@ msgid "Create a new organization"
 msgstr "Criar uma nova organização"
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
+#: src/apps/core/templates/layouts/nav-useractions.html:39
 msgid "New organization"
 msgstr "Nova organização"
 
@@ -413,14 +415,6 @@ msgstr "Página inicial"
 #: src/apps/core/templates/layouts/nav-useractions.html:20
 msgid "Your dashboard"
 msgstr "O seu painel de controlo"
-
-#: src/apps/core/templates/layouts/nav-useractions.html:34
-msgid "New Petition"
-msgstr "Nova petição"
-
-#: src/apps/core/templates/layouts/nav-useractions.html:39
-msgid "New Organization"
-msgstr "Nova organização"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:45
 msgid "Settings"
@@ -2154,6 +2148,12 @@ msgstr "italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "occitano"
+
+#~ msgid "New Petition"
+#~ msgstr "Nova petição"
+
+#~ msgid "New Organization"
+#~ msgstr "Nova organização"
 
 #~ msgid "E-Mail"
 #~ msgstr "E-mail"

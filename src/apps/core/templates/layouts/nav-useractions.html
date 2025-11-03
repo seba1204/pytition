@@ -31,12 +31,12 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url "petitions:new" %}">
             <span class="oi oi-plus"></span>
-            {% trans "New Petition" %}
+            {% trans "New petition" %}
           </a>
           {% if not settings.RESTRICT_ORG_CREATION or perms.petition.add_organization %}
             <a class="dropdown-item" href="{% url "org:create" %}">
               <span class="oi oi-plus"></span>
-              {% trans "New Organization" %}
+              {% trans "New organization" %}
             </a>
           {% endif %}
           <div class="dropdown-divider"></div>

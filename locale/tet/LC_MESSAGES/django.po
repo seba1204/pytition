@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:54+0100\n"
+"POT-Creation-Date: 2025-11-03 05:58+0100\n"
 "PO-Revision-Date: 2025-08-08 09:46+0000\n"
 "Last-Translator: lino costa <rosalino.costapereira@gmail.com>\n"
 "Language-Team: Tetum <https://weblate.framasoft.org/projects/pytition/"
@@ -90,6 +90,7 @@ msgid "Create a new petition"
 msgstr ""
 
 #: src/apps/accounts/templates/accounts/base.html:18
+#: src/apps/core/templates/layouts/nav-useractions.html:34
 #: src/apps/organizations/templates/org/base.html:21
 msgid "New petition"
 msgstr ""
@@ -218,6 +219,7 @@ msgid "Create a new organization"
 msgstr ""
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
+#: src/apps/core/templates/layouts/nav-useractions.html:39
 msgid "New organization"
 msgstr ""
 
@@ -409,14 +411,6 @@ msgstr ""
 
 #: src/apps/core/templates/layouts/nav-useractions.html:20
 msgid "Your dashboard"
-msgstr ""
-
-#: src/apps/core/templates/layouts/nav-useractions.html:34
-msgid "New Petition"
-msgstr ""
-
-#: src/apps/core/templates/layouts/nav-useractions.html:39
-msgid "New Organization"
 msgstr ""
 
 #: src/apps/core/templates/layouts/nav-useractions.html:45
