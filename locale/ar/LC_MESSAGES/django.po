@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:26+0100\n"
+"POT-Creation-Date: 2025-11-03 05:30+0100\n"
 "PO-Revision-Date: 2020-03-07 11:08+0000\n"
 "Last-Translator: ButterflyOfFire <butterflyoffire@protonmail.com>\n"
 "Language-Team: Arabic <https://weblate.framasoft.org/projects/pytition/"
@@ -1617,7 +1617,7 @@ msgstr ""
 
 #: src/apps/petitions/templates/petitions/list.html:123
 #, python-format
-msgid "Do you really want to delete petition \"%(title)s\""
+msgid "Do you really want to delete petition \"%(title)s\"?"
 msgstr ""
 
 #: src/apps/petitions/templates/petitions/new_step1.html:29
