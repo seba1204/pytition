@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-11-03 06:25+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Russian <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/ru/>\n"
 "Language: ru\n"
@@ -181,7 +181,7 @@ msgstr "Можно ли изменить разрешения?"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:176
 msgid "Validate those new permissions"
-msgstr "Подтвердите эти новые разрешения."
+msgstr "Подтвердите эти новые разрешения"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:177
 #: src/apps/core/templates/layouts/nav_dashboard.html:11
@@ -192,7 +192,7 @@ msgstr "Вернуться к панели управления"
 #: src/apps/accounts/templates/accounts/invitations.html:5
 msgid "Invitation"
 msgid_plural "Invitations"
-msgstr[0] ""
+msgstr[0] "Приглашение"
 msgstr[1] "Приглашения"
 msgstr[2] "Приглашения"
 
@@ -505,7 +505,7 @@ msgstr "Опубликовать"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:30
 msgid "Save your petition and publish it if it's ready"
-msgstr "Сохраните свою петицию и опубликуйте ее, когда она будет готова."
+msgstr "Сохраните свою петицию и опубликуйте ее, когда она будет готова"
 
 #: src/apps/core/templates/registration/login.html:7
 msgid "Please sign in"
@@ -588,15 +588,15 @@ msgstr ""
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
-msgstr "Вы должны установить конфигурацию INDEX_PAGE в настройках."
+msgstr "Вы должны установить конфигурацию INDEX_PAGE в настройках"
 
 #: src/apps/core/views/index.py:23
 msgid "You must set an INDEX_PAGE_USER config in your settings"
-msgstr "Вы должны установить конфигурацию INDEX_PAGE_USER в своих настройках."
+msgstr "Вы должны установить конфигурацию INDEX_PAGE_USER в своих настройках"
 
 #: src/apps/core/views/index.py:27
 msgid "You must set an INDEX_PAGE_ORGA config in your settings"
-msgstr "Вы должны установить конфигурацию INDEX_PAGE_ORGA в своих настройках."
+msgstr "Вы должны установить конфигурацию INDEX_PAGE_ORGA в своих настройках"
 
 #: src/apps/notifications/admin.py:9
 msgid "Send the confirmation email once again"
@@ -631,7 +631,7 @@ msgstr "Подтвердите свою подпись, перейдя по ук
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:12
 msgid "Thank you"
-msgstr "Спасибо."
+msgstr "Спасибо"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:13
 msgid "Now, in order to confirm your signature, you only need to click here :"
@@ -728,7 +728,7 @@ msgstr ""
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
 msgstr ""
-"Невозможно покинуть эту организацию, вы являетесь последним администратором."
+"Невозможно покинуть эту организацию, вы являетесь последним администратором"
 
 #: src/apps/organizations/views/leave.py:62
 msgid "Impossible to leave this organization, you are the last member"
@@ -777,12 +777,12 @@ msgstr "Организация не существует"
 #: src/apps/organizations/views/members/edit_perms.py:52
 #, python-format
 msgid "User '%(name)s' does not exist"
-msgstr "Пользователь «%(name)s » не существует."
+msgstr "Пользователь «%(name)s » не существует"
 
 #: src/apps/organizations/views/members/edit_perms.py:60
 #, python-format
 msgid "Organization '%(name)s' does not exist"
-msgstr "Организация «%(name)s » не существует."
+msgstr "Организация «%(name)s » не существует"
 
 #: src/apps/organizations/views/members/edit_perms.py:67
 #, python-format
@@ -800,28 +800,28 @@ msgstr "Внутренняя ошибка, этот член не имеет п�
 
 #: src/apps/organizations/views/members/set_perms.py:45
 msgid "You are not part of this organization"
-msgstr "Вы не являетесь членом этой организации."
+msgstr "Вы не являетесь членом этой организации"
 
 #: src/apps/organizations/views/members/set_perms.py:54
 msgid ""
 "Fatal error, you don't have permissions attached to you for this organization"
-msgstr "Фатальная ошибка, у вас нет прав доступа к этой организации."
+msgstr "Фатальная ошибка, у вас нет прав доступа к этой организации"
 
 #: src/apps/organizations/views/members/set_perms.py:63
 msgid "You are not allowed to modify this organization members' permissions"
-msgstr "Вы не имеете права изменять права членов этой организации."
+msgstr "Вы не имеете права изменять права членов этой организации"
 
 #: src/apps/organizations/views/members/set_perms.py:76
 #, python-format
 msgid "This user is not part of organization '%(orgname)s'"
-msgstr "Этот пользователь не является частью организации «%(orgname)s »."
+msgstr "Этот пользователь не является частью организации «%(orgname)s »"
 
 #: src/apps/organizations/views/members/set_perms.py:87
 msgid ""
 "Fatal error, this user does not have permissions attached for this "
 "organization"
 msgstr ""
-"Фатальная ошибка, у этого пользователя нет прав доступа к этой организации."
+"Фатальная ошибка, у этого пользователя нет прав доступа к этой организации"
 
 #: src/apps/organizations/views/members/set_perms.py:128
 msgid ""
@@ -852,7 +852,7 @@ msgstr "Только суперпользователи могут создав�
 #: src/apps/organizations/views/new.py:60
 #, python-format
 msgid "You successfully created organization '%(orgname)s'"
-msgstr "Вы успешно создали организацию «%(orgname)s »."
+msgstr "Вы успешно создали организацию «%(orgname)s »"
 
 #: src/apps/petitions/admin.py:22 src/apps/presets/admin.py:21
 msgid ""
@@ -866,7 +866,7 @@ msgstr ""
 #: src/apps/petitions/admin.py:26 src/apps/petitions/admin.py:27
 #: src/apps/presets/admin.py:25 src/apps/presets/admin.py:26
 msgid "Only used if gradient is selected"
-msgstr "Используется только в случае выбора градиента."
+msgstr "Используется только в случае выбора градиента"
 
 #: src/apps/petitions/admin.py:29 src/apps/presets/admin.py:28
 msgid ""
@@ -958,7 +958,7 @@ msgstr ""
 "Только при использовании метода подписки по электронной почте. Введите здесь "
 "синтаксис темы письма, который позволяет подписать кого-либо на рассылку "
 "новостей. Укажите {} там, где должен быть вставлен адрес электронной почты "
-"подписавшегося. Например: «ADD LIST_NAME {} SIGNER_NAME»."
+"подписавшегося. Например: «ADD LIST_NAME {} SIGNER_NAME»"
 
 #: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
 msgid ""
@@ -1140,7 +1140,7 @@ msgid ""
 "case of HTTP method"
 msgstr ""
 "Структура данных, которая должна быть отправлена для подписки кого-либо на "
-"информационный бюллетень в случае использования метода HTTP."
+"информационный бюллетень в случае использования метода HTTP"
 
 #: src/apps/petitions/admin.py:164 src/apps/presets/admin.py:163
 msgid ""
@@ -1148,7 +1148,7 @@ msgid ""
 "structure"
 msgstr ""
 "Название поля, которое должно содержать значение электронной почты в "
-"структуре данных PHP."
+"структуре данных PHP"
 
 #: src/apps/petitions/admin.py:168 src/apps/presets/admin.py:167
 msgid "HTTP URL for newsletter subscription"
@@ -1237,7 +1237,7 @@ msgstr "Цвет фона"
 
 #: src/apps/petitions/admin.py:243 src/apps/presets/admin.py:236
 msgid "Setup of the newsletter associated to the petition"
-msgstr "Настройка информационного бюллетеня, связанного с петицией."
+msgstr "Настройка информационного бюллетеня, связанного с петицией"
 
 #: src/apps/petitions/admin.py:265 src/apps/presets/admin.py:258
 msgid "Confirmation email setup"
@@ -1491,7 +1491,7 @@ msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] ""
+msgstr[0] "Уже <span id=\"nb-signatures\">%(count|localize)s</span> подпись."
 msgstr[1] "Уже <span id=\"nb-signatures\">%(count|localize)s</span> подписей."
 msgstr[2] "Уже <span id=\"nb-signatures\">%(count|localize)s</span> подписей."
 
@@ -1668,7 +1668,7 @@ msgstr "Подпишите!"
 #, python-format
 msgid "%(signature_number)s signature"
 msgid_plural "%(signature_number)s signatures"
-msgstr[0] ""
+msgstr[0] "%(signature_number)s подпись"
 msgstr[1] "%(signature_number)s подписи"
 msgstr[2] "%(signature_number)s подписи"
 
@@ -1678,7 +1678,7 @@ msgstr "У вас пока нет петиций."
 
 #: src/apps/petitions/templates/petitions/list.html:68
 msgid "This petition is moderated"
-msgstr "Эта петиция модерируется."
+msgstr "Эта петиция модерируется"
 
 #: src/apps/petitions/templates/petitions/list.html:76
 msgid "View petition"
@@ -1796,7 +1796,7 @@ msgstr "Слаг «{}» уже существует!"
 #: src/apps/petitions/views/slug/add.py:49
 #: src/apps/petitions/views/slug/delete.py:41
 msgid "You don't have the permission to modify petitions"
-msgstr "У вас нет прав на изменение петиций."
+msgstr "У вас нет прав на изменение петиций"
 
 #: src/apps/petitions/views/slug/delete.py:39
 msgid "Successful deletion of a slug"
@@ -1924,7 +1924,7 @@ msgstr "Название моего шаблона"
 
 #: src/apps/presets/templates/presets/new.html:43
 msgid "Each template must have a different name"
-msgstr "Каждый шаблон должен иметь свое название."
+msgstr "Каждый шаблон должен иметь свое название"
 
 #: src/apps/presets/views/edit.py:73
 msgid "You are not allowed to edit this template."
@@ -1949,7 +1949,7 @@ msgstr ""
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
-msgstr "У вас нет разрешения на создание шаблона в этой организации."
+msgstr "У вас нет разрешения на создание шаблона в этой организации"
 
 #: src/apps/presets/views/new.py:104
 msgid "You need to provide a template name."
@@ -2036,7 +2036,7 @@ msgstr "Подпишите подписавшихся на рассылку но
 #: src/apps/signatures/templates/signatures/data.html:49
 msgid "copy/paste the following text block into Sympa's mass-subscribe form"
 msgstr ""
-"Скопируйте/вставьте следующий блок текста в форму массовой подписки Sympa."
+"Скопируйте/вставьте следующий блок текста в форму массовой подписки Sympa"
 
 #: src/apps/signatures/templates/signatures/data.html:64
 msgid "Re-send selected confirmation e-mail"
