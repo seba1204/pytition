@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Occitan (Pytition)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:00+0100\n"
+"POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-11-03 04:57+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Occitan <https://translate.sebastienpont.fr/projects/pytition/"
@@ -288,6 +288,8 @@ msgid "Create an organization"
 msgstr "Crear una organizacion"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
+#, fuzzy
+#| msgid "Delete Account"
 msgid "Delete account"
 msgstr "Suprimir vòstre compte"
 
