@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:30+0100\n"
-"PO-Revision-Date: 2025-11-03 04:29+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-03 04:31+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Spanish <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/es/>\n"
 "Language: es\n"
@@ -1711,8 +1712,7 @@ msgid "Delete petition?"
 msgstr "¿Eliminar petición?"
 
 #: src/apps/petitions/templates/petitions/list.html:123
-#, fuzzy, python-format
-#| msgid "Do you really want to delete petition \"%(title)s\""
+#, python-format
 msgid "Do you really want to delete petition \"%(title)s\"?"
 msgstr "¿Realmente quieres eliminar la petición '%(title)s'?"
 
