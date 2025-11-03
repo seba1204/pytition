@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 09:29+0100\n"
 "PO-Revision-Date: 2025-11-03 08:55+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/sv/>\n"
 "Language: sv\n"
@@ -350,7 +350,7 @@ msgstr "Beskrivning av nyhetsbrevet"
 
 #: src/apps/consents/forms/newsletter.py:19
 msgid "HTTP data"
-msgstr ""
+msgstr "HTTP-data"
 
 #: src/apps/consents/forms/newsletter.py:24
 msgid "Email field name for HTTP subscription"
@@ -358,7 +358,7 @@ msgstr "E-postfältnamn för HTTP-prenumeration"
 
 #: src/apps/consents/forms/newsletter.py:27
 msgid "HTTP subscription URL"
-msgstr ""
+msgstr "HTTP-prenumerationsadress"
 
 #: src/apps/consents/forms/newsletter.py:30
 msgid "Mail subject template"
@@ -2180,15 +2180,15 @@ msgstr "Occitan"
 
 #: src/config/settings/django.py:179
 msgid "Russian"
-msgstr ""
+msgstr "Ryska"
 
 #: src/config/settings/django.py:180
 msgid "Japanese"
-msgstr ""
+msgstr "Japanska"
 
 #: src/config/settings/django.py:181
 msgid "Swedish"
-msgstr ""
+msgstr "Svenska"
 
 #, fuzzy
 #~| msgid "Organization Twitter handle"
