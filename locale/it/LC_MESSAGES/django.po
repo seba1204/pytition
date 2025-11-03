@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:30+0100\n"
-"PO-Revision-Date: 2025-11-03 04:31+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 04:45+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Italian <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/it/>\n"
 "Language: it\n"
@@ -258,7 +257,7 @@ msgstr "Dati personali"
 
 #: src/apps/accounts/templates/accounts/settings.html:23
 msgid "Change Password"
-msgstr "Modifica password"
+msgstr "Modifica Password"
 
 #: src/apps/accounts/templates/accounts/settings.html:35
 msgid "Delete your account"
@@ -715,12 +714,12 @@ msgstr "Impossibile rimuovere questo utente dall'organizzazione."
 #: src/apps/organizations/views/dashboard.py:41
 #, python-format
 msgid "This organization does not exist: %(orgname)s."
-msgstr "Questa organizzazione non esiste: %(orgname)s"
+msgstr "Questa organizzazione non esiste: %(orgname)s."
 
 #: src/apps/organizations/views/dashboard.py:52
 #, python-format
 msgid "You are not part of this organization: %(orgname)s."
-msgstr "Non fai parte dell'organizzazione %(orgname)s"
+msgstr "Non fai parte dell'organizzazione %(orgname)s."
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
@@ -1718,7 +1717,7 @@ msgstr "Eliminare petizione?"
 #: src/apps/petitions/templates/petitions/list.html:123
 #, python-format
 msgid "Do you really want to delete petition \"%(title)s\"?"
-msgstr "Sei sicuro di voler eliminare questa petizione \"%(title)s\""
+msgstr "Sei sicuro di voler eliminare questa petizione \"%(title)s\"?"
 
 #: src/apps/petitions/templates/petitions/new_step1.html:29
 #: src/apps/petitions/templates/petitions/new_step2.html:39
@@ -1944,7 +1943,7 @@ msgstr "I modelli di layout devono avere nomi diversi"
 
 #: src/apps/presets/views/edit.py:73
 msgid "You are not allowed to edit this template."
-msgstr "Non è consentito modificare questo modello"
+msgstr "Non è consentito modificare questo modello."
 
 #: src/apps/presets/views/fav.py:39
 msgid "You are not allowed to change this user's default template."
