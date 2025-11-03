@@ -6,6 +6,12 @@ authors = [
     { name = "Yann Sionneau", email = "yann@sionneau.net" },
     { name = "Sébastien PONT", email = "contact@spont.me" },
 ]
+
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "BSD 3-Clause" }
+
+
 dependencies = [
     "django>=5.2.7",
     "django-colorfield==0.10.1",
@@ -28,11 +34,6 @@ dependencies = [
     "rjsmin>=1.2.5",
     "cairosvg>=2.8.2",
 ]
-requires-python = ">=3.11"
-readme = "README.md"
-license = { text = "BSD 3-Clause" }
-
-
 [project.optional-dependencies]
 typecheck = [
     "django-stubs>=5.2.7",
@@ -41,6 +42,7 @@ typecheck = [
     "types-python-dateutil>=2.9.0.20251008",
     "pyright>=1.1.406",
 ]
+
 [tool.pytition.vendors]
 bootstrap = "4.3.1"
 open-iconic = "1.1.1"
@@ -57,7 +59,8 @@ distribution = false
 [tool.pdm.scripts]
 manage = "python manage.py"
 test-fast = "pdm run manage test apps --parallel auto --keepdb --noinput"
-graph = "pdm run manage graph_models accounts organizations petitions signatures presets moderation petition --group-models --verbose-names --inheritance --arrow-shape crow --output doc/er.svg"
+graph-models = "pdm run manage graph_models accounts organizations petitions signatures presets moderation petition --group-models --verbose-names --inheritance --arrow-shape crow --output doc/er.svg"
+graph-urls = "pdm run manage graph_urls --output doc/urls.mmd"
 
 [dependency-groups]
 dev = [
