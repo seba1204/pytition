@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
-"PO-Revision-Date: 2025-11-03 05:41+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 05:53+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
 "pytition/dev/pt/>\n"
 "Language: pt\n"
@@ -736,7 +735,7 @@ msgstr "Impossível sair desta organização, tu és o último membro"
 
 #: src/apps/organizations/views/members/add.py:43
 msgid "This user does not exist (any longer?)"
-msgstr "Este utilizador não existe (mais?)."
+msgstr "Este utilizador não existe (mais?)"
 
 #: src/apps/organizations/views/members/add.py:47
 msgid "This organization does not exist (any longer?)"
@@ -1358,7 +1357,7 @@ msgstr "Um permlink não pode estar vazio. Por favor, insira algo."
 #: src/apps/petitions/templates/petitions/admin/change_form.html:24
 #: src/apps/signatures/templates/signatures/change_form.html:23
 msgid "Home"
-msgstr "Página inicial"
+msgstr "Início"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:34
 #: src/apps/signatures/templates/signatures/change_form.html:33
@@ -1938,7 +1937,7 @@ msgid ""
 "('%(orgname)s')."
 msgstr ""
 "Erro interno, não é possível encontrar as suas permissões associadas a esta "
-"organização (%(orgname)s)."
+"organização (‘%(orgname)s’)."
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
