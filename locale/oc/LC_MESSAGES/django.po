@@ -3,9 +3,8 @@ msgstr ""
 "Project-Id-Version: Occitan (Pytition)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
-"PO-Revision-Date: 2025-11-03 05:41+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 05:53+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Occitan <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/oc/>\n"
 "Language: oc\n"
@@ -212,7 +211,7 @@ msgstr "Organizacions"
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
 msgid "Create a new organization"
-msgstr "Crear una organizacion"
+msgstr "Crear una organizacion novèla"
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
 #: src/apps/core/templates/layouts/nav-useractions.html:39
@@ -256,7 +255,7 @@ msgstr "Informacions personalas"
 
 #: src/apps/accounts/templates/accounts/settings.html:23
 msgid "Change Password"
-msgstr "Cambiar lo senhal"
+msgstr "Cambiar lo Senhal"
 
 #: src/apps/accounts/templates/accounts/settings.html:35
 msgid "Delete your account"
@@ -290,7 +289,7 @@ msgstr "Crear una organizacion"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
 msgid "Delete account"
-msgstr "Suprimir vòstre compte"
+msgstr "Suprimir compte"
 
 #: src/apps/accounts/templates/accounts/settings.html:134
 msgid ""
@@ -407,7 +406,7 @@ msgstr "Una plataforma per crear e signar de peticions."
 
 #: src/apps/core/templates/layouts/base.html:17
 msgid "Homepage"
-msgstr "Acuèlh"
+msgstr "Pagina d’acuèlh"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:20
 msgid "Your dashboard"
@@ -504,7 +503,7 @@ msgstr "Salvagardatz la peticion e publicatz-la s'es prèsta"
 
 #: src/apps/core/templates/registration/login.html:7
 msgid "Please sign in"
-msgstr "Connexion"
+msgstr "Mercés de vos connectar"
 
 #: src/apps/core/templates/registration/login.html:10
 msgid "Your username and password didn't match. Please try again."
