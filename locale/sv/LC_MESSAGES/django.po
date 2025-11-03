@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:30+0100\n"
+"POT-Creation-Date: 2025-11-03 05:47+0100\n"
 "PO-Revision-Date: 2025-11-03 02:21+0000\n"
 "Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 5.14\n"
 
 #. Translators: Name of a Pytition user in the admin interface
-#. Translators: Petition Template name field in models (admin interface)
+#. Translators: Petition template name field in models (admin interface)
 #: src/apps/accounts/admin.py:14
 #: src/apps/presets/models/petition_template.py:36
 msgid "Name"
@@ -186,8 +186,10 @@ msgid "Validate those new permissions"
 msgstr ""
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:177
-msgid "Return to dashboard"
-msgstr ""
+#: src/apps/core/templates/layouts/nav_dashboard.html:11
+#: src/apps/core/templates/layouts/nav_dashboard.html:15
+msgid "Back to dashboard"
+msgstr "Tillbaka till sammanställningen"
 
 #: src/apps/accounts/templates/accounts/invitations.html:5
 #, fuzzy
@@ -293,7 +295,8 @@ msgid "You are not part of any organization."
 msgstr "Du är inte med i den här organisationen"
 
 #: src/apps/accounts/templates/accounts/settings.html:118
-msgid "Create an Organization"
+#: src/apps/organizations/templates/org/create.html:6
+msgid "Create an organization"
 msgstr ""
 
 #: src/apps/accounts/templates/accounts/settings.html:126
@@ -489,11 +492,6 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/apps/core/templates/layouts/nav_dashboard.html:11
-#: src/apps/core/templates/layouts/nav_dashboard.html:15
-msgid "Back to dashboard"
-msgstr "Tillbaka till sammanställningen"
-
 #: src/apps/core/templates/layouts/wizard_layout.html:14
 msgid "Create a new petition!"
 msgstr "Skapa en ny petition!"
@@ -656,10 +654,6 @@ msgstr "Antal medlemmar"
 
 #: src/apps/organizations/forms.py:23
 msgid "This is an invalid Organization name. Please try something else."
-msgstr ""
-
-#: src/apps/organizations/templates/org/create.html:6
-msgid "Create an organization"
 msgstr ""
 
 #. Translators: This is the label for a button that submits a form to create a new organization.
@@ -1797,14 +1791,14 @@ msgstr ""
 msgid "To whom is this petition template?"
 msgstr ""
 
-#. Translators: Petition Template model name in models (admin interface)
+#. Translators: Petition template model name in models (admin interface)
 #: src/apps/presets/models/petition_template.py:95
 #, fuzzy
 #| msgid "Petition text"
-msgid "Petition Template"
+msgid "Petition template"
 msgstr "Petitionens brödtext"
 
-#. Translators: Petition Template model name plural in models (admin interface)
+#. Translators: Petition template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
 #, fuzzy
 #| msgid "Petition text"

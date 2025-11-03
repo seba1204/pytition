@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:30+0100\n"
+"POT-Creation-Date: 2025-11-03 05:47+0100\n"
 "PO-Revision-Date: 2025-11-03 04:45+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 5.14\n"
 
 #. Translators: Name of a Pytition user in the admin interface
-#. Translators: Petition Template name field in models (admin interface)
+#. Translators: Petition template name field in models (admin interface)
 #: src/apps/accounts/admin.py:14
 #: src/apps/presets/models/petition_template.py:36
 msgid "Name"
@@ -182,8 +182,10 @@ msgid "Validate those new permissions"
 msgstr "Valider ces nouvelles permissions"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:177
-msgid "Return to dashboard"
-msgstr "Retour au tableau de bord"
+#: src/apps/core/templates/layouts/nav_dashboard.html:11
+#: src/apps/core/templates/layouts/nav_dashboard.html:15
+msgid "Back to dashboard"
+msgstr "Retourner au tableau de bord"
 
 #: src/apps/accounts/templates/accounts/invitations.html:5
 msgid "Invitation"
@@ -285,7 +287,8 @@ msgid "You are not part of any organization."
 msgstr "Vous ne faites partie d'aucune organisation."
 
 #: src/apps/accounts/templates/accounts/settings.html:118
-msgid "Create an Organization"
+#: src/apps/organizations/templates/org/create.html:6
+msgid "Create an organization"
 msgstr "Créer une organisation"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
@@ -479,11 +482,6 @@ msgstr "Signaler"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/apps/core/templates/layouts/nav_dashboard.html:11
-#: src/apps/core/templates/layouts/nav_dashboard.html:15
-msgid "Back to dashboard"
-msgstr "Retourner au tableau de bord"
-
 #: src/apps/core/templates/layouts/wizard_layout.html:14
 msgid "Create a new petition!"
 msgstr "Créer une pétition !"
@@ -666,10 +664,6 @@ msgstr "Nombre de membres"
 #: src/apps/organizations/forms.py:23
 msgid "This is an invalid Organization name. Please try something else."
 msgstr "Nom d'organisation invalide, essayez autre chose."
-
-#: src/apps/organizations/templates/org/create.html:6
-msgid "Create an organization"
-msgstr "Créer une organisation"
 
 #. Translators: This is the label for a button that submits a form to create a new organization.
 #: src/apps/organizations/templates/org/create.html:15
@@ -1883,12 +1877,14 @@ msgstr "Quelque chose s'est mal passé pendant le transfert de cette pétition."
 msgid "To whom is this petition template?"
 msgstr "À qui appartient cette pétition ?"
 
-#. Translators: Petition Template model name in models (admin interface)
+#. Translators: Petition template model name in models (admin interface)
 #: src/apps/presets/models/petition_template.py:95
-msgid "Petition Template"
-msgstr "Gabarit de Pétition"
+#, fuzzy
+#| msgid "Petition templates"
+msgid "Petition template"
+msgstr "Gabarits de pétition"
 
-#. Translators: Petition Template model name plural in models (admin interface)
+#. Translators: Petition template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
 msgid "Petition Templates"
 msgstr "Gabarits de Pétition"
@@ -2205,6 +2201,15 @@ msgstr "Italien"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitan"
+
+#~ msgid "Return to dashboard"
+#~ msgstr "Retour au tableau de bord"
+
+#~ msgid "Create an Organization"
+#~ msgstr "Créer une organisation"
+
+#~ msgid "Petition Template"
+#~ msgstr "Gabarit de Pétition"
 
 #~ msgid "Forgot Your Password?"
 #~ msgstr "Mot de passe oublié ?"
