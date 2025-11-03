@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
 "PO-Revision-Date: 2025-11-03 02:21+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
 "pytition/depot-git/pt/>\n"
 "Language: pt\n"
@@ -781,10 +780,7 @@ msgstr "Você não faz parte desta organização"
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
-#, fuzzy, python-format
-#| msgid ""
-#| "Internal error, cannot find your permissions attached to this "
-#| "organization ('{orgname}')"
+#, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "('%(orgname)s')"
@@ -1445,17 +1441,12 @@ msgstr "Este modelo não pertence a si."
 
 #: src/apps/petitions/forms/creation_wizard.py:251
 #: src/apps/presets/views/new.py:61
-#, fuzzy
-#| msgid "Organization does not exist"
 msgid "Organization does not exist."
 msgstr "A organização não existe"
 
 #: src/apps/petitions/forms/creation_wizard.py:266
 #: src/apps/presets/views/new.py:74
-#, fuzzy, python-format
-#| msgid ""
-#| "Internal error, cannot find your permissions attached to this "
-#| "organization ('{orgname}')"
+#, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "('%(orgname)s')."
@@ -2051,8 +2042,6 @@ msgstr "Modelos de petições"
 
 #. Translators: Petition Template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
-#, fuzzy
-#| msgid "Petition templates"
 msgid "Petition Templates"
 msgstr "Modelos de petições"
 
@@ -2314,10 +2303,7 @@ msgid "You are not member of the following organization: %(orgname)s."
 msgstr "Não é membro da seguinte organização: &#x27;{}&#x27;"
 
 #: src/apps/signatures/views/list.py:110
-#, fuzzy, python-format
-#| msgid ""
-#| "Internal error, cannot find your permissions attached to this "
-#| "organization ('{orgname}')"
+#, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "(%(orgname)s)."
