@@ -102,8 +102,8 @@ html_context = {
 # --- i18n ---------------------------------------------------------------------
 # *.po files are located at docs/locale/<lang>/LC_MESSAGES/*.po
 locale_dirs = [str(Path(__file__).parent.parent / "locale")]
-gettext_compact = False  # one file par module
 gettext_uuid = True  # avoid name clashes
+gettext_compact = "messages"
 gettext_additional_targets = ["literal-block"]  # also translate les blocs de code
 
 # Default language
