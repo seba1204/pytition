@@ -105,3 +105,8 @@ venv.bak/
 .mypy_cache/
 
 typings/
+# Sphinx build artifacts
+docs/build/
+docs/_build/
+**/.doctrees/
+docs/locale/pot/.doctrees/
