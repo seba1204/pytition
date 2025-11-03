@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 09:29+0100\n"
-"PO-Revision-Date: 2025-11-03 06:25+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-03 08:55+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/sv/>\n"
 "Language: sv\n"
@@ -345,42 +345,32 @@ msgid "Does this petition have a newsletter?"
 msgstr "Har den här petitionen ett nyhetsbrev?"
 
 #: src/apps/consents/forms/newsletter.py:17
-#, fuzzy
-#| msgid "Twitter description"
 msgid "Newsletter description"
-msgstr "Beskrivning på Twitter"
+msgstr "Beskrivning av nyhetsbrevet"
 
 #: src/apps/consents/forms/newsletter.py:19
 msgid "HTTP data"
 msgstr ""
 
 #: src/apps/consents/forms/newsletter.py:24
-#, fuzzy
-#| msgid "This field is required for HTTP subscription."
 msgid "Email field name for HTTP subscription"
-msgstr "Detta fält är obligatoriskt för HTTP-prenumeration."
+msgstr "E-postfältnamn för HTTP-prenumeration"
 
 #: src/apps/consents/forms/newsletter.py:27
 msgid "HTTP subscription URL"
 msgstr ""
 
 #: src/apps/consents/forms/newsletter.py:30
-#, fuzzy
-#| msgid "Use template"
 msgid "Mail subject template"
-msgstr "Använd mall"
+msgstr "Mall för e-postämne"
 
 #: src/apps/consents/forms/newsletter.py:33
-#, fuzzy
-#| msgid "Email address"
 msgid "Mail from address"
-msgstr "E-postadress"
+msgstr "E-post från adress"
 
 #: src/apps/consents/forms/newsletter.py:37
-#, fuzzy
-#| msgid "Please provide the list admin address."
 msgid "Mail to (list admin) address"
-msgstr "Ange listadministratörens adress."
+msgstr "E-post till (lista admin) adress"
 
 #: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
 #: src/apps/presets/admin.py:179
@@ -388,22 +378,16 @@ msgid "Newsletter subscription method"
 msgstr "Metod för prenumeration på nyhetsbrev"
 
 #: src/apps/consents/forms/newsletter.py:47
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server host"
-msgstr "SMTP-serverns värdnamn"
+msgstr "SMTP-servervärd"
 
 #: src/apps/consents/forms/newsletter.py:53
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server username"
-msgstr "SMTP-serverns värdnamn"
+msgstr "SMTP-serverns användarnamn"
 
 #: src/apps/consents/forms/newsletter.py:59
-#, fuzzy
-#| msgid "SMTP password"
 msgid "SMTP server password"
-msgstr "Lösenord för SMTP"
+msgstr "SMTP-serverlösenord"
 
 #: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
