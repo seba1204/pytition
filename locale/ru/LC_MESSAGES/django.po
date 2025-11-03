@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:01+0100\n"
+"POT-Creation-Date: 2025-11-03 09:29+0100\n"
 "PO-Revision-Date: 2025-11-03 06:25+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Russian <https://translate.sebastienpont.fr/projects/pytition/"
@@ -346,43 +346,104 @@ msgstr "Ошибка: %(error)s"
 msgid "Does this petition have a newsletter?"
 msgstr "Есть ли у этой петиции информационный бюллетень?"
 
-#: src/apps/consents/forms/newsletter.py:40
+#: src/apps/consents/forms/newsletter.py:17
+#, fuzzy
+#| msgid "Twitter description"
+msgid "Newsletter description"
+msgstr "Описание в Twitter"
+
+#: src/apps/consents/forms/newsletter.py:19
+msgid "HTTP data"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:24
+#, fuzzy
+#| msgid "This field is required for HTTP subscription."
+msgid "Email field name for HTTP subscription"
+msgstr "Это поле является обязательным для подписки по протоколу HTTP."
+
+#: src/apps/consents/forms/newsletter.py:27
+msgid "HTTP subscription URL"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:30
+#, fuzzy
+#| msgid "Use template"
+msgid "Mail subject template"
+msgstr "Используйте шаблон"
+
+#: src/apps/consents/forms/newsletter.py:33
+#, fuzzy
+#| msgid "Email address"
+msgid "Mail from address"
+msgstr "Адрес электронной почты"
+
+#: src/apps/consents/forms/newsletter.py:37
+#, fuzzy
+#| msgid "Please provide the list admin address."
+msgid "Mail to (list admin) address"
+msgstr "Пожалуйста, укажите адрес администратора списка."
+
+#: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
+#: src/apps/presets/admin.py:179
+msgid "Newsletter subscription method"
+msgstr "Способ подписки на информационную рассылку"
+
+#: src/apps/consents/forms/newsletter.py:47
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server host"
+msgstr "Имя хоста SMTP-сервера"
+
+#: src/apps/consents/forms/newsletter.py:53
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server username"
+msgstr "Имя хоста SMTP-сервера"
+
+#: src/apps/consents/forms/newsletter.py:59
+#, fuzzy
+#| msgid "SMTP password"
+msgid "SMTP server password"
+msgstr "SMTP-пароль"
+
+#: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
 msgstr "Использовать TLS?"
 
-#: src/apps/consents/forms/newsletter.py:43
+#: src/apps/consents/forms/newsletter.py:66
 msgid "Use STARTTLS?"
 msgstr "Использовать STARTTLS?"
 
-#: src/apps/consents/forms/newsletter.py:62
-#: src/apps/consents/forms/newsletter.py:68
+#: src/apps/consents/forms/newsletter.py:85
+#: src/apps/consents/forms/newsletter.py:91
 msgid "You cannot select both TLS and STARTTLS."
 msgstr "Невозможно выбрать одновременно TLS и STARTTLS."
 
-#: src/apps/consents/forms/newsletter.py:82
+#: src/apps/consents/forms/newsletter.py:105
 #, python-format
 msgid "Port must be between 1 and %(max)d."
 msgstr "Порт должен быть в диапазоне от 1 до %(max)d."
 
-#: src/apps/consents/forms/newsletter.py:90
+#: src/apps/consents/forms/newsletter.py:113
 msgid "Port must be an integer."
 msgstr "Порт должен быть целым числом."
 
-#: src/apps/consents/forms/newsletter.py:102
+#: src/apps/consents/forms/newsletter.py:125
 msgid "This field is required for HTTP subscription."
 msgstr "Это поле является обязательным для подписки по протоколу HTTP."
 
-#: src/apps/consents/forms/newsletter.py:114
+#: src/apps/consents/forms/newsletter.py:137
 msgid "Provide either a subscription URL or HTTP data."
 msgstr "Предоставьте URL-адрес подписки или данные HTTP."
 
 #. Translators: Newsletter subscription - mail to address
-#: src/apps/consents/forms/newsletter.py:126
+#: src/apps/consents/forms/newsletter.py:149
 msgid "Please provide the list admin address."
 msgstr "Пожалуйста, укажите адрес администратора списка."
 
 #. Translators: Newsletter subscription - mail subject template
-#: src/apps/consents/forms/newsletter.py:135
+#: src/apps/consents/forms/newsletter.py:158
 msgid "Please provide the subscription subject template."
 msgstr "Пожалуйста, предоставьте шаблон темы подписки."
 
@@ -583,8 +644,8 @@ msgstr ""
 "инструмент является бесплатным программным обеспечением с открытым исходным "
 "кодом, вы также можете установить его на свой сервер! <br> Загрузите "
 "исходный код на <a href=\"https://github.com/pytition/pytition\">GitHub</a> "
-"<br> Документация доступна на <a href=\"https://pytition.readthedocs.io\""
-">ReadTheDocs</a>"
+"<br> Документация доступна на <a href=\"https://pytition.readthedocs."
+"io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -789,8 +850,8 @@ msgstr "Организация «%(name)s » не существует"
 msgid ""
 "The user '%(username)s' is not member of this organization (%(orgname)s)."
 msgstr ""
-"Пользователь «%(username)s » не является членом этой организации (%(orgname)"
-"s)."
+"Пользователь «%(username)s » не является членом этой организации "
+"(%(orgname)s)."
 
 #: src/apps/organizations/views/members/edit_perms.py:80
 msgid ""
@@ -884,8 +945,8 @@ msgid ""
 msgstr ""
 "Это описание петиции, которое будет отображаться при публикации в социальных "
 "сетях. Вы можете предварительно просмотреть его с помощью таких "
-"инструментов, как https://toolsaday.com/seo/open-graph "
-"(будьте осторожны с трекерами!)."
+"инструментов, как https://toolsaday.com/seo/open-graph (будьте осторожны с "
+"трекерами!)."
 
 #: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
 msgid ""
@@ -976,8 +1037,8 @@ msgid ""
 "administration, e.g.: sympa@NOM_LISTE.listes.vox.coop"
 msgstr ""
 "Только при использовании метода подписки по электронной почте. Адрес "
-"электронной почты для администрирования списка, например: "
-"sympa@NOM_LISTE.listes.vox.coop"
+"электронной почты для администрирования списка, например: sympa@NOM_LISTE."
+"listes.vox.coop"
 
 #: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
 msgid ""
@@ -1000,7 +1061,8 @@ msgstr ""
 
 #: src/apps/petitions/admin.py:93 src/apps/presets/admin.py:92
 msgid "E.g.: I want to receive updates or information from this organization."
-msgstr "Например: «Я хочу получать новости или информацию от этой организации»."
+msgstr ""
+"Например: «Я хочу получать новости или информацию от этой организации»."
 
 #: src/apps/petitions/admin.py:96 src/apps/presets/admin.py:95
 msgid ""
@@ -1165,10 +1227,6 @@ msgstr "Поле FROM для команды подписки на информа
 #: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:176
 msgid "TO field for newsletter subscription command"
 msgstr "Поле TO для команды подписки на информационную рассылку"
-
-#: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:179
-msgid "Newsletter subscription method"
-msgstr "Способ подписки на информационную рассылку"
 
 #: src/apps/petitions/admin.py:182
 #: src/apps/petitions/templates/petitions/edit.html:44
@@ -1358,7 +1416,8 @@ msgstr "Слуги"
 
 #: src/apps/petitions/models/slug.py:33
 msgid "A permalink cannot be empty. Please enter something."
-msgstr "Постоянная ссылка не может быть пустой. Пожалуйста, введите что-нибудь."
+msgstr ""
+"Постоянная ссылка не может быть пустой. Пожалуйста, введите что-нибудь."
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:24
 #: src/apps/signatures/templates/signatures/change_form.html:23
@@ -2137,25 +2196,37 @@ msgstr ""
 "по ссылке для подтверждения, указанной в письме.<br>Если вы не можете найти "
 "это письмо в папке «Входящие», посмотрите в папке «Спам»."
 
-#: src/config/settings/django.py:175
+#: src/config/settings/django.py:174
 msgid "English"
 msgstr "Английский"
 
-#: src/config/settings/django.py:176
+#: src/config/settings/django.py:175
 msgid "Spanish"
 msgstr "Испанский"
 
-#: src/config/settings/django.py:177
+#: src/config/settings/django.py:176
 msgid "French"
 msgstr "Французский"
 
-#: src/config/settings/django.py:178
+#: src/config/settings/django.py:177
 msgid "Italian"
 msgstr "Итальянский"
 
-#: src/config/settings/django.py:179
+#: src/config/settings/django.py:178
 msgid "Occitan"
 msgstr "Окситанский"
+
+#: src/config/settings/django.py:179
+msgid "Russian"
+msgstr ""
+
+#: src/config/settings/django.py:180
+msgid "Japanese"
+msgstr ""
+
+#: src/config/settings/django.py:181
+msgid "Swedish"
+msgstr ""
 
 #~ msgid "Error: {}"
 #~ msgstr "Ошибка: {}"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:01+0100\n"
+"POT-Creation-Date: 2025-11-03 09:29+0100\n"
 "PO-Revision-Date: 2025-11-03 06:25+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: German <https://translate.sebastienpont.fr/projects/pytition/"
@@ -344,43 +344,104 @@ msgstr "Fehler: %(error)s"
 msgid "Does this petition have a newsletter?"
 msgstr "Gibt es zu dieser Petition einen Newsletter?"
 
-#: src/apps/consents/forms/newsletter.py:40
+#: src/apps/consents/forms/newsletter.py:17
+#, fuzzy
+#| msgid "Twitter description"
+msgid "Newsletter description"
+msgstr "Twitter-Beschreibung"
+
+#: src/apps/consents/forms/newsletter.py:19
+msgid "HTTP data"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:24
+#, fuzzy
+#| msgid "This field is required for HTTP subscription."
+msgid "Email field name for HTTP subscription"
+msgstr "Dieses Feld ist für HTTP-Abonnements erforderlich."
+
+#: src/apps/consents/forms/newsletter.py:27
+msgid "HTTP subscription URL"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:30
+#, fuzzy
+#| msgid "Use template"
+msgid "Mail subject template"
+msgstr "Vorlage verwenden"
+
+#: src/apps/consents/forms/newsletter.py:33
+#, fuzzy
+#| msgid "Email address"
+msgid "Mail from address"
+msgstr "E-Mail-Adresse"
+
+#: src/apps/consents/forms/newsletter.py:37
+#, fuzzy
+#| msgid "Please provide the list admin address."
+msgid "Mail to (list admin) address"
+msgstr "Bitte geben Sie die Adresse des Listenadministrators an."
+
+#: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
+#: src/apps/presets/admin.py:179
+msgid "Newsletter subscription method"
+msgstr "Methode zum Abonnieren des Newsletters"
+
+#: src/apps/consents/forms/newsletter.py:47
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server host"
+msgstr "SMTP-Server-Hostname"
+
+#: src/apps/consents/forms/newsletter.py:53
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server username"
+msgstr "SMTP-Server-Hostname"
+
+#: src/apps/consents/forms/newsletter.py:59
+#, fuzzy
+#| msgid "SMTP password"
+msgid "SMTP server password"
+msgstr "SMTP-Passwort"
+
+#: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
 msgstr "TLS verwenden?"
 
-#: src/apps/consents/forms/newsletter.py:43
+#: src/apps/consents/forms/newsletter.py:66
 msgid "Use STARTTLS?"
 msgstr "STARTTLS verwenden?"
 
-#: src/apps/consents/forms/newsletter.py:62
-#: src/apps/consents/forms/newsletter.py:68
+#: src/apps/consents/forms/newsletter.py:85
+#: src/apps/consents/forms/newsletter.py:91
 msgid "You cannot select both TLS and STARTTLS."
 msgstr "Sie können nicht sowohl TLS als auch STARTTLS auswählen."
 
-#: src/apps/consents/forms/newsletter.py:82
+#: src/apps/consents/forms/newsletter.py:105
 #, python-format
 msgid "Port must be between 1 and %(max)d."
 msgstr "Der Port muss zwischen 1 und %(max)d liegen."
 
-#: src/apps/consents/forms/newsletter.py:90
+#: src/apps/consents/forms/newsletter.py:113
 msgid "Port must be an integer."
 msgstr "Der Port muss eine ganze Zahl sein."
 
-#: src/apps/consents/forms/newsletter.py:102
+#: src/apps/consents/forms/newsletter.py:125
 msgid "This field is required for HTTP subscription."
 msgstr "Dieses Feld ist für HTTP-Abonnements erforderlich."
 
-#: src/apps/consents/forms/newsletter.py:114
+#: src/apps/consents/forms/newsletter.py:137
 msgid "Provide either a subscription URL or HTTP data."
 msgstr "Geben Sie entweder eine Abonnement-URL oder HTTP-Daten an."
 
 #. Translators: Newsletter subscription - mail to address
-#: src/apps/consents/forms/newsletter.py:126
+#: src/apps/consents/forms/newsletter.py:149
 msgid "Please provide the list admin address."
 msgstr "Bitte geben Sie die Adresse des Listenadministrators an."
 
 #. Translators: Newsletter subscription - mail subject template
-#: src/apps/consents/forms/newsletter.py:135
+#: src/apps/consents/forms/newsletter.py:158
 msgid "Please provide the subscription subject template."
 msgstr "Bitte geben Sie die Vorlage für den Betreff des Abonnements an."
 
@@ -579,13 +640,12 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
-"<span style=\"color: red;font-weight: bold;\">Demonstrationswebsite "
-"(bitte KEINE echten Petitionen hier einstellen!)</span> <br /> Dieses Tool "
-"ist eine kostenlose Open-Source-Software, die Sie auch auf Ihrem Server "
-"installieren können! <br> Laden Sie den Quellcode auf <a href="
-"\"https://github.com/pytition/pytition\">GitHub</a> herunter. <br> Die "
-"Dokumentation finden Sie auf <a href=\"https://pytition.readthedocs.io\""
-">ReadTheDocs</a>"
+"<span style=\"color: red;font-weight: bold;\">Demonstrationswebsite (bitte "
+"KEINE echten Petitionen hier einstellen!)</span> <br /> Dieses Tool ist eine "
+"kostenlose Open-Source-Software, die Sie auch auf Ihrem Server installieren "
+"können! <br> Laden Sie den Quellcode auf <a href=\"https://github.com/"
+"pytition/pytition\">GitHub</a> herunter. <br> Die Dokumentation finden Sie "
+"auf <a href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -905,8 +965,8 @@ msgid ""
 "com/seo/open-graph (be aware of trackers!)."
 msgstr ""
 "Dies ist die Beschreibung der Petition, die beim Teilen in sozialen Medien "
-"angezeigt wird. Sie können eine Vorschau über Tools wie https://"
-"toolsaday.com/seo/open-graph anzeigen (achten Sie auf Tracker!)."
+"angezeigt wird. Sie können eine Vorschau über Tools wie https://toolsaday."
+"com/seo/open-graph anzeigen (achten Sie auf Tracker!)."
 
 #: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
 msgid ""
@@ -1053,7 +1113,8 @@ msgstr ""
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
 msgid "Check if you want to use your own Email SMTP account."
-msgstr "Überprüfen Sie, ob Sie Ihr eigenes E-Mail-SMTP-Konto verwenden möchten."
+msgstr ""
+"Überprüfen Sie, ob Sie Ihr eigenes E-Mail-SMTP-Konto verwenden möchten."
 
 #: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
 msgid "e.g.: petition@mydomain.tld"
@@ -1061,7 +1122,8 @@ msgstr "Beispiel: petition@mydomain.tld"
 
 #: src/apps/petitions/admin.py:112 src/apps/presets/admin.py:111
 msgid "If you don't have a real email account, leave 'localhost'."
-msgstr "Wenn Sie kein echtes E-Mail-Konto haben, lassen Sie „localhost” stehen."
+msgstr ""
+"Wenn Sie kein echtes E-Mail-Konto haben, lassen Sie „localhost” stehen."
 
 #: src/apps/petitions/admin.py:115 src/apps/presets/admin.py:114
 msgid ""
@@ -1185,10 +1247,6 @@ msgstr "FROM-Feld für den Befehl zum Abonnieren des Newsletters"
 #: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:176
 msgid "TO field for newsletter subscription command"
 msgstr "TO-Feld für den Befehl zum Abonnieren des Newsletters"
-
-#: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:179
-msgid "Newsletter subscription method"
-msgstr "Methode zum Abonnieren des Newsletters"
 
 #: src/apps/petitions/admin.py:182
 #: src/apps/petitions/templates/petitions/edit.html:44
@@ -1516,7 +1574,8 @@ msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] "Bereits <span id=\"nb-signatures\">%(count|localize)s</span> signature."
+msgstr[0] ""
+"Bereits <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgstr[1] ""
 "Bereits <span id=\"nb-signatures\">%(count|localize)s</span> Unterschriften."
 
@@ -1941,8 +2000,8 @@ msgid ""
 "across several petitions."
 msgstr ""
 "Mit einer Petitionsvorlage können Sie Standardwerte für zukünftige "
-"Petitionen festlegen. <br /> Beispielsweise möchten Sie vielleicht dasselbe E"
-"-Mail-SMTP-Konto für mehrere Petitionen wiederverwenden."
+"Petitionen festlegen. <br /> Beispielsweise möchten Sie vielleicht dasselbe "
+"E-Mail-SMTP-Konto für mehrere Petitionen wiederverwenden."
 
 #: src/apps/presets/templates/presets/new.html:36
 msgid "Template name"
@@ -2169,29 +2228,41 @@ msgid ""
 msgstr ""
 "Vielen Dank für Ihre Unterschrift unter dieser Petition. Wir haben Ihnen "
 "soeben eine E-Mail an Ihre Adresse %(email)s gesendet, um Ihre Unterschrift "
-"zu bestätigen.<br>Bitte klicken Sie auf den Bestätigungslink in der E-"
-"Mail.<br>Wenn Sie die E-Mail nicht in Ihrem Posteingang finden, sehen Sie "
-"bitte in Ihrem Spam-Ordner nach."
+"zu bestätigen.<br>Bitte klicken Sie auf den Bestätigungslink in der E-Mail."
+"<br>Wenn Sie die E-Mail nicht in Ihrem Posteingang finden, sehen Sie bitte "
+"in Ihrem Spam-Ordner nach."
 
-#: src/config/settings/django.py:175
+#: src/config/settings/django.py:174
 msgid "English"
 msgstr "Englisch"
 
-#: src/config/settings/django.py:176
+#: src/config/settings/django.py:175
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: src/config/settings/django.py:177
+#: src/config/settings/django.py:176
 msgid "French"
 msgstr "Französisch"
 
-#: src/config/settings/django.py:178
+#: src/config/settings/django.py:177
 msgid "Italian"
 msgstr "Italienisch"
 
-#: src/config/settings/django.py:179
+#: src/config/settings/django.py:178
 msgid "Occitan"
 msgstr "Okzitanisch"
+
+#: src/config/settings/django.py:179
+msgid "Russian"
+msgstr ""
+
+#: src/config/settings/django.py:180
+msgid "Japanese"
+msgstr ""
+
+#: src/config/settings/django.py:181
+msgid "Swedish"
+msgstr ""
 
 #~ msgid "Error: {}"
 #~ msgstr "Fehler: {}"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:01+0100\n"
+"POT-Creation-Date: 2025-11-03 09:29+0100\n"
 "PO-Revision-Date: 2025-11-03 06:25+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Japanese <https://translate.sebastienpont.fr/projects/"
@@ -298,8 +298,8 @@ msgid ""
 "Please, confirm you understand the risks by entering the following sentence "
 "in the validation field:"
 msgstr ""
-"警告：この操作を行うと、データは完全に削除されます。<br /> 以下の文を認証フィ"
-"ールドに入力し、リスクを理解していることを確認してください："
+"警告：この操作を行うと、データは完全に削除されます。<br /> 以下の文を認証"
+"フィールドに入力し、リスクを理解していることを確認してください："
 
 #: src/apps/accounts/templates/accounts/settings.html:152
 #: src/apps/petitions/templates/petitions/edit.html:327
@@ -340,43 +340,104 @@ msgstr "エラー:%(error)s"
 msgid "Does this petition have a newsletter?"
 msgstr "この請願書にはニュースレターはありますか？"
 
-#: src/apps/consents/forms/newsletter.py:40
+#: src/apps/consents/forms/newsletter.py:17
+#, fuzzy
+#| msgid "Twitter description"
+msgid "Newsletter description"
+msgstr "Twitterの説明文"
+
+#: src/apps/consents/forms/newsletter.py:19
+msgid "HTTP data"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:24
+#, fuzzy
+#| msgid "This field is required for HTTP subscription."
+msgid "Email field name for HTTP subscription"
+msgstr "このフィールドはHTTPサブスクリプションに必須です。"
+
+#: src/apps/consents/forms/newsletter.py:27
+msgid "HTTP subscription URL"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:30
+#, fuzzy
+#| msgid "Use template"
+msgid "Mail subject template"
+msgstr "テンプレートを使用する"
+
+#: src/apps/consents/forms/newsletter.py:33
+#, fuzzy
+#| msgid "Email address"
+msgid "Mail from address"
+msgstr "メールアドレス"
+
+#: src/apps/consents/forms/newsletter.py:37
+#, fuzzy
+#| msgid "Please provide the list admin address."
+msgid "Mail to (list admin) address"
+msgstr "リスト管理者のメールアドレスをご提供ください。"
+
+#: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
+#: src/apps/presets/admin.py:179
+msgid "Newsletter subscription method"
+msgstr "ニュースレター購読方法"
+
+#: src/apps/consents/forms/newsletter.py:47
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server host"
+msgstr "SMTPサーバーのホスト名"
+
+#: src/apps/consents/forms/newsletter.py:53
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server username"
+msgstr "SMTPサーバーのホスト名"
+
+#: src/apps/consents/forms/newsletter.py:59
+#, fuzzy
+#| msgid "SMTP password"
+msgid "SMTP server password"
+msgstr "SMTPパスワード"
+
+#: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
 msgstr "TLSを使用しますか？"
 
-#: src/apps/consents/forms/newsletter.py:43
+#: src/apps/consents/forms/newsletter.py:66
 msgid "Use STARTTLS?"
 msgstr "STARTTLSを使用しますか？"
 
-#: src/apps/consents/forms/newsletter.py:62
-#: src/apps/consents/forms/newsletter.py:68
+#: src/apps/consents/forms/newsletter.py:85
+#: src/apps/consents/forms/newsletter.py:91
 msgid "You cannot select both TLS and STARTTLS."
 msgstr "TLSとSTARTTLSの両方を選択することはできません。"
 
-#: src/apps/consents/forms/newsletter.py:82
+#: src/apps/consents/forms/newsletter.py:105
 #, python-format
 msgid "Port must be between 1 and %(max)d."
 msgstr "ポートは1から%(max)d の間でなければなりません。"
 
-#: src/apps/consents/forms/newsletter.py:90
+#: src/apps/consents/forms/newsletter.py:113
 msgid "Port must be an integer."
 msgstr "ポートは整数でなければなりません。"
 
-#: src/apps/consents/forms/newsletter.py:102
+#: src/apps/consents/forms/newsletter.py:125
 msgid "This field is required for HTTP subscription."
 msgstr "このフィールドはHTTPサブスクリプションに必須です。"
 
-#: src/apps/consents/forms/newsletter.py:114
+#: src/apps/consents/forms/newsletter.py:137
 msgid "Provide either a subscription URL or HTTP data."
 msgstr "サブスクリプションURLまたはHTTPデータのいずれかを提供してください。"
 
 #. Translators: Newsletter subscription - mail to address
-#: src/apps/consents/forms/newsletter.py:126
+#: src/apps/consents/forms/newsletter.py:149
 msgid "Please provide the list admin address."
 msgstr "リスト管理者のメールアドレスをご提供ください。"
 
 #. Translators: Newsletter subscription - mail subject template
-#: src/apps/consents/forms/newsletter.py:135
+#: src/apps/consents/forms/newsletter.py:158
 msgid "Please provide the subscription subject template."
 msgstr "購読件名テンプレートをご提供ください。"
 
@@ -533,7 +594,8 @@ msgstr "受信箱を確認してください。"
 msgid ""
 "We've emailed you instructions for setting your password. You should receive "
 "the email shortly!"
-msgstr "パスワード設定の手順をメールでお送りしました。すぐにメールが届くはずです！"
+msgstr ""
+"パスワード設定の手順をメールでお送りしました。すぐにメールが届くはずです！"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
 #: src/apps/core/templates/registration/password_reset_form.html:10
@@ -544,7 +606,8 @@ msgstr "パスワードをお忘れですか？"
 msgid ""
 "Enter your email address below, and we'll email instructions for setting a "
 "new one."
-msgstr "以下の欄にメールアドレスを入力してください。新しいパスワードの設定手順をメー"
+msgstr ""
+"以下の欄にメールアドレスを入力してください。新しいパスワードの設定手順をメー"
 "ルでお送りします。"
 
 #: src/apps/core/templates/registration/password_reset_form.html:15
@@ -570,11 +633,11 @@ msgid ""
 "io\">ReadTheDocs</a>"
 msgstr ""
 "<span style=\"color: red;font-weight: bold;\">デモ用ウェブサイト（実際の請願"
-"書は絶対に投稿しないでください！）</span> <br /> このツールは無料のオープンソ"
-"ースソフトウェアです。ご自身のサーバーにもインストール可能です！ <br> ソース"
-"コードは <a href=\"https://github.com/pytition/pytition\">GitHub</a> からダウ"
-"ンロードできます。 <br> ドキュメントは <a href="
-"\"https://pytition.readthedocs.io\">ReadTheDocs</a> で閲覧可能です"
+"書は絶対に投稿しないでください！）</span> <br /> このツールは無料のオープン"
+"ソースソフトウェアです。ご自身のサーバーにもインストール可能です！ <br> ソー"
+"スコードは <a href=\"https://github.com/pytition/pytition\">GitHub</a> からダ"
+"ウンロードできます。 <br> ドキュメントは <a href=\"https://pytition."
+"readthedocs.io\">ReadTheDocs</a> で閲覧可能です"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -679,7 +742,8 @@ msgstr "このメンバーの権限を編集する"
 msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission."
-msgstr "このメンバーを組織から削除することはできません。適切な権限がありません。"
+msgstr ""
+"このメンバーを組織から削除することはできません。適切な権限がありません。"
 
 #: src/apps/organizations/templates/org/member_list.html:18
 msgid "Remove this member from the organization."
@@ -707,7 +771,8 @@ msgstr "あなたは次の組織のメンバーではありません:%(orgname)s
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "(%(orgname)s)."
-msgstr "内部エラー：この組織（%(orgname)s ）に関連付けられた権限が見つかりません。"
+msgstr ""
+"内部エラー：この組織（%(orgname)s ）に関連付けられた権限が見つかりません。"
 
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
@@ -771,7 +836,8 @@ msgstr "組織「%(name)s 」は存在しません"
 #, python-format
 msgid ""
 "The user '%(username)s' is not member of this organization (%(orgname)s)."
-msgstr "ユーザー「%(username)s 」はこの組織（%(orgname)s ）のメンバーではありません。"
+msgstr ""
+"ユーザー「%(username)s 」はこの組織（%(orgname)s ）のメンバーではありません。"
 
 #: src/apps/organizations/views/members/edit_perms.py:80
 msgid ""
@@ -786,7 +852,8 @@ msgstr "あなたはこの組織の一員ではありません"
 #: src/apps/organizations/views/members/set_perms.py:54
 msgid ""
 "Fatal error, you don't have permissions attached to you for this organization"
-msgstr "致命的なエラーが発生しました。この組織に対する権限が割り当てられていません"
+msgstr ""
+"致命的なエラーが発生しました。この組織に対する権限が割り当てられていません"
 
 #: src/apps/organizations/views/members/set_perms.py:63
 msgid "You are not allowed to modify this organization members' permissions"
@@ -801,7 +868,8 @@ msgstr "このユーザーは組織「%(orgname)s 」に所属していません
 msgid ""
 "Fatal error, this user does not have permissions attached for this "
 "organization"
-msgstr "致命的なエラーが発生しました。このユーザーには、この組織に対する権限が付与さ"
+msgstr ""
+"致命的なエラーが発生しました。このユーザーには、この組織に対する権限が付与さ"
 "れていません"
 
 #: src/apps/organizations/views/members/set_perms.py:128
@@ -809,14 +877,16 @@ msgid ""
 "You cannot remove your ability to change permissions on this Organization "
 "because you are the only one left who can do this. Give the permission to "
 "someone else before removing yours."
-msgstr "この組織の権限変更権限を削除することはできません。あなただけが権限を変更でき"
+msgstr ""
+"この組織の権限変更権限を削除することはできません。あなただけが権限を変更でき"
 "る状態です。権限を削除する前に、他の誰かに権限を付与してください。"
 
 #: src/apps/organizations/views/members/set_perms.py:139
 msgid ""
 "You cannot remove your ability to change permissions on this Organization "
 "because you are the only member left."
-msgstr "この組織の権限変更権限を削除することはできません。あなたが唯一の残存メンバー"
+msgstr ""
+"この組織の権限変更権限を削除することはできません。あなたが唯一の残存メンバー"
 "であるためです。"
 
 #: src/apps/organizations/views/members/set_perms.py:145
@@ -837,7 +907,8 @@ msgid ""
 "This is a gradient color. If selected, the background color will be a "
 "gradient color. If not, the background color will be a monochrome background "
 "color."
-msgstr "これはグラデーションカラーです。選択すると背景色がグラデーションカラーになり"
+msgstr ""
+"これはグラデーションカラーです。選択すると背景色がグラデーションカラーになり"
 "ます。選択しない場合、背景色は単色の背景色になります。"
 
 #: src/apps/petitions/admin.py:26 src/apps/petitions/admin.py:27
@@ -849,7 +920,8 @@ msgstr "グラデーションが選択されている場合のみ使用されま
 msgid ""
 "Put a bullet point list of links, it will appear horizontally in the page "
 "footer."
-msgstr "箇条書きのリンクリストを配置すると、ページフッターに横並びで表示されます。"
+msgstr ""
+"箇条書きのリンクリストを配置すると、ページフッターに横並びで表示されます。"
 
 #: src/apps/petitions/admin.py:33 src/apps/presets/admin.py:32
 msgid ""
@@ -872,7 +944,8 @@ msgstr ""
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
 msgid ""
 "Allow to chose whether the newsletter subscription checkbox is shown or not."
-msgstr "ニュースレター購読のチェックボックスを表示するか否かを選択できるようにする。"
+msgstr ""
+"ニュースレター購読のチェックボックスを表示するか否かを選択できるようにする。"
 
 #: src/apps/petitions/admin.py:47 src/apps/presets/admin.py:46
 msgid ""
@@ -926,8 +999,8 @@ msgid ""
 "SIGNER_NAME’"
 msgstr ""
 "メール購読方式が使用されている場合のみ。ニュースレターへの購読登録を許可する"
-"件名の構文をここに記入してください。署名者のメールアドレスを挿入する箇所には{"
-"}を指定します。例：‘ADD LIST_NAME {} SIGNER_NAME’"
+"件名の構文をここに記入してください。署名者のメールアドレスを挿入する箇所には"
+"{}を指定します。例：‘ADD LIST_NAME {} SIGNER_NAME’"
 
 #: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
 msgid ""
@@ -942,15 +1015,17 @@ msgstr ""
 msgid ""
 "Only when EMAIL subscription method is used. Email addressfor list "
 "administration, e.g.: sympa@NOM_LISTE.listes.vox.coop"
-msgstr "メール購読方式が使用されている場合のみ。リスト管理用メールアドレス例：sympa@N"
-"OM_LISTE.listes.vox.coop"
+msgstr ""
+"メール購読方式が使用されている場合のみ。リスト管理用メールアドレス例："
+"sympa@NOM_LISTE.listes.vox.coop"
 
 #: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
 msgid ""
 "This selects the newsletter subscription method. It is either HTTP GET or "
 "POST or via sending EMAIL to the newsletter admin address."
-msgstr "ニュースレター購読方法を選択します。HTTP GETまたはPOST、もしくはニュースレタ"
-"ー管理者アドレスへのメール送信のいずれかです。"
+msgstr ""
+"ニュースレター購読方法を選択します。HTTP GETまたはPOST、もしくはニュースレ"
+"ター管理者アドレスへのメール送信のいずれかです。"
 
 #: src/apps/petitions/admin.py:88 src/apps/presets/admin.py:87
 msgid ""
@@ -984,8 +1059,8 @@ msgid ""
 "'Twitter Card' to the correct account. See https://developer.twitter.com/en/"
 "docs/tweets/optimize-with-cards/overview/summary"
 msgstr ""
-"組織のTwitterアカウントハンドル（@記号で始まる）。例：@RAP_Asso。これは「Twit"
-"terカード」を正しいアカウントに紐付けるために必要です。詳細は https://"
+"組織のTwitterアカウントハンドル（@記号で始まる）。例：@RAP_Asso。これは"
+"「Twitterカード」を正しいアカウントに紐付けるために必要です。詳細は https://"
 "developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary を"
 "参照してください"
 
@@ -999,7 +1074,8 @@ msgstr "例：petition@mydomain.tld"
 
 #: src/apps/petitions/admin.py:112 src/apps/presets/admin.py:111
 msgid "If you don't have a real email account, leave 'localhost'."
-msgstr "実際のメールアドレスをお持ちでない場合は「localhost」と入力してください。"
+msgstr ""
+"実際のメールアドレスをお持ちでない場合は「localhost」と入力してください。"
 
 #: src/apps/petitions/admin.py:115 src/apps/presets/admin.py:114
 msgid ""
@@ -1026,7 +1102,8 @@ msgstr ""
 msgid ""
 "Encrypted SMTP connection via STARTTLS, prefer TLS to this setting. Do not "
 "check both. The two settings are mutually exclusive."
-msgstr "STARTTLS経由の暗号化SMTP接続。この設定ではTLSを優先します。両方にチェックを入"
+msgstr ""
+"STARTTLS経由の暗号化SMTP接続。この設定ではTLSを優先します。両方にチェックを入"
 "れないでください。この2つの設定は排他的です。"
 
 #: src/apps/petitions/admin.py:134 src/apps/presets/admin.py:133
@@ -1093,7 +1170,8 @@ msgstr "この請願書はニュースレターに関連付けられています
 msgid ""
 "Data structure to be sent in order to subscribe someone to the newsletter in "
 "case of HTTP method"
-msgstr "HTTPメソッドの場合にニュースレター購読を登録するために送信されるデータ構造"
+msgstr ""
+"HTTPメソッドの場合にニュースレター購読を登録するために送信されるデータ構造"
 
 #: src/apps/petitions/admin.py:164 src/apps/presets/admin.py:163
 msgid ""
@@ -1116,10 +1194,6 @@ msgstr "ニュースレター購読コマンドのFROMフィールド"
 #: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:176
 msgid "TO field for newsletter subscription command"
 msgstr "ニュースレター購読コマンドの宛先フィールド"
-
-#: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:179
-msgid "Newsletter subscription method"
-msgstr "ニュースレター購読方法"
 
 #: src/apps/petitions/admin.py:182
 #: src/apps/petitions/templates/petitions/edit.html:44
@@ -1373,7 +1447,8 @@ msgstr "ありがとうございます！"
 msgid ""
 "Thank you for signing this petition! Your signature will be accounted for as "
 "soon as you click on the link in the e-mail we've just sent you."
-msgstr "この請願書への署名、ありがとうございます！お送りしたメール内のリンクをクリッ"
+msgstr ""
+"この請願書への署名、ありがとうございます！お送りしたメール内のリンクをクリッ"
 "クすると、すぐに署名が反映されます。"
 
 #: src/apps/petitions/templates/petitions/detail.html:91
@@ -1387,7 +1462,8 @@ msgstr "OK"
 msgid ""
 "Thank you for confirming your signature to this petition! Your signature is "
 "now accounted for. See you soon!"
-msgstr "この請願書への署名を確定していただきありがとうございます！あなたの署名は記録"
+msgstr ""
+"この請願書への署名を確定していただきありがとうございます！あなたの署名は記録"
 "されました。またお会いしましょう！"
 
 #: src/apps/petitions/templates/petitions/detail.html:128
@@ -1420,7 +1496,8 @@ msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
 "created it. Other visitors won't be able to see it."
-msgstr "この請願書はまだ公開されていません。作成者または作成組織のメンバーとしてログ"
+msgstr ""
+"この請願書はまだ公開されていません。作成者または作成組織のメンバーとしてログ"
 "インしているため、閲覧可能です。他の訪問者は閲覧できません。"
 
 #: src/apps/petitions/templates/petitions/detail.html:173
@@ -1435,7 +1512,8 @@ msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] "すでに<span id=\"nb-signatures\">%(count|localize)s</span> の署名が集まってい"
+msgstr[0] ""
+"すでに<span id=\"nb-signatures\">%(count|localize)s</span> の署名が集まってい"
 "ます。"
 
 #. Translators: label before the numeric goal value
@@ -1570,8 +1648,8 @@ msgid ""
 "permalink your petition can be accessible via a link like:"
 msgstr ""
 "パーマリンク（恒久リンク）とは、番号ではなく意味のある短いタイトルを含む見栄"
-"えの良いリンクで請願を共有できるようにする機能です。パーマリンクを使用すると"
-"、次のようなリンクで請願にアクセスできます："
+"えの良いリンクで請願を共有できるようにする機能です。パーマリンクを使用する"
+"と、次のようなリンクで請願にアクセスできます："
 
 #: src/apps/petitions/templates/petitions/edit.html:313
 msgid "Permalinks"
@@ -1763,7 +1841,8 @@ msgstr "不正なリクエストです。何か問題が発生しました。"
 msgid ""
 "Users are not allowed to transfer petitions to organizations on this "
 "instance."
-msgstr "このインスタンスでは、ユーザーが請願書を組織に転送することは許可されていませ"
+msgstr ""
+"このインスタンスでは、ユーザーが請願書を組織に転送することは許可されていませ"
 "ん。"
 
 #: src/apps/petitions/views/transfer.py:104
@@ -1802,7 +1881,8 @@ msgstr "テンプレート設定"
 
 #: src/apps/presets/templates/presets/list.html:19
 msgid "This is the default template. Click here to unmark it as default."
-msgstr "これはデフォルトのテンプレートです。デフォルト設定を解除するにはここをクリッ"
+msgstr ""
+"これはデフォルトのテンプレートです。デフォルト設定を解除するにはここをクリッ"
 "クしてください。"
 
 #: src/apps/presets/templates/presets/list.html:26
@@ -1869,7 +1949,8 @@ msgstr "このテンプレートの編集は許可されていません。"
 
 #: src/apps/presets/views/fav.py:39
 msgid "You are not allowed to change this user's default template."
-msgstr "このユーザーのデフォルトテンプレートを変更することは許可されていません。"
+msgstr ""
+"このユーザーのデフォルトテンプレートを変更することは許可されていません。"
 
 #: src/apps/presets/views/new.py:65
 msgid "You are not allowed to view this organization dashboard."
@@ -1880,7 +1961,8 @@ msgstr "この組織ダッシュボードを閲覧する権限がありません
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "('%(orgname)s')."
-msgstr "内部エラー：この組織（'%(orgname)s'）に関連付けられた権限が見つかりません。"
+msgstr ""
+"内部エラー：この組織（'%(orgname)s'）に関連付けられた権限が見つかりません。"
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
@@ -1969,7 +2051,8 @@ msgstr "署名者をニュースレターに登録する"
 
 #: src/apps/signatures/templates/signatures/data.html:49
 msgid "copy/paste the following text block into Sympa's mass-subscribe form"
-msgstr "以下のテキストブロックをSympaのmass-subscribeフォームにコピー＆ペーストしてく"
+msgstr ""
+"以下のテキストブロックをSympaのmass-subscribeフォームにコピー＆ペーストしてく"
 "ださい"
 
 #: src/apps/signatures/templates/signatures/data.html:64
@@ -2058,30 +2141,42 @@ msgid ""
 "to click on the confirmation link in the email.<br>If you cannot find the "
 "email in your Inbox, please have a look in your Spam box."
 msgstr ""
-"この請願書への署名ありがとうございます。署名確認のため、ご登録メールアドレス%"
-"(email)s 宛に確認メールを送信しました。メール内の確認リンクをクリックする必要"
-"があります。受信トレイにメールが見つからない場合は、迷惑メールフォルダをご確"
-"認ください。"
+"この請願書への署名ありがとうございます。署名確認のため、ご登録メールアドレ"
+"ス%(email)s 宛に確認メールを送信しました。メール内の確認リンクをクリックする"
+"必要があります。受信トレイにメールが見つからない場合は、迷惑メールフォルダを"
+"ご確認ください。"
 
-#: src/config/settings/django.py:175
+#: src/config/settings/django.py:174
 msgid "English"
 msgstr "英語"
 
-#: src/config/settings/django.py:176
+#: src/config/settings/django.py:175
 msgid "Spanish"
 msgstr "スペイン語"
 
-#: src/config/settings/django.py:177
+#: src/config/settings/django.py:176
 msgid "French"
 msgstr "フランス語"
 
-#: src/config/settings/django.py:178
+#: src/config/settings/django.py:177
 msgid "Italian"
 msgstr "イタリア語"
 
-#: src/config/settings/django.py:179
+#: src/config/settings/django.py:178
 msgid "Occitan"
 msgstr "オック語"
+
+#: src/config/settings/django.py:179
+msgid "Russian"
+msgstr ""
+
+#: src/config/settings/django.py:180
+msgid "Japanese"
+msgstr ""
+
+#: src/config/settings/django.py:181
+msgid "Swedish"
+msgstr ""
 
 #~ msgid "New Petition"
 #~ msgstr "新規請願"

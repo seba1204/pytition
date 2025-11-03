@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:01+0100\n"
+"POT-Creation-Date: 2025-11-03 09:29+0100\n"
 "PO-Revision-Date: 2025-11-03 06:25+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
@@ -344,43 +344,104 @@ msgstr "Fel: %(error)s"
 msgid "Does this petition have a newsletter?"
 msgstr "Har den här petitionen ett nyhetsbrev?"
 
-#: src/apps/consents/forms/newsletter.py:40
+#: src/apps/consents/forms/newsletter.py:17
+#, fuzzy
+#| msgid "Twitter description"
+msgid "Newsletter description"
+msgstr "Beskrivning på Twitter"
+
+#: src/apps/consents/forms/newsletter.py:19
+msgid "HTTP data"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:24
+#, fuzzy
+#| msgid "This field is required for HTTP subscription."
+msgid "Email field name for HTTP subscription"
+msgstr "Detta fält är obligatoriskt för HTTP-prenumeration."
+
+#: src/apps/consents/forms/newsletter.py:27
+msgid "HTTP subscription URL"
+msgstr ""
+
+#: src/apps/consents/forms/newsletter.py:30
+#, fuzzy
+#| msgid "Use template"
+msgid "Mail subject template"
+msgstr "Använd mall"
+
+#: src/apps/consents/forms/newsletter.py:33
+#, fuzzy
+#| msgid "Email address"
+msgid "Mail from address"
+msgstr "E-postadress"
+
+#: src/apps/consents/forms/newsletter.py:37
+#, fuzzy
+#| msgid "Please provide the list admin address."
+msgid "Mail to (list admin) address"
+msgstr "Ange listadministratörens adress."
+
+#: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
+#: src/apps/presets/admin.py:179
+msgid "Newsletter subscription method"
+msgstr "Metod för prenumeration på nyhetsbrev"
+
+#: src/apps/consents/forms/newsletter.py:47
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server host"
+msgstr "SMTP-serverns värdnamn"
+
+#: src/apps/consents/forms/newsletter.py:53
+#, fuzzy
+#| msgid "SMTP server hostname"
+msgid "SMTP server username"
+msgstr "SMTP-serverns värdnamn"
+
+#: src/apps/consents/forms/newsletter.py:59
+#, fuzzy
+#| msgid "SMTP password"
+msgid "SMTP server password"
+msgstr "Lösenord för SMTP"
+
+#: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
 msgstr "Vill du använda TLS?"
 
-#: src/apps/consents/forms/newsletter.py:43
+#: src/apps/consents/forms/newsletter.py:66
 msgid "Use STARTTLS?"
 msgstr "Vill du använda STARTTLS?"
 
-#: src/apps/consents/forms/newsletter.py:62
-#: src/apps/consents/forms/newsletter.py:68
+#: src/apps/consents/forms/newsletter.py:85
+#: src/apps/consents/forms/newsletter.py:91
 msgid "You cannot select both TLS and STARTTLS."
 msgstr "Du kan inte välja både TLS och STARTTLS."
 
-#: src/apps/consents/forms/newsletter.py:82
+#: src/apps/consents/forms/newsletter.py:105
 #, python-format
 msgid "Port must be between 1 and %(max)d."
 msgstr "Porten måste vara mellan 1 och %(max)d."
 
-#: src/apps/consents/forms/newsletter.py:90
+#: src/apps/consents/forms/newsletter.py:113
 msgid "Port must be an integer."
 msgstr "Porten måste vara ett heltal."
 
-#: src/apps/consents/forms/newsletter.py:102
+#: src/apps/consents/forms/newsletter.py:125
 msgid "This field is required for HTTP subscription."
 msgstr "Detta fält är obligatoriskt för HTTP-prenumeration."
 
-#: src/apps/consents/forms/newsletter.py:114
+#: src/apps/consents/forms/newsletter.py:137
 msgid "Provide either a subscription URL or HTTP data."
 msgstr "Ange antingen en prenumerations-URL eller HTTP-data."
 
 #. Translators: Newsletter subscription - mail to address
-#: src/apps/consents/forms/newsletter.py:126
+#: src/apps/consents/forms/newsletter.py:149
 msgid "Please provide the list admin address."
 msgstr "Ange listadministratörens adress."
 
 #. Translators: Newsletter subscription - mail subject template
-#: src/apps/consents/forms/newsletter.py:135
+#: src/apps/consents/forms/newsletter.py:158
 msgid "Please provide the subscription subject template."
 msgstr "Vänligen ange mallen för prenumerationens ämne."
 
@@ -576,12 +637,12 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
-"<span style=\"color: red;font-weight: bold;\">Demonstrationswebbplats "
-"(lägg INTE riktiga petitioner här!)</span> <br /> Detta verktyg är gratis "
-"och öppen källkod, du kan också installera det på din server! <br> Ladda ner "
+"<span style=\"color: red;font-weight: bold;\">Demonstrationswebbplats (lägg "
+"INTE riktiga petitioner här!)</span> <br /> Detta verktyg är gratis och "
+"öppen källkod, du kan också installera det på din server! <br> Ladda ner "
 "källkoden på <a href=\"https://github.com/pytition/pytition\">GitHub</a> "
-"<br> Dokumentation finns tillgänglig på <a href="
-"\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
+"<br> Dokumentation finns tillgänglig på <a href=\"https://pytition."
+"readthedocs.io\">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -728,7 +789,8 @@ msgstr ""
 
 #: src/apps/organizations/views/leave.py:62
 msgid "Impossible to leave this organization, you are the last member"
-msgstr "Det är omöjligt att lämna denna organisation, du är den sista medlemmen"
+msgstr ""
+"Det är omöjligt att lämna denna organisation, du är den sista medlemmen"
 
 #: src/apps/organizations/views/members/add.py:43
 msgid "This user does not exist (any longer?)"
@@ -886,8 +948,8 @@ msgid ""
 "tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)."
 msgstr ""
 "Bild som visas när den delas på sociala medier. Du kan förhandsgranska den "
-"med hjälp av verktyg som https://toolsaday.com/seo/open-graph "
-"(var uppmärksam på spårare!)."
+"med hjälp av verktyg som https://toolsaday.com/seo/open-graph (var "
+"uppmärksam på spårare!)."
 
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
 msgid ""
@@ -912,8 +974,8 @@ msgid ""
 "                    }"
 msgstr ""
 "Endast i fallet \"\n"
-"            "
-"\"prenumeration på nyhetsbrevet via HTTP POST- eller GET-metoder. \"\n"
+"            \"prenumeration på nyhetsbrevet via HTTP POST- eller GET-"
+"metoder. \"\n"
 "            \"Lägg in data som ska skickas här, med hjälp av Python-"
 "ordboksyntax. t.ex.: <br>\n"
 "                    {'_wpcf7': 21,<br>\n"
@@ -1020,8 +1082,8 @@ msgid ""
 "'Twitter Card' to the correct account. See https://developer.twitter.com/en/"
 "docs/tweets/optimize-with-cards/overview/summary"
 msgstr ""
-"Organisationens Twitter-konto, som börjar med symbolen '@'. Exempel: @"
-"RAP_Asso. Detta är nödvändigt för att kunna koppla 'Twitter Card' till rätt "
+"Organisationens Twitter-konto, som börjar med symbolen '@'. Exempel: "
+"@RAP_Asso. Detta är nödvändigt för att kunna koppla 'Twitter Card' till rätt "
 "konto. Se https://developer.twitter.com/en/docs/tweets/optimize-with-cards/"
 "overview/summary"
 
@@ -1155,10 +1217,6 @@ msgstr "FROM-fält för prenumeration på nyhetsbrev"
 #: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:176
 msgid "TO field for newsletter subscription command"
 msgstr "TO-fält för prenumeration på nyhetsbrev"
-
-#: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:179
-msgid "Newsletter subscription method"
-msgstr "Metod för prenumeration på nyhetsbrev"
 
 #: src/apps/petitions/admin.py:182
 #: src/apps/petitions/templates/petitions/edit.html:44
@@ -1478,7 +1536,8 @@ msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] "Redan <span id=\"nb-signatures\">%(count|localize)s</span> signatur."
+msgstr[0] ""
+"Redan <span id=\"nb-signatures\">%(count|localize)s</span> signatur."
 msgstr[1] ""
 "Redan <span id=\"nb-signatures\">%(count|localize)s</span> underskrifter."
 
@@ -1798,8 +1857,8 @@ msgid ""
 "You don't have the permission to transfer a petition from Organization "
 "%(org_name)s"
 msgstr ""
-"Du har inte behörighet att överföra en petition från organisationen. %"
-"(org_name)s"
+"Du har inte behörighet att överföra en petition från organisationen. "
+"%(org_name)s"
 
 #: src/apps/petitions/views/transfer.py:63
 msgid "You don't have the permission to transfer this petition."
@@ -1852,7 +1911,8 @@ msgstr "Mallinställningar"
 
 #: src/apps/presets/templates/presets/list.html:19
 msgid "This is the default template. Click here to unmark it as default."
-msgstr "Detta är standardmallen. Klicka här för att avmarkera den som standard."
+msgstr ""
+"Detta är standardmallen. Klicka här för att avmarkera den som standard."
 
 #: src/apps/presets/templates/presets/list.html:26
 msgid "Mark this template as default"
@@ -2114,25 +2174,37 @@ msgstr ""
 "måste klicka på bekräftelselänken i e-postmeddelandet.<br>Om du inte hittar "
 "e-postmeddelandet i din inkorg, titta i din skräppostmapp."
 
-#: src/config/settings/django.py:175
+#: src/config/settings/django.py:174
 msgid "English"
 msgstr "Engelska"
 
-#: src/config/settings/django.py:176
+#: src/config/settings/django.py:175
 msgid "Spanish"
 msgstr "Spanska"
 
-#: src/config/settings/django.py:177
+#: src/config/settings/django.py:176
 msgid "French"
 msgstr "Franska"
 
-#: src/config/settings/django.py:178
+#: src/config/settings/django.py:177
 msgid "Italian"
 msgstr "Italienska"
 
-#: src/config/settings/django.py:179
+#: src/config/settings/django.py:178
 msgid "Occitan"
 msgstr "Occitan"
+
+#: src/config/settings/django.py:179
+msgid "Russian"
+msgstr ""
+
+#: src/config/settings/django.py:180
+msgid "Japanese"
+msgstr ""
+
+#: src/config/settings/django.py:181
+msgid "Swedish"
+msgstr ""
 
 #, fuzzy
 #~| msgid "Organization Twitter handle"
