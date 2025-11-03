@@ -7,25 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
 "PO-Revision-Date: 2020-09-30 19:51+0000\n"
 "Last-Translator: Vincent Finance <linuxmario@linuxmario.net>\n"
 "Language-Team: Japanese <https://weblate.framasoft.org/projects/pytition/"
 "pytitions/ja/>\n"
-=======
-"POT-Creation-Date: 2025-11-02 23:36+0100\n"
-"PO-Revision-Date: 2025-11-03 02:10+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Japanese <https://translate.sebastienpont.fr/projects/"
-"pytition/depot-git/ja/>\n"
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 4.1\n"
 
 #. Translators: Name of a Pytition user in the admin interface
 #. Translators: Petition Template name field in models (admin interface)
@@ -1368,15 +1360,10 @@ msgstr ""
 msgid "Please correct the errors below."
 msgstr ""
 
-<<<<<<< HEAD
 #: src/apps/petitions/templates/petitions/detail.html:80
 #: src/apps/petitions/templates/petitions/detail.html:102
 #, fuzzy
 #| msgid "Thank you"
-=======
-#: src/apps/petitions/templates/petitions/detail.html:79
-#: src/apps/petitions/templates/petitions/detail.html:101
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgid "Thank you!"
 msgstr "ありがとうございます"
 
@@ -1927,13 +1914,15 @@ msgstr "メールアドレス *"
 
 #: src/apps/signatures/models/signature.py:18
 #: src/apps/signatures/templates/signatures/data.html:86
+#, fuzzy
 msgid "First name"
-msgstr "名 *"
+msgstr "名前"
 
 #: src/apps/signatures/models/signature.py:20
 #: src/apps/signatures/templates/signatures/data.html:87
+#, fuzzy
 msgid "Last name"
-msgstr "姓 *"
+msgstr "姓名"
 
 #: src/apps/signatures/models/signature.py:24
 msgid "Email address"

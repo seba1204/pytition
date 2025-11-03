@@ -7,25 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2025-11-03 03:12+0100\n"
 "PO-Revision-Date: 2021-04-25 21:15+0000\n"
 "Last-Translator: Berto Te <ateira@3fpj.com>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/pytition/"
 "pytitions/es/>\n"
-=======
-"POT-Creation-Date: 2025-11-02 23:36+0100\n"
-"PO-Revision-Date: 2025-11-03 02:10+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Spanish <https://translate.sebastienpont.fr/projects/pytition/"
-"depot-git/es/>\n"
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 4.5.1\n"
 
 #. Translators: Name of a Pytition user in the admin interface
 #. Translators: Petition Template name field in models (admin interface)
@@ -252,19 +244,12 @@ msgid "New organization"
 msgstr "Nueva organización"
 
 #: src/apps/accounts/templates/accounts/profile.html:5
-<<<<<<< HEAD
 #: src/apps/organizations/templates/org/profile.html:5
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
 #| "    %(name)s's profile\n"
 msgid "%(name)s\"s profile"
-=======
-#, python-format
-msgid ""
-"\n"
-"    %(name)s\"s profile\n"
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgstr ""
 "\n"
 "    Perfil de %(name)s\n"
@@ -658,6 +643,14 @@ msgid "Send me instructions!"
 msgstr "¡Envíame instrucciones!"
 
 #: src/apps/core/templates/ui/components/demo_text.html:3
+#, fuzzy
+#| msgid ""
+#| "<span style=\"color: red;font-weight: bold;\">Demonstration website "
+#| "(please DON'T put real petitions here!)</span><br/> This tool is free and "
+#| "open-source software, you can install it on your server too!<br> Download "
+#| "the source code on <a href=\"https://github.com/pytition/"
+#| "pytition\">GitHub</a><br> Documentation is available on <a href=\"https://"
+#| "pytition.readthedocs.io\">ReadTheDocs</a>"
 msgid ""
 "<span style=\"color: red;font-weight: bold;\">Demonstration website (please "
 "DON'T put real petitions here!)</span> <br /> This tool is free and open-"
@@ -669,10 +662,9 @@ msgstr ""
 "<span style = \"color: red; font-weight: bold;\"> Sitio web de demostración "
 "(¡NO pongas peticiones reales aquí!) </span> <br/> Esta herramienta es un "
 "software gratuito y de código abierto, puedes ¡instálelo también en su "
-"servidor! <br> Descargue el código fuente en <a href="
-"\"https://github.com/pytition/pytition\"> GitHub </a> <br> La documentación "
-"está disponible en <a href = \" https://pytition.readthedocs.io \"> "
-"ReadTheDocs </a>"
+"servidor! <br> Descargue el código fuente en <a href=\"https://github.com/"
+"pytition/pytition\"> GitHub </a> <br> La documentación está disponible en <a "
+"href = \" https://pytition.readthedocs.io \"> ReadTheDocs </a>"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -792,6 +784,10 @@ msgid "Members"
 msgstr "Miembros"
 
 #: src/apps/organizations/templates/org/member_list.html:13
+#, fuzzy
+#| msgid ""
+#| "You cannot edit this member's permissions, you don\\'t have the correct "
+#| "permission"
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission."
@@ -803,6 +799,10 @@ msgid "Edit this member's permissions"
 msgstr "Editar los permisos de este miembro"
 
 #: src/apps/organizations/templates/org/member_list.html:18
+#, fuzzy
+#| msgid ""
+#| "You cannot remove this member from the organization, you don\\'t have the "
+#| "correct permission"
 msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission."
@@ -818,26 +818,10 @@ msgstr "Eliminar a este miembro de la organización."
 msgid "Unable to remove this member from the organization."
 msgstr "No se puede eliminar a este miembro de la organización."
 
-<<<<<<< HEAD
 #: src/apps/organizations/views/dashboard.py:41
 #, fuzzy, python-format
 #| msgid "This organization does not exist: '{}'"
 msgid "This organization does not exist: '%(orgname)s'"
-=======
-#: src/apps/organizations/templates/org/profile.html:5
-#, python-format
-msgid ""
-"\n"
-"        %(name)s\"s profile\n"
-"    "
-msgstr ""
-"\n"
-"        Perfil de %(name)s\n"
-"    "
-
-#: src/apps/organizations/views/dashboard.py:40
-msgid "This organization does not exist: '{}'"
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgstr "Esta organización no existe: '{}'"
 
 #: src/apps/organizations/views/dashboard.py:52
@@ -1058,7 +1042,6 @@ msgstr ""
 "Permite elegir cuando la casilla de verificación de suscripción al boletín "
 "se muestra o no"
 
-<<<<<<< HEAD
 #: src/apps/petitions/admin.py:47 src/apps/presets/admin.py:46
 #, fuzzy
 #| msgid ""
@@ -1071,9 +1054,6 @@ msgstr ""
 #| "                    '_wpcf7_container_post': '5398',<br>\n"
 #| "                    'your-email': ''<br>\n"
 #| "                    }"
-=======
-#: src/apps/petitions/admin.py:47
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgid ""
 "Only in case \"\n"
 "            \"subscription to the newsletter via HTTP POST or GET methods. "
@@ -1202,16 +1182,11 @@ msgstr ""
 "web. Si no está marcada, solo los usuarios registrados pueden acceder a la "
 "petición, el resto recibirá un error 404."
 
-<<<<<<< HEAD
 #: src/apps/petitions/admin.py:93 src/apps/presets/admin.py:92
 #, fuzzy
 #| msgid ""
 #| "E.g.: I want to receive updates or informations from this organization."
 msgid "E.g.: I want to receive updates or information from this organization."
-=======
-#: src/apps/petitions/admin.py:93
-msgid "E.g.: I want to receive updates or informations from this organization"
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgstr ""
 "Es decir: deseo recibir actualizaciones o información de esta organización."
 
@@ -1296,13 +1271,10 @@ msgstr ""
 "excluyentes."
 
 #: src/apps/petitions/admin.py:129 src/apps/presets/admin.py:128
-<<<<<<< HEAD
 #, fuzzy
 #| msgid ""
 #| "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if "
 #| "possible. Don't check both. The 2 settings are mutually exclusive."
-=======
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgid ""
 "Encrypted SMTP connection via STARTTLS, prefer TLS to this setting. Do not "
 "check both. The two settings are mutually exclusive."
@@ -2043,20 +2015,12 @@ msgid "Delete petition?"
 msgstr "¿Eliminar petición?"
 
 #: src/apps/petitions/templates/petitions/list.html:123
-<<<<<<< HEAD
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
 #| "            Do you really want to delete petition '%(title)s'\n"
 #| "          "
 msgid "Do you really want to delete petition \"%(title)s\""
-=======
-#, python-format
-msgid ""
-"\n"
-"            Do you really want to delete petition \"%(title)s\"\n"
-"          "
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgstr ""
 "\n"
 "            ¿Realmente quieres eliminar la petición  '%(title)s'?\n"
@@ -2208,174 +2172,7 @@ msgstr "¡Petición transferida con éxito!"
 msgid "Something went wrong while transferring this petition."
 msgstr "Se produjo un error al transferir esta petición."
 
-<<<<<<< HEAD
 #: src/apps/presets/admin.py:207
-=======
-#: src/apps/presets/admin.py:21
-#, fuzzy
-#| msgid ""
-#| "This is a gradient color. If selected, the background color will be a "
-#| "gradient color. If not, the background color will be a monochrome "
-#| "background color."
-msgid ""
-"This is a gradient color. If selected, the background color will be "
-"agradient color. If not, the background color will be a monochromebackground "
-"color."
-msgstr ""
-"Este es un color degradado. Si se selecciona, el color de fondo será un "
-"color degradado. De lo contrario, el color de fondo será monocromático."
-
-#: src/apps/presets/admin.py:28
-#, fuzzy
-#| msgid ""
-#| "Put a bullet point list of links, it will appear horizontally in the page "
-#| "footer"
-msgid ""
-"Put a bullet point list of links, it will appear horizontally in thepage "
-"footer"
-msgstr ""
-"Ponga una lista de enlaces con puntos viñeta, aparecerá horizontalmente en "
-"el pie de página"
-
-#: src/apps/presets/admin.py:43
-#, fuzzy
-#| msgid ""
-#| "Allow to chose whether the newsletter subscription checkbox is shown or "
-#| "not"
-msgid ""
-"Allow to chose whether the newsletter subscription checkbox is shownor not"
-msgstr ""
-"Permite elegir cuando la casilla de verificación de suscripción al boletín "
-"se muestra o no"
-
-#: src/apps/presets/admin.py:46
-msgid ""
-"Only in case subscription\"\n"
-"            \"to the newsletter via HTTP POST or GET methods. Put here data "
-"to be sent,\"\n"
-"            \"using Python dictionary syntax. e.g.: <br>\n"
-"                    {'_wpcf7': 21,<br>\n"
-"                    '_wpcf7_version': '4.9',<br>\n"
-"                    '_wpcf7_locale': 'fr_FR',<br>\n"
-"                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-"                    '_wpcf7_container_post': '5398',<br>\n"
-"                    'your-email': ''<br>\n"
-"                    }"
-msgstr ""
-"Solo en caso de suscripción al boletín a través de los métodos HTTP POST o "
-"GET. Ponga aquí los datos que se enviarán, utilizando la sintaxis del "
-"diccionario Python. por ejemplo: <br>\n"
-"                    {'_wpcf7': 21,<br>\n"
-"                    '_wpcf7_version': '4.9',<br>\n"
-"                    '_wpcf7_locale': 'fr_FR',<br>\n"
-"                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
-"                    '_wpcf7_container_post': '5398',<br>\n"
-"                    'your-email': ''<br>\n"
-"                    }"
-
-#: src/apps/presets/admin.py:57
-#, fuzzy
-#| msgid ""
-#| "Only when HTTP POST or GET subscription method is used. Name of the field "
-#| "to send via GET or POST, containing the email address to subscribe. "
-#| "Following the example of preceding form field, that would be 'your-email'"
-msgid ""
-"Only when HTTP POST or GET subscription method is used. Name of thefield to "
-"send via GET or POST, containing the email address tosubscribe. Following "
-"the example of preceding form field, that wouldbe 'your-email'"
-msgstr ""
-"Solo cuando se utiliza el método de suscripción HTTP POST o GET. Nombre del "
-"campo para enviar por GET o POST, que contiene la dirección de correo "
-"electrónico para suscribirse. Siguiendo el ejemplo del campo de formulario "
-"anterior, sería 'tu-correo electrónico'"
-
-#: src/apps/presets/admin.py:63
-#, fuzzy
-#| msgid ""
-#| "Only when HTTP POST or GET subscription method is used. Adresse HTTP à "
-#| "requêter via GET ou POST pour enregistrer quelqu'un sur la newsletter"
-msgid ""
-"Only when HTTP POST or GET subscription method is used.Adresse HTTP à "
-"requêter via GET ou POST pour enregistrer quelqu'unsur la newsletter"
-msgstr ""
-"Solo cuando se utiliza el método de suscripción HTTP POST o GET. Dirección "
-"HTTP para solicitar a través de GET o POST para registrar a alguien para el "
-"boletín"
-
-#: src/apps/presets/admin.py:68
-#, fuzzy
-#| msgid ""
-#| "Only when EMAIL subscription method is used. Inscrire ici la syntaxe de "
-#| "sujet du mail qui permet d'inscrire quelqu'un à la newsletter. Indiquez "
-#| "{} à la place où le mail du signataire doit être inséré. Ex: 'ADD "
-#| "NOM_LISTE {} NOM_SIGNATAIRE'"
-msgid ""
-"Only when EMAIL subscription method is used. Inscrire ici la syntaxede sujet "
-"du mail qui permet d'inscrire quelqu'un à la newsletter.Indiquez {} à la "
-"place où le mail du signataire doit être inséré.Ex: 'ADD NOM_LISTE {} "
-"NOM_SIGNATAIRE'"
-msgstr ""
-"Solo cuando se utiliza el método de suscripción EMAIL. Introduzca aquí la "
-"sintaxis del asunto del correo electrónico que le permite suscribir a "
-"alguien al boletín. Indique {} dónde se debe insertar el correo electrónico "
-"del firmante. Ej: 'AGREGAR NOM_LISTE {} NOM_SIGNATAIRE'"
-
-#: src/apps/presets/admin.py:83
-#, fuzzy
-#| msgid ""
-#| "This selects the newsletter subscription method. It is either HTTP GET or "
-#| "POST or via sending EMAIL to the newsletter admin address"
-msgid ""
-"This selects the newsletter subscription method. It is either HTTP GETor "
-"POST or via sending EMAIL to the newsletter admin address"
-msgstr ""
-"Esto selecciona el método de suscripción al boletín. Es HTTP GET o POST o "
-"mediante el envío de EMAIL a la dirección de administración del boletín"
-
-#: src/apps/presets/admin.py:92
-#, fuzzy
-#| msgid ""
-#| "E.g.: I want to receive updates or informations from this organization."
-msgid "E.g.: I want to receive updates or informations from thisorganization."
-msgstr ""
-"Es decir: deseo recibir actualizaciones o información de esta organización."
-
-#: src/apps/presets/admin.py:101
-#, fuzzy
-#| msgid ""
-#| "The twitter account handle of the organization, starting with the '@' "
-#| "symbol. E.g.: @RAP_Asso. This is necessary in order to attribute the "
-#| "'Twitter Card' to the correct account. See https://developer.twitter.com/"
-#| "en/docs/tweets/optimize-with-cards/overview/summary"
-msgid ""
-"The twitter account handle of the organization, starting with the '@'symbol. "
-"E.g.: @RAP_Asso. This is necessary in order to attribute the'Twitter Card' "
-"to the correct account. Seehttps://developer.twitter.com/en/docs/tweets/"
-"optimize-with-cards/overview/summary"
-msgstr ""
-"El identificador de la cuenta de Twitter de la organización, comenzando con "
-"el símbolo '@'. Por ejemplo: @RAP_Asso. Esto es necesario para atribuir la "
-"'Tarjeta de Twitter' a la cuenta correcta. Ver https://developer.twitter.com/"
-"en/docs/tweets/optimize-with-cards/overview/summary"
-
-#: src/apps/presets/admin.py:133
-msgid "Petition template name"
-msgstr "Nombre de plantilla de petición"
-
-#: src/apps/presets/admin.py:157
-#, fuzzy
-#| msgid ""
-#| "Name of the field which should contain the email value in the PHP data "
-#| "structure"
-msgid ""
-"Name of the field which should contain the email value in the PHP "
-"datastructure"
-msgstr ""
-"Nombre del campo que debe contener el valor del correo electrónico en la "
-"estructura de datos PHP"
-
-#: src/apps/presets/admin.py:201
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgid "To whom is this petition template?"
 msgstr "¿Para quién es esta plantilla de petición?"
 
@@ -2386,14 +2183,10 @@ msgstr "¿Para quién es esta plantilla de petición?"
 msgid "Petition Template"
 msgstr "Plantillas de petición"
 
-<<<<<<< HEAD
 #. Translators: Petition Template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
 #, fuzzy
 #| msgid "Petition templates"
-=======
-#: src/apps/presets/models/petition_template.py:94
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgid "Petition Templates"
 msgstr "Plantillas de petición"
 
@@ -2453,7 +2246,6 @@ msgstr "Crear una plantilla de petición"
 msgid "Beware, you are creating a template, not a petition!"
 msgstr "¡Cuidado, estás creando una plantilla, no una petición!"
 
-<<<<<<< HEAD
 #: src/apps/presets/templates/presets/new.html:20
 #, fuzzy
 #| msgid ""
@@ -2463,9 +2255,6 @@ msgstr "¡Cuidado, estás creando una plantilla, no una petición!"
 #| "                          For instance you might want to re-use the same "
 #| "e-mail SMTP account accross several petitions.</p>\n"
 #| "                      "
-=======
-#: src/apps/presets/templates/presets/new.html:19
->>>>>>> 406027fb725094b6dec9725d3a850d185fe30ddc
 msgid ""
 "A petition template allows you to put default values for future petitions. "
 "<br /> For instance you might want to re-use the same e-mail SMTP account "
