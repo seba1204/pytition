@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
-"PO-Revision-Date: 2025-11-03 05:41+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 06:25+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Japanese <https://translate.sebastienpont.fr/projects/"
 "pytition/dev/ja/>\n"
 "Language: ja\n"
@@ -24,56 +23,49 @@ msgstr ""
 #. Translators: Petition template name field in models (admin interface)
 #: src/apps/accounts/admin.py:14
 #: src/apps/presets/models/petition_template.py:36
-#, fuzzy
 msgid "Name"
-msgstr "名前"
+msgstr "名称"
 
 #: src/apps/accounts/forms/create.py:45
 msgid "Wrong answer"
-msgstr ""
+msgstr "間違った答え"
 
 #: src/apps/accounts/forms/delete.py:15
 #: src/apps/accounts/templates/accounts/settings.html:141
 msgid "DROP MY ACCOUNT"
-msgstr ""
+msgstr "アカウントを削除"
 
 #: src/apps/accounts/forms/delete.py:19
 msgid "You miss-typed the validation code"
-msgstr ""
+msgstr "認証コードの入力が間違っています"
 
 #: src/apps/accounts/models/permission.py:13
 msgid "Organization related to these permissions"
-msgstr ""
+msgstr "これらの権限に関連する組織"
 
 #: src/apps/accounts/models/permission.py:18
 msgid "User related to these permissions"
-msgstr ""
+msgstr "これらの権限に関連するユーザー"
 
 #: src/apps/accounts/models/permission.py:36
 msgid "Permission"
-msgstr ""
+msgstr "許可"
 
 #: src/apps/accounts/models/permission.py:37
-#, fuzzy
-#| msgid "Petitions"
 msgid "Permissions"
-msgstr "請願"
+msgstr "権限"
 
 #: src/apps/accounts/models/pytition_user.py:27
 msgid "Default petition template"
-msgstr ""
+msgstr "デフォルトの請願書テンプレート"
 
 #: src/apps/accounts/models/pytition_user.py:35
-#, fuzzy
-#| msgid "Petitions"
 msgid "Pytition User"
-msgstr "請願"
+msgstr "Pytitionユーザー"
 
 #: src/apps/accounts/models/pytition_user.py:36
-#, fuzzy
-#| msgid "Petition settings"
 msgid "Pytition Users"
-msgstr "請願設定"
+msgstr "Pytitionユーザー"
 
 #: src/apps/accounts/services.py:44 src/apps/accounts/views/profile.py:41
 #: src/apps/organizations/views/invitations/accept.py:45
@@ -84,7 +76,7 @@ msgstr "請願設定"
 #: src/apps/organizations/views/leave.py:48
 #: src/apps/organizations/views/profile.py:41
 msgid "not found"
-msgstr ""
+msgstr "not found"
 
 #: src/apps/accounts/templates/accounts/base.html:12
 #: src/apps/organizations/templates/org/base.html:18
@@ -93,9 +85,8 @@ msgstr "請願"
 
 #: src/apps/accounts/templates/accounts/base.html:18
 #: src/apps/petitions/templates/petitions/list.html:16
-#, fuzzy
 msgid "Create a new petition"
-msgstr "新規請願を作成"
+msgstr "新しい請願書を作成する"
 
 #: src/apps/accounts/templates/accounts/base.html:18
 #: src/apps/core/templates/layouts/nav-useractions.html:34
@@ -105,172 +96,165 @@ msgstr "新しい請願"
 
 #: src/apps/accounts/templates/accounts/base.html:26
 #: src/apps/organizations/templates/org/base.html:30
-#, fuzzy
 msgid "Petition templates"
-msgstr "請願のテンプレート"
+msgstr "請願書テンプレート"
 
 #: src/apps/accounts/templates/accounts/base.html:31
 #: src/apps/organizations/templates/org/base.html:35
-#, fuzzy
 msgid "Create a new petition template"
-msgstr "新規請願のテンプレートを作成する"
+msgstr "新しい請願書テンプレートを作成する"
 
 #: src/apps/accounts/templates/accounts/base.html:31
 #: src/apps/organizations/templates/org/base.html:35
-#, fuzzy
 msgid "New template"
-msgstr "新規テンプレート"
+msgstr "新しいテンプレート"
 
 #: src/apps/accounts/templates/accounts/base.html:40
 msgid "Your public profile"
-msgstr ""
+msgstr "あなたの公開プロフィール"
 
 #: src/apps/accounts/templates/accounts/dashboard.html:3
 msgid "Your petitions"
-msgstr ""
+msgstr "あなたの請願書"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:8
 #, python-format
 msgid "%(org)s: permissions of member %(member)s"
-msgstr ""
+msgstr "%(org)s: メンバーの権限%(member)s"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:15
 msgid "Permission name"
-msgstr ""
+msgstr "権限名"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:16
 msgid "Authorized?"
-msgstr ""
+msgstr "認証済み？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:20
 msgid "Can remove member?"
-msgstr ""
+msgstr "メンバーを削除できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:33
 msgid "Can invite new members?"
-msgstr ""
+msgstr "新規メンバーを招待できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:46
 msgid "Can create petitions?"
-msgstr ""
+msgstr "請願書を作成できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:59
 msgid "Can modify petitions?"
-msgstr ""
+msgstr "請願書は編集できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:72
 msgid "Can delete petitions?"
-msgstr ""
+msgstr "請願を削除できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:85
 msgid "Can create petition templates?"
-msgstr ""
+msgstr "請願書のテンプレートを作成できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:98
 msgid "Can modify petition templates?"
-msgstr ""
+msgstr "請願書のテンプレートを変更できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:111
 msgid "Can delete petition templates?"
-msgstr ""
+msgstr "請願書のテンプレートを削除できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:124
 msgid "Can view signatures?"
-msgstr ""
+msgstr "署名を閲覧できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:137
 msgid "Can modify signatures?"
-msgstr ""
+msgstr "署名を修正できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:150
 msgid "Can delete signatures?"
-msgstr ""
+msgstr "署名を削除できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:163
 msgid "Can modify permissions?"
-msgstr ""
+msgstr "権限を変更できますか？"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:176
 msgid "Validate those new permissions"
-msgstr ""
+msgstr "これらの新しい権限を確認してください"
 
 #: src/apps/accounts/templates/accounts/edit_permissions.html:177
 #: src/apps/core/templates/layouts/nav_dashboard.html:11
 #: src/apps/core/templates/layouts/nav_dashboard.html:15
-#, fuzzy
 msgid "Back to dashboard"
 msgstr "ダッシュボードに戻る"
 
 #: src/apps/accounts/templates/accounts/invitations.html:5
 msgid "Invitation"
 msgid_plural "Invitations"
-msgstr[0] ""
+msgstr[0] "招待状"
 
 #: src/apps/accounts/templates/accounts/invitations.html:21
 #, python-format
 msgid "You are invited to <strong>&nbsp;%(orgname)s</strong>"
-msgstr ""
+msgstr "ご招待いたします<strong>&nbsp;%(orgname)s</strong>"
 
 #: src/apps/accounts/templates/accounts/invitations.html:27
 msgid "Join"
-msgstr ""
+msgstr "参加する"
 
 #: src/apps/accounts/templates/accounts/invitations.html:31
 msgid "Dismiss"
-msgstr ""
+msgstr "閉じる"
 
 #: src/apps/accounts/templates/accounts/org_list.html:5
 #: src/apps/accounts/templates/accounts/settings.html:29
 #: src/apps/accounts/templates/accounts/settings.html:74
 msgid "Organizations"
-msgstr ""
+msgstr "組織"
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
 msgid "Create a new organization"
-msgstr ""
+msgstr "新しい組織を作成する"
 
 #: src/apps/accounts/templates/accounts/org_list.html:11
 #: src/apps/core/templates/layouts/nav-useractions.html:39
 msgid "New organization"
-msgstr ""
+msgstr "新組織"
 
 #: src/apps/accounts/templates/accounts/profile.html:5
 #: src/apps/organizations/templates/org/profile.html:5
 #, python-format
 msgid "%(name)s\"s profile"
-msgstr ""
+msgstr "%(name)s\"s profile"
 
 #: src/apps/accounts/templates/accounts/profile.html:24
 #: src/apps/core/templates/core/index.html:32
 #: src/apps/organizations/templates/org/profile.html:24
-#, fuzzy
 msgid "Last Created"
-msgstr "作成"
+msgstr "最終作成日"
 
 #: src/apps/accounts/templates/accounts/profile.html:27
 #: src/apps/core/templates/core/index.html:35
 #: src/apps/organizations/templates/org/profile.html:27
-#, fuzzy
 msgid "First Created"
-msgstr "名前"
+msgstr "初出"
 
 #: src/apps/accounts/templates/accounts/profile.html:30
 msgid "This user has not created any petition yet."
-msgstr ""
+msgstr "このユーザーはまだ署名活動を作成していません。"
 
 #: src/apps/accounts/templates/accounts/register.html:15
 msgid "Register"
-msgstr ""
+msgstr "登録"
 
 #: src/apps/accounts/templates/accounts/settings.html:11
-#, fuzzy
 msgid "Personal Settings"
-msgstr "設定"
+msgstr "個人設定"
 
 #: src/apps/accounts/templates/accounts/settings.html:17
 #: src/apps/accounts/templates/accounts/settings.html:44
 msgid "Personal Information"
-msgstr ""
+msgstr "個人情報"
 
 #: src/apps/accounts/templates/accounts/settings.html:23
 msgid "Change Password"
@@ -281,9 +265,8 @@ msgid "Delete your account"
 msgstr "自分のアカウントを削除"
 
 #: src/apps/accounts/templates/accounts/settings.html:52
-#, fuzzy
 msgid "Update"
-msgstr "アップデート"
+msgstr "更新"
 
 #: src/apps/accounts/templates/accounts/settings.html:60
 #: src/apps/accounts/templates/accounts/settings.html:68
@@ -294,16 +277,16 @@ msgstr "パスワードを変更"
 msgid ""
 "You cannot leave an organization where you are either the last administrator "
 "or the last member."
-msgstr ""
+msgstr "自身が最後の管理者または最後のメンバーである組織からは脱退できません。"
 
 #: src/apps/accounts/templates/accounts/settings.html:114
 msgid "You are not part of any organization."
-msgstr ""
+msgstr "あなたはどの組織にも所属していません。"
 
 #: src/apps/accounts/templates/accounts/settings.html:118
 #: src/apps/organizations/templates/org/create.html:6
 msgid "Create an organization"
-msgstr ""
+msgstr "組織を作成する"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
 msgid "Delete account"
@@ -315,6 +298,8 @@ msgid ""
 "Please, confirm you understand the risks by entering the following sentence "
 "in the validation field:"
 msgstr ""
+"警告：この操作を行うと、データは完全に削除されます。<br /> 以下の文を認証フィ"
+"ールドに入力し、リスクを理解していることを確認してください："
 
 #: src/apps/accounts/templates/accounts/settings.html:152
 #: src/apps/petitions/templates/petitions/edit.html:327
@@ -325,81 +310,79 @@ msgstr "削除"
 
 #: src/apps/accounts/templates/accounts/settings.html:169
 msgid "Leaving an organization"
-msgstr ""
+msgstr "組織を離れる"
 
 #: src/apps/accounts/templates/accounts/settings.html:175
 #, python-format
 msgid "Are you sure you want to leave %(orgname)s?"
-msgstr ""
+msgstr "%(orgname)s を本当に離れますか？"
 
 #: src/apps/accounts/views/register.py:40
 #, python-format
 msgid "How much is %(a)d + %(b)d?"
-msgstr ""
+msgstr "%(a)d +%(b)d はいくらですか？"
 
 #: src/apps/accounts/views/settings.py:65
 msgid "You successfully changed your password!"
-msgstr ""
+msgstr "パスワードの変更に成功しました！"
 
 #. Translators: Admin action to confirm signatures
 #: src/apps/consents/admin.py:9
 msgid "Confirm the signatures"
-msgstr ""
+msgstr "署名の確認"
 
 #: src/apps/consents/admin.py:16
 #, python-format
 msgid "Error: %(error)s"
-msgstr ""
+msgstr "エラー:%(error)s"
 
 #: src/apps/consents/forms/newsletter.py:15
 msgid "Does this petition have a newsletter?"
-msgstr ""
+msgstr "この請願書にはニュースレターはありますか？"
 
 #: src/apps/consents/forms/newsletter.py:40
-#, fuzzy
 msgid "Use TLS?"
-msgstr "TLSを使いますか?"
+msgstr "TLSを使用しますか？"
 
 #: src/apps/consents/forms/newsletter.py:43
-#, fuzzy
 msgid "Use STARTTLS?"
-msgstr "STARTTLSを使いますか?"
+msgstr "STARTTLSを使用しますか？"
 
 #: src/apps/consents/forms/newsletter.py:62
 #: src/apps/consents/forms/newsletter.py:68
 msgid "You cannot select both TLS and STARTTLS."
-msgstr ""
+msgstr "TLSとSTARTTLSの両方を選択することはできません。"
 
 #: src/apps/consents/forms/newsletter.py:82
 #, python-format
 msgid "Port must be between 1 and %(max)d."
-msgstr ""
+msgstr "ポートは1から%(max)d の間でなければなりません。"
 
 #: src/apps/consents/forms/newsletter.py:90
 msgid "Port must be an integer."
-msgstr ""
+msgstr "ポートは整数でなければなりません。"
 
 #: src/apps/consents/forms/newsletter.py:102
 msgid "This field is required for HTTP subscription."
-msgstr ""
+msgstr "このフィールドはHTTPサブスクリプションに必須です。"
 
 #: src/apps/consents/forms/newsletter.py:114
 msgid "Provide either a subscription URL or HTTP data."
-msgstr ""
+msgstr "サブスクリプションURLまたはHTTPデータのいずれかを提供してください。"
 
 #. Translators: Newsletter subscription - mail to address
 #: src/apps/consents/forms/newsletter.py:126
 msgid "Please provide the list admin address."
-msgstr ""
+msgstr "リスト管理者のメールアドレスをご提供ください。"
 
 #. Translators: Newsletter subscription - mail subject template
 #: src/apps/consents/forms/newsletter.py:135
 msgid "Please provide the subscription subject template."
-msgstr ""
+msgstr "購読件名テンプレートをご提供ください。"
 
 #: src/apps/consents/views/export.py:55
 msgid "No newsletter subscription yet!"
-msgstr ""
+msgstr "まだニュースレターの購読はありません！"
 
 #: src/apps/core/templates/core/index.html:13
 msgid "Welcome to Pytition"
@@ -407,7 +390,7 @@ msgstr "ようこそPytitionへ"
 
 #: src/apps/core/templates/core/index.html:14
 msgid "Make things change!"
-msgstr ""
+msgstr "変革を起こそう！"
 
 #: src/apps/core/templates/core/index.html:20
 msgid "Create a petition"
@@ -415,11 +398,11 @@ msgstr "請願を作成"
 
 #: src/apps/core/templates/core/index.html:27
 msgid "View latest petitions"
-msgstr ""
+msgstr "最新の請願書を見る"
 
 #: src/apps/core/templates/layouts/base.html:13
 msgid "A platform for creating and signing petitions."
-msgstr ""
+msgstr "請願書を作成・署名するためのプラットフォーム。"
 
 #: src/apps/core/templates/layouts/base.html:17
 msgid "Homepage"
@@ -427,7 +410,7 @@ msgstr "ホーム"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:20
 msgid "Your dashboard"
-msgstr ""
+msgstr "あなたのダッシュボード"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:45
 msgid "Settings"
@@ -444,13 +427,12 @@ msgstr "ログイン"
 
 #: src/apps/core/templates/layouts/nav.html:25
 msgid "Report to moderation"
-msgstr ""
+msgstr "モデレーションに報告する"
 
 #: src/apps/core/templates/layouts/nav.html:54
 #: src/apps/core/templates/layouts/nav_dashboard.html:52
-#, fuzzy
 msgid "Search for petition"
-msgstr "請願を探索"
+msgstr "請願を検索"
 
 #: src/apps/core/templates/layouts/nav.html:58
 #: src/apps/core/templates/layouts/nav_dashboard.html:56
@@ -459,27 +441,27 @@ msgstr "探索"
 
 #: src/apps/core/templates/layouts/nav.html:71
 msgid "Thank you for your reporting!"
-msgstr ""
+msgstr "ご報告ありがとうございます！"
 
 #: src/apps/core/templates/layouts/nav.html:72
 msgid "Reporting failed, please retry later."
-msgstr ""
+msgstr "報告に失敗しました。後ほど再試行してください。"
 
 #: src/apps/core/templates/layouts/nav.html:76
 msgid "Report this petition to moderation"
-msgstr ""
+msgstr "この請願をモデレーションに報告する"
 
 #: src/apps/core/templates/layouts/nav.html:81
 msgid "Why do you want to report this petition?"
-msgstr ""
+msgstr "この請願を報告したい理由は？"
 
 #: src/apps/core/templates/layouts/nav.html:92
 msgid "You are about to report this petition to moderation."
-msgstr ""
+msgstr "この請願をモデレーションに報告しようとしています。"
 
 #: src/apps/core/templates/layouts/nav.html:99
 msgid "Report"
-msgstr ""
+msgstr "報告"
 
 #: src/apps/core/templates/layouts/nav.html:100
 #: src/apps/petitions/templates/petitions/list.html:132
@@ -488,85 +470,82 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:14
-#, fuzzy
 msgid "Create a new petition!"
-msgstr "新しい請願を作成 !"
+msgstr "新しい請願書を作成しましょう！"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:18
 #: src/apps/petitions/templates/petitions/new_step1.html:15
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:20
 msgid "Give a title to your petition"
-msgstr ""
+msgstr "請願書にタイトルを付けてください"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:23
 #: src/apps/petitions/templates/petitions/edit.html:56
 #: src/apps/petitions/templates/petitions/edit.html:450
 #: src/apps/petitions/templates/petitions/edit.html:456
-#, fuzzy
 msgid "Content"
-msgstr "内容"
+msgstr "コンテンツ"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:25
 msgid "Write your petition content"
-msgstr ""
+msgstr "請願の内容を入力してください"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:28
 msgid "Publish"
-msgstr ""
+msgstr "公開"
 
 #: src/apps/core/templates/layouts/wizard_layout.html:30
 msgid "Save your petition and publish it if it's ready"
-msgstr ""
+msgstr "準備が整ったら請願を保存して公開しましょう"
 
 #: src/apps/core/templates/registration/login.html:7
 msgid "Please sign in"
-msgstr ""
+msgstr "ログインしてください"
 
 #: src/apps/core/templates/registration/login.html:10
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "ユーザー名とパスワードが一致しません。もう一度お試しください。"
 
 #: src/apps/core/templates/registration/login.html:46
 msgid "No account?"
-msgstr ""
+msgstr "アカウントをお持ちでない方？"
 
 #: src/apps/core/templates/registration/login.html:46
 msgid "Register!"
-msgstr ""
+msgstr "登録！"
 
 #: src/apps/core/templates/registration/login.html:50
-#, fuzzy
 msgid "I forgot my password!"
-msgstr "パスワードを忘れてしまいました !"
+msgstr "パスワードを忘れた！"
 
 #: src/apps/core/templates/registration/password_reset_done.html:4
 msgid "Email Sent"
-msgstr ""
+msgstr "メール送信済み"
 
 #: src/apps/core/templates/registration/password_reset_done.html:10
 msgid "Check your inbox."
-msgstr ""
+msgstr "受信箱を確認してください。"
 
 #: src/apps/core/templates/registration/password_reset_done.html:11
 msgid ""
 "We've emailed you instructions for setting your password. You should receive "
 "the email shortly!"
-msgstr ""
+msgstr "パスワード設定の手順をメールでお送りしました。すぐにメールが届くはずです！"
 
 #: src/apps/core/templates/registration/password_reset_form.html:4
 #: src/apps/core/templates/registration/password_reset_form.html:10
-#, fuzzy
 msgid "Forgot your password?"
-msgstr "パスワードを忘れた場合 ?"
+msgstr "パスワードをお忘れですか？"
 
 #: src/apps/core/templates/registration/password_reset_form.html:11
 msgid ""
 "Enter your email address below, and we'll email instructions for setting a "
 "new one."
-msgstr ""
+msgstr "以下の欄にメールアドレスを入力してください。新しいパスワードの設定手順をメー"
+"ルでお送りします。"
 
 #: src/apps/core/templates/registration/password_reset_form.html:15
 #: src/apps/signatures/templates/signatures/data.html:88
@@ -579,7 +558,7 @@ msgstr "email@example.co.jp"
 
 #: src/apps/core/templates/registration/password_reset_form.html:24
 msgid "Send me instructions!"
-msgstr ""
+msgstr "手順を送ってください！"
 
 #: src/apps/core/templates/ui/components/demo_text.html:3
 msgid ""
@@ -590,22 +569,28 @@ msgid ""
 "<br> Documentation is available on <a href=\"https://pytition.readthedocs."
 "io\">ReadTheDocs</a>"
 msgstr ""
+"<span style=\"color: red;font-weight: bold;\">デモ用ウェブサイト（実際の請願"
+"書は絶対に投稿しないでください！）</span> <br /> このツールは無料のオープンソ"
+"ースソフトウェアです。ご自身のサーバーにもインストール可能です！ <br> ソース"
+"コードは <a href=\"https://github.com/pytition/pytition\">GitHub</a> からダウ"
+"ンロードできます。 <br> ドキュメントは <a href="
+"\"https://pytition.readthedocs.io\">ReadTheDocs</a> で閲覧可能です。"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
-msgstr ""
+msgstr "設定で INDEX_PAGE の設定を行う必要があります"
 
 #: src/apps/core/views/index.py:23
 msgid "You must set an INDEX_PAGE_USER config in your settings"
-msgstr ""
+msgstr "設定ファイルで INDEX_PAGE_USER の設定を必ず行ってください"
 
 #: src/apps/core/views/index.py:27
 msgid "You must set an INDEX_PAGE_ORGA config in your settings"
-msgstr ""
+msgstr "設定で INDEX_PAGE_ORGA 設定を必ず設定してください"
 
 #: src/apps/notifications/admin.py:9
 msgid "Send the confirmation email once again"
-msgstr ""
+msgstr "確認メールを再度送信してください"
 
 #: src/apps/notifications/forms/email.py:16
 msgid ""
@@ -613,22 +598,25 @@ msgid ""
 "email sent to signatories. People responding to confirmation email will in "
 "fact respond to this address."
 msgstr ""
+"連絡先メールアドレス。署名者へ送信される確認メールの「返信先」欄として使用さ"
+"れます。確認メールに返信する方は、実際にこのアドレス宛に返信することになりま"
+"す。"
 
 #: src/apps/notifications/services.py:42
 msgid "Confirm your signature to our petition"
-msgstr ""
+msgstr "私たちの請願書への署名を確定してください"
 
 #: src/apps/notifications/services.py:66
 msgid "Account created !"
-msgstr ""
+msgstr "アカウント作成完了！"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:7
 msgid "Email Confirmation"
-msgstr ""
+msgstr "メール確認"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:9
 msgid "Confirm your signature by clicking the provided link."
-msgstr ""
+msgstr "署名を確認するには、提供されたリンクをクリックしてください。"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:12
 msgid "Thank you"
@@ -636,47 +624,44 @@ msgstr "ありがとうございます"
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:13
 msgid "Now, in order to confirm your signature, you only need to click here :"
-msgstr ""
+msgstr "署名を確認するには、こちらをクリックするだけです："
 
 #: src/apps/notifications/templates/notifications/confirmation_email.html:18
-#, fuzzy
 msgid "See you soon!"
-msgstr "また今度 !"
+msgstr "またすぐにお会いしましょう！"
 
 #: src/apps/organizations/admin.py:13
 msgid "Number of petitions"
-msgstr ""
+msgstr "請願の数"
 
 #: src/apps/organizations/admin.py:17
 msgid "Number of members"
-msgstr ""
+msgstr "メンバー数"
 
 #: src/apps/organizations/forms.py:23
 msgid "This is an invalid Organization name. Please try something else."
-msgstr ""
+msgstr "この組織名は無効です。別の名前をお試しください。"
 
 #. Translators: This is the label for a button that submits a form to create a new organization.
 #: src/apps/organizations/templates/org/create.html:15
 #: src/apps/presets/templates/presets/new.html:45
-#, fuzzy
 msgid "Create"
 msgstr "作成"
 
 #: src/apps/organizations/templates/org/dashboard.html:4
 #, python-format
 msgid "Petitions of '%(orgname)s'"
-msgstr ""
+msgstr "「%(orgname)s 」の請願書"
 
 #: src/apps/organizations/templates/org/invite_user.html:6
 msgid "Invite user"
-msgstr ""
+msgstr "ユーザーを招待する"
 
 #: src/apps/organizations/templates/org/invite_user.html:16
 msgid "Username"
 msgstr "ユーザ名"
 
 #: src/apps/organizations/templates/org/member_list.html:4
-#, fuzzy
 msgid "Members"
 msgstr "メンバー"
 
@@ -684,36 +669,35 @@ msgstr "メンバー"
 msgid ""
 "You cannot edit this member's permissions, you don't have the correct "
 "permission."
-msgstr ""
+msgstr "このメンバーの権限を編集することはできません。適切な権限がありません。"
 
 #: src/apps/organizations/templates/org/member_list.html:13
 msgid "Edit this member's permissions"
-msgstr ""
+msgstr "このメンバーの権限を編集する"
 
 #: src/apps/organizations/templates/org/member_list.html:18
 msgid ""
 "You cannot remove this member from the organization, you don't have the "
 "correct permission."
-msgstr ""
+msgstr "このメンバーを組織から削除することはできません。適切な権限がありません。"
 
 #: src/apps/organizations/templates/org/member_list.html:18
 msgid "Remove this member from the organization."
-msgstr ""
+msgstr "このメンバーを組織から削除する。"
 
 #: src/apps/organizations/templates/org/member_list.html:30
 msgid "Unable to remove this member from the organization."
-msgstr ""
+msgstr "このメンバーを組織から削除できません。"
 
 #: src/apps/organizations/views/dashboard.py:41
-#, fuzzy, python-format
-#| msgid "Petition settings"
+#, python-format
 msgid "This organization does not exist: %(orgname)s."
-msgstr "請願設定"
+msgstr "この組織は存在しません:%(orgname)s."
 
 #: src/apps/organizations/views/dashboard.py:52
 #, python-format
 msgid "You are not part of this organization: %(orgname)s."
-msgstr ""
+msgstr "あなたは次の組織のメンバーではありません:%(orgname)s."
 
 #: src/apps/organizations/views/dashboard.py:64
 #: src/apps/organizations/views/members/edit_perms.py:91
@@ -723,145 +707,149 @@ msgstr ""
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "(%(orgname)s)."
-msgstr ""
+msgstr "内部エラー：この組織（%(orgname)s ）に関連付けられた権限が見つかりません。"
 
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
-msgstr ""
+msgstr "この組織を離れることはできません。あなたは最後の管理者です。"
 
 #: src/apps/organizations/views/leave.py:62
 msgid "Impossible to leave this organization, you are the last member"
-msgstr ""
+msgstr "この組織を脱退することはできません。あなたは最後のメンバーです"
 
 #: src/apps/organizations/views/members/add.py:43
 msgid "This user does not exist (any longer?)"
-msgstr ""
+msgstr "このユーザーは存在しません（もう存在しない？）"
 
 #: src/apps/organizations/views/members/add.py:47
 msgid "This organization does not exist (any longer?)"
-msgstr ""
+msgstr "この組織は存在しません（もはや？）"
 
 #: src/apps/organizations/views/members/add.py:50
 msgid "You are not part of this organization."
-msgstr ""
+msgstr "あなたはこの組織のメンバーではありません。"
 
 #: src/apps/organizations/views/members/add.py:54
 msgid "You are not allowed to invite new members into this organization."
-msgstr ""
+msgstr "この組織に新規メンバーを招待することは許可されていません。"
 
 #: src/apps/organizations/views/members/add.py:59
 #, python-format
 msgid "User is already member of %(orgname)s organization."
-msgstr ""
+msgstr "ユーザーは既に%(orgname)s 組織のメンバーです。"
 
 #: src/apps/organizations/views/members/add.py:97
 #, python-format
 msgid "You invited %(username)s to join %(orgname)s"
-msgstr ""
+msgstr "%(username)s を招待しました%(orgname)s"
 
 #: src/apps/organizations/views/members/add.py:106
 msgid "An error occurred"
-msgstr ""
+msgstr "エラーが発生しました"
 
 #: src/apps/organizations/views/members/delete.py:39
 #: src/apps/organizations/views/members/set_perms.py:70
 msgid "User does not exist"
-msgstr ""
+msgstr "ユーザーが存在しません"
 
 #: src/apps/organizations/views/members/delete.py:46
 #: src/apps/organizations/views/members/set_perms.py:42
 msgid "Organization does not exist"
-msgstr ""
+msgstr "組織は存在しません"
 
 #: src/apps/organizations/views/members/edit_perms.py:52
 #, python-format
 msgid "User '%(name)s' does not exist"
-msgstr ""
+msgstr "ユーザー「%(name)s 」は存在しません"
 
 #: src/apps/organizations/views/members/edit_perms.py:60
 #, python-format
 msgid "Organization '%(name)s' does not exist"
-msgstr ""
+msgstr "組織「%(name)s 」は存在しません"
 
 #: src/apps/organizations/views/members/edit_perms.py:67
 #, python-format
 msgid ""
 "The user '%(username)s' is not member of this organization (%(orgname)s)."
-msgstr ""
+msgstr "ユーザー「%(username)s 」はこの組織（%(orgname)s ）のメンバーではありません。"
 
 #: src/apps/organizations/views/members/edit_perms.py:80
 msgid ""
 "Internal error, this member does not have permissions attached to this "
 "organization."
-msgstr ""
+msgstr "内部エラー：このメンバーはこの組織に紐付けられた権限を持っていません。"
 
 #: src/apps/organizations/views/members/set_perms.py:45
 msgid "You are not part of this organization"
-msgstr ""
+msgstr "あなたはこの組織の一員ではありません"
 
 #: src/apps/organizations/views/members/set_perms.py:54
 msgid ""
 "Fatal error, you don't have permissions attached to you for this organization"
-msgstr ""
+msgstr "致命的なエラーが発生しました。この組織に対する権限が割り当てられていません。"
 
 #: src/apps/organizations/views/members/set_perms.py:63
 msgid "You are not allowed to modify this organization members' permissions"
-msgstr ""
+msgstr "この組織メンバーの権限を変更することは許可されていません"
 
 #: src/apps/organizations/views/members/set_perms.py:76
 #, python-format
 msgid "This user is not part of organization '%(orgname)s'"
-msgstr ""
+msgstr "このユーザーは組織「%(orgname)s 」に所属していません。"
 
 #: src/apps/organizations/views/members/set_perms.py:87
 msgid ""
 "Fatal error, this user does not have permissions attached for this "
 "organization"
-msgstr ""
+msgstr "致命的なエラーが発生しました。このユーザーには、この組織に対する権限が付与さ"
+"れていません。"
 
 #: src/apps/organizations/views/members/set_perms.py:128
 msgid ""
 "You cannot remove your ability to change permissions on this Organization "
 "because you are the only one left who can do this. Give the permission to "
 "someone else before removing yours."
-msgstr ""
+msgstr "この組織の権限変更権限を削除することはできません。あなただけが権限を変更でき"
+"る状態です。権限を削除する前に、他の誰かに権限を付与してください。"
 
 #: src/apps/organizations/views/members/set_perms.py:139
 msgid ""
 "You cannot remove your ability to change permissions on this Organization "
 "because you are the only member left."
-msgstr ""
+msgstr "この組織の権限変更権限を削除することはできません。あなたが唯一の残存メンバー"
+"であるためです。"
 
 #: src/apps/organizations/views/members/set_perms.py:145
 msgid "Permissions successfully changed!"
-msgstr ""
+msgstr "権限の変更に成功しました！"
 
 #: src/apps/organizations/views/new.py:36
 msgid "Only super users can create an organization."
-msgstr ""
+msgstr "組織の作成はスーパーユーザーのみが行えます。"
 
 #: src/apps/organizations/views/new.py:60
 #, python-format
 msgid "You successfully created organization '%(orgname)s'"
-msgstr ""
+msgstr "組織「%(orgname)s 」の作成に成功しました"
 
 #: src/apps/petitions/admin.py:22 src/apps/presets/admin.py:21
 msgid ""
 "This is a gradient color. If selected, the background color will be a "
 "gradient color. If not, the background color will be a monochrome background "
 "color."
-msgstr ""
+msgstr "これはグラデーションカラーです。選択すると背景色がグラデーションカラーになり"
+"ます。選択しない場合、背景色は単色の背景色になります。"
 
 #: src/apps/petitions/admin.py:26 src/apps/petitions/admin.py:27
 #: src/apps/presets/admin.py:25 src/apps/presets/admin.py:26
 msgid "Only used if gradient is selected"
-msgstr ""
+msgstr "グラデーションが選択されている場合のみ使用されます"
 
 #: src/apps/petitions/admin.py:29 src/apps/presets/admin.py:28
 msgid ""
 "Put a bullet point list of links, it will appear horizontally in the page "
 "footer."
-msgstr ""
+msgstr "箇条書きのリンクリストを配置すると、ページフッターに横並びで表示されます。"
 
 #: src/apps/petitions/admin.py:33 src/apps/presets/admin.py:32
 msgid ""
@@ -869,17 +857,22 @@ msgid ""
 "on social media. You can preview it via some tools such as https://toolsaday."
 "com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"これは請願の説明文です。ソーシャルメディアで共有する際に表示されます。"
+"https://toolsaday.com/seo/open-graphなどのツールでプレビューできます（トラッ"
+"カーにご注意ください！）。"
 
 #: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
 msgid ""
 "Picture displayed when shared on social media. You can preview it via some "
 "tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)."
 msgstr ""
+"ソーシャルメディアで共有された際に表示される画像。https://toolsaday.com/seo/"
+"open-graphなどのツールでプレビュー可能（トラッカーに注意！）。"
 
 #: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
 msgid ""
 "Allow to chose whether the newsletter subscription checkbox is shown or not."
-msgstr ""
+msgstr "ニュースレター購読のチェックボックスを表示するか否かを選択できるようにする。"
 
 #: src/apps/petitions/admin.py:47 src/apps/presets/admin.py:46
 msgid ""
@@ -896,6 +889,16 @@ msgid ""
 "                    'your-email': ''<br>\n"
 "                    }"
 msgstr ""
+"以下の場合のみ \"\n"
+"            \"HTTP POSTまたはGETメソッドによるニュースレター購読。 \"\n"
+"            \"送信するデータをPython辞書構文でここに記述。例： <br>\n"
+"                    {'_wpcf7': 21,<br>\n"
+"                    '_wpcf7_version': '4.9',<br>\n"
+"                    '_wpcf7_locale': 'fr_FR',<br>\n"
+"                    '_wpcf7_unit_tag': 'wpcf7-f21-p5398-o1',<br>\n"
+"                    '_wpcf7_container_post': '5398',<br>\n"
+"                    'your-email': ''<br>\n"
+"                    }"
 
 #: src/apps/petitions/admin.py:58 src/apps/presets/admin.py:57
 msgid ""
@@ -903,12 +906,17 @@ msgid ""
 "send via GET or POST, containing the email address to subscribe. Following "
 "the example of preceding form field, that would be 'your-email'."
 msgstr ""
+"HTTP POSTまたはGETによる購読方法が使用される場合のみ。購読するメールアドレス"
+"を含む、GETまたはPOSTで送信するフィールド名。前のフォームフィールドの例に従う"
+"と、それは「your-email」となります。"
 
 #: src/apps/petitions/admin.py:64 src/apps/presets/admin.py:63
 msgid ""
 "Only when HTTP POST or GET subscription method is used. HTTP address to "
 "query via GET or POST to subscribe someone to the newsletter."
 msgstr ""
+"HTTP POSTまたはGETの購読メソッドが使用された場合のみ。ニュースレターへの購読"
+"を登録するために、GETまたはPOSTでクエリを実行するHTTPアドレス。"
 
 #: src/apps/petitions/admin.py:69 src/apps/presets/admin.py:68
 msgid ""
@@ -917,6 +925,9 @@ msgid ""
 "where the signer's email address should be inserted. E.g.: ‘ADD LIST_NAME {} "
 "SIGNER_NAME’"
 msgstr ""
+"メール購読方式が使用されている場合のみ。ニュースレターへの購読登録を許可する"
+"件名の構文をここに記入してください。署名者のメールアドレスを挿入する箇所には{"
+"}を指定します。例：‘ADD LIST_NAME {} SIGNER_NAME’"
 
 #: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
 msgid ""
@@ -924,18 +935,22 @@ msgid ""
 "allows someone to subscribe to the newsletter. This is usuallyan address "
 "that is the administrator of the SYMPA or MAILMAN list."
 msgstr ""
+"メール購読方式が使用される場合のみ。ニュースレター購読を許可するメールの送信"
+"者。通常、SYMPAまたはMAILMANリストの管理者アドレスである。"
 
 #: src/apps/petitions/admin.py:80 src/apps/presets/admin.py:79
 msgid ""
 "Only when EMAIL subscription method is used. Email addressfor list "
 "administration, e.g.: sympa@NOM_LISTE.listes.vox.coop"
-msgstr ""
+msgstr "メール購読方式が使用されている場合のみ。リスト管理用メールアドレス例：sympa@N"
+"OM_LISTE.listes.vox.coop"
 
 #: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
 msgid ""
 "This selects the newsletter subscription method. It is either HTTP GET or "
 "POST or via sending EMAIL to the newsletter admin address."
-msgstr ""
+msgstr "ニュースレター購読方法を選択します。HTTP GETまたはPOST、もしくはニュースレタ"
+"ー管理者アドレスへのメール送信のいずれかです。"
 
 #: src/apps/petitions/admin.py:88 src/apps/presets/admin.py:87
 msgid ""
@@ -943,10 +958,13 @@ msgid ""
 "everybody. If not checked, the petition is only accessible by logged in "
 "users, others will get a 404 error."
 msgstr ""
+"チェックされた場合、請願書は公開され、ウェブサイト上で誰でもアクセス可能にな"
+"ります。チェックされていない場合、請願書はログインユーザーのみがアクセス可能"
+"で、それ以外のユーザーは404エラーが表示されます。"
 
 #: src/apps/petitions/admin.py:93 src/apps/presets/admin.py:92
 msgid "E.g.: I want to receive updates or information from this organization."
-msgstr ""
+msgstr "例：この組織からの更新情報やお知らせを受け取りたいです。"
 
 #: src/apps/petitions/admin.py:96 src/apps/presets/admin.py:95
 msgid ""
@@ -955,6 +973,9 @@ msgid ""
 "well as other news about this organization will be sent to you if you "
 "checked the checkbox. You can unsubscribe at any moment."
 msgstr ""
+"例：お客様のデータは厳重に守秘され、第三者に販売・提供・交換されることはあり"
+"ません。チェックボックスにチェックを入れた場合、本キャンペーンに関する情報お"
+"よび当団体のその他のニュースが送信されます。いつでも配信停止が可能です。"
 
 #: src/apps/petitions/admin.py:102 src/apps/presets/admin.py:101
 msgid ""
@@ -963,193 +984,199 @@ msgid ""
 "'Twitter Card' to the correct account. See https://developer.twitter.com/en/"
 "docs/tweets/optimize-with-cards/overview/summary"
 msgstr ""
+"組織のTwitterアカウントハンドル（@記号で始まる）。例：@RAP_Asso。これは「Twit"
+"terカード」を正しいアカウントに紐付けるために必要です。詳細は https://"
+"developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary を"
+"参照してください。"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
 msgid "Check if you want to use your own Email SMTP account."
-msgstr ""
+msgstr "ご自身のメールSMTPアカウントを使用するか確認してください。"
 
 #: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
 msgid "e.g.: petition@mydomain.tld"
-msgstr ""
+msgstr "例：petition@mydomain.tld"
 
 #: src/apps/petitions/admin.py:112 src/apps/presets/admin.py:111
 msgid "If you don't have a real email account, leave 'localhost'."
-msgstr ""
+msgstr "実際のメールアドレスをお持ちでない場合は「localhost」と入力してください。"
 
 #: src/apps/petitions/admin.py:115 src/apps/presets/admin.py:114
 msgid ""
 "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS if "
 "the email server supports it."
 msgstr ""
+"25番ポートは平文接続用、587番ポートはSTARTTLS用、465番ポートはTLS用です。メー"
+"ルサーバーがTLSをサポートしている場合はTLSを優先してください。"
 
 #: src/apps/petitions/admin.py:119 src/apps/petitions/admin.py:122
 #: src/apps/presets/admin.py:118 src/apps/presets/admin.py:121
 msgid "Leave empty if you don't use any account authentication."
-msgstr ""
+msgstr "アカウント認証を使用しない場合は空欄のままにしてください。"
 
 #: src/apps/petitions/admin.py:125 src/apps/presets/admin.py:124
 msgid ""
 "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if "
 "possible. Don't check both. The 2 settings are mutually exclusive."
 msgstr ""
+"SMTP接続はTLS経由で暗号化されます。可能であればSTARTTLSよりもTLSを優先してく"
+"ださい。両方のチェックを入れないでください。この2つの設定は排他的です。"
 
 #: src/apps/petitions/admin.py:129 src/apps/presets/admin.py:128
 msgid ""
 "Encrypted SMTP connection via STARTTLS, prefer TLS to this setting. Do not "
 "check both. The two settings are mutually exclusive."
-msgstr ""
+msgstr "STARTTLS経由の暗号化SMTP接続。この設定ではTLSを優先します。両方にチェックを入"
+"れないでください。この2つの設定は排他的です。"
 
 #: src/apps/petitions/admin.py:134 src/apps/presets/admin.py:133
-#, fuzzy
 msgid "Petition title"
-msgstr "請願名"
+msgstr "請願書のタイトル"
 
 #: src/apps/petitions/admin.py:135 src/apps/presets/admin.py:134
 msgid "Petition text"
-msgstr ""
+msgstr "請願書本文"
 
 #: src/apps/petitions/admin.py:136 src/apps/presets/admin.py:135
 msgid "Side text, on top of form"
-msgstr ""
+msgstr "フォーム上部のサイドテキスト"
 
 #: src/apps/petitions/admin.py:137 src/apps/presets/admin.py:136
 msgid "Signature target number"
-msgstr ""
+msgstr "署名目標数"
 
 #: src/apps/petitions/admin.py:139 src/apps/presets/admin.py:138
 msgid "Number of paper (or other external medium) signatures"
-msgstr ""
+msgstr "紙（またはその他の外部媒体）による署名の数"
 
 #: src/apps/petitions/admin.py:142 src/apps/presets/admin.py:141
 msgid "Enable paper signatures accounting"
-msgstr ""
+msgstr "紙の署名の集計を有効にする"
 
 #: src/apps/petitions/admin.py:145 src/apps/presets/admin.py:144
 msgid "Direction of linear gradient for background color"
-msgstr ""
+msgstr "背景色の線形グラデーションの方向"
 
 #: src/apps/petitions/admin.py:147 src/apps/presets/admin.py:146
 msgid "Source color for linear gradient"
-msgstr ""
+msgstr "線形グラデーションのベースカラー"
 
 #: src/apps/petitions/admin.py:148 src/apps/presets/admin.py:147
 msgid "Destination color for linear gradient"
-msgstr ""
+msgstr "線形グラデーションの終点色"
 
 #: src/apps/petitions/admin.py:149 src/apps/presets/admin.py:148
 msgid "Color for monochrome background color"
-msgstr ""
+msgstr "モノクロ背景色用のカラー"
 
 #: src/apps/petitions/admin.py:150 src/apps/presets/admin.py:149
 msgid "Footer text"
-msgstr ""
+msgstr "フッターテキスト"
 
 #: src/apps/petitions/admin.py:151 src/apps/presets/admin.py:150
 msgid "Footer links"
-msgstr ""
+msgstr "フッターリンク"
 
 #: src/apps/petitions/admin.py:153 src/apps/presets/admin.py:152
 msgid "Description for Twitter/Facebook cards"
-msgstr ""
+msgstr "Twitter/Facebookカード用説明文"
 
 #: src/apps/petitions/admin.py:155 src/apps/presets/admin.py:154
 msgid "Picture for Twitter/Facebook cards"
-msgstr ""
+msgstr "Twitter/Facebookカード用画像"
 
 #: src/apps/petitions/admin.py:157 src/apps/presets/admin.py:156
 msgid "Is the petition associated with a newsletter?"
-msgstr ""
+msgstr "この請願書はニュースレターに関連付けられていますか？"
 
 #: src/apps/petitions/admin.py:160 src/apps/presets/admin.py:159
 msgid ""
 "Data structure to be sent in order to subscribe someone to the newsletter in "
 "case of HTTP method"
-msgstr ""
+msgstr "HTTPメソッドの場合にニュースレター購読を登録するために送信されるデータ構造"
 
 #: src/apps/petitions/admin.py:164 src/apps/presets/admin.py:163
 msgid ""
 "Name of the field which should contain the email value in the PHP data "
 "structure"
-msgstr ""
+msgstr "PHPデータ構造内でメールアドレス値を含むべきフィールド名"
 
 #: src/apps/petitions/admin.py:168 src/apps/presets/admin.py:167
 msgid "HTTP URL for newsletter subscription"
-msgstr ""
+msgstr "ニュースレター購読用HTTP URL"
 
 #: src/apps/petitions/admin.py:171 src/apps/presets/admin.py:170
 msgid "Email subject for newsletter subscription command"
-msgstr ""
+msgstr "ニュースレター購読コマンドのメール件名"
 
 #: src/apps/petitions/admin.py:174 src/apps/presets/admin.py:173
 msgid "FROM field for newsletter subscription command"
-msgstr ""
+msgstr "ニュースレター購読コマンドのFROMフィールド"
 
 #: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:176
 msgid "TO field for newsletter subscription command"
-msgstr ""
+msgstr "ニュースレター購読コマンドの宛先フィールド"
 
 #: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:179
 msgid "Newsletter subscription method"
-msgstr ""
+msgstr "ニュースレター購読方法"
 
 #: src/apps/petitions/admin.py:182
 #: src/apps/petitions/templates/petitions/edit.html:44
 #: src/apps/petitions/templates/petitions/list.html:62
 #: src/apps/presets/admin.py:181
 msgid "Published"
-msgstr ""
+msgstr "公開済み"
 
 #: src/apps/petitions/admin.py:184 src/apps/presets/admin.py:183
 msgid "Form label text of newsletter subscription checkbox"
-msgstr ""
+msgstr "ニュースレター購読チェックボックスのフォームラベルテキスト"
 
 #: src/apps/petitions/admin.py:186 src/apps/presets/admin.py:185
 msgid "Sign form footer text"
-msgstr ""
+msgstr "署名フォームフッターテキスト"
 
 #: src/apps/petitions/admin.py:187
 #: src/apps/petitions/templates/petitions/edit.html:117
 #: src/apps/presets/admin.py:186
 msgid "Organization Twitter handle"
-msgstr ""
+msgstr "組織のTwitterアカウント名"
 
 #: src/apps/petitions/admin.py:188 src/apps/presets/admin.py:187
 msgid "Use custom e-mail settings?"
-msgstr ""
+msgstr "カスタムメール設定を使用しますか？"
 
 #: src/apps/petitions/admin.py:190 src/apps/presets/admin.py:189
 msgid "Confirmation email Reply-to address"
-msgstr ""
+msgstr "確認メールの返信先アドレス"
 
 #: src/apps/petitions/admin.py:192 src/apps/presets/admin.py:191
 msgid "SMTP server hostname"
-msgstr ""
+msgstr "SMTPサーバーのホスト名"
 
 #: src/apps/petitions/admin.py:193 src/apps/presets/admin.py:192
 msgid "SMTP port"
 msgstr "SMTPポート"
 
 #: src/apps/petitions/admin.py:194 src/apps/presets/admin.py:193
-#, fuzzy
 msgid "SMTP username"
-msgstr "SMTPユーザ"
+msgstr "SMTPユーザー名"
 
 #: src/apps/petitions/admin.py:195 src/apps/presets/admin.py:194
-#, fuzzy
 msgid "SMTP password"
 msgstr "SMTPパスワード"
 
 #: src/apps/petitions/admin.py:196 src/apps/presets/admin.py:195
 msgid "SMTP via TLS?"
-msgstr ""
+msgstr "SMTP経由のTLS？"
 
 #: src/apps/petitions/admin.py:198 src/apps/presets/admin.py:197
 msgid "SMTP via STARTTLS?"
-msgstr ""
+msgstr "SMTP経由のSTARTTLS？"
 
 #: src/apps/petitions/admin.py:214
 msgid "To whom is this petition?"
-msgstr ""
+msgstr "この請願書は誰宛てですか？"
 
 #: src/apps/petitions/admin.py:216 src/apps/presets/admin.py:211
 msgid "Content of the petition"
@@ -1161,132 +1188,128 @@ msgstr "背景色"
 
 #: src/apps/petitions/admin.py:243 src/apps/presets/admin.py:236
 msgid "Setup of the newsletter associated to the petition"
-msgstr ""
+msgstr "請願書に関連付けられたニュースレターの設定"
 
 #: src/apps/petitions/admin.py:265 src/apps/presets/admin.py:258
 msgid "Confirmation email setup"
-msgstr ""
+msgstr "確認メールの設定"
 
 #: src/apps/petitions/admin.py:269 src/apps/presets/admin.py:262
 msgid "Petition meta-data for social networks"
-msgstr ""
+msgstr "ソーシャルネットワーク向け請願メタデータ"
 
 #: src/apps/petitions/admin.py:272
 msgid "Publish the petition"
-msgstr ""
+msgstr "請願を公開する"
 
 #: src/apps/petitions/admin.py:275
 msgid "Unconfirmed signatures"
-msgstr ""
+msgstr "未確認の署名"
 
 #: src/apps/petitions/admin.py:279
 msgid "Confirmed signatures"
-msgstr ""
+msgstr "確認済み署名"
 
 #: src/apps/petitions/forms/content.py:25
 msgid "Show publication date"
-msgstr ""
+msgstr "公開日を表示"
 
 #: src/apps/petitions/forms/creation_steps.py:22
 msgid "Title is required and must be a string."
-msgstr ""
+msgstr "タイトルは必須であり、文字列でなければなりません。"
 
 #: src/apps/petitions/forms/creation_steps.py:38
 msgid "There is already a petition with this title."
-msgstr ""
+msgstr "このタイトルの請願書は既に存在します。"
 
 #: src/apps/petitions/forms/creation_steps.py:52
 msgid "You should either provide an org name or a user name."
-msgstr ""
+msgstr "組織名またはユーザー名のいずれかを入力してください。"
 
 #: src/apps/petitions/forms/creation_steps.py:65
 msgid "Publish the petition now?"
-msgstr ""
+msgstr "今すぐ請願を公開しますか？"
 
 #: src/apps/petitions/forms/creation_steps.py:66
 #: src/apps/petitions/templates/petitions/new_step3.html:35
 msgid "Save & Configure"
-msgstr ""
+msgstr "保存と設定"
 
 #: src/apps/petitions/forms/creation_steps.py:72
-#, fuzzy
 msgid "Use template"
-msgstr "新規テンプレート"
+msgstr "テンプレートを使用する"
 
 #: src/apps/petitions/forms/creation_steps.py:75
-#, fuzzy
 msgid "Template id"
-msgstr "テンプレート名"
+msgstr "テンプレートID"
 
 #: src/apps/petitions/forms/creation_wizard.py:100
 msgid "Users are not allowed to create their own petitions."
-msgstr ""
+msgstr "ユーザーは独自の請願書を作成することはできません。"
 
 #: src/apps/petitions/forms/creation_wizard.py:172
 msgid "Cannot find this organization."
-msgstr ""
+msgstr "この組織が見つかりません。"
 
 #: src/apps/petitions/forms/creation_wizard.py:200
 msgid "This template does not belong to your organization."
-msgstr ""
+msgstr "このテンプレートはあなたの組織に属していません。"
 
 #: src/apps/petitions/forms/creation_wizard.py:214
 msgid ""
 "You don't have the permission to create a new petition in this Organization."
-msgstr ""
+msgstr "この組織では新しい請願書を作成する権限がありません。"
 
 #: src/apps/petitions/forms/creation_wizard.py:232
 msgid "This template does not belong to you."
-msgstr ""
+msgstr "このテンプレートはあなたの所有物ではありません。"
 
 #: src/apps/petitions/forms/creation_wizard.py:251
 #: src/apps/presets/views/new.py:61
 msgid "Organization does not exist."
-msgstr ""
+msgstr "組織は存在しません。"
 
 #: src/apps/petitions/helpers.py:25
-#, fuzzy
-#| msgid "Petition settings"
 msgid "Petition does not exist."
-msgstr "請願設定"
+msgstr "請願書は存在しません。"
 
 #: src/apps/petitions/helpers.py:50
 msgid "This Petition has been moderated!"
-msgstr ""
+msgstr "この請願はモデレートされました！"
 
 #: src/apps/petitions/helpers.py:52
 msgid "This Petition is not published yet!"
-msgstr ""
+msgstr "この請願書はまだ公開されていません！"
 
 #: src/apps/petitions/models/petition.py:252
 msgid "Thank you for confirming your signature!"
-msgstr ""
+msgstr "署名のご確認ありがとうございます！"
 
 #: src/apps/petitions/models/petition.py:361
 msgid "This petition is missing an organization owner."
-msgstr ""
+msgstr "この請願書には組織の所有者が設定されていません。"
 
 #: src/apps/petitions/models/petition.py:370
 msgid "This petition is missing a user owner."
-msgstr ""
+msgstr "この請願書にはユーザー所有者が設定されていません。"
 
 #: src/apps/petitions/models/petition.py:373
 msgid "This petition is buggy. Sorry about that!"
-msgstr ""
+msgstr "この請願書は不具合があります。ご迷惑をおかけして申し訳ありません！"
 
 #. Translators: Slug model verbose name (in the admin interface)
 #: src/apps/petitions/models/slug.py:26
 msgid "Slug"
-msgstr ""
+msgstr "スラッグ"
 
 #. Translators: Slug model verbose name (in the admin interface)
 #: src/apps/petitions/models/slug.py:28
 msgid "Slugs"
-msgstr ""
+msgstr "スラッグ"
 
 #: src/apps/petitions/models/slug.py:33
 msgid "A permalink cannot be empty. Please enter something."
-msgstr ""
+msgstr "パーマリンクは空欄にできません。何か入力してください。"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:24
 #: src/apps/signatures/templates/signatures/change_form.html:23
@@ -1297,50 +1320,49 @@ msgstr "ホーム"
 #: src/apps/signatures/templates/signatures/change_form.html:33
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "追加%(name)s"
 
 #. Translators: "History" link in the admin change form page
 #. Translators: Link to the history page for this object in the admin interface
 #: src/apps/petitions/templates/petitions/admin/change_form.html:53
 #: src/apps/signatures/templates/signatures/change_form.html:52
 msgid "History"
-msgstr ""
+msgstr "歴史"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:57
 #: src/apps/signatures/templates/signatures/change_form.html:56
 msgid "View on site"
-msgstr ""
+msgstr "サイトで見る"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:68
 msgid "Generate confirmed signatures CSV file"
-msgstr ""
+msgstr "確認済み署名CSVファイルを生成する"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:71
 msgid "Generate ALL-signatures CSV file"
-msgstr ""
+msgstr "署名者全員のCSVファイルを生成"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:74
 msgid "Preview the petition"
-msgstr ""
+msgstr "請願書のプレビュー"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:78
-#, fuzzy
 msgid "Show signatures"
-msgstr "サインを表示"
+msgstr "署名を表示"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:81
 msgid "Show unconfirmed signatures"
-msgstr ""
+msgstr "未確認の署名を表示"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:104
 #: src/apps/signatures/templates/signatures/change_form.html:88
 msgid "Please correct the error below."
-msgstr ""
+msgstr "以下の誤りを修正してください。"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:106
 #: src/apps/signatures/templates/signatures/change_form.html:90
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "以下の誤りを修正してください。"
 
 #: src/apps/petitions/templates/petitions/detail.html:80
 #: src/apps/petitions/templates/petitions/detail.html:102
@@ -1351,7 +1373,8 @@ msgstr "ありがとうございます"
 msgid ""
 "Thank you for signing this petition! Your signature will be accounted for as "
 "soon as you click on the link in the e-mail we've just sent you."
-msgstr ""
+msgstr "この請願書への署名、ありがとうございます！お送りしたメール内のリンクをクリッ"
+"クすると、すぐに署名が反映されます。"
 
 #: src/apps/petitions/templates/petitions/detail.html:91
 #: src/apps/petitions/templates/petitions/detail.html:112
@@ -1364,17 +1387,16 @@ msgstr "OK"
 msgid ""
 "Thank you for confirming your signature to this petition! Your signature is "
 "now accounted for. See you soon!"
-msgstr ""
+msgstr "この請願書への署名を確定していただきありがとうございます！あなたの署名は記録"
+"されました。またお会いしましょう！"
 
 #: src/apps/petitions/templates/petitions/detail.html:128
-#, fuzzy
-#| msgid "Email address"
 msgid "Instance address"
-msgstr "メールアドレス"
+msgstr "インスタンスアドレス"
 
 #: src/apps/petitions/templates/petitions/detail.html:135
 msgid "Enter your Mastodon instance's address"
-msgstr ""
+msgstr "Mastodonインスタンスのアドレスを入力してください"
 
 #: src/apps/petitions/templates/petitions/detail.html:143
 #: src/apps/presets/templates/presets/list.html:74
@@ -1383,28 +1405,28 @@ msgstr "閉じる"
 
 #: src/apps/petitions/templates/petitions/detail.html:144
 msgid "Share"
-msgstr ""
+msgstr "共有"
 
 #: src/apps/petitions/templates/petitions/detail.html:154
-#, fuzzy
 msgid "SIGN"
-msgstr "サイン"
+msgstr "署名"
 
 #: src/apps/petitions/templates/petitions/detail.html:160
 msgid "Careful!"
-msgstr ""
+msgstr "注意！"
 
 #: src/apps/petitions/templates/petitions/detail.html:161
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
 "created it. Other visitors won't be able to see it."
-msgstr ""
+msgstr "この請願書はまだ公開されていません。作成者または作成組織のメンバーとしてログ"
+"インしているため、閲覧可能です。他の訪問者は閲覧できません。"
 
 #: src/apps/petitions/templates/petitions/detail.html:173
 msgid ""
 "This petition is moderated. You only see it because you are its creator."
-msgstr ""
+msgstr "この請願書は管理対象です。作成者であるあなただけが閲覧できます。"
 
 #. Translators: shows current number of signatures on a petition
 #: src/apps/petitions/templates/petitions/detail.html:185
@@ -1413,26 +1435,26 @@ msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
 msgid_plural ""
 "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
-msgstr[0] ""
+msgstr[0] "すでに<span id=\"nb-signatures\">%(count|localize)s</span> の署名が集まってい"
+"ます。"
 
 #. Translators: label before the numeric goal value
 #: src/apps/petitions/templates/petitions/detail.html:191
 #, python-format
 msgctxt "petition stats"
 msgid "Goal: <span class=\"format-number\">%(target)s</span>"
-msgstr ""
+msgstr "目標：<span class=\"format-number\">%(target)s</span>"
 
 #: src/apps/petitions/templates/petitions/detail.html:255
 #: src/apps/petitions/templates/petitions/detail.html:298
 #: src/apps/petitions/templates/petitions/detail.html:312
 #: src/apps/petitions/templates/petitions/detail.html:326
-#, fuzzy
 msgid "Sign the petition!"
-msgstr "請願を表示"
+msgstr "署名をお願いします！"
 
 #: src/apps/petitions/templates/petitions/detail.html:367
 msgid "Published on: "
-msgstr ""
+msgstr "公開日: "
 
 #: src/apps/petitions/templates/petitions/edit.html:25
 msgid "Petition settings"
@@ -1441,25 +1463,23 @@ msgstr "請願設定"
 #: src/apps/petitions/templates/petitions/edit.html:42
 #: src/apps/petitions/templates/petitions/list.html:60
 msgid "Not published"
-msgstr ""
+msgstr "公開されていません"
 
 #: src/apps/petitions/templates/petitions/edit.html:61
 #: src/apps/petitions/templates/petitions/edit.html:465
 #: src/apps/petitions/templates/petitions/edit.html:471
 msgid "Style & Look"
-msgstr ""
+msgstr "スタイル＆ルック"
 
 #: src/apps/petitions/templates/petitions/edit.html:66
 #: src/apps/petitions/templates/petitions/edit.html:495
 #: src/apps/petitions/templates/petitions/edit.html:501
-#, fuzzy
 msgid "Social Networks"
-msgstr "SNS"
+msgstr "ソーシャルネットワーク"
 
 #: src/apps/petitions/templates/petitions/edit.html:71
 #: src/apps/petitions/templates/petitions/edit.html:480
 #: src/apps/petitions/templates/petitions/edit.html:486
-#, fuzzy
 msgid "E-mail setup"
 msgstr "メール設定"
 
@@ -1467,11 +1487,11 @@ msgstr "メール設定"
 #: src/apps/petitions/templates/petitions/edit.html:510
 #: src/apps/petitions/templates/petitions/edit.html:516
 msgid "Newsletter setup"
-msgstr ""
+msgstr "ニュースレターの設定"
 
 #: src/apps/petitions/templates/petitions/edit.html:81
 msgid "Preview petition"
-msgstr ""
+msgstr "請願書のプレビュー"
 
 #: src/apps/petitions/templates/petitions/edit.html:94
 #: src/apps/petitions/templates/petitions/edit.html:293
@@ -1481,67 +1501,67 @@ msgstr ""
 #: src/apps/petitions/templates/petitions/new_step3.html:39
 #: src/apps/petitions/templates/petitions/new_step3.html:40
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: src/apps/petitions/templates/petitions/edit.html:105
 msgid "Twitter description"
-msgstr ""
+msgstr "Twitterの説明文"
 
 #: src/apps/petitions/templates/petitions/edit.html:129
 #: src/apps/petitions/templates/petitions/edit.html:137
 msgid "Enable email share button?"
-msgstr ""
+msgstr "メール共有ボタンを有効にしますか？"
 
 #: src/apps/petitions/templates/petitions/edit.html:143
 #: src/apps/petitions/templates/petitions/edit.html:152
 msgid "Enable Facebook share button?"
-msgstr ""
+msgstr "Facebookの共有ボタンを有効にしますか？"
 
 #: src/apps/petitions/templates/petitions/edit.html:159
 #: src/apps/petitions/templates/petitions/edit.html:167
 msgid "Enable Tumblr share button?"
-msgstr ""
+msgstr "Tumblr共有ボタンを有効にしますか？"
 
 #: src/apps/petitions/templates/petitions/edit.html:173
 #: src/apps/petitions/templates/petitions/edit.html:182
 msgid "Enable LinkedIn share button?"
-msgstr ""
+msgstr "LinkedInの共有ボタンを有効にしますか？"
 
 #: src/apps/petitions/templates/petitions/edit.html:189
 #: src/apps/petitions/templates/petitions/edit.html:198
 msgid "Enable Twitter share button?"
-msgstr ""
+msgstr "Twitter共有ボタンを有効にしますか？"
 
 #: src/apps/petitions/templates/petitions/edit.html:205
 #: src/apps/petitions/templates/petitions/edit.html:214
 msgid "Enable Mastodon share button?"
-msgstr ""
+msgstr "Mastodon共有ボタンを有効にしますか？"
 
 #: src/apps/petitions/templates/petitions/edit.html:221
 #: src/apps/petitions/templates/petitions/edit.html:230
 msgid "Enable Whatsapp share button?"
-msgstr ""
+msgstr "WhatsApp共有ボタンを有効にしますか？"
 
 #: src/apps/petitions/templates/petitions/edit.html:242
 msgid "Twitter image"
-msgstr ""
+msgstr "Twitter画像"
 
 #: src/apps/petitions/templates/petitions/edit.html:244
 msgid "Upload"
-msgstr ""
+msgstr "アップロード"
 
 #: src/apps/petitions/templates/petitions/edit.html:252
 #: src/apps/petitions/templates/petitions/edit.html:416
 msgid "Choose file"
-msgstr ""
+msgstr "ファイルを選択"
 
 #: src/apps/petitions/templates/petitions/edit.html:263
 msgid "Image"
-msgstr ""
+msgstr "画像"
 
 #: src/apps/petitions/templates/petitions/edit.html:284
 msgid "Remove image"
-msgstr ""
+msgstr "画像削除"
 
 #: src/apps/petitions/templates/petitions/edit.html:297
 msgid ""
@@ -1549,22 +1569,25 @@ msgid ""
 "a nice link containing a meaningful small title instead of a number. With a "
 "permalink your petition can be accessible via a link like:"
 msgstr ""
+"パーマリンク（恒久リンク）とは、番号ではなく意味のある短いタイトルを含む見栄"
+"えの良いリンクで請願を共有できるようにする機能です。パーマリンクを使用すると"
+"、次のようなリンクで請願にアクセスできます："
 
 #: src/apps/petitions/templates/petitions/edit.html:313
-#, fuzzy
-#| msgid "Petitions"
 msgid "Permalinks"
-msgstr "請願"
+msgstr "パーマリンク"
 
 #: src/apps/petitions/templates/petitions/edit.html:314
 msgid "Actions"
-msgstr ""
+msgstr "アクション"
 
 #: src/apps/petitions/templates/petitions/edit.html:384
 msgid ""
 "Beware: this preview shows the current state of the petition. <br /> If you "
 "modified some settings, please save if you want to see them in the preview."
 msgstr ""
+"ご注意：このプレビューは請願書の現在の状態を表示しています。<br /> 設定を変更"
+"した場合は、プレビューに反映させるために必ず保存してください。"
 
 #: src/apps/petitions/templates/petitions/edit.html:451
 #: src/apps/petitions/templates/petitions/edit.html:466
@@ -1572,48 +1595,45 @@ msgstr ""
 #: src/apps/petitions/templates/petitions/edit.html:496
 #: src/apps/petitions/templates/petitions/edit.html:511
 msgid "unsaved"
-msgstr ""
+msgstr "未保存"
 
 #: src/apps/petitions/templates/petitions/edit.html:592
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:40
-#, fuzzy
 msgid "Sign!"
-msgstr "サイン !"
+msgstr "署名しよう！"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:44
 #, python-format
 msgid "%(signature_number)s signature"
 msgid_plural "%(signature_number)s signatures"
-msgstr[0] ""
+msgstr[0] "%(signature_number)s 署名"
 
 #: src/apps/petitions/templates/petitions/list.html:12
 msgid "You don't have any petitions yet."
-msgstr ""
+msgstr "まだ署名活動はありません。"
 
 #: src/apps/petitions/templates/petitions/list.html:68
 msgid "This petition is moderated"
-msgstr ""
+msgstr "この請願書は管理されています"
 
 #: src/apps/petitions/templates/petitions/list.html:76
-#, fuzzy
 msgid "View petition"
-msgstr "請願を表示"
+msgstr "請願書を見る"
 
 #: src/apps/petitions/templates/petitions/list.html:83
 msgid "Edit petition"
-msgstr ""
+msgstr "請願書を編集する"
 
 #: src/apps/petitions/templates/petitions/list.html:88
-#, fuzzy
 msgid "View signatures"
-msgstr "サインを表示"
+msgstr "署名を見る"
 
 #: src/apps/petitions/templates/petitions/list.html:95
 msgid "Transfer this petition"
-msgstr ""
+msgstr "この請願書を転送する"
 
 #: src/apps/petitions/templates/petitions/list.html:99
 msgid "Delete the petition"
@@ -1621,12 +1641,12 @@ msgstr "請願を削除"
 
 #: src/apps/petitions/templates/petitions/list.html:119
 msgid "Delete petition?"
-msgstr ""
+msgstr "請願を削除しますか？"
 
 #: src/apps/petitions/templates/petitions/list.html:123
 #, python-format
 msgid "Do you really want to delete petition \"%(title)s\"?"
-msgstr ""
+msgstr "「%(title)s 」という請願を本当に削除しますか？"
 
 #: src/apps/petitions/templates/petitions/new_step1.html:29
 #: src/apps/petitions/templates/petitions/new_step2.html:39
@@ -1639,191 +1659,187 @@ msgid "Previous step"
 msgstr "戻る"
 
 #: src/apps/petitions/templates/petitions/new_step3.html:26
-#, fuzzy
 msgid "Petition logo placeholder"
-msgstr "請願のテンプレート"
+msgstr "請願ロゴのプレースホルダー"
 
 #: src/apps/petitions/templates/petitions/new_step3.html:61
 msgid "First step"
-msgstr ""
+msgstr "最初のステップ"
 
 #: src/apps/petitions/templates/petitions/transfer.html:7
 msgid "Transfer petition"
-msgstr ""
+msgstr "移送請願"
 
 #: src/apps/petitions/templates/petitions/transfer.html:13
 msgid "You are going to transfer this petition to someone else:"
-msgstr ""
+msgstr "この請願書を他の人に転送しようとしています："
 
 #: src/apps/petitions/templates/petitions/transfer.html:25
 msgid ""
 "Enter the name of the user or organization you want to give the petition to:"
-msgstr ""
+msgstr "請願書を提出したいユーザーまたは組織の名前を入力してください："
 
 #: src/apps/petitions/templates/petitions/transfer.html:29
 msgid "User or Organization name"
-msgstr ""
+msgstr "ユーザーまたは組織名"
 
 #: src/apps/petitions/templates/petitions/transfer.html:44
 msgid "Transfer this petition?"
-msgstr ""
+msgstr "この請願書を転送しますか？"
 
 #: src/apps/petitions/templates/petitions/transfer.html:49
 msgid "Do you really want to transfer the following petition?"
-msgstr ""
+msgstr "本当に以下の請願を転送しますか？"
 
 #: src/apps/petitions/templates/petitions/transfer.html:55
 msgid "It will be transfered to:"
-msgstr ""
+msgstr "これは以下に転送されます："
 
 #. Translators: Button to confirm the transfer of a petition
 #: src/apps/petitions/templates/petitions/transfer.html:67
 msgid "Transfer"
-msgstr ""
+msgstr "転送"
 
 #: src/apps/petitions/views/edit.py:44
-#, fuzzy
 msgid "You are not allowed to edit this petition."
-msgstr "この請願はもう署名されました"
+msgstr "この請願書は編集できません。"
 
 #: src/apps/petitions/views/edit.py:267 src/apps/petitions/views/edit.py:291
 msgid "save-the-kittens-from-bad-wolf"
-msgstr ""
+msgstr "悪いオオカミから子猫を救え"
 
 #: src/apps/petitions/views/show_petition.py:58
 #: src/apps/petitions/views/show_petition.py:65
 #: src/apps/petitions/views/show_petition.py:67
 msgid "Sorry, we are not able to find this petition."
-msgstr ""
+msgstr "申し訳ありませんが、この請願書は見つかりませんでした。"
 
 #: src/apps/petitions/views/slug/add.py:24
 #: src/apps/petitions/views/slug/delete.py:26
 msgid "This petition does not exist (anymore?)."
-msgstr ""
+msgstr "この請願は存在しません（もう存在しないのでしょうか？）。"
 
 #: src/apps/petitions/views/slug/add.py:30
 msgid "You entered an empty slug text"
-msgstr ""
+msgstr "空のスラッグテキストを入力しました"
 
 #: src/apps/petitions/views/slug/add.py:38
 msgid "Successful addition of the slug '{}'!"
-msgstr ""
+msgstr "スラッグ「{}」の追加に成功しました！"
 
 #: src/apps/petitions/views/slug/add.py:42
 msgid "The slug '{}' already exists!"
-msgstr ""
+msgstr "スラッグ「{}」は既に存在しています！"
 
 #: src/apps/petitions/views/slug/add.py:49
 #: src/apps/petitions/views/slug/delete.py:41
 msgid "You don't have the permission to modify petitions"
-msgstr ""
+msgstr "あなたは請願書を編集する権限を持っていません"
 
 #: src/apps/petitions/views/slug/delete.py:39
 msgid "Successful deletion of a slug"
-msgstr ""
+msgstr "スラグの削除に成功しました"
 
 #: src/apps/petitions/views/transfer.py:40
 msgid "This petition does not exist."
-msgstr ""
+msgstr "この請願は存在しません。"
 
 #: src/apps/petitions/views/transfer.py:52
 #, python-format
 msgid ""
 "You don't have the permission to transfer a petition from Organization "
 "%(org_name)s"
-msgstr ""
+msgstr "組織から請願を転送する権限がありません%(org_name)s"
 
 #: src/apps/petitions/views/transfer.py:63
 msgid "You don't have the permission to transfer this petition."
-msgstr ""
+msgstr "この請願書を転送する権限がありません。"
 
 #: src/apps/petitions/views/transfer.py:78
 msgid "Incorrect request, something went wrong."
-msgstr ""
+msgstr "不正なリクエストです。何か問題が発生しました。"
 
 #: src/apps/petitions/views/transfer.py:92
 msgid ""
 "Users are not allowed to transfer petitions to organizations on this "
 "instance."
-msgstr ""
+msgstr "このインスタンスでは、ユーザーが請願書を組織に転送することは許可されていませ"
+"ん。"
 
 #: src/apps/petitions/views/transfer.py:104
 msgid "You tried to transfer a petition to a non-exiting account."
-msgstr ""
+msgstr "存在しないアカウントに請願書を転送しようとしました。"
 
 #: src/apps/petitions/views/transfer.py:112
 msgid "Petition successfully transfered!"
-msgstr ""
+msgstr "請願書の転送に成功しました！"
 
 #: src/apps/petitions/views/transfer.py:116
 msgid "Something went wrong while transferring this petition."
-msgstr ""
+msgstr "この請願書の転送中に問題が発生しました。"
 
 #: src/apps/presets/admin.py:207
 msgid "To whom is this petition template?"
-msgstr ""
+msgstr "この請願書テンプレートは誰を対象としていますか？"
 
 #. Translators: Petition template model name in models (admin interface)
 #: src/apps/presets/models/petition_template.py:95
-#, fuzzy
 msgid "Petition template"
-msgstr "請願のテンプレート"
+msgstr "請願書テンプレート"
 
 #. Translators: Petition template model name plural in models (admin interface)
 #: src/apps/presets/models/petition_template.py:97
-#, fuzzy
 msgid "Petition Templates"
-msgstr "請願のテンプレート"
+msgstr "請願書テンプレート"
 
 #: src/apps/presets/services.py:112
 msgid "This template does not exist."
-msgstr ""
+msgstr "このテンプレートは存在しません。"
 
 #: src/apps/presets/templates/presets/edit.html:4
 msgid "Template settings"
-msgstr ""
+msgstr "テンプレート設定"
 
 #: src/apps/presets/templates/presets/list.html:19
 msgid "This is the default template. Click here to unmark it as default."
-msgstr ""
+msgstr "これはデフォルトのテンプレートです。デフォルト設定を解除するにはここをクリッ"
+"クしてください。"
 
 #: src/apps/presets/templates/presets/list.html:26
 msgid "Mark this template as default"
-msgstr ""
+msgstr "このテンプレートをデフォルトとしてマークする"
 
 #: src/apps/presets/templates/presets/list.html:33
 msgid "Edit template"
-msgstr ""
+msgstr "テンプレートを編集"
 
 #: src/apps/presets/templates/presets/list.html:39
-#, fuzzy
 msgid "Create a new petition using this template."
-msgstr "新規請願のテンプレートを作成する"
+msgstr "このテンプレートを使用して新しい請願書を作成してください。"
 
 #: src/apps/presets/templates/presets/list.html:46
 msgid "Delete template"
-msgstr ""
+msgstr "テンプレートを削除"
 
 #: src/apps/presets/templates/presets/list.html:62
 msgid "Delete this template?"
-msgstr ""
+msgstr "このテンプレートを削除しますか？"
 
 #: src/apps/presets/templates/presets/list.html:68
 msgid "You are about to delete the following petition template:"
-msgstr ""
+msgstr "以下の請願書テンプレートを削除しようとしています："
 
 #: src/apps/presets/templates/presets/list.html:70
 msgid "Do you really want to do this?"
-msgstr ""
+msgstr "本当に実行しますか？"
 
 #: src/apps/presets/templates/presets/new.html:6
-#, fuzzy
 msgid "Create a petition template"
-msgstr "請願のテンプレートを作成"
+msgstr "請願書のテンプレートを作成する"
 
 #: src/apps/presets/templates/presets/new.html:18
 msgid "Beware, you are creating a template, not a petition!"
-msgstr ""
+msgstr "注意：作成しているのはテンプレートであり、請願書ではありません！"
 
 #: src/apps/presets/templates/presets/new.html:20
 msgid ""
@@ -1831,47 +1847,48 @@ msgid ""
 "<br /> For instance you might want to re-use the same e-mail SMTP account "
 "across several petitions."
 msgstr ""
+"請願書テンプレートを使用すると、将来の請願書にデフォルト値を設定できます。"
+"<br /> 例えば、複数の請願書で同じメールSMTPアカウントを再利用したい場合などに"
+"便利です。"
 
 #: src/apps/presets/templates/presets/new.html:36
-#, fuzzy
 msgid "Template name"
 msgstr "テンプレート名"
 
 #: src/apps/presets/templates/presets/new.html:41
 msgid "My template name"
-msgstr ""
+msgstr "私のテンプレート名"
 
 #: src/apps/presets/templates/presets/new.html:43
 msgid "Each template must have a different name"
-msgstr ""
+msgstr "各テンプレートには異なる名前が必要です"
 
 #: src/apps/presets/views/edit.py:73
-#, fuzzy
 msgid "You are not allowed to edit this template."
-msgstr "この請願はもう署名されました"
+msgstr "このテンプレートの編集は許可されていません。"
 
 #: src/apps/presets/views/fav.py:39
 msgid "You are not allowed to change this user's default template."
-msgstr ""
+msgstr "このユーザーのデフォルトテンプレートを変更することは許可されていません。"
 
 #: src/apps/presets/views/new.py:65
 msgid "You are not allowed to view this organization dashboard."
-msgstr ""
+msgstr "この組織ダッシュボードを閲覧する権限がありません。"
 
 #: src/apps/presets/views/new.py:74
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
 "('%(orgname)s')."
-msgstr ""
+msgstr "内部エラー：この組織（'%(orgname)s'）に関連付けられた権限が見つかりません。"
 
 #: src/apps/presets/views/new.py:84
 msgid "You don't have the permission to create a Template in this organization"
-msgstr ""
+msgstr "この組織ではテンプレートを作成する権限がありません"
 
 #: src/apps/presets/views/new.py:104
 msgid "You need to provide a template name."
-msgstr ""
+msgstr "テンプレート名を入力してください。"
 
 #: src/apps/signatures/forms.py:32
 msgid "First name *"
@@ -1905,7 +1922,7 @@ msgstr "メールアドレス"
 
 #: src/apps/signatures/models/signature.py:29
 msgid "Confirmed"
-msgstr ""
+msgstr "確認済み"
 
 #: src/apps/signatures/models/signature.py:32
 msgid "Petition"
@@ -1913,7 +1930,7 @@ msgstr "請願"
 
 #: src/apps/signatures/models/signature.py:35
 msgid "Subscribed to mailing list"
-msgstr ""
+msgstr "メーリングリストに登録しました"
 
 #: src/apps/signatures/models/signature.py:38
 #: src/apps/signatures/templates/signatures/data.html:92
@@ -1921,48 +1938,47 @@ msgid "Date"
 msgstr "日付"
 
 #: src/apps/signatures/models/signature.py:44
-#, fuzzy
 msgid "Signature"
-msgstr "サインを表示"
+msgstr "署名"
 
 #: src/apps/signatures/models/signature.py:45
 #: src/apps/signatures/templates/signatures/data.html:6
 msgid "Signatures"
-msgstr ""
+msgstr "署名"
 
 #: src/apps/signatures/models/signature.py:55
-#, fuzzy
 msgid "You already signed the petition"
-msgstr "この請願はもう署名されました"
+msgstr "あなたはすでにこの請願書に署名しました"
 
 #: src/apps/signatures/templates/signatures/data.html:24
 msgid "Export <strong>ALL</strong> signatures (CSV)"
-msgstr ""
+msgstr "<strong>の署名すべてをエクスポート</strong> (CSV)"
 
 #: src/apps/signatures/templates/signatures/data.html:29
 msgid "Export <strong>confirmed</strong> signatures (CSV)"
-msgstr ""
+msgstr "<strong>で確認済みの署名（</strong> 件）をエクスポート（CSV形式）"
 
 #: src/apps/signatures/templates/signatures/data.html:35
 #: src/apps/signatures/templates/signatures/data.html:66
 msgid "Re-send confirmation e-mail to all unconfirmed"
-msgstr ""
+msgstr "未確認の全ユーザーに確認メールを再送信"
 
 #: src/apps/signatures/templates/signatures/data.html:44
 msgid "Subscribe signatories to the newsletter"
-msgstr ""
+msgstr "署名者をニュースレターに登録する"
 
 #: src/apps/signatures/templates/signatures/data.html:49
 msgid "copy/paste the following text block into Sympa's mass-subscribe form"
-msgstr ""
+msgstr "以下のテキストブロックをSympaのmass-subscribeフォームにコピー＆ペーストしてく"
+"ださい"
 
 #: src/apps/signatures/templates/signatures/data.html:64
 msgid "Re-send selected confirmation e-mail"
-msgstr ""
+msgstr "選択した確認メールを再送信"
 
 #: src/apps/signatures/templates/signatures/data.html:65
 msgid "Delete selected signatures"
-msgstr ""
+msgstr "選択した署名を削除"
 
 #: src/apps/signatures/templates/signatures/data.html:89
 msgid "Phone"
@@ -1970,69 +1986,69 @@ msgstr "電話番号"
 
 #: src/apps/signatures/templates/signatures/data.html:90
 msgid "Confirmed?"
-msgstr ""
+msgstr "確認しましたか？"
 
 #: src/apps/signatures/templates/signatures/data.html:91
 msgid "Subscribed to newsletter?"
-msgstr ""
+msgstr "ニュースレターに登録しましたか？"
 
 #: src/apps/signatures/views/confirm.py:41
 msgid ""
 "Error: This confirmation code is invalid. Maybe you've already confirmed?"
-msgstr ""
+msgstr "エラー：この確認コードは無効です。既に確認済みかもしれませんか？"
 
 #: src/apps/signatures/views/confirm.py:51
 msgid "Error: This confirmation code is invalid."
-msgstr ""
+msgstr "エラー：この確認コードは無効です。"
 
 #: src/apps/signatures/views/list.py:86
 msgid "You are not allowed to view this petition's signatures."
-msgstr ""
+msgstr "この請願の署名を見ることは許可されていません。"
 
 #: src/apps/signatures/views/list.py:94
 msgid "Internal error, cannot find the organization owning this petition."
-msgstr ""
+msgstr "内部エラー：この請願を所有する組織が見つかりません。"
 
 #: src/apps/signatures/views/list.py:100
 #, python-format
 msgid "You are not member of the following organization: %(orgname)s."
-msgstr ""
+msgstr "あなたは以下の組織のメンバーではありません：%(orgname)s 。"
 
 #: src/apps/signatures/views/list.py:119
 msgid "You are not allowed to view signatures in this organization."
-msgstr ""
+msgstr "この組織では署名の閲覧が許可されていません。"
 
 #: src/apps/signatures/views/list.py:227 src/apps/signatures/views/list.py:268
 msgid "An error happened while trying to re-send confirmation emails."
-msgstr ""
+msgstr "確認メールの再送信中にエラーが発生しました。"
 
 #: src/apps/signatures/views/list.py:231
 msgid "You successfully re-sent all confirmation emails."
-msgstr ""
+msgstr "すべての確認メールの再送信に成功しました。"
 
 #: src/apps/signatures/views/list.py:239
 msgid "No signatures were selected for the requested action."
-msgstr ""
+msgstr "要求されたアクションに対して署名はありませんでした。"
 
 #: src/apps/signatures/views/list.py:253
 msgid "You don't have permission to delete some or all of selected signatures."
-msgstr ""
+msgstr "選択した署名のすべてまたは一部を削除する権限がありません。"
 
 #: src/apps/signatures/views/list.py:259
 msgid "You successfully deleted all selected signatures."
-msgstr ""
+msgstr "選択した署名をすべて削除しました。"
 
 #: src/apps/signatures/views/list.py:273
 msgid "You successfully re-sent all selected confirmation emails."
-msgstr ""
+msgstr "選択したすべての確認メールの再送信に成功しました。"
 
 #: src/apps/signatures/views/list.py:278
 msgid "Unknown action requested."
-msgstr ""
+msgstr "不明なアクションが要求されました。"
 
 #: src/apps/signatures/views/new.py:65
 msgid "Too many signatures from your IP address, please try again later."
-msgstr ""
+msgstr "お使いのIPアドレスからの署名が多すぎます。後ほど再度お試しください。"
 
 #: src/apps/signatures/views/new.py:77
 #, python-format
@@ -2042,6 +2058,10 @@ msgid ""
 "to click on the confirmation link in the email.<br>If you cannot find the "
 "email in your Inbox, please have a look in your Spam box."
 msgstr ""
+"この請願書への署名ありがとうございます。署名確認のため、ご登録メールアドレス%"
+"(email)s 宛に確認メールを送信しました。メール内の確認リンクをクリックする必要"
+"があります。受信トレイにメールが見つからない場合は、迷惑メールフォルダをご確"
+"認ください。"
 
 #: src/config/settings/django.py:175
 msgid "English"
