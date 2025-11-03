@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 09:29+0100\n"
-"PO-Revision-Date: 2025-11-03 05:41+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-03 08:55+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Spanish <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/es/>\n"
 "Language: es\n"
@@ -346,42 +345,32 @@ msgid "Does this petition have a newsletter?"
 msgstr "¿Esta solicitud tiene un boletín informativo?"
 
 #: src/apps/consents/forms/newsletter.py:17
-#, fuzzy
-#| msgid "Twitter description"
 msgid "Newsletter description"
-msgstr "Descripción de Twitter"
+msgstr "Descripción del boletín informativo"
 
 #: src/apps/consents/forms/newsletter.py:19
 msgid "HTTP data"
-msgstr ""
+msgstr "Datos HTTP"
 
 #: src/apps/consents/forms/newsletter.py:24
-#, fuzzy
-#| msgid "This field is required for HTTP subscription."
 msgid "Email field name for HTTP subscription"
-msgstr "Este campo es obligatorio para la suscripción HTTP."
+msgstr "Nombre del campo de correo electrónico para la suscripción HTTP"
 
 #: src/apps/consents/forms/newsletter.py:27
 msgid "HTTP subscription URL"
-msgstr ""
+msgstr "URL de suscripción HTTP"
 
 #: src/apps/consents/forms/newsletter.py:30
-#, fuzzy
-#| msgid "Use template"
 msgid "Mail subject template"
-msgstr "Utilizar plantilla"
+msgstr "Plantilla del asunto del correo electrónico"
 
 #: src/apps/consents/forms/newsletter.py:33
-#, fuzzy
-#| msgid "Email address"
 msgid "Mail from address"
-msgstr "Dirección de correo electrónico"
+msgstr "Correo desde la dirección"
 
 #: src/apps/consents/forms/newsletter.py:37
-#, fuzzy
-#| msgid "Please provide the list admin address."
 msgid "Mail to (list admin) address"
-msgstr "Por favor, facilite la dirección del administrador de la lista."
+msgstr "Enviar correo electrónico a la dirección (administrador de la lista)"
 
 #: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
 #: src/apps/presets/admin.py:179
@@ -389,22 +378,16 @@ msgid "Newsletter subscription method"
 msgstr "Método de suscripción al boletín"
 
 #: src/apps/consents/forms/newsletter.py:47
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server host"
-msgstr "hostname del servidor SMTP"
+msgstr "Servidor SMTP"
 
 #: src/apps/consents/forms/newsletter.py:53
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server username"
-msgstr "hostname del servidor SMTP"
+msgstr "Nombre de usuario del servidor SMTP"
 
 #: src/apps/consents/forms/newsletter.py:59
-#, fuzzy
-#| msgid "SMTP password"
 msgid "SMTP server password"
-msgstr "Contraseña SMTP"
+msgstr "Contraseña del servidor SMTP"
 
 #: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
@@ -2216,15 +2199,15 @@ msgstr "Occitano"
 
 #: src/config/settings/django.py:179
 msgid "Russian"
-msgstr ""
+msgstr "Ruso"
 
 #: src/config/settings/django.py:180
 msgid "Japanese"
-msgstr ""
+msgstr "Japonés"
 
 #: src/config/settings/django.py:181
 msgid "Swedish"
-msgstr ""
+msgstr "Sueco"
 
 #~ msgid "Org twitter handle"
 #~ msgstr "Manejo de Twitter de la organización"
