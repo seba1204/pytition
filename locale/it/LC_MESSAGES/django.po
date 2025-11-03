@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 05:58+0100\n"
-"PO-Revision-Date: 2025-11-03 04:57+0000\n"
+"PO-Revision-Date: 2025-11-03 05:00+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Italian <https://translate.sebastienpont.fr/projects/pytition/"
 "depot-git/it/>\n"
@@ -265,7 +265,7 @@ msgstr "Modifica Password"
 
 #: src/apps/accounts/templates/accounts/settings.html:35
 msgid "Delete your account"
-msgstr "Elimina account"
+msgstr "Elimina il tuo account"
 
 #: src/apps/accounts/templates/accounts/settings.html:52
 msgid "Update"
