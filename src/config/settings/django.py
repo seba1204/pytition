@@ -177,6 +177,9 @@ LANGUAGES = [
     ("fr", gettext_lazy("French")),
     ("it", gettext_lazy("Italian")),
     ("oc", gettext_lazy("Occitan")),
+    ("ru", gettext_lazy("Russian")),
+    ("ja", gettext_lazy("Japanese")),
+    ("sv", gettext_lazy("Swedish")),
 ]
 
 LOGOUT_REDIRECT_URL = "/"
