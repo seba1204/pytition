@@ -14,30 +14,53 @@ class NewsletterForm(forms.Form):
     has_newsletter = SwitchField(
         required=False, label=_("Does this petition have a newsletter?")
     )
-    newsletter_text = forms.CharField(required=False)
-    newsletter_subscribe_http_data = forms.CharField(max_length=1000, required=False)
-    newsletter_subscribe_http_mailfield = forms.CharField(
-        max_length=100, required=False
+    newsletter_text = forms.CharField(required=False, label=_("Newsletter description"))
+    newsletter_subscribe_http_data = forms.CharField(
+        max_length=1000, required=False, label=_("HTTP data")
     )
-    newsletter_subscribe_http_url = forms.CharField(max_length=1000, required=False)
-    newsletter_subscribe_mail_subject = forms.CharField(max_length=1000, required=False)
-    newsletter_subscribe_mail_from = forms.EmailField(required=False)
-    newsletter_subscribe_mail_to = forms.EmailField(required=False)
+    newsletter_subscribe_http_mailfield = forms.CharField(
+        max_length=100,
+        required=False,
+        label=_("Email field name for HTTP subscription"),
+    )
+    newsletter_subscribe_http_url = forms.CharField(
+        max_length=1000, required=False, label=_("HTTP subscription URL")
+    )
+    newsletter_subscribe_mail_subject = forms.CharField(
+        max_length=1000, required=False, label=_("Mail subject template")
+    )
+    newsletter_subscribe_mail_from = forms.EmailField(
+        required=False, label=_("Mail from address")
+    )
+    newsletter_subscribe_mail_to = forms.EmailField(
+        required=False,
+        label=_("Mail to (list admin) address"),
+    )
     newsletter_subscribe_method = forms.ChoiceField(
-        choices=Petition.NEWSLETTER_SUBSCRIBE_METHOD_CHOICES, required=False
+        choices=Petition.NEWSLETTER_SUBSCRIBE_METHOD_CHOICES,
+        required=False,
+        label=_("Newsletter subscription method"),
     )
     newsletter_subscribe_mail_smtp_host = forms.CharField(
-        max_length=100, required=False
+        max_length=100,
+        required=False,
+        label=_("SMTP server host"),
     )
     newsletter_subscribe_mail_smtp_port = forms.IntegerField(required=False)
     newsletter_subscribe_mail_smtp_user = forms.CharField(
-        max_length=200, required=False
+        max_length=200,
+        required=False,
+        label=_("SMTP server username"),
     )
     newsletter_subscribe_mail_smtp_password = forms.CharField(
-        max_length=200, required=False, widget=forms.PasswordInput()
+        max_length=200,
+        required=False,
+        widget=forms.PasswordInput(),
+        label=_("SMTP server password"),
     )
     newsletter_subscribe_mail_smtp_tls = SwitchField(
-        required=False, label=_("Use TLS?")
+        required=False,
+        label=_("Use TLS?"),
     )
     newsletter_subscribe_mail_smtp_starttls = SwitchField(
         required=False, label=_("Use STARTTLS?")
