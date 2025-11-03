@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 09:29+0100\n"
-"PO-Revision-Date: 2025-11-03 06:25+0000\n"
+"PO-Revision-Date: 2025-11-03 08:55+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: German <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/de/>\n"
@@ -345,42 +345,32 @@ msgid "Does this petition have a newsletter?"
 msgstr "Gibt es zu dieser Petition einen Newsletter?"
 
 #: src/apps/consents/forms/newsletter.py:17
-#, fuzzy
-#| msgid "Twitter description"
 msgid "Newsletter description"
-msgstr "Twitter-Beschreibung"
+msgstr "Beschreibung des Newsletters"
 
 #: src/apps/consents/forms/newsletter.py:19
 msgid "HTTP data"
-msgstr ""
+msgstr "HTTP-Daten"
 
 #: src/apps/consents/forms/newsletter.py:24
-#, fuzzy
-#| msgid "This field is required for HTTP subscription."
 msgid "Email field name for HTTP subscription"
-msgstr "Dieses Feld ist für HTTP-Abonnements erforderlich."
+msgstr "E-Mail-Feldname für HTTP-Abonnement"
 
 #: src/apps/consents/forms/newsletter.py:27
 msgid "HTTP subscription URL"
-msgstr ""
+msgstr "HTTP-Abonnement-URL"
 
 #: src/apps/consents/forms/newsletter.py:30
-#, fuzzy
-#| msgid "Use template"
 msgid "Mail subject template"
-msgstr "Vorlage verwenden"
+msgstr "Betreffvorlage für E-Mails"
 
 #: src/apps/consents/forms/newsletter.py:33
-#, fuzzy
-#| msgid "Email address"
 msgid "Mail from address"
-msgstr "E-Mail-Adresse"
+msgstr "E-Mail von Adresse"
 
 #: src/apps/consents/forms/newsletter.py:37
-#, fuzzy
-#| msgid "Please provide the list admin address."
 msgid "Mail to (list admin) address"
-msgstr "Bitte geben Sie die Adresse des Listenadministrators an."
+msgstr "E-Mail an (Listenadministrator) Adresse"
 
 #: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
 #: src/apps/presets/admin.py:179
@@ -388,22 +378,16 @@ msgid "Newsletter subscription method"
 msgstr "Methode zum Abonnieren des Newsletters"
 
 #: src/apps/consents/forms/newsletter.py:47
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server host"
-msgstr "SMTP-Server-Hostname"
+msgstr "SMTP-Server-Host"
 
 #: src/apps/consents/forms/newsletter.py:53
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server username"
-msgstr "SMTP-Server-Hostname"
+msgstr "Benutzername für SMTP-Server"
 
 #: src/apps/consents/forms/newsletter.py:59
-#, fuzzy
-#| msgid "SMTP password"
 msgid "SMTP server password"
-msgstr "SMTP-Passwort"
+msgstr "SMTP-Server-Passwort"
 
 #: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
@@ -2254,15 +2238,15 @@ msgstr "Okzitanisch"
 
 #: src/config/settings/django.py:179
 msgid "Russian"
-msgstr ""
+msgstr "Russisch"
 
 #: src/config/settings/django.py:180
 msgid "Japanese"
-msgstr ""
+msgstr "Japanisch"
 
 #: src/config/settings/django.py:181
 msgid "Swedish"
-msgstr ""
+msgstr "Schwedisch"
 
 #~ msgid "Error: {}"
 #~ msgstr "Fehler: {}"
