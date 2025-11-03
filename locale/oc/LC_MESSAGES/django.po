@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Occitan (Pytition)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:00+0100\n"
+"POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-11-03 04:57+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Occitan <https://translate.sebastienpont.fr/projects/pytition/"
@@ -1187,7 +1187,9 @@ msgstr "Tèxte del label de marcar per l’inscripcion a la lista de difusion"
 msgid "Sign form footer text"
 msgstr "Tèxte de pè de pagina del formulari"
 
-#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:186
+#: src/apps/petitions/admin.py:187
+#: src/apps/petitions/templates/petitions/edit.html:117
+#: src/apps/presets/admin.py:186
 msgid "Organization Twitter handle"
 msgstr "Nom d’utilizaire Twitter de l’organizacion"
 
@@ -1562,10 +1564,6 @@ msgstr "Salvar"
 #: src/apps/petitions/templates/petitions/edit.html:105
 msgid "Twitter description"
 msgstr "Descripcion Twitter"
-
-#: src/apps/petitions/templates/petitions/edit.html:117
-msgid "Org twitter handle"
-msgstr "Nom d’utilizaire Twitter de l’organizacion"
 
 #: src/apps/petitions/templates/petitions/edit.html:129
 #: src/apps/petitions/templates/petitions/edit.html:137
@@ -2167,6 +2165,9 @@ msgstr "Italian"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitan"
+
+#~ msgid "Org twitter handle"
+#~ msgstr "Nom d’utilizaire Twitter de l’organizacion"
 
 #~ msgid "New Petition"
 #~ msgstr "Nòva peticion"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:00+0100\n"
+"POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-11-03 04:57+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Spanish <https://translate.sebastienpont.fr/projects/pytition/"
@@ -1185,7 +1185,9 @@ msgstr ""
 msgid "Sign form footer text"
 msgstr "Formulario de firmar del pie de página"
 
-#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:186
+#: src/apps/petitions/admin.py:187
+#: src/apps/petitions/templates/petitions/edit.html:117
+#: src/apps/presets/admin.py:186
 msgid "Organization Twitter handle"
 msgstr "Manejo de Twitter de la organización"
 
@@ -1557,10 +1559,6 @@ msgstr "Salvar"
 #: src/apps/petitions/templates/petitions/edit.html:105
 msgid "Twitter description"
 msgstr "Descripción de Twitter"
-
-#: src/apps/petitions/templates/petitions/edit.html:117
-msgid "Org twitter handle"
-msgstr "Manejo de Twitter de la organización"
 
 #: src/apps/petitions/templates/petitions/edit.html:129
 #: src/apps/petitions/templates/petitions/edit.html:137
@@ -2159,6 +2157,9 @@ msgstr "Italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "Occitano"
+
+#~ msgid "Org twitter handle"
+#~ msgstr "Manejo de Twitter de la organización"
 
 #~ msgid "New Petition"
 #~ msgstr "Nueva Petición"

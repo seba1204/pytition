@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:00+0100\n"
+"POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-11-03 04:57+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
@@ -1180,7 +1180,9 @@ msgstr ""
 msgid "Sign form footer text"
 msgstr "Assinar texto do rodapé do formulário"
 
-#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:186
+#: src/apps/petitions/admin.py:187
+#: src/apps/petitions/templates/petitions/edit.html:117
+#: src/apps/presets/admin.py:186
 msgid "Organization Twitter handle"
 msgstr "Nome da organização no Twitter"
 
@@ -1555,10 +1557,6 @@ msgstr "Guardar"
 #: src/apps/petitions/templates/petitions/edit.html:105
 msgid "Twitter description"
 msgstr "Descrição no Twitter"
-
-#: src/apps/petitions/templates/petitions/edit.html:117
-msgid "Org twitter handle"
-msgstr "Nome de utilizador no Twitter da organização"
 
 #: src/apps/petitions/templates/petitions/edit.html:129
 #: src/apps/petitions/templates/petitions/edit.html:137
@@ -2150,6 +2148,9 @@ msgstr "italiano"
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr "occitano"
+
+#~ msgid "Org twitter handle"
+#~ msgstr "Nome de utilizador no Twitter da organização"
 
 #~ msgid "New Petition"
 #~ msgstr "Nova petição"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:00+0100\n"
+"POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-03-06 12:31+0000\n"
 "Last-Translator: Eder Etxebarria <eder@betxepare.eus>\n"
 "Language-Team: Basque <https://weblate.framasoft.org/projects/pytition/"
@@ -1079,7 +1079,9 @@ msgstr ""
 msgid "Sign form footer text"
 msgstr ""
 
-#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:186
+#: src/apps/petitions/admin.py:187
+#: src/apps/petitions/templates/petitions/edit.html:117
+#: src/apps/presets/admin.py:186
 msgid "Organization Twitter handle"
 msgstr ""
 
@@ -1445,10 +1447,6 @@ msgstr ""
 
 #: src/apps/petitions/templates/petitions/edit.html:105
 msgid "Twitter description"
-msgstr ""
-
-#: src/apps/petitions/templates/petitions/edit.html:117
-msgid "Org twitter handle"
 msgstr ""
 
 #: src/apps/petitions/templates/petitions/edit.html:129

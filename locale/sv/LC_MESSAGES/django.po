@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 06:00+0100\n"
+"POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-11-03 02:21+0000\n"
 "Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
@@ -1114,7 +1114,9 @@ msgstr ""
 msgid "Sign form footer text"
 msgstr ""
 
-#: src/apps/petitions/admin.py:187 src/apps/presets/admin.py:186
+#: src/apps/petitions/admin.py:187
+#: src/apps/petitions/templates/petitions/edit.html:117
+#: src/apps/presets/admin.py:186
 msgid "Organization Twitter handle"
 msgstr "Organisationens användarnamn på Twitter"
 
@@ -1499,12 +1501,6 @@ msgstr ""
 #: src/apps/petitions/templates/petitions/edit.html:105
 msgid "Twitter description"
 msgstr ""
-
-#: src/apps/petitions/templates/petitions/edit.html:117
-#, fuzzy
-#| msgid "Organization Twitter handle"
-msgid "Org twitter handle"
-msgstr "Organisationens användarnamn på Twitter"
 
 #: src/apps/petitions/templates/petitions/edit.html:129
 #: src/apps/petitions/templates/petitions/edit.html:137
@@ -2092,6 +2088,11 @@ msgstr ""
 #: src/config/settings/django.py:179
 msgid "Occitan"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Organization Twitter handle"
+#~ msgid "Org twitter handle"
+#~ msgstr "Organisationens användarnamn på Twitter"
 
 #~ msgid "New Petition"
 #~ msgstr "Ny petition"
