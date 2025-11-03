@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:58+0100\n"
+"POT-Creation-Date: 2025-11-03 06:00+0100\n"
 "PO-Revision-Date: 2025-11-03 02:21+0000\n"
 "Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Japanese <https://translate.sebastienpont.fr/projects/"
@@ -305,7 +305,9 @@ msgid "Create an organization"
 msgstr ""
 
 #: src/apps/accounts/templates/accounts/settings.html:126
-msgid "Delete Account"
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Delete account"
 msgstr "アカウントを削除する"
 
 #: src/apps/accounts/templates/accounts/settings.html:134

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:58+0100\n"
+"POT-Creation-Date: 2025-11-03 06:00+0100\n"
 "PO-Revision-Date: 2020-10-13 00:51+0000\n"
 "Last-Translator: Валентин Бородко <valya.spaces@gmail.com>\n"
 "Language-Team: Russian <https://weblate.framasoft.org/projects/pytition/"
@@ -292,7 +292,7 @@ msgid "Create an organization"
 msgstr ""
 
 #: src/apps/accounts/templates/accounts/settings.html:126
-msgid "Delete Account"
+msgid "Delete account"
 msgstr ""
 
 #: src/apps/accounts/templates/accounts/settings.html:134

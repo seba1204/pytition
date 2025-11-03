@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 05:58+0100\n"
+"POT-Creation-Date: 2025-11-03 06:00+0100\n"
 "PO-Revision-Date: 2025-11-03 04:57+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
@@ -292,7 +292,9 @@ msgid "Create an organization"
 msgstr "Criar uma organização"
 
 #: src/apps/accounts/templates/accounts/settings.html:126
-msgid "Delete Account"
+#, fuzzy
+#| msgid "Delete Account"
+msgid "Delete account"
 msgstr "Eliminar conta"
 
 #: src/apps/accounts/templates/accounts/settings.html:134
