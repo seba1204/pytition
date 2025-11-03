@@ -1,0 +1,62 @@
+{% load i18n %}
+{% load static %}
+{% load vendor_static %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description"
+              content="{% block meta_description %}{% trans "A platform for creating and signing petitions." %}{% endblock meta_description %}">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>
+            {% block title %}
+                {% trans "Homepage" %}
+            {% endblock title %}
+        – {{ settings.SITE_NAME }}</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet"
+              href="{% vendor_static "bootstrap" "css/bootstrap.min.css" %}">
+        <link rel="stylesheet"
+              href="{% vendor_static "open-iconic" "css/open-iconic-bootstrap.min.css" %}">
+        <link href="{% static "css/common.css" %}" rel="stylesheet">
+        {% load static %}
+        <!-- Extra media -->
+        {% block media %}
+        {% endblock media %}
+        <!-- Extra meta -->
+        {% block extra_meta %}
+        {% endblock extra_meta %}
+        <!-- Extra styles -->
+        {% block extra_css %}
+        {% endblock extra_css %}
+        <!-- Extra js in head -->
+        {% block extra_js_head %}
+        {% endblock extra_js_head %}
+    </head>
+    <body>
+        <div id="modalContainer">
+            {% block modal %}
+            {% endblock modal %}
+        </div>
+        <div class="app d-flex flex-column {% block justify-app %} {% if footer_content %} justify-content-between {% else %} justify-content-start {% endif %} {% endblock justify-app %} ">
+            {% block nav %}
+                {% include "layouts/nav.html" %}
+            {% endblock nav %}
+            {% block main_content %}
+            {% endblock main_content %}
+            <!-- Footer -->
+            {% block footer %}
+            {% endblock footer %}
+        </div>
+        <script>{% include "files/upload.js" %}</script>
+        <script src="{% vendor_static "jquery" "jquery.min.js" %}"></script>
+        <script src="{% vendor_static "popper" "popper.min.js" %}"></script>
+        <script src="{% vendor_static "bootstrap" "js/bootstrap.bundle.min.js" %}"></script>
+        {% block extra_js %}
+        {% endblock extra_js %}
+    </body>
+</html>

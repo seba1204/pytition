@@ -1,0 +1,48 @@
+from django.test import TestCase
+from django.urls import reverse
+
+from apps.accounts.models import Permission, PytitionUser
+from apps.core.tests.utils import add_default_data
+from apps.petitions.models import Petition
+from apps.petitions.routes import PetitionsRoute, PetitionsSlugRoute
+
+
+class DelSlugViewTest(TestCase):
+    """Test del_slug view."""
+
+    @classmethod
+    def setUpTestData(cls) -> None:
+        add_default_data()
+
+    def login(self, name: str, password: str | None = None) -> PytitionUser:
+        self.client.login(username=name, password=password if password else name)
+        self.pu = PytitionUser.objects.get(user__username=name)
+        return self.pu
+
+    def logout(self) -> None:
+        self.client.logout()
+
+    def test_DelSlugViewOk(self) -> None:
+        john = self.login("john")
+        john_perms = Permission.objects.get(organization__slugname="attac", user=john)
+        john_perms.can_modify_petitions = True
+        john_perms.save()
+        petition = Petition.objects.filter(org__slugname="attac").first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
+        slug = petition.slugmodel_set.first()
+        self.assertIsNotNone(slug)
+        if slug is None:
+            return
+        response = self.client.get(
+            reverse(PetitionsSlugRoute.DELETE, kwargs={"petition_id": petition.id})
+            + "?slugid="
+            + str(slug.id),
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse(PetitionsRoute.EDIT, args=[petition.id])
+            + "#tab_social_network_form",
+        )

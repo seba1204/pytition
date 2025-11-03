@@ -1,0 +1,4 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+  {% include "petitions/list.html" with petitions=petitions.all title=_("Your petitions") search=False %}
+{% endblock content %}

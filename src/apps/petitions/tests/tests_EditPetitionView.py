@@ -1,0 +1,961 @@
+from pathlib import Path
+
+from django.conf import settings
+from django.test import TestCase
+from django.urls import reverse
+
+from apps.accounts.models import Permission, PytitionUser
+from apps.accounts.routes import AccountsRoute
+from apps.core.tests.utils import add_default_data
+from apps.organizations.models import Organization
+from apps.petitions.models import Petition
+from apps.petitions.routes import PetitionsRoute
+
+
+class EditPetitionViewTest(TestCase):
+    """Test index view."""
+
+    @classmethod
+    def setUpTestData(cls) -> None:
+        add_default_data()
+
+    def login(self, name: str) -> PytitionUser:
+        self.client.login(username=name, password=name)
+        self.pu = PytitionUser.objects.get(user__username=name)
+        return self.pu
+
+    def logout(self) -> None:
+        self.client.logout()
+
+    def tearDown(self) -> None:
+        # Clean up run after every test method.
+        pass
+
+    def test_edit_404(self) -> None:
+        """Non-existent petition id : should return 404"""
+        self.login("julia")
+        response = self.client.get(reverse(PetitionsRoute.EDIT, args=[1000]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_edit_200(self) -> None:
+        """Edit your own petition while being logged-in."""
+        self.login("julia")
+        petition = self.pu.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
+        response = self.client.get(reverse(PetitionsRoute.EDIT, args=[petition.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["petition"], petition)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+
+    def test_edit_logged_out(self) -> None:
+        """Edit your own petition while being logged out."""
+        self.login("julia")
+        petition = self.pu.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
+        self.logout()
+        response = self.client.get(
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
+        )
+        self.assertRedirects(
+            response,
+            reverse("login")
+            + "?next="
+            + reverse(PetitionsRoute.EDIT, args=[petition.id]),
+        )
+
+    def test_edit_notYourOwnPetition(self) -> None:
+        """Editing somebody else's petition."""
+        self.login("julia")
+        max = PytitionUser.objects.get(user__username="max")
+        petition = max.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
+        response = self.client.get(
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
+        )
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
+
+    def test_edit_notInOrg(self) -> None:
+        """Editing a petition owned by an Organization the logged-in user is *NOT* part
+        of."""
+        self.login("sarah")
+        attac = Organization.objects.get(name="Les Amis de la Terre")
+        petition = attac.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
+        response = self.client.get(
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
+        )
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
+        self.assertTemplateUsed(response, "accounts/dashboard.html")
+
+    def test_edit_InOrgButNoEditPermission(self) -> None:
+        """Editing a petition owned by an Organization the logged-in user is part of but
+        without the can_modify_petitions permission."""
+        max = self.login("max")
+        at = Organization.objects.get(name="Les Amis de la Terre")
+        perm = Permission.objects.get(organization=at, user=max)
+        perm.can_modify_petitions = False
+        perm.save()
+        petition = at.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
+        response = self.client.get(
+            reverse(PetitionsRoute.EDIT, args=[petition.id]), follow=True
+        )
+        self.assertRedirects(response, reverse(AccountsRoute.DASHBOARD))
+
+    def test_edit_InOrgWithEditPerm(self) -> None:
+        """Editing a petition owned by an Organization the logged-in user is part of
+        *AND* with the can_modify_petitions permission."""
+        self.login("julia")
+        at = Organization.objects.get(name="Les Amis de la Terre")
+        petition = at.petition_set.first()
+        self.assertIsNotNone(petition)
+        if petition is None:
+            return
+        response = self.client.get(reverse(PetitionsRoute.EDIT, args=[petition.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["petition"], petition)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+
+    def test_edit_post_content_form(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        content_form_data = {
+            "content_form_submitted": "yes",
+            "title": "toto",
+            "text": "tata",
+            "side_text": "titi",
+            "footer_text": "tutu",
+            "footer_links": "tyty",
+            "sign_form_footer": "lorem",
+            "target": 4242,
+            "paper_signatures": 0,
+        }
+        # For an org petition
+        p = Petition.objects.create(title="My Petition", org=org)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), content_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["content_form"].is_valid(), True)
+        self.assertEqual(response.context["content_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], True)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertEqual(p.get_signature_number(), 0)
+
+        # For a user petition
+        p2 = Petition.objects.create(title="My Petition 2", user=julia)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), content_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p2.refresh_from_db()
+        for key, value in content_form_data.items():
+            if key == "content_form_submitted":
+                continue
+            self.assertEqual(getattr(p2, key), value)
+            self.assertEqual(getattr(p, key), value)
+        self.assertEqual(response.context["content_form"].is_valid(), True)
+        self.assertEqual(response.context["content_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], True)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertEqual(p2.get_signature_number(), 0)
+
+        for key, value in content_form_data.items():
+            if key == "content_form_submitted":
+                continue
+            self.assertEqual(getattr(p, key), value)
+            self.assertEqual(getattr(p2, key), value)
+
+    def test_edit_post_content_form_papersigntest(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        content_form_data = {
+            "content_form_submitted": "yes",
+            "title": "toto",
+            "text": "tata",
+            "side_text": "titi",
+            "footer_text": "tutu",
+            "footer_links": "tyty",
+            "sign_form_footer": "lorem",
+            "target": 4242,
+            "paper_signatures": 42,
+        }
+        # For an org petition
+        p = Petition.objects.create(title="My Petition", org=org)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), content_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["content_form"].is_valid(), True)
+        self.assertEqual(response.context["content_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], True)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertEqual(
+            p.get_signature_number(), 0
+        )  # paper_signatures_enabled is False
+
+        # For a user petition
+        p2 = Petition.objects.create(title="My Petition 2", user=julia)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), content_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p2.refresh_from_db()
+        for key, value in content_form_data.items():
+            if key == "content_form_submitted":
+                continue
+            self.assertEqual(getattr(p2, key), value)
+            self.assertEqual(getattr(p, key), value)
+        self.assertEqual(response.context["content_form"].is_valid(), True)
+        self.assertEqual(response.context["content_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], True)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertEqual(
+            p2.get_signature_number(), 0
+        )  # paper_signatures_enabled is False
+
+        for key, value in content_form_data.items():
+            if key == "content_form_submitted":
+                continue
+            self.assertEqual(getattr(p, key), value)
+            self.assertEqual(getattr(p2, key), value)
+
+    def test_edit_petition_POST_email_form(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        email_form_data = {
+            "email_form_submitted": "yes",
+            "confirmation_email_reply": "toto@tata.com",
+        }
+        # For an org template
+        p = Petition.objects.create(title="My petition", org=org)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), email_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["email_form"].is_valid(), True)
+        self.assertEqual(response.context["email_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], True)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        p.refresh_from_db()
+
+        # For an user template
+        p2 = Petition.objects.create(title="My petition 2", user=julia)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), email_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["email_form"].is_valid(), True)
+        self.assertEqual(response.context["email_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], True)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        p2.refresh_from_db()
+
+        for key, value in email_form_data.items():
+            if key == "email_form_submitted":
+                continue
+            self.assertEqual(getattr(p2, key), value)
+            self.assertEqual(getattr(p, key), value)
+
+    def test_edit_petition_POST_social_network_form(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+
+        # FIXME: path manipulation is ugly here, find a better way
+        this_path = Path(__file__).parent
+        # this path should point to <root>/src/apps/petition/tests/
+        # and the logo is at <root>/assets/img/logo.png
+        logo = (this_path / "../../../../assets/img/logo.png").resolve()
+        fp = Path.open(logo, "rb")
+        social_network_form_data = {
+            "social_network_form_submitted": "yes",
+            "twitter_description": "This is my twitter desc!",
+            "org_twitter_handle": "@Rap_Asso",
+            "twitter_image": fp,
+        }
+
+        # For an org template
+        p = Petition.objects.create(title="My petition", org=org)
+        social_network_form_data.update({"twitter_image": fp})
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), social_network_form_data
+        )
+        fp.close()
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+
+        fp = Path.open(logo, "rb")
+        social_network_form_data.update({"twitter_image": fp})
+        # For an user template
+        p2 = Petition.objects.create(title="My petition 2", user=julia)
+        response2 = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), social_network_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p2.refresh_from_db()
+
+        for key, value in social_network_form_data.items():
+            if key == "social_network_form_submitted":
+                continue
+            if key == "twitter_image":
+                self.assertTrue(p.twitter_image.startswith(settings.MEDIA_URL))
+                self.assertTrue(p2.twitter_image.startswith(settings.MEDIA_URL))
+                petition_path = (
+                    settings.MEDIA_ROOT
+                    + "/"
+                    + p.twitter_image[len(settings.MEDIA_URL) :]
+                )
+                petition2_path = (
+                    settings.MEDIA_ROOT
+                    + "/"
+                    + p2.twitter_image[len(settings.MEDIA_URL) :]
+                )
+                with (
+                    Path(petition_path).open("rb") as img,
+                    Path(petition2_path).open("rb") as img2,
+                    logo.open("rb") as logo_fp,
+                ):
+                    logo_content = logo_fp.read()
+                    self.assertEqual(img.read(), logo_content)
+                    self.assertEqual(img2.read(), logo_content)
+                continue
+            self.assertEqual(getattr(p2, key), value)
+            self.assertEqual(getattr(p, key), value)
+        self.assertEqual(response2.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response2.context["social_network_form"].is_bound, True)
+        self.assertEqual(response2.context["content_form_submitted"], False)
+        self.assertEqual(response2.context["email_form_submitted"], False)
+        self.assertEqual(response2.context["social_network_form_submitted"], True)
+        self.assertEqual(response2.context["newsletter_form_submitted"], False)
+
+    def test_edit_petition_POST_newsletter_form(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        newsletter_form_data = {
+            "newsletter_form_submitted": "yes",
+            "has_newsletter": "on",
+            "newsletter_subscribe_http_data": "blah",
+            "newsletter_subscribe_http_mailfield": "blih",
+            "newsletter_subscribe_http_mailfield": "bluh",
+            "newsletter_subscribe_mail_subject": "bloh",
+            "newsletter_subscribe_mail_from": "toto@titi.com",
+            "newsletter_subscribe_mail_to": "titi@toto.com",
+            "newsletter_subscribe_method": "POST",
+            "newsletter_subscribe_mail_smtp_host": "localhost",
+            "newsletter_subscribe_mail_smtp_port": 1234,
+            "newsletter_subscribe_mail_smtp_user": "root",
+            "newsletter_subscribe_mail_smtp_password": "rootpassword",
+            "newsletter_subscribe_mail_smtp_tls": "on",
+            "newsletter_subscribe_mail_smtp_starttls": "",
+        }
+        # For an org template
+        p = Petition.objects.create(title="My petition", org=org)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), newsletter_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["newsletter_form"].is_valid(), True)
+        self.assertEqual(response.context["newsletter_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], True)
+
+        # For an user template
+        p2 = Petition.objects.create(title="My petition 2", user=julia)
+        response2 = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), newsletter_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p2.refresh_from_db()
+
+        newsletter_form_data["has_newsletter"] = True
+        newsletter_form_data["newsletter_subscribe_mail_smtp_tls"] = True
+        newsletter_form_data["newsletter_subscribe_mail_smtp_starttls"] = False
+        for key, value in newsletter_form_data.items():
+            if key == "newsletter_form_submitted":
+                continue
+            self.assertEqual(getattr(p2, key), value)
+            self.assertEqual(getattr(p, key), value)
+        self.assertEqual(response2.context["newsletter_form"].is_valid(), True)
+        self.assertEqual(response2.context["newsletter_form"].is_bound, True)
+        self.assertEqual(response2.context["content_form_submitted"], False)
+        self.assertEqual(response2.context["email_form_submitted"], False)
+        self.assertEqual(response2.context["social_network_form_submitted"], False)
+        self.assertEqual(response2.context["newsletter_form_submitted"], True)
+
+    def test_edit_petition_POST_style_form(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        style_form_data = {
+            "style_form_submitted": "yes",
+            "bgcolor": "33ccff",
+            "linear_gradient_direction": "to right",
+            "gradient_from": "0000ff",
+            "gradient_to": "ff0000",
+        }
+        # For an org template
+        p = Petition.objects.create(title="My petition", org=org)
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), style_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["style_form"].is_valid(), True)
+        self.assertEqual(response.context["style_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], False)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertEqual(response.context["style_form_submitted"], True)
+
+        # For an user template
+        p2 = Petition.objects.create(title="My petition 2", user=julia)
+        response2 = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p2.id]), style_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p2.refresh_from_db()
+
+        style_form_data["bgcolor"] = style_form_data["bgcolor"]
+        style_form_data["gradient_from"] = style_form_data["gradient_from"]
+        style_form_data["gradient_to"] = style_form_data["gradient_to"]
+        for key, value in style_form_data.items():
+            if key == "style_form_submitted":
+                continue
+            self.assertEqual(getattr(p2, key), value)
+            self.assertEqual(getattr(p, key), value)
+        self.assertEqual(response.context["style_form"].is_valid(), True)
+        self.assertEqual(response.context["style_form"].is_bound, True)
+        self.assertEqual(response2.context["content_form_submitted"], False)
+        self.assertEqual(response2.context["email_form_submitted"], False)
+        self.assertEqual(response2.context["social_network_form_submitted"], False)
+        self.assertEqual(response2.context["newsletter_form_submitted"], False)
+        self.assertEqual(response.context["style_form_submitted"], True)
+
+    def test_edit_petition_email_share_button(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        share_button_form_data = {
+            "social_network_form_submitted": "yes",
+            "has_email_share_button": True,
+        }
+
+        # For an org owned petition
+        p = Petition.objects.create(title="My petition", org=org)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_email_share_button)
+
+        # Now let's enable the email share button
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_email_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_email_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_email_share_button)
+
+        # For a user owned petition
+        p = Petition.objects.create(title="My petition 2", user=julia)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_email_share_button)
+
+        # Now let's enable the email share button
+        share_button_form_data["has_email_share_button"] = True
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p.refresh_from_db()
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_email_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_email_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_email_share_button)
+
+    def test_edit_petition_facebook_share_button(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        share_button_form_data = {
+            "social_network_form_submitted": "yes",
+            "has_facebook_share_button": True,
+        }
+
+        # For an org owned petition
+        p = Petition.objects.create(title="My petition", org=org)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_facebook_share_button)
+
+        # Now let's enable the facebook share button
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_facebook_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_facebook_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_facebook_share_button)
+
+        # For a user owned petition
+        p = Petition.objects.create(title="My petition 2", user=julia)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_facebook_share_button)
+
+        # Now let's enable the facebook share button
+        share_button_form_data["has_facebook_share_button"] = True
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p.refresh_from_db()
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_facebook_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_facebook_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_facebook_share_button)
+
+    def test_edit_petition_tumblr_share_button(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        share_button_form_data = {
+            "social_network_form_submitted": "yes",
+            "has_tumblr_share_button": True,
+        }
+
+        # For an org owned petition
+        p = Petition.objects.create(title="My petition", org=org)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_tumblr_share_button)
+
+        # Now let's enable the tumblr share button
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_tumblr_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_tumblr_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_tumblr_share_button)
+
+        # For a user owned petition
+        p = Petition.objects.create(title="My petition 2", user=julia)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_tumblr_share_button)
+
+        # Now let's enable the tumblr share button
+        share_button_form_data["has_tumblr_share_button"] = True
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p.refresh_from_db()
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_tumblr_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_tumblr_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_tumblr_share_button)
+
+    def test_edit_petition_linkedin_share_button(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        share_button_form_data = {
+            "social_network_form_submitted": "yes",
+            "has_linkedin_share_button": True,
+        }
+
+        # For an org owned petition
+        p = Petition.objects.create(title="My petition", org=org)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_linkedin_share_button)
+
+        # Now let's enable the linkedin share button
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_linkedin_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_linkedin_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_linkedin_share_button)
+
+        # For a user owned petition
+        p = Petition.objects.create(title="My petition 2", user=julia)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_linkedin_share_button)
+
+        # Now let's enable the linkedin share button
+        share_button_form_data["has_linkedin_share_button"] = True
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p.refresh_from_db()
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_linkedin_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_linkedin_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_linkedin_share_button)
+
+    def test_edit_petition_twitter_share_button(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        share_button_form_data = {
+            "social_network_form_submitted": "yes",
+            "has_twitter_share_button": True,
+        }
+
+        # For an org owned petition
+        p = Petition.objects.create(title="My petition", org=org)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_twitter_share_button)
+
+        # Now let's enable the twitter share button
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_twitter_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_twitter_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_twitter_share_button)
+
+        # For a user owned petition
+        p = Petition.objects.create(title="My petition 2", user=julia)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_twitter_share_button)
+
+        # Now let's enable the twitter share button
+        share_button_form_data["has_twitter_share_button"] = True
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p.refresh_from_db()
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_twitter_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_twitter_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_twitter_share_button)
+
+    def test_edit_petition_mastodon_share_button(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        share_button_form_data = {
+            "social_network_form_submitted": "yes",
+            "has_mastodon_share_button": True,
+        }
+
+        # For an org owned petition
+        p = Petition.objects.create(title="My petition", org=org)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_mastodon_share_button)
+
+        # Now let's enable the mastodon share button
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_mastodon_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_mastodon_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_mastodon_share_button)
+
+        # For a user owned petition
+        p = Petition.objects.create(title="My petition 2", user=julia)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_mastodon_share_button)
+
+        # Now let's enable the mastodon share button
+        share_button_form_data["has_mastodon_share_button"] = True
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p.refresh_from_db()
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_mastodon_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_mastodon_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_mastodon_share_button)
+
+    def test_edit_petition_whatsapp_share_button(self) -> None:
+        julia = self.login("julia")
+        org = Organization.objects.get(name="RAP")
+        share_button_form_data = {
+            "social_network_form_submitted": "yes",
+            "has_whatsapp_share_button": True,
+        }
+
+        # For an org owned petition
+        p = Petition.objects.create(title="My petition", org=org)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_whatsapp_share_button)
+
+        # Now let's enable the whatsapp share button
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_whatsapp_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_whatsapp_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_whatsapp_share_button)
+
+        # For a user owned petition
+        p = Petition.objects.create(title="My petition 2", user=julia)
+
+        # By default, a new petition has no share button
+        self.assertFalse(p.has_whatsapp_share_button)
+
+        # Now let's enable the whatsapp share button
+        share_button_form_data["has_whatsapp_share_button"] = True
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "petitions/edit.html")
+        p.refresh_from_db()
+        self.assertEqual(response.context["social_network_form"].is_valid(), True)
+        self.assertEqual(response.context["social_network_form"].is_bound, True)
+        self.assertEqual(response.context["content_form_submitted"], False)
+        self.assertEqual(response.context["email_form_submitted"], False)
+        self.assertEqual(response.context["social_network_form_submitted"], True)
+        self.assertEqual(response.context["newsletter_form_submitted"], False)
+        self.assertTrue(p.has_whatsapp_share_button)
+
+        # Let's now turn it back off
+        share_button_form_data["has_whatsapp_share_button"] = False
+        response = self.client.post(
+            reverse(PetitionsRoute.EDIT, args=[p.id]), share_button_form_data
+        )
+        self.assertEqual(response.status_code, 200)
+        p.refresh_from_db()
+        self.assertFalse(p.has_whatsapp_share_button)

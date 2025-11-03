@@ -1,12 +1,13 @@
 [project]
 name = "Pytition"
-version = "2.8.1"
-description = "Django app for self-hosted privacy-friendly online petitions"
+version = "3.0.0"
+description = "Django app for self-hosted privacy-friendly online petitions."
 authors = [
-    {name = "Yann Sionneau", email = "yann@sionneau.net"},
+    { name = "Yann Sionneau", email = "yann@sionneau.net" },
+    { name = "Sébastien PONT", email = "contact@spont.me" },
 ]
 dependencies = [
-    "Django~=5.2.0",
+    "django>=5.2.7",
     "django-colorfield==0.10.1",
     "django-tinymce==3.6.1",
     "django-mailer==2.3",
@@ -20,20 +21,132 @@ dependencies = [
     "bcrypt",
     "lxml[html_clean]",
     "uwsgi",
-    "jinja2<3.1",
     "psycopg[binary]==3.1.19",
+    "python-dotenv>=1.1.1",
+    "Pillow>=12.0.0",
+    "cssmin>=0.2.0",
+    "rjsmin>=1.2.5",
+    "cairosvg>=2.8.2",
 ]
 requires-python = ">=3.11"
 readme = "README.md"
-license = {text = "BSD 3-Clause"}
+license = { text = "BSD 3-Clause" }
+
+
+[project.optional-dependencies]
+typecheck = [
+    "django-stubs>=5.2.7",
+    "django-stubs-ext>=5.2.7",
+    "types-requests>=2.32.4.20250913",
+    "types-python-dateutil>=2.9.0.20251008",
+    "pyright>=1.1.406",
+]
+[tool.pytition.vendors]
+bootstrap = "4.3.1"
+open-iconic = "1.1.1"
+jquery = "3.3.1"
+popper = "1.14.6"
+jquery-smart-wizard = "4.4.1"
+rrssb = "1.14.0"
+bs-custom-file-input = "1.3.4"
 
 
 [tool.pdm]
 distribution = false
 
-[tool.pdm.dev-dependencies]
-test = [
-    "coverage==4.5.2",
-    "sphinx",
-    "sphinx-rtd-theme"
+[tool.pdm.scripts]
+manage = "python manage.py"
+test-fast = "pdm run manage test apps --parallel auto --keepdb --noinput"
+graph = "pdm run manage graph_models accounts organizations petitions signatures presets moderation petition --group-models --verbose-names --inheritance --arrow-shape crow --output doc/er.svg"
+
+[dependency-groups]
+dev = [
+    "djlint>=1.36.4",
+    "ruff>=0.14.1",
+    "types-uWSGI>=2.0.0.20250809",
+    "lxml-stubs>=0.5.1",
+    "docformatter[toml]>=1.7.7",
+    "translate-toolkit>=3.16.3",
+    "django-extensions>=4.1",
+    "graphviz>=0.21",
+    "pydotplus>=2.0.2",
 ]
+docs = ["coverage==4.5.2", "sphinx", "sphinx-rtd-theme"]
+
+[tool.ruff]
+line-length = 88
+src = ["src"]
+
+[tool.ruff.lint]
+# Codes of the various linters used by ruff:
+# E = pycodestyle errors
+# F = pyflakes
+# I = isort
+# UP = unimported
+# B = bandit
+# C4 = flake8-comprehensions
+# SIM = flake8-simplify
+# PTH = flake8-pie
+# PL = flake8-pyi
+# D = pydocstyle TODO: enable pydocstyle later
+# INT = flake8-gettext checks
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "PTH", "PL", "INT"]
+ignore = [
+    "D203", # incompatible avec D211
+    "D212", # incompatible avec D213
+    "D401", # first line should be in imperative mood; try rephrasing
+]
+
+[tool.ruff.lint.flake8-gettext]
+# Extend the list to cover pgettext / n(p)gettext / alias _
+function-names = [
+    "_",
+    "gettext",
+    "ngettext",
+    "pgettext",
+    "npgettext",
+    "ugettext",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+
+[tool.ruff.pydocstyle]
+convention = "numpy" # other options: google, pep257
+
+[tool.ruff.format]
+docstring-code-format = true # auto-format code blocks in docstrings
+
+[tool.djlint]
+profile = "django"
+ignore = "H031"    # Ignore warning about missing meta keywords in html tag
+
+# Tool for auto-formatting docstrings
+[tool.docformatter]
+style = "numpy"
+wrap-summaries = 88
+wrap-descriptions = 88
+pre-summary-newline = true
+make-summary-multi-line = false
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+mypy_path = ["src"]
+files = ["src"]
+namespace_packages = true
+explicit_package_bases = true
+
+warn_unused_ignores = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+strict_equality = true
+
+exclude = "^(build/|dist/|.*/migrations/|.*/staticfiles/|.*/__pycache__/|manage\\.py$)"
+
+[tool.django-stubs]
+django_settings_module = "config.settings"

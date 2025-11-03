@@ -1,0 +1,8 @@
+{% extends "org/base.html" %}
+{% load i18n %}
+{% block content %}
+    {% blocktrans trimmed asvar list_title with org.name as orgname %}
+        Petitions of '{{ orgname }}'
+    {% endblocktrans %}
+    {% include "petitions/list.html" with can_create_petition=can_create_petition petitions=petitions.all title=list_title search=False %}
+{% endblock content %}

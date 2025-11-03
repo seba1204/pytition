@@ -1,0 +1,19 @@
+{% extends "accounts/base.html" %}
+{% load i18n %}
+{% block content %}
+    <div class="row">
+        <div class="col text-center">
+            <h2>{% trans "Create an organization" %}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="post">
+                {% csrf_token %}
+                {% include "ui/forms/bs4.html" with form=form %}
+                {# Translators: This is the label for a button that submits a form to create a new organization. #}
+                <button class="btn btn-success" type="submit">{% trans "Create" %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

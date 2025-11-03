@@ -1,0 +1,30 @@
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.http import (
+    HttpRequest,
+    JsonResponse,
+)
+
+from apps.accounts.models import PytitionUser
+
+
+# /get_user_list
+# get the list of users
+# TODO: merge it with /search, cf. ticket #20
+@login_required
+def search_users(request: HttpRequest) -> JsonResponse:
+    """Get the list of users matching the query parameter 'q'."""
+    q = request.GET.get("q", "")
+    if q != "":
+        users = PytitionUser.objects.filter(
+            Q(user__username__contains=q)
+            | Q(user__first_name__icontains=q)
+            | Q(user__last_name__icontains=q)
+        ).all()
+    else:
+        users = PytitionUser.objects.none()
+
+    userdict = {
+        "values": [user.user.username for user in users],
+    }
+    return JsonResponse(userdict)

@@ -3,7 +3,7 @@
 ## Translations
 
 You can help with translations.
-The best way to do so is via our weblate hosted by Framasoft: https://weblate.framasoft.org/projects/pytition/pytitions/
+The best way to do so is via our weblate hosted by Framasoft: [weblate.framasoft.org/projects/pytition/](https://weblate.framasoft.org/projects/pytition/pytitions/)
 Contact me by opening an issue or by sending a private e-mail if you want to contribute by translating the project
 in a language you know and have any issue with weblate (for instance your language is not available). I can help.
 
@@ -19,11 +19,11 @@ Don't hesitate to open new [issues](https://github.com/pytition/pytition/issues)
 
 ### Manual install (recommended for production)
 
-See https://pytition.readthedocs.io/en/latest/installation.html#manual-installation-recommended-for-production
+See <https://pytition.readthedocs.io/en/latest/installation.html#manual-installation-recommended-for-production>
 
 ### With docker-compose
 
-See https://pytition.readthedocs.io/en/latest/installation.html#installation-via-docker-recommended-for-development
+See <https://pytition.readthedocs.io/en/latest/installation.html#installation-via-docker-recommended-for-development>
 
 ### With a script (not recommended)
 
@@ -35,14 +35,15 @@ curl -sSL "https://raw.githubusercontent.com/pytition/Pytition/master/dev/dev_se
 ```
 
 This script is only proven to work on a fresh Ubuntu 18.04 install.
-You can use VirtualBox, Docker, qemu or whatever virtualisation/containerization technology you prefer.
-
+You can use VirtualBox, Docker, qemu or whatever virtualization/containerization technology you prefer.
 
 ## Run tests
 
 It uses coverage to evaluate tests coverage.
-```
+
+```bash
 pdm run coverage run pytition/manage.py test petition
 pdm run coverage report -m
 ```
+
 Add `docker-compose exec web` before each command to use it with docker.
