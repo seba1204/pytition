@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 09:29+0100\n"
-"PO-Revision-Date: 2025-11-03 06:25+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-03 08:55+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Russian <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/ru/>\n"
 "Language: ru\n"
@@ -347,42 +347,32 @@ msgid "Does this petition have a newsletter?"
 msgstr "Есть ли у этой петиции информационный бюллетень?"
 
 #: src/apps/consents/forms/newsletter.py:17
-#, fuzzy
-#| msgid "Twitter description"
 msgid "Newsletter description"
-msgstr "Описание в Twitter"
+msgstr "Описание новостной рассылки"
 
 #: src/apps/consents/forms/newsletter.py:19
 msgid "HTTP data"
-msgstr ""
+msgstr "Данные HTTP"
 
 #: src/apps/consents/forms/newsletter.py:24
-#, fuzzy
-#| msgid "This field is required for HTTP subscription."
 msgid "Email field name for HTTP subscription"
-msgstr "Это поле является обязательным для подписки по протоколу HTTP."
+msgstr "Имя поля электронной почты для подписки HTTP"
 
 #: src/apps/consents/forms/newsletter.py:27
 msgid "HTTP subscription URL"
-msgstr ""
+msgstr "URL-адрес HTTP-подписки"
 
 #: src/apps/consents/forms/newsletter.py:30
-#, fuzzy
-#| msgid "Use template"
 msgid "Mail subject template"
-msgstr "Используйте шаблон"
+msgstr "Шаблон темы письма"
 
 #: src/apps/consents/forms/newsletter.py:33
-#, fuzzy
-#| msgid "Email address"
 msgid "Mail from address"
-msgstr "Адрес электронной почты"
+msgstr "Письмо с адреса"
 
 #: src/apps/consents/forms/newsletter.py:37
-#, fuzzy
-#| msgid "Please provide the list admin address."
 msgid "Mail to (list admin) address"
-msgstr "Пожалуйста, укажите адрес администратора списка."
+msgstr "Адрес для отправки писем (администратор списка)"
 
 #: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
 #: src/apps/presets/admin.py:179
@@ -390,22 +380,16 @@ msgid "Newsletter subscription method"
 msgstr "Способ подписки на информационную рассылку"
 
 #: src/apps/consents/forms/newsletter.py:47
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server host"
-msgstr "Имя хоста SMTP-сервера"
+msgstr "Хост SMTP-сервера"
 
 #: src/apps/consents/forms/newsletter.py:53
-#, fuzzy
-#| msgid "SMTP server hostname"
 msgid "SMTP server username"
-msgstr "Имя хоста SMTP-сервера"
+msgstr "Имя пользователя SMTP-сервера"
 
 #: src/apps/consents/forms/newsletter.py:59
-#, fuzzy
-#| msgid "SMTP password"
 msgid "SMTP server password"
-msgstr "SMTP-пароль"
+msgstr "Пароль SMTP-сервера"
 
 #: src/apps/consents/forms/newsletter.py:63
 msgid "Use TLS?"
@@ -2218,15 +2202,15 @@ msgstr "Окситанский"
 
 #: src/config/settings/django.py:179
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: src/config/settings/django.py:180
 msgid "Japanese"
-msgstr ""
+msgstr "Японский"
 
 #: src/config/settings/django.py:181
 msgid "Swedish"
-msgstr ""
+msgstr "Шведский"
 
 #~ msgid "Error: {}"
 #~ msgstr "Ошибка: {}"
