@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "apps.moderation",
     "apps.notifications",
     "apps.organizations",
-    "apps.petition",
     "apps.petitions",
     "apps.presets",
     "apps.signatures",
