@@ -4,7 +4,7 @@
     {% csrf_token %}
     <table class="table table-hover table-striped">
         <caption>
-             <h2>
+            <h2>
                 {% blocktrans trimmed %}
                     {{ org }}: permissions of member {{ member }}
                 {% endblocktrans %}
@@ -174,5 +174,5 @@
         </tr>
     </table>
     <button class="btn btn-primary" type="submit">{% trans "Validate those new permissions" %}</button>
-    <a class="btn btn-info" href="{% url "org:dashboard" org.slugname %}">{% trans "Return to dashboard" %}</a>
+    <a class="btn btn-info" href="{% url "org:dashboard" org.slugname %}">{% trans "Back to dashboard" %}</a>
 </form>
