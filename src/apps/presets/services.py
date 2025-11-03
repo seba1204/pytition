@@ -109,7 +109,7 @@ def get_presets_or_404(preset_id: int) -> PetitionTemplate:
     try:
         return PetitionTemplate.objects.get(pk=preset_id)
     except PetitionTemplate.DoesNotExist as err:
-        raise Http404(_("This template does not exist")) from err
+        raise Http404(_("This template does not exist.")) from err
 
 
 def ensure_user_can_edit_preset(

@@ -57,7 +57,8 @@ def create(request: HttpRequest) -> HttpResponse:
             perm.set_all(True)
             messages.success(
                 request,
-                _("You successfully created organization '{}'".format(org.name)),
+                _("You successfully created organization '%(orgname)s'")
+                % {"orgname": org.name},
             )
             # FIXME: should redirect to the newly created org dashboard.
             return redirect(AccountsRoute.DASHBOARD)

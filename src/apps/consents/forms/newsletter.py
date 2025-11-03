@@ -79,7 +79,8 @@ class NewsletterForm(forms.Form):
                     self.add_error(
                         "newsletter_subscribe_mail_smtp_port",
                         ValidationError(
-                            _(f"Port must be between 1 and {MAX_PORT_NUMBER}."),
+                            _("Port must be between 1 and %(max)d.")
+                            % {"max": MAX_PORT_NUMBER},
                             code="invalid",
                         ),
                     )
@@ -121,13 +122,16 @@ class NewsletterForm(forms.Form):
                 self.add_error(
                     "newsletter_subscribe_mail_to",
                     ValidationError(
-                        _("Please provide the list admin address."), code="invalid"
+                        # Translators: Newsletter subscription - mail to address
+                        _("Please provide the list admin address."),
+                        code="invalid",
                     ),
                 )
             if not data.get("newsletter_subscribe_mail_subject"):
                 self.add_error(
                     "newsletter_subscribe_mail_subject",
                     ValidationError(
+                        # Translators: Newsletter subscription - mail subject template
                         _("Please provide the subscription subject template."),
                         code="invalid",
                     ),

@@ -37,8 +37,8 @@ class Register(CreateView):
         self.answer = self.a + self.b
         if self.form_class is not None and hasattr(self.form_class, "base_fields"):
             self.form_class.base_fields["answer"].label = _(
-                "How much is {a} + {b}?"
-            ).format(a=self.a, b=self.b)
+                "How much is %(a)d + %(b)d?"
+            ) % {"a": self.a, "b": self.b}
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)

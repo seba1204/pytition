@@ -1,7 +1,13 @@
 {% load i18n %}
 {% if user.invitations.all %}
     <div class="dashboard-nav-item py-3">
-        <h4>{% trans "Invitations" %}</h4>
+        <h4>
+            {% blocktrans trimmed count invitation_count=invitations|length %}
+                Invitation
+            {% plural %}
+                Invitations
+            {% endblocktrans %}
+        </h4>
         <div id="invitations">
             {% for org in user.invitations.all %}
                 <div class="alert alert-info alert-dismissible show fade"
@@ -12,9 +18,9 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                                {% blocktrans with orgname=org %}
-                    You are invited to <strong>&nbsp;{{ orgname }}</strong>
-                {% endblocktrans %}
+                                {% blocktrans trimmed with orgname=org %}
+                                    You are invited to <strong>&nbsp;{{ orgname }}</strong>
+                                {% endblocktrans %}
                             </div>
                             <div class="row d-flex justify-content-around">
                                 <a href="{% url "org:invitations:accept" org.slugname %}">

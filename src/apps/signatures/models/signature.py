@@ -24,7 +24,9 @@ class Signature(models.Model):
     email = models.EmailField(verbose_name=gettext_lazy("Email address"))
     confirmation_hash = models.CharField(max_length=128)
     confirmed = models.BooleanField(
-        default=False, verbose_name=gettext_lazy("Confirmed")
+        # Translators: Signature confirmed field in models (admin interface)
+        default=False,
+        verbose_name=gettext_lazy("Confirmed"),
     )
     petition = models.ForeignKey(
         PETITION, on_delete=models.CASCADE, verbose_name=gettext_lazy("Petition")

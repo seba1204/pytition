@@ -75,14 +75,15 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
                 format_html(
                     _(
                         "Thank you for signing this petition, an email has just been "
-                        "sent to you at your address '{}'"
-                        " in order to confirm your signature.<br>"
+                        "sent to you at your address %(email)s "
+                        "in order to confirm your signature."
+                        "<br>"
                         "You will need to click on the confirmation link in the email."
                         "<br>"
                         "If you cannot find the email in your Inbox, please have a "
                         "look in your Spam box."
-                    ),
-                    signature.email,
+                    )
+                    % {"email": signature.email}
                 ),
             )
 

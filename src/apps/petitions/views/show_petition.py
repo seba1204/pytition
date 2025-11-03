@@ -55,16 +55,16 @@ def slug_show_petition(
             org = Organization.objects.get(slugname=orgslugname)
             slug = SlugModel.objects.get(slug=petitionname, petition__org=org)
         except (Organization.DoesNotExist, SlugModel.DoesNotExist):
-            raise Http404(_("Sorry, we are not able to find this petition")) from None
+            raise Http404(_("Sorry, we are not able to find this petition.")) from None
         petition = slug.petition
     else:
         try:
             user = PytitionUser.objects.get(user__username=username)
             slug = SlugModel.objects.get(slug=petitionname, petition__user=user)
         except PytitionUser.DoesNotExist:
-            raise Http404(_("Sorry, we are not able to find this petition")) from None
+            raise Http404(_("Sorry, we are not able to find this petition.")) from None
         except SlugModel.DoesNotExist:
-            raise Http404(_("Sorry, we are not able to find this petition")) from None
+            raise Http404(_("Sorry, we are not able to find this petition.")) from None
         petition = slug.petition
     check_petition_is_accessible(request, petition)
     sign_form = SignatureForm(petition=petition)

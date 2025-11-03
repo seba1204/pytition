@@ -1,7 +1,7 @@
 {% extends "layouts/layout.html" %}
 {% load static %}
 {% load vendor_static %}
-{% load i18n %}
+{% load i18n l10n %}
 {% load widget_tweaks %}
 {% load utils %}
 {% block title %}
@@ -30,6 +30,7 @@
   {% endif %}
   <!-- FIXME: <meta itemprop="url" content="" /> //-->
   <meta name="twitter:card" content="summary" />
+  <!-- FIXME: this should be the creator of the petition. //-->
   <meta name="twitter:creator" content="@yannsionneau" />
   <meta name="twitter:site" content="{{ petition.org_twitter_handle }}" />
   <meta name="twitter:title" content="{{ petition.title }}" />
@@ -169,7 +170,7 @@ body {
     <div class="jumbotron text-center">
       <h1 class="jumbotron-heading">{{ petition.title|html_sanitize|striptags|safe  }}</h1>
       {% if petition.is_moderated %}
-        <h2 class="text-danger">{% trans "This petition is moderated. You only see it because you are its creator" %}</h2>
+        <h2 class="text-danger">{% trans "This petition is moderated. You only see it because you are its creator." %}</h2>
       {% endif %}
     </div>
     <div class="row petition-wrapper">
@@ -180,8 +181,16 @@ body {
         </p>
         <div class="counter" id="counter">
           <p>
-            Déjà <span id="nb-signatures">{{ petition.signature_number }}</span> signatures.
-            Objectif : <span class="format-number">{{ petition.target }}</span>
+            {# Translators: shows current number of signatures on a petition #}
+            {% blocktrans count count=petition.signature_number trimmed context "petition stats" %}
+              Already <span id="nb-signatures">{{ count|localize }}</span> signature.
+            {% plural %}
+              Already <span id="nb-signatures">{{ count|localize }}</span> signatures.
+            {% endblocktrans %}
+            {# Translators: label before the numeric goal value #}
+            {% blocktrans trimmed context "petition stats" with target=petition.target|localize %}
+              Goal: <span class="format-number">{{ target }}</span>
+            {% endblocktrans %}
           </p>
           <div class="progress">
             <div class="progress-bar bg-primary"
@@ -242,7 +251,7 @@ body {
                 <ul class="rrssb-buttons">
                   {% if petition.has_email_share_button %}
                     <li class="rrssb-email">
-                      <!-- Replace subject with your message using URL Endocding: http://meyerweb.com/eric/tools/dencoder/ -->
+                      <!-- Replace subject with your message using URL Encoding: http://meyerweb.com/eric/tools/dencoder/ -->
                       <a href="mailto:?Subject={{ petition.title|html_sanitize|striptags|safe }}: {% trans "Sign the petition!" %}&body={{ request.build_absolute_uri }}">
                         <span class="rrssb-icon">
                           <svg xmlns="http://www.w3.org/2000/svg"
@@ -327,7 +336,8 @@ body {
                   {% endif %}
                   {% if petition.has_whatsapp_share_button %}
                     <li class="rrssb-whatsapp">
-                      <a href="whatsapp://send?text={{ request.build_absolute_uri }}"
+                      <!-- cf. documentation https://faq.whatsapp.com/425247423114725 -->
+                      <a href="https://wa.me/?text{{ request.build_absolute_uri }}"
                          data-action="share/whatsapp/share">
                         <span class="rrssb-icon">
                           <svg xmlns="http://www.w3.org/2000/svg"
@@ -347,7 +357,7 @@ body {
           </form>
         </div>
         <div class="reassurance" id="reassurance">
-          <p style="text-align:justify">{{ petition.sign_form_footer }}</p>
+          <p>{{ petition.sign_form_footer }}</p>
         </div>
       </div>
     </div>

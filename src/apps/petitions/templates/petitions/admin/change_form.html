@@ -31,7 +31,9 @@
             {% endif %}
             ›
             {% if add %}
-                {% blocktrans with name=opts.verbose_name %}Add {{ name }}{% endblocktrans %}
+                {% blocktrans trimmed with name=opts.verbose_name %}
+                    Add {{ name }}
+                {% endblocktrans %}
             {% else %}
                 {{ original|truncatewords:"18" }}
             {% endif %}
@@ -47,6 +49,7 @@
                         {% block object_tools_items %}
                             <li>
                                 {% url opts|admin_urlname:"history" original.pk|admin_urlquote as history_url %}
+                                {# Translators: "History" link in the admin change form page #}
                                 <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
                             </li>
                             {% if has_absolute_url %}
@@ -72,7 +75,7 @@
             </h2>
             {% with "admin:"|addstr:app_label|addstr:"_signature_changelist" as urlname %}
                 <h2>
-                    <a href="{% url urlname %}?petition__id__exact={{ original.id }}">{% trans "Show the signatures" %}</a>
+                    <a href="{% url urlname %}?petition__id__exact={{ original.id }}">{% trans "Show signatures" %}</a>
                 </h2>
                 <h2>
                     <a href="{% url urlname %}?petition__id__exact={{ original.id }}&confirmed__exact=0">{% trans "Show unconfirmed signatures" %}</a>

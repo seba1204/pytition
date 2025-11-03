@@ -1,10 +1,16 @@
-
 nav.navbar {
   margin-bottom: 2rem;
 }
 
 .app {
   min-height: 100vh;
+}
+
+table caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .card-img-top {
@@ -16,8 +22,8 @@ nav.navbar {
 }
 
 .alert .alert-icon-col {
-    min-width: 35px;
-    max-width: 35px;
+  min-width: 35px;
+  max-width: 35px;
 }
 
 .card-title a {
@@ -32,10 +38,14 @@ nav.navbar {
   margin-top: 2em;
 }
 
-.petition-publish-switch input ~ label {
-    color: var(--red);
+.petition-publish-switch input~label {
+  color: var(--red);
 }
 
-.petition-publish-switch input:checked ~ label {
-    color: var(--green);
+.petition-publish-switch input:checked~label {
+  color: var(--green);
+}
+
+#reassurance p {
+  text-align: justify
 }

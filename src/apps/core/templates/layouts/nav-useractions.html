@@ -2,7 +2,7 @@
 <ul class="navbar-nav">
   {% if user.is_authenticated %}
     <li class="nav-item dropdown ml-3">
-      {% block navdropdown %}
+      {% block nav_dropdown %}
         <a class="nav-link dropdown-toggle btn"
            href="#"
            id="navbarDropdown"
@@ -49,7 +49,7 @@
             {% trans "Logout" %}
           </a>
         </div>
-      {% endblock navdropdown %}
+      {% endblock nav_dropdown %}
     </li>
   {% else %}
     <li class="nav-item">

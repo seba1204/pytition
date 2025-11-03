@@ -36,7 +36,7 @@ def toggle_fav(request: HttpRequest, preset_id: int) -> JsonResponse:
             return JsonResponse({}, status=403)  # Forbidden
     elif isinstance(owner, PytitionUser) and owner != pytitionuser:
         return JsonResponse(
-            {"msg": _("You are not allowed to change this user's default template")},
+            {"msg": _("You are not allowed to change this user's default template.")},
             status=403,
         )
 

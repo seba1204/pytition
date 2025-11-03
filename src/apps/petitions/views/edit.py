@@ -41,7 +41,7 @@ def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
     pytitionuser = get_session_user(request)
 
     if not petition.is_allowed_to_edit(pytitionuser):
-        messages.error(request, _("You are not allowed to edit this petition"))
+        messages.error(request, _("You are not allowed to edit this petition."))
         return redirect(AccountsRoute.DASHBOARD)
 
     submitted_ctx = {

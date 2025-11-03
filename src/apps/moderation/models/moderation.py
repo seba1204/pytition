@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _lazy
 
 from apps.core.model_refs import MODERATION_REASON, PETITION
 
@@ -17,4 +18,5 @@ class Moderation(models.Model):
 
     class Meta:
         db_table = "petition_moderation"
-        verbose_name = "Moderation"
+        # Translators: Moderation model name in the admin interface
+        verbose_name = _lazy("Moderation")

@@ -12,7 +12,7 @@ from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy as _lazy
 from tinymce import models as tinymce_models  # type: ignore
 
 from apps.core.helpers import sanitize_html
@@ -48,7 +48,7 @@ class Petition(models.Model):
     NEWSLETTER_SUBSCRIBE_METHOD_CHOICES = ((MAIL, "MAIL"), (POST, "POST"), (GET, "GET"))
 
     # Description
-    title = models.TextField(verbose_name=gettext_lazy("Title"))
+    title = models.TextField(verbose_name=_lazy("Title"))
     text = tinymce_models.HTMLField(blank=True)
     side_text = tinymce_models.HTMLField(blank=True)
     target = models.IntegerField(default=500)
@@ -113,8 +113,10 @@ class Petition(models.Model):
 
     class Meta:
         db_table = "petition_petition"
-        verbose_name = gettext_lazy("Petition")
-        verbose_name_plural = gettext_lazy("Petitions")
+        # Translators: Petition model verbose name (in the admin interface)
+        verbose_name = _lazy("Petition")
+        # Translators: Petition model verbose name (in the admin interface)
+        verbose_name_plural = _lazy("Petitions")
         ordering = ["-creation_date"]
 
     @property
@@ -131,11 +133,11 @@ class Petition(models.Model):
         if user is None and org is None:
             raise ValueError(
                 "You should specify either an org or a user when transferring "
-                "a petition"
+                "a petition."
             )
         if user is not None and org is not None:
             raise ValueError(
-                "You cannot specify both a user and an org to transfer a petition to"
+                "You cannot specify both a user and an org to transfer a petition to."
             )
         if user:
             self.user = user

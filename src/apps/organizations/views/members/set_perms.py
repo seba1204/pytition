@@ -73,11 +73,8 @@ def set_perms(  # noqa
     if org not in member.organization_set.all():
         messages.error(
             request,
-            _(
-                "This user is not part of organization '{orgname}'".format(
-                    orgname=org.name
-                )
-            ),
+            _("This user is not part of organization '%(orgname)s'")
+            % {"orgname": org.name},
         )
         return redirect(OrgRoute.DASHBOARD, org.slugname)
 

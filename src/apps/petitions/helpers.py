@@ -22,7 +22,7 @@ def petition_from_id(id: int) -> Petition:
 
     petition: Petition | None = Petition.by_id(id)
     if petition is None:
-        raise Http404(_("Petition does not exist"))
+        raise Http404(_("Petition does not exist."))
     else:
         return petition
 

@@ -89,11 +89,23 @@ src = ["src"]
 # PTH = flake8-pie
 # PL = flake8-pyi
 # D = pydocstyle TODO: enable pydocstyle later
-select = ["E", "F", "I", "UP", "B", "C4", "SIM", "PTH", "PL"]
+# INT = flake8-gettext checks
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "PTH", "PL", "INT"]
 ignore = [
     "D203", # incompatible avec D211
     "D212", # incompatible avec D213
     "D401", # first line should be in imperative mood; try rephrasing
+]
+
+[tool.ruff.lint.flake8-gettext]
+# Extend the list to cover pgettext / n(p)gettext / alias _
+function-names = [
+    "_",
+    "gettext",
+    "ngettext",
+    "pgettext",
+    "npgettext",
+    "ugettext",
 ]
 
 [tool.ruff.lint.isort]

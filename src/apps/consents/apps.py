@@ -15,7 +15,10 @@ accounts, signatures
 """
 
 from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _lazy
 
 
 class ConsentsConfig(AppConfig):
     name = "apps.consents"
+    # Translators: Consent application verbose name (in the admin interface)
+    verbose_name = _lazy("Consent management")

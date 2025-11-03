@@ -30,7 +30,7 @@ function addUser(user) {
                         <span class="oi oi-warning"></span>
                     </div>
                     <div class="col">
-                        {% blocktrans with orgname=org.name %}
+                        {% blocktrans trimmed with orgname=org.name %}
                         An unknown error happened. We could not invite this user to <strong>{{ orgname }}</strong>
                         {% endblocktrans %}
                     </div>

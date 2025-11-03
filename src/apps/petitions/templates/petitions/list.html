@@ -9,7 +9,7 @@
   {% if no_petition_msg %}
     {{ no_petition_msg }}
   {% else %}
-    <p>{% trans "You don't have any petitions yet" %}</p>
+    <p>{% trans "You don't have any petitions yet." %}</p>
     {% if can_create_petition %}
       <a class="btn btn-primary"
          href="{% url "petitions:new" %}{% if org %}?org={{ org.slugname|urlencode }}{% endif %}">
@@ -120,9 +120,9 @@
               <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-              {% blocktrans with title=petition.title|striptags %}
-            Do you really want to delete petition "{{ title }}"
-          {% endblocktrans %}
+              {% blocktrans trimmed with title=petition.title|striptags %}
+                Do you really want to delete petition "{{ title  }}"
+              {% endblocktrans %}
             </div>
             <div class="modal-footer">
               <button type="button"

@@ -42,21 +42,17 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">{% trans "Transfer this petition?" %}</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
         <div class="modal-body">
           <b>
-            {% blocktrans trimmed %}
-              Do you really want to transfer the following petition?
-            {% endblocktrans %}
+            {% trans "Do you really want to transfer the following petition?" %}
           </b>
           <br />
           <i>"{{ petition.title  }}"</i>
           <br />
           <b>
-            {% blocktrans trimmed %}
-              It will be transfered to:
-            {% endblocktrans %}
+            {% trans "It will be transfered to:" %}
           </b>
           <br />
           <i>
@@ -65,16 +61,17 @@
         </div>
         <div class="modal-footer">
           <button type="button"
-                  class="btn btn-danger"
-                  data-action="petition-transfer"
-                  data-dismiss="modal">{% trans "Transfer" %}</button>
+            class="btn btn-danger"
+            data-action="petition-transfer"
+            {# Translators: Button to confirm the transfer of a petition #}
+            data-dismiss="modal">{% trans "Transfer" %}</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
         </div>
       </div>
     </div>
   </div>
   <form action="{% url "petitions:transfer" petition.id %}"
-        method="POST"
+        method="post"
         id="xfer_req">
     {% csrf_token %}
     <input type="hidden" name="new_owner_type" id="new_owner_type">

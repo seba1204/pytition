@@ -9,7 +9,7 @@
 {% endblock extra_css %}
 {% block main_content %}
     <div class="container">
-        <form action="" method="POST" novalidate="novalidate">
+        <form action="" method="post" novalidate="novalidate">
             {% csrf_token %}
             {% include "ui/forms/bs4.html" with form=form %}
             <button class="btn btn-primary" type="submit">{% trans "Register" %}</button>

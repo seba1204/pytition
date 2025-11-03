@@ -11,8 +11,10 @@ Notes
 """
 
 from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _lazy
 
 
 class CoreConfig(AppConfig):
     name = "apps.core"
-    verbose_name = "Pytition Core Utilities"
+    # Translators: Core application verbose name (in the admin interface)
+    verbose_name = _lazy("Core Application")

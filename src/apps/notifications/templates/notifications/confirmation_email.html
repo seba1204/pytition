@@ -10,9 +10,9 @@
     </head>
     <body>
         <h2>{% trans "Thank you" %} {{ firstname }}!</h2>
-        {% blocktrans %}
-Now, in order to confirm your signature, you only need to click here :
-{% endblocktrans %}
+        {% blocktrans trimmed %}
+            Now, in order to confirm your signature, you only need to click here :
+        {% endblocktrans %}
         <a href="{{ url }}">{{ url }}</a>
         <p />
         {% trans "See you soon!" %}

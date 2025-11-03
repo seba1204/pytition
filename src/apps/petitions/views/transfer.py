@@ -50,8 +50,9 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
                 request,
                 _(
                     "You don't have the permission to transfer a petition from "
-                    "Organization '{}'".format(org)
-                ),
+                    "Organization %(org_name)s"
+                )
+                % {"org_name": org.name},
             )
             return redirect(OrgRoute.DASHBOARD, org.slugname)
         ctx["base_template"] = "org/base.html"
@@ -59,7 +60,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
     elif petition.owner_type == "user":
         if petition.user != pytitionuser:
             messages.error(
-                request, _("You don't have the permission to transfer this petition")
+                request, _("You don't have the permission to transfer this petition.")
             )
             return redirect(AccountsRoute.DASHBOARD)
         ctx["base_template"] = "accounts/base.html"
@@ -100,7 +101,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
 
         if not_found:
             messages.error(
-                request, _("You tried to transfer a petition to a non-exiting account")
+                request, _("You tried to transfer a petition to a non-exiting account.")
             )
             return redirect(PetitionsRoute.TRANSFER, petition.id)
 

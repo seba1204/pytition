@@ -102,7 +102,7 @@
                                                 <span class="d-inline-block"
                                                       tabindex="0"
                                                       data-toggle="tooltip"
-                                                      title="{% trans "You cannot leave an organization where you are either the last administrator or the last member" %}">
+                                                      title="{% trans "You cannot leave an organization where you are either the last administrator or the last member." %}">
                                                     <button type="button" class="btn btn-light disabled" disabled>Leave</button>
                                                 </span>
                                             {% endif %}
@@ -111,7 +111,7 @@
                                 {% endfor %}
                             </div>
                         {% else %}
-                            <i>{% trans "You are not part of any organization" %}</i>
+                            <i>{% trans "You are not part of any organization." %}</i>
                         {% endif %}
                         {% if not settings.RESTRICT_ORG_CREATION or perms.petition.add_organization %}
                             <div class="text-center mt-5">
@@ -131,11 +131,12 @@
                                     <span class="oi oi-warning"></span>
                                 </div>
                                 <div class="col">
-                                    {% blocktrans %}
-                                            WARNING: If you do this, your data will be permanently deleted.<br />
-                                            Please, confirm you understand the risks by entering the following sentence
-                                            in the validation field:
-                                        {% endblocktrans %}
+                                    {% blocktrans trimmed %}
+                                        WARNING: If you do this, your data will be permanently deleted.
+                                        <br />
+                                        Please, confirm you understand the risks by entering the following sentence
+                                        in the validation field:
+                                    {% endblocktrans %}
                                     <br />
                                     {% trans "DROP MY ACCOUNT" %}
                                 </div>
@@ -171,17 +172,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {% trans "Are you sure you want to leave" %} <span id="orgname_modal"></span> ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="#" id="leavelink">
-                        <button type="button" class="btn btn-primary">Leave</button>
-                    </a>
-                </div>
+                    {% blocktrans trimmed with orgname="<span id="orgname_modal"></span>" %}
+                    Are you sure you want to leave {{ orgname }}?
+                {% endblocktrans %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="#" id="leave_link">
+                    <button type="button" class="btn btn-primary">Leave</button>
+                </a>
             </div>
         </div>
     </div>
+</div>
 {% endblock main_content %}
 {% block extra_js %}
     {{ block.super }}
@@ -203,7 +206,7 @@ $(function() {
 
     $(".btn-delete-org").on("click", function(e) {
         $("#orgname_modal").html($(this).data("orgname"));
-        $("#leavelink").attr("href", $(this).data("leaveurl"));
+        $("#leave_link").attr("href", $(this).data("leaveurl"));
         $("#org_leave_modal").modal("show");
         return false;
     });

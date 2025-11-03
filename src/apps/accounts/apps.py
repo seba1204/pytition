@@ -15,10 +15,14 @@ organizations, petitions
 """
 
 from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _lazy
 
 
 class AccountsConfig(AppConfig):
     name = "apps.accounts"
+
+    # Translators: Consent application verbose name (in the admin interface)
+    verbose_name = _lazy("Account management")
 
     def ready(self) -> None:
         # Import signal handlers to connect them

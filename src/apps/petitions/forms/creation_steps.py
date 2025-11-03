@@ -35,7 +35,7 @@ class PetitionCreationStep1(forms.Form):
             self.add_error(
                 "title",
                 ValidationError(
-                    _("There is already a petition with this title"), code="invalid"
+                    _("There is already a petition with this title."), code="invalid"
                 ),
             )
 
@@ -49,7 +49,7 @@ class PetitionCreationStep1(forms.Form):
             self.owned_by_org = False
             self.username = kwargs.pop("user_name")
         else:
-            raise ValueError(_("You should either provide an org name or a user name"))
+            raise ValueError(_("You should either provide an org name or a user name."))
         super().__init__(*args, **kwargs)
 
 

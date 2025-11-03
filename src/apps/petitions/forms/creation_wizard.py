@@ -169,7 +169,7 @@ class PetitionCreationWizard(SessionWizardView):
                 try:
                     org = Organization.objects.get(slugname=orgslugname)
                 except Organization.DoesNotExist:
-                    messages.error(self.request, _("Cannot find this organization"))
+                    messages.error(self.request, _("Cannot find this organization."))
                     return redirect(AccountsRoute.DASHBOARD)
 
                 try:
@@ -196,7 +196,10 @@ class PetitionCreationWizard(SessionWizardView):
                         else:
                             messages.error(
                                 self.request,
-                                _("This template does not belong to your organization"),
+                                _(
+                                    "This template does not belong to your "
+                                    "organization."
+                                ),
                             )
                             return redirect(OrgRoute.DASHBOARD, orgslugname)
                     if publish:
@@ -209,7 +212,7 @@ class PetitionCreationWizard(SessionWizardView):
                         self.request,
                         _(
                             "You don't have the permission to create a new petition in "
-                            "this Organization"
+                            "this Organization."
                         ),
                     )
                     return redirect(OrgRoute.DASHBOARD, orgslugname)
@@ -226,7 +229,7 @@ class PetitionCreationWizard(SessionWizardView):
                         petition.save()
                     else:
                         messages.error(
-                            self.request, _("This template does not belong to you")
+                            self.request, _("This template does not belong to you.")
                         )
                         return redirect(AccountsRoute.DASHBOARD)
                 if publish:
@@ -245,7 +248,7 @@ class PetitionCreationWizard(SessionWizardView):
             try:
                 org = Organization.objects.get(slugname=self._orgslugname())
             except Organization.DoesNotExist:
-                raise Http404(_("Organization does not exist")) from None
+                raise Http404(_("Organization does not exist.")) from None
         else:
             base_template = "accounts/base.html"
 
@@ -261,8 +264,9 @@ class PetitionCreationWizard(SessionWizardView):
                 raise Http404(
                     _(
                         "Internal error, cannot find your permissions attached to "
-                        "this organization ('{orgname}')".format(orgname=org.name)
+                        "this organization ('%(orgname)s')."
                     )
+                    % {"orgname": org.name}
                 ) from None
             context.update({"org": org, "user_permissions": permissions})
         else:

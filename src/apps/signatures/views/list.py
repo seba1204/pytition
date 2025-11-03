@@ -97,9 +97,8 @@ def _assert_can_view_signatures(
 
     if pytitionuser not in org.members.all():
         raise RedirectError(
-            _("You are not member of the following organization: '{}'").format(
-                org.name
-            ),
+            _("You are not member of the following organization: %(orgname)s.")
+            % {"orgname": org.name},
             AccountsRoute.DASHBOARD,
         )
 
@@ -109,14 +108,15 @@ def _assert_can_view_signatures(
         raise RedirectError(
             _(
                 "Internal error, cannot find your permissions attached to this "
-                "organization ('{orgname}')"
-            ).format(orgname=org.name),
+                "organization (%(orgname)s)."
+            )
+            % {"orgname": org.name},
             AccountsRoute.DASHBOARD,
         ) from exc
 
     if not permissions.can_view_signatures:
         raise RedirectError(
-            _("You are not allowed to view signatures in this organization"),
+            _("You are not allowed to view signatures in this organization."),
             OrgRoute.DASHBOARD,
             (org.slugname,),
         )
@@ -224,11 +224,11 @@ def _handle_post_actions(
         if failed:
             messages.error(
                 request,
-                _("An error happened while trying to re-send confirmation emails"),
+                _("An error happened while trying to re-send confirmation emails."),
             )
         else:
             messages.success(
-                request, _("You successfully re-sent all confirmation emails")
+                request, _("You successfully re-sent all confirmation emails.")
             )
         return
 
@@ -251,12 +251,12 @@ def _handle_post_actions(
                 request,
                 _(
                     "You don't have permission to delete some or all of "
-                    "selected signatures"
+                    "selected signatures."
                 ),
             )
         else:
             messages.success(
-                request, _("You successfully deleted all selected signatures")
+                request, _("You successfully deleted all selected signatures.")
             )
         return
 
@@ -265,12 +265,12 @@ def _handle_post_actions(
         if failed:
             messages.error(
                 request,
-                _("An error happened while trying to re-send confirmation emails"),
+                _("An error happened while trying to re-send confirmation emails."),
             )
         else:
             messages.success(
                 request,
-                _("You successfully re-sent all selected confirmation emails"),
+                _("You successfully re-sent all selected confirmation emails."),
             )
         return
 

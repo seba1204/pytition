@@ -56,9 +56,8 @@ def _check_org_context(
 
     if org in user_to_add.organization_set.all():
         raise ConflictError(
-            _("User is already member of {orgname} organization").format(
-                orgname=org.name
-            )
+            _("User is already member of %(orgname)s organization.")
+            % {"orgname": org.name}
         )
 
     return user_to_add, org
@@ -95,9 +94,10 @@ def add(request: HttpRequest, orgslugname: str) -> JsonResponse:
         user_to_add.invitations.add(org)
         user_to_add.save()
 
-        msg: str = _("You invited {username} to join {orgname}").format(
-            username=user_to_add.name, orgname=org.name
-        )
+        msg: str = _("You invited %(username)s to join %(orgname)s") % {
+            "username": user_to_add.user.username,
+            "orgname": org.name,
+        }
         return JsonResponse({"message": msg}, status=200)
 
     except ApiError as e:

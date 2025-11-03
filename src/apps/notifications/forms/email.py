@@ -11,8 +11,9 @@ class EmailForm(forms.Form):
     confirmation_email_reply = forms.EmailField(
         max_length=100,
         required=False,
+        # Translators: Label for the contact email field in the email settings form
         label=_(
-            'Your contact email. It will be used as "Reply-To" field of'
+            "Your contact email. It will be used as 'Reply-To' field of"
             " the confirmation email sent to signatories. People responding"
             " to confirmation email will in fact respond to this address."
         ),

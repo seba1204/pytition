@@ -41,11 +41,11 @@
         </div>
         <div class="card-footer">
           <small class="text-muted">
-            {% blocktrans count signature_number=petition.signature_number %}
-          {{ signature_number }} signature
-          {% plural %}
-          {{ signature_number }} signatures
-          {% endblocktrans %}
+            {% blocktrans trimmed count signature_number=petition.signature_number %}
+              {{ signature_number }} signature
+            {% plural %}
+              {{ signature_number }} signatures
+            {% endblocktrans %}
           </small>
         </div>
       </div>

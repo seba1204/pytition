@@ -21,12 +21,12 @@
                     <a href="{% url 'signatures:export' petition.id %}"
                        class="btn btn-primary">
                         <span class="oi oi-spreadsheet"></span>
-                        {% trans "Export <strong>ALL</strong> signatures as CSV" %}
+                        {% trans "Export <strong>ALL</strong> signatures (CSV)" %}
                     </a>
                     <a href="{% url 'signatures:export' petition.id %}?confirmed=true"
                        class="btn btn-primary">
                         <span class="oi oi-spreadsheet"></span>
-                        {% trans "Export <strong>confirmed</strong> signatures as CSV" %}
+                        {% trans "Export <strong>confirmed</strong> signatures (CSV)" %}
                     </a>
                 </p>
                 <p>
@@ -46,7 +46,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">{% trans "copy/paste the following text block into Sympa's mass-subscribe formular" %}</h4>
+                                    <h4 class="modal-title">{% trans "copy/paste the following text block into Sympa's mass-subscribe form" %}</h4>
                                     <button type="button" class="close" data-dismiss="modal">×</button>
                                 </div>
                                 <div class="modal-body" id="sympa_content"></div>

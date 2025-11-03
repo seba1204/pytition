@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% block title %}
-    {% blocktrans with name=org.name %}
+    {% blocktrans trimmed with name=org.name %}
         {{ name }}"s profile
     {% endblocktrans %}
 {% endblock title %}

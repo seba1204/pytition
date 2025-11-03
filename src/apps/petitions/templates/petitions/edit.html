@@ -267,15 +267,15 @@
                     <img class="img-thumbnail img-fluid"
                          alt="uploaded image preview"
                          src="{{ petition.twitter_image }}"
-                         style="max-width: 200px;
-                                max-height: 200px"
+                         max-width="200"
+                         max-height="200"
                          id="img_preview" />
                   {% else %}
                     <img class="img-thumbnail img-fluid"
                          alt="cloud clipart"
                          src="{% vendor_static "open-iconic" "_zip/open-iconic-1.1.1/png/cloud-upload-8x.png" %}"
-                         style="max-width: 200px;
-                                max-height: 200px"
+                         max-width="200"
+                         max-height="200"
                          id="img_preview" />
                   {% endif %}
                 </div>
@@ -294,11 +294,11 @@
       </form>
       <p>
         <div class="alert alert-info">
-          {% blocktrans %}
-                A permlink (permanent link) is what allows you to share your petition with a nice link
-                containing a meaningful small title instead of a number.
-                With a permlink your petition can be accessible via a link like:
-            {% endblocktrans %}
+          {% blocktrans trimmed %}
+            A permalink (permanent link) is what allows you to share your petition with a nice link
+            containing a meaningful small title instead of a number.
+            With a permalink your petition can be accessible via a link like:
+          {% endblocktrans %}
           <b>
             {{ example_url }}
           </b>
@@ -310,7 +310,7 @@
           <table class="table table-striped" id="slugTable">
             <thead class="thead-light">
               <tr>
-                <th>{% trans "Permlinks" %}</th>
+                <th>{% trans "Permalinks" %}</th>
                 <th>{% trans "Actions" %}</th>
               </tr>
             </thead>
@@ -381,10 +381,11 @@
          aria-labelledby="list-preview-list"
          data-src="{{ petition.url }}">
       <div class="alert alert-warning" role="alert">
-        {% blocktrans %}
-            Beware: this preview shows the current state of the petition.<br />
-            If you modified some settings, please save if you want to see them in the preview.
-            {% endblocktrans %}
+        {% blocktrans trimmed %}
+          Beware: this preview shows the current state of the petition.
+          <br />
+          If you modified some settings, please save if you want to see them in the preview.
+        {% endblocktrans %}
       </div>
       <div class="embed-responsive embed-responsive-4by3">
         <iframe class="embed-responsive-item" src=""></iframe>

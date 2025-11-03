@@ -2,9 +2,9 @@
 {% load static %}
 {% load i18n %}
 {% block title %}
-    {% blocktrans with name=user.get_full_name %}
-    {{ name }}"s profile
-{% endblocktrans %}
+    {% blocktrans trimmed with name=user.get_full_name %}
+        {{ name }}"s profile
+    {% endblocktrans %}
 {% endblock title %}
 {% block container_type %}
     container
@@ -27,9 +27,9 @@
                    role="button">{% trans "First Created" %}</a>
             </div>
         </div>
-        {% blocktrans asvar no_petitions_text %}
-        This user has not created any petition yet
-    {% endblocktrans %}
+        {% blocktrans trimmed asvar no_petitions_text %}
+            This user has not created any petition yet.
+        {% endblocktrans %}
         {% include "petitions/generic_list.html" with petitions=petitions no_petitions_text=no_petitions_text sort=sort %}
     </div>
 {% endblock main_content %}

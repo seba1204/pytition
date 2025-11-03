@@ -32,6 +32,7 @@ class PetitionTemplate(models.Model):
     NEWSLETTER_SUBSCRIBE_METHOD_CHOICES = ((MAIL, "MAIL"), (POST, "POST"), (GET, "GET"))
 
     # Description
+    # Translators: Petition Template name field in models (admin interface)
     name = models.CharField(max_length=50, verbose_name=gettext_lazy("Name"))
     text = tinymce_models.HTMLField(blank=True)
     side_text = tinymce_models.HTMLField(blank=True)
@@ -90,7 +91,9 @@ class PetitionTemplate(models.Model):
 
     class Meta:
         db_table = "petition_petitiontemplate"
+        # Translators: Petition Template model name in models (admin interface)
         verbose_name = gettext_lazy("Petition Template")
+        # Translators: Petition Template model name plural in models (admin interface)
         verbose_name_plural = gettext_lazy("Petition Templates")
 
     def __str__(self) -> str:

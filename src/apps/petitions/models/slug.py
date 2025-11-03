@@ -22,7 +22,9 @@ class SlugModel(models.Model):
 
     class Meta:
         db_table = "petition_slugmodel"
+        # Translators: Slug model verbose name (in the admin interface)
         verbose_name = gettext_lazy("Slug")
+        # Translators: Slug model verbose name (in the admin interface)
         verbose_name_plural = gettext_lazy("Slugs")
 
     def clean(self, *args: Any, **kwargs: Any) -> None:

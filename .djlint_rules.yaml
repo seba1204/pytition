@@ -1,0 +1,19 @@
+- rule:
+    name: I18N001
+    message: Use `{% blocktrans trimmed %}` for multi-line translation blocks.
+    flags: re.DOTALL
+    patterns:
+      - "{% blocktrans(?![^%]*trimmed)[^%]*%}"
+
+- rule:
+    name: I18N002
+    message: Avoid using variables inside `{% trans %}` — use `{% blocktrans with ... %}` instead.
+    patterns:
+      - "{% trans [^%]*{{"
+
+- rule:
+    name: I18N003
+    message: When using `count=` inside `{% blocktrans %}`, you must include a `{% plural %}` clause.
+    flags: re.DOTALL
+    patterns:
+      - "{% blocktrans[^%]*count=[^%]*%}(?:(?!{% plural %}).)*{% endblocktrans %}"

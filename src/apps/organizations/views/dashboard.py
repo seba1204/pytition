@@ -37,7 +37,9 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
         messages.error(
-            request, _("This organization does not exist: '{}'".format(orgslugname))
+            request,
+            _("This organization does not exist: '%(orgname)s'")
+            % {"orgname": orgslugname},
         )
         return redirect(AccountsRoute.DASHBOARD)
 
@@ -46,7 +48,9 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     # Check that the user is part of the organization
     if pytitionuser not in org.members.all():
         messages.error(
-            request, _("You are not part of this organization: '{}'".format(org.name))
+            request,
+            _("You are not part of this organization: '%(orgname)s'")
+            % {"orgname": orgslugname},
         )
         return redirect(AccountsRoute.DASHBOARD)
 
@@ -58,8 +62,9 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
             request,
             _(
                 "Internal error, cannot find your permissions attached to this "
-                "organization ('{orgname}')".format(orgname=org.name)
-            ),
+                "organization ('%(orgname)s')"
+            )
+            % {"orgname": org.name},
         )
         return redirect(AccountsRoute.DASHBOARD)
 

@@ -30,7 +30,9 @@
             {% endif %}
             ›;
             {% if add %}
-                {% blocktrans with name=opts.verbose_name %}Add {{ name }}{% endblocktrans %}
+                {% blocktrans trimmed with name=opts.verbose_name %}
+                    Add {{ name }}
+                {% endblocktrans %}
             {% else %}
                 {{ original|truncatewords:"18" }}
             {% endif %}
@@ -46,6 +48,7 @@
                         {% block object_tools_items %}
                             <li>
                                 {% url opts|admin_urlname:"history" original.pk|admin_urlquote as history_url %}
+                                {# Translators: Link to the history page for this object in the admin interface #}
                                 <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
                             </li>
                             {% if has_absolute_url %}

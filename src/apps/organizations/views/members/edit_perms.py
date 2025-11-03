@@ -49,7 +49,7 @@ def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpRe
         member = PytitionUser.objects.get(user__username=user_name)
     except PytitionUser.DoesNotExist:
         messages.error(
-            request, _("User '{name}' does not exist".format(name=user_name))
+            request, _("User '%(name)s' does not exist") % {"name": user_name}
         )
         return redirect(OrgRoute.DASHBOARD, orgslugname)
 
@@ -57,18 +57,17 @@ def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpRe
         org = Organization.objects.get(slugname=orgslugname)
     except Organization.DoesNotExist:
         raise Http404(
-            _("Organization '{name}' does not exist".format(name=orgslugname))
+            _("Organization '%(name)s' does not exist") % {"name": orgslugname}
         ) from None
 
     if org not in member.organization_set.all():
         messages.error(
             request,
             _(
-                "The user '{username}' is not member of "
-                "this organization ({orgname}).".format(
-                    username=user_name, orgname=org.name
-                )
-            ),
+                "The user '%(username)s' is not member of "
+                "this organization (%(orgname)s)."
+            )
+            % {"username": member.user.username, "orgname": org.name},
         )
         return redirect(OrgRoute.DASHBOARD, org.slugname)
 
@@ -90,8 +89,9 @@ def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpRe
         return HttpResponse(
             _(
                 "Internal error, cannot find your permissions attached to this "
-                "organization ('{orgname}')".format(orgname=org.name)
-            ),
+                "organization ('%(orgname)s')"
+            )
+            % {"orgname": org.name},
             status=500,
         )
 

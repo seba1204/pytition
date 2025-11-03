@@ -58,11 +58,11 @@ def new(request: HttpRequest) -> HttpResponse:
             org = Organization.objects.get(slugname=orgslugname)
             ctx["org"] = org
         except Organization.DoesNotExist:
-            raise Http404(_("Organization does not exist")) from None
+            raise Http404(_("Organization does not exist.")) from None
 
         if org not in pytitionuser.organization_set.all():
             return HttpResponseForbidden(
-                _("You are not allowed to view this organization dashboard")
+                _("You are not allowed to view this organization dashboard.")
             )
 
         try:
@@ -72,8 +72,9 @@ def new(request: HttpRequest) -> HttpResponse:
             return HttpResponse(
                 _(
                     "Internal error, cannot find your permissions attached to this "
-                    "organization ('{orgname}')".format(orgname=org.name)
-                ),
+                    "organization ('%(orgname)s')."
+                )
+                % {"orgname": org.name},
                 status=500,
             )
 

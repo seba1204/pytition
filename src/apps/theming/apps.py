@@ -9,4 +9,5 @@ from django.apps import AppConfig
 
 class ThemingConfig(AppConfig):
     name = "apps.theming"
+    # Translators: Theming application verbose name (in the admin interface)
     verbose_name = "Theming"
