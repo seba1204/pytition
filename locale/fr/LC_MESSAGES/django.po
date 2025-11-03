@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Pytition\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
-"PO-Revision-Date: 2025-11-03 05:53+0000\n"
+"PO-Revision-Date: 2025-11-03 06:25+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/fr/>\n"
@@ -102,7 +102,7 @@ msgstr "Gabarits de pétition"
 #: src/apps/accounts/templates/accounts/base.html:31
 #: src/apps/organizations/templates/org/base.html:35
 msgid "Create a new petition template"
-msgstr "Créer un gabarit de pétition"
+msgstr "Créer un nouveau gabarit de pétition"
 
 #: src/apps/accounts/templates/accounts/base.html:31
 #: src/apps/organizations/templates/org/base.html:35
