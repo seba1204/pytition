@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-03 06:01+0100\n"
 "PO-Revision-Date: 2025-11-03 06:25+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Japanese <https://translate.sebastienpont.fr/projects/"
 "pytition/dev/ja/>\n"
 "Language: ja\n"
@@ -76,7 +76,7 @@ msgstr "Pytitionユーザー"
 #: src/apps/organizations/views/leave.py:48
 #: src/apps/organizations/views/profile.py:41
 msgid "not found"
-msgstr "not found"
+msgstr "見つかりません"
 
 #: src/apps/accounts/templates/accounts/base.html:12
 #: src/apps/organizations/templates/org/base.html:18
@@ -225,7 +225,7 @@ msgstr "新組織"
 #: src/apps/organizations/templates/org/profile.html:5
 #, python-format
 msgid "%(name)s\"s profile"
-msgstr "%(name)s\"s profile"
+msgstr "%(name)s のプロフィール"
 
 #: src/apps/accounts/templates/accounts/profile.html:24
 #: src/apps/core/templates/core/index.html:32
@@ -574,7 +574,7 @@ msgstr ""
 "ースソフトウェアです。ご自身のサーバーにもインストール可能です！ <br> ソース"
 "コードは <a href=\"https://github.com/pytition/pytition\">GitHub</a> からダウ"
 "ンロードできます。 <br> ドキュメントは <a href="
-"\"https://pytition.readthedocs.io\">ReadTheDocs</a> で閲覧可能です。"
+"\"https://pytition.readthedocs.io\">ReadTheDocs</a> で閲覧可能です"
 
 #: src/apps/core/views/index.py:18
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -711,7 +711,7 @@ msgstr "内部エラー：この組織（%(orgname)s ）に関連付けられた
 
 #: src/apps/organizations/views/leave.py:54
 msgid "Impossible to leave this organization, you are the last administrator"
-msgstr "この組織を離れることはできません。あなたは最後の管理者です。"
+msgstr "この組織を離れることはできません。あなたは最後の管理者です"
 
 #: src/apps/organizations/views/leave.py:62
 msgid "Impossible to leave this organization, you are the last member"
@@ -786,7 +786,7 @@ msgstr "あなたはこの組織の一員ではありません"
 #: src/apps/organizations/views/members/set_perms.py:54
 msgid ""
 "Fatal error, you don't have permissions attached to you for this organization"
-msgstr "致命的なエラーが発生しました。この組織に対する権限が割り当てられていません。"
+msgstr "致命的なエラーが発生しました。この組織に対する権限が割り当てられていません"
 
 #: src/apps/organizations/views/members/set_perms.py:63
 msgid "You are not allowed to modify this organization members' permissions"
@@ -795,14 +795,14 @@ msgstr "この組織メンバーの権限を変更することは許可されて
 #: src/apps/organizations/views/members/set_perms.py:76
 #, python-format
 msgid "This user is not part of organization '%(orgname)s'"
-msgstr "このユーザーは組織「%(orgname)s 」に所属していません。"
+msgstr "このユーザーは組織「%(orgname)s 」に所属していません"
 
 #: src/apps/organizations/views/members/set_perms.py:87
 msgid ""
 "Fatal error, this user does not have permissions attached for this "
 "organization"
 msgstr "致命的なエラーが発生しました。このユーザーには、この組織に対する権限が付与さ"
-"れていません。"
+"れていません"
 
 #: src/apps/organizations/views/members/set_perms.py:128
 msgid ""
@@ -987,7 +987,7 @@ msgstr ""
 "組織のTwitterアカウントハンドル（@記号で始まる）。例：@RAP_Asso。これは「Twit"
 "terカード」を正しいアカウントに紐付けるために必要です。詳細は https://"
 "developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary を"
-"参照してください。"
+"参照してください"
 
 #: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
 msgid "Check if you want to use your own Email SMTP account."
@@ -1367,7 +1367,7 @@ msgstr "以下の誤りを修正してください。"
 #: src/apps/petitions/templates/petitions/detail.html:80
 #: src/apps/petitions/templates/petitions/detail.html:102
 msgid "Thank you!"
-msgstr "ありがとうございます"
+msgstr "ありがとうございます！"
 
 #: src/apps/petitions/templates/petitions/detail.html:84
 msgid ""
