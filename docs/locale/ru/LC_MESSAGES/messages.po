@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pytition 2.10.0-19-g0a5cff8\n"
+"Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-04 00:38+0100\n"
+"POT-Creation-Date: 2025-11-04 00:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -20,52 +20,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: ../../source/admin/index.md:1 41b9a2ba54b342d5b376ead25011b948
+#: ../../source/admin/index.md:1 a9bc6736f5e742bfa6dfd7adc28614ae
 msgid "Admin guide"
 msgstr ""
 
-#: ../../source/admin/index.md:3 34ec9515dfee4e1897fc4542d828bb95
+#: ../../source/admin/index.md:3 fddab50e0bf745dea16c6000cd141cc2
 msgid "Welcome to the administrator documentation!"
 msgstr ""
 
 #: ../../source/admin/index.md:5 ../../source/dev/index.md:5
-#: ../../source/user/index.md:5 0e6cb39738e042529449a3f506323786
-#: 5962d7a5a9194da490255486c55d8460 e805cc98fd5d41f4b7bcb3b6bfa6d70f
+#: ../../source/user/index.md:5 cb8b8d9a73694dc0a9a33aa7f1089fa3
+#: dab3ebf26ebb4c58b3ebc2201167c6c9 e20c51987c5e4b95b290b3c84ae7bfcc
 msgid "Who is this section for?"
 msgstr ""
 
-#: ../../source/admin/index.md:7 7d04bf0af404434fa8a1941d8e2aad8a
+#: ../../source/admin/index.md:7 94a6361a15aa420082cde5b2d34dddf6
 msgid "For administrators who manage the application."
 msgstr ""
 
 #: ../../source/admin/index.md:10 ../../source/dev/index.md:10
-#: ../../source/user/index.md:10 1f5985b32bff4f11acf726e23d6f489c
-#: cf03d5d6e00140298d0dca060b41c590 e7d0d1c4e0fb4622be1f343c8f6ffcf0
+#: ../../source/user/index.md:10 6cbf0807579949c4aee28b04b44ac0da
+#: e01903243f77438abbdd749188eb18b5 f3f625d9d9824accb809cea6dfe1260b
 msgid "Getting Started"
 msgstr ""
 
 #: ../../source/admin/index.md:12 ../../source/dev/index.md:12
-#: ../../source/user/index.md:12 6150e286ff20489a8a0da358928e9c1f
-#: 7ad748b77fcf4741bac90c464d528e50 b1652961a297436aa8ac9cce222fa84d
+#: ../../source/user/index.md:12 001f756cc5364c929ca7e52a345d0fa9
+#: d011ac8560d44c46908822e89c50f8fe fb73afbbef7d4a37bfcb4009131f8541
 msgid "Todo"
 msgstr ""
 
-#: ../../source/admin/index.md:13 92775a77e44441f78df266378434340f
+#: ../../source/admin/index.md:13 a73207cb40e04811aca0de354a478a52
 msgid "Implement admin guide content here."
 msgstr ""
 
-#: ../../source/dev/conventions.md:1 3cc6233c884c4484a1f64a0766ae8a87
+#: ../../source/dev/conventions.md:1 c13c57111cce4effa1b6e4bb7f030683
 msgid "Conventions"
 msgstr ""
 
-#: ../../source/dev/conventions.md:3 9b80801f80c243d99b53b134e6976df8
+#: ../../source/dev/conventions.md:3 1b09157d87614a6baf0f750717af7844
 msgid ""
 "This document describes the coding conventions followed in the Pytition "
 "project. Adhering to these conventions helps maintain code quality, "
 "readability, and consistency across the codebase."
 msgstr ""
 
-#: ../../source/dev/conventions.md:5 b1b4bfab13334951a19707522c9668cd
+#: ../../source/dev/conventions.md:5 8489055bb7404923a4eea515723de0ed
 msgid "Python Code Style"
 msgstr ""
 
@@ -73,81 +73,81 @@ msgstr ""
 msgid "Contents:"
 msgstr ""
 
-#: ../../source/dev/index.md:1 b03026cb81ed488791aae29f0cc1b207
+#: ../../source/dev/index.md:1 56102e0b5e7c441486933163ba7f281f
 msgid "Dev guide"
 msgstr ""
 
-#: ../../source/dev/index.md:3 ac4e3b84d9514c6db738bc491ae13b13
+#: ../../source/dev/index.md:3 4e41a16015474785abff67b1a16220fc
 msgid "Welcome to the developer documentation!"
 msgstr ""
 
-#: ../../source/dev/index.md:7 8be24aabf01e486093c71324289cf41b
+#: ../../source/dev/index.md:7 1209d2a2f5e7417c9270bc91073ff610
 msgid "For developers who want to contribute to the codebase."
 msgstr ""
 
-#: ../../source/dev/index.md:13 3ec64ed9da9341d4ad1dfb0a3224758f
+#: ../../source/dev/index.md:13 e5e745d64b764c54ac4d8b74b7b5723f
 msgid "Implement developer guide content here."
 msgstr ""
 
-#: ../../source/dev/index.md:16 2ac1ce16ddea499b93b5d0c5670529bb
+#: ../../source/dev/index.md:16 a070298bd4df4cdb9e1c65285656efd5
 msgid "Wat's next?"
 msgstr ""
 
-#: ../../source/index.md:1 7b8689526e364f7f885bf50a6382c2d2
+#: ../../source/index.md:1 d9dab982882f4a118bafa674606dcc71
 msgid "Welcome to Pytition's documentation"
 msgstr ""
 
-#: ../../source/index.md:3 84e5337b51b742848813539bb8e9f131
+#: ../../source/index.md:3 3fc4d91ee8744beea6a1196b66035983
 msgid "![Docstring coverage](./_static/interrogate_badge.svg)"
 msgstr ""
 
-#: ../../source/index.md:3 3f88b1fa371a4da7af494a1abcdd4ec4
+#: ../../source/index.md:3 ffd53943ef3545a4977634e8dfba1e43
 msgid "Docstring coverage"
 msgstr ""
 
-#: ../../source/index.md:5 83b4273454674629adffefd0520b7a9d
+#: ../../source/index.md:5 c4c98d5ab891499fbdef7b494020a9ee
 msgid ""
 "`Pytition` is an application for privacy-friendly online petitions you "
 "can host on your own server. `Pytition` uses the renowned `Django` "
 "framework and is easy to install."
 msgstr ""
 
-#: ../../source/index.md:9 2f63cbf6ac1346cfb15d785de2ebaafa
+#: ../../source/index.md:9 8d08fcdcad484505967846e05ffa93cc
 msgid "Demo: [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
 msgstr ""
 
-#: ../../source/index.md:20 7264bb175a9440b1a6c2d1eddd3ec6df
+#: ../../source/index.md:20 26dbb25e733843f898170ce442cf9831
 msgid "Indices and tables"
 msgstr ""
 
-#: ../../source/index.md:22 d8aa8f40ca1e4e168215d8d44dbd9eae
+#: ../../source/index.md:22 029721bd2ec145cd99c395ef205b843f
 #, python-brace-format
 msgid "{ref}`genindex`"
 msgstr ""
 
-#: ../../source/index.md:23 bc4e1d568ebb4876a7751130cac0f828
+#: ../../source/index.md:23 235357501d4d45c2b25d1c578c0b041a
 #, python-brace-format
 msgid "{ref}`modindex`"
 msgstr ""
 
-#: ../../source/index.md:24 930e8526efa447fe86b3469f589fa42c
+#: ../../source/index.md:24 3391d85a8835450d846622581edcd1bc
 #, python-brace-format
 msgid "{ref}`search`"
 msgstr ""
 
-#: ../../source/user/index.md:1 9bb8e50c1c7241cdbcf029a2212c6243
+#: ../../source/user/index.md:1 c28934450847473592edce850aee6ba2
 msgid "User Guide"
 msgstr ""
 
-#: ../../source/user/index.md:3 cdce66f007314ca3b0efc1a12c59e98d
+#: ../../source/user/index.md:3 8fd153308417405c8c180837b4729926
 msgid "Welcome to the application!"
 msgstr ""
 
-#: ../../source/user/index.md:7 ada31759cf2b4240941fe0fa0ddeeec5
+#: ../../source/user/index.md:7 bc26bbdacd354a79b0b1e33343e91077
 msgid "For those who use the web app on a daily basis."
 msgstr ""
 
-#: ../../source/user/index.md:13 c27b4f42450448b48088ee2fd874b6e1
+#: ../../source/user/index.md:13 1d8e48db4b794dc4a76a74dc96ec9dcb
 msgid "Implement user guide content here."
 msgstr ""
 

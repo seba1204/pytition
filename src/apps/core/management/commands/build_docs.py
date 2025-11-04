@@ -245,6 +245,9 @@ class Command(BaseCommand):
         languages: list[str] = get_configured_languages()
         default_lang: str = languages[0]
 
+        # Filter out the source language ("en" by default)
+        langs_for_update = [lang for lang in languages if lang != default_lang]
+
         if clean and BUILD_DIR.exists():
             shutil.rmtree(BUILD_DIR)
 
@@ -265,7 +268,16 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.HTTP_INFO("→ Updating .po files (sphinx-intl)...")
             )
-            update_po_files(locale_dir=locale_dir, pot_dir=pot_dir, languages=languages)
+            if not langs_for_update:
+                self.stdout.write(
+                    self.style.WARNING(
+                        "No non-source languages found — skipping sphinx-intl."
+                    )
+                )
+            else:
+                update_po_files(
+                    locale_dir=locale_dir, pot_dir=pot_dir, languages=langs_for_update
+                )
 
         for lang in languages:
             self.stdout.write(self.style.HTTP_INFO(f"→ Building HTML for {lang}..."))
