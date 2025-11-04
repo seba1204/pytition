@@ -42,7 +42,6 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx_copybutton",
     "sphinx_design",  # for nice admonitions
-    "sphinxcontrib.mermaid",
 ]
 
 # MyST (Markdown)
@@ -98,7 +97,12 @@ html_static_path = ["_static"]
 html_css_files = globals().get("html_css_files", [])
 html_css_files += ["css/override.css"]
 html_js_files = globals().get("html_js_files", [])
-html_js_files += ["js/lang-switcher.js"]
+html_js_files += [
+    "js/lang-switcher.js",
+    "js/svg_panzoom_attach.js",
+    "js/dist/svg-pan-zoom.min.js",
+    "js/theme-switcher.js",
+]
 html_favicon = "_static/favicon.ico"
 html_theme_options = {
     "logo": {

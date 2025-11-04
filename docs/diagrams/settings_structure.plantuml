@@ -1,0 +1,62 @@
+@startuml "Pytition Settings Structure"
+title Pytition Settings Structure — config.settings
+
+!include modern-dark.puml
+
+node "config.settings\n(__init__.py)" as ENTRY
+component DJANGO as "django.py\n(core Django settings)"
+component DEFAULT as "default.py\n(app/project defaults)"
+package "delta/" {
+  component DEV as "dev.py\n(env delta)"
+  component PROD as "prod.py\n(env delta)"
+  component TEST as "test.py\n(env delta)"
+}
+
+database DOTENV as ".env (file)"
+database OSENV as "OS Environment Variables"
+component DETECT as "Environment detection\n(_detect_env: ENV/DEBUG)"
+component OVERRIDE as "override_settings_from_env()"
+collections GLOB as "globals() (effective settings)"
+
+' Base imports
+ENTRY --> DJANGO : import *
+ENTRY --> DEFAULT : import *
+
+' Environment detection
+ENTRY --> DETECT : resolve active ENV
+DETECT --> DEV  : if ENV=dev
+DETECT --> PROD : if ENV=prod
+DETECT --> TEST : if ENV=test
+
+' Import delta based on ENV
+ENTRY --> DEV  : import * (when dev)
+ENTRY --> PROD : import * (when prod)
+ENTRY --> TEST : import * (when test)
+
+' Detection sources
+DOTENV --> DETECT : ENV / DEBUG (highest precedence)
+OSENV  --> DETECT : fallback
+
+' Final overrides
+DJANGO  --> OVERRIDE
+DEFAULT --> OVERRIDE
+DEV     --> OVERRIDE
+PROD    --> OVERRIDE
+TEST    --> OVERRIDE
+
+DOTENV --> OVERRIDE : UPPERCASE keys\n(priority 1)
+OSENV  --> OVERRIDE : UPPERCASE keys\n(priority 2)
+OVERRIDE --> GLOB   : apply updates
+
+note right of OVERRIDE
+Value precedence:
+  1) .env
+  2) OS env vars
+  3) Python defaults (django.py, default.py, delta/*.py)
+
+Type casting:
+  • bool: "1/true/yes/on"
+  • ast.literal_eval for int/float/dict/list/tuple
+  • lists: comma-split fallback when needed
+end note
+@enduml

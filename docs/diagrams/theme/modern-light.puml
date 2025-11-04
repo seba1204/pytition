@@ -1,0 +1,103 @@
+@startuml "modern-light"
+' --- THEME : MODERN LIGHT ---
+' @author : Sébastien PONT
+' @date   : 2025-11-04
+
+
+' --- Primary colors ---
+skinparam BackgroundColor #FAFAFA
+skinparam DefaultFontColor #1E1E1E
+skinparam Shadowing false
+
+' --- Typography ---
+skinparam DefaultFontName "Inter, Segoe UI, Roboto, Helvetica, Arial"
+skinparam DefaultFontSize 14
+skinparam ArrowFontSize 13
+skinparam ParticipantFontSize 13
+skinparam ActivityFontSize 13
+
+' --- Lines & connectors ---
+skinparam ArrowColor #6B7280
+skinparam ArrowThickness 1.3
+skinparam LineColor #D1D5DB
+skinparam BorderColor #D1D5DB
+
+' --- Boxes, actors, etc. ---
+skinparam RectangleBackgroundColor #FFFFFF
+skinparam RectangleBorderColor #D1D5DB
+skinparam RectangleFontColor #111827
+skinparam ActorBorderColor #9CA3AF
+skinparam ActorBackgroundColor #F9FAFB
+skinparam ActorFontColor #111827
+skinparam ComponentBackgroundColor #FFFFFF
+skinparam ComponentBorderColor #E5E7EB
+
+' --- Notes / captions ---
+skinparam NoteBackgroundColor #F3F4F6
+skinparam NoteBorderColor #D1D5DB
+skinparam NoteFontColor #111827
+
+' --- Activities / Sequences ---
+skinparam SequenceLifeLineBorderColor #D1D5DB
+skinparam SequenceLifeLineBackgroundColor #E5E7EB
+skinparam SequenceParticipantBackgroundColor #FFFFFF
+skinparam SequenceParticipantBorderColor #D1D5DB
+skinparam SequenceBoxBackgroundColor #F9FAFB
+skinparam SequenceBoxBorderColor #E5E7EB
+
+' --- Miscellaneous ---
+skinparam ActivityStartColor #10B981
+skinparam ActivityEndColor #EF4444
+skinparam PackageBackgroundColor #FFFFFF
+skinparam PackageBorderColor #D1D5DB
+
+' --- Font settings for specific elements ---
+skinparam NodeFontName "Inter, Segoe UI, Roboto, Helvetica, Arial"
+skinparam NodeFontSize 13
+skinparam DatabaseFontName "Inter, Segoe UI, Roboto, Helvetica, Arial"
+skinparam DatabaseFontSize 13
+
+' --- Specific element colors ---
+skinparam NodeBackgroundColor #FFFFFF
+skinparam NodeBorderColor #D1D5DB
+skinparam NodeFontColor #111827
+
+skinparam DatabaseBackgroundColor #FFFFFF
+skinparam DatabaseBorderColor #D1D5DB
+skinparam DatabaseFontColor #111827
+
+skinparam NodeBackgroundColor<<entrypoint>> #EEFDF5
+skinparam NodeBorderColor<<entrypoint>>     #A7F3D0
+
+skinparam DatabaseBackgroundColor<<config>> #FFF8E1
+skinparam DatabaseBorderColor<<config>>     #FDE68A
+skinparam DatabaseFontColor<<config>>       #7C2D12
+
+skinparam RectangleBackgroundColor #FFFFFF
+skinparam RectangleBorderColor #E5E7EB
+skinparam RectangleStereotypeFontColor #6B7280
+
+' --- Shape styling ---
+skinparam RoundCorner 15
+skinparam RectangleRoundCorner 15
+skinparam NodeRoundCorner 15
+skinparam PackageRoundCorner 12
+skinparam FrameRoundCorner 12
+skinparam DatabaseRoundCorner 15
+skinparam CloudRoundCorner 15
+skinparam ArtifactRoundCorner 15
+skinparam CardRoundCorner 15
+skinparam NoteRoundCorner 8
+
+skinparam RectanglePadding 8
+skinparam NodePadding 8
+skinparam PackagePadding 6
+skinparam DatabasePadding 6
+skinparam NotePadding 6
+
+skinparam Shadowing false
+skinparam Shadowing true
+skinparam ShadowColor #E5E7EB
+skinparam ShadowThickness 1
+
+@enduml
