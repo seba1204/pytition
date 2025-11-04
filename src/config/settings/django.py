@@ -24,9 +24,19 @@ BUILD_DIR.mkdir(exist_ok=True)
 # ──────────────────────────────────────────────────────────────────────────────
 # Security
 # ──────────────────────────────────────────────────────────────────────────────
+SECRET_KEY: str = "CHANGE_ME_IN_PROD"
+"""
+Django secret key for cryptographic signing.
 
-SECRET_KEY = "CHANGE_ME_IN_PROD"
-DEBUG = True
+**MUST be overridden in production** via environment variable or secrets manager. You
+can use `pdm manage generate_secret_key --quiet` to create a strong key.
+"""
+DEBUG: bool = True
+"""
+Enables debug mode for development purposes.
+
+Must be set to `False` in production!
+"""
 ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "[::1]"]
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -120,7 +130,9 @@ TEMPLATES = [
 # Database
 # ──────────────────────────────────────────────────────────────────────────────
 
-DATABASES = {
+#: Default database configuration using **SQLite** for development purposes.
+#: MUST be overridden in production via environment variable or secrets manager.
+DATABASES: dict = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": str(BUILD_DIR / "db.sqlite3"),

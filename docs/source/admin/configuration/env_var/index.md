@@ -6,7 +6,7 @@ To simplify the documentation, we have organized the section on parameter variab
 
 - **Basics**: the most common variables you will want to modify for a quick and standard installation
 - **All**: all variables if you are looking for a specific one, or just want to take a look at what is available
-- **Advanced**: explains the logic behind reading variables
+- **Under the hood**: explains the logic behind reading variables
 
 ```{toctree}
 :maxdepth: 2

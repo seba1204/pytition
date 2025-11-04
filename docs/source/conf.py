@@ -46,17 +46,19 @@ extensions = [
 
 # MyST (Markdown)
 myst_enable_extensions = [
+    "fieldlist",
     "colon_fence",
     "deflist",
     "attrs_block",
     "attrs_inline",
     "substitution",
+    "dollarmath",
     # "linkify",
 ]
 
 source_suffix = {
-    ".md": "markdown",
     ".rst": "restructuredtext",
+    ".md": "myst",
 }
 
 # Napoleon (docstrings NumPy)
@@ -69,12 +71,16 @@ napoleon_use_rtype = False  # show return type in the "Returns" section
 autosummary_generate = True
 autodoc_member_order = "bysource"  # keep the order in source code
 autodoc_typehints = "description"  # show typehints in description, not in signature
+python_use_unqualified_type_names = True  # use unqualified names for types
 autoclass_content = "both"
 autodoc_default_options = {
     "members": True,
     "undoc-members": True,
     "show-inheritance": True,
+    "no-value": True,
+    "annotation": True,
 }
+add_module_names = False  # don't show full module path before each class/method
 
 # Intersphinx (links to external documentation)
 intersphinx_mapping = {
@@ -123,6 +129,8 @@ html_theme_options = {
     # disable Prev/Next buttons
     "show_prev_next": False,
 }
+# Disable "View page source" link
+html_show_sourcelink = False
 html_context = {
     "default_mode": "auto",
 }

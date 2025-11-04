@@ -1,7 +1,9 @@
-# Advanced configuration
+# Under the hood
 
-```{todo}
-Write some docs.
+In order to better comply with the conventions of a [12-factor app](https://www.12factor.net/), Pytition is able to load configuration variables without modifying any source files or `*.py` files. The following diagrams explain how this works.
+
+```{note}
+You can still edit the variables directly in the `config/settings/**.py` files, but this is not recommended as the file may be overwritten on the next update.
 ```
 
 ## Settings structure

@@ -1,11 +1,14 @@
 # Dev guide
 
+Doc coverage : ![Cover badge](../_static/img/interrogate_badge.svg)
+
 Welcome to the developer documentation!
 
 :::{admonition} Who is this section for?
 :class: tip
 For developers who want to contribute to the codebase.
 :::
+
 
 ## Getting Started
 
@@ -19,7 +22,7 @@ Implement developer guide content here.
 :maxdepth: 2
 :caption: Contents:
 
-conventions
+conventions/index
 setup
 architecture
 ```

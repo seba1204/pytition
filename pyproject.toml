@@ -41,9 +41,6 @@ jquery-smart-wizard = "4.4.1"
 rrssb = "1.14.0"
 bs-custom-file-input = "1.3.4"
 
-
-
-
 [tool.pdm]
 distribution = false
 

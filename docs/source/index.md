@@ -1,7 +1,5 @@
 # Welcome to Pytition's documentation
 
-![Cover badge](_static/img/interrogate_badge.svg)
-
 `Pytition` is an application for privacy-friendly online petitions
 you can host on your own server.
 `Pytition` uses the renowned `Django` framework and is easy to install.
@@ -16,6 +14,8 @@ admin/index
 user/index
 dev/index
 ```
+
+:command:`pdm run docs` to build the documentation locally.
 
 ## Indices and tables
 
