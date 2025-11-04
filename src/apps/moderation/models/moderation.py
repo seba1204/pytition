@@ -1,3 +1,5 @@
+"""Moderation model."""
+
 from __future__ import annotations
 
 from django.db import models
@@ -17,6 +19,8 @@ class Moderation(models.Model):
     )
 
     class Meta:
+        """Meta class for Moderation model."""
+
         db_table = "petition_moderation"
         # Translators: Moderation model name in the admin interface
         verbose_name = _lazy("Moderation")

@@ -1,3 +1,5 @@
+"""Management command for moderating petitions and user accounts."""
+
 import logging
 
 from django.core.management.base import BaseCommand, CommandParser
@@ -21,6 +23,7 @@ class Command(BaseCommand):
     """
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Define command-line arguments for the moderation command."""
         parser.add_argument("-r", "--add-reason", type=str)
         parser.add_argument("-R", "--delete-reason", type=str)
         parser.add_argument("-l", "--list", action="store_true")
@@ -31,7 +34,9 @@ class Command(BaseCommand):
         parser.add_argument("-P", "--unmoderate-petition", type=int)
         parser.add_argument("-U", "--unmoderate-user", type=str)
 
-    def handle(self, *args: object, **opts: object) -> None:
+    # TODO: refactor into smaller methods
+    def handle(self, *args: object, **opts: object) -> None:  # noqa
+        """Execute the moderation command with the given options."""
         if opts["list"]:
             petitions = (
                 Moderation.objects.values("petition")
