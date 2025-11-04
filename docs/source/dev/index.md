@@ -20,4 +20,6 @@ Implement developer guide content here.
 :caption: Contents:
 
 conventions
+setup
+architecture
 ```

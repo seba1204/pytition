@@ -2,13 +2,16 @@
 
 Welcome to the administrator documentation!
 
-:::{admonition} Who is this section for?
+```{admonition} Who is this section for?
 :class: tip
 For administrators who manage the application.
-:::
+```
 
-## Getting Started
+```{toctree}
+:maxdepth: 1
+:caption: Admin Guides
 
-```{todo}
-Implement admin guide content here.
+installation/index
+configuration/index
+management/index
 ```

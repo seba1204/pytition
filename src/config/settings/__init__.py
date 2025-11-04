@@ -21,7 +21,6 @@ Notes:
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 
 from .helpers.envtools import detect_env, load_dotenv, override_settings

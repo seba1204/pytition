@@ -1,6 +1,4 @@
-"""
-Sphinx plugins for Django documentation.
-"""
+"""Sphinx plugins for Django documentation."""
 
 import json
 import os
@@ -108,9 +106,7 @@ class VersionDirective(Directive):
 
 
 class DjangoHTMLTranslator(HTMLTranslator):
-    """
-    Django-specific reST to HTML tweaks.
-    """
+    """Django-specific reST to HTML tweaks."""
 
     # Don't use border=1, which docutils does by default.
     def visit_table(self, node):
@@ -190,9 +186,7 @@ def parse_django_admin_node(env, sig, signode):
 
 
 class DjangoStandaloneHTMLBuilder(StandaloneHTMLBuilder):
-    """
-    Subclass to add some extra things we need.
-    """
+    """Subclass to add some extra things we need."""
 
     name = "djangohtml"
 
@@ -221,8 +215,9 @@ class DjangoStandaloneHTMLBuilder(StandaloneHTMLBuilder):
 
 class ConsoleNode(nodes.literal_block):
     """
-    Custom node to override the visit/depart event handlers at registration
-    time. Wrap a literal_block object and defer to it.
+    Custom node to override the visit/depart event handlers at registration time.
+
+    Wrap a literal_block object and defer to it.
     """
 
     tagname = "ConsoleNode"
@@ -292,11 +287,9 @@ checked>
 
 
 class ConsoleDirective(CodeBlock):
-    """
-    A reStructuredText directive which renders a two-tab code block in which
-    the second tab shows a Windows command line equivalent of the usual
-    Unix-oriented examples.
-    """
+    """A reStructuredText directive which renders a two-tab code block in which the
+    second tab shows a Windows command line equivalent of the usual Unix-oriented
+    examples."""
 
     required_arguments = 0
     # The 'doscon' Pygments formatter needs a prompt like this. '>' alone
@@ -400,8 +393,9 @@ def default_role_error(
     name, rawtext, text, lineno, inliner, options=None, content=None
 ):
     msg = (
-        "Default role used (`single backticks`): %s. Did you mean to use two "
-        "backticks for ``code``, or miss an underscore for a `link`_ ?" % rawtext
+        f"Default role used (`single backticks`): {rawtext}. Did you mean to use two "
+        "backticks for ``code``, or miss an underscore for a `link`_ ?"
     )
+
     logger.warning(msg, location=(inliner.document.current_source, lineno))
     return [nodes.Text(text)], []

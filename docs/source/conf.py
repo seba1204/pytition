@@ -38,12 +38,11 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",  # Numpy/Google docstrings
     "sphinx.ext.viewcode",
-    "sphinx.ext.intersphinx",
+    "sphinx.ext.intersphinx",  # link to other projects' documentation
     "sphinx.ext.todo",
     "sphinx_copybutton",
-    "sphinx_design",
+    "sphinx_design",  # for nice admonitions
     "sphinxcontrib.mermaid",
-    "sphinx_multiversion",
 ]
 
 # MyST (Markdown)
@@ -53,7 +52,7 @@ myst_enable_extensions = [
     "attrs_block",
     "attrs_inline",
     "substitution",
-    "linkify",
+    # "linkify",
 ]
 
 source_suffix = {
@@ -64,13 +63,19 @@ source_suffix = {
 # Napoleon (docstrings NumPy)
 napoleon_google_docstring = False
 napoleon_numpy_docstring = True
-napoleon_use_param = True
-napoleon_use_rtype = False
+napoleon_use_param = True  # show parameters in the "Parameters" section
+napoleon_use_rtype = False  # show return type in the "Returns" section
 
 # Autodoc/Autosummary
 autosummary_generate = True
-autodoc_typehints = "description"
+autodoc_member_order = "bysource"  # keep the order in source code
+autodoc_typehints = "description"  # show typehints in description, not in signature
 autoclass_content = "both"
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "show-inheritance": True,
+}
 
 # Intersphinx (links to external documentation)
 intersphinx_mapping = {
@@ -82,7 +87,7 @@ intersphinx_mapping = {
 }
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "build"]
 
 
 # -- Options for HTML output -----------------------------------------------------------
@@ -91,13 +96,28 @@ exclude_patterns = ["_build"]
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 html_css_files = globals().get("html_css_files", [])
-html_css_files += ["css/main.css"]
+html_css_files += ["css/override.css"]
 html_js_files = globals().get("html_js_files", [])
 html_js_files += ["js/lang-switcher.js"]
+html_favicon = "_static/favicon.ico"
 html_theme_options = {
-    "logo": {"text": "Pytition"},
+    "logo": {
+        "text": "Pytition",
+        "image_light": "_static/img/logo_light.svg",
+        "image_dark": "_static/img/logo_dark.svg",
+    },
+    "icon_links": [
+        {
+            "name": "Forgejo",
+            "url": "https://git.sebastienpont.fr/seba12/pytition",
+            "icon": "_static/img/forgejo.svg",
+            "type": "local",
+        },
+    ],
     "navbar_end": ["theme-switcher", "custom-lang-switcher", "navbar-icon-links"],
     "use_edit_page_button": False,
+    # disable Prev/Next buttons
+    "show_prev_next": False,
 }
 html_context = {
     "default_mode": "auto",
