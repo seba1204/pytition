@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-04 07:17+0100\n"
+"POT-Creation-Date: 2025-11-04 09:15+0100\n"
 "PO-Revision-Date: 2025-11-04 01:26+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-"
 "translation-memory@weblate.org>\n"
@@ -20,75 +20,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: ../../source/admin/configuration/env_var/advanced.md:1
 #: bd393f78b4cb4fd790ea5c570f8d20d9
 msgid "Advanced configuration"
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/advanced.md:3
-#: ../../source/admin/configuration/prod.md:3
-#: ../../source/admin/configuration/site_conf/index.md:3
-#: ../../source/admin/installation/docker.md:3
-#: ../../source/admin/installation/manual.md:5
-#: ../../source/admin/installation/manual.md:11
-#: ../../source/admin/installation/multi_domain.md:3
-#: ../../source/admin/installation/yunohost.md:3
-#: ../../source/admin/management/backup.md:3
-#: ../../source/admin/management/update.md:3 ../../source/dev/index.md:12
-#: ../../source/user/index.md:12 12d51c18c5bd4d468e76021f53c9f285
-#: 33bb08eadda44648a2dd0b52f72e27cd 615759e326ca4de6a92110c67393ea07
-#: 6455ddfa83c84791b6fcb6b8fea15da8 769d441445ca4798aca45519cf6bf06a
-#: 76cf054542c74d1aa3ba6a1fc1bbfbc1 83fadf249fcf4c99aa7bcd11e5df0fc5
-#: 993d1c93bb234d8f9af172e1a77e8690 b1e1ec0ffd2242f0b02f440315fb38d4
-#: bca4271db14347e7add74fd35f55c9f8 bcf6bf1e787b40699171fbac91611fc8
+#: 12d51c18c5bd4d468e76021f53c9f285 33bb08eadda44648a2dd0b52f72e27cd
+#: 615759e326ca4de6a92110c67393ea07 6455ddfa83c84791b6fcb6b8fea15da8
+#: 769d441445ca4798aca45519cf6bf06a 76cf054542c74d1aa3ba6a1fc1bbfbc1
+#: 83fadf249fcf4c99aa7bcd11e5df0fc5 993d1c93bb234d8f9af172e1a77e8690
+#: b1e1ec0ffd2242f0b02f440315fb38d4 bca4271db14347e7add74fd35f55c9f8
+#: bcf6bf1e787b40699171fbac91611fc8
 msgid "Todo"
 msgstr "À faire"
 
-#: ../../source/admin/configuration/env_var/advanced.md:4
-#: ../../source/admin/configuration/prod.md:4
-#: ../../source/admin/configuration/site_conf/index.md:4
-#: ../../source/admin/installation/docker.md:4
-#: ../../source/admin/installation/manual.md:6
-#: ../../source/admin/installation/manual.md:12
-#: ../../source/admin/installation/multi_domain.md:4
-#: ../../source/admin/installation/yunohost.md:4
-#: ../../source/admin/management/backup.md:4
-#: ../../source/admin/management/update.md:4 30d176b67c94455ab7fced2d9e2c4888
-#: 36b088bdea11496489711a3a880d7ec2 3987ed3070934a22a858460eade414b9
-#: 50c6255ea4cd4a1a932ffc0c962e9c03 535c1566485447609e1f9adada021631
-#: 556ebf1ac40b47eb8daa055ff780484c 67c84bcae86b4500a90ad6e3386c34c8
-#: 7826758aaa61408e9c791b934fd3bbd6 8eb8f3748cdb4bd0b516ba90db945b9b
+#: 30d176b67c94455ab7fced2d9e2c4888 36b088bdea11496489711a3a880d7ec2
+#: 3987ed3070934a22a858460eade414b9 50c6255ea4cd4a1a932ffc0c962e9c03
+#: 535c1566485447609e1f9adada021631 556ebf1ac40b47eb8daa055ff780484c
+#: 67c84bcae86b4500a90ad6e3386c34c8 7826758aaa61408e9c791b934fd3bbd6
+#: 8eb8f3748cdb4bd0b516ba90db945b9b
 msgid "Write some docs."
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/all.md:1
+#: 59b6fdb9d7454adbafce3b73e9a7c629
+#, fuzzy
+msgid "Settings structure"
+msgstr "Pour commencer"
+
+#: 390b656ac1894bcc941d82de878b8b3a
+msgid "Load order"
+msgstr ""
+
 #: 59c05a525e324394ab58a8dad3af8056
 msgid "All env variables"
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/all.md:3
 #: 4c2d0670484346f68740c9329fec3d2b
 msgid ""
 "Here is the complete list of all environment variables that Pytition can "
 "read. For each variable, you will find."
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/basics.md:1
 #: 7d0e1786ce984ce6bde3f652049fc080
 msgid "Common environment variables"
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/index.md:11
-#: ../../source/dev/index.md:18 ../../source/index.md:9
 msgid "Contents:"
 msgstr "Contenu :"
 
-#: ../../source/admin/configuration/env_var/index.md:1
 #: a13f10dff57f4e7384f69597aeee2fd7
 msgid "Initial configuration"
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/index.md:3
 #: 4752db7354984ed5b26d34b33954bf5f
 msgid ""
 "Since Pytition is based on Django, you can configure a LOT of things "
@@ -97,101 +79,94 @@ msgid ""
 "variables."
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/index.md:5
 #: 8341dda9e49149a79b437bb4bd8a8c22
 msgid ""
 "To simplify the documentation, we have organized the section on parameter"
 " variables into three parts:"
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/index.md:7
 #: e6794dcb78f44cb4aa7b53816e6f2b2a
 msgid ""
 "**Basics**: the most common variables you will want to modify for a quick"
 " and standard installation"
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/index.md:8
 #: c0cbd5cbf3954789b5b7accd36c22485
 msgid ""
 "**All**: all variables if you are looking for a specific one, or just "
 "want to take a look at what is available"
 msgstr ""
 
-#: ../../source/admin/configuration/env_var/index.md:9
 #: 3c25a345f2d94db8815ad8f770e86e32
 msgid "**Advanced**: explains the logic behind reading variables"
 msgstr ""
 
-#: ../../source/admin/configuration/index.md:1 b42143b4daee4a9a8920b6e09936cb5c
+#: b42143b4daee4a9a8920b6e09936cb5c
 msgid "Configuration"
 msgstr ""
 
-#: ../../source/admin/configuration/index.md:3 52d4c4b42121456f92287b2d1987b865
+#: 52d4c4b42121456f92287b2d1987b865
 msgid "There are two types of configurations:"
 msgstr ""
 
-#: ../../source/admin/configuration/index.md:5 395ccbc93adb49f8b4e3dc841f146fd7
+#: 395ccbc93adb49f8b4e3dc841f146fd7
 msgid ""
 "[**Initial configuration**](./env_var/index.md) : during installation, "
 "via configuration files, or env var: a few settings that must be "
 "configured before anything else (database access, data folders, etc.)"
 msgstr ""
 
-#: ../../source/admin/configuration/index.md:6 48d06e3168f0438b9ff1a47a61365944
+#: 48d06e3168f0438b9ff1a47a61365944
 msgid ""
 "[**Instance configuration**](./site_conf/index.md) : when the app is "
 "running, you wan tweak it from the web interface (site name, security "
 "rules, etc.)"
 msgstr ""
 
-#: ../../source/admin/configuration/index.md:8 9c44ac42a0ca42d2a7e74449b3df871b
+#: 9c44ac42a0ca42d2a7e74449b3df871b
 msgid ""
 "If you plan to deploy Pytition in production, please also refer to the "
 "[Production Configuration](./prod.md) page."
 msgstr ""
 
-#: ../../source/admin/configuration/prod.md:1 5ede0d0a82f648a29d6fcfa4a388251c
+#: 5ede0d0a82f648a29d6fcfa4a388251c
 msgid "Production concerns"
 msgstr ""
 
-#: ../../source/admin/configuration/site_conf/index.md:1
 #: e153d5bb132c4fba8d521c1434dcf567
 msgid "Instance configuration"
 msgstr ""
 
-#: ../../source/admin/index.md:10
 #, fuzzy
 msgid "Admin Guides"
 msgstr "Guide admin"
 
-#: ../../source/admin/index.md:1 d88db9b3cd7d4ea59a4410c2c3ba233b
+#: d88db9b3cd7d4ea59a4410c2c3ba233b
 msgid "Admin guide"
 msgstr "Guide admin"
 
-#: ../../source/admin/index.md:3 bbeda5ff36ae418e8a02a4868b58261b
+#: bbeda5ff36ae418e8a02a4868b58261b
 msgid "Welcome to the administrator documentation!"
 msgstr "Bienvenue sur la documentation des administrateur·rices !"
 
-#: ../../source/admin/index.md:5 ../../source/dev/index.md:5
-#: ../../source/user/index.md:5 86e2fcc98dc345bdb05519fea210b15d
-#: af9f0c3986ed40e591887cbd0db89e60 f7646bdaa2e9420f894c83d4b1c99196
+#: 86e2fcc98dc345bdb05519fea210b15d af9f0c3986ed40e591887cbd0db89e60
+#: f7646bdaa2e9420f894c83d4b1c99196
 msgid "Who is this section for?"
 msgstr "À qui s'adresse cette section ?"
 
-#: ../../source/admin/index.md:7 354947132148450ba41ff6972653311b
+#: 354947132148450ba41ff6972653311b
 msgid "For administrators who manage the application."
 msgstr "Pour les administrateur·rices qui gère l'application."
 
-#: ../../source/admin/installation/docker.md:1 3019ac82217f4062b7b722638d232cd8
+#: 3019ac82217f4062b7b722638d232cd8
 msgid "Installation with Docker"
 msgstr ""
 
-#: ../../source/admin/installation/index.md:1 efdd324ba7174842b0f38c80c62fcfdc
+#: efdd324ba7174842b0f38c80c62fcfdc
 msgid "Installation"
 msgstr ""
 
-#: ../../source/admin/installation/index.md:4 b3e3b0a975bd4775a751708c6c069c52
+#: b3e3b0a975bd4775a751708c6c069c52
 msgid ""
 "Please note that Pytition uses a “plug and play” approach (simple default"
 " configurations) to facilitate installation and discovery, which is "
@@ -200,184 +175,181 @@ msgid ""
 "installation."
 msgstr ""
 
-#: ../../source/admin/installation/index.md:7 a65aa0750da24327b47baa3ef37d2281
+#: a65aa0750da24327b47baa3ef37d2281
 msgid "This documentation is designed for **two types of installations**:"
 msgstr ""
 
-#: ../../source/admin/installation/index.md:9 945d3ff9b39d40fda9da97d749c2e455
+#: 945d3ff9b39d40fda9da97d749c2e455
 msgid "actual **production use**, which must be efficient and secure"
 msgstr ""
 
-#: ../../source/admin/installation/index.md:10 41134100b47a44f5a13e099e40b9fb08
+#: 41134100b47a44f5a13e099e40b9fb08
 msgid "**quick installation** for beta testing the tool, for example."
 msgstr ""
 
-#: ../../source/admin/installation/index.md:12 dc2c1d23b3de4b1b92637d2acdd7b7eb
+#: dc2c1d23b3de4b1b92637d2acdd7b7eb
 msgid ""
 "If you plan to install Pytition for editing source code purpose, or even "
 "contributing to it, please refer to the [developer "
 "guides](../../dev/index.md)."
 msgstr ""
 
-#: ../../source/admin/installation/index.md:14 cb6f74526973496dbfa4e613d2c181f9
+#: cb6f74526973496dbfa4e613d2c181f9
 #, fuzzy
 msgid "Installation methods"
 msgstr "Guide admin"
 
-#: ../../source/admin/installation/index.md:16 a0af68dec48f4e5abcca515e2a7d1410
+#: a0af68dec48f4e5abcca515e2a7d1410
 msgid ""
 "You can install Pytition in various ways, depending on your needs and "
 "environment:"
 msgstr ""
 
-#: ../../source/admin/installation/index.md:18 c09b0f85ea6c48ffb28a5d9b1b174e1b
+#: c09b0f85ea6c48ffb28a5d9b1b174e1b
 msgid ""
 "[**Manual installation**](./manual.md): for maximum control and "
 "flexibility. Suitable for production environments where you want to "
 "customize every aspect of the installation."
 msgstr ""
 
-#: ../../source/admin/installation/index.md:19 f22e772a93084b1c99767f338dad58c1
+#: f22e772a93084b1c99767f338dad58c1
 msgid ""
 "[**Docker installation**](./docker.md): using Docker containers for easy "
 "deployment and management. Ideal for those familiar with "
 "containerization."
 msgstr ""
 
-#: ../../source/admin/installation/index.md:20 1a26f554c49c4429a1ade2b547e38a5a
+#: 1a26f554c49c4429a1ade2b547e38a5a
 msgid ""
 "[**Multi-domain installation**](./multi_domain.md): to host multiple "
 "Pytition instances on a single server. Useful for service providers (like"
 " [CHATONS](https://www.chatons.org/))."
 msgstr ""
 
-#: ../../source/admin/installation/index.md:21 1c0aae1759694deaa257452e5139843a
+#: 1c0aae1759694deaa257452e5139843a
 msgid ""
 "[**YunoHost installation**](./yunohost.md): a simplified installation "
 "method using the YunoHost platform. Perfect for users seeking an easy "
 "setup process."
 msgstr ""
 
-#: ../../source/admin/installation/manual.md:1 3c7eaa67285a47948770d50fd51cbd93
+#: 3c7eaa67285a47948770d50fd51cbd93
 msgid "Manual installation"
 msgstr ""
 
-#: ../../source/admin/installation/manual.md:3 3d853877ae7445d898fac79b4e587ff5
+#: 3d853877ae7445d898fac79b4e587ff5
 msgid "Requirements"
 msgstr ""
 
-#: ../../source/admin/installation/manual.md:9 4810007087ac4c7fa730090c1c46ef3f
+#: 4810007087ac4c7fa730090c1c46ef3f
 #, fuzzy
 msgid "Installation steps"
 msgstr "Guide admin"
 
-#: ../../source/admin/installation/multi_domain.md:1
 #: 713213bb5cfd46ce9f9d5ba3bdf94ed2
 msgid "Multi-domain installation"
 msgstr ""
 
-#: ../../source/admin/installation/yunohost.md:1
 #: 22f73aa1ab7f42319ec7b48478d2cb47
 #, fuzzy
 msgid "YunoHost installation"
 msgstr "Guide admin"
 
-#: ../../source/admin/management/backup.md:1 8a564fe8b86e40ce8b91fe6e49afe796
+#: 8a564fe8b86e40ce8b91fe6e49afe796
 msgid "Backup"
 msgstr ""
 
-#: ../../source/admin/management/index.md:3
 #, fuzzy
 msgid "Management Guides"
 msgstr "Guide admin"
 
-#: ../../source/admin/management/index.md:1 c4f91d3e55ef47579cb3c4b11c8dbcd9
+#: c4f91d3e55ef47579cb3c4b11c8dbcd9
 msgid "Management"
 msgstr ""
 
-#: ../../source/admin/management/update.md:1 b82884d975144c22b4676caaf773a669
+#: b82884d975144c22b4676caaf773a669
 msgid "Update"
 msgstr ""
 
-#: ../../source/dev/architecture.md:1 bc87a7e24aa34903873b0f3c7ae488b0
+#: bc87a7e24aa34903873b0f3c7ae488b0
 msgid "Architecture Overview"
 msgstr ""
 
-#: ../../source/dev/architecture.md:3 7dd597c2633943a2826549cdf8b72d9c
+#: 7dd597c2633943a2826549cdf8b72d9c
 msgid ""
 "This document provides an overview of the architecture of the Pytition "
 "application, including its main components and their interactions."
 msgstr ""
 
-#: ../../source/dev/architecture.md:5 9d99e7050dc941c9ac0203e854ad096d
+#: 9d99e7050dc941c9ac0203e854ad096d
 msgid "Apps"
 msgstr ""
 
-#: ../../source/dev/architecture.md:7 8eb9e6471aa04e34b024676e0bb1e9ea
+#: 8eb9e6471aa04e34b024676e0bb1e9ea
 msgid ""
 "This application is built using the Django framework and is organized "
 "into several apps, each responsible for a specific area of functionality:"
 msgstr ""
 
-#: ../../source/dev/architecture.md:9 4fa93e4953084ed3bf27379c72d08e35
+#: 4fa93e4953084ed3bf27379c72d08e35
 msgid "**Accounts**: Manages user authentication, profiles, and permissions."
 msgstr ""
 
-#: ../../source/dev/architecture.md:10 562a2c733a2d4b29b7b0b99e173b563a
+#: 562a2c733a2d4b29b7b0b99e173b563a
 msgid ""
 "**Organizations**: Handles organization creation, management, and "
 "membership."
 msgstr ""
 
-#: ../../source/dev/architecture.md:11 ca0074a4b604445d9c1116e770d7e714
+#: ca0074a4b604445d9c1116e770d7e714
 msgid ""
 "**Petitions**: Core functionality for creating, managing, and signing "
 "petitions."
 msgstr ""
 
-#: ../../source/dev/architecture.md:12 8d60786c3de34293b75783237344d8b5
+#: 8d60786c3de34293b75783237344d8b5
 msgid ""
 "**Signatures**: Manages the collection and validation of petition "
 "signatures."
 msgstr ""
 
-#: ../../source/dev/architecture.md:13 7602d710f11749ab823086797696772c
+#: 7602d710f11749ab823086797696772c
 msgid "**Presets**: Provides predefined templates and settings for petitions."
 msgstr ""
 
-#: ../../source/dev/architecture.md:14 b21a5725e7bd478f8186e63c5d42e827
+#: b21a5725e7bd478f8186e63c5d42e827
 msgid ""
 "**Moderation**: Tools and workflows for moderating content and user "
 "activity."
 msgstr ""
 
-#: ../../source/dev/architecture.md:16 8ac8e167e05e44dc8c9b6ee29a18b3e6
+#: 8ac8e167e05e44dc8c9b6ee29a18b3e6
 msgid "Models"
 msgstr ""
 
-#: ../../source/dev/architecture.md:18 d2d2bfce76214e46ae1378d961268bd9
+#: d2d2bfce76214e46ae1378d961268bd9
 msgid ""
 "The data model is structured around the main entities of the application,"
 " with relationships defined between them."
 msgstr ""
 
-#: ../../source/dev/architecture.md:20 2457ed205659426ba3dd342805260fb9
+#: 2457ed205659426ba3dd342805260fb9
 msgid "This is a simplified diagram of the main models and their relationships:"
 msgstr ""
 
-#: ../../source/dev/architecture.md:22 f8eb2ca294c54c37bdf1f296e8070793
+#: f8eb2ca294c54c37bdf1f296e8070793
 msgid "![Data Model](../_static/img/models.svg)"
 msgstr ""
 
-#: ../../source/dev/architecture.md:22 5a7afcc5a8154ec9bfcd424b03a9d873
+#: 5a7afcc5a8154ec9bfcd424b03a9d873
 msgid "Data Model"
 msgstr ""
 
-#: ../../source/dev/conventions.md:1 d5a2c80b27434c69b9e7f4a199f35a91
+#: d5a2c80b27434c69b9e7f4a199f35a91
 msgid "Conventions"
 msgstr "Conventions"
 
-#: ../../source/dev/conventions.md:3 66012279fad94bbaa78e360ea4055339
+#: 66012279fad94bbaa78e360ea4055339
 msgid ""
 "This document describes the coding conventions followed in the Pytition "
 "project. Adhering to these conventions helps maintain code quality, "
@@ -387,50 +359,57 @@ msgstr ""
 "Pytition. Le respect de ces conventions permet de maintenir la qualité, "
 "la lisibilité et la cohérence du code dans l'ensemble du code source."
 
-#: ../../source/dev/conventions.md:5 269868b0fcc547458cddd460170c0987
+#: 269868b0fcc547458cddd460170c0987
 msgid "Python Code Style"
 msgstr "Style de code Python"
 
-#: ../../source/dev/index.md:1 696f24bf56414964979650a34bf3f49f
+#: 696f24bf56414964979650a34bf3f49f
 msgid "Dev guide"
 msgstr "Guide dev"
 
-#: ../../source/dev/index.md:3 87f212e0e12146e79bac80e0525adedd
+#: 87f212e0e12146e79bac80e0525adedd
 msgid "Welcome to the developer documentation!"
 msgstr "Bienvenue dans la documentation des développeur·euses !"
 
-#: ../../source/dev/index.md:7 b2191a46a1124292a2a58a6858b0fed9
+#: b2191a46a1124292a2a58a6858b0fed9
 msgid "For developers who want to contribute to the codebase."
 msgstr "Pour les développeur·euses qui veulent contribuer au code source."
 
-#: ../../source/dev/index.md:10 ../../source/user/index.md:10
 #: 896b0a8007c140ea9b730bc731eac4eb e122607de34e44218a7af109d42715ea
 msgid "Getting Started"
 msgstr "Pour commencer"
 
-#: ../../source/dev/index.md:13 1675abb44e5c4c8b9726def79a25d54f
+#: 1675abb44e5c4c8b9726def79a25d54f
 msgid "Implement developer guide content here."
 msgstr "Rédiger le guide développeur."
 
-#: ../../source/dev/index.md:16 4c89d1da006c4c97bce9df334062c4b0
+#: 4c89d1da006c4c97bce9df334062c4b0
 msgid "Wat's next?"
 msgstr "Et ensuite ?"
 
-#: ../../source/dev/setup.md:1 3c0cab95bee14d1ea91be46861b22fb1
+#: 3c0cab95bee14d1ea91be46861b22fb1
 msgid "Setting up a development environment"
 msgstr ""
 
-#: ../../source/dev/setup.md:3 65415f209de14e818d97b0827732b4ad
+#: 65415f209de14e818d97b0827732b4ad
 msgid ""
 "This document describes how to set up a development environment for "
 "Pytition."
 msgstr ""
 
-#: ../../source/index.md:1 946c8e96c7a14a4db68273e5959944fa
+#: 946c8e96c7a14a4db68273e5959944fa
 msgid "Welcome to Pytition's documentation"
 msgstr "Bienvenue dans la documentation de Pytition"
 
-#: ../../source/index.md:3 765d37ecd74b4c69a4e6103d16cbacf5
+#: d8ef8c28d8314d9e9ff0dea0d056767b
+msgid "![Cover badge](_static/img/interrogate_badge.svg)"
+msgstr ""
+
+#: e7078be3d648490e9ccd5e660e9a36a4
+msgid "Cover badge"
+msgstr ""
+
+#: 765d37ecd74b4c69a4e6103d16cbacf5
 msgid ""
 "`Pytition` is an application for privacy-friendly online petitions you "
 "can host on your own server. `Pytition` uses the renowned `Django` "
@@ -441,42 +420,42 @@ msgstr ""
 " serveur. `Pytition` utilise le célèbre framework `Django` et est facile "
 "à installer."
 
-#: ../../source/index.md:7 a33c986b199f450ba8e7f0b0bafed34f
+#: a33c986b199f450ba8e7f0b0bafed34f
 msgid "Demo: [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
 msgstr "Démo : [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
 
-#: ../../source/index.md:18 48cce3f3794e4878b119d30121278783
+#: 48cce3f3794e4878b119d30121278783
 msgid "Indices and tables"
 msgstr "Index et tableaux"
 
-#: ../../source/index.md:20 0a803ebeb56d4b3db61141090105f0bd
+#: 0a803ebeb56d4b3db61141090105f0bd
 #, python-brace-format
 msgid "{ref}`genindex`"
 msgstr ""
 
-#: ../../source/index.md:21 f9f2c8823e0a4c908ae6eb0be8c9e857
+#: f9f2c8823e0a4c908ae6eb0be8c9e857
 #, python-brace-format
 msgid "{ref}`modindex`"
 msgstr ""
 
-#: ../../source/index.md:22 34912e8fd8ce482ab606c5365cc86281
+#: 34912e8fd8ce482ab606c5365cc86281
 #, python-brace-format
 msgid "{ref}`search`"
 msgstr ""
 
-#: ../../source/user/index.md:1 2fc5db24bc984847a110fbf40c4aa556
+#: 2fc5db24bc984847a110fbf40c4aa556
 msgid "User Guide"
 msgstr "Guide utilisateur·rice"
 
-#: ../../source/user/index.md:3 397c13937e4e407ca678fc91b3671bbd
+#: 397c13937e4e407ca678fc91b3671bbd
 msgid "Welcome to the application!"
 msgstr "Bienvenue dans l'application !"
 
-#: ../../source/user/index.md:7 7a59e0c6c98b4450947c83e71a6fd271
+#: 7a59e0c6c98b4450947c83e71a6fd271
 msgid "For those who use the web app on a daily basis."
 msgstr "Pour ceux qui utilisent l'application Web quotidiennement."
 
-#: ../../source/user/index.md:13 dd23c83ed01243158d3f5334dbf61ad1
+#: dd23c83ed01243158d3f5334dbf61ad1
 msgid "Implement user guide content here."
 msgstr "Rédiger le guide utilisateur·rice."
 

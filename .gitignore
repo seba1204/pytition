@@ -110,3 +110,4 @@ docs/build/
 docs/_build/
 **/.doctrees/
 docs/locale/pot/.doctrees/
+**/_sphinx_design_static/
