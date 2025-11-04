@@ -147,7 +147,7 @@ DATABASES: dict[str, DatabaseSettingsType] = {
     "default": configure_db_from_env(BUILD_DIR),
 }
 # FIXME: [#84] migrate to BigAutoField later
-DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # ──────────────────────────────────────────────────────────────────────────────
 # Password validation
 # ──────────────────────────────────────────────────────────────────────────────
