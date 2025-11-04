@@ -1,3 +1,5 @@
+"""Configure Django database settings from environment variables."""
+
 import os
 from pathlib import Path
 from typing import NotRequired, Required, TypedDict
@@ -6,6 +8,8 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 # class type for Database settings
 class DatabaseSettingsType(TypedDict):
+    """TypedDict for Django database settings."""
+
     # mandatory keys
     ENGINE: Required[str]
     NAME: Required[str]

@@ -1,10 +1,8 @@
+"""Views for user profiles."""
+
 from django.conf import settings
 from django.core.paginator import Paginator
-from django.http import (
-    Http404,
-    HttpRequest,
-    HttpResponse,
-)
+from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 
@@ -12,7 +10,6 @@ from apps.accounts.models import PytitionUser
 from apps.moderation.services import filter_moderated_petitions
 
 
-# /user/<user_name>
 # Show the user profile
 def profile(request: HttpRequest, user_name: str) -> HttpResponse:
     """

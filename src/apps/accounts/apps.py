@@ -19,11 +19,19 @@ from django.utils.translation import gettext_lazy as _lazy
 
 
 class AccountsConfig(AppConfig):
+    """Configuration for the accounts application."""
+
     name = "apps.accounts"
 
     # Translators: Consent application verbose name (in the admin interface)
     verbose_name = _lazy("Account management")
 
     def ready(self) -> None:
+        """
+        Initialize the accounts application.
+
+        This method is called when the application is ready. It imports signal handlers
+        to connect them.
+        """
         # Import signal handlers to connect them
         import apps.accounts.signals  # noqa

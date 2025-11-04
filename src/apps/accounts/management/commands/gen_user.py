@@ -1,3 +1,5 @@
+"""Management command to generate a user."""
+
 import logging
 
 from django.contrib.auth.models import User
@@ -18,12 +20,14 @@ class Command(BaseCommand):
     help = "Create a new user"
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Add command line arguments for user creation."""
         parser.add_argument("username", type=str)
         parser.add_argument("password", type=str)
         parser.add_argument("--first-name", "-fn", dest="first_name", type=str)
         parser.add_argument("--last-name", "-ln", dest="last_name", type=str)
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Handle the command to create a user."""
         created = False
 
         pw = opts.get("password")

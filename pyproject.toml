@@ -41,6 +41,8 @@ jquery-smart-wizard = "4.4.1"
 rrssb = "1.14.0"
 bs-custom-file-input = "1.3.4"
 
+
+
 [tool.pdm]
 distribution = false
 
@@ -54,7 +56,7 @@ docs-build = "python manage.py build_docs"
 # Sphinx - live reload
 docs-live = "sphinx-autobuild docs/source docs/_build/html -a -j auto --host 0.0.0.0 --port 8001 --watch src"
 # Docstring coverage
-docs-coverage = "interrogate -v -c pyproject.toml -m src"
+docs-coverage = "interrogate -v -c pyproject.toml src"
 # Generate docstring coverage badge
 docs-badge = "pdm run interrogate -c pyproject.toml -m src --generate-badge docs/source/_static"
 
@@ -79,12 +81,12 @@ docs = [
     "sphinx-autobuild>=2025.8.25",
     "sphinx-copybutton>=0.5.2",
     "sphinx-design>=0.6.1",
-    "interrogate>=1.7.0",
     "pydocstyle[toml]>=6.3.0",
     "sphinx-autodoc-typehints>=3.5.2",
     "linkify-it-py>=2.0.3",
     "sphinx-multiversion>=0.2.4",
     "sphinx-intl>=2.3.2",
+    "interrogate>=1.7.0",
 ]
 typecheck = [
     "django-stubs>=5.2.7",
@@ -153,11 +155,14 @@ make-summary-multi-line = false
 
 [tool.interrogate]
 fail-under = 80 # minimum percentage of docstring coverage
+ignore-magic = true # ignore magic methods (i.e., those starting and ending with double underscores)
 ignore-init-method = true # ignore __init__ methods
+ignore-init-module = true # ignore __init__.py modules
 ignore-module = false # do not ignore modules
 ignore-private = true # ignore private members (i.e., those starting with a single underscore)
 ignore-semiprivate = true # ignore semi-private members (i.e., those starting with a double underscore)
-exclude = ["docs", "tests", "migrations"] # directories to exclude
+# ignore tests and docs directories
+exclude = ["src/apps/**/tests", "src/apps/**/migrations", "docs", "docs/**"]
 source-directories = ["src"] # directories to scan for docstrings
 verbose = 2 # verbosity level (0-3)
 

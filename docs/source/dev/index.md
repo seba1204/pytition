@@ -9,7 +9,6 @@ Welcome to the developer documentation!
 For developers who want to contribute to the codebase.
 :::
 
-
 ## Getting Started
 
 ```{todo}

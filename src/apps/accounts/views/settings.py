@@ -1,3 +1,5 @@
+"""User account settings view."""
+
 from typing import TypedDict
 
 from django.contrib import messages
@@ -26,11 +28,11 @@ class _SettingsContext(TypedDict, total=False):
     orgs: QuerySet[Organization, Organization] | None
 
 
-# /account_settings
 # Show settings for the user accounts
-# FIXME: split into multiple functions helpers, services, etc.
+# FIXME: split into multiple functions helpers, services, etc. cf. #76
 @login_required
 def settings(request: HttpRequest) -> HttpResponse:  # noqa
+    """Show and process the user settings page."""
     ctx: _SettingsContext
     pytitionuser = get_session_user(request)
     submitted_ctx: _SettingsContext = {
