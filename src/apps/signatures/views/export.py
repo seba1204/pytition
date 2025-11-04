@@ -1,3 +1,5 @@
+"""View to export petition signatures as CSV files."""
+
 import csv
 
 from django.contrib.auth.decorators import login_required
@@ -11,6 +13,7 @@ from apps.signatures.models import Signature
 # returns the CSV files of the list of signatures
 @login_required
 def export(request: HttpRequest, petition_id: int) -> HttpResponse:
+    """Export petition signatures as a CSV file."""
     user = get_session_user(request)
 
     # Query param :

@@ -19,6 +19,8 @@ from django.utils.translation import gettext_lazy as _lazy
 
 
 class SignaturesConfig(AppConfig):
+    """Configuration for the signatures application."""
+
     name = "apps.signatures"
     # Translators: Signatures application verbose name (in the admin interface)
     verbose_name = _lazy("Petition signatures management")

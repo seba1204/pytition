@@ -264,6 +264,7 @@ def filter_entries(
 
     # Ancestor check for resolvers
     def is_ancestor(resolver_path: str) -> bool:
+        """Return True if resolver_path is an ancestor of any kept pattern."""
         return any(lp.startswith(resolver_path) for lp in kept_pattern_paths)
 
     final: list[UrlEntry] = []

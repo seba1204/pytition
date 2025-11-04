@@ -1,3 +1,5 @@
+"""Forms for collecting petition signatures."""
+
 from typing import Any
 
 from django import forms
@@ -9,6 +11,8 @@ from apps.signatures.models import Signature
 
 
 class SignatureForm(ModelForm):
+    """Form for collecting petition signatures."""
+
     subscribed_to_mailinglist = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={"class": "form-check-input", "group_class": "form-check"}
@@ -18,6 +22,8 @@ class SignatureForm(ModelForm):
     )
 
     class Meta:
+        """Meta configuration for the SignatureForm."""
+
         model = Signature
         fields = [
             "first_name",

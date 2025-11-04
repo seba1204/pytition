@@ -1,3 +1,5 @@
+"""Model definition for petition signatures."""
+
 from __future__ import annotations
 
 import html
@@ -14,6 +16,8 @@ from apps.core.model_refs import PETITION
 
 
 class Signature(models.Model):
+    """Model representing a petition signature."""
+
     first_name = models.CharField(
         max_length=50, verbose_name=gettext_lazy("First name")
     )
@@ -40,11 +44,14 @@ class Signature(models.Model):
     ipaddress = models.TextField(blank=True, null=True)
 
     class Meta:
+        """Meta configuration for the Signature model."""
+
         db_table = "petition_signature"
         verbose_name = gettext_lazy("Signature")
         verbose_name_plural = gettext_lazy("Signatures")
 
     def clean(self) -> None:
+        """Custom validation to prevent duplicate confirmed signatures."""
         if (
             self.petition.already_signed(self.email)
             and self.petition.signature_set.filter(email=self.email)
@@ -55,6 +62,7 @@ class Signature(models.Model):
             raise ValidationError(_("You already signed the petition"))
 
     def save(self, *args: Any, **kwargs: Any) -> None:
+        """Override save to include validation and additional logic."""
         self.clean()
         if not self.confirmation_hash:
             self.confirmation_hash = str(uuid.uuid4())
@@ -66,6 +74,7 @@ class Signature(models.Model):
         super().save(*args, **kwargs)
 
     def confirm(self) -> None:
+        """Mark the signature as confirmed."""
         self.confirmed = True
 
     def __str__(self) -> str:

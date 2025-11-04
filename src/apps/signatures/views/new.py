@@ -1,3 +1,5 @@
+"""View to create new petition signatures."""
+
 from datetime import timedelta
 
 from django.conf import settings

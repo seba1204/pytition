@@ -1,10 +1,10 @@
+"""Helper functions for signature handling."""
+
 from typing import Any
 
 from django.contrib import messages
 from django.contrib.messages import get_messages
-from django.http import (
-    HttpRequest,
-)
+from django.http import HttpRequest
 
 
 def hide_sign_form_if_user_just_signed(

@@ -1,3 +1,5 @@
+"""View to resend petition signature confirmation emails."""
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect

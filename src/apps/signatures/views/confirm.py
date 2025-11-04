@@ -1,3 +1,5 @@
+"""View to confirm petition signatures."""
+
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponse
@@ -8,7 +10,6 @@ from apps.petitions.helpers import check_petition_is_accessible, petition_from_i
 from apps.signatures.models import Signature
 
 
-# /<int:petition_id>/confirm/<confirmation_hash>
 # Confirm signature to a petition
 def confirm(
     request: HttpRequest, petition_id: int, confirmation_hash: str
