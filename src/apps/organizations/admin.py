@@ -1,3 +1,5 @@
+"""Admin configuration for the Organization model."""
+
 from typing import Any
 
 from django.contrib import admin
@@ -8,12 +10,16 @@ from apps.organizations.models import Organization
 
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
+    """Admin configuration for the Organization model."""
+
     list_display = ("name", "petition_num", "user_num")
 
     @admin.display(description=gettext_lazy("Number of petitions"))
     def petition_num(self, org: Any) -> int:
+        """Return the number of petitions associated with the organization."""
         return int(org.petition_set.count())
 
     @admin.display(description=gettext_lazy("Number of members"))
     def user_num(self, org: Any) -> int:
+        """Return the number of members in the organization."""
         return int(org.members.count())

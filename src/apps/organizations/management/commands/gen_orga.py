@@ -1,3 +1,5 @@
+"""Management command to generate organizations."""
+
 import logging
 
 from django.core.management.base import LabelCommand
@@ -17,6 +19,7 @@ class Command(LabelCommand):
     label = "Organization name"
 
     def handle_label(self, label: str, **options: object) -> None:
+        """Create an organization with the given label if it does not exist."""
         org, created = Organization.objects.get_or_create(name=label)
         if created:
             logger.info("%s organization created.", org)

@@ -29,6 +29,7 @@ class _OrgCreateContext(TypedDict, total=False):
 # Create a new organization
 @login_required
 def create(request: HttpRequest) -> HttpResponse:
+    """View function to create a new organization."""
     # Only super users can create organizations if the setting is on
     if settings.RESTRICT_ORG_CREATION and not request.user.has_perm(
         "petition.add_organization"
