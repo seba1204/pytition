@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-04 09:15+0100\n"
 "PO-Revision-Date: 2025-11-04 08:29+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
 "docs/fr/>\n"
 "Language: fr\n"
@@ -23,7 +22,7 @@ msgstr ""
 
 #: bd393f78b4cb4fd790ea5c570f8d20d9
 msgid "Advanced configuration"
-msgstr ""
+msgstr "Configuration avancée"
 
 #: 12d51c18c5bd4d468e76021f53c9f285 33bb08eadda44648a2dd0b52f72e27cd
 #: 615759e326ca4de6a92110c67393ea07 6455ddfa83c84791b6fcb6b8fea15da8
@@ -40,37 +39,38 @@ msgstr "À faire"
 #: 67c84bcae86b4500a90ad6e3386c34c8 7826758aaa61408e9c791b934fd3bbd6
 #: 8eb8f3748cdb4bd0b516ba90db945b9b
 msgid "Write some docs."
-msgstr ""
+msgstr "Rédigez quelques documents."
 
 #: 59b6fdb9d7454adbafce3b73e9a7c629
-#, fuzzy
 msgid "Settings structure"
-msgstr "Pour commencer"
+msgstr "Structure des paramètres"
 
 #: 390b656ac1894bcc941d82de878b8b3a
 msgid "Load order"
-msgstr ""
+msgstr "Ordre de chargement"
 
 #: 59c05a525e324394ab58a8dad3af8056
 msgid "All env variables"
-msgstr ""
+msgstr "Toutes les variables d'environnement"
 
 #: 4c2d0670484346f68740c9329fec3d2b
 msgid ""
 "Here is the complete list of all environment variables that Pytition can "
 "read. For each variable, you will find."
 msgstr ""
+"Voici la liste complète de toutes les variables d'environnement que Pytition "
+"peut lire. Pour chaque variable, vous trouverez."
 
 #: 7d0e1786ce984ce6bde3f652049fc080
 msgid "Common environment variables"
-msgstr ""
+msgstr "Variables d'environnement courantes"
 
 msgid "Contents:"
 msgstr "Contenu :"
 
 #: a13f10dff57f4e7384f69597aeee2fd7
 msgid "Initial configuration"
-msgstr ""
+msgstr "Configuration initiale"
 
 #: 4752db7354984ed5b26d34b33954bf5f
 msgid ""
@@ -79,36 +79,46 @@ msgid ""
 "simplify things, Pytition can also read a `.env` file or environment "
 "variables."
 msgstr ""
+"Comme Pytition est basé sur Django, vous pouvez configurer BEAUCOUP de "
+"choses à l'aide de variables. En général, vous devez modifier un fichier "
+"`settings.py`, mais pour simplifier les choses, Pytition peut également lire "
+"un fichier `.env` ou des variables d'environnement."
 
 #: 8341dda9e49149a79b437bb4bd8a8c22
 msgid ""
 "To simplify the documentation, we have organized the section on parameter"
 " variables into three parts:"
 msgstr ""
+"Afin de simplifier la documentation, nous avons organisé la section "
+"consacrée aux variables de paramètres en trois parties :"
 
 #: e6794dcb78f44cb4aa7b53816e6f2b2a
 msgid ""
 "**Basics**: the most common variables you will want to modify for a quick"
 " and standard installation"
 msgstr ""
+"**Notions de base** : les variables les plus courantes que vous souhaiterez "
+"modifier pour une installation rapide et standard."
 
 #: c0cbd5cbf3954789b5b7accd36c22485
 msgid ""
 "**All**: all variables if you are looking for a specific one, or just "
 "want to take a look at what is available"
 msgstr ""
+"**Toutes** : toutes les variables si vous en recherchez une en particulier "
+"ou si vous souhaitez simplement voir celles qui sont disponibles."
 
 #: 3c25a345f2d94db8815ad8f770e86e32
 msgid "**Advanced**: explains the logic behind reading variables"
-msgstr ""
+msgstr "**Avancé** : explique la logique derrière la lecture des variables."
 
 #: b42143b4daee4a9a8920b6e09936cb5c
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: 52d4c4b42121456f92287b2d1987b865
 msgid "There are two types of configurations:"
-msgstr ""
+msgstr "Il existe deux types de configurations :"
 
 #: 395ccbc93adb49f8b4e3dc841f146fd7
 msgid ""
@@ -116,6 +126,10 @@ msgid ""
 "via configuration files, or env var: a few settings that must be "
 "configured before anything else (database access, data folders, etc.)"
 msgstr ""
+"[**Configuration initiale**](./env_var/index.md) : lors de l'installation, "
+"via les fichiers de configuration ou les variables d'environnement : "
+"quelques paramètres qui doivent être configurés avant toute autre chose "
+"(accès à la base de données, dossiers de données, etc.)."
 
 #: 48d06e3168f0438b9ff1a47a61365944
 msgid ""
@@ -123,24 +137,28 @@ msgid ""
 "running, you wan tweak it from the web interface (site name, security "
 "rules, etc.)"
 msgstr ""
+"[**Configuration de l'instance**](./site_conf/index.md) : lorsque "
+"l'application est en cours d'exécution, vous pouvez la modifier à partir de "
+"l'interface web (nom du site, règles de sécurité, etc.)."
 
 #: 9c44ac42a0ca42d2a7e74449b3df871b
 msgid ""
 "If you plan to deploy Pytition in production, please also refer to the "
 "[Production Configuration](./prod.md) page."
 msgstr ""
+"Si vous prévoyez de déployer Pytition en production, veuillez également vous "
+"reporter à la page [Configuration de production](./prod.md)."
 
 #: 5ede0d0a82f648a29d6fcfa4a388251c
 msgid "Production concerns"
-msgstr ""
+msgstr "Problèmes de production"
 
 #: e153d5bb132c4fba8d521c1434dcf567
 msgid "Instance configuration"
-msgstr ""
+msgstr "Configuration de l'instance"
 
-#, fuzzy
 msgid "Admin Guides"
-msgstr "Guide admin"
+msgstr "Guides d'administration"
 
 #: d88db9b3cd7d4ea59a4410c2c3ba233b
 msgid "Admin guide"
@@ -161,11 +179,11 @@ msgstr "Pour les administrateur·rices qui gère l'application."
 
 #: 3019ac82217f4062b7b722638d232cd8
 msgid "Installation with Docker"
-msgstr ""
+msgstr "Installation avec Docker"
 
 #: efdd324ba7174842b0f38c80c62fcfdc
 msgid "Installation"
-msgstr ""
+msgstr "Installation"
 
 #: b3e3b0a975bd4775a751708c6c069c52
 msgid ""
@@ -175,18 +193,24 @@ msgid ""
 "these [production recommendations](../configuration/prod.md) for safe "
 "installation."
 msgstr ""
+"Veuillez noter que Pytition utilise une approche « plug and play » "
+"(configurations par défaut simples) pour faciliter l'installation et la "
+"découverte, ce qui n'est **NI SÛR NI EFFICACE**. Lorsque vous êtes prêt, "
+"veuillez vous référer à ces [recommandations de production]"
+"(../configuration/prod.md) pour une installation sécurisée."
 
 #: a65aa0750da24327b47baa3ef37d2281
 msgid "This documentation is designed for **two types of installations**:"
-msgstr ""
+msgstr "Cette documentation est conçue pour **deux types d'installations** :"
 
 #: 945d3ff9b39d40fda9da97d749c2e455
 msgid "actual **production use**, which must be efficient and secure"
-msgstr ""
+msgstr "utilisation réelle en production, qui doit être efficace et sécurisée"
 
 #: 41134100b47a44f5a13e099e40b9fb08
 msgid "**quick installation** for beta testing the tool, for example."
 msgstr ""
+"**Installation rapide** pour tester la version bêta de l'outil, par exemple."
 
 #: dc2c1d23b3de4b1b92637d2acdd7b7eb
 msgid ""
@@ -194,17 +218,21 @@ msgid ""
 "contributing to it, please refer to the [developer "
 "guides](../../dev/index.md)."
 msgstr ""
+"Si vous prévoyez d'installer Pytition dans le but de modifier le code "
+"source, ou même d'y contribuer, veuillez vous reporter aux "
+"[guides du développeur](../../dev/index.md)."
 
 #: cb6f74526973496dbfa4e613d2c181f9
-#, fuzzy
 msgid "Installation methods"
-msgstr "Guide admin"
+msgstr "Méthodes d'installation"
 
 #: a0af68dec48f4e5abcca515e2a7d1410
 msgid ""
 "You can install Pytition in various ways, depending on your needs and "
 "environment:"
 msgstr ""
+"Vous pouvez installer Pytition de différentes manières, en fonction de vos "
+"besoins et de votre environnement :"
 
 #: c09b0f85ea6c48ffb28a5d9b1b174e1b
 msgid ""
@@ -212,6 +240,9 @@ msgid ""
 "flexibility. Suitable for production environments where you want to "
 "customize every aspect of the installation."
 msgstr ""
+"[**Installation manuelle**](./manual.md) : pour un contrôle et une "
+"flexibilité maximum. Convient aux environnements de production où vous "
+"souhaitez personnaliser chaque aspect de l'installation."
 
 #: f22e772a93084b1c99767f338dad58c1
 msgid ""
@@ -219,6 +250,9 @@ msgid ""
 "deployment and management. Ideal for those familiar with "
 "containerization."
 msgstr ""
+"[**Installation Docker**](./docker.md) : utilisation de conteneurs Docker "
+"pour faciliter le déploiement et la gestion. Idéal pour ceux qui sont "
+"familiarisés avec la conteneurisation."
 
 #: 1a26f554c49c4429a1ade2b547e38a5a
 msgid ""
@@ -226,6 +260,9 @@ msgid ""
 "Pytition instances on a single server. Useful for service providers (like"
 " [CHATONS](https://www.chatons.org/))."
 msgstr ""
+"[**Installation multi-domaines**](./multi_domain.md) : pour héberger "
+"plusieurs instances Pytition sur un seul serveur. Utile pour les "
+"fournisseurs de services (comme [CHATONS](https://www.chatons.org/))."
 
 #: 1c0aae1759694deaa257452e5139843a
 msgid ""
@@ -233,40 +270,40 @@ msgid ""
 "method using the YunoHost platform. Perfect for users seeking an easy "
 "setup process."
 msgstr ""
+"[**Installation YunoHost**](./yunohost.md) : une méthode d'installation "
+"simplifiée utilisant la plateforme YunoHost. Parfaite pour les utilisateurs "
+"à la recherche d'un processus d'installation facile."
 
 #: 3c7eaa67285a47948770d50fd51cbd93
 msgid "Manual installation"
-msgstr ""
+msgstr "Installation manuelle"
 
 #: 3d853877ae7445d898fac79b4e587ff5
 msgid "Requirements"
-msgstr ""
+msgstr "Exigences"
 
 #: 4810007087ac4c7fa730090c1c46ef3f
-#, fuzzy
 msgid "Installation steps"
-msgstr "Guide admin"
+msgstr "Étapes d'installation"
 
 #: 713213bb5cfd46ce9f9d5ba3bdf94ed2
 msgid "Multi-domain installation"
-msgstr ""
+msgstr "Installation multi-domaines"
 
 #: 22f73aa1ab7f42319ec7b48478d2cb47
-#, fuzzy
 msgid "YunoHost installation"
-msgstr "Guide admin"
+msgstr "Installation sur YunoHost"
 
 #: 8a564fe8b86e40ce8b91fe6e49afe796
 msgid "Backup"
-msgstr ""
+msgstr "Sauvegarde"
 
-#, fuzzy
 msgid "Management Guides"
-msgstr "Guide admin"
+msgstr "Guides de gestion"
 
 #: c4f91d3e55ef47579cb3c4b11c8dbcd9
 msgid "Management"
-msgstr ""
+msgstr "Gestion"
 
 #: b82884d975144c22b4676caaf773a669
 msgid "Update"
@@ -274,77 +311,97 @@ msgstr "Mettre à jour"
 
 #: bc87a7e24aa34903873b0f3c7ae488b0
 msgid "Architecture Overview"
-msgstr ""
+msgstr "Présentation de l'architecture"
 
 #: 7dd597c2633943a2826549cdf8b72d9c
 msgid ""
 "This document provides an overview of the architecture of the Pytition "
 "application, including its main components and their interactions."
 msgstr ""
+"Ce document présente une vue d'ensemble de l'architecture de l'application "
+"Pytition, notamment ses principaux composants et leurs interactions."
 
 #: 9d99e7050dc941c9ac0203e854ad096d
 msgid "Apps"
-msgstr ""
+msgstr "Applications"
 
 #: 8eb9e6471aa04e34b024676e0bb1e9ea
 msgid ""
 "This application is built using the Django framework and is organized "
 "into several apps, each responsible for a specific area of functionality:"
 msgstr ""
+"Cette application est construite à l'aide du framework Django et est "
+"organisée en plusieurs applications, chacune étant responsable d'un domaine "
+"fonctionnel spécifique :"
 
 #: 4fa93e4953084ed3bf27379c72d08e35
 msgid "**Accounts**: Manages user authentication, profiles, and permissions."
 msgstr ""
+"**Comptes** : gère l'authentification des utilisateurs, les profils et les "
+"autorisations."
 
 #: 562a2c733a2d4b29b7b0b99e173b563a
 msgid ""
 "**Organizations**: Handles organization creation, management, and "
 "membership."
 msgstr ""
+"**Organisations** : gère la création, la gestion et l'adhésion aux "
+"organisations."
 
 #: ca0074a4b604445d9c1116e770d7e714
 msgid ""
 "**Petitions**: Core functionality for creating, managing, and signing "
 "petitions."
 msgstr ""
+"**Pétitions** : fonctionnalité principale permettant de créer, gérer et "
+"signer des pétitions."
 
 #: 8d60786c3de34293b75783237344d8b5
 msgid ""
 "**Signatures**: Manages the collection and validation of petition "
 "signatures."
 msgstr ""
+"**Signatures** : gère la collecte et la validation des signatures des "
+"pétitions."
 
 #: 7602d710f11749ab823086797696772c
 msgid "**Presets**: Provides predefined templates and settings for petitions."
 msgstr ""
+"**Préréglages** : fournit des modèles et des paramètres prédéfinis pour les "
+"pétitions."
 
 #: b21a5725e7bd478f8186e63c5d42e827
 msgid ""
 "**Moderation**: Tools and workflows for moderating content and user "
 "activity."
 msgstr ""
+"**Modération** : outils et workflows pour modérer le contenu et l'activité "
+"des utilisateurs."
 
 #: 8ac8e167e05e44dc8c9b6ee29a18b3e6
 msgid "Models"
-msgstr ""
+msgstr "Modèles"
 
 #: d2d2bfce76214e46ae1378d961268bd9
 msgid ""
 "The data model is structured around the main entities of the application,"
 " with relationships defined between them."
 msgstr ""
+"Le modèle de données est structuré autour des entités principales de "
+"l'application, avec des relations définies entre elles."
 
 #: 2457ed205659426ba3dd342805260fb9
 msgid "This is a simplified diagram of the main models and their relationships:"
 msgstr ""
+"Voici un schéma simplifié des principaux modèles et de leurs relations :"
 
 #: f8eb2ca294c54c37bdf1f296e8070793
 msgid "![Data Model](../_static/img/models.svg)"
-msgstr ""
+msgstr "![Modèle de données](../_static/img/models.svg)"
 
 #: 5a7afcc5a8154ec9bfcd424b03a9d873
 msgid "Data Model"
-msgstr ""
+msgstr "Modèle de données"
 
 #: d5a2c80b27434c69b9e7f4a199f35a91
 msgid "Conventions"
@@ -390,13 +447,15 @@ msgstr "Et ensuite ?"
 
 #: 3c0cab95bee14d1ea91be46861b22fb1
 msgid "Setting up a development environment"
-msgstr ""
+msgstr "Mise en place d'un environnement de développement"
 
 #: 65415f209de14e818d97b0827732b4ad
 msgid ""
 "This document describes how to set up a development environment for "
 "Pytition."
 msgstr ""
+"Ce document décrit comment configurer un environnement de développement pour "
+"Pytition."
 
 #: 946c8e96c7a14a4db68273e5959944fa
 msgid "Welcome to Pytition's documentation"
@@ -404,11 +463,11 @@ msgstr "Bienvenue dans la documentation de Pytition"
 
 #: d8ef8c28d8314d9e9ff0dea0d056767b
 msgid "![Cover badge](_static/img/interrogate_badge.svg)"
-msgstr ""
+msgstr "![Badge de couverture](_static/img/interrogate_badge.svg)"
 
 #: e7078be3d648490e9ccd5e660e9a36a4
 msgid "Cover badge"
-msgstr ""
+msgstr "Badge de couverture"
 
 #: 765d37ecd74b4c69a4e6103d16cbacf5
 msgid ""
