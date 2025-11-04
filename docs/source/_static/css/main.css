@@ -1,0 +1,35 @@
+/* Make sure the select dropdown can appear above the header */
+:root {
+    --lang-switcher-z: 11000;
+}
+
+/* The container and the <select> must sit on top */
+.lang-switcher {
+    position: relative;
+    z-index: var(--lang-switcher-z);
+}
+
+.lang-switcher select {
+    position: relative;
+    z-index: calc(var(--lang-switcher-z) + 1);
+}
+
+/* Avoid clipping by navbar/header wrappers */
+.pst-header,
+.pst-navbar,
+.pst-navbar .navbar,
+.pst-navbar .navbar-nav,
+.pst-navbar-end-item {
+    overflow: visible !important;
+}
+
+/* Some themes add transforms that create new stacking contexts; neutralize if present */
+.pst-header,
+.pst-navbar {
+    transform: none !important;
+}
+
+/* If another element overlays the right side (icon links, toggles), keep our area clickable */
+.pst-navbar-end-item.lang-switcher {
+    pointer-events: auto;
+}

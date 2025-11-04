@@ -90,6 +90,10 @@ exclude_patterns = ["_build"]
 
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
+html_css_files = globals().get("html_css_files", [])
+html_css_files += ["css/main.css"]
+html_js_files = globals().get("html_js_files", [])
+html_js_files += ["js/lang-switcher.js"]
 html_theme_options = {
     "logo": {"text": "Pytition"},
     "navbar_end": ["theme-switcher", "custom-lang-switcher", "navbar-icon-links"],
@@ -108,6 +112,7 @@ gettext_additional_targets = ["literal-block"]  # also translate les blocs de co
 
 # Default language
 language = os.environ.get("SPHINX_LANGUAGE", "en")
+
 
 # Get the list of available languages from Django settings
 AVAILABLE_LANGS = [
