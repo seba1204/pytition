@@ -3,59 +3,60 @@
 # This file is distributed under the same license as the Pytition package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-04 00:58+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2025-11-04 00:19+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
+"docs/sv/>\n"
 "Language: sv\n"
-"Language-Team: sv <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/admin/index.md:1 a9bc6736f5e742bfa6dfd7adc28614ae
 msgid "Admin guide"
-msgstr ""
+msgstr "Administratörsguide"
 
 #: ../../source/admin/index.md:3 fddab50e0bf745dea16c6000cd141cc2
 msgid "Welcome to the administrator documentation!"
-msgstr ""
+msgstr "Välkommen till administratörsdokumentationen!"
 
 #: ../../source/admin/index.md:5 ../../source/dev/index.md:5
 #: ../../source/user/index.md:5 cb8b8d9a73694dc0a9a33aa7f1089fa3
 #: dab3ebf26ebb4c58b3ebc2201167c6c9 e20c51987c5e4b95b290b3c84ae7bfcc
 msgid "Who is this section for?"
-msgstr ""
+msgstr "Vem är denna sektion avsedd för?"
 
 #: ../../source/admin/index.md:7 94a6361a15aa420082cde5b2d34dddf6
 msgid "For administrators who manage the application."
-msgstr ""
+msgstr "För administratörer som hanterar applikationen."
 
 #: ../../source/admin/index.md:10 ../../source/dev/index.md:10
 #: ../../source/user/index.md:10 6cbf0807579949c4aee28b04b44ac0da
 #: e01903243f77438abbdd749188eb18b5 f3f625d9d9824accb809cea6dfe1260b
 msgid "Getting Started"
-msgstr ""
+msgstr "Komma igång"
 
 #: ../../source/admin/index.md:12 ../../source/dev/index.md:12
 #: ../../source/user/index.md:12 001f756cc5364c929ca7e52a345d0fa9
 #: d011ac8560d44c46908822e89c50f8fe fb73afbbef7d4a37bfcb4009131f8541
 msgid "Todo"
-msgstr ""
+msgstr "Todo"
 
 #: ../../source/admin/index.md:13 a73207cb40e04811aca0de354a478a52
 msgid "Implement admin guide content here."
-msgstr ""
+msgstr "Implementera administratörsguiden här."
 
 #: ../../source/dev/conventions.md:1 c13c57111cce4effa1b6e4bb7f030683
 msgid "Conventions"
-msgstr ""
+msgstr "Konventioner"
 
 #: ../../source/dev/conventions.md:3 1b09157d87614a6baf0f750717af7844
 msgid ""
@@ -63,46 +64,49 @@ msgid ""
 "project. Adhering to these conventions helps maintain code quality, "
 "readability, and consistency across the codebase."
 msgstr ""
+"Detta dokument beskriver de kodningskonventioner som följs i Pytition-"
+"projektet. Att följa dessa konventioner bidrar till att upprätthålla "
+"kodkvaliteten, läsbarheten och konsistensen i hela kodbasen."
 
 #: ../../source/dev/conventions.md:5 8489055bb7404923a4eea515723de0ed
 msgid "Python Code Style"
-msgstr ""
+msgstr "Python-kodstil"
 
 #: ../../source/dev/index.md:18 ../../source/index.md:11
 msgid "Contents:"
-msgstr ""
+msgstr "Innehåll:"
 
 #: ../../source/dev/index.md:1 56102e0b5e7c441486933163ba7f281f
 msgid "Dev guide"
-msgstr ""
+msgstr "Utvecklingsguide"
 
 #: ../../source/dev/index.md:3 4e41a16015474785abff67b1a16220fc
 msgid "Welcome to the developer documentation!"
-msgstr ""
+msgstr "Välkommen till utvecklarens dokumentation!"
 
 #: ../../source/dev/index.md:7 1209d2a2f5e7417c9270bc91073ff610
 msgid "For developers who want to contribute to the codebase."
-msgstr ""
+msgstr "För utvecklare som vill bidra till kodbasen."
 
 #: ../../source/dev/index.md:13 e5e745d64b764c54ac4d8b74b7b5723f
 msgid "Implement developer guide content here."
-msgstr ""
+msgstr "Implementera utvecklingsguiden här."
 
 #: ../../source/dev/index.md:16 a070298bd4df4cdb9e1c65285656efd5
 msgid "Wat's next?"
-msgstr ""
+msgstr "Vad händer härnäst?"
 
 #: ../../source/index.md:1 d9dab982882f4a118bafa674606dcc71
 msgid "Welcome to Pytition's documentation"
-msgstr ""
+msgstr "Välkommen till Pytitions dokumentation"
 
 #: ../../source/index.md:3 3fc4d91ee8744beea6a1196b66035983
 msgid "![Docstring coverage](./_static/interrogate_badge.svg)"
-msgstr ""
+msgstr "![Docstring-täckning](./_static/interrogate_badge.svg)"
 
 #: ../../source/index.md:3 ffd53943ef3545a4977634e8dfba1e43
 msgid "Docstring coverage"
-msgstr ""
+msgstr "Docstring-täckning"
 
 #: ../../source/index.md:5 c4c98d5ab891499fbdef7b494020a9ee
 msgid ""
@@ -110,43 +114,45 @@ msgid ""
 "can host on your own server. `Pytition` uses the renowned `Django` "
 "framework and is easy to install."
 msgstr ""
+"`Pytition` är en applikation för integritetsvänliga onlinepetitioner som du "
+"kan hosta på din egen server. `Pytition` använder det välkända `Django` -"
+"ramverket och är lätt att installera."
 
 #: ../../source/index.md:9 8d08fcdcad484505967846e05ffa93cc
 msgid "Demo: [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
-msgstr ""
+msgstr "Demo: [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
 
 #: ../../source/index.md:20 26dbb25e733843f898170ce442cf9831
 msgid "Indices and tables"
-msgstr ""
+msgstr "Index och tabeller"
 
 #: ../../source/index.md:22 029721bd2ec145cd99c395ef205b843f
 #, python-brace-format
 msgid "{ref}`genindex`"
-msgstr ""
+msgstr "{ref}`genindex`"
 
 #: ../../source/index.md:23 235357501d4d45c2b25d1c578c0b041a
 #, python-brace-format
 msgid "{ref}`modindex`"
-msgstr ""
+msgstr "{ref}`modindex`"
 
 #: ../../source/index.md:24 3391d85a8835450d846622581edcd1bc
 #, python-brace-format
 msgid "{ref}`search`"
-msgstr ""
+msgstr "{ref}`sök`"
 
 #: ../../source/user/index.md:1 c28934450847473592edce850aee6ba2
 msgid "User Guide"
-msgstr ""
+msgstr "Användarhandbok"
 
 #: ../../source/user/index.md:3 8fd153308417405c8c180837b4729926
 msgid "Welcome to the application!"
-msgstr ""
+msgstr "Välkommen till applikationen!"
 
 #: ../../source/user/index.md:7 bc26bbdacd354a79b0b1e33343e91077
 msgid "For those who use the web app on a daily basis."
-msgstr ""
+msgstr "För dem som använder webbapplikationen dagligen."
 
 #: ../../source/user/index.md:13 1d8e48db4b794dc4a76a74dc96ec9dcb
 msgid "Implement user guide content here."
-msgstr ""
-
+msgstr "Implementera användarhandbokens innehåll här."
