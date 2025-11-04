@@ -1,3 +1,5 @@
+""" "Admin actions for the consents app."""
+
 from typing import Any
 
 from django.contrib import admin, messages
@@ -8,6 +10,7 @@ from django.utils.translation import gettext_lazy
 # Translators: Admin action to confirm signatures
 @admin.action(description=gettext_lazy("Confirm the signatures"))
 def confirm(modeladmin: Any, request: Any, queryset: Any) -> None:
+    """Admin action to confirm signatures."""
     try:
         for signature in queryset:
             signature.confirm()

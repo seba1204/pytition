@@ -1,3 +1,5 @@
+"""Helper functions for the consents app."""
+
 from __future__ import annotations
 
 import contextlib

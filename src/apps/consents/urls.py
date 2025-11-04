@@ -1,3 +1,5 @@
+"""URL routing for the consents app."""
+
 from __future__ import annotations
 
 from apps.consents import views as CV

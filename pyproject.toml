@@ -144,6 +144,7 @@ docstring-code-format = true # auto-format code blocks in docstrings
 [tool.djlint]
 profile = "django"
 ignore = "H031"    # Ignore warning about missing meta keywords in html tag
+use_gitignore = true
 
 # Tool for auto-formatting docstrings
 [tool.docformatter]

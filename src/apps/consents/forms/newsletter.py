@@ -1,3 +1,5 @@
+"""Forms for newsletter settings in petitions."""
+
 from typing import Any, cast
 
 from django import forms
@@ -69,6 +71,7 @@ class NewsletterForm(forms.Form):
     newsletter_subscribe_mail_smtp_port.widget.attrs.update({"min": 1, "max": 65535})
 
     def clean(self) -> dict[str, Any]:  # noqa
+        """Custom validation for newsletter settings form."""
         cleaned_data = super().clean()
         data: dict[str, Any] = {}
         if cleaned_data is not None:
