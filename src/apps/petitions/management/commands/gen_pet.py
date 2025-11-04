@@ -1,3 +1,5 @@
+"""Management command to generate petitions for users or organizations."""
+
 import logging
 
 from django.core.management.base import BaseCommand, CommandParser
@@ -20,11 +22,13 @@ class Command(BaseCommand):
     # TODO: Improve creation by not naming all petitions the same way (idempotence)
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Add command line arguments."""
         parser.add_argument("--user", type=str)
         parser.add_argument("--orga", type=str)
         parser.add_argument("--number", "-n", type=int, default=1)
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Handle the command to generate petitions."""
         opts = dict(opts)  # Ensure opts is a dict
         if not opts["orga"] and not opts["user"]:
             logger.error("You must either specify --orga or --user")

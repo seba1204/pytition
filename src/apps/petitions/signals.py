@@ -1,3 +1,5 @@
+"""Signal handlers for the petitions application."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
@@ -15,6 +17,7 @@ if TYPE_CHECKING:
 # ------------------------------ Pre save actions -----------------------------
 @receiver(pre_save, sender=SLUG_MODEL)
 def check_slug_is_not_empty(sender: Any, instance: SlugModel, **kwargs: Any) -> None:
+    """Ensure that the slug is not empty before saving."""
     instance.clean()
     instance.validate_unique()
 
@@ -22,12 +25,14 @@ def check_slug_is_not_empty(sender: Any, instance: SlugModel, **kwargs: Any) -> 
 # ------------------------------ Post save actions -----------------------------
 @receiver(pre_save, sender=PETITION)
 def pre_save_petition(sender: Any, instance: Petition, **kwargs: Any) -> None:
+    """Set creation date if not already set."""
     if not instance.creation_date:
         instance.creation_date = timezone.now()
 
 
 @receiver(post_save, sender=PETITION)
 def save_petition(sender: Any, instance: Petition, **kwargs: Any) -> None:
+    """Ensure slug is created and set creation date on creation."""
     if instance.slugmodel_set.count() == 0:
         instance.slugify()
     if kwargs.get("created"):

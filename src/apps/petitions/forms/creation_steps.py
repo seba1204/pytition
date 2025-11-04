@@ -1,3 +1,5 @@
+"""Forms for petition creation steps."""
+
 from typing import Any
 
 from django import forms
@@ -16,6 +18,7 @@ class PetitionCreationStep1(forms.Form):
     title = forms.CharField(max_length=200)
 
     def clean_title(self) -> str:
+        """Ensure the title is unique for the owner."""
         title = self.cleaned_data.get("title")
         if not isinstance(title, str) or title is None:
             raise ValidationError(

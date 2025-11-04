@@ -1,3 +1,5 @@
+"""View to edit a petition."""
+
 from pathlib import Path
 
 from django.contrib import messages
@@ -18,7 +20,6 @@ from apps.petitions.helpers import petition_from_id
 
 
 # FIXME: This view is too big, it should be split into smaller functions
-# /<int:petition_id>/edit
 # Edit a petition
 @login_required
 def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa

@@ -1,3 +1,5 @@
+"""Forms for the petitions application."""
+
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE  # type: ignore

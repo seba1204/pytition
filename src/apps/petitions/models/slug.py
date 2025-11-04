@@ -1,6 +1,7 @@
+"""Models for petition slugs (permalinks)."""
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -8,9 +9,6 @@ from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 
 from apps.core.model_refs import PETITION
-
-if TYPE_CHECKING:
-    pass
 
 
 # --------------------------------- SlugModel ---------------------------------
@@ -21,6 +19,8 @@ class SlugModel(models.Model):
     petition = models.ForeignKey(PETITION, on_delete=models.CASCADE)
 
     class Meta:
+        """Meta information for the SlugModel."""
+
         db_table = "petition_slugmodel"
         # Translators: Slug model verbose name (in the admin interface)
         verbose_name = gettext_lazy("Slug")
@@ -28,6 +28,7 @@ class SlugModel(models.Model):
         verbose_name_plural = gettext_lazy("Slugs")
 
     def clean(self, *args: Any, **kwargs: Any) -> None:
+        """Ensure that the slug is not empty."""
         if self.slug == "" or self.slug is None:
             raise ValidationError(
                 _("A permalink cannot be empty. Please enter something."),

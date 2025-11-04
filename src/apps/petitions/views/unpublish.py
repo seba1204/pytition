@@ -1,3 +1,5 @@
+"""View to unpublish a petition."""
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 
