@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     """
-    This command helps manually moderating petitions and user accounts.
+    Help manually moderate petitions and user accounts.
 
     ./manage.py moderate [-a | -l] > -r "some text" : adds some text as a new moderation
     reason > -l : list petitions in decreasing order of moderation demands > -m id :
@@ -34,7 +34,7 @@ class Command(BaseCommand):
         parser.add_argument("-P", "--unmoderate-petition", type=int)
         parser.add_argument("-U", "--unmoderate-user", type=str)
 
-    # TODO: refactor into smaller methods
+    # TODO: [#79] refactor into smaller methods
     def handle(self, *args: object, **opts: object) -> None:  # noqa
         """Execute the moderation command with the given options."""
         if opts["list"]:

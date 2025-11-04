@@ -28,8 +28,7 @@ class _SettingsContext(TypedDict, total=False):
     orgs: QuerySet[Organization, Organization] | None
 
 
-# Show settings for the user accounts
-# FIXME: split into multiple functions helpers, services, etc. cf. #76
+# FIXME: [#76, #79] split into multiple functions helpers, services, etc.
 @login_required
 def settings(request: HttpRequest) -> HttpResponse:  # noqa
     """Show and process the user settings page."""

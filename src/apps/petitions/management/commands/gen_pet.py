@@ -19,7 +19,8 @@ class Command(BaseCommand):
     ./manage.py gen_pet --orga orgname -n 10 > Generate 10 petitions for org:orgname
     """
 
-    # TODO: Improve creation by not naming all petitions the same way (idempotence)
+    # TODO: [#81] Improve creation by not naming all petitions the same way
+    # (idempotence)
 
     def add_arguments(self, parser: CommandParser) -> None:
         """Add command line arguments."""

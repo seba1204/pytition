@@ -10,7 +10,7 @@ from django.http import (
 from apps.accounts.models import PytitionUser
 
 
-# TODO: merge it with /search, cf. ticket #20
+# TODO: [#26] merge it with /search
 @login_required
 def search_users(request: HttpRequest) -> JsonResponse:
     """Get the list of users matching the query parameter 'q'."""

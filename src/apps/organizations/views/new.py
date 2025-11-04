@@ -35,7 +35,7 @@ def create(request: HttpRequest) -> HttpResponse:
         "petition.add_organization"
     ):
         messages.error(request, _("Only super users can create an organization."))
-        # FIXME: should redirect to the page where the user was before requesting
+        # FIXME: [#40] should redirect to the page where the user was before requesting
         # the creation of a new organization.
         # If not possible, redirect to user dashboard.
         return redirect(AccountsRoute.DASHBOARD)
@@ -61,7 +61,7 @@ def create(request: HttpRequest) -> HttpResponse:
                 _("You successfully created organization '%(orgname)s'")
                 % {"orgname": org.name},
             )
-            # FIXME: should redirect to the newly created org dashboard.
+            # FIXME: [#40] should redirect to the newly created org dashboard.
             return redirect(AccountsRoute.DASHBOARD)
         else:
             # Form is not valid, show it with errors in the template

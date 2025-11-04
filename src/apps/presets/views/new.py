@@ -26,8 +26,6 @@ class _NewPresetContext(TypedDict, total=False):
     base_template: str
 
 
-# Create a new template
-# TODO: merge both endpoints into one `/presets/new`, wether user or org.
 @login_required
 def new(request: HttpRequest) -> HttpResponse:
     """
@@ -40,12 +38,12 @@ def new(request: HttpRequest) -> HttpResponse:
     orgslugname : str | None, optional
         The slugname of the organization (if it's an organization preset),
         By default None.
+
     Returns
     -------
     HttpResponse
         The HTTP response object with the rendered new template page or a redirect.
     """
-
     pytitionuser: PytitionUser = get_session_user(request)
     ctx: _NewPresetContext = {"user": pytitionuser}
 

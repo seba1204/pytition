@@ -11,7 +11,7 @@ from django.core.management.base import BaseCommand
 run = partial(subprocess.run, shell=True, check=True)
 
 
-# FIXME: this is a naive implementation, it should handle more edge cases
+# FIXME: [#82] this is a naive implementation, it should handle more edge cases
 class Command(BaseCommand):
     """Update pytition install."""
 

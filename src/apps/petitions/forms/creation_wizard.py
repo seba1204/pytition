@@ -164,7 +164,7 @@ class PetitionCreationWizard(SessionWizardView):
                 return {"user_name": pytitionuser.user.username}
         return {}
 
-    # FIXME: this method is too long, split it into smaller methods
+    # FIXME: [#79] this method is too long, split it into smaller methods
     def done(self, form_list: list[Any], **kwargs: Any) -> HttpResponse:  # noqa
         """Create the petition and redirect to the appropriate page."""
         try:

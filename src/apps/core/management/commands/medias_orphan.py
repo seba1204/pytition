@@ -8,9 +8,8 @@ from django.core.management.base import BaseCommand
 from apps.petitions.models import Petition
 
 
-# FIXME: this check only remove medias not referenced in petitions texts or
+# FIXME: [#31] this check only remove medias not referenced in petitions texts or
 # twitter images, but, in the future, other models may reference medias too
-# cf. ticket #31
 class Command(BaseCommand):
     """Find orphans medias in media root."""
 

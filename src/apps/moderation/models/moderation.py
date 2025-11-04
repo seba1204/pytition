@@ -8,8 +8,7 @@ from django.utils.translation import gettext_lazy as _lazy
 from apps.core.model_refs import MODERATION_REASON, PETITION
 
 
-# FIXME: According to the PytitionUser model, user can be moderated too.
-# cf. ticket #60.
+# FIXME: [#60] According to the PytitionUser model, user can be moderated too.
 class Moderation(models.Model):
     """Model representing a moderation action taken on a petition."""
 

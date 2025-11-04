@@ -35,7 +35,7 @@ validate_bijection(OrgRoute, ROUTES)
 # Short-named patterns; the namespace is supplied by include(..., namespace=NAMESPACE)
 urlpatterns = build_urlpatterns(ROUTES)
 
-# TODO: improve build_urlpatterns to handle included namespaces
+# TODO: [#83] improve build_urlpatterns to handle included namespaces
 urlpatterns += [
     path(
         f"{SLUG}/members/",

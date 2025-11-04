@@ -58,7 +58,7 @@ docs-live = "sphinx-autobuild docs/source docs/_build/html -a -j auto --host 0.0
 # Docstring coverage
 docs-coverage = "interrogate -v -c pyproject.toml src"
 # Generate docstring coverage badge
-docs-badge = "pdm run interrogate -c pyproject.toml -m src --generate-badge docs/source/_static"
+docs-badge = "interrogate -c pyproject.toml src --generate-badge docs/source/_static/img/"
 
 [dependency-groups]
 dev = [
@@ -112,9 +112,9 @@ src = ["src"]
 # SIM = flake8-simplify
 # PTH = flake8-pie
 # PL = flake8-pyi
-# D = pydocstyle TODO: enable pydocstyle later, cf. issue #8
+# D = pydocstyle (chosen convention: numpy)
 # INT = flake8-gettext checks
-select = ["E", "F", "I", "UP", "B", "C4", "SIM", "PTH", "PL", "INT"]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "PTH", "PL", "D", "INT"]
 ignore = [
     "D203", # incompatible avec D211
     "D212", # incompatible avec D213

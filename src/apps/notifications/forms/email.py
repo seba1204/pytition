@@ -4,10 +4,9 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 
-# TODO: move it
+# TODO: [#76] move it
 # Has no place here. This form is used in the “Email setup” tab of the petition.
 # It should go in the petitions app or, better yet, in the settings of a petition.
-# Cf. ticket #76
 class EmailForm(forms.Form):
     """E-mail settings of Petition."""
 

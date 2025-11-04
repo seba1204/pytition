@@ -149,7 +149,7 @@ class DjangoHTMLTranslator(HTMLTranslator):
     # better callout -- the Sphinx default is just a little span,
     # which is a bit less obvious that I'd like.
     #
-    # FIXME: these messages are all hardcoded in English. We need to change
+    # FIXME: [#??] these messages are all hardcoded in English. We need to change
     # that to accommodate other language docs, but I can't work out how to make
     # that work.
     #

@@ -1,3 +1,5 @@
+""""Tests for EditPetitionView."""
+
 from pathlib import Path
 
 from django.conf import settings
@@ -17,22 +19,26 @@ class EditPetitionViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls) -> None:
+        """Set up test data for the whole TestCase."""
         add_default_data()
 
     def login(self, name: str) -> PytitionUser:
+        """Log in a user by name."""
         self.client.login(username=name, password=name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
     def logout(self) -> None:
+        """Log out the current user."""
         self.client.logout()
 
     def tearDown(self) -> None:
+        """Tear down test data."""
         # Clean up run after every test method.
         pass
 
     def test_edit_404(self) -> None:
-        """Non-existent petition id : should return 404"""
+        """Non-existent petition id : should return 404."""
         self.login("julia")
         response = self.client.get(reverse(PetitionsRoute.EDIT, args=[1000]))
         self.assertEqual(response.status_code, 404)
@@ -82,8 +88,7 @@ class EditPetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "accounts/dashboard.html")
 
     def test_edit_notInOrg(self) -> None:
-        """Editing a petition owned by an Organization the logged-in user is *NOT* part
-        of."""
+        """Edit a petition owned by an org the logged-in user is *NOT* part of."""
         self.login("sarah")
         attac = Organization.objects.get(name="Les Amis de la Terre")
         petition = attac.petition_set.first()
@@ -97,8 +102,8 @@ class EditPetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "accounts/dashboard.html")
 
     def test_edit_InOrgButNoEditPermission(self) -> None:
-        """Editing a petition owned by an Organization the logged-in user is part of but
-        without the can_modify_petitions permission."""
+        """Edit a petition owned by an org the logged-in user is part of but without the
+        can_modify_petitions permission."""
         max = self.login("max")
         at = Organization.objects.get(name="Les Amis de la Terre")
         perm = Permission.objects.get(organization=at, user=max)
@@ -292,7 +297,7 @@ class EditPetitionViewTest(TestCase):
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
 
-        # FIXME: path manipulation is ugly here, find a better way
+        # FIXME: [#80] path manipulation is ugly here, find a better way
         this_path = Path(__file__).parent
         # this path should point to <root>/src/apps/petition/tests/
         # and the logo is at <root>/assets/img/logo.png
