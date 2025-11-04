@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-04 00:58+0100\n"
-"PO-Revision-Date: 2025-11-04 00:19+0000\n"
-"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"PO-Revision-Date: 2025-11-04 01:26+0000\n"
+"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Japanese <https://translate.sebastienpont.fr/projects/"
 "pytition/docs/ja/>\n"
 "Language: ja\n"
@@ -139,7 +139,7 @@ msgstr "{ref}`modindex`"
 #: ../../source/index.md:24 3391d85a8835450d846622581edcd1bc
 #, python-brace-format
 msgid "{ref}`search`"
-msgstr "{ref}`検索`"
+msgstr "{ref}`search`"
 
 #: ../../source/user/index.md:1 c28934450847473592edce850aee6ba2
 msgid "User Guide"
