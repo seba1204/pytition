@@ -10,7 +10,7 @@ To simplify the documentation, we have organized the section on parameter variab
 
 ```{toctree}
 :maxdepth: 2
-:caption: Contents:
+:hidden:
 basics
 all
 advanced

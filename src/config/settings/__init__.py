@@ -23,7 +23,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .helpers.envtools import detect_env, load_dotenv, override_settings
+from .helpers.env_tools import detect_env, load_dotenv, override_settings
 
 # ──────────────────────────────────────────────────────────────────────────────
 # .env loading (no external dependency)
@@ -48,22 +48,22 @@ _ENV = detect_env(_DOTENV)
 
 # First: core Django settings (safe defaults)
 # Then: app/project defaults
-from .default import *
-from .django import *
+from .default import *  # noqa
+from .django import *  # noqa
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Apply per-environment deltas
 # ──────────────────────────────────────────────────────────────────────────────
 
 if _ENV == "dev":
-    from .delta.dev import *
+    from .delta.dev import *  # noqa
 elif _ENV == "prod":
-    from .delta.prod import *
+    from .delta.prod import *  # noqa
 elif _ENV == "test":
-    from .delta.test import *
+    from .delta.test import *  # noqa
 else:
     # Should never happen, but keep dev-safe
-    from .delta.dev import *
+    from .delta.dev import *  # noqa
 
 # Expose the resolved environment
 SETTINGS_ENV = _ENV

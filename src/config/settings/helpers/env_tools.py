@@ -1,5 +1,5 @@
 """
-envtools.py — Small helpers for .env loading, environment detection, and overrides.
+env_tools.py — Small helpers for .env loading, environment detection, and overrides.
 
 Design goals:
 - No external dependencies
@@ -19,6 +19,7 @@ from typing import Any
 def load_dotenv(paths: Iterable[Path]) -> dict[str, str]:
     """
     Parse .env files in order and return a flat dict of key -> value.
+
     Later files in `paths` override earlier ones (last-wins).
     Supports simple lines:
       KEY=value
@@ -47,8 +48,9 @@ def get_env(
 ) -> str | None:
     """
     Return a value for `name` with precedence:
-      1) `dotenv` map
-      2) `osenv` (defaults to os.environ)
+
+    1) `dotenv` map
+    2) `osenv` (defaults to os.environ)
     """
     if name in dotenv:
         return dotenv[name]
@@ -65,12 +67,14 @@ def to_bool(value: str) -> bool:
 def detect_env(
     dotenv: Mapping[str, str],
     osenv: Mapping[str, str] | None = None,
-    default: str = "dev",
+    default: str = "prod",
 ) -> str:
     """
     Decide between "dev" | "prod" | "test".
+
     Priority: ENV (in .env then OS) -> DEBUG (in .env then OS) -> default.
     If DEBUG is truthy => "dev", else => "prod".
+    Default is "prod".
     """
     env = get_env("ENV", dotenv, osenv)
     if env:
@@ -88,6 +92,7 @@ def detect_env(
 def coerce_like(original: Any, newval: str) -> Any:
     """
     Try to coerce string `newval` to the type/shape of `original`.
+
     - bool: common truthy/falsey strings
     - ast.literal_eval for safe Python literals (int/float/list/dict/tuple/None/bool)
     - if original is list/tuple: accept comma-separated strings as list
@@ -111,7 +116,8 @@ def override_settings(
 ) -> None:
     """
     For every UPPERCASE key in `globals_dict`, override its value using:
-      1) .env (dotenv)
+
+    1) .env (dotenv)
       2) OS env (osenv, default os.environ)
     Uses `coerce_like` to cast strings to appropriate types.
     """
