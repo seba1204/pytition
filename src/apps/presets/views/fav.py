@@ -1,8 +1,7 @@
+"""View to toggle favorite petition presets."""
+
 from django.contrib.auth.decorators import login_required
-from django.http import (
-    HttpRequest,
-    JsonResponse,
-)
+from django.http import HttpRequest, JsonResponse
 from django.utils.translation import gettext as _
 
 from apps.accounts.models import PytitionUser
@@ -15,6 +14,7 @@ from apps.presets.models import PetitionTemplate
 # Set a template as favorite
 @login_required
 def toggle_fav(request: HttpRequest, preset_id: int) -> JsonResponse:
+    """Toggle the favorite status of a petition preset for the authenticated user."""
     pytitionuser: PytitionUser = get_session_user(request)
     owner: PytitionUser | Organization | None
 

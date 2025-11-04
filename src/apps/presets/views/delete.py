@@ -1,3 +1,5 @@
+"""View to delete petition presets."""
+
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import HttpRequest, JsonResponse

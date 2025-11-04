@@ -1,3 +1,5 @@
+"""View to edit petition presets."""
+
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -5,11 +7,7 @@ from typing import Any
 
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
-from django.http import (
-    HttpRequest,
-    HttpResponse,
-    HttpResponseForbidden,
-)
+from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 

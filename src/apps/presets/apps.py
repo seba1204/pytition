@@ -18,6 +18,8 @@ from django.utils.translation import gettext_lazy as _lazy
 
 
 class PresetsConfig(AppConfig):
+    """Configuration for the presets application."""
+
     name = "apps.presets"
     # Translators: Presets application verbose name (in the admin interface)
     verbose_name = _lazy("Petition presets management")
