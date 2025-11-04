@@ -1,5 +1,8 @@
-# Those references are used to avoid
-# circular imports in Django model ForeignKey/M2M definitions
+"""
+Model reference constants to avoid circular imports.
+
+Mainly used in ForeignKey and ManyToManyField definitions.
+"""
 
 PYTITION_USER = "accounts.PytitionUser"
 ORGANIZATION = "organizations.Organization"

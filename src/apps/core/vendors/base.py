@@ -1,3 +1,5 @@
+"""Base classes and utilities for vendor management."""
+
 from __future__ import annotations
 
 import hashlib
@@ -15,6 +17,8 @@ from urllib.request import Request, urlopen
 
 @dataclass
 class DownloadResult:
+    """Result of a vendor download operation."""
+
     vendor: str
     version: str
     dest_dir: Path
@@ -22,7 +26,8 @@ class DownloadResult:
 
 
 class Vendor(ABC):
-    """Base class for all vendors.
+    """
+    Base class for all vendors.
 
     Subclasses must implement `download_and_stage` to fetch and copy the needed
     files into `stage_dir`.
@@ -41,7 +46,9 @@ class Vendor(ABC):
 
     @abstractmethod
     def download_and_stage(self) -> None:
-        """Download upstream artifacts and place final files under `stage_dir`.
+        """
+        Download upstream artifacts and place final files under `stage_dir`.
+
         Must create all subfolders; may raise on failures.
         """
 
@@ -49,27 +56,35 @@ class Vendor(ABC):
     def _http_get_bytes(
         self, url: str, user_agent: str = "PytitionVendorFetcher/1.0"
     ) -> bytes:
+        """Fetch bytes from a URL with a custom User-Agent."""
         req = Request(url, headers={"User-Agent": user_agent})
         with urlopen(req) as resp:  # nosec - controlled URLs from subclasses
             return bytes(resp.read())
 
     def _extract_zip_bytes(self, blob: bytes, into: Path) -> None:
+        """Extract a ZIP archive from bytes into the given directory."""
         into.mkdir(parents=True, exist_ok=True)
         with zipfile.ZipFile(io.BytesIO(blob)) as zf:
             zf.extractall(into)
 
     def _extract_tgz_bytes(self, blob: bytes, into: Path) -> None:
+        """Extract a TGZ archive from bytes into the given directory."""
         into.mkdir(parents=True, exist_ok=True)
         with tarfile.open(fileobj=io.BytesIO(blob), mode="r:gz") as tf:
             tf.extractall(into)
 
     def _write_file(self, where: Path, data: bytes) -> None:
+        """Write bytes to a file, creating parent directories as needed."""
         where.parent.mkdir(parents=True, exist_ok=True)
         with Path.open(where, "wb") as f:
             f.write(data)
 
     def _atomic_replace_from_stage(self) -> bool:
-        """Replace `dest_dir` with `stage_dir` atomically. Returns True if changed."""
+        """
+        Replace `dest_dir` with `stage_dir` atomically.
+
+        Returns True if changed.
+        """
         if not self.stage_dir.exists():
             raise RuntimeError(
                 "stage_dir does not exist; did you run download_and_stage()?"
@@ -94,6 +109,11 @@ class Vendor(ABC):
         return changed
 
     def _hash_tree(self, root: Path) -> str | None:
+        """
+        Compute a SHA256 hash of all files under root.
+
+        Returns None if root missing.
+        """
         if not root.exists():
             return None
         h = hashlib.sha256()
@@ -111,6 +131,11 @@ class Vendor(ABC):
 
     # ----------------------- public API -----------------------
     def ensure(self, *, force: bool = False) -> DownloadResult:
+        """
+        Ensure the vendor is downloaded into `dest_dir`.
+
+        Returns DownloadResult.
+        """
         self.vendor_root.mkdir(parents=True, exist_ok=True)
         if self.dest_dir.exists() and not force:
             return DownloadResult(self.name, self.version, self.dest_dir, changed=False)
@@ -125,6 +150,7 @@ class Vendor(ABC):
 
 
 def read_vendors_from_pyproject(pyproject_path: Path) -> dict[str, str]:
+    """Read vendor versions from pyproject.toml."""
     with Path.open(pyproject_path, "rb") as f:
         cfg = tomllib.load(f)
     vendors = cfg.get("tool", {}).get("pytition", {}).get("vendors", {})

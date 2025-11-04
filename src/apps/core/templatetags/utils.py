@@ -1,3 +1,4 @@
+"""Django template filters for various utilities."""
 from django import template
 
 from apps.core.helpers import sanitize_html

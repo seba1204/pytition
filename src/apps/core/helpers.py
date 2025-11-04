@@ -1,3 +1,5 @@
+"""Helper functions for the core application."""
+
 from __future__ import annotations
 
 from typing import Any

@@ -1,3 +1,5 @@
+"""Vendor class for bs-custom-file-input static files."""
+
 from __future__ import annotations
 
 from .base import Vendor
@@ -10,6 +12,7 @@ class BsCustomFileInputVendor(Vendor):
     """Download bs-custom-file-input (Johann-S) from GitHub, fallback unpkg."""
 
     def download_and_stage(self) -> None:
+        """Download and stage bs-custom-file-input into `stage_dir`."""
         v = self.version
         urls = [
             f"https://github.com/Johann-S/bs-custom-file-input/archive/refs/tags/v{v}.zip",

@@ -1,3 +1,5 @@
+"""Management command to generate a Mermaid flowchart of Django URL paths."""
+
 from __future__ import annotations
 
 import hashlib
@@ -11,6 +13,8 @@ from django.urls import URLPattern, URLResolver, get_resolver
 
 
 class UrlKind:
+    """Kind of URL entry in the resolver tree.""" ""
+
     RESOLVER = "resolver"
     PATTERN = "pattern"
 
@@ -98,6 +102,7 @@ def _has_asset_extension(path: str, extensions: Sequence[str]) -> bool:
 
 
 def _nearest_existing_parent(path: str, candidates: set[str]) -> str:
+    """Return the nearest existing parent path from candidates."""
     p = _parent_of(path)
     while p not in candidates and p != "/":
         p = _parent_of(p)
@@ -162,6 +167,7 @@ def harvest_urls() -> list[UrlEntry]:
     out: list[UrlEntry] = []
 
     def walk(urlpatterns: Sequence[object], prefix_parts: list[str]) -> None:
+        """Recursively walk urlpatterns, accumulating full paths."""
         for entry in urlpatterns:
             if isinstance(entry, URLPattern):
                 pattern_text = _pattern_to_text(entry.pattern)
@@ -336,9 +342,12 @@ def build_mermaid(
 
 
 class Command(BaseCommand):
+    """Generate a Mermaid flowchart of Django URL paths (paths only)."""
+
     help = "Generate a Mermaid flowchart of Django URL paths (paths only)."
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Add command line arguments for graph_urls command."""
         parser.add_argument(
             "-o",
             "--outfile",
@@ -391,6 +400,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args: object, **options: object) -> None:
+        """Generate a Mermaid flowchart of Django URL paths (paths only)."""
         outfile: str = str(options.get("outfile"))
         orientation: str = str(options.get("orientation"))
         exclude_admin: bool = bool(options.get("exclude_admin"))

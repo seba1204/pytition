@@ -1,3 +1,5 @@
+"""Pipeline step to generate favicons and PWA icons."""
+
 from __future__ import annotations
 
 from io import BytesIO
@@ -13,7 +15,8 @@ from .registry import register_step
 @register_step("favicons", order=40)
 class FaviconsStep(PipelineStep):
     """
-    Generates a complete set of favicons and PWA icons from assets/logo.svg
+    Generates a complete set of favicons and PWA icons from assets/logo.svg.
+
     (fallback assets/img/logo.png):
     - favicon.ico (16/32/48)
     - favicon-16x16.png, favicon-32x32.png, favicon-48x48.png
@@ -52,12 +55,14 @@ class FaviconsStep(PipelineStep):
         )
 
     def _save_multi_ico(self, images: list[Image.Image], out_path: Path) -> None:
+        """Saves a multi-resolution ICO file from a list of PNG images."""
         buf = BytesIO()
         # Pillow can write a multi-resolution ICO if you pass the list of sizes.
         images[0].save(buf, format="ICO", sizes=[im.size for im in images])
         out_path.write_bytes(buf.getvalue())
 
     def run(self, ctx: Context) -> None:
+        """Generate favicons and PWA icons in <static_root>."""
         root = Path(ctx.static_root)
         root.mkdir(parents=True, exist_ok=True)
 

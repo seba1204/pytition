@@ -1,3 +1,5 @@
+"""Management command to generate a new Django SECRET_KEY."""
+
 from __future__ import annotations
 
 import contextlib

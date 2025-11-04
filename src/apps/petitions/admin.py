@@ -4,7 +4,14 @@ from django.contrib import admin
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
 
-from apps.petitions.models import Petition
+from apps.petitions.models import Petition, SlugModel
+
+
+@admin.register(SlugModel)
+class SlugModelAdmin(admin.ModelAdmin):
+    """Admin interface for SlugModel."""
+
+    pass
 
 
 class PetitionAdminForm(ModelForm):

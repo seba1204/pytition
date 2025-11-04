@@ -1,3 +1,5 @@
+"""Pipeline step to generate browserconfig.xml."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -10,6 +12,7 @@ from .registry import register_step
 class BrowserConfigStep(PipelineStep):
     """
     Generates browserconfig.xml for Microsoft/Windows (tiles).
+
     Requires at least one 150x150 square icon (we reuse android-chrome-192x192).
     """
 
@@ -17,6 +20,7 @@ class BrowserConfigStep(PipelineStep):
         super().__init__("browserconfig")
 
     def run(self, ctx: Context) -> None:
+        """Generate browserconfig.xml in <static_root>."""
         root = Path(ctx.static_root)
         xml = """<?xml version="1.0" encoding="utf-8"?>
 <browserconfig>

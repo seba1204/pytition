@@ -1,3 +1,5 @@
+"""Management command to find orphan medias in MEDIA_ROOT."""
+
 from pathlib import Path
 
 from django.conf import settings
@@ -13,6 +15,7 @@ class Command(BaseCommand):
     """Find orphans medias in media root."""
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Find orphans medias in media root."""
         media_root = Path(settings.MEDIA_ROOT)
         all_petition = list(Petition.objects.all())
         if all_petition:

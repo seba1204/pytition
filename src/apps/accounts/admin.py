@@ -5,7 +5,7 @@ from typing import Any
 from django.contrib import admin
 from django.utils.translation import gettext_lazy
 
-from apps.accounts.models import PytitionUser
+from apps.accounts.models import Permission, PytitionUser
 
 
 @admin.register(PytitionUser)
@@ -19,3 +19,10 @@ class PytitionUserAdmin(admin.ModelAdmin):
     def name(self, pu: Any) -> Any:
         """Return the name of the PytitionUser instance."""
         return pu
+
+
+@admin.register(Permission)
+class PermissionAdmin(admin.ModelAdmin):
+    """Admin interface for Permission model."""
+
+    pass

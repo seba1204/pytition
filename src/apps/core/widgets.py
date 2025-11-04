@@ -1,3 +1,5 @@
+"""Widgets for the core application."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -14,6 +16,23 @@ class SwitchWidget(forms.CheckboxInput):
     def get_context(
         self, name: str, value: Any, attrs: dict[str, Any] | None
     ) -> dict[str, Any]:
+        """
+        Get the context for rendering the widget.
+
+        Parameters
+        ----------
+        name : str
+            The name of the field.
+        value : Any
+            The value of the field.
+        attrs : dict[str, Any] | None
+            Additional HTML attributes for the widget.
+        Returns
+        -------
+        dict[str, Any]
+            The context for rendering the widget.
+        """
+
         if attrs is None:
             attrs = {}
         if "class" in attrs:
@@ -53,6 +72,7 @@ class SwitchField(forms.BooleanField):
     def get_bound_field(
         self, form: forms.BaseForm, field_name: str
     ) -> forms.BoundField:
+        """Return a BoundField with a suppressed label_tag method."""
         bf = super().get_bound_field(form, field_name)
         # mypy doesn't like rebinding a method; it's intentional to hide the label
         bf.label_tag = self.label_tag  # type: ignore[method-assign]
@@ -65,5 +85,6 @@ class SwitchField(forms.BooleanField):
         label_suffix: str | None = None,
         tag: str | None = None,
     ) -> SafeString:
+        """Return an empty SafeString to suppress label rendering."""
         # We render the label manually in the widget template, so suppress here.
         return SafeString("")

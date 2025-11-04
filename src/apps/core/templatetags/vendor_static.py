@@ -1,3 +1,5 @@
+"""Django template tag to reference versioned vendor static files."""
+
 from __future__ import annotations
 
 import tomllib
@@ -12,6 +14,7 @@ register = template.Library()
 
 @lru_cache
 def _load_versions() -> dict[str, str]:
+    """Load vendor versions from pyproject.toml."""
     pyproject = Path(__file__).resolve().parents[4] / "pyproject.toml"
     with Path.open(pyproject, "rb") as f:
         cfg = tomllib.load(f)

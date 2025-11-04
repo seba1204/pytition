@@ -1,4 +1,4 @@
-""" "Admin actions for the consents app."""
+""""Admin actions for the consents app."""
 
 from typing import Any
 
