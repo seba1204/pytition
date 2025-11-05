@@ -63,3 +63,7 @@ table caption {
   color: red;
   font-weight: bold;
 }
+
+#page_container {
+  min-height: 85vh;
+}
