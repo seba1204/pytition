@@ -1,3 +1,5 @@
+"""Tests for CreateSignatureView."""
+
 from django.test import TestCase
 from django.urls import reverse
 
@@ -12,9 +14,11 @@ class CreateSignatureViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls) -> None:
+        """Set up test data for the whole TestCase."""
         add_default_data()
 
     def test_CreateSignaturePOSTOk(self) -> None:
+        """Test creating a signature with valid data."""
         data = {
             "first_name": "Alan",
             "last_name": "John",
@@ -42,6 +46,7 @@ class CreateSignatureViewTest(TestCase):
         self.assertEqual(signature.subscribed_to_mailinglist, False)
 
     def test_CreateSignaturePOSTNok(self) -> None:
+        """Test creating a signature with invalid data."""
         data = {
             "first_name": "Alan",
             "last_name": "",
@@ -62,6 +67,7 @@ class CreateSignatureViewTest(TestCase):
         self.assertContains(response, "Enter a valid email address")
 
     def test_CreateSignatureGETOk(self) -> None:
+        """Test accessing the signature creation page."""
         petition = Petition.objects.filter(published=True).first()
         self.assertIsNotNone(petition)
         if petition is None:

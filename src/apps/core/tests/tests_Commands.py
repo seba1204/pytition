@@ -1,3 +1,5 @@
+"""Tests for custom management commands."""
+
 import logging
 
 from django.contrib.auth.models import User
@@ -13,7 +15,10 @@ logging.disable(logging.CRITICAL)
 
 
 class CommandTestCase(TestCase):
+    """Tests for custom management commands."""
+
     def test_gen_orga_command(self) -> None:
+        """Test the gen_orga command."""
         self.assertEqual(Organization.objects.count(), 0)
 
         call_command("gen_orga", "test-org")
@@ -23,6 +28,7 @@ class CommandTestCase(TestCase):
         self.assertEqual(Organization.objects.count(), 1)
 
     def test_gen_user_command(self) -> None:
+        """Test the gen_user command."""
         self.assertEqual(User.objects.count(), 0)
 
         call_command("gen_user", "user", "password")
@@ -41,6 +47,7 @@ class CommandTestCase(TestCase):
             self.assertTrue(user_obj.check_password("password2"))
 
     def test_join_org_command(self) -> None:
+        """Test the join_org command."""
         org = Organization.objects.create(name="org")
         User.objects.create_user(username="user", password="pass")
         self.assertEqual(Permission.objects.count(), 0)
@@ -59,6 +66,7 @@ class CommandTestCase(TestCase):
         self.assertEqual(org.members.count(), 1)
 
     def test_gen_pet_command(self) -> None:
+        """Test the gen_pet command."""
         Organization.objects.create(name="org")
         User.objects.create_user(username="user", password="pass")
         self.assertEqual(Petition.objects.count(), 0)
@@ -70,6 +78,7 @@ class CommandTestCase(TestCase):
         self.assertEqual(Petition.objects.count(), 10)
 
     def test_gen_sig_command(self) -> None:
+        """Test the gen_sig command."""
         org = Organization.objects.create(name="org")
         user = User.objects.create_user(username="user", password="pass")
         pet = Petition.objects.create(title="Test", user=user.pytitionuser)

@@ -1,3 +1,5 @@
+"""Tests for OrgAddUserView."""
+
 from django.test import TestCase
 from django.urls import reverse
 
@@ -12,9 +14,11 @@ class OrgAddUserViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls) -> None:
+        """Set up test data for the whole TestCase."""
         add_default_data()
 
     def login(self, name: str, password: str | None = None) -> PytitionUser:
+        """Helper to login a user by name."""
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
