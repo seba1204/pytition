@@ -51,34 +51,34 @@
        role="tablist">
     <a href="#content_form"
        class="list-group-item list-group-item-info list-group-item-action active"
-       data-toggle="list"
+       data-bs-toggle="list"
        aria-controls="content_form"
-       role="tab"><span class="oi oi-clipboard" aria-current="true"></span> {% trans "Content" %}</a>
+       role="tab"><span class="bi bi-clipboard" aria-current="true"></span> {% trans "Content" %}</a>
     <a href="#style_form"
        class="list-group-item list-group-item-info list-group-item-action"
-       data-toggle="list"
+       data-bs-toggle="list"
        aria-controls="style_form"
-       role="tab"><span class="oi oi-brush"></span> {% trans "Style & Look" %}</a>
+       role="tab"><span class="bi bi-brush"></span> {% trans "Style & Look" %}</a>
     <a href="#social_network_form"
        class="list-group-item list-group-item-info list-group-item-action"
-       data-toggle="list"
+       data-bs-toggle="list"
        aria-controls="social_network_form"
-       role="tab"><span class="oi oi-share-boxed"></span> {% trans "Social Networks" %}</a>
+       role="tab"><span class="bi bi-share-boxed"></span> {% trans "Social Networks" %}</a>
     <a href="#email_form"
        class="list-group-item list-group-item-info list-group-item-action"
-       data-toggle="list"
+       data-bs-toggle="list"
        aria-controls="email_form"
-       role="tab"><span class="oi oi-envelope-closed"></span> {% trans "E-mail setup" %}</a>
+       role="tab"><span class="bi bi-envelope-closed"></span> {% trans "E-mail setup" %}</a>
     <a href="#newsletter_form"
        class="list-group-item list-group-item-info list-group-item-action"
-       data-toggle="list"
+       data-bs-toggle="list"
        aria-controls="newsletter_form"
-       role="tab"><span class="oi oi-rss"></span> {% trans "Newsletter setup" %}</a>
+       role="tab"><span class="bi bi-rss"></span> {% trans "Newsletter setup" %}</a>
     <a href="#preview"
        class="list-group-item list-group-item-info list-group-item-action"
-       data-toggle="list"
+       data-bs-toggle="list"
        aria-controls="preview"
-       role="tab"><span class="oi oi-clipboard"></span> {% trans "Preview petition" %}</a>
+       role="tab"><span class="bi bi-clipboard"></span> {% trans "Preview petition" %}</a>
   </div>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active"
@@ -281,7 +281,7 @@
                 </div>
                 <br />
                 <button type="button" class="btn btn-danger" id="twitter_img_remove_btn">
-                  <span class="oi oi-trash">{% trans "Remove image" %}</span>
+                  <span class="bi bi-trash">{% trans "Remove image" %}</span>
                 </button>
               </div>
             </div>
@@ -305,7 +305,7 @@
         </div>
         <form action="{% url "petitions:slug:add" petition.id %}"
               method="post"
-              class="form-inline">
+              class="d-flex">
           {% csrf_token %}
           <table class="table table-striped" id="slugTable">
             <thead class="thead-light">
@@ -333,7 +333,7 @@
         </form>
       </p>
       <button class="btn btn-success" id="addSlug">
-        <span class="oi oi-plus"></span>
+        <span class="bi bi-plus"></span>
       </button>
     </div>
     <div class="tab-pane fade"
@@ -387,8 +387,8 @@
           If you modified some settings, please save if you want to see them in the preview.
         {% endblocktrans %}
       </div>
-      <div class="embed-responsive embed-responsive-4by3">
-        <iframe class="embed-responsive-item" src=""></iframe>
+      <div class="ratio ratio-4x3">
+        <iframe src=""></iframe>
       </div>
     </div>
   </div>
@@ -428,7 +428,7 @@ $(document).ready(function () { /* init bootstrap custom input */
 });
 
 $(function () {
-  $('a[data-toggle="list"]').on('shown.bs.tab', function (e) {
+  $('a[data-bs-toggle="list"]').on('shown.bs.tab', function (e) {
     const paneID = $(e.target).attr('href');
     const src = $(paneID).attr('data-src');
     const formcontent = $('#form_content');
@@ -444,7 +444,7 @@ $(function () {
     if ((formcontent.serialize() !== formcontent.data('serialize')) || formcontent.data('mce_changed')) {
       $('a[href="#content_form"]').html(`
         <div class="d-flex">
-          <span class="oi oi-clipboard"></span>
+          <span class="bi bi-clipboard"></span>
           <span>&nbsp;</span>
           <div class="d-flex flex-column">
             <div>* <i>{% trans "Content" %}</i></div>
@@ -453,13 +453,13 @@ $(function () {
         </div>
       `);
     } else {
-      $('a[href="#content_form"]').html('<span class="oi oi-clipboard"></span> {% trans "Content" %}');
+      $('a[href="#content_form"]').html('<span class="bi bi-clipboard"></span> {% trans "Content" %}');
     }
 
     if (formstyle.serialize() !== formstyle.data('serialize')) {
       $('a[href="#style_form"]').html(`
         <div class="d-flex">
-          <span class="oi oi-brush"></span>
+          <span class="bi bi-brush"></span>
           <span>&nbsp;</span>
           <div class="d-flex flex-column">
             <div>* <i>{% trans "Style & Look" %}</i></div>
@@ -468,13 +468,13 @@ $(function () {
         </div>
       `);
     } else {
-      $('a[href="#style_form"]').html('<span class="oi oi-brush"></span> {% trans "Style & Look" %}');
+      $('a[href="#style_form"]').html('<span class="bi bi-brush"></span> {% trans "Style & Look" %}');
     }
 
     if (formemail.serialize() !== formemail.data('serialize')) {
       $('a[href="#email_form"]').html(`
         <div class="d-flex">
-          <span class="oi oi-envelope-closed"></span>
+          <span class="bi bi-envelope-closed"></span>
           <span>&nbsp;</span>
           <div class="d-flex flex-column">
             <div>* <i>{% trans "E-mail setup" %}</i></div>
@@ -483,13 +483,13 @@ $(function () {
         </div>
       `);
     } else {
-      $('a[href="#email_form"]').html('<span class="oi oi-envelope-closed"></span> {% trans "E-mail setup" %}');
+      $('a[href="#email_form"]').html('<span class="bi bi-envelope-closed"></span> {% trans "E-mail setup" %}');
     }
 
     if (formsn.serialize() !== formsn.data('serialize')) {
       $('a[href="#social_network_form"]').html(`
         <div class="d-flex">
-          <span class="oi oi-share-boxed"></span>
+          <span class="bi bi-share-boxed"></span>
           <span>&nbsp;</span>
           <div class="d-flex flex-column">
             <div>* <i>{% trans "Social Networks" %}</i></div>
@@ -498,13 +498,13 @@ $(function () {
         </div>
       `);
     } else {
-      $('a[href="#social_network_form"]').html('<span class="oi oi-share-boxed"></span> {% trans "Social Networks" %}');
+      $('a[href="#social_network_form"]').html('<span class="bi bi-share-boxed"></span> {% trans "Social Networks" %}');
     }
 
     if (formnewsletter.serialize() !== formnewsletter.data('serialize')) {
       $('a[href="#newsletter_form"]').html(`
         <div class="d-flex">
-          <span class="oi oi-rss"></span>
+          <span class="bi bi-rss"></span>
           <span>&nbsp;</span>
           <div class="d-flex flex-column">
             <div>* <i>{% trans "Newsletter setup" %}</i></div>
@@ -513,7 +513,7 @@ $(function () {
         </div>
       `);
     } else {
-      $('a[href="#newsletter_form"]').html('<span class="oi oi-rss"></span> {% trans "Newsletter setup" %}');
+      $('a[href="#newsletter_form"]').html('<span class="bi bi-rss"></span> {% trans "Newsletter setup" %}');
     }
   });
 });
@@ -582,7 +582,7 @@ $(function () {
       <tr class="bg-light">
         <td>
           <div class="form-group d-flex">
-            <label class="mr-1" for="sluginputfield">{{ slug_prefix }}/ </label>
+            <label class="me-1" for="sluginputfield">{{ slug_prefix }}/ </label>
             <input type="text" name="slugtext" class="form-control flex-grow-1" id="sluginputfield" required="required">
           </div>
         </td>`;

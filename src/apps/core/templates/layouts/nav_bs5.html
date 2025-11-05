@@ -7,31 +7,31 @@
            href="{% url "index" %}"
            aria-label="{{ settings.SITE_NAME }}">{{ settings.SITE_NAME }}</a>
       {% endblock brand %}
-      <button class="navbar-toggler navbar-toggler-right"
+      <button class="navbar-toggler navbar-toggler-end"
               type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarResponsive"
               aria-controls="navbarResponsive"
               aria-expanded="false"
               aria-label="Toggle navigation">
         Menu <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
           {% if petition %}
             <li class="nav-item">
               <button class="btn btn-outline-warning btn-sm"
-                      data-toggle="modal"
-                      data-target="#report_modal">{% trans "Report to moderation" %}</button>
+                      data-bs-toggle="modal"
+                      data-bs-target="#report_modal">{% trans "Report to moderation" %}</button>
             </li>
           {% endif %}
           <li class="nav-item">
-            <form class="form-inline ml-2 my-lg-0"
+            <form class="d-flex ms-2 my-lg-0"
                   action="{% url 'set_language' %}"
                   method="post">
               {% csrf_token %}
               <input name="next" type="hidden" value="{{ redirect_to }}">
-              <select class="custom-select custom-select-sm"
+              <select class="form-select form-select-sm"
                       name="language"
                       onchange='if(this.value !=  "{{ LANGUAGE_CODE }}") { this.form.submit(); }'>
                 {% get_current_language as LANGUAGE_CODE %}
@@ -45,7 +45,7 @@
             </form>
           </li>
           <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0 ml-0 ml-sm-3"
+            <form class="d-flex my-2 my-lg-0 ms-0 ms-sm-3"
                   action="{% url "core.search:search" %}"
                   method="get">
               <div class="input-group input-group-sm">
@@ -54,14 +54,12 @@
                        placeholder="{% trans "Search for petition" %}"
                        name="q"
                        value="{{ q }}">
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-outline-secondary">{% trans "Search" %}</button>
-                </div>
+                <button type="submit" class="btn btn-outline-secondary">{% trans "Search" %}</button>
               </div>
             </form>
           </li>
         </ul>
-        {% include "layouts/nav-useractions.html" %}
+        {% include "layouts/nav-useractions_bs5.html" %}
       </div>
     </div>
   </nav>
@@ -74,12 +72,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">{% trans "Report this petition to moderation" %}</h4>
-            <button type="button" class="close" data-dismiss="modal">×</button>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
           </div>
           <div class="modal-body">
             {% if moderation_reasons %}
               {% trans "Why do you want to report this petition?" %}
-              <select id="reason_selector" class="custom-select">
+              <select id="reason_selector" class="form-select">
                 {% for reason in moderation_reasons %}
                   <option value="{% url "moderation:report_petition" petition.id %}?reason_id={{ reason.id }}">{{ reason.msg }}</option>
                 {% endfor %}
@@ -96,11 +97,12 @@
             <button type="button"
                     class="btn btn-danger"
                     data-action="petition-report"
-                    data-dismiss="modal">{% trans "Report" %}</button>
-            <button type="button" class="btn btn-info" data-dismiss="modal">{% trans "Cancel" %}</button>
+                    data-bs-dismiss="modal">{% trans "Report" %}</button>
+            <button type="button" class="btn btn-info" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
           </div>
         </div>
       </div>
     </div>
   {% endif %}
 {% endblock navbar %}
+{% comment %} BS5-DONE {% endcomment %}

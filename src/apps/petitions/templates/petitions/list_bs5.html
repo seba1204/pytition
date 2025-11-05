@@ -75,34 +75,34 @@
                  class="btn btn-outline-success btn-sm"
                  title="{% trans "View petition" %}"
                  aria-disabled="true"
-                 data-toggle="tooltip">
-                <span class="oi oi-eye"></span>
+                 data-bs-toggle="tooltip">
+                <span class="bi bi-eye"></span>
               </a>
               <a href="{% url "petitions:edit" petition.id %}"
                  class="btn btn-outline-warning btn-sm"
                  title="{% trans "Edit petition" %}"
-                 data-toggle="tooltip"><span class="oi oi-pencil"></span></a>
+                 data-bs-toggle="tooltip"><span class="bi bi-pencil"></span></a>
               <a href="{% url 'signatures:list' petition.id %}"
                  class="btn btn-outline-info btn-sm"
-                 data-toggle="tooltip"
+                 data-bs-toggle="tooltip"
                  title="{% trans "View signatures" %}"
                  aria-disabled="true">
-                <span class="oi oi-spreadsheet"></span>
+                <span class="bi bi-spreadsheet"></span>
               </a>
               <a href="{% url "petitions:transfer" petition.id %}"
                  class="btn btn-outline-primary btn-sm"
-                 data-toggle="tooltip"
+                 data-bs-toggle="tooltip"
                  title="{% trans "Transfer this petition" %}"
                  aria-disabled="true">
-                <span class="oi oi-share-boxed"></span>
+                <span class="bi bi-share-boxed"></span>
               </a>
-              <span data-toggle="tooltip" title="{% trans "Delete the petition" %}">
+              <span data-bs-toggle="tooltip" title="{% trans "Delete the petition" %}">
                 <button class="btn btn-outline-danger btn-sm"
                         id="btn_petition_delete"
-                        data-toggle="modal"
-                        data-target="#petition{{ petition.id }}_delete_modal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#petition{{ petition.id }}_delete_modal"
                         aria-disabled="true">
-                  <span class="oi oi-circle-x"></span>
+                  <span class="bi bi-circle-x"></span>
                 </button>
               </span>
             </div>
@@ -117,7 +117,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">{% trans "Delete petition?" %}</h4>
-              <button type="button" class="close" data-dismiss="modal">×</button>
+              <button type="button" class="close" data-bs-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
               {% blocktrans trimmed with title=petition.title|striptags %}
@@ -128,8 +128,8 @@
               <button type="button"
                       class="btn btn-danger"
                       data-action="petition-delete"
-                      data-dismiss="modal">{% trans "Delete" %}</button>
-              <button type="button" class="btn btn-info" data-dismiss="modal">{% trans "Cancel" %}</button>
+                      data-bs-dismiss="modal">{% trans "Delete" %}</button>
+              <button type="button" class="btn btn-info" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
             </div>
           </div>
         </div>

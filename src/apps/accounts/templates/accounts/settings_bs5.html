@@ -11,28 +11,28 @@
                     <span class="list-group-item disabled"><b>{% trans "Personal Settings" %}</b></span>
                     <a href="#update_info_form"
                        class="list-group-item list-group-item-action active"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        id="a_update_info_form"
                        aria-controls="update_info_form"
-                       role="tab"><span class="oi oi-person"></span>  {% trans "Personal Information" %}</a>
+                       role="tab"><span class="bi bi-person"></span>  {% trans "Personal Information" %}</a>
                     <a href="#password_change_form"
                        class="list-group-item list-group-item-action"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        id="a_password_change"
                        aria-controls="password_change_form"
-                       role="tab"><span class="oi oi-key"></span>  {% trans "Change Password" %}</a>
+                       role="tab"><span class="bi bi-key"></span>  {% trans "Change Password" %}</a>
                     <a href="#org_form"
                        class="list-group-item list-group-item-action"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        aria-controls="org_form"
                        id="a_org_form"
-                       role="tab"><span class="oi oi-people"></span>  {% trans "Organizations" %}</a>
+                       role="tab"><span class="bi bi-people"></span>  {% trans "Organizations" %}</a>
                     <a href="#delete_account_form"
                        class="list-group-item list-group-item-action"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        id="a_delete_account"
                        aria-controls="delete_account_form"
-                       role="tab"><span class="oi oi-trash"></span>  {% trans "Delete your account" %}</a>
+                       role="tab"><span class="bi bi-trash"></span>  {% trans "Delete your account" %}</a>
                 </div>
             </div>
             <div class="col-8">
@@ -77,7 +77,10 @@
                             {% for message in messages %}
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>{{ message }}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <button type="button"
+                                            class="close"
+                                            data-bs-dismiss="alert"
+                                            aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
@@ -101,7 +104,7 @@
                                             {% else %}
                                                 <span class="d-inline-block"
                                                       tabindex="0"
-                                                      data-toggle="tooltip"
+                                                      data-bs-toggle="tooltip"
                                                       title="{% trans "You cannot leave an organization where you are either the last administrator or the last member." %}">
                                                     <button type="button" class="btn btn-light disabled" disabled>Leave</button>
                                                 </span>
@@ -125,10 +128,10 @@
                          aria-labelledby="delete-account-form-list">
                         <h3 class="mb-4">{% trans "Delete account" %}</h3>
                         <div class="alert alert-warning alert-dismissible show fade">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <button type="button" class="close" data-bs-dismiss="alert">×</button>
                             <div class="row">
                                 <div class="col-1 alert-icon-col">
-                                    <span class="oi oi-warning"></span>
+                                    <span class="bi bi-warning"></span>
                                 </div>
                                 <div class="col">
                                     {% blocktrans trimmed %}
@@ -167,7 +170,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="org_leave_modal_label">{% trans "Leaving an organization" %}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button"
+                            class="close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -177,7 +183,7 @@
                 {% endblocktrans %}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <a href="#" id="leave_link">
                     <button type="button" class="btn btn-primary">Leave</button>
                 </a>
@@ -217,7 +223,7 @@ $(function() {
         }
     }
 
-    $("[data-toggle="tooltip"]").tooltip()
+    $("[data-bs-toggle="tooltip"]").tooltip()
 
 })
 

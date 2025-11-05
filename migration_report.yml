@@ -1,0 +1,859 @@
+datetime: "2025-11-05T09:28:55"
+summary:
+  files_scanned: 48
+  files_changed: 16
+  auto_fixes:
+    badge_pill_to_rounded_pill: 0
+    badge_variants_to_bg: 0
+    border_lr_to_start_end: 0
+    data_attributes_to_data_bs: 72
+    embed_responsive_to_ratio: 0
+    float_left_right_to_start_end: 0
+    font_italic_to_fst: 0
+    font_weight_to_fw: 0
+    ml_mr_to_ms_me: 0
+    no_gutters_to_g0: 0
+    pl_pr_to_ps_pe: 0
+    rounded_lr_to_start_end: 0
+    sr_only_to_visually_hidden: 0
+    text_left_right_to_start_end: 0
+    text_monospace_to_font_monospace: 0
+warnings:
+  - file: src/apps/accounts/templates/accounts/edit_permissions_bs5.html
+    warnings:
+      - line: 22
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 24
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 28
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_remove_members'></label>"
+      - line: 35
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 37
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 41
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_add_members'></label>"
+      - line: 48
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 50
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 54
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_create_petitions'></label>"
+      - line: 61
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 63
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 67
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_modify_petitions'></label>"
+      - line: 74
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 76
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 80
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_delete_petitions'></label>"
+      - line: 87
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 89
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 93
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_create_templates'></label>"
+      - line: 100
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 102
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 106
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_modify_templates'></label>"
+      - line: 113
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 115
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 119
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_delete_templates'></label>"
+      - line: 126
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 128
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 132
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_view_signatures'></label>"
+      - line: 139
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 141
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 145
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_modify_signatures'></label>"
+      - line: 152
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 154
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 158
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_delete_signatures'></label>"
+      - line: 165
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 167
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 171
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='can_modify_permissions'></label>"
+  - file: src/apps/accounts/templates/accounts/settings_bs5.html
+    warnings:
+      - line: 80
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+      - line: 128
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='alert'>×</button>"
+      - line: 170
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
+  - file: src/apps/core/templates/core/index_bs5.html
+    warnings:
+      - line: 11
+        token: "jumbotron"
+        message: "Jumbotron removed: recreate with utilities/helpers."
+        excerpt: "<section class='jumbotron text-center'>"
+      - line: 13
+        token: "jumbotron"
+        message: "Jumbotron removed: recreate with utilities/helpers."
+        excerpt: "<h1 class='jumbotron-heading'>{% trans 'Welcome to Pytition' %}</h1>"
+  - file: src/apps/core/templates/layouts/base_bs5.html
+    warnings:
+      - line: 31
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "<!-- Extra media -->"
+      - line: 32
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}"
+      - line: 33
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% endblock media %}"
+  - file: src/apps/core/templates/layouts/edit_bs5.html
+    warnings:
+      - line: 4
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}"
+      - line: 6
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ content_form.media }}"
+      - line: 7
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ email_form.media }}"
+      - line: 8
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ newsletter_form.media }}"
+      - line: 9
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ social_network_form.media }}"
+      - line: 10
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ style_form.media }}"
+      - line: 11
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% endblock media %}"
+  - file: src/apps/core/templates/layouts/nav-useractions_bs5.html
+    warnings:
+      - line: 2
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<ul class='navbar-nav'>"
+  - file: src/apps/core/templates/layouts/nav_bs5.html
+    warnings:
+      - line: 2
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "{% block navbar %}"
+      - line: 3
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<nav class='navbar navbar-light navbar-expand-sm flex-sm-row'>"
+      - line: 3
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<nav class='navbar navbar-light navbar-expand-sm flex-sm-row'>"
+      - line: 3
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<nav class='navbar navbar-light navbar-expand-sm flex-sm-row'>"
+      - line: 6
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<a class='navbar-brand'"
+      - line: 10
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<button class='navbar-toggler navbar-toggler-right'"
+      - line: 10
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<button class='navbar-toggler navbar-toggler-right'"
+      - line: 17
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "Menu <span class='navbar-toggler-icon'></span>"
+      - line: 19
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<div class='collapse navbar-collapse' id='navbarResponsive'>"
+      - line: 20
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<ul class='navbar-nav ml-auto'>"
+      - line: 29
+        token: "form-inline"
+        message: "Form inline removed: use flex utilities."
+        excerpt: "<form class='form-inline ml-2 my-lg-0'"
+      - line: 34
+        token: "custom-select"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<select class='custom-select custom-select-sm'"
+      - line: 34
+        token: "custom-select"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<select class='custom-select custom-select-sm'"
+      - line: 48
+        token: "form-inline"
+        message: "Form inline removed: use flex utilities."
+        excerpt: "<form class='form-inline my-2 my-lg-0 ml-0 ml-sm-3'"
+      - line: 57
+        token: "input-group-append"
+        message: "Input group append/prepend removed: place buttons and .input-group-text directly."
+        excerpt: "<div class='input-group-append'>"
+      - line: 77
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal'>×</button>"
+      - line: 82
+        token: "custom-select"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<select id='reason_selector' class='custom-select'>"
+      - line: 106
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "{% endblock navbar %}"
+  - file: src/apps/core/templates/layouts/nav_dashboard_bs5.html
+    warnings:
+      - line: 2
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "{% block navbar %}"
+      - line: 3
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<nav class='navbar navbar-dark bg-dark navbar-expand-sm flex-sm-row'>"
+      - line: 3
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<nav class='navbar navbar-dark bg-dark navbar-expand-sm flex-sm-row'>"
+      - line: 3
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<nav class='navbar navbar-dark bg-dark navbar-expand-sm flex-sm-row'>"
+      - line: 6
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<a class='navbar-brand' href='{% url 'index' %}'>{{ sitename }}</a>"
+      - line: 19
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<button class='navbar-toggler navbar-toggler-right'"
+      - line: 19
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<button class='navbar-toggler navbar-toggler-right'"
+      - line: 26
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "Menu <span class='navbar-toggler-icon'></span>"
+      - line: 28
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "<div class='collapse navbar-collapse' id='navbarResponsive'>"
+      - line: 29
+        token: "form-inline"
+        message: "Form inline removed: use flex utilities."
+        excerpt: "<form class='form-inline my-2 my-lg-0 ml-auto'"
+      - line: 34
+        token: "custom-select"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<select class='custom-select custom-select-sm'"
+      - line: 34
+        token: "custom-select"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<select class='custom-select custom-select-sm'"
+      - line: 46
+        token: "form-inline"
+        message: "Form inline removed: use flex utilities."
+        excerpt: "<form class='form-inline my-2 my-lg-0 ml-0 ml-sm-3'"
+      - line: 55
+        token: "input-group-append"
+        message: "Input group append/prepend removed: place buttons and .input-group-text directly."
+        excerpt: "<div class='input-group-append'>"
+      - line: 64
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "{% endblock navbar %}"
+  - file: src/apps/core/templates/layouts/wizard_layout_bs5.html
+    warnings:
+      - line: 6
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}{{ form.media }}{% endblock media %}"
+      - line: 6
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}{{ form.media }}{% endblock media %}"
+      - line: 6
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}{{ form.media }}{% endblock media %}"
+  - file: src/apps/core/templates/registration/login_bs5.html
+    warnings:
+      - line: 11
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+      - line: 41
+        token: "btn-block"
+        message: "Button block removed: use .d-grid wrapper or .w-100."
+        excerpt: "<button type='submit' class='btn btn-primary btn-block'>{% trans 'Login' %}</button>"
+  - file: src/apps/core/templates/registration/password_reset_form_bs5.html
+    warnings:
+      - line: 12
+        token: "form-inline"
+        message: "Form inline removed: use flex utilities."
+        excerpt: "<form method='post' class='form-inline justify-content-center'>"
+      - line: 14
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group mb-2'>"
+  - file: src/apps/core/templates/ui/components/alert_bs5.html
+    warnings:
+      - line: 3
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='alert'>×</button>"
+  - file: src/apps/core/templates/ui/components/switch_input_bs5.html
+    warnings:
+      - line: 1
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 3
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='{{ widget.attrs.id }}'>{{ widget.label }}</label>"
+  - file: src/apps/core/templates/ui/forms/bs4_bs5.html
+    warnings:
+      - line: 11
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+  - file: src/apps/organizations/templates/org/invite_user_bs5.html
+    warnings:
+      - line: 4
+        token: "form-inline"
+        message: "Form inline removed: use flex utilities."
+        excerpt: "<div class='form-inline-group'>"
+      - line: 9
+        token: "input-group-prepend"
+        message: "Input group append/prepend removed: place buttons and .input-group-text directly."
+        excerpt: "<div class='input-group-prepend'>"
+  - file: src/apps/petitions/templates/petitions/admin/change_form_bs5.html
+    warnings:
+      - line: 7
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ media }}"
+  - file: src/apps/petitions/templates/petitions/detail_bs5.html
+    warnings:
+      - line: 72
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "{% block navbar %}"
+      - line: 73
+        token: "navbar"
+        message: "Navbar now expects an inner .container in many examples: review structure."
+        excerpt: "{% endblock navbar %}"
+      - line: 81
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal'>×</button>"
+      - line: 103
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal'>×</button>"
+      - line: 129
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
+      - line: 134
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group'>"
+      - line: 154
+        token: "btn-block"
+        message: "Button block removed: use .d-grid wrapper or .w-100."
+        excerpt: "<button type='button' class='btn btn-primary btn-block'>{% trans 'SIGN' %}</button>"
+      - line: 165
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+      - line: 170
+        token: "jumbotron"
+        message: "Jumbotron removed: recreate with utilities/helpers."
+        excerpt: "<div class='jumbotron text-center'>"
+      - line: 171
+        token: "jumbotron"
+        message: "Jumbotron removed: recreate with utilities/helpers."
+        excerpt: "<h1 class='jumbotron-heading'>{{ petition.title|html_sanitize|striptags|safe  }}</h1>"
+      - line: 218
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "class='form-group'"
+      - line: 271
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->"
+  - file: src/apps/petitions/templates/petitions/edit_bs5.html
+    warnings:
+      - line: 5
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}"
+      - line: 7
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ content_form.media }}"
+      - line: 8
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ email_form.media }}"
+      - line: 9
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ newsletter_form.media }}"
+      - line: 10
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ social_network_form.media }}"
+      - line: 11
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ style_form.media }}"
+      - line: 12
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% endblock media %}"
+      - line: 32
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='petition-publish-switch mb-4 custom-control custom-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}'"
+      - line: 35
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 39
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label'"
+      - line: 103
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 115
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 127
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 131
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 134
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='is-valid custom-control-input'"
+      - line: 137
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='id_has_email_share_button'>{% trans 'Enable email share button?' %}</label>"
+      - line: 141
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 145
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 148
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='is-valid custom-control-input'"
+      - line: 151
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='id_has_facebook_share_button'>"
+      - line: 157
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 161
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 164
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='is-valid custom-control-input'"
+      - line: 167
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='id_has_tumblr_share_button'>{% trans 'Enable Tumblr share button?' %}</label>"
+      - line: 171
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 175
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 178
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='is-valid custom-control-input'"
+      - line: 181
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='id_has_linkedin_share_button'>"
+      - line: 187
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 191
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 194
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='is-valid custom-control-input'"
+      - line: 197
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='id_has_twitter_share_button'>"
+      - line: 203
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 207
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 210
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='is-valid custom-control-input'"
+      - line: 213
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='id_has_mastodon_share_button'>"
+      - line: 219
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 223
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 226
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='is-valid custom-control-input'"
+      - line: 229
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='id_has_whatsapp_share_button'>"
+      - line: 235
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 243
+        token: "input-group-prepend"
+        message: "Input group append/prepend removed: place buttons and .input-group-text directly."
+        excerpt: "<div class='input-group-prepend'>"
+      - line: 246
+        token: "custom-file"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-file'>"
+      - line: 248
+        token: "custom-file"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-file-input'"
+      - line: 252
+        token: "custom-file"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-file-label' for='id_twitter_image'>{% trans 'Choose file' %}</label>"
+      - line: 256
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group row'>"
+      - line: 308
+        token: "form-inline"
+        message: "Form inline removed: use flex utilities."
+        excerpt: "class='form-inline'>"
+      - line: 311
+        token: "thead-light"
+        message: "thead-light/dark removed: use .table-* variants on thead/rows/cells."
+        excerpt: "<thead class='thead-light'>"
+      - line: 398
+        token: "custom-file"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<script src='{% static 'vendor/bs-custom-file-input-1.3.4/bs-custom-file-input.min.js' %}'></script>"
+      - line: 398
+        token: "custom-file"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<script src='{% static 'vendor/bs-custom-file-input-1.3.4/bs-custom-file-input.min.js' %}'></script>"
+      - line: 527
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "const parent_form_group = elem.closest('.form-group');"
+      - line: 528
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "const all_form_groups = parent_form_group.siblings('.form-group');"
+      - line: 584
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group d-flex'>"
+  - file: src/apps/petitions/templates/petitions/list_bs5.html
+    warnings:
+      - line: 49
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='petition-publish-switch custom-control custom-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}'"
+      - line: 52
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input'"
+      - line: 57
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label'"
+      - line: 120
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal'>×</button>"
+  - file: src/apps/petitions/templates/petitions/new_step1_bs5.html
+    warnings:
+      - line: 13
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group'>"
+  - file: src/apps/petitions/templates/petitions/new_step2_bs5.html
+    warnings:
+      - line: 7
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}"
+      - line: 8
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ form.media }}"
+      - line: 9
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% endblock media %}"
+      - line: 15
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group'>"
+  - file: src/apps/petitions/templates/petitions/new_step3_bs5.html
+    warnings:
+      - line: 6
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% block media %}"
+      - line: 7
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ form.media }}"
+      - line: 8
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{% endblock media %}"
+      - line: 44
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group mt-3'>"
+      - line: 46
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-switch'>"
+      - line: 47
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "{{ field|add_class:'custom-control-input' }}"
+      - line: 48
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='{{ field.id_for_label }}'>{{ field.label }}</label>"
+  - file: src/apps/petitions/templates/petitions/transfer_bs5.html
+    warnings:
+      - line: 23
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group'>"
+      - line: 45
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal'>×</button>"
+  - file: src/apps/presets/templates/presets/list_bs5.html
+    warnings:
+      - line: 63
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>"
+  - file: src/apps/presets/templates/presets/new_bs5.html
+    warnings:
+      - line: 12
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='alert'>×</button>"
+      - line: 35
+        token: "form-group"
+        message: "Form layout changed: replace .form-group with utilities (often .mb-3)."
+        excerpt: "<div class='form-group'>"
+  - file: src/apps/signatures/templates/signatures/change_form_bs5.html
+    warnings:
+      - line: 6
+        token: "media"
+        message: "Media component removed: recreate with flex utilities."
+        excerpt: "{{ media }}"
+  - file: src/apps/signatures/templates/signatures/data_bs5.html
+    warnings:
+      - line: 50
+        token: "close"
+        message: "Close button changed to .btn-close and markup adjusted."
+        excerpt: "<button type='button' class='close' data-dismiss='modal'>×</button>"
+      - line: 61
+        token: "form-row"
+        message: "Form layout removed: use .row + grid utilities."
+        excerpt: "<div class='form-row'>"
+      - line: 63
+        token: "custom-select"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<select class='custom-select' id='action' name='action'>"
+      - line: 75
+        token: "thead-light"
+        message: "thead-light/dark removed: use .table-* variants on thead/rows/cells."
+        excerpt: "<thead class='thead-light'>"
+      - line: 78
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-checkbox'>"
+      - line: 80
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input position-static'"
+      - line: 83
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='select-all'></label>"
+      - line: 99
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<div class='custom-control custom-checkbox'>"
+      - line: 101
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "class='custom-control-input position-static'"
+      - line: 105
+        token: "custom-control"
+        message: "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range."
+        excerpt: "<label class='custom-control-label' for='{{ signature.id }}'></label>"

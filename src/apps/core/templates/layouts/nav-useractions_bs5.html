@@ -10,42 +10,42 @@
            data-bs-toggle="dropdown"
            aria-haspopup="true"
            aria-expanded="false">
-          <span class="oi oi-person"></span>
+          <span aria-hidden="true" class="bi bi-person"></span>
           {{ user.get_full_name }}
         </a>
-        <div class="dropdown-menu dropdown-menu-right"
+        <div class="dropdown-menu dropdown-menu-end"
              aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{% url "accounts:dashboard" %}">
-            <span class="oi oi-person"></span>
+            <span aria-hidden="true" class="bi bi-person"></span>
             {% trans "Your dashboard" %}
           </a>
           {% if user.organization_set.all %}
             <div class="dropdown-divider"></div>
             {% for org in user.organization_set.all %}
               <a class="dropdown-item" href="{% url "org:dashboard" org.slugname %}">
-                <span class="oi oi-people"></span>
+                <span aria-hidden="true" class="bi bi-people"></span>
                 {{ org.name }}
               </a>
             {% endfor %}
           {% endif %}
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url "petitions:new" %}">
-            <span class="oi oi-plus"></span>
+            <span aria-hidden="true" class="bi bi-plus"></span>
             {% trans "New petition" %}
           </a>
           {% if not settings.RESTRICT_ORG_CREATION or perms.petition.add_organization %}
             <a class="dropdown-item" href="{% url "org:create" %}">
-              <span class="oi oi-plus"></span>
+              <span aria-hidden="true" class="bi bi-plus"></span>
               {% trans "New organization" %}
             </a>
           {% endif %}
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url "accounts:settings" %}">
-            <span class="oi oi-cog"></span>
+            <span aria-hidden="true" class="bi bi-gear"></span>
             {% trans "Settings" %}
           </a>
           <a class="dropdown-item" href="{% url "logout" %}?next=/">
-            <span class="oi oi-account-logout"></span>
+            <span aria-hidden="true" class="bi bi-box-arrow-right"></span>
             {% trans "Logout" %}
           </a>
         </div>
@@ -58,3 +58,4 @@
     </li>
   {% endif %}
 </ul>
+{% comment %} BS5-DONE {% endcomment %}

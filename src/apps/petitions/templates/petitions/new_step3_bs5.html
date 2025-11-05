@@ -34,10 +34,10 @@
                 <button class="btn btn-secondary"
                         title="{% trans "Save & Configure" %}"
                         id="save_and_edit_btn">
-                  {{ form.configure }} <span class="oi oi-pencil"></span> {{ form.configure.label }}
+                  {{ form.configure }} <span class="bi bi-pencil"></span> {{ form.configure.label }}
                 </button>
                 <button type="submit" class="btn btn-secondary" title="{% trans "Save" %}">
-                  <span class="oi oi-clipboard"></span> {% trans "Save" %}
+                  <span class="bi bi-clipboard"></span> {% trans "Save" %}
                 </button>
               </div>
             </div>
@@ -61,7 +61,7 @@
                   value="{{ wizard.steps.first }}">{% trans "First step" %}</button>
           <button name="wizard_goto_step"
                   id="go_prev"
-                  class="btn btn-primary ml-3"
+                  class="btn btn-primary ms-3"
                   type="submit"
                   value="{{ wizard.steps.prev }}">{% trans "Previous step" %}</button>
         {% endif %}

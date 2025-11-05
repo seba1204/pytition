@@ -9,12 +9,12 @@
     <div class="dashboard-nav-item py-3">
       <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h4>
-          <span class="oi oi-clipboard"></span> <a href="{% url "accounts:dashboard" %}">{% trans "Petitions" %}</a>
+          <span class="bi bi-clipboard"></span> <a href="{% url "accounts:dashboard" %}">{% trans "Petitions" %}</a>
           {% if petitions %}&nbsp;({{ petitions.count }}){% endif %}
         </h4>
         <a class="btn btn-outline-primary btn-sm"
            href="{% url "petitions:new" %}"
-           data-toggle="tooltip"
+           data-bs-toggle="tooltip"
            title="{% trans "Create a new petition" %}">{% trans "New petition" %}</a>
       </div>
     </div>
@@ -23,11 +23,11 @@
     <div class="dashboard-nav-item py-3">
       <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h4>
-          <span class="oi oi-layers"></span> {% trans "Petition templates" %}
+          <span class="bi bi-layers"></span> {% trans "Petition templates" %}
         </h4>
         <a href="{% url "presets:new" %}"
            class="btn btn-outline-primary btn-sm"
-           data-toggle="tooltip"
+           data-bs-toggle="tooltip"
            title="{% trans "Create a new petition template" %}">{% trans "New template" %}</a>
       </div>
       {% if user.petitiontemplate_set.all %}
@@ -37,7 +37,7 @@
     <div class="dashboard-nav-item py-3">
       <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h4>
-          <a href="{% url "accounts:public_profile" user.username %}"><span class="oi oi-person"></span> {% trans "Your public profile" %}</a>
+          <a href="{% url "accounts:public_profile" user.username %}"><span class="bi bi-person"></span> {% trans "Your public profile" %}</a>
         </h4>
       </div>
     </div>

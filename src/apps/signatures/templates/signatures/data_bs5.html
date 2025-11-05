@@ -20,18 +20,18 @@
                 <p>
                     <a href="{% url 'signatures:export' petition.id %}"
                        class="btn btn-primary">
-                        <span class="oi oi-spreadsheet"></span>
+                        <span class="bi bi-spreadsheet"></span>
                         {% trans "Export <strong>ALL</strong> signatures (CSV)" %}
                     </a>
                     <a href="{% url 'signatures:export' petition.id %}?confirmed=true"
                        class="btn btn-primary">
-                        <span class="oi oi-spreadsheet"></span>
+                        <span class="bi bi-spreadsheet"></span>
                         {% trans "Export <strong>confirmed</strong> signatures (CSV)" %}
                     </a>
                 </p>
                 <p>
                     <button class="btn btn-success" id="re-send-all">
-                        <span class="oi oi-envelope-closed"></span>
+                        <span class="bi bi-envelope-closed"></span>
                         {% trans "Re-send confirmation e-mail to all unconfirmed" %}
                     </button>
                 </p>
@@ -39,19 +39,19 @@
                     <a href="#"
                        class="btn btn-warning"
                        id="show-sympa-mass-subscribe"
-                       data-toggle="modal"
-                       data-target="#sympa-modal"
+                       data-bs-toggle="modal"
+                       data-bs-target="#sympa-modal"
                        aria-disabled="true">{% trans "Subscribe signatories to the newsletter" %}</a>
                     <div class="modal fade" id="sympa-modal">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">{% trans "copy/paste the following text block into Sympa's mass-subscribe form" %}</h4>
-                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <button type="button" class="close" data-bs-dismiss="modal">×</button>
                                 </div>
                                 <div class="modal-body" id="sympa_content"></div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">{% trans "Ok" %}</button>
+                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">{% trans "Ok" %}</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                 <p>
                     <div class="form-row">
                         <div class="col-3">
-                            <select class="custom-select" id="action" name="action">
+                            <select class="form-select" id="action" name="action">
                                 <option value="re-send">{% trans "Re-send selected confirmation e-mail" %}</option>
                                 <option value="delete">{% trans "Delete selected signatures" %}</option>
                                 <option value="re-send-all" hidden>{% trans "Re-send confirmation e-mail to all unconfirmed" %}</option>
@@ -111,16 +111,16 @@
                                 <td>{{ signature.phone }}</td>
                                 <td>
                                     {% if signature.confirmed %}
-                                        <span class="oi oi-circle-check text-success"></span>
+                                        <span class="bi bi-circle-check text-success"></span>
                                     {% else %}
-                                        <span class="oi oi-circle-x text-danger"></span>
+                                        <span class="bi bi-circle-x text-danger"></span>
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if signature.subscribed_to_mailinglist %}
-                                        <span class="oi oi-circle-check text-success"></span>
+                                        <span class="bi bi-circle-check text-success"></span>
                                     {% else %}
-                                        <span class="oi oi-circle-x text-danger"></span>
+                                        <span class="bi bi-circle-x text-danger"></span>
                                     {% endif %}
                                 </td>
                                 <td>{{ signature.date }}</td>

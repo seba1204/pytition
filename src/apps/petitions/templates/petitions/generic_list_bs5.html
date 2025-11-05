@@ -76,7 +76,7 @@
       {% for i in petitions.paginator.page_range %}
         {% if petitions.number == i %}
           <li class="page-item active">
-            <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+            <span class="page-link">{{ i }} <span class="visually-hidden">(current)</span></span>
           </li>
         {% else %}
           <li class="page-item">
@@ -97,3 +97,4 @@
     </ul>
   </div>
 {% endif %}
+{% comment %} BS5-DONE {% endcomment %}

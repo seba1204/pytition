@@ -42,7 +42,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">{% trans "Transfer this petition?" %}</h4>
-          <button type="button" class="close" data-dismiss="modal">×</button>
+          <button type="button" class="close" data-bs-dismiss="modal">×</button>
         </div>
         <div class="modal-body">
           <b>
@@ -64,8 +64,8 @@
             class="btn btn-danger"
             data-action="petition-transfer"
             {# Translators: Button to confirm the transfer of a petition #}
-            data-dismiss="modal">{% trans "Transfer" %}</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
+            data-bs-dismiss="modal">{% trans "Transfer" %}</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
   {{ block.super }}
   <script>
 $(function() {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-bs-toggle="tooltip"]').tooltip();
     $("#searchbox").on("keyup", function() {
    $.ajax({
    url: "{% url 'core.search:profiles' %}?q=" + $("#searchbox").val(),
@@ -92,7 +92,7 @@ $(function() {
         data.orgs.forEach(function(org, index) {
             var orgname = org.name;
             var orgslugname = org.slugname;
-            $("#search_results").append("<a href=\"#\" id=\"xferto_org_"+ index +"\" class=\"list-group-item list-group-item-primary list-group-item-action\"><span class=\"oi oi-people\" title=\"plus\" aria-hidden=\"true\"></span> "+ orgname +"</a>");
+            $("#search_results").append("<a href=\"#\" id=\"xferto_org_"+ index +"\" class=\"list-group-item list-group-item-primary list-group-item-action\"><span class=\"bi bi-people\" title=\"plus\" aria-hidden=\"true\"></span> "+ orgname +"</a>");
             $("#xferto_org_" + index).on("click", function () {
                $("#xfer_to_name").text(orgname);
                $("#new_owner_name").val(orgslugname);
@@ -104,7 +104,7 @@ $(function() {
             var firstname = user.firstname;
             var lastname = user.lastname;
             var username = user.username;
-            $("#search_results").append("<a href=\"#\" id=\"xferto_user_"+ index +"\" class=\"list-group-item list-group-item-info list-group-item-action\"><span class=\"oi oi-person\" title=\"plus\" aria-hidden=\"true\"></span> "+ firstname + " " + lastname + " ("+username+") </a>");
+            $("#search_results").append("<a href=\"#\" id=\"xferto_user_"+ index +"\" class=\"list-group-item list-group-item-info list-group-item-action\"><span class=\"bi bi-person\" title=\"plus\" aria-hidden=\"true\"></span> "+ firstname + " " + lastname + " ("+username+") </a>");
             $("#xferto_user_" + index).on("click", function () {
                $("#xfer_to_name").text(firstname + " " + lastname + " (" + username + ")");
                $("#new_owner_name").val(username);

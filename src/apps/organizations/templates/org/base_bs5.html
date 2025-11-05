@@ -15,7 +15,7 @@
           <div class="dashboard-nav-item py-3">
             <div class="d-flex justify-content-between align-items-center flex-wrap">
               <h4>
-                <span class="oi oi-clipboard"></span> <a href="{% url "accounts:dashboard" %}">{% trans "Petitions" %}</a> ({{ org.petition_set.count }})
+                <span class="bi bi-clipboard"></span> <a href="{% url "accounts:dashboard" %}">{% trans "Petitions" %}</a> ({{ org.petition_set.count }})
               </h4>
               <a class="btn btn-outline-primary btn-sm"
                  href="{% url "petitions:new" %}?org={{ org.slugname }}">{% trans "New petition" %}</a>
@@ -27,11 +27,11 @@
           <div class="dashboard-nav-item py-3">
             <div class="d-flex justify-content-between align-items-center flex-wrap">
               <h4>
-                <span class="oi oi-layers"></span> {% trans "Petition templates" %} ({{ org.petitiontemplate_set.count }})
+                <span class="bi bi-layers"></span> {% trans "Petition templates" %} ({{ org.petitiontemplate_set.count }})
               </h4>
               <a href="{% url "presets:new" %}?org={{ org.slugname }}"
                  class="btn btn-outline-primary btn-sm"
-                 data-toggle="tooltip"
+                 data-bs-toggle="tooltip"
                  title="{% trans "Create a new petition template" %}">{% trans "New template" %}</a>
             </div>
             {% if org.petitiontemplate_set.all %}
@@ -39,7 +39,7 @@
             {% endif %}
           </div>
         </div>
-        <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6 col-12 bg-light dashboard-content border-left">
+        <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6 col-12 bg-light dashboard-content border-start">
           {% if messages %}
             {% include "ui/components/alert.html" %}
           {% endif %}

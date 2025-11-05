@@ -1,128 +1,131 @@
 #!/usr/bin/env python3
-
 """
-bs4_to_bs5_migrate.py
----------------------
+Bootstrap 4 → 5 migrator (safe for Django templates).
 
-Semi-automatic migration tool to help convert Bootstrap 4 markup in Django (or plain HTML)
-templates to Bootstrap 5. The tool performs safe, idempotent rewrites and flags
-ambiguous cases for manual review.
+This script:
+- Scans "src/apps/**" for files matching "*_bs5.html" starting from the project root
+  which is taken as the directory containing this script file.
+- Applies straightforward and safe renames inside HTML class attribute values
+  and Bootstrap JS data attribute names (data-* → data-bs-*).
+- Emits a YAML report (migration_report.yml) listing warnings for manual follow-up
+  with file path, line number, token, and an excerpt.
+- Writes in-place modifications and creates .bak backups next to each changed file.
 
-Key features:
-- Walk a templates directory and process HTML/HTM files.
-- Save a .bak backup before writing (unless --dry-run).
-- Apply attribute/data-attribute transformations (data-* -> data-bs-*).
-- Rewrite class tokens where Bootstrap 4 changed/removed names.
-- Remove input-group append/prepend wrappers (keeping inner content).
-- Best-effort replace legacy .close buttons by .btn-close (with warnings).
-- Detect deprecated/removed components and emit warnings.
-- Optional JSON report summarizing changes and warnings.
-- Strong typing for MyPy; extensive docstrings and English comments.
-- Support for a *filename* regex filter to restrict which files are processed
-  (e.g., only files ending in "_bs5.html").
-
-Usage examples:
-  # Dry run only on files matching *_bs5.html under ./templates
-  python bs4_to_bs5_migrate.py ./templates --filename-regex ".*_bs5\.html$" --dry-run --report report.json
-
-  # Write changes for .html and .htm files, any filename, with a report
-  python bs4_to_bs5_migrate.py ./templates --ext .html --ext .htm --report report.json
+The rules implemented are derived from the official Bootstrap v4 → v5 migration guide:
+https://getbootstrap.com/docs/5.3/migration/
 
 Notes
 -----
-- The script is idempotent. Running it multiple times will not duplicate changes.
-- You should still review warnings and test interactive components (dropdowns, modals, tooltips),
-  because Bootstrap 5 removed jQuery and changed some behaviors.
+- The script is careful to only touch class="" values and known data-* attributes.
+- Complex structural refactors (forms overhaul, input group append/prepend, etc.)
+  are not auto-fixed; they are detected and reported as warnings.
+- The script is friendly to Django templates: it does not alter template tags and
+  only edits content within attribute values.
 """
 
 from __future__ import annotations
 
-import argparse
-import json
 import re
-from collections.abc import Sequence
-from dataclasses import asdict, dataclass
+import sys
+from collections.abc import Callable
+from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
-from re import Pattern
+from re import Match, Pattern
 
-# ----------------------------- Data classes ----------------------------------
-
-
-@dataclass
-class FileStats:
-    """Holds per-file processing statistics."""
-
-    file: str
-    attr_replacements: int = 0
-    class_attr_rewrites: int = 0
-    input_group_wrapper_removed: int = 0
-    close_button_rewrites: int = 0
-    embed_wrapper_flags: int = 0
-    warnings_count: int = 0
-    warnings: list[str] | None = None
-    changed: bool = False
-    lines_changed: int = 0
+# --------------------------------------------------------------------------------------
+# Configuration
+# --------------------------------------------------------------------------------------
 
 
-@dataclass
-class Summary:
-    """Aggregated summary for all processed files."""
+def project_root() -> Path:
+    """
+    Return the project root as the directory containing this script file.
 
-    root: str
-    files_scanned: int
-    files_matched: int
-    files_changed: int
-    approx_lines_changed: int
-    total_warnings: int
-    details: list[FileStats]
+    This avoids relying on the current working directory, which varies depending on how
+    the script is invoked and led to "Path.relative_to" errors for users running the
+    script from outside the repository root.
+    """
+    return Path(__file__).resolve().parent
 
 
-# --------------------------- Regex / Rewrite Rules ---------------------------
+REPO_ROOT: Path = project_root()
+ROOT_SEARCH_DIR: Path = REPO_ROOT / "src" / "apps"
+FILE_GLOB: str = "**/*_bs5.html"
+REPORT_PATH: Path = REPO_ROOT / "migration_report.yml"
 
-# Attribute replacements: data-* -> data-bs-*
-ATTR_RULES: list[tuple[Pattern[str], str]] = [
-    # Convert only if not already data-bs-*
-    (re.compile(r"(?<!data-bs-)data-toggle(?=\s*=)", re.IGNORECASE), "data-bs-toggle"),
-    (re.compile(r"(?<!data-bs-)data-target(?=\s*=)", re.IGNORECASE), "data-bs-target"),
-    (
-        re.compile(r"(?<!data-bs-)data-dismiss(?=\s*=)", re.IGNORECASE),
-        "data-bs-dismiss",
-    ),
-    (re.compile(r"(?<!data-bs-)data-offset(?=\s*=)", re.IGNORECASE), "data-bs-offset"),
+# Regex to match class attributes; keep quote capture to preserve single/double quotes
+CLASS_ATTR_RE: Pattern[str] = re.compile(
+    r"""(?P<attr>class\s*=\s*)(?P<quote>["'])(?P<val>.*?)(?P=quote)""",
+    re.DOTALL,
+)
+
+# Pairs of regex -> replacement for data-* attribute names (not values)
+DATA_ATTR_REPLACERS: list[tuple[Pattern[str], str]] = [
+    (re.compile(r"\bdata-toggle\b"), "data-bs-toggle"),
+    (re.compile(r"\bdata-target\b"), "data-bs-target"),
+    (re.compile(r"\bdata-dismiss\b"), "data-bs-dismiss"),
+    (re.compile(r"\bdata-spy\b"), "data-bs-spy"),
+    (re.compile(r"\bdata-offset\b"), "data-bs-offset"),
+    (re.compile(r"\bdata-ride\b"), "data-bs-ride"),
+    (re.compile(r"\bdata-parent\b"), "data-bs-parent"),
 ]
 
-# Class token simple mappings (token -> token(s))
-CLASS_TOKEN_SIMPLE: dict[str, str] = {
-    # Utilities renames
-    "btn-block": "w-100",
-    "sr-only": "visually-hidden",
-    "text-left": "text-start",
-    "text-right": "text-end",
-    "dropdown-menu-right": "dropdown-menu-end",
-    "dropdown-menu-left": "dropdown-menu-start",
+# Exact token-to-token class renames
+TOKEN_RENAMES: dict[str, str] = {
     "no-gutters": "g-0",
-    "font-weight-bold": "fw-bold",
-    "font-weight-bolder": "fw-bolder",
-    "font-weight-normal": "fw-normal",
-    "font-weight-light": "fw-light",
     "text-monospace": "font-monospace",
-    "embed-responsive": "ratio",  # core wrapper (structure may still need manual review)
-    "embed-responsive-21by9": "ratio-21x9",
-    "embed-responsive-16by9": "ratio-16x9",
-    "embed-responsive-4by3": "ratio-4x3",
-    "embed-responsive-1by1": "ratio-1x1",
-    "thead-light": "table-light",
-    "thead-dark": "table-dark",
-    "badge-pill": "rounded-pill",
-    "float-left": "float-start",
-    "float-right": "float-end",
-    # Forms/Layout
-    "form-group": "mb-3",
-    "form-row": "row",
+    "font-italic": "fst-italic",
+    "sr-only": "visually-hidden",
+    "sr-only-focusable": "visually-hidden-focusable",
+    "text-hide": "visually-hidden",
 }
 
-# Badge contextual colors in BS5 use "bg-*", not "badge-*".
-BADGE_CONTEXTS: list[str] = [
+# Regex-based class renames that must preserve optional breakpoints or suffixes
+RegexRepl = tuple[Pattern[str], Callable[[Match[str]], str] | str]
+
+REGEX_CLASS_RULES: list[RegexRepl] = [
+    # float-left/right -> float-start/end (with optional breakpoint like md-)
+    (
+        re.compile(r"\bfloat-(?:(xs|sm|md|lg|xl|xxl)-)?(left|right)\b"),
+        lambda m: f"float-{(m.group(1) or '')}{'start' if m.group(2) == 'left' else 'end'}",
+    ),
+    # text-left/right -> text-(bp-)start/end
+    (
+        re.compile(r"\btext-(?:(xs|sm|md|lg|xl|xxl)-)?(left|right)\b"),
+        lambda m: f"text-{(m.group(1) or '')}{'start' if m.group(2) == 'left' else 'end'}",
+    ),
+    # spacing margin: ml-/mr- -> ms-/me-
+    (re.compile(r"\bml-"), "ms-"),
+    (re.compile(r"\bmr-"), "me-"),
+    # spacing padding: pl-/pr- -> ps-/pe-
+    (re.compile(r"\bpl-"), "ps-"),
+    (re.compile(r"\bpr-"), "pe-"),
+    # borders left/right -> start/end (with optional -0)
+    (
+        re.compile(r"\bborder-(left|right)-0\b"),
+        lambda m: f"border-{'start' if m.group(1) == 'left' else 'end'}-0",
+    ),
+    (
+        re.compile(r"\bborder-(left|right)\b"),
+        lambda m: f"border-{'start' if m.group(1) == 'left' else 'end'}",
+    ),
+    # rounded left/right -> start/end
+    (
+        re.compile(r"\brounded-(left|right)\b"),
+        lambda m: f"rounded-{'start' if m.group(1) == 'left' else 'end'}",
+    ),
+    # font-weight-* -> fw-*
+    (re.compile(r"\bfont-weight-"), "fw-"),
+    # embed-responsive* -> ratio*
+    (re.compile(r"\bembed-responsive-16by9\b"), "ratio-16x9"),
+    (re.compile(r"\bembed-responsive-4by3\b"), "ratio-4x3"),
+    (re.compile(r"\bembed-responsive-1by1\b"), "ratio-1x1"),
+    (re.compile(r"\bembed-responsive\b"), "ratio"),
+    (re.compile(r"\bembed-responsive-item\b"), ""),
+]
+
+BADGE_VARIANTS: tuple[str, ...] = (
     "primary",
     "secondary",
     "success",
@@ -131,466 +134,345 @@ BADGE_CONTEXTS: list[str] = [
     "info",
     "light",
     "dark",
+)
+BADGE_RE: Pattern[str] = re.compile(rf"\bbadge-({'|'.join(BADGE_VARIANTS)})\b")
+BADGE_PILL_RE: Pattern[str] = re.compile(r"\bbadge-pill\b")
+
+# Warning patterns: these are not auto-fixed; we surface them in the report
+WARN_PATTERNS: list[tuple[Pattern[str], str]] = [
+    (
+        re.compile(r"\bform-group\b"),
+        "Form layout changed: replace .form-group with utilities (often .mb-3).",
+    ),
+    (re.compile(r"\bform-row\b"), "Form layout removed: use .row + grid utilities."),
+    (re.compile(r"\bform-inline\b"), "Form inline removed: use flex utilities."),
+    (
+        re.compile(r"\bcustom-(control|select|file|range)\b"),
+        "Custom form controls removed: use .form-check, .form-select, .form-control, .form-range.",
+    ),
+    (
+        re.compile(r"\binput-group-(append|prepend)\b"),
+        "Input group append/prepend removed: place buttons and .input-group-text directly.",
+    ),
+    (
+        re.compile(r"\bjumbotron\b"),
+        "Jumbotron removed: recreate with utilities/helpers.",
+    ),
+    (
+        re.compile(r"\bmedia\b"),
+        "Media component removed: recreate with flex utilities.",
+    ),
+    (
+        re.compile(r"\bcard-(deck|columns)\b"),
+        "Card deck/columns removed: use grid + .row-cols-*.",
+    ),
+    (
+        re.compile(r"\bbtn-block\b"),
+        "Button block removed: use .d-grid wrapper or .w-100.",
+    ),
+    (
+        re.compile(r"\bnavbar\b"),
+        "Navbar now expects an inner .container in many examples: review structure.",
+    ),
+    (
+        re.compile(r"\bthead-(light|dark)\b"),
+        "thead-light/dark removed: use .table-* variants on thead/rows/cells.",
+    ),
+    (re.compile(r"\btext-justify\b"), "text-justify removed."),
+    (re.compile(r"\bpre-scrollable\b"), "pre-scrollable removed."),
+    (
+        re.compile(r"\border-(?:[6-9]|[1-9]\d+)\b"),
+        "Some .order-* values greater than 5 were removed or changed.",
+    ),
+    (
+        re.compile(r"\bclose\b"),
+        "Close button changed to .btn-close and markup adjusted.",
+    ),
 ]
 
-# Tokens that indicate deprecated/removed patterns requiring manual refactor.
-DEPRECATED_CLASS_TOKENS: set[str] = {
-    "custom-control",
-    "custom-checkbox",
-    "custom-radio",
-    "custom-switch",
-    "custom-select",
-    "custom-range",
-    "custom-file",
-    "custom-file-input",
-    "custom-file-label",
-    "media",
-    "media-body",
-    "jumbotron",
-    "card-deck",
-    "input-group-append",
-    "input-group-prepend",
-    "close",
-}
-
-# Markup-level regexes for specific transformations or flags.
-RE_INPUT_GROUP_WRAPPER: Pattern[str] = re.compile(
-    r'<\s*div\s+class="([^"]*\binput-group-(?:append|prepend)\b[^"]*)"\s*>\s*'
-    r"(.*?)\s*</\s*div\s*>",
-    re.IGNORECASE | re.DOTALL,
-)
-
-RE_CLOSE_BUTTON: Pattern[str] = re.compile(
-    r'(<\s*button[^>]*\bclass="[^"]*\bclose\b[^"]*"[^>]*>)(.*?)(</\s*button\s*>)',
-    re.IGNORECASE | re.DOTALL,
-)
-
-RE_EMBED_WRAPPER: Pattern[str] = re.compile(
-    r'(<\s*div[^>]*\bclass="[^"]*\bembed-responsive\b[^"]*"[^>]*>)', re.IGNORECASE
-)
-
-# Warning-only patterns for manual review.
-WARNING_PATTERNS: dict[Pattern[str], str] = {
-    re.compile(
-        r"\bcustom-(?:control|checkbox|radio|switch|select|range|file)\b", re.IGNORECASE
-    ): "Custom forms (BS4) detected: use .form-check / .form-select / .form-control in BS5.",
-    re.compile(
-        r"\bjumbotron\b", re.IGNORECASE
-    ): "Jumbotron detected: recreate with utilities (.p-5 .mb-4 .bg-body-tertiary .rounded-3).",
-    re.compile(
-        r"\bmedia\b", re.IGNORECASE
-    ): "Media object detected: replace with flex utilities (.d-flex, .me-3, etc.).",
-    re.compile(
-        r"\bcard-deck\b", re.IGNORECASE
-    ): "card-deck detected: use the grid (.row .col or .row.row-cols-*).",
-}
+# --------------------------------------------------------------------------------------
+# Data structures
+# --------------------------------------------------------------------------------------
 
 
-# ----------------------------- Helper Functions ------------------------------
+@dataclass
+class WarningEntry:
+    """A single warning instance discovered in a specific file and line."""
+
+    line: int
+    token: str
+    message: str
+    excerpt: str
 
 
-def tokenize_classes(class_value: str) -> list[str]:
-    """Split a class attribute string into individual tokens."""
-    return [t for t in class_value.strip().split() if t]
+@dataclass
+class FileReport:
+    """Per-file report including change status and warnings."""
+
+    path: Path
+    changed: bool
+    warnings: list[WarningEntry] = field(default_factory=list)
 
 
-def detokenize_classes(tokens: Sequence[str]) -> str:
-    """Join class tokens while preserving original order and removing duplicates."""
-    seen: set[str] = set()
-    out: list[str] = []
-    for t in tokens:
-        if t not in seen:
-            seen.add(t)
-            out.append(t)
-    return " ".join(out)
+# --------------------------------------------------------------------------------------
+# Transform functions
+# --------------------------------------------------------------------------------------
 
 
-def transform_class_attr(class_value: str, warnings: list[str]) -> str:
+def tidy_whitespace(s: str) -> str:
+    """Collapse duplicate spaces and strip surrounding whitespace."""
+    return re.sub(r"\s{2,}", " ", s).strip()
+
+
+def replace_classes(value: str) -> str:
     """
-    Transform a full class attribute string by rewriting/remapping specific tokens.
+    Apply token and regex-based class renames to a value from class="...".
 
-    This function handles token-by-token replacements (e.g., 'btn-block' -> 'w-100'),
-    badge contextual changes (e.g., 'badge-secondary' -> 'badge bg-secondary'), and
-    collects warnings for deprecated tokens that require manual refactor.
+    Only class tokens are altered; surrounding whitespace and quote style are preserved.
     """
-    tokens: list[str] = tokenize_classes(class_value)
-    new_tokens: list[str] = []
+    out: str = value
 
-    for tok in tokens:
-        low = tok.lower()
+    # Token-to-token renames
+    for old, new in TOKEN_RENAMES.items():
+        out = re.sub(rf"\b{re.escape(old)}\b", new, out)
 
-        # Convert legacy 'badge-<context>' to 'badge bg-<context>'
-        if low.startswith("badge-"):
-            parts = low.split("-", 1)
-            if len(parts) == 2 and parts[1] in BADGE_CONTEXTS:
-                # Ensure 'badge' class exists and replace contextual class by bg-*
-                if "badge" not in new_tokens and "badge" not in tokens:
-                    new_tokens.append("badge")
-                new_tokens.append(f"bg-{parts[1]}")
-                continue
+    # Regex rules
+    for rx, repl in REGEX_CLASS_RULES:
+        out = rx.sub(repl, out)
 
-        # Map simple token renames (may expand into multiple tokens).
-        if low in CLASS_TOKEN_SIMPLE:
-            mapped = CLASS_TOKEN_SIMPLE[low]
-            new_tokens.extend(mapped.split())
-            continue
+    # Badges
+    out = BADGE_PILL_RE.sub("rounded-pill", out)
+    out = BADGE_RE.sub(lambda m: f"bg-{m.group(1)}", out)
 
-        # Flag deprecated tokens but keep them to avoid breaking markup.
-        if low in DEPRECATED_CLASS_TOKENS:
+    return tidy_whitespace(out)
+
+
+def transform_class_attributes(line: str) -> str:
+    """Apply class value transformations inside a single line of HTML."""
+
+    def _sub(m: Match[str]) -> str:
+        before, quote, val = m.group("attr"), m.group("quote"), m.group("val")
+        new_val = replace_classes(val)
+        return f"{before}{quote}{new_val}{quote}"
+
+    return CLASS_ATTR_RE.sub(_sub, line)
+
+
+def transform_data_attributes(line: str) -> str:
+    """Rename Bootstrap JS data-* attributes to data-bs-* on a single line."""
+    out: str = line
+    for rx, repl in DATA_ATTR_REPLACERS:
+        out = rx.sub(repl, out)
+    return out
+
+
+def find_warnings(line: str) -> list[tuple[str, str]]:
+    """Return a list of (token, message) for each warning pattern found in the line."""
+    found: list[tuple[str, str]] = []
+    for rx, msg in WARN_PATTERNS:
+        for hit in rx.finditer(line):
+            found.append((hit.group(0), msg))
+    return found
+
+
+def process_file(path: Path) -> tuple[bool, list[WarningEntry]]:
+    """
+    Process a single file: perform safe replacements and collect warnings.
+
+    Returns
+    -------
+        (changed, warnings)
+        - changed: True if the file content was modified and saved
+        - warnings: a list of WarningEntry discovered in the file
+    """
+    original: str = path.read_text(encoding="utf-8")
+    new_lines: list[str] = []
+    warnings: list[WarningEntry] = []
+    changed: bool = False
+
+    for lineno, line in enumerate(original.splitlines(keepends=False), start=1):
+        transformed = transform_class_attributes(transform_data_attributes(line))
+        if transformed != line:
+            changed = True
+        MAX_WARNING_SNIPPET_LENGTH = 160
+        # Collect warnings (based on original line for better highlighting)
+        for token, msg in find_warnings(line):
+            snippet = line.strip()
+            if len(snippet) > MAX_WARNING_SNIPPET_LENGTH:
+                snippet = snippet[: MAX_WARNING_SNIPPET_LENGTH - 3] + "..."
             warnings.append(
-                f"Deprecated/removed class detected: '{tok}' (requires manual rewrite for BS5)."
+                WarningEntry(line=lineno, token=token, message=msg, excerpt=snippet)
             )
-            new_tokens.append(tok)
-            continue
 
-        # Default: keep token
-        new_tokens.append(tok)
+        new_lines.append(transformed)
 
-    return detokenize_classes(new_tokens)
-
-
-def rewrite_class_attributes(html: str, warnings: list[str]) -> tuple[str, int]:
-    """
-    Rewrite every class="..." attribute in an HTML document.
-
-    Returns the new HTML and a count of modified class attributes.
-    """
-    count = 0
-
-    def repl(m: re.Match[str]) -> str:
-        nonlocal count
-        original = m.group(0)
-        classes = m.group(1)
-        updated = transform_class_attr(classes, warnings)
-        if updated != classes:
-            count += 1
-        return original.replace(classes, updated, 1)
-
-    pattern: Pattern[str] = re.compile(r'class="([^"]+)"', re.IGNORECASE)
-    new_html = pattern.sub(repl, html)
-    return new_html, count
-
-
-def apply_attr_rules(text: str) -> tuple[str, int]:
-    """Apply attribute-level regex rewrites and return."""
-    count = 0
-    for rx, repl in ATTR_RULES:
-        text, n = rx.subn(repl, text)
-        count += n
-    return text, count
-
-
-def remove_input_group_wrappers(text: str) -> tuple[str, int]:
-    """
-    Remove <div class="input-group-append|prepend"> wrappers, preserving the inner
-    content.
-
-    Returns (new_text, number_removed).
-    """
-
-    def repl(m: re.Match[str]) -> str:
-        # Keep only inner content (group 2), drop the wrapper
-        return m.group(2)
-
-    new_text, n = RE_INPUT_GROUP_WRAPPER.subn(repl, text)
-    return new_text, n
-
-
-def best_effort_close_button(text: str, warnings: list[str]) -> tuple[str, int]:
-    """
-    Attempt to convert legacy .close buttons to BS5 .btn-close.
-
-    If the inner content includes '×' or '&times;', warn that BS5's .btn-close must be
-    empty (no inner content). We transform the class in the opening tag and keep/clear
-    content depending on the situation to avoid breaking markup.
-    """
-
-    def repl(m: re.Match[str]) -> str:
-        open_tag, inner, close_tag = m.groups()
-        contains_times = ("&times;" in inner) or ("×" in inner)
-        if contains_times:
-            # get line number for warning (approximate)
-            line_no = text.count("\n", 0, m.start()) + 1
-            warnings.append(
-                f"Line {line_no}: Close button with inner '×' or '&times;' detected. "
-                "Replace by "
-                '<button type="button" class="btn-close" data-bs-dismiss="..." aria-label="Close"></button> '
-                "without inner content."
-            )
-            # Replace class to btn-close and drop inner content to mimic BS5
-            new_open = re.sub(r"\bclose\b", "btn-close", open_tag)
-            return new_open + "" + close_tag
-        else:
-            # Replace class only; keep inner content (best effort)
-            new_open = re.sub(r"\bclose\b", "btn-close", open_tag)
-            return new_open + inner + close_tag
-
-    new_text, n = RE_CLOSE_BUTTON.subn(repl, text)
-    return new_text, n
-
-
-def mark_embed_wrappers(text: str, warnings: list[str]) -> tuple[str, int]:
-    """
-    Mark legacy '.embed-responsive' wrappers for manual review.
-
-    BS5 uses '.ratio' and may require markup restructuring.
-    """
-    matches = list(RE_EMBED_WRAPPER.finditer(text))
-    for m in matches:
-        # get line number for warning (approximate)
-        line_no = text.count("\n", 0, m.start()) + 1
-        warnings.append(
-            f"Line {line_no}: 'embed-responsive' wrapper detected. "
-            "Convert structure to .ratio and appropriate ratio class (.ratio-16x9...)."
-        )
-    return text, len(matches)
-
-
-def scan_warnings(text: str, warnings: list[str]) -> int:
-    """
-    Run regex checks for patterns that require manual refactor.
-
-    Each match appends a warning message with its line number. Returns the total number
-    of matches.
-    """
-    total = 0
-    for rx, message in WARNING_PATTERNS.items():
-        for m in rx.finditer(text):
-            total += 1
-            # Compute approximate line number
-            line_no = text.count("\n", 0, m.start()) + 1
-            warnings.append(f"Line {line_no}: {message}")
-    return total
-
-
-# ------------------------------ Core Pipeline --------------------------------
-
-
-def process_file(path: Path, dry_run: bool) -> FileStats:
-    """
-    Process a single HTML file: apply transformations, collect stats and warnings,
-    and write the result (with .bak backup) unless --dry-run is set.
-    """
-    original = path.read_text(encoding="utf-8")
-    text = original
-    warnings: list[str] = []
-
-    # 1) data-* -> data-bs-*
-    text, n_attr = apply_attr_rules(text)
-
-    # 2) class="..." token remapping
-    text, n_class = rewrite_class_attributes(text, warnings)
-
-    # 3) Remove input-group wrappers
-    text, n_input_group = remove_input_group_wrappers(text)
-
-    # 4) Replace legacy .close with .btn-close (best effort)
-    text, n_close = best_effort_close_button(text, warnings)
-
-    # 5) Flag embed-responsive wrappers
-    text, n_embed = mark_embed_wrappers(text, warnings)
-
-    # 6) Scan for additional warnings
-    n_warn_matches = scan_warnings(text, warnings)
-
-    # Determine changes and compute rough "lines changed"
-    changed = text != original
-    lines_changed = 0
     if changed:
-        orig_lines = original.splitlines()
-        new_lines = text.splitlines()
-        max_len = max(len(orig_lines), len(new_lines))
-        lines_changed = sum(
-            1
-            for i in range(max_len)
-            if (orig_lines[i] if i < len(orig_lines) else "")
-            != (new_lines[i] if i < len(new_lines) else "")
+        backup = path.with_suffix(path.suffix + ".bak")
+        if not backup.exists():
+            backup.write_text(original, encoding="utf-8")
+        path.write_text(
+            "\n".join(new_lines) + ("\n" if original.endswith("\n") else ""),
+            encoding="utf-8",
         )
-        if not dry_run:
-            bak = path.with_suffix(path.suffix + ".bak")
-            if not bak.exists():
-                bak.write_text(original, encoding="utf-8")
-            path.write_text(text, encoding="utf-8")
 
-    return FileStats(
-        file=str(path),
-        attr_replacements=n_attr,
-        class_attr_rewrites=n_class,
-        input_group_wrapper_removed=n_input_group,
-        close_button_rewrites=n_close,
-        embed_wrapper_flags=n_embed,
-        warnings_count=n_warn_matches + len(warnings),
-        warnings=warnings,
-        changed=changed,
-        lines_changed=lines_changed,
-    )
+    return changed, warnings
 
 
-def collect_files(
-    root: Path, exts: Sequence[str], filename_filter: Pattern[str] | None
-) -> list[Path]:
+# --------------------------------------------------------------------------------------
+# Reporting
+# --------------------------------------------------------------------------------------
+
+
+def count_auto_fixes(before: str, after: str) -> dict[str, int]:
     """
-    Recursively collect files under 'root' matching provided extensions.
+    Heuristically count the number of applied fixes between two full texts.
 
-    If 'filename_filter' is provided, only return files whose *basename* matches the
-    regex.
+    This is approximate but good enough for a useful summary.
     """
-    results: list[Path] = []
-    for ext in exts:
-        for p in root.rglob(f"*{ext}"):
-            if not p.is_file():
-                continue
-            if filename_filter is not None and not filename_filter.search(p.name):
-                continue
-            results.append(p)
-    return sorted(results)
+    counters: dict[str, int] = {
+        "float_left_right_to_start_end": 0,
+        "text_left_right_to_start_end": 0,
+        "ml_mr_to_ms_me": 0,
+        "pl_pr_to_ps_pe": 0,
+        "border_lr_to_start_end": 0,
+        "rounded_lr_to_start_end": 0,
+        "badge_variants_to_bg": 0,
+        "badge_pill_to_rounded_pill": 0,
+        "no_gutters_to_g0": 0,
+        "font_weight_to_fw": 0,
+        "font_italic_to_fst": 0,
+        "text_monospace_to_font_monospace": 0,
+        "embed_responsive_to_ratio": 0,
+        "sr_only_to_visually_hidden": 0,
+        "data_attributes_to_data_bs": 0,
+    }
 
-
-# ---------------------------------- CLI --------------------------------------
-
-
-def build_arg_parser() -> argparse.ArgumentParser:
-    """Build the CLI argument parser."""
-    parser = argparse.ArgumentParser(
-        description="Bootstrap 4 -> 5 migration helper for (Django) HTML templates."
-    )
-    parser.add_argument(
-        "root",
-        type=str,
-        help="Root folder to scan (e.g., path to your templates directory).",
-    )
-    parser.add_argument(
-        "--ext",
-        action="append",
-        default=[".html"],
-        help="File extensions to process (repeatable). Defaults to .html",
-    )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Do not write changes; just report what would change.",
-    )
-    parser.add_argument(
-        "--report",
-        type=str,
-        default="",
-        help="Optional JSON report path to write a summary.",
-    )
-    parser.add_argument(
-        "--filename-regex",
-        type=str,
-        default="",
-        help=(
-            "Optional regular expression to filter files by *basename*. "
-            "Example: '.*_bs5\\.html$' to process only *_bs5.html files."
+    patterns: list[tuple[Pattern[str], str]] = [
+        (
+            re.compile(r"\bfloat-(?:xs|sm|md|lg|xl|xxl-)?(?:left|right)\b"),
+            "float_left_right_to_start_end",
         ),
-    )
-    parser.add_argument(
-        "--report-warnings-only",
-        action="store_true",
-        help="If set, the JSON report will include only files that have warnings.",
-    )
-    return parser
+        (
+            re.compile(r"\btext-(?:xs|sm|md|lg|xl|xxl-)?(?:left|right)\b"),
+            "text_left_right_to_start_end",
+        ),
+        (re.compile(r"\bml-|\bmr-"), "ml_mr_to_ms_me"),
+        (re.compile(r"\bpl-|\bpr-"), "pl_pr_to_ps_pe"),
+        (re.compile(r"\bborder-(?:left|right)\b"), "border_lr_to_start_end"),
+        (re.compile(r"\brounded-(?:left|right)\b"), "rounded_lr_to_start_end"),
+        (
+            re.compile(r"\bbadge-(?:" + "|".join(BADGE_VARIANTS) + r")\b"),
+            "badge_variants_to_bg",
+        ),
+        (re.compile(r"\bbadge-pill\b"), "badge_pill_to_rounded_pill"),
+        (re.compile(r"\bno-gutters\b"), "no_gutters_to_g0"),
+        (re.compile(r"\bfont-weight-"), "font_weight_to_fw"),
+        (re.compile(r"\bfont-italic\b"), "font_italic_to_fst"),
+        (re.compile(r"\btext-monospace\b"), "text_monospace_to_font_monospace"),
+        (
+            re.compile(
+                r"\bembed-responsive\b|\bembed-responsive-\w+\b|\bembed-responsive-item\b"
+            ),
+            "embed_responsive_to_ratio",
+        ),
+        (
+            re.compile(r"\bsr-only\b|\bsr-only-focusable\b|\btext-hide\b"),
+            "sr_only_to_visually_hidden",
+        ),
+        (
+            re.compile(r"\bdata-(toggle|target|dismiss|spy|offset|ride|parent)\b"),
+            "data_attributes_to_data_bs",
+        ),
+    ]
+
+    for rx, key in patterns:
+        before_hits = len(rx.findall(before))
+        after_hits = len(rx.findall(after))
+        if before_hits and before_hits != after_hits:
+            delta = before_hits - after_hits
+            counters[key] += delta if delta != 0 else before_hits
+
+    return counters
+
+
+def write_yaml_report(files: list[FileReport], fixed_totals: dict[str, int]) -> None:
+    """Serialize the YAML report to REPORT_PATH without external dependencies."""
+    ts = datetime.now().isoformat(timespec="seconds")
+    lines: list[str] = []
+    lines.append(f'datetime: "{ts}"')
+    lines.append("summary:")
+    lines.append(f"  files_scanned: {len(files)}")
+    lines.append(f"  files_changed: {sum(1 for f in files if f.changed)}")
+    lines.append("  auto_fixes:")
+    for k in sorted(fixed_totals):
+        lines.append(f"    {k}: {fixed_totals[k]}")
+    lines.append("warnings:")
+    for f in files:
+        if not f.warnings:
+            continue
+        # Make path relative to repo root for stable output
+        try:
+            rel = f.path.resolve().relative_to(REPO_ROOT.resolve()).as_posix()
+        except ValueError:
+            # Fallback to absolute path if outside of repo root (should not happen)
+            rel = f.path.resolve().as_posix()
+        lines.append(f"  - file: {rel}")
+        for w in f.warnings:
+            # Escape double quotes for YAML strings
+            token = w.token.replace('"', "'")
+            message = w.message.replace('"', "'")
+            excerpt = w.excerpt.replace('"', "'")
+            lines.append(f"    - line: {w.line}")
+            lines.append(f'      token: "{token}"')
+            lines.append(f'      message: "{message}"')
+            lines.append(f'      excerpt: "{excerpt}"')
+    REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+# --------------------------------------------------------------------------------------
+# Main
+# --------------------------------------------------------------------------------------
 
 
 def main() -> None:
-    """Entry point: parse args, collect files, process them, and print summary/report."""
-    parser = build_arg_parser()
-    args = parser.parse_args()
-
-    root = Path(args.root).resolve()
-    exts: list[str] = args.ext
-    dry_run: bool = args.dry_run
-    report_path: str = args.report
-    filename_regex: str = args.filename_regex
-    report_warnings_only: bool = args.report_warnings_only
-
-    filename_filter: Pattern[str] | None = (
-        re.compile(filename_regex) if filename_regex else None
-    )
-
-    # Gather all candidate files first (without filename filter) to report "scanned" count.
-    all_candidates: list[Path] = []
-    for ext in exts:
-        all_candidates.extend(root.rglob(f"*{ext}"))
-    all_candidates = [p for p in all_candidates if p.is_file()]
-
-    # Apply the filename filter (if any).
-    files: list[Path] = collect_files(root, exts, filename_filter)
-
-    if not all_candidates:
-        print("No files found to scan under the given root.")
-        return
-    if not files:
-        print("No files matched the given extensions/filename-regex.")
-        return
-
-    all_stats: list[FileStats] = []
-    total_changed = 0
-    total_lines = 0
-    total_warnings = 0
-
-    for f in files:
-        stats = process_file(f, dry_run)
-        all_stats.append(stats)
-        if stats.changed:
-            total_changed += 1
-            total_lines += stats.lines_changed
-        total_warnings += stats.warnings_count
-
-        flag = "[DRY]" if dry_run else "[WRITE]"
-        chg = "CHANGED" if stats.changed else "OK"
-        warns = stats.warnings_count
+    """Entry-point: scan files, apply transformations, and produce the YAML report."""
+    if not ROOT_SEARCH_DIR.exists():
         print(
-            f"{flag} {chg:<8} {f} "
-            f"(attrs:{stats.attr_replacements}, class:{stats.class_attr_rewrites}, "
-            f"append/prepend-: {stats.input_group_wrapper_removed}, close:{stats.close_button_rewrites}, "
-            f"warns:{warns})"
+            f'ERROR: Not found: "{ROOT_SEARCH_DIR}". Expected "src/apps" under {REPO_ROOT}.',
+            file=sys.stderr,
         )
+        sys.exit(1)
 
-    summary = Summary(
-        root=str(root),
-        files_scanned=len(all_candidates),
-        files_matched=len(files),
-        files_changed=total_changed,
-        approx_lines_changed=total_lines,
-        total_warnings=total_warnings,
-        details=all_stats,
-    )
-
-    # Write report if requested.
-    if report_path:
-        details_for_report: list[FileStats] = (
-            [s for s in all_stats if s.warnings_count > 0]
-            if report_warnings_only
-            else all_stats
+    files: list[Path] = sorted(ROOT_SEARCH_DIR.glob(FILE_GLOB))
+    if not files:
+        print(
+            f'ERROR: No files matching "{FILE_GLOB}" under "{ROOT_SEARCH_DIR}".',
+            file=sys.stderr,
         )
-        files_with_warnings: int = sum(1 for s in all_stats if s.warnings_count > 0)
+        sys.exit(1)
 
-        report_data = asdict(summary)
-        # Override only the "details" section to keep the top-level counts unchanged
-        report_data["details"] = [asdict(s) for s in details_for_report]
-        # Add a convenience metric
-        report_data["files_with_warnings"] = files_with_warnings
+    file_reports: list[FileReport] = []
+    totals: dict[str, int] | None = None
 
-        Path(report_path).write_text(
-            json.dumps(report_data, indent=2, ensure_ascii=False), encoding="utf-8"
-        )
+    for path in files:
+        # Read before, process, read after to estimate applied fixes
+        before = path.read_text(encoding="utf-8")
+        changed, warnings = process_file(path)
+        after = path.read_text(encoding="utf-8")
 
-    # Print concise summary to console.
-    concise = {k: v for k, v in asdict(summary).items() if k != "details"}
-    print("\n=== Summary ===")
-    print(json.dumps(concise, indent=2, ensure_ascii=False))
-    print("\nTips:")
-    print(
-        "- Review files with WARNINGS (custom forms, jumbotron, media, input-group wrappers)."
-    )
-    print(
-        "- Verify interactive components (dropdowns, modals, tooltips) without jQuery."
-    )
-    print(
-        "- After migration, progressively remove any temporary BS4 compatibility styles."
-    )
+        fixed = count_auto_fixes(before, after)
+        if totals is None:
+            totals = dict.fromkeys(fixed, 0)
+        for k, v in fixed.items():
+            totals[k] += v
+
+        file_reports.append(FileReport(path=path, changed=changed, warnings=warnings))
+
+    write_yaml_report(file_reports, totals or {})
+
+    changed_count = sum(1 for f in file_reports if f.changed)
+    print(f"OK • Scanned: {len(file_reports)} • Changed: {changed_count}")
+    print(f"Report: {REPORT_PATH.as_posix()}")
 
 
 if __name__ == "__main__":

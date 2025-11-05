@@ -78,7 +78,7 @@ body {
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">{% trans "Thank you!" %}</h4>
-            <button type="button" class="close" data-dismiss="modal">×</button>
+            <button type="button" class="close" data-bs-dismiss="modal">×</button>
           </div>
           <div class="modal-body">
             {% blocktrans trimmed %}
@@ -88,7 +88,7 @@ body {
             {% endblocktrans %}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">{% trans "Ok" %}</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">{% trans "Ok" %}</button>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@ body {
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">{% trans "Thank you!" %}</h4>
-            <button type="button" class="close" data-dismiss="modal">×</button>
+            <button type="button" class="close" data-bs-dismiss="modal">×</button>
           </div>
           <div class="modal-body">
             {% blocktrans trimmed %}
@@ -109,7 +109,7 @@ body {
             {% endblocktrans %}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">{% trans "Ok" %}</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">{% trans "Ok" %}</button>
           </div>
         </div>
       </div>
@@ -126,7 +126,10 @@ body {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="MastodonModalLabel">{% trans "Instance address" %}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button"
+                    class="close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -140,7 +143,7 @@ body {
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
             <button id="msb-share" type="button" class="btn btn-primary">{% trans "Share" %}</button>
           </div>
         </div>
@@ -162,7 +165,10 @@ body {
           This petition is not published yet. You can only see it because you are logged-in as either its creator or a member of the organization
           which created it. Other visitors won't be able to see it.
         {% endblocktrans %}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <button type="button"
+                class="close"
+                data-bs-dismiss="alert"
+                aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -196,7 +202,7 @@ body {
             <div class="progress-bar bg-primary"
                  role="progressbar"
                  id="progress-bar"
-                 data-target="{{ petition.target }}"></div>
+                 data-bs-target="{{ petition.target }}"></div>
           </div>
         </div>
         <div id="form-sticky" class="form-sticky">
@@ -323,7 +329,7 @@ body {
                   {% if petition.has_mastodon_share_button %}
                     <li class="rrssb-mastodon">
                       <a class="mastodon-share-button"
-                         data-target="{{ petition.title|html_sanitize|striptags|safe }}:%0A{{ request.build_absolute_uri }}%0A{% trans "Sign the petition!" %}">
+                         data-bs-target="{{ petition.title|html_sanitize|striptags|safe }}:%0A{{ request.build_absolute_uri }}%0A{% trans "Sign the petition!" %}">
                         <span class="rrssb-icon">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216.4144 232.00976">
                             <path fill="#2b90d9" d="M211.80734 139.0875c-3.18125 16.36625-28.4925 34.2775-57.5625 37.74875-15.15875 1.80875-30.08375 3.47125-45.99875 2.74125-26.0275-1.1925-46.565-6.2125-46.565-6.2125 0 2.53375.15625 4.94625.46875 7.2025 3.38375 25.68625 25.47 27.225 46.39125 27.9425 21.11625.7225 39.91875-5.20625 39.91875-5.20625l.8675 19.09s-14.77 7.93125-41.08125 9.39c-14.50875.7975-32.52375-.365-53.50625-5.91875C9.23234 213.82 1.40609 165.31125.20859 116.09125c-.365-14.61375-.14-28.39375-.14-39.91875 0-50.33 32.97625-65.0825 32.97625-65.0825C49.67234 3.45375 78.20359.2425 107.86484 0h.72875c29.66125.2425 58.21125 3.45375 74.8375 11.09 0 0 32.975 14.7525 32.975 65.0825 0 0 .41375 37.13375-4.59875 62.915" />
@@ -363,7 +369,7 @@ body {
     </div>
     <div class="col-lg-8 presentation">
       {% if petition.publication_date and petition.show_publication_date %}
-        <div class="font-weight-light font-italic">
+        <div class="fw-light fst-italic">
           {% trans "Published on: " %} {{ petition.publication_date|date:"SHORT_DATE_FORMAT" }}
         </div>
       {% endif %}
@@ -406,8 +412,8 @@ body {
   <div class="container">
     <div class="row footer-wrapper bg-dark">
       <footer role="contentinfo" class="footer col-12">
-        <div class="footer-links ml-2">{{ petition.footer_links|html_sanitize|safe }}</div>
-        <div class="footer-text ml-2">{{ petition.footer_text|html_sanitize|safe }}</div>
+        <div class="footer-links ms-2">{{ petition.footer_links|html_sanitize|safe }}</div>
+        <div class="footer-text ms-2">{{ petition.footer_text|html_sanitize|safe }}</div>
       </footer>
     </div>
   </div>
