@@ -1,6 +1,5 @@
 """
-Django management command to generate a Mermaid graph of template dependencies (flat,
-color-coded).
+Django management command to generate a Mermaid graph of template dependencies.
 
 This command scans the project's Django template directories (restricted to
 `src/apps/`), parses `{% extends %}` and constant-string `{% include %}` tags,
@@ -117,7 +116,8 @@ class TemplateNode:
     includes: set[str] = field(default_factory=set)
 
 
-def discover_template_dirs() -> list[Path]:
+# TODO: [#79] refactor common code with graph_template.py
+def discover_template_dirs() -> list[Path]:  # noqa
     """
     Collect all template search directories from Django settings.
 
@@ -281,7 +281,6 @@ def parent_key_from_path(path: Path) -> str:
     The "parent key" is the first segment after `<app>/templates/`:
     - `<app>/templates/<app>/...` -> `<app>`
     - `<app>/templates/<subdir>/...` -> `<subdir>`
-    If the path is not under `APPS_ROOT` or does not match the pattern, returns `"other"`.
     """
     try:
         rel = path.resolve().relative_to(APPS_ROOT)
@@ -289,13 +288,14 @@ def parent_key_from_path(path: Path) -> str:
         return "other"
 
     parts = rel.parts  # e.g. ("core", "templates", "layouts", "base.html")
-    if len(parts) < 3 or parts[1] != "templates":
+    MAX_PARTS = 3  # at least app/templates/<something>
+    if len(parts) < MAX_PARTS or parts[1] != "templates":
         return "other"
 
     return parts[2]  # first item after "templates" (can be the app name itself)
 
 
-def _hsl_to_hex(h: float, s: float, l: float) -> str:
+def _hsl_to_hex(hue: float, saturation: float, lightness: float) -> str:
     """
     Convert an HSL color (0..1 floats) to a hex string.
 
@@ -317,6 +317,7 @@ def _hsl_to_hex(h: float, s: float, l: float) -> str:
     # Convert HSL to RGB (utility; small, dependency-free)
     # Algorithm adapted from the CSS Color Module specification.
     def hue_to_rgb(p: float, q: float, t: float) -> float:
+        """Helper to convert hue to RGB component."""
         t = t % 1.0
         if t < 1 / 6:
             return p + (q - p) * 6 * t
@@ -326,14 +327,20 @@ def _hsl_to_hex(h: float, s: float, l: float) -> str:
             return p + (q - p) * (2 / 3 - t) * 6
         return p
 
-    if s == 0.0:
-        r = g = b = l
+    HSL_LIGHTNESS_THRESHOLD = 0.5
+
+    if saturation == 0.0:
+        r = g = b = lightness
     else:
-        q = l * (1 + s) if l < 0.5 else l + s - l * s
-        p = 2 * l - q
-        r = hue_to_rgb(p, q, h + 1 / 3)
-        g = hue_to_rgb(p, q, h)
-        b = hue_to_rgb(p, q, h - 1 / 3)
+        q = (
+            lightness * (1 + saturation)
+            if lightness < HSL_LIGHTNESS_THRESHOLD
+            else lightness + saturation - lightness * saturation
+        )
+        p = 2 * lightness - q
+        r = hue_to_rgb(p, q, hue + 1 / 3)
+        g = hue_to_rgb(p, q, hue)
+        b = hue_to_rgb(p, q, hue - 1 / 3)
 
     ri = int(round(r * 255))
     gi = int(round(g * 255))
@@ -360,10 +367,10 @@ def color_from_key(key: str) -> str:
     - A stable MD5 hash is mapped to HSL space to produce visually distinct colors.
     - Saturation/lightness are clamped to readable ranges for Mermaid defaults.
     """
-    h = int(hashlib.md5(key.encode("utf-8")).hexdigest()[:2], 16) / 255.0
-    s = 0.55  # moderate saturation for readability
-    l = 0.80  # light background to contrast Mermaid's default stroke
-    return _hsl_to_hex(h, s, l)
+    hue = int(hashlib.md5(key.encode("utf-8")).hexdigest()[:2], 16) / 255.0
+    saturation = 0.55  # moderate saturation for readability
+    lightness = 0.80  # light background to contrast Mermaid's default stroke
+    return _hsl_to_hex(hue, saturation, lightness)
 
 
 def build_graph(
@@ -450,8 +457,7 @@ def mermaid_id_for(name: str) -> str:
 
 def render_mermaid_flat(nodes: dict[str, TemplateNode], edges: list[Edge]) -> str:
     """
-    Render the graph as Mermaid without containers (flat), color-coding nodes by parent
-    key.
+    Render the graph as Mermaid without containers, color-coding nodes by parent key.
 
     Parameters
     ----------
@@ -554,7 +560,7 @@ class Command(BaseCommand):
             "-o",
             "--output",
             default="templates_graph_flat.mmd",
-            help='Output file path or "-" for stdout (default: templates_graph_flat.mmd).',
+            help='Output file path or "-" for stdout (default: templates_graph.mmd).',
         )
         parser.add_argument(
             "--ext",

@@ -7,17 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-04 21:57+0100\n"
+"POT-Creation-Date: 2025-11-05 05:39+0100\n"
 "PO-Revision-Date: 2025-11-05 00:32+0000\n"
 "Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
-"Language-Team: French <https://translate.sebastienpont.fr/projects/pytition/"
-"docs/fr/>\n"
 "Language: fr\n"
+"Language-Team: French "
+"<https://translate.sebastienpont.fr/projects/pytition/docs/fr/>\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.14\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: 48c15101f14541f1a6ead0bf34c2bf69
@@ -31,10 +30,10 @@ msgid ""
 "variables without modifying any source files or `*.py` files. The "
 "following diagrams explain how this works."
 msgstr ""
-"Afin de mieux respecter les conventions d'une [application 12-factor]"
-"(https://www.12factor.net/), Pytition est capable de charger des variables "
-"de configuration sans modifier aucun fichier source ou fichier `*.py`. Les "
-"schémas suivants expliquent comment cela fonctionne."
+"Afin de mieux respecter les conventions d'une [application "
+"12-factor](https://www.12factor.net/), Pytition est capable de charger "
+"des variables de configuration sans modifier aucun fichier source ou "
+"fichier `*.py`. Les schémas suivants expliquent comment cela fonctionne."
 
 #: c7a180c6c99040d6a17c7c67103f59c6
 msgid ""
@@ -42,9 +41,9 @@ msgid ""
 "files, but this is not recommended as the file may be overwritten on the "
 "next update."
 msgstr ""
-"Vous pouvez toujours modifier les variables directement dans les fichiers `"
-"config/settings/**.py`, mais cela n'est pas recommandé car le fichier risque "
-"d'être écrasé lors de la prochaine mise à jour."
+"Vous pouvez toujours modifier les variables directement dans les fichiers"
+" `config/settings/**.py`, mais cela n'est pas recommandé car le fichier "
+"risque d'être écrasé lors de la prochaine mise à jour."
 
 #: 59b6fdb9d7454adbafce3b73e9a7c629
 msgid "Settings structure"
@@ -88,8 +87,8 @@ msgid ""
 "manager. You can use `pdm manage generate_secret_key --quiet` to create a"
 " strong key."
 msgstr ""
-"**DOIT être remplacé en production** via une variable d'environnement ou un "
-"gestionnaire de secrets. Vous pouvez utiliser `pdm manage "
+"**DOIT être remplacé en production** via une variable d'environnement ou "
+"un gestionnaire de secrets. Vous pouvez utiliser `pdm manage "
 "generate_secret_key --quiet` pour créer une clé forte."
 
 #: aca34f6174a249c48a7dee82a326c2ec
@@ -98,9 +97,9 @@ msgid ""
 " MUST be overridden in production via environment variable or secrets "
 "manager."
 msgstr ""
-"Configuration par défaut de la base de données utilisant **SQLite** à des "
-"fins de développement. DOIT être remplacée en production via une variable "
-"d'environnement ou un gestionnaire de secrets."
+"Configuration par défaut de la base de données utilisant **SQLite** à des"
+" fins de développement. DOIT être remplacée en production via une "
+"variable d'environnement ou un gestionnaire de secrets."
 
 #: aba6c508a4304840a507a50002715a1f
 msgid "SQLite"
@@ -134,8 +133,8 @@ msgid ""
 "For in-memory (not persistent) database (default configuration if "
 "`ENV=test`) :"
 msgstr ""
-"Pour une base de données en mémoire (non persistante) "
-"(configuration par défaut si `ENV=test`) :"
+"Pour une base de données en mémoire (non persistante) (configuration par "
+"défaut si `ENV=test`) :"
 
 #: a78da192b91c42eb94492a0473029188
 msgid "DATABASE_URL=sqlite:///:memory:"
@@ -214,8 +213,8 @@ msgid ""
 "List of strings representing the host/domain names that this Django site "
 "can serve."
 msgstr ""
-"Liste des chaînes représentant les noms d'hôte/de domaine que ce site Django "
-"peut servir."
+"Liste des chaînes représentant les noms d'hôte/de domaine que ce site "
+"Django peut servir."
 
 #: e3ac8ef97b334cdaa3094d65ed889393
 msgid "Example values:"
@@ -223,22 +222,21 @@ msgstr "Exemples de valeurs :"
 
 #: 7b8f2343f5264361bd9123a231bd4f42
 msgid "`[\"localhost\", \"127.0.0.1\", \"[::1]\"]` (for local development)"
-msgstr ""
-"`[\"localhost\", \"127.0.0.1\", \"[::1]\"]` (pour le développement local)"
+msgstr "`[\"localhost\", \"127.0.0.1\", \"[::1]\"]` (pour le développement local)"
 
 #: f222753366f44f2db34a29b13e79699c
 msgid "`[\"example.com\", \"www.example.com\"]` (for production, staging, etc.)"
 msgstr ""
-"`[\"example.com\", \"www.example.com\"]` "
-"(pour la production, la mise en scène, etc.)"
+"`[\"example.com\", \"www.example.com\"]` (pour la production, la mise en "
+"scène, etc.)"
 
 #: 9b2cc346e60f473d97a0298b8367918d
 msgid ""
 "Directory where persistent data is stored (uploaded media files, "
 "databases, etc.)."
 msgstr ""
-"Répertoire où sont stockées les données persistantes "
-"(fichiers multimédias téléchargés, bases de données, etc.)."
+"Répertoire où sont stockées les données persistantes (fichiers "
+"multimédias téléchargés, bases de données, etc.)."
 
 #: a13f10dff57f4e7384f69597aeee2fd7
 msgid "Initial configuration"
@@ -283,8 +281,7 @@ msgstr ""
 
 #: 3c25a345f2d94db8815ad8f770e86e32
 msgid "**Under the hood**: explains the logic behind reading variables"
-msgstr ""
-"**Sous le capot** : explique la logique derrière la lecture des variables."
+msgstr "**Sous le capot** : explique la logique derrière la lecture des variables."
 
 #: b42143b4daee4a9a8920b6e09936cb5c
 msgid "Configuration"
@@ -596,6 +593,19 @@ msgstr "![Modèle de données](../_static/img/models.svg)"
 msgid "Data Model"
 msgstr "Modèle de données"
 
+#: 0728c439cea04bdb863281d22524c71b
+msgid "Template Inheritance"
+msgstr ""
+
+#: 1b83f4d9a5754ac2afcab011b59597ad
+#, fuzzy
+msgid "Includes"
+msgstr "Guides d'administration"
+
+#: 7647880219cc49349d0c82ac9678d8a9
+msgid "Extends"
+msgstr ""
+
 #: 7719068883e24e35997522b697786774
 msgid "Basics conventions"
 msgstr "Conventions de base"
@@ -617,9 +627,9 @@ msgid ""
 "When a string requires additional context for translators, add a comment "
 "just above the string. The comment has to start with `Translators:`."
 msgstr ""
-"Lorsqu'une chaîne nécessite un contexte supplémentaire pour les traducteurs, "
-"ajoutez un commentaire juste au-dessus de la chaîne. Le commentaire doit "
-"commencer par « Translators: »."
+"Lorsqu'une chaîne nécessite un contexte supplémentaire pour les "
+"traducteurs, ajoutez un commentaire juste au-dessus de la chaîne. Le "
+"commentaire doit commencer par « Translators: »."
 
 #: 7be9447238be4b59a4b0372716f97c22 c516888a1397426fad9c4c44989c7bbc
 msgid "Python"
@@ -644,8 +654,8 @@ msgid ""
 "{# Translators: This is the title of the page #}\n"
 "<h1>{% trans \"Welcome to Pytition\" %}</h1>\n"
 msgstr ""
-"{# Traducteurs : ceci est le titre de la page #}<h1>{% trans "
-"\"Bienvenue sur Pytition\" %}</h1>\n"
+"{# Traducteurs : ceci est le titre de la page #}<h1>{% trans \"Bienvenue "
+"sur Pytition\" %}</h1>\n"
 
 #: b1341f1174c0420a880b68279bf409cd
 msgid "Do not concatenate strings"
@@ -713,9 +723,9 @@ msgid ""
 "placeholders instead of positional ones. This improves clarity for "
 "translators."
 msgstr ""
-"Lorsque vous incluez des variables dans des chaînes traduisibles, utilisez "
-"toujours des espaces réservés nommés plutôt que positionnels. Cela améliore "
-"la clarté pour les traducteurs."
+"Lorsque vous incluez des variables dans des chaînes traduisibles, "
+"utilisez toujours des espaces réservés nommés plutôt que positionnels. "
+"Cela améliore la clarté pour les traducteurs."
 
 #: f3e2abcd80c04382a651720aee10624f
 #, python-brace-format, python-format
@@ -741,7 +751,8 @@ msgstr "Préférez « transblock »."
 #: 2cb298b46ec64299bb0be0d915c75afe
 msgid "Try to avoid html in translations"
 msgstr ""
-"Évitez autant que possible d'utiliser le langage HTML dans les traductions."
+"Évitez autant que possible d'utiliser le langage HTML dans les "
+"traductions."
 
 #: 31f54cab345743aea4458d83dd8de264
 msgid "Use `trimmed` on `transblock`"
@@ -787,9 +798,9 @@ msgid ""
 "[**Python coding style**](./python.md) : Python coding style guidelines "
 "including PEP 8 compliance, naming conventions, and best practices."
 msgstr ""
-"[**Style de codage Python**](./python.md) : directives de style de codage "
-"Python, y compris la conformité PEP 8, les conventions de nommage et les "
-"meilleures pratiques."
+"[**Style de codage Python**](./python.md) : directives de style de codage"
+" Python, y compris la conformité PEP 8, les conventions de nommage et les"
+" meilleures pratiques."
 
 #: 1321dd10438845a3a6fb0e5f6ccec485
 msgid ""
@@ -812,9 +823,9 @@ msgid ""
 "[**Literals**](./literals.md) : Conventions for using literals in code, "
 "including string formatting and constant definitions."
 msgstr ""
-"[**Literals**](./literals.md) : Conventions pour l'utilisation des littéraux "
-"dans le code, y compris le formatage des chaînes et les définitions de "
-"constantes."
+"[**Literals**](./literals.md) : Conventions pour l'utilisation des "
+"littéraux dans le code, y compris le formatage des chaînes et les "
+"définitions de constantes."
 
 #: 2b15182c236a4d62a18cc09ccd2670d7
 msgid ""
@@ -822,7 +833,8 @@ msgid ""
 "interfaces and enhancing user experience."
 msgstr ""
 "[**Expérience utilisateur (UX)**](./ux.md) : meilleures pratiques pour "
-"concevoir des interfaces utilisateur et améliorer l'expérience utilisateur."
+"concevoir des interfaces utilisateur et améliorer l'expérience "
+"utilisateur."
 
 #: f2bcb93c539e407c90e572bf09ca56e7
 msgid "Literals"
@@ -837,8 +849,8 @@ msgid ""
 "Error messages are correctly formed sentences (capital letters, subject, "
 "verb, complement, period at the end)."
 msgstr ""
-"Les messages d'erreur sont des phrases correctement formées "
-"(majuscules, sujet, verbe, complément, point à la fin)."
+"Les messages d'erreur sont des phrases correctement formées (majuscules, "
+"sujet, verbe, complément, point à la fin)."
 
 #: 48091d8f2fb2469cb6ebd629135101e7 a761f736221f4c4391ac3128f113caef
 msgid "Example:"
@@ -863,7 +875,8 @@ msgstr "Étiquettes des boutons et messages d'action courts"
 #: 128f9df311ce4d948002155252ec553a
 msgid "Button labels and short action messages are :"
 msgstr ""
-"Les libellés des boutons et les messages d'action courts sont les suivants :"
+"Les libellés des boutons et les messages d'action courts sont les "
+"suivants :"
 
 #: 31daf7ab3b9d49b198a5e7a76796b033
 msgid "necessarily short"
@@ -888,8 +901,8 @@ msgid ""
 "%}</button>\n"
 msgstr ""
 "{# ✅ Bon #}<button type=\"submit\">{% trans « Exporter » %}</button>\n"
-"{# ❌ Mauvais #}<button type=\"submit\">{% trans « Exporter les signatures "
-"vers un fichier CSV. » %}</button>\n"
+"{# ❌ Mauvais #}<button type=\"submit\">{% trans « Exporter les signatures"
+" vers un fichier CSV. » %}</button>\n"
 
 #: e8844649046d40d7a0c97bba8085454f
 msgid ""
@@ -898,10 +911,11 @@ msgid ""
 "help text near the button (tooltip are not visible on mobile, cf. [UX "
 "conventions](./ux.md))."
 msgstr ""
-"L'interface doit clairement indiquer que lorsque vous cliquez sur le bouton "
-"Exporter, les signatures seront exportées au format CSV. Cela pourrait être "
-"fait à l'aide d'un texte d'aide à proximité du bouton (les info-bulles ne "
-"sont pas visibles sur mobile, cf. [conventions UX](./ux.md))."
+"L'interface doit clairement indiquer que lorsque vous cliquez sur le "
+"bouton Exporter, les signatures seront exportées au format CSV. Cela "
+"pourrait être fait à l'aide d'un texte d'aide à proximité du bouton (les "
+"info-bulles ne sont pas visibles sur mobile, cf. [conventions "
+"UX](./ux.md))."
 
 #: aa7c0b8252a8434a99d7169fb605f3e1
 msgid "Python coding style"
@@ -921,10 +935,11 @@ msgid ""
 " and should be to comply some users, but always ensure that the "
 "information is also accessible to touch users."
 msgstr ""
-"Les infobulles sont un bon moyen de fournir des informations supplémentaires "
-"aux utilisateurs d'ordinateurs de bureau et devraient convenir à certains "
-"utilisateurs, mais veillez toujours à ce que les informations soient "
-"également accessibles aux utilisateurs d'appareils tactiles."
+"Les infobulles sont un bon moyen de fournir des informations "
+"supplémentaires aux utilisateurs d'ordinateurs de bureau et devraient "
+"convenir à certains utilisateurs, mais veillez toujours à ce que les "
+"informations soient également accessibles aux utilisateurs d'appareils "
+"tactiles."
 
 msgid "Contents:"
 msgstr "Contenu :"
@@ -1061,3 +1076,4 @@ msgstr "Rédiger le guide utilisateur·rice."
 
 #~ msgid "Advanced configuration"
 #~ msgstr "Configuration avancée"
+

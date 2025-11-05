@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pytition 2.10.0-67-gb11e87f\n"
+"Project-Id-Version: Pytition 2.10.0-74-gf8bb77b\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-05 00:05+0100\n"
+"POT-Creation-Date: 2025-11-05 05:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -428,6 +428,18 @@ msgstr ""
 
 #: 5a7afcc5a8154ec9bfcd424b03a9d873
 msgid "Data Model"
+msgstr ""
+
+#: 0728c439cea04bdb863281d22524c71b
+msgid "Template Inheritance"
+msgstr ""
+
+#: 1b83f4d9a5754ac2afcab011b59597ad
+msgid "Includes"
+msgstr ""
+
+#: 7647880219cc49349d0c82ac9678d8a9
+msgid "Extends"
 msgstr ""
 
 #: 7719068883e24e35997522b697786774
