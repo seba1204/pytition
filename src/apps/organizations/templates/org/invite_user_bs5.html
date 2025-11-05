@@ -1,21 +1,25 @@
 {% load i18n %}
 <div class="dashboard-nav-item py-3">
-  <form>
-    <div class="d-flex-group">
+  <form class="w-100">
+    <div class="mb-3">
+      <!-- BS5: remplace .form-inline-group -->
       <h4>
-        <label for="invite_user">{% trans "Invite user" %} :</label>
+        <label for="invite_user" class="form-label">{% trans "Invite user" %} :</label>
       </h4>
       <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><span class="bi bi-person"></span></span>
-        </div>
+        {# BS5 : input-group-prepend supprimé → contenu direct #}
+        <span class="input-group-text">
+          <i class="bi bi-person" aria-hidden="true"></i>
+          <span class="visually-hidden">{% trans "User icon" %}</span>
+        </span>
         {# Translators: Placeholder text for a username input field #}
-        <input class="form-control"
-               type="text"
+        <input type="text"
                id="invite_user"
+               class="form-control"
                placeholder="{% trans "Username" %}">
       </div>
     </div>
     <div id="user_search_result" class="list-group"></div>
   </form>
 </div>
+{% comment %} BS5-DONE {% endcomment %}

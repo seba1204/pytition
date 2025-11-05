@@ -1,25 +1,30 @@
 {% load static %}
 {% load i18n %}
-<div class="row petition-list-row">
+{# === Petition list === #}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 petition-list-row">
   {% for petition in petitions %}
-    <div class="col-md-4 col-xs-6 text-center sb-preview">
-      <div class="card h-100 text-center">
+    <div class="col text-center sb-preview">
+      <div class="card h-100 text-center shadow-sm card-hover overflow-hidden rounded-3">
         <a href="{{ petition.url }}" class="sb-preview-img">
           {% if not petition.twitter_image %}
-            <img class="card-img-top img-fluid img-thumbnail d-block mx-auto"
+            <img class="card-img-top img-fluid d-block mx-auto w-100"
                  style="object-fit: contain;
                         padding-top: 25px;
-                        padding-bottom: 25px"
+                        padding-bottom: 25px;
+                        max-height: 200px"
                  src="{% static settings.DEFAULT_INDEX_THUMBNAIL %}"
-                 width="100%"
-                 max-height="150"
-                 alt="{% if petition.title %}{{ petition.title|striptags }}{% else %}Petition image{% endif %}">
+                 alt="{% if petition.title %}{{ petition.title|striptags }}{% else %}Petition image{% endif %}"
+                 width="400"
+                 height="200"
+                 loading="lazy">
           {% else %}
-            <img class="card-img-top img-fluid img-thumbnail"
-                 src="{{ petition.twitter_image }}"
-                 width="100%"
-                 max-height="150"
-                 alt="{% if petition.title %}{{ petition.title|striptags }}{% else %}Petition image{% endif %}">
+            <img class="card-img-top img-fluid w-100"
+                 style="max-height: 200px"
+                 src="{{ petition.twitter_image }}"
+                 alt="{% if petition.title %}{{ petition.title|striptags }}{% else %}Petition image{% endif %}"
+                 width="400"
+                 height="200"
+                 loading="lazy">
           {% endif %}
         </a>
         <div class="card-body">
@@ -28,16 +33,31 @@
               <a href="{% url "org:profile" orgslugname=owner.slugname %}"
                  class="text-muted">{{ owner }}</a>
             {% elif owner.kind == "user" %}
-              {# It could be of another kind in the future. #}
               <a href="{% url "accounts:public_profile" user_name=owner.username %}"
                  class="text-muted">{{ owner }}</a>
             {% endif %}
           {% endwith %}
-          <h4 class="card-title">
-            <a href="{{ petition.url }}">{{ petition.title|striptags  }}</a>
-          </h4>
+          <h5 class="card-title mt-2">
+            <a href="{{ petition.url }}" class="stretched-link">{{ petition.title|striptags }}</a>
+          </h5>
           {% if petition.twitter_description %}<p class="card-text">{{ petition.twitter_description|safe }}</p>{% endif %}
-          <a href="{{ petition.url }}" class="btn btn-secondary btn-sm">{% trans "Sign!" %}</a>
+          {# === Progression signatures / objectif === #}
+          {% if petition.target %}
+            {% if petition.target > 0 %}
+              {% widthratio petition.signature_number petition.target 100 as pct_raw %}
+            {% endif %}
+            <div class="progress mt-2"
+                 role="progressbar"
+                 aria-valuenow="{{ petition.signature_number }}"
+                 aria-valuemin="0"
+                 aria-valuemax="{{ petition.target }}">
+              <div class="progress-bar {% if petition.signature_number >= petition.target %}bg-success{% else %}bg-primary{% endif %}"
+                   style="width: min({% if petition.target and petition.target > 0 %}{{ pct_raw }}%{% else %}100%{% endif %}, 100%)">
+                {{ petition.signature_number }} / {{ petition.target }}
+              </div>
+            </div>
+          {% endif %}
+          <a href="{{ petition.url }}" class="btn btn-secondary btn-sm mt-3">{% trans "Sign!" %}</a>
         </div>
         <div class="card-footer">
           <small class="text-muted">
@@ -50,23 +70,18 @@
         </div>
       </div>
     </div>
-    {% if forloop.counter|divisibleby:3 or forloop.last %}
-    </div>
-    <div class="row petition-list-row">
-    {% endif %}
   {% empty %}
-    <i>
-      {{ no_petitions_text|safe }}
-    </i>
+    <i>{{ no_petitions_text|safe }}</i>
   {% endfor %}
 </div>
 {% if petitions.has_other_pages %}
-  <div>
+  <nav aria-label="{% trans "Pagination" %}" class="my-4">
     <ul class="pagination justify-content-center">
       {% if petitions.has_previous %}
         <li class="page-item">
           <a class="page-link"
-             href="?page={{ petitions.previous_page_number }}&sort={{ sort }}">«</a>
+             href="?page={{ petitions.previous_page_number }}&sort={{ sort }}"
+             aria-label="{% trans "Previous" %}">«</a>
         </li>
       {% else %}
         <li class="page-item disabled">
@@ -75,8 +90,8 @@
       {% endif %}
       {% for i in petitions.paginator.page_range %}
         {% if petitions.number == i %}
-          <li class="page-item active">
-            <span class="page-link">{{ i }} <span class="visually-hidden">(current)</span></span>
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">{{ i }} <span class="visually-hidden">{% trans "current" %}</span></span>
           </li>
         {% else %}
           <li class="page-item">
@@ -87,14 +102,15 @@
       {% if petitions.has_next %}
         <li class="page-item">
           <a class="page-link"
-             href="?page={{ petitions.next_page_number }}&sort={{ sort }}">»</a>
+             href="?page={{ petitions.next_page_number }}&sort={{ sort }}"
+             aria-label="{% trans "Next" %}">»</a>
         </li>
       {% else %}
         <li class="page-item disabled">
-          <span class="page-link">»</span>
+          <span class="page-link" aria-hidden="true">»</span>
         </li>
       {% endif %}
     </ul>
-  </div>
+  </nav>
 {% endif %}
 {% comment %} BS5-DONE {% endcomment %}

@@ -1,11 +1,11 @@
-{% extends "layouts/dashboard_layout.html" %}
+{% extends "layouts/dashboard_layout_bs5.html" %}
 {% load i18n %}
 {% load static %}
 {% block extra_css %}
   <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
 {% endblock extra_css %}
 {% block nav %}
-  {% include "layouts/nav_dashboard.html" with username=org.name slug=org.slugname sitename=settings.SITE_NAME is_org="true" %}
+  {% include "layouts/nav_dashboard_bs5.html" with username=org.name slug=org.slugname sitename=settings.SITE_NAME is_org="true" %}
 {% endblock nav %}
 {% block main_content %}
   <div class="dashboard">
@@ -21,9 +21,9 @@
                  href="{% url "petitions:new" %}?org={{ org.slugname }}">{% trans "New petition" %}</a>
             </div>
           </div>
-          {% include "org/member_list.html" with org=org user_permissions=user_permissions %}
-          {% include "org/invite_user.html" with org=org %}
-          {% include "accounts/invitations.html" with user=user %}
+          {% include "org/member_list_bs5.html" with org=org user_permissions=user_permissions %}
+          {% include "org/invite_user_bs5.html" with org=org %}
+          {% include "accounts/invitations_bs5.html" with user=user %}
           <div class="dashboard-nav-item py-3">
             <div class="d-flex justify-content-between align-items-center flex-wrap">
               <h4>
@@ -35,13 +35,13 @@
                  title="{% trans "Create a new petition template" %}">{% trans "New template" %}</a>
             </div>
             {% if org.petitiontemplate_set.all %}
-              {% include "presets/list.html" with templates=org.petitiontemplate_set.all owner=org %}
+              {% include "presets/list_bs5.html" with templates=org.petitiontemplate_set.all owner=org %}
             {% endif %}
           </div>
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6 col-12 bg-light dashboard-content border-start">
           {% if messages %}
-            {% include "ui/components/alert.html" %}
+            {% include "ui/components/alert_bs5.html" %}
           {% endif %}
           {% block content %}
           {% endblock content %}

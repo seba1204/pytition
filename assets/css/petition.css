@@ -21,7 +21,7 @@ p.lead {
 }
 
 nav.navbar {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 @media screen and (min-width:768px) {
@@ -45,6 +45,7 @@ nav.navbar {
     position: relative;
     margin-bottom: 2em;
 }
+
 .presentation img {
     max-width: 100%;
     object-fit: scale-down
@@ -244,6 +245,7 @@ a.share-item:hover {
 .more .more-content {
     display: none
 }
+
 .invalid-feedback {
     font-weight: bold;
     color: red;

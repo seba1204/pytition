@@ -12,10 +12,8 @@
 {% endblock media %}
 {% block extra_css %}
   {{ block.super }}
-  <style>
-    .custom-switch ~ .invalid-feedback {
-        display: block;
-    }
+  <style>.ratio iframe { width: 100%; height: 100%; border: 0; };
+    .bi .bi-cloud-upload { font-size: 3rem; }
   </style>
 {% endblock extra_css %}
 {% comment %}
@@ -29,56 +27,57 @@
     <div data-petition-id="{{ petition.id }}"
          data-petition-unpublish="{% url "petitions:unpublish" petition.id %}"
          data-petition-publish="{% url "petitions:publish" petition.id %}"
-         class="petition-publish-switch mb-4 custom-control custom-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}"
+         class="petition-publish-switch mb-4 {% if not petition.published %} text-muted {% else %} text-success {% endif %}"
          data-action="publish">
-      <input type="checkbox"
-             class="custom-control-input"
-             name="petition_published_{{ petition.id }}"
-             id="petition_published_{{ petition.id }}"
-             {% if petition.published %}checked{% endif %}>
-      <label class="custom-control-label"
-             for="petition_published_{{ petition.id }}">
-        {% if not petition.published %}
-          {% trans "Not published" %}
-        {% else %}
-          {% trans "Published" %}
-        {% endif %}
-      </label>
+      <div class="form-check form-switch">
+        <input type="checkbox"
+               class="form-check-input"
+               name="petition_published_{{ petition.id }}"
+               id="petition_published_{{ petition.id }}"
+               {% if petition.published %}checked{% endif %}>
+        <label class="form-check-label" for="petition_published_{{ petition.id }}">
+          {% if not petition.published %}
+            {% trans "Not published" %}
+          {% else %}
+            {% trans "Published" %}
+          {% endif %}
+        </label>
+      </div>
     </div>
   {% endif %}
   <div class="list-group list-group-horizontal mb-5"
        id="list-tab"
        role="tablist">
     <a href="#content_form"
-       class="list-group-item list-group-item-info list-group-item-action active"
+       class="list-group-item list-group-item-action active"
        data-bs-toggle="list"
        aria-controls="content_form"
-       role="tab"><span class="bi bi-clipboard" aria-current="true"></span> {% trans "Content" %}</a>
+       role="tab"><i class="bi bi-clipboard" aria-hidden="true"></i> {% trans "Content" %}</a>
     <a href="#style_form"
-       class="list-group-item list-group-item-info list-group-item-action"
+       class="list-group-item list-group-item-action"
        data-bs-toggle="list"
        aria-controls="style_form"
-       role="tab"><span class="bi bi-brush"></span> {% trans "Style & Look" %}</a>
+       role="tab"><i class="bi bi-brush" aria-hidden="true"></i> {% trans "Style & Look" %}</a>
     <a href="#social_network_form"
-       class="list-group-item list-group-item-info list-group-item-action"
+       class="list-group-item list-group-item-action"
        data-bs-toggle="list"
        aria-controls="social_network_form"
-       role="tab"><span class="bi bi-share"></span> {% trans "Social Networks" %}</a>
+       role="tab"><i class="bi bi-share" aria-hidden="true"></i> {% trans "Social Networks" %}</a>
     <a href="#email_form"
-       class="list-group-item list-group-item-info list-group-item-action"
+       class="list-group-item list-group-item-action"
        data-bs-toggle="list"
        aria-controls="email_form"
-       role="tab"><span class="bi bi-envelope"></span> {% trans "E-mail setup" %}</a>
+       role="tab"><i class="bi bi-envelope" aria-hidden="true"></i> {% trans "E-mail setup" %}</a>
     <a href="#newsletter_form"
-       class="list-group-item list-group-item-info list-group-item-action"
+       class="list-group-item list-group-item-action"
        data-bs-toggle="list"
        aria-controls="newsletter_form"
-       role="tab"><span class="bi bi-rss"></span> {% trans "Newsletter setup" %}</a>
+       role="tab"><i class="bi bi-rss" aria-hidden="true"></i> {% trans "Newsletter setup" %}</a>
     <a href="#preview"
-       class="list-group-item list-group-item-info list-group-item-action"
+       class="list-group-item list-group-item-action"
        data-bs-toggle="list"
        aria-controls="preview"
-       role="tab"><span class="bi bi-clipboard"></span> {% trans "Preview petition" %}</a>
+       role="tab"><i class="bi bi-clipboard" aria-hidden="true"></i> {% trans "Preview petition" %}</a>
   </div>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active"
@@ -87,7 +86,7 @@
          aria-labelledby="list-content-form-list">
       <form method="post" id="form_content">
         {% csrf_token %}
-        {% include "ui/forms/bs4.html" with form=content_form %}
+        {% include "ui/forms/bs4_bs5.html" with form=content_form %}
         <button name="content_form_submitted"
                 class="btn btn-primary"
                 value="yes"
@@ -100,160 +99,148 @@
          aria-labelledby="list-social-network-form-list">
       <form method="post" id="form_sn" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_twitter_description"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Twitter description" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
             <input type="text"
                    name="twitter_description"
                    maxlength="200"
-                   class="is-valid form-control"
+                   class="form-control"
                    id="id_twitter_description"
                    {% if petition.twitter_description %}value="{{ petition.twitter_description }}"{% endif %}>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_org_twitter_handle"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Organization Twitter handle" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
             <input type="text"
                    name="org_twitter_handle"
                    maxlength="20"
-                   class="is-valid form-control"
+                   class="form-control"
                    id="id_org_twitter_handle"
                    {% if petition.org_twitter_handle %}value="{{ petition.org_twitter_handle }}"{% endif %}>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_has_email_share_button"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable email share button?" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
-            <div class="custom-control custom-switch">
+            <div class="form-check form-switch">
               <input type="checkbox"
                      name="has_email_share_button"
-                     class="is-valid custom-control-input"
+                     class="form-check-input"
                      id="id_has_email_share_button"
                      {% if petition.has_email_share_button %}checked{% endif %}>
-              <label class="custom-control-label" for="id_has_email_share_button">{% trans "Enable email share button?" %}</label>
+              <label class="form-check-label" for="id_has_email_share_button">{% trans "Enable email share button?" %}</label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_has_facebook_share_button"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Facebook share button?" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
-            <div class="custom-control custom-switch">
+            <div class="form-check form-switch">
               <input type="checkbox"
                      name="has_facebook_share_button"
-                     class="is-valid custom-control-input"
+                     class="form-check-input"
                      id="id_has_facebook_share_button"
                      {% if petition.has_facebook_share_button %}checked{% endif %}>
-              <label class="custom-control-label" for="id_has_facebook_share_button">
-                {% trans "Enable Facebook share button?" %}
-              </label>
+              <label class="form-check-label" for="id_has_facebook_share_button">{% trans "Enable Facebook share button?" %}</label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_has_tumblr_share_button"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Tumblr share button?" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
-            <div class="custom-control custom-switch">
+            <div class="form-check form-switch">
               <input type="checkbox"
                      name="has_tumblr_share_button"
-                     class="is-valid custom-control-input"
+                     class="form-check-input"
                      id="id_has_tumblr_share_button"
                      {% if petition.has_tumblr_share_button %}checked{% endif %}>
-              <label class="custom-control-label" for="id_has_tumblr_share_button">{% trans "Enable Tumblr share button?" %}</label>
+              <label class="form-check-label" for="id_has_tumblr_share_button">{% trans "Enable Tumblr share button?" %}</label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_has_linkedin_share_button"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable LinkedIn share button?" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
-            <div class="custom-control custom-switch">
+            <div class="form-check form-switch">
               <input type="checkbox"
                      name="has_linkedin_share_button"
-                     class="is-valid custom-control-input"
+                     class="form-check-input"
                      id="id_has_linkedin_share_button"
                      {% if petition.has_linkedin_share_button %}checked{% endif %}>
-              <label class="custom-control-label" for="id_has_linkedin_share_button">
-                {% trans "Enable LinkedIn share button?" %}
-              </label>
+              <label class="form-check-label" for="id_has_linkedin_share_button">{% trans "Enable LinkedIn share button?" %}</label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_has_twitter_share_button"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Twitter share button?" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
-            <div class="custom-control custom-switch">
+            <div class="form-check form-switch">
               <input type="checkbox"
                      name="has_twitter_share_button"
-                     class="is-valid custom-control-input"
+                     class="form-check-input"
                      id="id_has_twitter_share_button"
                      {% if petition.has_twitter_share_button %}checked{% endif %}>
-              <label class="custom-control-label" for="id_has_twitter_share_button">
-                {% trans "Enable Twitter share button?" %}
-              </label>
+              <label class="form-check-label" for="id_has_twitter_share_button">{% trans "Enable Twitter share button?" %}</label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_has_mastodon_share_button"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Mastodon share button?" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
-            <div class="custom-control custom-switch">
+            <div class="form-check form-switch">
               <input type="checkbox"
                      name="has_mastodon_share_button"
-                     class="is-valid custom-control-input"
+                     class="form-check-input"
                      id="id_has_mastodon_share_button"
                      {% if petition.has_mastodon_share_button %}checked{% endif %}>
-              <label class="custom-control-label" for="id_has_mastodon_share_button">
-                {% trans "Enable Mastodon share button?" %}
-              </label>
+              <label class="form-check-label" for="id_has_mastodon_share_button">{% trans "Enable Mastodon share button?" %}</label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="id_has_whatsapp_share_button"
                  class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Enable Whatsapp share button?" %}</label>
           <div class="col-sm-12 col-md-9 col-lg-10">
-            <div class="custom-control custom-switch">
+            <div class="form-check form-switch">
               <input type="checkbox"
                      name="has_whatsapp_share_button"
-                     class="is-valid custom-control-input"
+                     class="form-check-input"
                      id="id_has_whatsapp_share_button"
                      {% if petition.has_whatsapp_share_button %}checked{% endif %}>
-              <label class="custom-control-label" for="id_has_whatsapp_share_button">
-                {% trans "Enable Whatsapp share button?" %}
-              </label>
+              <label class="form-check-label" for="id_has_whatsapp_share_button">{% trans "Enable Whatsapp share button?" %}</label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
-          <div class="input-group">
-            <input type="checkbox"
-                   name="remove_twitter_image"
-                   id="remove_twitter_image"
-                   hidden>
-            <label for="inputGroupFileAddon01"
-                   class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Twitter image" %}</label>
-            <div class="input-group-prepend">
-              <a class="input-group-text" id="inputGroupFileAddon01">{% trans "Upload" %}</a>
-            </div>
-            <div class="custom-file">
+        <div class="row mb-3">
+          <label for="id_twitter_image"
+                 class="col-sm-12 col-md-3 col-lg-2 col-form-label">{% trans "Twitter image" %}</label>
+          <div class="col-sm-12 col-md-9 col-lg-10">
+            <div class="input-group">
+              <input type="checkbox"
+                     name="remove_twitter_image"
+                     id="remove_twitter_image"
+                     hidden>
+              <label class="input-group-text" for="id_twitter_image">{% trans "Upload" %}</label>
               <input type="file"
-                     class="custom-file-input"
+                     class="form-control"
                      id="id_twitter_image"
-                     aria-describedby="inputGroupFileAddon01"
-                     name="twitter_image">
-              <label class="custom-file-label" for="id_twitter_image">{% trans "Choose file" %}</label>
+                     name="twitter_image"
+                     aria-describedby="inputGroupFileAddon01">
             </div>
+            <div class="form-text">{% trans "Choose an image for social sharing cards." %}</div>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="row mb-3">
           <label for="img_preview" class="col-sm-12 col-md-3 col-lg-2 col-form-label"></label>
           <div class="col-sm-12 col-md-9 col-lg-10">
             <div class="card"
@@ -267,21 +254,17 @@
                     <img class="img-thumbnail img-fluid"
                          alt="uploaded image preview"
                          src="{{ petition.twitter_image }}"
-                         max-width="200"
-                         max-height="200"
+                         width="200"
+                         height="200"
                          id="img_preview" />
                   {% else %}
-                    <img class="img-thumbnail img-fluid"
-                         alt="cloud clipart"
-                         src="{% vendor_static "open-iconic" "_zip/open-iconic-1.1.1/png/cloud-upload-8x.png" %}"
-                         max-width="200"
-                         max-height="200"
-                         id="img_preview" />
+                    <i class="bi bi-cloud-upload" aria-hidden="true"></i>
+                    <span class="visually-hidden">{% trans "Upload placeholder" %}</span>
                   {% endif %}
                 </div>
                 <br />
                 <button type="button" class="btn btn-danger" id="twitter_img_remove_btn">
-                  <span class="bi bi-trash">{% trans "Remove image" %}</span>
+                  <i class="bi bi-trash" aria-hidden="true"></i> {% trans "Remove image" %}
                 </button>
               </div>
             </div>
@@ -299,16 +282,14 @@
             containing a meaningful small title instead of a number.
             With a permalink your petition can be accessible via a link like:
           {% endblocktrans %}
-          <b>
-            {{ example_url }}
-          </b>
+          <b>{{ example_url }}</b>
         </div>
         <form action="{% url "petitions:slug:add" petition.id %}"
               method="post"
-              class="d-flex">
+              class="row row-cols-lg-auto g-2 align-items-center">
           {% csrf_token %}
           <table class="table table-striped" id="slugTable">
-            <thead class="thead-light">
+            <thead class="table-light">
               <tr>
                 <th>{% trans "Permalinks" %}</th>
                 <th>{% trans "Actions" %}</th>
@@ -332,8 +313,8 @@
           </table>
         </form>
       </p>
-      <button class="btn btn-success" id="addSlug">
-        <span class="bi bi-plus"></span>
+      <button class="btn btn-success" id="addSlug" type="button">
+        <i class="bi bi-plus" aria-hidden="true"></i>
       </button>
     </div>
     <div class="tab-pane fade"
@@ -342,7 +323,7 @@
          aria-labelledby="style-form-list">
       <form method="post" id="form_style">
         {% csrf_token %}
-        {% include "ui/forms/bs4.html" with form=style_form %}
+        {% include "ui/forms/bs4_bs5.html" with form=style_form %}
         <button name="style_form_submitted"
                 class="btn btn-primary"
                 value="yes"
@@ -355,7 +336,7 @@
          aria-labelledby="list-email-form-list">
       <form method="post" id="form_email">
         {% csrf_token %}
-        {% include "ui/forms/bs4.html" with form=email_form %}
+        {% include "ui/forms/bs4_bs5.html" with form=email_form %}
         <button name="email_form_submitted"
                 class="btn btn-primary"
                 value="yes"
@@ -368,7 +349,7 @@
          aria-labelledby="list-newsletter-form-list">
       <form method="post" id="form_newsletter">
         {% csrf_token %}
-        {% include "ui/forms/bs4.html" with form=newsletter_form %}
+        {% include "ui/forms/bs4_bs5.html" with form=newsletter_form %}
         <button name="newsletter_form_submitted"
                 class="btn btn-primary"
                 value="yes"
@@ -395,262 +376,236 @@
 {% endblock edit_content %}
 {% block extra_js %}
   {{ block.super }}
-  <script src="{% static "vendor/bs-custom-file-input-1.3.4/bs-custom-file-input.min.js" %}"></script>
   <script>
 function readURL(input) {
   if (input.files && input.files[0]) {
     const reader = new FileReader();
     reader.onload = function(e) {
-      $('#img_preview').prop('src', e.target.result);
+      document.getElementById('img_preview').setAttribute('src', e.target.result);
     };
     reader.readAsDataURL(input.files[0]);
   }
 }
 
-$(function () {
-  $('#twitter_img_remove_btn').on('click', function () { /* reset input and remove preview when clicked delete button */
-    const id = $('#id_twitter_image').attr('id');
-    const label = $('label[for="' + id + '"]');
-    $('#remove_twitter_image').prop('checked', true);
-    $('#twitter_img_card').prop('hidden', true);
-    label.text("{% trans "Choose file" %}");
-  });
+document.addEventListener('DOMContentLoaded', function () {
+  // Remove image
+  const removeBtn = document.getElementById('twitter_img_remove_btn');
+  if (removeBtn) {
+    removeBtn.addEventListener('click', function () {
+      const id = 'id_twitter_image';
+      const input = document.getElementById(id);
+      const label = document.querySelector('label[for="' + id + '"]');
+      document.getElementById('remove_twitter_image').checked = true;
+      document.getElementById('twitter_img_card').hidden = true;
+      if (label) label.textContent = "{% trans "Upload" %}";
+      if (input) input.value = '';
+    });
+  }
 
-  $('#id_twitter_image').on('change', function () { /* update image preview when file input changed */
-    readURL(this);
-    $('#twitter_img_card').prop('hidden', false);
-    $('#remove_twitter_image').prop('checked', false);
-  });
-});
+  const fileInput = document.getElementById('id_twitter_image');
+  if (fileInput) {
+    fileInput.addEventListener('change', function () {
+      readURL(this);
+      document.getElementById('twitter_img_card').hidden = false;
+      document.getElementById('remove_twitter_image').checked = false;
+    });
+  }
 
-$(document).ready(function () { /* init bootstrap custom input */
-  bsCustomFileInput.init();
-});
-
-$(function () {
-  $('a[data-bs-toggle="list"]').on('shown.bs.tab', function (e) {
-    const paneID = $(e.target).attr('href');
-    const src = $(paneID).attr('data-src');
-    const formcontent = $('#form_content');
-    const formstyle = $('#form_style');
-    const formemail = $('#form_email');
-    const formsn = $('#form_sn');
-    const formnewsletter = $('#form_newsletter');
-
-    if (paneID === '#preview' && $(paneID + ' div iframe').attr('src') === '') {
-      $(paneID + ' div iframe').attr('src', src);
-    }
-
-    if ((formcontent.serialize() !== formcontent.data('serialize')) || formcontent.data('mce_changed')) {
-      $('a[href="#content_form"]').html(`
-        <div class="d-flex">
-          <span class="bi bi-clipboard"></span>
-          <span>&nbsp;</span>
-          <div class="d-flex flex-column">
-            <div>* <i>{% trans "Content" %}</i></div>
-            <div>&nbsp; ({% trans "unsaved" %})</div>
-          </div>
-        </div>
-      `);
-    } else {
-      $('a[href="#content_form"]').html('<span class="bi bi-clipboard"></span> {% trans "Content" %}');
-    }
-
-    if (formstyle.serialize() !== formstyle.data('serialize')) {
-      $('a[href="#style_form"]').html(`
-        <div class="d-flex">
-          <span class="bi bi-brush"></span>
-          <span>&nbsp;</span>
-          <div class="d-flex flex-column">
-            <div>* <i>{% trans "Style & Look" %}</i></div>
-            <div>&nbsp; ({% trans "unsaved" %})</div>
-          </div>
-        </div>
-      `);
-    } else {
-      $('a[href="#style_form"]').html('<span class="bi bi-brush"></span> {% trans "Style & Look" %}');
-    }
-
-    if (formemail.serialize() !== formemail.data('serialize')) {
-      $('a[href="#email_form"]').html(`
-        <div class="d-flex">
-          <span class="bi bi-envelope"></span>
-          <span>&nbsp;</span>
-          <div class="d-flex flex-column">
-            <div>* <i>{% trans "E-mail setup" %}</i></div>
-            <div>&nbsp; ({% trans "unsaved" %})</div>
-          </div>
-        </div>
-      `);
-    } else {
-      $('a[href="#email_form"]').html('<span class="bi bi-envelope"></span> {% trans "E-mail setup" %}');
-    }
-
-    if (formsn.serialize() !== formsn.data('serialize')) {
-      $('a[href="#social_network_form"]').html(`
-        <div class="d-flex">
-          <span class="bi bi-share"></span>
-          <span>&nbsp;</span>
-          <div class="d-flex flex-column">
-            <div>* <i>{% trans "Social Networks" %}</i></div>
-            <div>&nbsp; ({% trans "unsaved" %})</div>
-          </div>
-        </div>
-      `);
-    } else {
-      $('a[href="#social_network_form"]').html('<span class="bi bi-share"></span> {% trans "Social Networks" %}');
-    }
-
-    if (formnewsletter.serialize() !== formnewsletter.data('serialize')) {
-      $('a[href="#newsletter_form"]').html(`
-        <div class="d-flex">
-          <span class="bi bi-rss"></span>
-          <span>&nbsp;</span>
-          <div class="d-flex flex-column">
-            <div>* <i>{% trans "Newsletter setup" %}</i></div>
-            <div>&nbsp; ({% trans "unsaved" %})</div>
-          </div>
-        </div>
-      `);
-    } else {
-      $('a[href="#newsletter_form"]').html('<span class="bi bi-rss"></span> {% trans "Newsletter setup" %}');
-    }
-  });
-});
-
-/* remove the green validation class on the switches */
-$(function (){
-  $('.custom-switch input[type="checkbox"]').removeClass('is-valid');
-});
-
-function hide_others_than(elem, do_hide) {
-  const parent_form_group = elem.closest('.form-group');
-  const all_form_groups = parent_form_group.siblings('.form-group');
-  const all_except_this = all_form_groups.not(parent_form_group);
-  if (do_hide) { all_except_this.hide(); }
-  else { all_except_this.show(); }
-}
-
-$(function () {
-  const newsletter_box = $('#id_has_newsletter');
-  if (!newsletter_box.is(':checked')) hide_others_than(newsletter_box, true);
-});
-
-{% if not petition.paper_signatures_enabled %}
-$(function () {
-  const paper_signatures = $('#id_paper_signatures').parent().parent().hide();
-});
-{% endif %}
-
-$(function () {
-  $('#id_has_newsletter').on('change', function () {
-    const box = $(this);
-    const checked = box.prop('checked');
-    hide_others_than(box, !checked);
-  });
-});
-
-/* Direct link to a tab */
-$(function () {
-  const hash = document.location.hash;
   const prefix = 'tab_';
+  const hash = document.location.hash;
   if (hash) {
-    $('.list-group a[href="' + hash.replace(prefix, '') + '"]').tab('show');
-  }
-  $('.list-group a').on('shown.bs.tab', function (e) {
-    window.location.hash = e.target.hash.replace('#', '#' + prefix);
-  });
-});
-
-/* Display the tab containing the first invalid field */
-$(function () {
-  const pane_id = $('input.is-invalid').closest('.tab-pane').attr('id');
-  if (pane_id) {
-    $('.list-group a[href="#' + pane_id + '"]').tab('show');
-  }
-});
-
-let new_slugs_num = 0;
-
-$(function () {
-  $('#addSlug').on('click', function () {
-    const slugTable = $('#slugTable');
-    new_slugs_num++;
-    $('#addSlugTd').prop('rowspan', new_slugs_num);
-
-    let newform = `
-      <tr class="bg-light">
-        <td>
-          <div class="form-group d-flex">
-            <label class="me-1" for="sluginputfield">{{ slug_prefix }}/ </label>
-            <input type="text" name="slugtext" class="form-control flex-grow-1" id="sluginputfield" required="required">
-          </div>
-        </td>`;
-    if (new_slugs_num === 1) {
-      newform += `
-        <td rowspan="${new_slugs_num}" id="addSlugTd">
-          <input type="submit" class="btn btn-success" value="{% trans "OK" %}">
-        </td>`;
+    const target = document.querySelector('.list-group a[href="' + hash.replace(prefix, '') + '"]');
+    if (target) {
+      const tabObj = new bootstrap.Tab(target);
+      tabObj.show();
     }
-    newform += '</tr>';
-    slugTable.find('tbody').append(newform);
-  });
-});
-
-$(function () {
-  $('input[data-action="slugDelete"]').on('click', function () {
-    const slugId = $(this).closest('td[data-slugid]').data('slugid');
-    window.location = "{% url "petitions:slug:delete" petition.id %}" + "?slugid=" + slugId;
-  });
-});
-
-$(function () {
-  const formcontent = $('#form_content');
-  const formstyle = $('#form_style');
-  const formemail = $('#form_email');
-  const formsn = $('#form_sn');
-  const formnewsletter = $('#form_newsletter');
-
-  formsn.data('serialize', formsn.serialize());
-  formcontent.data('serialize', formcontent.serialize());
-  formstyle.data('serialize', formstyle.serialize());
-  formnewsletter.data('serialize', formnewsletter.serialize());
-  formemail.data('serialize', formemail.serialize());
-});
-
-function formHasChanged() {
-  const formcontent = $('#form_content');
-  const formstyle = $('#form_style');
-  const formemail = $('#form_email');
-  const formsn = $('#form_sn');
-  const formnewsletter = $('#form_newsletter');
-  const content_tab_changed = (formcontent.serialize() !== formcontent.data('serialize'))
-                               || formcontent.data('mce_changed');
-
-  return (formsn.serialize() !== formsn.data('serialize') && !formsn.data('submitted'))
-      || (content_tab_changed && !formcontent.data('submitted'))
-      || (formstyle.serialize() !== formstyle.data('serialize') && !formstyle.data('submitted'))
-      || (formemail.serialize() !== formemail.data('serialize') && !formemail.data('submitted'))
-      || (formnewsletter.serialize() !== formnewsletter.data('serialize') && !formnewsletter.data('submitted'));
-}
-
-$('form').on('submit', function () {
-  $(this).data('submitted', true);
-});
-
-$(window).on('beforeunload', function () {
-  if (formHasChanged()) {
-    return 'You have un-saved modifications in the petition, are you sure you want to leave this page? You would lose your changes.';
   }
+
+  document.querySelectorAll('.list-group a[data-bs-toggle="list"]').forEach(function (el) {
+    el.addEventListener('shown.bs.tab', function (e) {
+      const paneID = e.target.getAttribute('href');
+      const pane = document.querySelector(paneID);
+      const src = pane ? pane.getAttribute('data-src') : null;
+
+      const formcontent = document.getElementById('form_content');
+      const formstyle = document.getElementById('form_style');
+      const formemail = document.getElementById('form_email');
+      const formsn = document.getElementById('form_sn');
+      const formnewsletter = document.getElementById('form_newsletter');
+
+      if (paneID === '#preview' && pane && pane.querySelector('iframe').getAttribute('src') === '') {
+        pane.querySelector('iframe').setAttribute('src', src);
+      }
+
+      function setUnsaved(tabSelector, labelHtml) {
+        const link = document.querySelector('a[href="' + tabSelector + '"]');
+        if (link) link.innerHTML = labelHtml;
+      }
+      function setSaved(tabSelector, html) {
+        const link = document.querySelector('a[href="' + tabSelector + '"]');
+        if (link) link.innerHTML = html;
+      }
+
+      const contentTabChanged = (new URLSearchParams(new FormData(formcontent)).toString() !== formcontent.dataset.serialize) || formcontent.dataset.mce_changed === 'true';
+      if (contentTabChanged) {
+        setUnsaved('#content_form', `
+          <div class="d-flex">
+            <i class="bi bi-clipboard"></i><span class="ms-1"></span>
+            <div class="d-flex flex-column">
+              <div>* <i>{% trans "Content" %}</i></div>
+              <div>&nbsp; ({% trans "unsaved" %})</div>
+            </div>
+          </div>`);
+      } else {
+        setSaved('#content_form', '<i class="bi bi-clipboard" aria-hidden="true"></i> {% trans "Content" %}');
+      }
+
+      function isChanged(formId) {
+        const f = document.getElementById(formId);
+        return (new URLSearchParams(new FormData(f)).toString() !== f.dataset.serialize) && f.dataset.submitted !== 'true';
+      }
+
+      if (isChanged('form_style')) {
+        setUnsaved('#style_form', `
+          <div class="d-flex">
+            <i class="bi bi-brush"></i><span class="ms-1"></span>
+            <div class="d-flex flex-column">
+              <div>* <i>{% trans "Style & Look" %}</i></div>
+              <div>&nbsp; ({% trans "unsaved" %})</div>
+            </div>
+          </div>`);
+      } else {
+        setSaved('#style_form', '<i class="bi bi-brush" aria-hidden="true"></i> {% trans "Style & Look" %}');
+      }
+
+      if (isChanged('form_email')) {
+        setUnsaved('#email_form', `
+          <div class="d-flex">
+            <i class="bi bi-envelope"></i><span class="ms-1"></span>
+            <div class="d-flex flex-column">
+              <div>* <i>{% trans "E-mail setup" %}</i></div>
+              <div>&nbsp; ({% trans "unsaved" %})</div>
+            </div>
+          </div>`);
+      } else {
+        setSaved('#email_form', '<i class="bi bi-envelope" aria-hidden="true"></i> {% trans "E-mail setup" %}');
+      }
+
+      if (isChanged('form_sn')) {
+        setUnsaved('#social_network_form', `
+          <div class="d-flex">
+            <i class="bi bi-share"></i><span class="ms-1"></span>
+            <div class="d-flex flex-column">
+              <div>* <i>{% trans "Social Networks" %}</i></div>
+              <div>&nbsp; ({% trans "unsaved" %})</div>
+            </div>
+          </div>`);
+      } else {
+        setSaved('#social_network_form', '<i class="bi bi-share" aria-hidden="true"></i> {% trans "Social Networks" %}');
+      }
+
+      if (isChanged('form_newsletter')) {
+        setUnsaved('#newsletter_form', `
+          <div class="d-flex">
+            <i class="bi bi-rss"></i><span class="ms-1"></span>
+            <div class="d-flex flex-column">
+              <div>* <i>{% trans "Newsletter setup" %}</i></div>
+              <div>&nbsp; ({% trans "unsaved" %})</div>
+            </div>
+          </div>`);
+      } else {
+        setSaved('#newsletter_form', '<i class="bi bi-rss" aria-hidden="true"></i> {% trans "Newsletter setup" %}');
+      }
+    });
+  });
+
+  document.querySelectorAll('.form-switch .form-check-input').forEach(function (el) {
+    el.classList.remove('is-valid');
+  });
+
+  function setSerialize(id) {
+    const f = document.getElementById(id);
+    if (!f) return;
+    f.dataset.serialize = new URLSearchParams(new FormData(f)).toString();
+  }
+  ['form_content', 'form_style', 'form_email', 'form_sn', 'form_newsletter'].forEach(setSerialize);
+
+  function hide_others_than(elem, do_hide) {
+    const parent = elem.closest('.row');
+    const all = parent.parentElement.querySelectorAll('.row');
+    all.forEach(function (r) { if (r !== parent) { r.style.display = do_hide ? 'none' : ''; } });
+  }
+
+  const newsletterBox = document.getElementById('id_has_newsletter');
+  if (newsletterBox && !newsletterBox.checked) hide_others_than(newsletterBox, true);
+
+  {% if not petition.paper_signatures_enabled %}
+  (function () {
+    const paperSign = document.getElementById('id_paper_signatures');
+    if (paperSign) {
+      const row = paperSign.closest('.row');
+      if (row) row.style.display = 'none';
+    }
+  })();
+  {% endif %}
+
+  const box = document.getElementById('id_has_newsletter');
+  if (box) {
+    box.addEventListener('change', function () {
+      hide_others_than(box, !box.checked);
+    });
+  }
+
+  // Direct link to a tab (update hash)
+  document.querySelectorAll('.list-group a').forEach(function (a) {
+    a.addEventListener('shown.bs.tab', function (e) {
+      const prefix = 'tab_';
+      window.location.hash = e.target.hash.replace('#', '#' + prefix);
+    });
+  });
+
+  // Display the tab containing the first invalid field
+  const invalid = document.querySelector('input.is-invalid');
+  if (invalid) {
+    const pane = invalid.closest('.tab-pane');
+    if (pane) {
+      const link = document.querySelector('.list-group a[href="#' + pane.id + '"]');
+      if (link) new bootstrap.Tab(link).show();
+    }
+  }
+
+  document.querySelectorAll('form').forEach(function (f) {
+    f.addEventListener('submit', function () { f.dataset.submitted = 'true'; });
+  });
+
+  function formHasChanged() {
+    const fids = ['form_sn','form_content','form_style','form_email','form_newsletter'];
+    return fids.some(function (id) {
+      const f = document.getElementById(id);
+      if (!f) return false;
+      const changed = (new URLSearchParams(new FormData(f)).toString() !== f.dataset.serialize);
+      const submitted = f.dataset.submitted === 'true';
+      if (id === 'form_content') {
+        const mceChanged = f.dataset.mce_changed === 'true';
+        return (changed || mceChanged) && !submitted;
+      }
+      return changed && !submitted;
+    });
+  }
+
+  window.addEventListener('beforeunload', function (e) {
+    if (formHasChanged()) {
+      e.returnValue = '{% trans "You have un-saved modifications in the petition, are you sure you want to leave this page? You would lose your changes." %}';
+      return e.returnValue;
+    }
+  });
 });
 
 function set_mce_changed(ed) {
-  $(ed.formElement).data('mce_changed', true);
+  ed.formElement.dataset.mce_changed = 'true';
 }
 
-var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
-function get_csrf_token() {
-  return csrftoken;
-}
+var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+function get_csrf_token() { return csrftoken; }
   </script>
 {% endblock extra_js %}
