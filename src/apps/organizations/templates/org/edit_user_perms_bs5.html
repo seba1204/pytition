@@ -1,0 +1,4 @@
+{% extends "org/base.html" %}
+{% block content %}
+    {% include "accounts/edit_permissions.html" with user=user org=org member=member %}
+{% endblock content %}
