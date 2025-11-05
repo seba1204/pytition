@@ -1,3 +1,5 @@
+"""Management command to fetch vendor assets into STATIC_ROOT/vendor."""
+
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -10,9 +12,12 @@ from apps.core.vendors import get_vendor_class, read_vendors_from_pyproject
 
 
 class Command(BaseCommand):
+    """Fetch vendor assets into STATIC_ROOT/vendor."""
+
     help = "Download vendor assets into STATIC_ROOT/vendor based on pyproject.toml"
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Add command line arguments for fetchvendors command."""
         parser.add_argument(
             "vendors", nargs="*", help="Optional list of vendor names to fetch."
         )
@@ -24,6 +29,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Fetch vendor assets into STATIC_ROOT/vendor."""
         opts = dict(opts)  # Ensure opts is a dict
         pyproject = Path(str(opts["pyproject"])).resolve()
         if not pyproject.exists():

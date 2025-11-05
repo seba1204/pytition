@@ -1,3 +1,5 @@
+"""Organization model definition."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
@@ -13,6 +15,8 @@ if TYPE_CHECKING:
 
 
 class Organization(models.Model):
+    """Model representing an organization."""
+
     name = models.CharField(
         max_length=200,
         verbose_name=_lazy("Name"),
@@ -35,6 +39,8 @@ class Organization(models.Model):
     )
 
     class Meta:
+        """Meta information for the Organization model."""
+
         db_table = "petition_organization"
         # Translators: Organization model verbose name (in the admin interface)
         verbose_name = _lazy("Organization")
@@ -79,17 +85,21 @@ class Organization(models.Model):
 
     @property
     def owners(self) -> models.QuerySet:
+        """Return a QuerySet of users who have permission to modify permissions."""
         return self.members.filter(permission__can_modify_permissions=True)
 
     @property
     def kind(self) -> str:
+        """Return the kind of this entity ("org" for organization)."""
         return "org"
 
     @property
     def fullname(self) -> str:
+        """Return the full name of the organization."""
         return self.name
 
     def save(self, *args: Any, **kwargs: Any) -> None:
+        """Override save to automatically generate slugname from name if not set."""
         if not self.slugname:
             self.slugname = slugify(self.name)
         super().save(*args, **kwargs)

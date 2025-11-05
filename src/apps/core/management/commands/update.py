@@ -1,3 +1,5 @@
+"""Management command to update pytition installation from GitHub."""
+
 import os
 import subprocess
 from functools import partial
@@ -9,11 +11,12 @@ from django.core.management.base import BaseCommand
 run = partial(subprocess.run, shell=True, check=True)
 
 
-# FIXME: this is a naive implementation, it should handle more edge cases
+# FIXME: [#82] this is a naive implementation, it should handle more edge cases
 class Command(BaseCommand):
     """Update pytition install."""
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Update pytition installation from GitHub."""
         try:
             git_path = Path(settings.BASE_DIR).parent
             os.chdir(git_path)

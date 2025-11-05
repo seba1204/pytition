@@ -1,3 +1,5 @@
+"""Notification services module."""
+
 from __future__ import annotations
 
 from collections.abc import Mapping
@@ -13,21 +15,20 @@ from django.utils.translation import gettext as _
 
 from apps.signatures.routes import SignatureRoute
 
-# TODO: Implement a real notification app, cf. ticket #21
+# TODO: [#21] Implement a real notification app
 
 
 def send_confirmation_email(request: HttpRequest, signature: Any) -> None:
     """
     Send a confirmation email to a signature's email address.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     request : HttpRequest
         The HTTP request object.
     signature : Any
         The signature object containing petition and signatory details.
     """
-
     petition = signature.petition
     url = request.build_absolute_uri(
         reverse(SignatureRoute.CONFIRM, args=[petition.id, signature.confirmation_hash])
@@ -58,7 +59,6 @@ def send_welcome_mail(user_infos: Mapping[str, Any]) -> None:
     user_infos : Mapping[str, Any]
         Information about the user to include in the email.
     """
-
     html_message = render_to_string("notifications/confirmation_email.html", user_infos)
     message = strip_tags(html_message)
     with get_connection() as connection:

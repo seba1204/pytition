@@ -76,7 +76,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "convert_urls": True,
     "file_picker_types": "image",
     "automatic_uploads": True,
-    "images_upload_url": "/petition/media/upload",  # TODO: make it dynamic
+    "images_upload_url": "/petition/media/upload",  # TODO: [#22] make it dynamic
     "image_upload_credentials": True,
     "images_upload_handler": """function(blobInfo, success, failure) {
         let xhr = new XMLHttpRequest();
@@ -146,3 +146,10 @@ ASSETS_PWA_THEME_COLOR = "#0d6efd"
 ASSETS_PWA_BG_COLOR = "#ffffff"
 ASSETS_PWA_START_URL = "/"
 ASSETS_PWA_DISPLAY = "standalone"
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Documentation i18n setup
+# ──────────────────────────────────────────────────────────────────────────────
+
+SPHINX_LANGUAGE = "en"

@@ -1,17 +1,27 @@
+""""Views for the user dashboard."""
+
 from django.contrib.auth.decorators import login_required
-from django.http import (
-    HttpRequest,
-    HttpResponse,
-)
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from apps.accounts.services import get_session_user
 
 
-# /user/dashboard
 # Dashboard of the logged in user
 @login_required
 def dashboard(request: HttpRequest) -> HttpResponse:
+    """
+    Render the user dashboard with their petitions.
+
+    Parameters
+    ----------
+    request : HttpRequest
+        The current HTTP request.
+    Returns
+    -------
+    HttpResponse
+        The rendered dashboard page.
+    """
     user = get_session_user(request)
     petitions = user.petition_set.all()
 

@@ -28,9 +28,9 @@
   {% else %}
     <meta itemprop="description" content="{{ petition.raw_text|safe }}" />
   {% endif %}
-  <!-- FIXME: <meta itemprop="url" content="" /> //-->
+  <!-- FIXME: [#40] <meta itemprop="url" content="" /> //-->
   <meta name="twitter:card" content="summary" />
-  <!-- FIXME: this should be the creator of the petition. //-->
+  <!-- FIXME: [#40] this should be the creator of the petition. //-->
   <meta name="twitter:creator" content="@yannsionneau" />
   <meta name="twitter:site" content="{{ petition.org_twitter_handle }}" />
   <meta name="twitter:title" content="{{ petition.title }}" />

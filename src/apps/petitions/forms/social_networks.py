@@ -1,3 +1,5 @@
+"""Forms for social network settings of petitions."""
+
 from django import forms
 
 

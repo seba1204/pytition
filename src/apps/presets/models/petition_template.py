@@ -1,3 +1,4 @@
+"""Models for petition templates (presets)."""
 from __future__ import annotations
 
 from typing import Any
@@ -11,6 +12,7 @@ from apps.core.model_refs import ORGANIZATION, PYTITION_USER
 
 
 class PetitionTemplate(models.Model):
+    """A petition template (preset) that can be used to create petitions quickly."""
     NO = "no gradient"
     RIGHT = "to right"
     BOTTOM = "to bottom"
@@ -90,6 +92,7 @@ class PetitionTemplate(models.Model):
     paper_signatures_enabled = models.BooleanField(default=False)
 
     class Meta:
+        """Meta information for PetitionTemplate model."""
         db_table = "petition_petitiontemplate"
         # Translators: Petition template model name in models (admin interface)
         verbose_name = gettext_lazy("Petition template")
@@ -104,12 +107,14 @@ class PetitionTemplate(models.Model):
 
     @property
     def owner_type(self) -> str:
+        """Return the type of owner: 'user' or 'org'."""
         if self.org:
             return "org"
         else:
             return "user"
 
     def save(self, *args: Any, **kwargs: Any) -> None:
+        """Ensure that either user or org is set as owner, but not both."""
         if self.org is None and self.user is None:
             raise Exception("You need to provide a user or org as owner")
         elif self.org is not None and self.user is not None:

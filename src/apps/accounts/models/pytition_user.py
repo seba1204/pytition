@@ -1,3 +1,5 @@
+"""Pytition User model definition."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -13,6 +15,8 @@ if TYPE_CHECKING:
 
 
 class PytitionUser(models.Model):
+    """Model representing a Pytition user."""
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="pytitionuser"
     )
@@ -31,11 +35,14 @@ class PytitionUser(models.Model):
     moderated = models.BooleanField(default=False)
 
     class Meta:
+        """Meta class for PytitionUser model."""
+
         db_table = "petition_pytitionuser"
         verbose_name = gettext_lazy("Pytition User")
         verbose_name_plural = gettext_lazy("Pytition Users")
 
     def drop(self) -> None:
+        """Delete the PytitionUser and associated data."""
         with transaction.atomic():
             orgs = list(self.organization_set.all())
             petitions = list(self.petition_set.all())
@@ -50,31 +57,38 @@ class PytitionUser(models.Model):
                 template.delete()
 
     def moderate(self, do_moderate: bool = True) -> None:
+        """Set the moderation status of the user."""
         self.moderated = do_moderate
         self.save()
 
     @property
     def is_authenticated(self) -> bool:
+        """Check if the user is authenticated."""
         return self.user.is_authenticated
 
     @property
     def name(self) -> str:
+        """Get the name of the user."""
         return self.username
 
     @property
     def username(self) -> str:
+        """Get the username of the user (example : john)."""
         return self.user.username if self.user is not None else ""
 
     @property
     def get_full_name(self) -> str:
+        """Get the full name of the user (example : John Doe)."""
         return self.user.get_full_name()
 
     @property
     def fullname(self) -> str:
+        """Get the full name of the user (example : John Doe)."""
         return self.get_full_name
 
     @property
     def kind(self) -> str:
+        """Get the kind of user (always 'user')."""
         return "user"
 
     def __str__(self) -> str:

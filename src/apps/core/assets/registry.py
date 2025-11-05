@@ -1,3 +1,5 @@
+"""Registry for asset pipeline steps."""
+
 import importlib
 import pkgutil
 from collections.abc import Callable
@@ -12,6 +14,8 @@ _DISCOVERED = False
 def register_step(
     name: str, order: int = 100
 ) -> Callable[[type[PipelineStep]], type[PipelineStep]]:
+    """Decorator to register a pipeline step."""
+
     def _wrap(cls: type[PipelineStep]) -> type[PipelineStep]:
         cls.order = order
         _REGISTRY[name] = cls
@@ -21,6 +25,7 @@ def register_step(
 
 
 def _auto_discover() -> None:
+    """Auto-discover all pipeline steps in this package."""
     global _DISCOVERED  # noqa: PLW0603
     if _DISCOVERED:
         return
@@ -33,5 +38,6 @@ def _auto_discover() -> None:
 
 
 def get_steps() -> list[tuple[str, type[PipelineStep]]]:
+    """Get all registered pipeline steps, auto-discovering them if needed."""
     _auto_discover()
     return sorted(_REGISTRY.items(), key=lambda kv: kv[1].order)

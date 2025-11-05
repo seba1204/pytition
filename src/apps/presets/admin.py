@@ -1,3 +1,5 @@
+"""Admin interface for PetitionTemplate model."""
+
 from typing import Any
 
 from django.contrib import admin
@@ -8,12 +10,16 @@ from apps.presets.models import PetitionTemplate
 
 
 class PetitionTemplateForm(ModelForm):
+    """Form for PetitionTemplate admin interface."""
+
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.fields["user"].required = False
         self.fields["org"].required = False
 
     class Meta:
+        """Meta class for PetitionTemplateForm."""
+
         model = PetitionTemplate
         fields = ["linear_gradient_direction", "side_text"]
         help_texts = {
@@ -201,6 +207,8 @@ class PetitionTemplateForm(ModelForm):
 
 @admin.register(PetitionTemplate)
 class PetitionTemplateAdmin(admin.ModelAdmin):
+    """Admin interface for PetitionTemplate model."""
+
     form = PetitionTemplateForm
     fieldsets = (
         (

@@ -1,21 +1,33 @@
+"""Admin interface for petitions app."""
+
 from typing import Any
 
 from django.contrib import admin
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
 
-from apps.petitions.models import Petition
+from apps.petitions.models import Petition, SlugModel
+
+
+@admin.register(SlugModel)
+class SlugModelAdmin(admin.ModelAdmin):
+    """Admin interface for SlugModel."""
+
+    pass
 
 
 class PetitionAdminForm(ModelForm):
+    """Form for Petition admin interface."""
+
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.fields["user"].required = False
         self.fields["org"].required = False
 
     class Meta:
+        """Meta class for PetitionAdminForm."""
+
         model = Petition
-        # inlines = (SlugInlineAdmin, )
         exclude = ("slugs",)
         help_texts = {
             "linear_gradient_direction": gettext_lazy(
@@ -202,6 +214,8 @@ class PetitionAdminForm(ModelForm):
 
 @admin.register(Petition)
 class PetitionAdmin(admin.ModelAdmin):
+    """Admin interface for Petition model."""
+
     change_form_template = "petitions/admin/change_form.html"
     form = PetitionAdminForm
     search_fields = ("title",)
@@ -274,8 +288,10 @@ class PetitionAdmin(admin.ModelAdmin):
 
     @admin.display(description=gettext_lazy("Unconfirmed signatures"))
     def non_confirmed_signature_number(self, petition: Petition) -> int:
+        """Return the number of unconfirmed signatures for the petition."""
         return int(petition.get_signature_number(confirmed=False))
 
     @admin.display(description=gettext_lazy("Confirmed signatures"))
     def confirmed_signature_number(self, petition: Any) -> int:
+        """Return the number of confirmed signatures for the petition."""
         return int(petition.get_signature_number(confirmed=True))

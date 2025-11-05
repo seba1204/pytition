@@ -1,3 +1,5 @@
+"""Petition model."""
+
 from __future__ import annotations
 
 import html
@@ -27,6 +29,8 @@ if TYPE_CHECKING:
 
 # ----------------------------------- Petition --------------------------------
 class Petition(models.Model):
+    """Model representing a petition."""
+
     NO = "no gradient"
     RIGHT = "to right"
     BOTTOM = "to bottom"
@@ -112,6 +116,8 @@ class Petition(models.Model):
     show_publication_date = models.BooleanField(default=False)
 
     class Meta:
+        """Meta information for Petition model."""
+
         db_table = "petition_petition"
         # Translators: Petition model verbose name (in the admin interface)
         verbose_name = _lazy("Petition")
@@ -121,6 +127,7 @@ class Petition(models.Model):
 
     @property
     def is_moderated(self) -> bool:
+        """Check if the petition is moderated."""
         if self.owner_type == "user":
             # owner is a PytitionUser, which has 'moderated'
             return getattr(self.owner, "moderated", False) or self.moderated
@@ -130,6 +137,7 @@ class Petition(models.Model):
     def transfer_to(
         self, user: PytitionUser | None = None, org: Organization | None = None
     ) -> None:
+        """Transfer the petition to another owner, either a user or an organization."""
         if user is None and org is None:
             raise ValueError(
                 "You should specify either an org or a user when transferring "
@@ -153,6 +161,7 @@ class Petition(models.Model):
         fields: list[str] | None = None,
         exclude_fields: list[str] | None = None,
     ) -> None:
+        """Prepopulate petition fields from a template."""
         if fields is None:
             fields = [
                 f.name
@@ -168,12 +177,14 @@ class Petition(models.Model):
                     setattr(self, field, template_value)
 
     def slugify(self) -> None:
+        """Generate and save a slug for the petition if none exists."""
         # Slugify the petition title and save it as slugname
         if self.slugmodel_set.count() == 0:
             slugtext = slugify(self.title)
             self.add_slug(slugtext)
 
     def add_slug(self, slugtext: str) -> None:
+        """Add a slug to the petition."""
         # Add a slug correctly
         # lazy import to avoid circular imports
         from apps.petitions.models import SlugModel  # noqa
@@ -203,6 +214,7 @@ class Petition(models.Model):
                     SlugModel.objects.create(slug=slugtext, petition=self)
 
     def del_slug(self, slug: Any) -> None:
+        """Delete a slug from the petition."""
         # Delete a given slug
         # lazy import to avoid circular imports
         from apps.petitions.models import SlugModel  # noqa
@@ -213,12 +225,14 @@ class Petition(models.Model):
 
     @classmethod
     def by_id(cls, id: int) -> Petition | None:
+        """Get a Petition by its ID."""
         try:
             return Petition.objects.get(pk=id)
         except Petition.DoesNotExist:
             return None
 
     def get_signature_number(self, confirmed: bool | None = None) -> int:
+        """Get the number of signatures for the petition."""
         qs = self.signature_set.all()
         if confirmed is not None:
             qs = qs.filter(confirmed=confirmed)
@@ -229,6 +243,9 @@ class Petition(models.Model):
             return nb_electronic_signatures
 
     def already_signed(self, email: str) -> bool:
+        """Check if an email has already signed the petition."""
+
+        # lazy import to avoid circular imports
         from apps.signatures.models import Signature  # noqa
 
         signature_number = (
@@ -240,6 +257,9 @@ class Petition(models.Model):
         return signature_number > 0
 
     def confirm_signature(self, conf_hash: str) -> str | None:
+        """Confirm a signature given its confirmation hash."""
+
+        # lazy import to avoid circular imports
         from apps.signatures.models import Signature  # noqa
 
         signature = Signature.objects.filter(petition=self.id).get(
@@ -254,17 +274,19 @@ class Petition(models.Model):
             return None
 
     def publish(self) -> None:
+        """Publish the petition."""
         self.published = True
         self.publication_date = timezone.now()
         self.save()
-
     def unpublish(self) -> None:
+        """Unpublish the petition."""
         self.published = False
         self.publication_date = None
         self.save()
 
     @property
     def to_json(self) -> dict[str, Any]:
+        """Get a JSON representation of the petition."""
         return {
             "title": self.title,
             "signatures": self.get_signature_number(True),
@@ -279,6 +301,7 @@ class Petition(models.Model):
 
     @property
     def owner_type(self) -> str:
+        """Get the type of the petition owner."""
         if self.org:
             return "org"
         else:
@@ -286,10 +309,12 @@ class Petition(models.Model):
 
     @property
     def owner_name(self) -> str:
+        """Get the name of the petition owner."""
         return str(self.owner)
 
     @property
     def owner_username(self) -> str:
+        """Get the username or slugname of the petition owner."""
         if self.owner_type == "org":
             if self.org is not None:
                 return self.org.slugname
@@ -300,6 +325,7 @@ class Petition(models.Model):
 
     @property
     def owner(self) -> Organization | PytitionUser:
+        """Get the owner of the petition."""
         if self.org is not None:
             return self.org
         elif self.user is not None:
@@ -309,16 +335,19 @@ class Petition(models.Model):
 
     @property
     def signature_number(self) -> int:
+        """Get the number of confirmed signatures for the petition."""
         return self.get_signature_number(True)
 
     @property
     def raw_twitter_description(self) -> str:
+        """Get the raw twitter description without HTML tags."""
         return html.unescape(
             mark_safe(strip_tags(sanitize_html(self.twitter_description)))
         )
 
     @property
     def raw_text(self) -> str:
+        """Get the raw text of the petition without HTML tags."""
         return html.unescape(mark_safe(strip_tags(sanitize_html(self.text))))
 
     def __str__(self) -> str:
@@ -346,6 +375,7 @@ class Petition(models.Model):
 
     @property
     def url(self) -> str:
+        """Get the URL of the petition."""
         slugs = self.slugmodel_set.all()
         if len(slugs) == 0:
             # If there is no slug, ugly url
@@ -373,6 +403,7 @@ class Petition(models.Model):
             raise ValueError(_("This petition is buggy. Sorry about that!"))
 
     def save(self, *args: Any, **kwargs: Any) -> None:
+        """Save the petition, ensuring integrity constraints."""
         if self.org is None and self.user is None:
             raise Exception("You need to provide a user or org as owner")
         elif self.org is not None and self.user is not None:
@@ -385,11 +416,13 @@ class Petition(models.Model):
         super().save(*args, **kwargs)
 
     def moderate(self, do_moderate: bool = True) -> None:
+        """Set the moderated status of the petition."""
         self.moderated = do_moderate
         self.save()
 
     @property
     def has_any_share_button(self) -> bool:
+        """Check if any share button is enabled for the petition."""
         return (
             self.has_email_share_button
             or self.has_facebook_share_button

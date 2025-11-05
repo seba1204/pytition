@@ -1,3 +1,5 @@
+"""Management command to generate petition signatures."""
+
 import logging
 import random
 import string
@@ -20,10 +22,12 @@ class Command(BaseCommand):
     """
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Add arguments for the command."""
         parser.add_argument("petition", type=str)
         parser.add_argument("--number", "-n", type=int, default=1)
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Handle the command to generate signatures."""
         petition_str = str(opts["petition"])
         if petition_str.isnumeric():
             try:

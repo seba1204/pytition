@@ -1,3 +1,5 @@
+"""Pipeline step to generate manifest.json for PWA."""
+
 from __future__ import annotations
 
 import json
@@ -19,6 +21,7 @@ class ManifestStep(PipelineStep):
         super().__init__("manifest")
 
     def run(self, ctx: Context) -> None:
+        """Generate manifest.json in <static_root>."""
         root = Path(ctx.static_root)
         data = {
             "name": getattr(ctx.settings, "ASSETS_PWA_NAME", "App"),

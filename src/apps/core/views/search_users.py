@@ -1,3 +1,5 @@
+"""View to search users."""
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import (
@@ -8,9 +10,7 @@ from django.http import (
 from apps.accounts.models import PytitionUser
 
 
-# /get_user_list
-# get the list of users
-# TODO: merge it with /search, cf. ticket #20
+# TODO: [#26] merge it with /search
 @login_required
 def search_users(request: HttpRequest) -> JsonResponse:
     """Get the list of users matching the query parameter 'q'."""

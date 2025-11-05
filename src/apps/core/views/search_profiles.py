@@ -17,6 +17,12 @@ from apps.organizations.models import Organization
 
 @login_required
 def search_profiles(request: HttpRequest) -> JsonResponse:
+    """
+    Search for users and organizations matching a query.
+
+    Used for transferring petition ownership to another user or org.
+    """
+
     query: str = request.GET.get("q", "")
     users: list[PytitionUser]
     orgs: list[Organization]

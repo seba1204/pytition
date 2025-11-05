@@ -1,3 +1,5 @@
+"""Vendor class for RRSSB static files."""
+
 from __future__ import annotations
 
 import shutil
@@ -11,6 +13,7 @@ class RRSSBVendor(Vendor):
     """Download RRSSB (kni-labs/rrssb) from GitHub."""
 
     def download_and_stage(self) -> None:
+        """Download and stage RRSSB into `stage_dir`."""
         v = self.version
         urls = [
             f"https://github.com/kni-labs/rrssb/archive/refs/tags/v{v}.zip",
@@ -26,20 +29,17 @@ class RRSSBVendor(Vendor):
             except Exception:
                 continue
         if blob is None:
-            raise RuntimeError(
-                "Impossible de récupérer RRSSB (vérifie la version/tag)."
-            )
+            raise RuntimeError("Cannot download rrssb version {v} from GitHub.")
 
         root = next((self.stage_dir / "_zip").iterdir())
         js_src = list(root.rglob("js/rrssb.min.js"))
         css_src = list(root.rglob("css/rrssb*.css"))
 
         if not js_src:
-            raise RuntimeError("rrssb.min.js introuvable dans l’archive.")
+            raise RuntimeError("Cannot find rrssb.min.js in the archive.")
         (self.stage_dir / "js").mkdir(parents=True, exist_ok=True)
         (self.stage_dir / "css").mkdir(parents=True, exist_ok=True)
 
         shutil.copy2(js_src[0], self.stage_dir / "js" / "rrssb.min.js")
-        # Copie toutes les CSS rrssb*.css disponibles (minifiées ou non)
         for css in css_src:
             shutil.copy2(css, self.stage_dir / "css" / css.name)

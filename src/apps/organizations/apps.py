@@ -18,6 +18,7 @@ from django.utils.translation import gettext_lazy as _lazy
 
 
 class OrganizationsConfig(AppConfig):
+    """Configuration for the Organizations application."""
     name = "apps.organizations"
     # Translators: Organizations application verbose name (in the admin interface)
     verbose_name = _lazy("Organization management")

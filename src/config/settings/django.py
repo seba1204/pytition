@@ -12,6 +12,8 @@ from pathlib import Path
 import django.conf.locale
 from django.utils.translation import gettext_lazy
 
+from .helpers.configure_db import DatabaseSettingsType, configure_db_from_env
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Paths
 # ──────────────────────────────────────────────────────────────────────────────
@@ -20,14 +22,33 @@ BASE_DIR = Path(__file__).resolve().parents[3]  # repo root
 SRC_DIR = BASE_DIR / "src"
 BUILD_DIR = BASE_DIR / ".build"
 BUILD_DIR.mkdir(exist_ok=True)
+DATA_DIR = BASE_DIR
+"""Directory where persistent data is stored (uploaded media files, databases, etc.)."""
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Security
 # ──────────────────────────────────────────────────────────────────────────────
+SECRET_KEY: str = "CHANGE_ME_IN_PROD"
+"""
+Django secret key for cryptographic signing.
 
-SECRET_KEY = "CHANGE_ME_IN_PROD"
-DEBUG = True
+**MUST be overridden in production** via environment variable or secrets manager. You
+can use `pdm manage generate_secret_key --quiet` to create a strong key.
+"""
+DEBUG: bool = False
+"""
+Enables debug mode for development purposes.
+
+Must be set to `False` in production!
+"""
 ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "[::1]"]
+"""
+List of strings representing the host/domain names that this Django site can serve.
+
+Example values:
+    - `["localhost", "127.0.0.1", "[::1]"]` (for local development)
+    - `["example.com", "www.example.com"]` (for production, staging, etc.)
+"""
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Applications
@@ -120,14 +141,12 @@ TEMPLATES = [
 # Database
 # ──────────────────────────────────────────────────────────────────────────────
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(BUILD_DIR / "db.sqlite3"),
-    }
+#: Default database configuration using **SQLite** for development purposes.
+#: MUST be overridden in production via environment variable or secrets manager.
+DATABASES: dict[str, DatabaseSettingsType] = {
+    "default": configure_db_from_env(BUILD_DIR),
 }
-# FIXME: migrate to BigAutoField later
-DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # ──────────────────────────────────────────────────────────────────────────────
 # Password validation
 # ──────────────────────────────────────────────────────────────────────────────
@@ -161,6 +180,13 @@ PASSWORD_HASHERS = [
 # ──────────────────────────────────────────────────────────────────────────────
 
 TIME_ZONE = "Europe/Paris"
+"""
+Default time zone for the installation (useful if the instance serves a single country).
+
+You can change this to any time zone supported by pytz
+cf. [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](List of time zones).
+Example: "Europe/Paris"
+"""
 USE_I18N = True  # Activate Django's translation system.
 USE_TZ = True  # Use timezone-aware datetimes.
 USE_L10N = True  # Format dates, numbers and calendars according to the current locale.
@@ -181,7 +207,6 @@ LANGUAGES = [
     ("sv", gettext_lazy("Swedish")),
 ]
 
-LOGOUT_REDIRECT_URL = "/"
 
 EXTRA_LANG_INFO = {
     "oc": {
@@ -213,6 +238,7 @@ FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Security headers

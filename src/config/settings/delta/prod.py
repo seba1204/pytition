@@ -1,12 +1,10 @@
 """
 Small delta for production.
+
 Only put the *differences* here; everything else is inherited.
 """
 
 DEBUG = False
-
-# In production, be explicit
-ALLOWED_HOSTS = ["example.com", "www.example.com"]
 
 # Security-minded defaults — override via ENV/.env if needed
 SESSION_COOKIE_SECURE = True

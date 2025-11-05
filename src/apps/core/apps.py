@@ -15,6 +15,8 @@ from django.utils.translation import gettext_lazy as _lazy
 
 
 class CoreConfig(AppConfig):
+    """Configuration for the core application."""
+
     name = "apps.core"
     # Translators: Core application verbose name (in the admin interface)
     verbose_name = _lazy("Core Application")

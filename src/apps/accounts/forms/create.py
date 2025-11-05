@@ -1,3 +1,5 @@
+"""User creation form for Pytition application."""
+
 from typing import Any
 
 from django import forms
@@ -10,10 +12,14 @@ from apps.notifications.services import send_welcome_mail
 
 
 class PytitionUserCreationForm(UserCreationForm):
+    """Form for creating a new user in Pytition application."""
+
     answer = forms.IntegerField(required=True)
     email_confirm = forms.EmailField(widget=forms.HiddenInput, required=False)
 
     class Meta:
+        """Meta class for PytitionUserCreationForm."""
+
         model = get_user_model()
         fields = (
             "username",
@@ -32,6 +38,7 @@ class PytitionUserCreationForm(UserCreationForm):
         self.request = request
 
     def clean(self) -> dict[str, Any]:
+        """Custom validation for the form fields."""
         session = self.request.session
         cleaned_data = super(UserCreationForm, self).clean()
         if cleaned_data is None:
@@ -65,4 +72,5 @@ class PytitionUserCreationForm(UserCreationForm):
         return cleaned_data
 
     def send_success_email(self) -> None:
+        """Send a welcome email to the newly created user."""
         send_welcome_mail(self.cleaned_data)

@@ -1,3 +1,5 @@
+"""Vendor class for Open Iconic static files."""
+
 from __future__ import annotations
 
 import shutil
@@ -8,13 +10,15 @@ from .registry import register
 
 @register("open-iconic")
 class OpenIconicVendor(Vendor):
-    """Fetch Open Iconic and install font files + CSS.
+    """
+    Fetch Open Iconic and install font files + CSS.
 
     Source: GitHub tags as a zip archive.
     Example URL: https://github.com/iconic/open-iconic/archive/refs/tags/1.1.1.zip
     """
 
     def download_and_stage(self) -> None:
+        """Download and stage Open Iconic into `stage_dir`."""
         url = f"https://github.com/iconic/open-iconic/archive/refs/tags/{self.version}.zip"
         blob = self._http_get_bytes(url)
         tmp = self.stage_dir / "_zip"

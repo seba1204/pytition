@@ -1,3 +1,5 @@
+"""Forms for the Organization model."""
+
 from typing import Any
 
 from django import forms
@@ -8,11 +10,16 @@ from apps.organizations.models import Organization
 
 
 class OrgCreationForm(forms.ModelForm):
+    """Form for creating a new Organization."""
+
     class Meta:
+        """Meta information for the OrgCreationForm."""
+
         model = Organization
         fields = ("name",)
 
     def clean(self) -> dict[str, Any]:
+        """Custom validation for the Organization name."""
         cleaned_data = super().clean()
         name = cleaned_data.get("name") if cleaned_data is not None else None
         if name in ["..", "."]:

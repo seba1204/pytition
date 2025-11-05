@@ -1,3 +1,5 @@
+"""Vendor class for jQuery Smart Wizard static files."""
+
 from __future__ import annotations
 
 import shutil
@@ -12,6 +14,7 @@ class SmartWizardVendor(Vendor):
     """Download jQuery Smart Wizard 4 from GitHub (techlab/SmartWizard)."""
 
     def download_and_stage(self) -> None:
+        """Download and stage SmartWizard into `stage_dir`."""
         v = self.version
         urls = [
             f"https://github.com/techlab/SmartWizard/archive/refs/tags/v{v}.zip",

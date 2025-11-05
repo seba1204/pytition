@@ -251,7 +251,7 @@ class PetitionViewTest(TestCase):
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
 
-        # FIXME: path manipulation is ugly here, find a better way
+        # FIXME: [#80] path manipulation is ugly here, find a better way
         this_path = Path(__file__).parent
         # this path should point to <root>/src/apps/petition/tests/
         # and the logo is at <root>/assets/img/logo.png

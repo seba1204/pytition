@@ -1,3 +1,5 @@
+"""Registry for Vendor classes."""
+
 import importlib
 import pkgutil
 from collections.abc import Callable
@@ -22,6 +24,7 @@ def _auto_discover() -> None:
 
 
 def register(name: str) -> Callable[[type[Vendor]], type[Vendor]]:
+    """Decorator to register a Vendor class under a given name."""
     def _wrap(cls: type[Vendor]) -> type[Vendor]:
         _REGISTRY[name.lower()] = cls
         return cls
@@ -30,6 +33,7 @@ def register(name: str) -> Callable[[type[Vendor]], type[Vendor]]:
 
 
 def get_vendor_class(name: str) -> type[Vendor]:
+    """Get the Vendor class registered under `name`."""
     _auto_discover()
     key = name.lower()
     if key not in _REGISTRY:

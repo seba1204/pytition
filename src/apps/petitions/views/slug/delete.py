@@ -1,3 +1,5 @@
+"""View to delete a slug from a petition."""
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
@@ -14,10 +16,10 @@ from apps.petitions.models import Petition, SlugModel
 from apps.petitions.routes import PetitionsRoute
 
 
-# /<int:petition_id>/del_slug
 # Remove a slug from a petition
 @login_required
 def delete(request: HttpRequest, petition_id: int) -> HttpResponse:
+    """Delete a slug from a petition."""
     pytitionuser = get_session_user(request)
     petition: Petition
     try:
@@ -36,9 +38,9 @@ def delete(request: HttpRequest, petition_id: int) -> HttpResponse:
         slug = SlugModel.objects.get(pk=slug_id)
         petition.del_slug(slug)
         petition.save()
-        messages.success(request, _("Successful deletion of a slug"))
+        messages.success(request, _("Successful deletion of a slug."))
     else:
-        messages.error(request, _("You don't have the permission to modify petitions"))
+        messages.error(request, _("You don't have the permission to modify petitions."))
         if petition.owner_type == "org":
             org: Organization = petition.owner  # type: ignore
             return redirect(OrgRoute.DASHBOARD, org.slugname)

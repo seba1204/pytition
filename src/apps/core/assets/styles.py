@@ -1,3 +1,5 @@
+"""Pipeline step to minify CSS files."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -10,15 +12,14 @@ from .registry import register_step
 
 @register_step("styles", order=20)
 class StylesStep(PipelineStep):
-    """
-    Minify .css files from assets/css -> <static_root>/css
-    (Ignore .scss: compilation outside scope requested)
-    """
+    """Minify .css files from assets/css -> <static_root>/css (Ignore .scss: compilation
+    outside scope requested)"""
 
     def __init__(self, name: str):
         super().__init__("styles")
 
     def run(self, ctx: Context) -> None:
+        """Minify CSS files from assets/css to <static_root>/css."""
         src = Path(ctx.assets_dir) / "css"
         dst = Path(ctx.static_root) / "css"
         dst.mkdir(parents=True, exist_ok=True)

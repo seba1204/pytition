@@ -1,0 +1,28 @@
+@startuml "load-order-light"
+title Load Order — import config.settings
+
+!include modern-light.puml
+autonumber
+
+actor Django
+participant "config.settings\n__init__.py" as INIT
+participant ".env" as DENV
+participant "OS ENV" as OSE
+participant "django.py" as DJ
+participant "default.py" as DEF
+participant "delta/{env}.py" as ENV
+participant "override_settings_from_env()" as OV
+
+Django -> INIT: import config.settings
+INIT -> DENV: parse .env (optional)
+INIT -> OSE: read access (fallback)
+INIT -> INIT: _detect_env()\n• prefer ENV, else DEBUG\n• default: dev
+INIT -> DJ: from .django import *
+INIT -> DEF: from .default import *
+INIT -> ENV: from .delta.{env} import *
+INIT -> OV: override_settings_from_env(globals)
+DENV --> OV: overrides from .env [priority 1]
+OSE  --> OV: overrides from OS env [priority 2]
+OV --> INIT: finalized globals()
+
+@enduml

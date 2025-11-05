@@ -1,0 +1,13 @@
+<div class="pst-navbar-icon pst-navbar-end-item lang-switcher"
+     data-page-name="{{ pagename }}"
+     data-langs="{{ i18n_locales | map(attribute='code') | join(',') }}">
+    <label for="lang-select" class="sr-only">Language</label>
+    <select id="lang-select" class="rounded px-2 py-1" title="Language">
+        {% for item in i18n_locales %}
+            <option value="{{ item.code }}"
+                    {{ 'selected' if item.code == (language or 'en') }}>
+                {{ item.flag }} {{ item.name }}
+            </option>
+        {% endfor %}
+    </select>
+</div>

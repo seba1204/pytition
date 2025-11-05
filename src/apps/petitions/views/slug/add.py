@@ -1,3 +1,5 @@
+"""View to add a new slug to a petition."""
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -17,6 +19,7 @@ from apps.petitions.routes import PetitionsRoute
 # Add a new slug for a petition
 @login_required
 def add(request: HttpRequest, petition_id: int) -> HttpResponse:
+    """Add a new slug to a petition."""
     pytitionuser = get_session_user(request)
     try:
         petition = petition_from_id(petition_id)
@@ -27,26 +30,34 @@ def add(request: HttpRequest, petition_id: int) -> HttpResponse:
     if request.method == "POST":
         slug_texts = request.POST.getlist("slugtext", "")
         if slug_texts in ("", []):
-            messages.error(request, _("You entered an empty slug text"))
+            messages.error(request, _("You entered an empty slug text."))
         elif petition.is_allowed_to_edit(pytitionuser):
             for slugtext in slug_texts:
                 try:
                     petition.add_slug(slugtext)
                     petition.save()
-                    messages.success(
-                        request,
-                        _("Successful addition of the slug '{}'!".format(slugtext)),
+                    (
+                        messages.success(
+                            request,
+                            _(
+                                "Successful addition of the slug '%(slugtext)s' "
+                                "to the petition."
+                            )
+                            % {"slugtext": slugtext},
+                        )
                     )
                 except IntegrityError:
                     messages.error(
-                        request, _("The slug '{}' already exists!".format(slugtext))
+                        request,
+                        _("The slug '%(slugtext)s' already exists.")
+                        % {"slugtext": slugtext},
                     )
                 except ValidationError as v:
                     for message in v.messages:
                         messages.error(request, message)
         else:
             messages.error(
-                request, _("You don't have the permission to modify petitions")
+                request, _("You don't have the permission to modify petitions.")
             )
         return redirect(
             reverse(PetitionsRoute.EDIT, args=[petition_id])

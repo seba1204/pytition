@@ -7,7 +7,7 @@ from .leave import leave
 from .new import create
 from .profile import profile
 
-# FIXME: there is a lot of duplicated code between all those views.
+# FIXME: [#79] there is a lot of duplicated code between all those views.
 # It should be refactored to use validator.py and services.py files.
 
 __all__ = [

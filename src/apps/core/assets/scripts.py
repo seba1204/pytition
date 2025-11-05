@@ -1,3 +1,5 @@
+"""Pipeline step to minify JavaScript files and generate source maps."""
+
 from __future__ import annotations
 
 import json
@@ -21,6 +23,7 @@ class ScriptsStep(PipelineStep):
         super().__init__("scripts")
 
     def run(self, ctx: Context) -> None:
+        """Minify JS files from assets/js to <static_root>/js with source maps."""
         src = Path(ctx.assets_dir) / "js"
         dst = Path(ctx.static_root) / "js"
         dst.mkdir(parents=True, exist_ok=True)

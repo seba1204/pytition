@@ -1,0 +1,904 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025, Team Pytition
+# This file is distributed under the same license as the Pytition package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-04 21:57+0100\n"
+"PO-Revision-Date: 2025-11-04 08:29+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Language: sv\n"
+"Language-Team: Swedish "
+"<https://translate.sebastienpont.fr/projects/pytition/docs/sv/>\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: 48c15101f14541f1a6ead0bf34c2bf69
+msgid "Under the hood"
+msgstr ""
+
+#: 146c73d80e6e455a89c1ead6c03eefb8
+msgid ""
+"In order to better comply with the conventions of a [12-factor "
+"app](https://www.12factor.net/), Pytition is able to load configuration "
+"variables without modifying any source files or `*.py` files. The "
+"following diagrams explain how this works."
+msgstr ""
+
+#: c7a180c6c99040d6a17c7c67103f59c6
+msgid ""
+"You can still edit the variables directly in the `config/settings/**.py` "
+"files, but this is not recommended as the file may be overwritten on the "
+"next update."
+msgstr ""
+
+#: 59b6fdb9d7454adbafce3b73e9a7c629
+#, fuzzy
+msgid "Settings structure"
+msgstr "Komma igång"
+
+#: 390b656ac1894bcc941d82de878b8b3a
+msgid "Load order"
+msgstr ""
+
+#: 59c05a525e324394ab58a8dad3af8056
+msgid "All env variables"
+msgstr ""
+
+#: 4c2d0670484346f68740c9329fec3d2b
+msgid ""
+"Here is the complete list of all environment variables that Pytition can "
+"read. For each variable, you will find."
+msgstr ""
+
+#: 7d0e1786ce984ce6bde3f652049fc080
+msgid "Common environment variables"
+msgstr ""
+
+#: 4d0a9ebea7524779aac8539dc62897ce
+msgid "Enables debug mode for development purposes."
+msgstr ""
+
+#: 4d3d6e18f34446f4b847d3c94323ef8c
+msgid "Must be set to `False` in production!"
+msgstr ""
+
+#: ca9af5bf1d9f4f8aa5dea828f206302d
+msgid "Django secret key for cryptographic signing."
+msgstr ""
+
+#: 9b7a5d9a64c14bd78b70e9fbf3e487a9
+msgid ""
+"**MUST be overridden in production** via environment variable or secrets "
+"manager. You can use `pdm manage generate_secret_key --quiet` to create a"
+" strong key."
+msgstr ""
+
+#: aca34f6174a249c48a7dee82a326c2ec
+msgid ""
+"Default database configuration using **SQLite** for development purposes."
+" MUST be overridden in production via environment variable or secrets "
+"manager."
+msgstr ""
+
+#: aba6c508a4304840a507a50002715a1f
+msgid "SQLite"
+msgstr ""
+
+#: 27fd657e63764ce3afb35c35e9d427ac
+msgid "Relative path to the SQLite database file :"
+msgstr ""
+
+#: 04202ca260f04005991fbe8bbf0d7bd8 04337b8449c649dbafe67637417e7d36
+#: 18b12cc124e843369670d93e3d6151f4 372ab49f24f84db9850a50c241bdfcf8
+#: 695d40776125425b8321b78e0dd0004a 6c7e07750af64fce9d412dfc61e1ee55
+#: a3c050ac04e940099d134e3bced29730 ee9a813f0d3547e19b35b43a0e8505a1
+msgid ".env"
+msgstr ""
+
+#: 3113ecfc14134a218c802f0d1785e606
+msgid "DATABASE_URL=sqlite:///./db.sqlite3"
+msgstr ""
+
+#: bf7f3f8e39924894a3248909bb0e02b6
+msgid "Or absolute path"
+msgstr ""
+
+#: 71eee49573004f73bf76d5fc18909b76
+msgid "DATABASE_URL=sqlite:////absolute/path/to/db.sqlite3"
+msgstr ""
+
+#: d876e1bb4c2c454c9e8652f053e4abdf
+msgid ""
+"For in-memory (not persistent) database (default configuration if "
+"`ENV=test`) :"
+msgstr ""
+
+#: a78da192b91c42eb94492a0473029188
+msgid "DATABASE_URL=sqlite:///:memory:"
+msgstr ""
+
+#: c5b242a46d2d4a539a5f4340c46f6a84
+msgid "If you prefer `DB_` variables :"
+msgstr ""
+
+#: be514fc464c6431a849b07a886ce3838
+msgid ""
+"DB_ENGINE=django.db.backends.sqlite3\n"
+"DB_NAME=/absolute/or/relative/path/to/db.sqlite3"
+msgstr ""
+
+#: 69fa8a3569c749e98721a7b3af7729b2
+msgid "PostgreSQL"
+msgstr ""
+
+#: 40304e51a7324389b1036a6310c559c0 5f113ba7d20b4a0589fba1e98d166a86
+msgid "With `DATABASE_URL` :"
+msgstr ""
+
+#: 18951ac883f94d43b96faa31bea6fef3
+msgid "DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@HOST:PORT/DB_NAME"
+msgstr ""
+
+#: 21d5e0cb60dc428cb3879c6194bdb87b f0feb64cd1ef4906a3a070db74ece1e8
+msgid "Or with `DB_` variables :"
+msgstr ""
+
+#: 70e6e042106b4b2f8c314d9950f60714
+msgid ""
+"DB_ENGINE=django.db.backends.postgresql\n"
+"DB_NAME=<db_name>\n"
+"DB_USER=<user>\n"
+"DB_PASSWORD=<password>\n"
+"DB_HOST=<host>\n"
+"DB_PORT=<port>"
+msgstr ""
+
+#: 6ae9b48e55e3456184e49b09b565ae68
+msgid "MySQL/MariaDB"
+msgstr ""
+
+#: c6e66257d21e4c9cb1ffdf5e09c17fdd
+msgid "DATABASE_URL=mysql+pymysql://USER:PASSWORD@HOST:PORT/DB_NAME"
+msgstr ""
+
+#: 08e556c978354fe488ef575ddb2e02c3
+msgid ""
+"DB_ENGINE=django.db.backends.mysql\n"
+"DB_NAME=<db_name>\n"
+"DB_USER=<user>\n"
+"DB_PASSWORD=<password>\n"
+"DB_HOST=<host>\n"
+"DB_PORT=<port>"
+msgstr ""
+
+#: 8eb3cc4e7e59407fb2f64398176c9600
+msgid ""
+"List of strings representing the host/domain names that this Django site "
+"can serve."
+msgstr ""
+
+#: e3ac8ef97b334cdaa3094d65ed889393
+msgid "Example values:"
+msgstr ""
+
+#: 7b8f2343f5264361bd9123a231bd4f42
+msgid "`[\"localhost\", \"127.0.0.1\", \"[::1]\"]` (for local development)"
+msgstr ""
+
+#: f222753366f44f2db34a29b13e79699c
+msgid "`[\"example.com\", \"www.example.com\"]` (for production, staging, etc.)"
+msgstr ""
+
+#: 9b2cc346e60f473d97a0298b8367918d
+msgid ""
+"Directory where persistent data is stored (uploaded media files, "
+"databases, etc.)."
+msgstr ""
+
+#: a13f10dff57f4e7384f69597aeee2fd7
+msgid "Initial configuration"
+msgstr ""
+
+#: 4752db7354984ed5b26d34b33954bf5f
+msgid ""
+"Since Pytition is based on Django, you can configure a LOT of things "
+"using variables. Usually, you have to edit a `settings.py` file, but to "
+"simplify things, Pytition can also read a `.env` file or environment "
+"variables."
+msgstr ""
+
+#: 8341dda9e49149a79b437bb4bd8a8c22
+msgid ""
+"To simplify the documentation, we have organized the section on parameter"
+" variables into three parts:"
+msgstr ""
+
+#: e6794dcb78f44cb4aa7b53816e6f2b2a
+msgid ""
+"**Basics**: the most common variables you will want to modify for a quick"
+" and standard installation"
+msgstr ""
+
+#: c0cbd5cbf3954789b5b7accd36c22485
+msgid ""
+"**All**: all variables if you are looking for a specific one, or just "
+"want to take a look at what is available"
+msgstr ""
+
+#: 3c25a345f2d94db8815ad8f770e86e32
+msgid "**Under the hood**: explains the logic behind reading variables"
+msgstr ""
+
+#: b42143b4daee4a9a8920b6e09936cb5c
+msgid "Configuration"
+msgstr ""
+
+#: 52d4c4b42121456f92287b2d1987b865
+msgid "There are two types of configurations:"
+msgstr ""
+
+#: 395ccbc93adb49f8b4e3dc841f146fd7
+msgid ""
+"[**Initial configuration**](./env_var/index.md) : during installation, "
+"via configuration files, or env var: a few settings that must be "
+"configured before anything else (database access, data folders, etc.)"
+msgstr ""
+
+#: 48d06e3168f0438b9ff1a47a61365944
+msgid ""
+"[**Instance configuration**](./site_conf/index.md) : when the app is "
+"running, you wan tweak it from the web interface (site name, security "
+"rules, etc.)"
+msgstr ""
+
+#: 9c44ac42a0ca42d2a7e74449b3df871b
+msgid ""
+"If you plan to deploy Pytition in production, please also refer to the "
+"[Production Configuration](./prod.md) page."
+msgstr ""
+
+#: 5ede0d0a82f648a29d6fcfa4a388251c
+msgid "Production concerns"
+msgstr ""
+
+#: 12d51c18c5bd4d468e76021f53c9f285 33bb08eadda44648a2dd0b52f72e27cd
+#: 615759e326ca4de6a92110c67393ea07 6455ddfa83c84791b6fcb6b8fea15da8
+#: 769d441445ca4798aca45519cf6bf06a 76cf054542c74d1aa3ba6a1fc1bbfbc1
+#: 83fadf249fcf4c99aa7bcd11e5df0fc5 b1e1ec0ffd2242f0b02f440315fb38d4
+#: bca4271db14347e7add74fd35f55c9f8 bcf6bf1e787b40699171fbac91611fc8
+#: d79b0dc685a64413ac9a30905ec30b33
+msgid "Todo"
+msgstr "Todo"
+
+#: 30d176b67c94455ab7fced2d9e2c4888 36b088bdea11496489711a3a880d7ec2
+#: 50c6255ea4cd4a1a932ffc0c962e9c03 535c1566485447609e1f9adada021631
+#: 556ebf1ac40b47eb8daa055ff780484c 5f19aa19cddc42c980da08b6f8938511
+#: 67c84bcae86b4500a90ad6e3386c34c8 7826758aaa61408e9c791b934fd3bbd6
+#: 8eb8f3748cdb4bd0b516ba90db945b9b
+msgid "Write some docs."
+msgstr ""
+
+#: e153d5bb132c4fba8d521c1434dcf567
+msgid "Instance configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Admin Guides"
+msgstr "Administratörsguide"
+
+#: d88db9b3cd7d4ea59a4410c2c3ba233b
+msgid "Admin guide"
+msgstr "Administratörsguide"
+
+#: bbeda5ff36ae418e8a02a4868b58261b
+msgid "Welcome to the administrator documentation!"
+msgstr "Välkommen till administratörsdokumentationen!"
+
+#: 86e2fcc98dc345bdb05519fea210b15d af9f0c3986ed40e591887cbd0db89e60
+#: f7646bdaa2e9420f894c83d4b1c99196
+msgid "Who is this section for?"
+msgstr "Vem är denna sektion avsedd för?"
+
+#: 354947132148450ba41ff6972653311b
+msgid "For administrators who manage the application."
+msgstr "För administratörer som hanterar applikationen."
+
+#: 3019ac82217f4062b7b722638d232cd8
+msgid "Installation with Docker"
+msgstr ""
+
+#: efdd324ba7174842b0f38c80c62fcfdc
+msgid "Installation"
+msgstr ""
+
+#: b3e3b0a975bd4775a751708c6c069c52
+msgid ""
+"Please note that Pytition uses a “plug and play” approach (simple default"
+" configurations) to facilitate installation and discovery, which is "
+"**NEITHER SECURE NOR EFFICIENT**. When you are ready, please refer to "
+"these [production recommendations](../configuration/prod.md) for safe "
+"installation."
+msgstr ""
+
+#: a65aa0750da24327b47baa3ef37d2281
+msgid "This documentation is designed for **two types of installations**:"
+msgstr ""
+
+#: 945d3ff9b39d40fda9da97d749c2e455
+msgid "actual **production use**, which must be efficient and secure"
+msgstr ""
+
+#: 41134100b47a44f5a13e099e40b9fb08
+msgid "**quick installation** for beta testing the tool, for example."
+msgstr ""
+
+#: dc2c1d23b3de4b1b92637d2acdd7b7eb
+msgid ""
+"If you plan to install Pytition for editing source code purpose, or even "
+"contributing to it, please refer to the [developer "
+"guides](../../dev/index.md)."
+msgstr ""
+
+#: cb6f74526973496dbfa4e613d2c181f9
+#, fuzzy
+msgid "Installation methods"
+msgstr "Administratörsguide"
+
+#: a0af68dec48f4e5abcca515e2a7d1410
+msgid ""
+"You can install Pytition in various ways, depending on your needs and "
+"environment:"
+msgstr ""
+
+#: c09b0f85ea6c48ffb28a5d9b1b174e1b
+msgid ""
+"[**Manual installation**](./manual.md): for maximum control and "
+"flexibility. Suitable for production environments where you want to "
+"customize every aspect of the installation."
+msgstr ""
+
+#: f22e772a93084b1c99767f338dad58c1
+msgid ""
+"[**Docker installation**](./docker.md): using Docker containers for easy "
+"deployment and management. Ideal for those familiar with "
+"containerization."
+msgstr ""
+
+#: 1a26f554c49c4429a1ade2b547e38a5a
+msgid ""
+"[**Multi-domain installation**](./multi_domain.md): to host multiple "
+"Pytition instances on a single server. Useful for service providers (like"
+" [CHATONS](https://www.chatons.org/))."
+msgstr ""
+
+#: 1c0aae1759694deaa257452e5139843a
+msgid ""
+"[**YunoHost installation**](./yunohost.md): a simplified installation "
+"method using the YunoHost platform. Perfect for users seeking an easy "
+"setup process."
+msgstr ""
+
+#: 3c7eaa67285a47948770d50fd51cbd93
+msgid "Manual installation"
+msgstr ""
+
+#: 3d853877ae7445d898fac79b4e587ff5
+msgid "Requirements"
+msgstr ""
+
+#: 4810007087ac4c7fa730090c1c46ef3f
+#, fuzzy
+msgid "Installation steps"
+msgstr "Administratörsguide"
+
+#: 713213bb5cfd46ce9f9d5ba3bdf94ed2
+msgid "Multi-domain installation"
+msgstr ""
+
+#: 22f73aa1ab7f42319ec7b48478d2cb47
+#, fuzzy
+msgid "YunoHost installation"
+msgstr "Administratörsguide"
+
+#: 8a564fe8b86e40ce8b91fe6e49afe796
+msgid "Backup"
+msgstr ""
+
+#, fuzzy
+msgid "Management Guides"
+msgstr "Administratörsguide"
+
+#: c4f91d3e55ef47579cb3c4b11c8dbcd9
+msgid "Management"
+msgstr ""
+
+#: b82884d975144c22b4676caaf773a669
+msgid "Update"
+msgstr "Uppdatering"
+
+#: bc87a7e24aa34903873b0f3c7ae488b0
+msgid "Architecture Overview"
+msgstr ""
+
+#: 7dd597c2633943a2826549cdf8b72d9c
+msgid ""
+"This document provides an overview of the architecture of the Pytition "
+"application, including its main components and their interactions."
+msgstr ""
+
+#: 9d99e7050dc941c9ac0203e854ad096d
+msgid "Apps"
+msgstr ""
+
+#: 8eb9e6471aa04e34b024676e0bb1e9ea
+msgid ""
+"This application is built using the Django framework and is organized "
+"into several apps, each responsible for a specific area of functionality:"
+msgstr ""
+
+#: 4fa93e4953084ed3bf27379c72d08e35
+msgid "**Accounts**: Manages user authentication, profiles, and permissions."
+msgstr ""
+
+#: 562a2c733a2d4b29b7b0b99e173b563a
+msgid ""
+"**Organizations**: Handles organization creation, management, and "
+"membership."
+msgstr ""
+
+#: ca0074a4b604445d9c1116e770d7e714
+msgid ""
+"**Petitions**: Core functionality for creating, managing, and signing "
+"petitions."
+msgstr ""
+
+#: 8d60786c3de34293b75783237344d8b5
+msgid ""
+"**Signatures**: Manages the collection and validation of petition "
+"signatures."
+msgstr ""
+
+#: 7602d710f11749ab823086797696772c
+msgid "**Presets**: Provides predefined templates and settings for petitions."
+msgstr ""
+
+#: b21a5725e7bd478f8186e63c5d42e827
+msgid ""
+"**Moderation**: Tools and workflows for moderating content and user "
+"activity."
+msgstr ""
+
+#: 8ac8e167e05e44dc8c9b6ee29a18b3e6
+msgid "Models"
+msgstr ""
+
+#: d2d2bfce76214e46ae1378d961268bd9
+msgid ""
+"The data model is structured around the main entities of the application,"
+" with relationships defined between them."
+msgstr ""
+
+#: 2457ed205659426ba3dd342805260fb9
+msgid "This is a simplified diagram of the main models and their relationships:"
+msgstr ""
+
+#: f8eb2ca294c54c37bdf1f296e8070793
+msgid "![Data Model](../_static/img/models.svg)"
+msgstr ""
+
+#: 5a7afcc5a8154ec9bfcd424b03a9d873
+msgid "Data Model"
+msgstr ""
+
+#: 7719068883e24e35997522b697786774
+#, fuzzy
+msgid "Basics conventions"
+msgstr "Konventioner"
+
+#: 793fc39d2e834b50aefe2cff1bd3f677
+msgid "Internationalization (i18n)"
+msgstr ""
+
+#: 7b2a048679b54ebcb17e1073ac66565e
+msgid "General rules"
+msgstr ""
+
+#: ba5eda832b8448389be103593d861018
+msgid "Use comments for translators"
+msgstr ""
+
+#: d75cc6b649604416a9b520bfd3f542b5
+msgid ""
+"When a string requires additional context for translators, add a comment "
+"just above the string. The comment has to start with `Translators:`."
+msgstr ""
+
+#: 7be9447238be4b59a4b0372716f97c22 c516888a1397426fad9c4c44989c7bbc
+msgid "Python"
+msgstr ""
+
+#: ff1c8db9e84d45119d625257498fe178
+#, python-brace-format, python-format
+msgid ""
+"# Translators: This refers to the name of the user\n"
+"_(\"Hello %(name)s\") % {\"name\": name}\n"
+msgstr ""
+
+#: cc56993f0bfc4f018bda0051cc859c3a
+msgid "Django templates"
+msgstr ""
+
+#: 0c1fcc6eaed745d89038edd60330ca8e
+#, python-brace-format
+msgid ""
+"{# Translators: This is the title of the page #}\n"
+"<h1>{% trans \"Welcome to Pytition\" %}</h1>\n"
+msgstr ""
+
+#: b1341f1174c0420a880b68279bf409cd
+msgid "Do not concatenate strings"
+msgstr ""
+
+#: 49679fabed2d4fe9b4054e80fe0ce02e
+#, python-brace-format, python-format
+msgid ""
+"from django.utils.translation import gettext as _\n"
+"\n"
+"# ✅ Good\n"
+"_(\"Hello %(name)s\") % {\"name\": name}\n"
+"# ❌ Bad\n"
+"_(f\"Hello {name}\")\n"
+msgstr ""
+
+#: 532754239e184b5cad207ebf7dda9cc7
+msgid ""
+"⇉ Variable names are outside the `_(…)`. This allows translators to "
+"better understand the context of the string."
+msgstr ""
+
+#: 2dc8cafa68724abe9c9a0e2e08921228
+msgid "Never use `f-strings` for translatable strings"
+msgstr ""
+
+#: a5d2fd7a16c0475680210e620db4f68f
+#, python-brace-format, python-format
+msgid ""
+"from django.utils.translation import gettext as _\n"
+"# ✅ Good\n"
+"_(\"Hello %(name)s\") % {\"name\": name}\n"
+"# ❌ Bad\n"
+"_(f\"Hello {name}\")\n"
+msgstr ""
+
+#: be0a33c83cb54d04a50a474e59c5490e
+msgid ""
+"Indeed, `f-strings` are evaluated at runtime, which means the string is "
+"no longer translatable."
+msgstr ""
+
+#: bc1127105d2248ebb5e85af18c413918
+msgid "Use named placeholders"
+msgstr ""
+
+#: 2e1d0a1a7fc34f1db25b1f7832a19c21
+msgid ""
+"When including variables in translatable strings, always use named "
+"placeholders instead of positional ones. This improves clarity for "
+"translators."
+msgstr ""
+
+#: f3e2abcd80c04382a651720aee10624f
+#, python-brace-format, python-format
+msgid ""
+"# ✅ Good\n"
+"_(\"Hello %(name)s\") % {\"name\": name}\n"
+"# ❌ Bad\n"
+"_(\"Hello %s\") % name\n"
+msgstr ""
+
+#: 3d63cecc784e4afeae9aec8010200c8b
+msgid "Templates (Django)"
+msgstr ""
+
+#: cccd39731add40e0a0e00bc2667a51a1
+msgid "Prefer `transblock`"
+msgstr ""
+
+#: 2cb298b46ec64299bb0be0d915c75afe
+msgid "Try to avoid html in translations"
+msgstr ""
+
+#: 31f54cab345743aea4458d83dd8de264
+msgid "Use `trimmed` on `transblock`"
+msgstr ""
+
+#: 0a402daff9864234a62dd5bce8693009
+msgid ""
+"When using `transblock`, use the `trimmed` option to avoid unwanted "
+"whitespace."
+msgstr ""
+
+#: 4fcbc4563f064d7a9fcf528ca55b22cf
+#, python-brace-format, python-format
+msgid ""
+"{% transblock trimmed %}\n"
+"    This is a long text that\n"
+"    spans multiple lines.\n"
+"{% endtransblock %}\n"
+msgstr ""
+
+#: e9c6edc7b8324076955b233767b79d32
+msgid "Conventions"
+msgstr "Konventioner"
+
+#: 445898c781a843e5981dd278ff31fbd5
+msgid ""
+"This document describes the coding conventions followed in the Pytition "
+"project. Adhering to these conventions helps maintain code quality, "
+"readability, and consistency across the codebase."
+msgstr ""
+"Detta dokument beskriver de kodningskonventioner som följs i Pytition-"
+"projektet. Att följa dessa konventioner bidrar till att upprätthålla "
+"kodkvaliteten, läsbarheten och konsistensen i hela kodbasen."
+
+#: 937c8fc3d8ff453997cfae070628948b
+msgid ""
+"[**Python coding style**](./python.md) : Python coding style guidelines "
+"including PEP 8 compliance, naming conventions, and best practices."
+msgstr ""
+
+#: 1321dd10438845a3a6fb0e5f6ccec485
+msgid ""
+"[**Basics**](./basics.md) : Basic conventions for file organization, "
+"documentation, and version control."
+msgstr ""
+
+#: a1f80256e3404b3ab1f772a47d7a7384
+msgid ""
+"[**Internationalization (i18n)**](./i18n.md) : Guidelines for making the "
+"application translatable and handling multiple languages."
+msgstr ""
+
+#: 1f4fead76d1a4ab091dfaedbfe5980a9
+msgid ""
+"[**Literals**](./literals.md) : Conventions for using literals in code, "
+"including string formatting and constant definitions."
+msgstr ""
+
+#: 2b15182c236a4d62a18cc09ccd2670d7
+msgid ""
+"[**User Experience (UX)**](./ux.md) : Best practices for designing user "
+"interfaces and enhancing user experience."
+msgstr ""
+
+#: f2bcb93c539e407c90e572bf09ca56e7
+msgid "Literals"
+msgstr ""
+
+#: 1b21f82ec96544c0a9f0c229fb83c145
+msgid "Error and status messages"
+msgstr ""
+
+#: d75219a9f7624c7daa21be127ddaf77b
+msgid ""
+"Error messages are correctly formed sentences (capital letters, subject, "
+"verb, complement, period at the end)."
+msgstr ""
+
+#: 48091d8f2fb2469cb6ebd629135101e7 a761f736221f4c4391ac3128f113caef
+msgid "Example:"
+msgstr ""
+
+#: 2ef6790030d5460685e208ddb6160b49
+msgid ""
+"# ✅ Good\n"
+"raise ValidationError(_(\"This field is required.\"))\n"
+"# ❌ Bad\n"
+"raise ValidationError(_(\"field required\"))\n"
+msgstr ""
+
+#: f26525b9d7a74e93a5c1f1fc01bb7663
+msgid "Button labels and short action messages"
+msgstr ""
+
+#: 128f9df311ce4d948002155252ec553a
+msgid "Button labels and short action messages are :"
+msgstr ""
+
+#: 31daf7ab3b9d49b198a5e7a76796b033
+msgid "necessarily short"
+msgstr ""
+
+#: 4ca2a461844e4bb783463594dce249bf
+msgid "without a period at the end"
+msgstr ""
+
+#: c02689ab6b5b450db7dad42028fdd121
+msgid "if possible, an infinitive verb (an action)"
+msgstr ""
+
+#: 018a953ed1e74993a300d760b332d47d
+#, python-brace-format
+msgid ""
+"{# ✅ Good #}\n"
+"<button type=\"submit\">{% trans \"Export\" %}</button>\n"
+"\n"
+"{# ❌ Bad #}\n"
+"<button type=\"submit\">{% trans \"Export signatures to CSV file.\" "
+"%}</button>\n"
+msgstr ""
+
+#: e8844649046d40d7a0c97bba8085454f
+msgid ""
+"The interface must make it clear that when you click on the Export "
+"button, it will export the signatures to CSV. This could be done with a "
+"help text near the button (tooltip are not visible on mobile, cf. [UX "
+"conventions](./ux.md))."
+msgstr ""
+
+#: aa7c0b8252a8434a99d7169fb605f3e1
+#, fuzzy
+msgid "Python coding style"
+msgstr "Python-kodstil"
+
+#: 28032a8f98854bfeb4b716cde83cd8aa
+msgid "User experience conventions"
+msgstr ""
+
+#: 0922707d3bf940c1adebe9da478fed96
+msgid "Tooltips"
+msgstr ""
+
+#: 5d9e9ba33ce445279fc376675d6929fd
+msgid ""
+"Tooltips is a good way to provide additional information to desktop users"
+" and should be to comply some users, but always ensure that the "
+"information is also accessible to touch users."
+msgstr ""
+
+msgid "Contents:"
+msgstr "Innehåll:"
+
+#: 696f24bf56414964979650a34bf3f49f
+msgid "Dev guide"
+msgstr "Utvecklingsguide"
+
+#: 985678501f7441b3939f71201fad0ceb
+msgid "Doc coverage : ![Cover badge](../_static/img/interrogate_badge.svg)"
+msgstr ""
+
+#: e9f0a43a14fd46c4a4b4cc0460646929
+msgid "Cover badge"
+msgstr ""
+
+#: 87f212e0e12146e79bac80e0525adedd
+msgid "Welcome to the developer documentation!"
+msgstr "Välkommen till utvecklarens dokumentation!"
+
+#: b2191a46a1124292a2a58a6858b0fed9
+msgid "For developers who want to contribute to the codebase."
+msgstr "För utvecklare som vill bidra till kodbasen."
+
+#: 896b0a8007c140ea9b730bc731eac4eb e122607de34e44218a7af109d42715ea
+msgid "Getting Started"
+msgstr "Komma igång"
+
+#: 1675abb44e5c4c8b9726def79a25d54f
+msgid "Implement developer guide content here."
+msgstr "Implementera utvecklingsguiden här."
+
+#: 4c89d1da006c4c97bce9df334062c4b0
+msgid "Wat's next?"
+msgstr "Vad händer härnäst?"
+
+#: 3c0cab95bee14d1ea91be46861b22fb1
+msgid "Setting up a development environment"
+msgstr ""
+
+#: 65415f209de14e818d97b0827732b4ad
+msgid ""
+"This document describes how to set up a development environment for "
+"Pytition."
+msgstr ""
+
+#: 946c8e96c7a14a4db68273e5959944fa
+msgid "Welcome to Pytition's documentation"
+msgstr "Välkommen till Pytitions dokumentation"
+
+#: 765d37ecd74b4c69a4e6103d16cbacf5
+msgid ""
+"`Pytition` is an application for privacy-friendly online petitions you "
+"can host on your own server. `Pytition` uses the renowned `Django` "
+"framework and is easy to install."
+msgstr ""
+"`Pytition` är en applikation för integritetsvänliga onlinepetitioner som "
+"du kan hosta på din egen server. `Pytition` använder det välkända "
+"`Django` -ramverket och är lätt att installera."
+
+#: a33c986b199f450ba8e7f0b0bafed34f
+msgid "Demo: [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
+msgstr "Demo: [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
+
+#: a48eda8fa88a46d59f3a0a6d16153486
+msgid "command"
+msgstr ""
+
+#: 8e65cdce22dd4beb84a3793d274963f1
+msgid "`pdm run docs` to build the documentation locally."
+msgstr ""
+
+#: 48cce3f3794e4878b119d30121278783
+msgid "Indices and tables"
+msgstr "Index och tabeller"
+
+#: 0a803ebeb56d4b3db61141090105f0bd
+#, python-brace-format
+msgid "{ref}`genindex`"
+msgstr "{ref}`genindex`"
+
+#: f9f2c8823e0a4c908ae6eb0be8c9e857
+#, python-brace-format
+msgid "{ref}`modindex`"
+msgstr "{ref}`modindex`"
+
+#: 34912e8fd8ce482ab606c5365cc86281
+#, python-brace-format
+msgid "{ref}`search`"
+msgstr "{ref}`search`"
+
+#: 2fc5db24bc984847a110fbf40c4aa556
+msgid "User Guide"
+msgstr "Användarhandbok"
+
+#: 397c13937e4e407ca678fc91b3671bbd
+msgid "Welcome to the application!"
+msgstr "Välkommen till applikationen!"
+
+#: 7a59e0c6c98b4450947c83e71a6fd271
+msgid "For those who use the web app on a daily basis."
+msgstr "För dem som använder webbapplikationen dagligen."
+
+#: dd23c83ed01243158d3f5334dbf61ad1
+msgid "Implement user guide content here."
+msgstr "Implementera användarhandbokens innehåll här."
+
+#~ msgid "Implement admin guide content here."
+#~ msgstr "Implementera administratörsguiden här."
+
+#~ msgid "![Docstring coverage](./_static/interrogate_badge.svg)"
+#~ msgstr "![Docstring-täckning](./_static/interrogate_badge.svg)"
+
+#~ msgid "Docstring coverage"
+#~ msgstr "Docstring-täckning"
+
+#~ msgid "{ref}`genindex`"
+#~ msgstr "{ref}`genindex`"
+
+#~ msgid "{ref}`modindex`"
+#~ msgstr "{ref}`modindex`"
+
+#~ msgid "{ref}`search`"
+#~ msgstr "{ref}`search`"
+
+#~ msgid "Description."
+#~ msgstr ""
+
+#~ msgid "Blabla"
+#~ msgstr ""
+
+#~ msgid "Advanced configuration"
+#~ msgstr ""
+
+#~ msgid "**Advanced**: explains the logic behind reading variables"
+#~ msgstr ""
+
+#~ msgid "![Cover badge](_static/img/interrogate_badge.svg)"
+#~ msgstr ""
+

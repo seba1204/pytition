@@ -29,12 +29,13 @@ class _OrgCreateContext(TypedDict, total=False):
 # Create a new organization
 @login_required
 def create(request: HttpRequest) -> HttpResponse:
+    """View function to create a new organization."""
     # Only super users can create organizations if the setting is on
     if settings.RESTRICT_ORG_CREATION and not request.user.has_perm(
         "petition.add_organization"
     ):
         messages.error(request, _("Only super users can create an organization."))
-        # FIXME: should redirect to the page where the user was before requesting
+        # FIXME: [#40] should redirect to the page where the user was before requesting
         # the creation of a new organization.
         # If not possible, redirect to user dashboard.
         return redirect(AccountsRoute.DASHBOARD)
@@ -60,7 +61,7 @@ def create(request: HttpRequest) -> HttpResponse:
                 _("You successfully created organization '%(orgname)s'")
                 % {"orgname": org.name},
             )
-            # FIXME: should redirect to the newly created org dashboard.
+            # FIXME: [#40] should redirect to the newly created org dashboard.
             return redirect(AccountsRoute.DASHBOARD)
         else:
             # Form is not valid, show it with errors in the template

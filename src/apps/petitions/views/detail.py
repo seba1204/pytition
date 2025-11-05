@@ -1,3 +1,5 @@
+"""View to show petition details."""
+
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 

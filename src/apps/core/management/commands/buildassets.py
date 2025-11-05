@@ -1,3 +1,5 @@
+"""Management command to build assets into STATIC_ROOT."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -10,12 +12,15 @@ from apps.core.assets.base import Context
 
 
 class Command(BaseCommand):
+    """Build assets into STATIC_ROOT."""
+
     help = (
         "Builds assets (WebP images, minified CSS/JS + sourcemaps, favicons,"
         "manifest, browserconfig) in STATIC_ROOT."
     )
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Add command line arguments for buildassets command."""
         parser.add_argument(
             "--assets-dir",
             default=None,
@@ -40,6 +45,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Build assets into STATIC_ROOT."""
         opts = dict(opts)  # Ensure opts is a dict
         assets_dir = opts["assets_dir"]
         static_root = opts["static_root"]

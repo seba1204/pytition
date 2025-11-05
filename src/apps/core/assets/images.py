@@ -1,3 +1,5 @@
+"""Pipeline step to process images: convert PNG/JPEG to WebP and copy SVGs."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -12,6 +14,7 @@ from .registry import register_step
 class ImagesStep(PipelineStep):
     """
     Converts PNG/JPEG to WebP in 3 sizes.
+
     Copies SVG files as-is.
     Source: assets/img/**/* -> <static_root>/img/
     """
@@ -20,6 +23,7 @@ class ImagesStep(PipelineStep):
         super().__init__("images")
 
     def run(self, ctx: Context) -> None:
+        """Process images from assets/img to <static_root>/img."""
         src = Path(ctx.assets_dir) / "img"
         dst = Path(ctx.static_root) / "img"
         dst.mkdir(parents=True, exist_ok=True)

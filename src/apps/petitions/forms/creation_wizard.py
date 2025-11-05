@@ -1,3 +1,5 @@
+"""Petition creation wizard form."""
+
 from typing import Any
 
 from django.conf import settings
@@ -43,6 +45,8 @@ SESSION_KEY = "wizard_params:petition_creation"
 # PATH : subroutes of /wizard
 @method_decorator(login_required, name="dispatch")
 class PetitionCreationWizard(SessionWizardView):
+    """Wizard for creating a petition."""
+
     def _load_params_from_session_or_get(self) -> None:
         """Load/merge parameters from the session and query string."""
         session_data = self.request.session
@@ -68,10 +72,12 @@ class PetitionCreationWizard(SessionWizardView):
         self._wizard_params = data
 
     def _clear_params_session(self) -> None:
+        """Clear the wizard parameters from the session."""
         self.request.session.pop(SESSION_KEY, None)
         self.request.session.modified = True
 
     def _orgslugname(self) -> str | None:
+        """Get the organization slugname if any."""
         value = (getattr(self, "_wizard_params", None) or {}).get("orgslugname")
         if value is not None:
             return str(value)
@@ -81,6 +87,7 @@ class PetitionCreationWizard(SessionWizardView):
         return None
 
     def _template_id(self) -> int | None:
+        """Get the template ID if any."""
         value = (getattr(self, "_wizard_params", None) or {}).get("template_id")
         if value is None:
             value = self.kwargs.get("template_id")
@@ -91,9 +98,11 @@ class PetitionCreationWizard(SessionWizardView):
         return None
 
     def _is_org_petition(self) -> bool:
+        """Check if the petition is to be created under an organization."""
         return self._orgslugname() is not None
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> Any:
+        """Load parameters and check if user can create petitions."""
         self._load_params_from_session_or_get()
         if settings.DISABLE_USER_PETITION and not self._is_org_petition():
             messages.error(
@@ -103,9 +112,11 @@ class PetitionCreationWizard(SessionWizardView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_template_names(self) -> list[str]:
+        """Get the template name for the current step."""
         return [WizardTemplates[self.steps.current]]
 
     def get_form_initial(self, step: str) -> dict[str, Any]:
+        """Get initial data for the given step."""
         template = None
         org_petition = self._is_org_petition()
         if org_petition:
@@ -144,6 +155,7 @@ class PetitionCreationWizard(SessionWizardView):
         return dict(self.initial_dict.get(step, {}) or {})
 
     def get_form_kwargs(self, step: str | None = None) -> dict[str, Any]:
+        """Get extra kwargs for the given step."""
         if step == "step1":
             if self._is_org_petition():
                 return {"orgslugname": self._orgslugname()}
@@ -152,8 +164,9 @@ class PetitionCreationWizard(SessionWizardView):
                 return {"user_name": pytitionuser.user.username}
         return {}
 
-    # FIXME: this method is too long, split it into smaller methods
+    # FIXME: [#79] this method is too long, split it into smaller methods
     def done(self, form_list: list[Any], **kwargs: Any) -> HttpResponse:  # noqa
+        """Create the petition and redirect to the appropriate page."""
         try:
             org_petition = self._is_org_petition()
             title = self.get_cleaned_data_for_step("step1")["title"]
@@ -241,6 +254,7 @@ class PetitionCreationWizard(SessionWizardView):
             self._clear_params_session()
 
     def get_context_data(self, form: Any, **kwargs: Any) -> dict[str, Any]:
+        """Get context data for the template rendering."""
         org_petition = self._is_org_petition()
         context = super().get_context_data(form=form, **kwargs)
         if org_petition:

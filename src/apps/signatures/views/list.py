@@ -1,3 +1,5 @@
+"""View to list and manage petition signatures."""
+
 from __future__ import annotations
 
 from collections.abc import Iterable

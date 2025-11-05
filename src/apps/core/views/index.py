@@ -1,3 +1,5 @@
+"""Home page view."""
+
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.http import Http404, HttpRequest
@@ -14,6 +16,11 @@ from apps.petitions.models import Petition
 
 
 def index(request: HttpRequest) -> DjangoHttpResponse:
+    """
+    Home page view.
+
+    Redirects to a specific profile or shows recent petitions.
+    """
     if not hasattr(settings, "INDEX_PAGE"):
         raise Http404(_("You must set an INDEX_PAGE config in your settings"))
     index_page = getattr(settings, "INDEX_PAGE", None)

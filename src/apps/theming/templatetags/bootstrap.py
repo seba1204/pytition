@@ -1,3 +1,5 @@
+"""Template tags for Bootstrap theming."""
+
 from django import template
 from widget_tweaks.templatetags.widget_tweaks import add_class  # type: ignore
 

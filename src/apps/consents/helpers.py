@@ -1,3 +1,5 @@
+"""Helper functions for the consents app."""
+
 from __future__ import annotations
 
 import contextlib
@@ -8,13 +10,13 @@ import requests
 from django.core.mail import EmailMessage, get_connection
 
 
-# TODO: type hint petition as Petition
+# TODO: [#25] type hint petition as Petition
 def subscribe_to_newsletter(petition: Any, email: str) -> None:
     """
     Subscribe an email to a petition's newsletter.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     petition : Petition
         The petition object containing newsletter subscription details.
     email : str
@@ -33,12 +35,13 @@ def subscribe_to_newsletter(petition: Any, email: str) -> None:
             data[petition.newsletter_subscribe_http_mailfield] = email
     if petition.newsletter_subscribe_method == "POST":
         requests.post(petition.newsletter_subscribe_http_url, data)
-        # FIXME: there is no error handling here
+        # FIXME: [#25] there is no error handling here
     elif petition.newsletter_subscribe_method == "GET":
         with contextlib.suppress(requests.exceptions.RequestException):
             requests.get(petition.newsletter_subscribe_http_url, params=data)
         # if server is currently not accessible, we just skip subscription
-        # FIXME: log error on admin panel, so the admin can check failed subscriptions
+        # FIXME: [#25] log error on admin panel, so the admin can check
+        # failed subscriptions
     elif petition.newsletter_subscribe_method == "MAIL":
         with get_connection(
             host=petition.newsletter_subscribe_mail_smtp_host,

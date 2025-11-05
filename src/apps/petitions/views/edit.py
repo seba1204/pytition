@@ -1,3 +1,5 @@
+"""View to edit a petition."""
+
 from pathlib import Path
 
 from django.contrib import messages
@@ -17,9 +19,7 @@ from apps.petitions.forms import ContentFormPetition, SocialNetworkForm, StyleFo
 from apps.petitions.helpers import petition_from_id
 
 
-# FIXME: This view is too big, it should be split into smaller functions
-# /<int:petition_id>/edit
-# Edit a petition
+# FIXME: [#79] This view is too big, it should be split into smaller functions
 @login_required
 def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
     """
@@ -31,12 +31,12 @@ def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
         The HTTP request object.
     petition_id : int
         The ID of the petition to edit.
+
     Returns
     -------
     HttpResponse
         The HTTP response object with the rendered edit petition page.
     """
-
     petition = petition_from_id(petition_id)
     pytitionuser = get_session_user(request)
 

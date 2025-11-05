@@ -1,3 +1,5 @@
+"""Moderation model."""
+
 from __future__ import annotations
 
 from django.db import models
@@ -6,8 +8,7 @@ from django.utils.translation import gettext_lazy as _lazy
 from apps.core.model_refs import MODERATION_REASON, PETITION
 
 
-# FIXME: According to the PytitionUser model, user can be moderated too.
-# cf. ticket #60.
+# FIXME: [#60] According to the PytitionUser model, user can be moderated too.
 class Moderation(models.Model):
     """Model representing a moderation action taken on a petition."""
 
@@ -17,6 +18,8 @@ class Moderation(models.Model):
     )
 
     class Meta:
+        """Meta class for Moderation model."""
+
         db_table = "petition_moderation"
         # Translators: Moderation model name in the admin interface
         verbose_name = _lazy("Moderation")

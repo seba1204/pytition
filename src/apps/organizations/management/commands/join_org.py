@@ -1,3 +1,5 @@
+"""Management command to make a user join an organization."""
+
 import logging
 
 from django.core.management.base import BaseCommand, CommandParser
@@ -16,10 +18,13 @@ class Command(BaseCommand):
     """
 
     def add_arguments(self, parser: CommandParser) -> None:
+        """Add command arguments for username and organization name."""
         parser.add_argument("username", type=str)
         parser.add_argument("org", type=str)
 
     def handle(self, *args: object, **opts: object) -> None:
+        """Add the specified user to the specified organization with full
+        permissions."""
         try:
             user = PytitionUser.objects.get(user__username=opts["username"])
         except PytitionUser.DoesNotExist:

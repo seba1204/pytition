@@ -1,3 +1,5 @@
+"""Vendor class for Bootstrap static files."""
+
 from __future__ import annotations
 
 import shutil
@@ -8,13 +10,15 @@ from .registry import register
 
 @register("bootstrap")
 class BootstrapVendor(Vendor):
-    """Fetch Bootstrap dist zip for a given version and install css/js maps.
+    """
+    Fetch Bootstrap dist zip for a given version and install css/js maps.
 
     Source: GitHub releases – "bootstrap-<version>-dist.zip" assets.
     Example URL: https://github.com/twbs/bootstrap/releases/download/v5.3.3/bootstrap-5.3.3-dist.zip
     """
 
     def download_and_stage(self) -> None:
+        """Download and stage Bootstrap files into `stage_dir`."""
         url = f"https://github.com/twbs/bootstrap/releases/download/v{self.version}/bootstrap-{self.version}-dist.zip"
         blob = self._http_get_bytes(url)
         tmp = self.stage_dir / "_zip"

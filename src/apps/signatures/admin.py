@@ -1,3 +1,5 @@
+"""Admin configuration for the Signature model."""
+
 from django.contrib import admin
 
 from apps.consents.admin import confirm
@@ -7,6 +9,8 @@ from apps.signatures.models import Signature
 
 @admin.register(Signature)
 class SignatureAdmin(admin.ModelAdmin):
+    """Admin configuration for the Signature model."""
+
     list_display = (
         "first_name",
         "last_name",

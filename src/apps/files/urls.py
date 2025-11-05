@@ -1,3 +1,5 @@
+"""URL routing for the Files application."""
+
 from __future__ import annotations
 
 from apps.core.route import Route, build_urlpatterns, validate_bijection

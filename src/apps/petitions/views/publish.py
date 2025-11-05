@@ -1,3 +1,5 @@
+"""View to publish a petition."""
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 
@@ -6,7 +8,6 @@ from apps.accounts.services import get_session_user
 from apps.petitions.helpers import petition_from_id
 
 
-# /<int:petition_id>/publish
 # Publish a petition
 @login_required
 def publish(request: HttpRequest, petition_id: int) -> JsonResponse:

@@ -1,3 +1,5 @@
+"""Services for moderation-related functionalities."""
+
 from apps.petitions.models import Petition
 
 
