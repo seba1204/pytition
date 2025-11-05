@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs", "typecheck"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:ef2c8a6de1cfab06585622e914f4f1f2e94f747e8765b13a3c7cd08753d12edf"
+content_hash = "sha256:5100a1243acf77208a5fda78dbef071c47418c539e82c4494b5d0227635cd4ef"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -598,6 +598,16 @@ dependencies = [
 files = [
     {file = "django_stubs_ext-5.2.7-py3-none-any.whl", hash = "sha256:0466a7132587d49c5bbe12082ac9824d117a0dedcad5d0ada75a6e0d3aca6f60"},
     {file = "django_stubs_ext-5.2.7.tar.gz", hash = "sha256:b690655bd4cb8a44ae57abb314e0995dc90414280db8f26fff0cb9fb367d1cac"},
+]
+
+[[package]]
+name = "django-template-analyzer"
+version = "2.1"
+summary = "Django Template Analyzer - Extract template nodes from a Django template"
+groups = ["docs"]
+files = [
+    {file = "django-template-analyzer-2.1.tar.gz", hash = "sha256:aacacf114a23f65b3f967319fb49284b413a9596652bc6594b63aba82db06b89"},
+    {file = "django_template_analyzer-2.1-py3-none-any.whl", hash = "sha256:f528ee9712c508bdec31f36a57a69c85a704b3df723454cc43786af908b758cb"},
 ]
 
 [[package]]
