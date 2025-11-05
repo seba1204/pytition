@@ -9,11 +9,11 @@
           {% if is_org %}
             <a class="btn btn-outline-primary"
                href="{% url "org:dashboard" slug %}"
-               aria-label="{% trans "Back to dashboard" %}"><span class="bi bi-dashboard">{% trans "Back to dashboard" %}</span></a>
+               aria-label="{% trans "Back to dashboard" %}"><span class="bi bi-speedometer">{% trans "Back to dashboard" %}</span></a>
           {% else %}
             <a class="btn btn-outline-primary"
                href="{% url "accounts:dashboard" %}"
-               aria-label="{% trans "Back to dashboard" %}"><span class="bi bi-dashboard">{% trans "Back to dashboard" %}</span></a>
+               aria-label="{% trans "Back to dashboard" %}"><span class="bi bi-speedometer">{% trans "Back to dashboard" %}</span></a>
           {% endif %}
         {% endif %}
       {% endblock brand %}

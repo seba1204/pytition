@@ -1,4 +1,4 @@
-{% extends "layouts/layout.html" %}
+{% extends "layouts/layout_bs5.html" %}
 {% load i18n %}
 {% block container_type %}
     container
@@ -44,7 +44,7 @@
                         <h3 class="mb-4">{% trans "Personal Information" %}</h3>
                         <form method="post">
                             {% csrf_token %}
-                            {% include "ui/forms/bs4.html" with form=update_info_form %}
+                            {% include "ui/forms/bs4_bs5.html" with form=update_info_form %}
                             <div class="text-center">
                                 <button name="update_info_form_submitted"
                                         class="btn btn-primary"
@@ -60,7 +60,7 @@
                         <h3 class="mb-4">{% trans "Change password" %}</h3>
                         <form method="post">
                             {% csrf_token %}
-                            {% include "ui/forms/bs4.html" with form=password_change_form %}
+                            {% include "ui/forms/bs4_bs5.html" with form=password_change_form %}
                             <div class="text-center">
                                 <button name="password_change_form_submitted"
                                         class="btn btn-primary"
@@ -78,11 +78,9 @@
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>{{ message }}</strong>
                                     <button type="button"
-                                            class="close"
+                                            class="btn-close"
                                             data-bs-dismiss="alert"
-                                            aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
+                                            aria-label="Close"></button>
                                 </div>
                             {% endfor %}
                         {% endif %}
@@ -106,7 +104,8 @@
                                                       tabindex="0"
                                                       data-bs-toggle="tooltip"
                                                       title="{% trans "You cannot leave an organization where you are either the last administrator or the last member." %}">
-                                                    <button type="button" class="btn btn-light disabled" disabled>Leave</button>
+                                                    {# TODO: replace disabled by a modal, cf. #40 #}
+                                                    <button type="button" class="btn btn-light disabled">Leave</button>
                                                 </span>
                                             {% endif %}
                                         </div>
@@ -128,10 +127,13 @@
                          aria-labelledby="delete-account-form-list">
                         <h3 class="mb-4">{% trans "Delete account" %}</h3>
                         <div class="alert alert-warning alert-dismissible show fade">
-                            <button type="button" class="close" data-bs-dismiss="alert">×</button>
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             <div class="row">
                                 <div class="col-1 alert-icon-col">
-                                    <span class="bi bi-warning"></span>
+                                    <span class="bi bi-exclamation-triangle"></span>
                                 </div>
                                 <div class="col">
                                     {% blocktrans trimmed %}
@@ -147,7 +149,7 @@
                         </div>
                         <form method="post">
                             {% csrf_token %}
-                            {% include "ui/forms/bs4.html" with form=delete_account_form %}
+                            {% include "ui/forms/bs4_bs5.html" with form=delete_account_form %}
                             <div class="text-center">
                                 <button name="delete_account_form_submitted"
                                         class="btn btn-danger"
@@ -171,11 +173,9 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="org_leave_modal_label">{% trans "Leaving an organization" %}</h5>
                     <button type="button"
-                            class="close"
+                            class="btn-close"
                             data-bs-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                            aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     {% blocktrans trimmed with orgname='<span id="orgname_modal"></span>' %}
@@ -229,3 +229,4 @@ $(function() {
 
     </script>
 {% endblock extra_js %}
+{% comment %} BS5-DONE {% endcomment %}

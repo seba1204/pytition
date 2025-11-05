@@ -1,18 +1,14 @@
-{% extends "layouts/layout.html" %}
+{% extends "layouts/layout_bs5.html" %}
 {% load i18n %}
 {% block extra_css %}
-    <style>
-        .invalid-feedback {
-            display: block;
-        }
-    </style>
 {% endblock extra_css %}
 {% block main_content %}
     <div class="container">
         <form action="" method="post" novalidate="novalidate">
             {% csrf_token %}
-            {% include "ui/forms/bs4.html" with form=form %}
+            {% include "ui/forms/bs4_bs5.html" with form=form %}
             <button class="btn btn-primary" type="submit">{% trans "Register" %}</button>
         </form>
     </div>
 {% endblock main_content %}
+{% comment %} BS5-DONE {% endcomment %}

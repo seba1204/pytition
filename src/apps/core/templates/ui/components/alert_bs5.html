@@ -4,9 +4,9 @@
     <div class="row">
       <div class="col-1 alert-icon-col">
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-          <span class="bi bi-warning"></span>
+          <span class="bi bi-exclamation-triangle"></span>
         {% else %}
-          <span class="bi bi-thumb-up"></span>
+          <span class="bi bi-hand-thumbs-up"></span>
         {% endif %}
       </div>
       <div class="col">{{ message }}</div>

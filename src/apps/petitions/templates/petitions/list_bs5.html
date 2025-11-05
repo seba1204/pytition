@@ -87,14 +87,14 @@
                  data-bs-toggle="tooltip"
                  title="{% trans "View signatures" %}"
                  aria-disabled="true">
-                <span class="bi bi-spreadsheet"></span>
+                <span class="bi bi-file-spreadsheet"></span>
               </a>
               <a href="{% url "petitions:transfer" petition.id %}"
                  class="btn btn-outline-primary btn-sm"
                  data-bs-toggle="tooltip"
                  title="{% trans "Transfer this petition" %}"
                  aria-disabled="true">
-                <span class="bi bi-share-boxed"></span>
+                <span class="bi bi-share"></span>
               </a>
               <span data-bs-toggle="tooltip" title="{% trans "Delete the petition" %}">
                 <button class="btn btn-outline-danger btn-sm"
@@ -102,7 +102,7 @@
                         data-bs-toggle="modal"
                         data-bs-target="#petition{{ petition.id }}_delete_modal"
                         aria-disabled="true">
-                  <span class="bi bi-circle-x"></span>
+                  <span class="bi bi-x-circle"></span>
                 </button>
               </span>
             </div>

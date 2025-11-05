@@ -101,4 +101,4 @@ def settings(request: HttpRequest) -> HttpResponse:  # noqa
 
     ctx.update(submitted_ctx)
 
-    return render(request, "accounts/settings.html", ctx)
+    return render(request, "accounts/settings_bs5.html", ctx)

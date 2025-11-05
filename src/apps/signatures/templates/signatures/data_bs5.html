@@ -20,18 +20,18 @@
                 <p>
                     <a href="{% url 'signatures:export' petition.id %}"
                        class="btn btn-primary">
-                        <span class="bi bi-spreadsheet"></span>
+                        <span class="bi bi-file-spreadsheet"></span>
                         {% trans "Export <strong>ALL</strong> signatures (CSV)" %}
                     </a>
                     <a href="{% url 'signatures:export' petition.id %}?confirmed=true"
                        class="btn btn-primary">
-                        <span class="bi bi-spreadsheet"></span>
+                        <span class="bi bi-file-spreadsheet"></span>
                         {% trans "Export <strong>confirmed</strong> signatures (CSV)" %}
                     </a>
                 </p>
                 <p>
                     <button class="btn btn-success" id="re-send-all">
-                        <span class="bi bi-envelope-closed"></span>
+                        <span class="bi bi-envelope"></span>
                         {% trans "Re-send confirmation e-mail to all unconfirmed" %}
                     </button>
                 </p>
@@ -111,16 +111,16 @@
                                 <td>{{ signature.phone }}</td>
                                 <td>
                                     {% if signature.confirmed %}
-                                        <span class="bi bi-circle-check text-success"></span>
+                                        <span class="bi bi-check-circle text-success"></span>
                                     {% else %}
-                                        <span class="bi bi-circle-x text-danger"></span>
+                                        <span class="bi bi-x-circle text-danger"></span>
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if signature.subscribed_to_mailinglist %}
-                                        <span class="bi bi-circle-check text-success"></span>
+                                        <span class="bi bi-check-circle text-success"></span>
                                     {% else %}
-                                        <span class="bi bi-circle-x text-danger"></span>
+                                        <span class="bi bi-x-circle text-danger"></span>
                                     {% endif %}
                                 </td>
                                 <td>{{ signature.date }}</td>

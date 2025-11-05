@@ -63,12 +63,12 @@
        class="list-group-item list-group-item-info list-group-item-action"
        data-bs-toggle="list"
        aria-controls="social_network_form"
-       role="tab"><span class="bi bi-share-boxed"></span> {% trans "Social Networks" %}</a>
+       role="tab"><span class="bi bi-share"></span> {% trans "Social Networks" %}</a>
     <a href="#email_form"
        class="list-group-item list-group-item-info list-group-item-action"
        data-bs-toggle="list"
        aria-controls="email_form"
-       role="tab"><span class="bi bi-envelope-closed"></span> {% trans "E-mail setup" %}</a>
+       role="tab"><span class="bi bi-envelope"></span> {% trans "E-mail setup" %}</a>
     <a href="#newsletter_form"
        class="list-group-item list-group-item-info list-group-item-action"
        data-bs-toggle="list"
@@ -474,7 +474,7 @@ $(function () {
     if (formemail.serialize() !== formemail.data('serialize')) {
       $('a[href="#email_form"]').html(`
         <div class="d-flex">
-          <span class="bi bi-envelope-closed"></span>
+          <span class="bi bi-envelope"></span>
           <span>&nbsp;</span>
           <div class="d-flex flex-column">
             <div>* <i>{% trans "E-mail setup" %}</i></div>
@@ -483,13 +483,13 @@ $(function () {
         </div>
       `);
     } else {
-      $('a[href="#email_form"]').html('<span class="bi bi-envelope-closed"></span> {% trans "E-mail setup" %}');
+      $('a[href="#email_form"]').html('<span class="bi bi-envelope"></span> {% trans "E-mail setup" %}');
     }
 
     if (formsn.serialize() !== formsn.data('serialize')) {
       $('a[href="#social_network_form"]').html(`
         <div class="d-flex">
-          <span class="bi bi-share-boxed"></span>
+          <span class="bi bi-share"></span>
           <span>&nbsp;</span>
           <div class="d-flex flex-column">
             <div>* <i>{% trans "Social Networks" %}</i></div>
@@ -498,7 +498,7 @@ $(function () {
         </div>
       `);
     } else {
-      $('a[href="#social_network_form"]').html('<span class="bi bi-share-boxed"></span> {% trans "Social Networks" %}');
+      $('a[href="#social_network_form"]').html('<span class="bi bi-share"></span> {% trans "Social Networks" %}');
     }
 
     if (formnewsletter.serialize() !== formnewsletter.data('serialize')) {
