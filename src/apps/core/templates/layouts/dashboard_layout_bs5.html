@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/base_bs5.html" %}
 {% load i18n %}
 {% load static %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -15,7 +15,7 @@
         {% endblock sidebar %}
         <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6 col-12 bg-light dashboard-content border-start">
           {% if messages %}
-            {% include "ui/components/alert.html" %}
+            {% include "ui/components/alert_bs5.html" %}
           {% endif %}
           {% block content %}
           {% endblock content %}
@@ -24,3 +24,4 @@
     </div>
   </div>
 {% endblock main_content %}
+{% comment %} BS5-DONE {% endcomment %}

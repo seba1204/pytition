@@ -1,4 +1,4 @@
-{% extends "accounts/base.html" %}
+{% extends "accounts/base_bs5.html" %}
 {% load i18n %}
 {% block content %}
     <div class="row">
@@ -10,10 +10,11 @@
         <div class="col">
             <form method="post">
                 {% csrf_token %}
-                {% include "ui/forms/bs4.html" with form=form %}
+                {% include "ui/forms/bs4_bs5.html" with form=form %}
                 {# Translators: This is the label for a button that submits a form to create a new organization. #}
                 <button class="btn btn-success" type="submit">{% trans "Create" %}</button>
             </form>
         </div>
     </div>
 {% endblock content %}
+{% comment %} BS5-DONE {% endcomment %}

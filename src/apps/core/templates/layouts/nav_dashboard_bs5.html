@@ -53,13 +53,12 @@
                    placeholder="{% trans "Search for petition" %}"
                    name="q"
                    value="{{ q }}">
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-outline-secondary">{% trans "Search" %}</button>
-            </div>
+            <button type="submit" class="btn btn-outline-secondary">{% trans "Search" %}</button>
           </div>
         </form>
-        {% include "layouts/nav-useractions.html" %}
+        {% include "layouts/nav-useractions_bs5.html" %}
       </div>
     </div>
   </nav>
 {% endblock navbar %}
+{% comment %} BS5-DONE {% endcomment %}

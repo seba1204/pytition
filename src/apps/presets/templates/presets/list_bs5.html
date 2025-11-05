@@ -61,11 +61,9 @@
             <h5 class="modal-title"
                 id="template_delete_modal_label_{{ template.id }}">{% trans "Delete this template?" %}</h5>
             <button type="button"
-                    class="close"
+                    class="btn-close"
                     data-bs-dismiss="modal"
-                    aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
+                    aria-label="Close"></button>
           </div>
           <div class="modal-body">
             {% trans "You are about to delete the following petition template:" %}"{{ template.name }}".
@@ -82,3 +80,4 @@
     </div>
   {% endfor %}
 </ul>
+{% comment %} BS5-DONE {% endcomment %}
