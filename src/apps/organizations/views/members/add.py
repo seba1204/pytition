@@ -28,16 +28,17 @@ def _check_org_context(
         The slugname of the organization.
     username : str
         The username of the user to add.
+
     Returns
     -------
     tuple[PytitionUser, Organization]
         A tuple containing, the user to add and the organization.
+
     Raises
     ------
     ApiError
         If any of the checks fail.
     """
-
     user_to_add = PytitionUser.objects.filter(user__username=username).first()
     if not user_to_add:
         raise NotFoundError(_("This user does not exist (any longer?)"))
@@ -82,7 +83,6 @@ def add(request: HttpRequest, orgslugname: str) -> JsonResponse:
     JsonResponse
         A JSON response indicating success or failure of the operation.
     """
-
     # Get the username of the user to add from GET parameters
     username: str = (request.GET.get("user", "") or "").strip()
     current_user: PytitionUser = get_session_user(request)

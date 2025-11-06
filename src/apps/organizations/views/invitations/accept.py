@@ -25,16 +25,17 @@ def accept(request: HttpRequest, orgslugname: str) -> HttpResponse:
         The HTTP request object.
     orgslugname : str
         The slugname of the organization.
+
     Returns
     -------
     HttpResponse
         A redirect to the user dashboard.
+
     Raises
     ------
     Http404
         If the organization does not exist or there is no invitation.
     """
-
     if orgslugname == "":
         return HttpResponse(status=500)
 

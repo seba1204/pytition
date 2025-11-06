@@ -30,12 +30,12 @@ def get_session_user(request: HttpRequest) -> PytitionUser:
     -------
     PytitionUser
         The PytitionUser associated with the current session.
+
     Raises
     ------
     Http404
         If the user is not found.
     """
-
     # to avoid circular imports
     from apps.accounts.models import PytitionUser  # noqa
 
@@ -59,16 +59,17 @@ def get_update_form(
         The user data.
     data : Mapping[str, Any] | None, optional
         The data to populate the form with, by default None.
+
     Returns
     -------
     UpdateInfoForm
         The populated UpdateInfoForm.
+
     Raises
     ------
     ImportError
         If the UpdateInfoForm cannot be imported.
     """
-
     from apps.accounts.forms import UpdateInfoForm  # noqa # to avoid circular import
 
     if not data:

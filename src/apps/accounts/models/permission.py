@@ -30,19 +30,19 @@ class Permission(models.Model):
         default=False, verbose_name=_lazy("Can invite new members?")
     )
     can_create_petitions = models.BooleanField(
-        default=False, verbose_name=_lazy("Can create petitions?")
+        default=True, verbose_name=_lazy("Can create petitions?")
     )
     can_modify_petitions = models.BooleanField(
-        default=False, verbose_name=_lazy("Can modify petitions?")
+        default=True, verbose_name=_lazy("Can modify petitions?")
     )
     can_delete_petitions = models.BooleanField(
         default=False, verbose_name=_lazy("Can delete petitions?")
     )
     can_create_templates = models.BooleanField(
-        default=False, verbose_name=_lazy("Can create petition templates?")
+        default=True, verbose_name=_lazy("Can create petition templates?")
     )
     can_modify_templates = models.BooleanField(
-        default=False, verbose_name=_lazy("Can modify petition templates?")
+        default=True, verbose_name=_lazy("Can modify petition templates?")
     )
     can_delete_templates = models.BooleanField(
         default=False, verbose_name=_lazy("Can delete petition templates?")
