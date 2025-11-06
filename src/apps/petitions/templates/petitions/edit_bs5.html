@@ -67,12 +67,12 @@
        class="list-group-item list-group-item-action"
        data-bs-toggle="list"
        aria-controls="email_form"
-       role="tab"><i class="bi bi-envelope" aria-hidden="true"></i> {% trans "E-mail setup" %}</a>
+       role="tab"><i class="bi bi-envelope" aria-hidden="true"></i> {% trans "E-mail" %}</a>
     <a href="#newsletter_form"
        class="list-group-item list-group-item-action"
        data-bs-toggle="list"
        aria-controls="newsletter_form"
-       role="tab"><i class="bi bi-rss" aria-hidden="true"></i> {% trans "Newsletter setup" %}</a>
+       role="tab"><i class="bi bi-rss" aria-hidden="true"></i> {% trans "Newsletter" %}</a>
     <a href="#preview"
        class="list-group-item list-group-item-action"
        data-bs-toggle="list"
@@ -453,13 +453,13 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="bi bi-clipboard"></i><span class="ms-1"></span>
             <div class="d-flex flex-column">
               <div>* <i>{% trans "Content" %}</i></div>
-              <div>&nbsp; ({% trans "unsaved" %})</div>
             </div>
           </div>`);
       } else {
         setSaved('#content_form', '<i class="bi bi-clipboard" aria-hidden="true"></i> {% trans "Content" %}');
       }
 
+      // FIXME: doesn't work with navigator auto-completion
       function isChanged(formId) {
         const f = document.getElementById(formId);
         return (new URLSearchParams(new FormData(f)).toString() !== f.dataset.serialize) && f.dataset.submitted !== 'true';
@@ -471,7 +471,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="bi bi-brush"></i><span class="ms-1"></span>
             <div class="d-flex flex-column">
               <div>* <i>{% trans "Style & Look" %}</i></div>
-              <div>&nbsp; ({% trans "unsaved" %})</div>
             </div>
           </div>`);
       } else {
@@ -483,12 +482,11 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="d-flex">
             <i class="bi bi-envelope"></i><span class="ms-1"></span>
             <div class="d-flex flex-column">
-              <div>* <i>{% trans "E-mail setup" %}</i></div>
-              <div>&nbsp; ({% trans "unsaved" %})</div>
+              <div>* <i>{% trans "E-mail" %}</i></div>
             </div>
           </div>`);
       } else {
-        setSaved('#email_form', '<i class="bi bi-envelope" aria-hidden="true"></i> {% trans "E-mail setup" %}');
+        setSaved('#email_form', '<i class="bi bi-envelope" aria-hidden="true"></i> {% trans "E-mail" %}');
       }
 
       if (isChanged('form_sn')) {
@@ -497,7 +495,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="bi bi-share"></i><span class="ms-1"></span>
             <div class="d-flex flex-column">
               <div>* <i>{% trans "Social Networks" %}</i></div>
-              <div>&nbsp; ({% trans "unsaved" %})</div>
             </div>
           </div>`);
       } else {
@@ -509,12 +506,11 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="d-flex">
             <i class="bi bi-rss"></i><span class="ms-1"></span>
             <div class="d-flex flex-column">
-              <div>* <i>{% trans "Newsletter setup" %}</i></div>
-              <div>&nbsp; ({% trans "unsaved" %})</div>
+              <div>* <i>{% trans "Newsletter" %}</i></div>
             </div>
           </div>`);
       } else {
-        setSaved('#newsletter_form', '<i class="bi bi-rss" aria-hidden="true"></i> {% trans "Newsletter setup" %}');
+        setSaved('#newsletter_form', '<i class="bi bi-rss" aria-hidden="true"></i> {% trans "Newsletter" %}');
       }
     });
   });
@@ -609,3 +605,4 @@ var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 function get_csrf_token() { return csrftoken; }
   </script>
 {% endblock extra_js %}
+{% comment %} BS5-DONE {% endcomment %}

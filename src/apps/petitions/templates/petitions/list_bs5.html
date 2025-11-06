@@ -18,54 +18,58 @@
     {% endif %}
   {% endif %}
 {% else %}
-  <div class="row petition-list">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 petition-list">
     {% for petition in petitions %}
-      <div class="col-xl-3 col-lg-4 col-sm-6 col-12 text-center sb-preview"
+      <div class="col text-center sb-preview"
            data-petition-unpublish="{% url "petitions:unpublish" petition.id %}"
            data-petition-publish="{% url "petitions:publish" petition.id %}">
-        <div class="card h-100 {% if petition.is_moderated %}border border-danger{% endif %} ">
+        <div class="card h-100 {% if petition.is_moderated %}border border-danger{% endif %}">
           <a href="{{ petition.url }}" class="sb-preview-img">
             {% if not petition.twitter_image %}
-              <img class="card-img-top img-fluid img-thumbnail d-block mx-auto"
+              <img class="card-img-top img-fluid img-thumbnail d-block mx-auto w-100"
                    style="object-fit: contain;
                           padding-top: 25px;
                           padding-bottom: 25px"
                    alt="thumbnail"
                    src="{% static settings.DEFAULT_INDEX_THUMBNAIL %}"
                    width="300"
-                   height="200">
+                   height="200"
+                   loading="lazy">
             {% else %}
-              <img class="card-img-top img-fluid img-thumbnail"
+              <img class="card-img-top img-fluid img-thumbnail w-100"
                    alt="thumbnail"
-                   src="{{ petition.twitter_image }}"
+                   src="{{ petition.twitter_image }}"
                    width="300"
-                   height="200">
+                   height="200"
+                   loading="lazy">
             {% endif %}
           </a>
           <div class="card-body d-flex flex-column">
-            <h4 class="card-title">{{ petition.title|striptags  }}</h4>
+            <h4 class="card-title">{{ petition.title|striptags }}</h4>
             {% if petition.twitter_description %}<p class="card-text">{{ petition.twitter_description|safe }}</p>{% endif %}
-            <p class="text-muted">{{ petition.signature_number }} signatures</p>
-            <div class="petition-publish-switch custom-control custom-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}"
+            <p class="text-body-secondary mb-3">{{ petition.signature_number }} {% trans "signatures" %}</p>
+            <div class="petition-publish-switch {% if not petition.published %} text-muted {% else %} text-success {% endif %}"
                  data-action="publish">
-              <input type="checkbox"
-                     class="custom-control-input"
-                     name="petition_published_{{ petition.id }}"
-                     id="petition_published_{{ petition.id }}"
-                     {% if petition.published and not petition.is_moderated %}checked{% endif %}
-                     {% if petition.is_moderated %}disabled{% endif %}>
-              <label class="custom-control-label"
-                     for="petition_published_{{ petition.id }}">
-                {% if not petition.published or petition.is_moderated %}
-                  {% trans "Not published" %}
-                {% else %}
-                  {% trans "Published" %}
-                {% endif %}
-              </label>
+              <div class="form-check form-switch d-inline-flex align-items-center gap-2">
+                <input type="checkbox"
+                       class="form-check-input"
+                       name="petition_published_{{ petition.id }}"
+                       id="petition_published_{{ petition.id }}"
+                       {% if petition.published and not petition.is_moderated %}checked{% endif %}
+                       {% if petition.is_moderated %}disabled{% endif %}>
+                <label class="form-check-label mb-0"
+                       for="petition_published_{{ petition.id }}">
+                  {% if not petition.published or petition.is_moderated %}
+                    {% trans "Not published" %}
+                  {% else %}
+                    {% trans "Published" %}
+                  {% endif %}
+                </label>
+              </div>
             </div>
             {% if petition.is_moderated %}
-              <div class="text-danger">
-                <b>{% trans "This petition is moderated" %}</b>
+              <div class="text-danger mt-2">
+                <span class="badge bg-danger">{% trans "Moderated" %}</span>
               </div>
             {% endif %}
           </div>
@@ -74,35 +78,38 @@
               <a href="{{ petition.url }}"
                  class="btn btn-outline-success btn-sm"
                  title="{% trans "View petition" %}"
-                 aria-disabled="true"
                  data-bs-toggle="tooltip">
-                <span class="bi bi-eye"></span>
+                <span class="bi bi-eye" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "View petition" %}</span>
               </a>
               <a href="{% url "petitions:edit" petition.id %}"
                  class="btn btn-outline-warning btn-sm"
                  title="{% trans "Edit petition" %}"
-                 data-bs-toggle="tooltip"><span class="bi bi-pencil"></span></a>
+                 data-bs-toggle="tooltip">
+                <span class="bi bi-pencil" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "Edit petition" %}</span>
+              </a>
               <a href="{% url 'signatures:list' petition.id %}"
                  class="btn btn-outline-info btn-sm"
                  data-bs-toggle="tooltip"
-                 title="{% trans "View signatures" %}"
-                 aria-disabled="true">
-                <span class="bi bi-file-spreadsheet"></span>
+                 title="{% trans "View signatures" %}">
+                <span class="bi bi-file-spreadsheet" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "View signatures" %}</span>
               </a>
               <a href="{% url "petitions:transfer" petition.id %}"
                  class="btn btn-outline-primary btn-sm"
                  data-bs-toggle="tooltip"
-                 title="{% trans "Transfer this petition" %}"
-                 aria-disabled="true">
-                <span class="bi bi-share"></span>
+                 title="{% trans "Transfer this petition" %}">
+                <span class="bi bi-share" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "Transfer this petition" %}</span>
               </a>
               <span data-bs-toggle="tooltip" title="{% trans "Delete the petition" %}">
                 <button class="btn btn-outline-danger btn-sm"
                         id="btn_petition_delete"
                         data-bs-toggle="modal"
-                        data-bs-target="#petition{{ petition.id }}_delete_modal"
-                        aria-disabled="true">
-                  <span class="bi bi-x-circle"></span>
+                        data-bs-target="#petition{{ petition.id }}_delete_modal">
+                  <span class="bi bi-x-circle" aria-hidden="true"></span>
+                  <span class="visually-hidden">{% trans "Delete the petition" %}</span>
                 </button>
               </span>
             </div>
@@ -113,13 +120,13 @@
            id="petition{{ petition.id }}_delete_modal"
            data-petition="{{ petition.id }}"
            data-petition-delete="{% url "petitions:delete" petition.id %}">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">{% trans "Delete petition?" %}</h4>
               <button type="button"
                       class="btn-close"
-                      aria-label="Close"
+                      aria-label="{% trans "Close" %}"
                       data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -132,7 +139,9 @@
                       class="btn btn-danger"
                       data-action="petition-delete"
                       data-bs-dismiss="modal">{% trans "Delete" %}</button>
-              <button type="button" class="btn btn-info" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      data-bs-dismiss="modal">{% trans "Cancel" %}</button>
             </div>
           </div>
         </div>

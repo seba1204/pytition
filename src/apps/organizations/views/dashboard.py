@@ -31,7 +31,6 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     HttpResponse
         The HTTP response object with the rendered dashboard.
     """
-
     # Check that the organization exists
     try:
         org = Organization.objects.get(slugname=orgslugname)
@@ -78,7 +77,7 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     # Render the dashboard template
     return render(
         request,
-        "org/dashboard.html",
+        "org/dashboard_bs5.html",
         {
             "org": org,
             "user": pytitionuser,

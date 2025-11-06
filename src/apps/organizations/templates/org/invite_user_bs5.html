@@ -2,20 +2,18 @@
 <div class="dashboard-nav-item py-3">
   <form class="w-100">
     <div class="mb-3">
-      <!-- BS5: remplace .form-inline-group -->
       <h4>
         <label for="invite_user" class="form-label">{% trans "Invite user" %} :</label>
       </h4>
       <div class="input-group">
-        {# BS5 : input-group-prepend supprimé → contenu direct #}
         <span class="input-group-text">
           <i class="bi bi-person" aria-hidden="true"></i>
           <span class="visually-hidden">{% trans "User icon" %}</span>
         </span>
-        {# Translators: Placeholder text for a username input field #}
         <input type="text"
                id="invite_user"
                class="form-control"
+               autocomplete="off"
                placeholder="{% trans "Username" %}">
       </div>
     </div>

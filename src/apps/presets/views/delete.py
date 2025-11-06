@@ -30,7 +30,6 @@ def delete(request: HttpRequest, preset_id: int) -> JsonResponse:
     JsonResponse
         Empty JSON body with appropriate HTTP status code.
     """
-
     # Guard: invalid ID mirrors original behavior (500). Keeping contract as requested.
     if not preset_id:
         return JsonResponse({}, status=500)
