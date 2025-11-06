@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs", "typecheck"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:78c45b95da949566c8bcccc5eee5209148e4ac5c9353a15de6fe642d74b3c279"
+content_hash = "sha256:f1212f0114fcbf5f2ca174cf80e13739345783d98bf398979b0bc2fd098006f8"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -612,24 +612,16 @@ files = [
 
 [[package]]
 name = "django-tinymce"
-version = "3.6.1"
-summary = "A Django application that contains a widget to render a form field as a TinyMCE editor."
-groups = ["default"]
-files = [
-    {file = "django-tinymce-3.6.1.tar.gz", hash = "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29"},
-    {file = "django_tinymce-3.6.1-py3-none-any.whl", hash = "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"},
-]
-
-[[package]]
-name = "django-trumbowyg"
-version = "1.1.2"
-summary = "Trumbowyg (WYSIWYG editor) integration app for Django admin."
+version = "5.0.0"
+requires_python = ">=3.9"
+summary = "A Django application that contains a widget to render a"
 groups = ["default"]
 dependencies = [
-    "six",
+    "django>=4.2",
 ]
 files = [
-    {file = "django_trumbowyg-1.1.2-py3-none-any.whl", hash = "sha256:92b39b4f98d70476cd46bdfce55edf11876cf1faa94bad3da5151ea7d9943e0e"},
+    {file = "django_tinymce-5.0.0-py3-none-any.whl", hash = "sha256:c2e9c5efd2cc6c036f4c57e602b133180433e2bd1513b897089d3c4fb4e20579"},
+    {file = "django_tinymce-5.0.0.tar.gz", hash = "sha256:6257669ed596accf5fa967ff3061276b2c5352baac1bbc658fcd8252b12ca38a"},
 ]
 
 [[package]]
@@ -1885,7 +1877,7 @@ name = "six"
 version = "1.17.0"
 requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 summary = "Python 2 and 3 compatibility utilities"
-groups = ["default", "dev"]
+groups = ["dev"]
 files = [
     {file = "six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"},
     {file = "six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"},

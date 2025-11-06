@@ -12,7 +12,7 @@ license = { text = "BSD 3-Clause" }
 dependencies = [
     "django>=5.2.7",
     "django-colorfield==0.10.1",
-    "django-tinymce==3.6.1",
+    "django-tinymce>=5.0.0",
     "django-mailer==2.3",
     "django-maintenance-mode",
     "django-phonenumber-field[phonenumbers]==6.3.0",
@@ -30,7 +30,6 @@ dependencies = [
     "rjsmin>=1.2.5",
     "cairosvg>=2.8.2",
     "beautifulsoup4>=4.14.2",
-    "django-trumbowyg>=1.1.2",
 ]
 
 [tool.pytition.vendors]

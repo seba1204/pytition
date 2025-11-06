@@ -6,6 +6,8 @@ Keep it lean. Everything remains overrideable via .env / ENV.
 
 from __future__ import annotations
 
+from typing import Any
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Site / Branding
 # ──────────────────────────────────────────────────────────────────────────────
@@ -55,62 +57,21 @@ PHONENUMBER_DEFAULT_REGION = "FR"
 # UI / Editor
 # ──────────────────────────────────────────────────────────────────────────────
 
-TINYMCE_DEFAULT_CONFIG = {
-    "plugins": (
-        "print preview fullpage searchreplace autolink directionality visualblocks "
-        "visualchars fullscreen image link media template codesample table charmap hr "
-        "pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor "
-        "wordcount imagetools contextmenu colorpicker textpattern help"
+TINYMCE_DEFAULT_CONFIG: dict[str, Any] = {
+    "height": 400,
+    "menubar": False,
+    "plugins": "lists link image table",
+    "toolbar": (
+        "undo redo | styles | bold italic underline | "
+        "alignleft aligncenter alignright | bullist numlist | "
+        "link image | table"
     ),
-    "cleanup_on_startup": True,
-    "custom_undo_redo_levels": 10,
-    "toolbar1": (
-        "formatselect | bold italic strikethrough forecolor backcolor | link | "
-        "alignleft aligncenter alignright alignjustify | "
-        "numlist bullist outdent indent | removeformat | fontselect | fontsizeselect"
-    ),
-    "insert_toolbar": "forecolor backcolor",
-    "fontsize_formats": "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-    "entity_encoding": "raw",
-    "relative_urls": False,
-    "convert_urls": True,
-    "file_picker_types": "image",
-    "automatic_uploads": True,
-    "images_upload_url": "/petition/media/upload",  # TODO: [#22] make it dynamic
-    "image_upload_credentials": True,
-    "images_upload_handler": """function(blobInfo, success, failure) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", get_image_upload_url());
-        xhr.setRequestHeader("X-CSRFTOKEN", get_csrf_token()); // manually set header
-
-        xhr.onload = function() {
-            if (xhr.status !== 200) {
-                failure("HTTP Error: " + xhr.status);
-                return;
-            }
-
-            let json = JSON.parse(xhr.responseText);
-
-            if (!json || typeof json.location !== "string") {
-                failure("Invalid JSON: " + xhr.responseText);
-                return;
-            }
-
-            success(json.location);
-        };
-
-        let formData = new FormData();
-        formData.append("file", blobInfo.blob(), blobInfo.filename());
-
-        xhr.send(formData);
-        }
-    """,
-    "setup": """function(ed) {
-       ed.on("change", function(e) {
-            set_mce_changed(ed);
-       });}""",
+    "promotion": False,
+    "branding": False,
+    "language": "fr",
+    "images_upload_url": "/files/tinymce",
+    "block_formats": "Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4",
 }
-TINYMCE_INCLUDE_JQUERY = True
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Homepage
