@@ -1,8 +1,0 @@
-<div class="form-check form-switch">
-    <input type="{{ widget.type }}"
-           name="{{ widget.name }}"
-           {% include "django/forms/widgets/attrs.html" %}
-           {% if widget.value != None %}checked{% endif %}
-           class="{{ widget.attrs.class }} form-check-input">
-    <label class="form-check-label" for="{{ widget.attrs.id }}">{{ widget.label }}</label>
-</div>

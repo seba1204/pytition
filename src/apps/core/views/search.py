@@ -56,6 +56,6 @@ def search(request: HttpRequest) -> HttpResponse:
         orgs = []
     return render(
         request,
-        "core/search_bs5.html",
+        "core/search.html",
         {"petitions": petitions, "orgs": orgs, "q": query},
     )

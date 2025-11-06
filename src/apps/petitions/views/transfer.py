@@ -54,7 +54,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
                 % {"org_name": org.name},
             )
             return redirect(OrgRoute.DASHBOARD, org.slugname)
-        ctx["base_template"] = "org/base_bs5.html"
+        ctx["base_template"] = "org/base.html"
         ctx["org"] = org
     elif petition.owner_type == "user":
         if petition.user != pytitionuser:
@@ -62,10 +62,10 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
                 request, _("You don't have the permission to transfer this petition.")
             )
             return redirect(AccountsRoute.DASHBOARD)
-        ctx["base_template"] = "accounts/base_bs5.html"
+        ctx["base_template"] = "accounts/base.html"
 
     if request.method == "GET":
-        return render(request, "petitions/transfer_bs5.html", ctx)
+        return render(request, "petitions/transfer.html", ctx)
 
     if request.method == "POST":
         owner_type = request.POST.get("new_owner_type", "")
@@ -75,7 +75,7 @@ def transfer(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
 
         if not owner_type or not new_owner_name:
             messages.error(request, _("Incorrect request, something went wrong."))
-            return render(request, "petitions/transfer_bs5.html", ctx)
+            return render(request, "petitions/transfer.html", ctx)
 
         not_found = False
         if owner_type == "org":

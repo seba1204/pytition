@@ -89,4 +89,4 @@ def slug_show_petition(
         response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
         return response
     else:
-        return render(request, "petitions/detail_bs5.html", ctx)
+        return render(request, "petitions/detail.html", ctx)

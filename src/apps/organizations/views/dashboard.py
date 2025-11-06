@@ -77,7 +77,7 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     # Render the dashboard template
     return render(
         request,
-        "org/dashboard_bs5.html",
+        "org/dashboard.html",
         {
             "org": org,
             "user": pytitionuser,

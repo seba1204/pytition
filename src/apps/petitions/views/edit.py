@@ -278,7 +278,7 @@ def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
             {
                 "org": petition.org,
                 "user_permissions": permissions,
-                "base_template": "org/base_bs5.html",
+                "base_template": "org/base.html",
                 "example_url": example_url,
                 "slug_prefix": slug_prefix,
             }
@@ -300,11 +300,11 @@ def edit(request: HttpRequest, petition_id: int) -> HttpResponse:  # noqa
         ).rsplit("/", 1)[0]
         ctx.update(
             {
-                "base_template": "accounts/base_bs5.html",
+                "base_template": "accounts/base.html",
                 "example_url": example_url,
                 "slug_prefix": slug_prefix,
             }
         )
     ctx.update(submitted_ctx)
 
-    return render(request, "petitions/edit_bs5.html", ctx)
+    return render(request, "petitions/edit.html", ctx)

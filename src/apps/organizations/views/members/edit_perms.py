@@ -95,7 +95,7 @@ def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpRe
 
     return render(
         request,
-        "org/edit_user_perms_bs5.html",
+        "org/edit_user_perms.html",
         {
             "org": org,
             "member": member,

@@ -12,8 +12,9 @@
                 {% csrf_token %}
                 {% include "ui/forms/bs4.html" with form=form %}
                 {# Translators: This is the label for a button that submits a form to create a new organization. #}
-                <button class="btn btn-success" type="submit">{% trans "Create" %}</button>
+                <button class="btn btn-primary" type="submit">{% trans "Create" %}</button>
             </form>
         </div>
     </div>
 {% endblock content %}
+{% comment %} BS5-DONE {% endcomment %}

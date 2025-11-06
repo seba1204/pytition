@@ -57,4 +57,4 @@ def profile(request: HttpRequest, orgslugname: str) -> HttpResponse:
     if user is not None:
         ctx["user"] = user
 
-    return render(request, "org/profile_bs5.html", ctx)
+    return render(request, "org/profile.html", ctx)

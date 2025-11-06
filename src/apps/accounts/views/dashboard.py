@@ -28,7 +28,7 @@ def dashboard(request: HttpRequest) -> HttpResponse:
 
     return render(
         request,
-        "accounts/dashboard_bs5.html",
+        "accounts/dashboard.html",
         {
             "user": user,
             "petitions": petitions,

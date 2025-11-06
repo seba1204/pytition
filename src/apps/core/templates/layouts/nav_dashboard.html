@@ -1,6 +1,7 @@
 {% load i18n %}
 {% block navbar %}
-  <nav class="navbar navbar-dark bg-dark navbar-expand-sm flex-sm-row">
+  <nav data-bs-theme="dark"
+       class="navbar bg-dark navbar-expand-sm flex-sm-row">
     <div class="container-fluid">
       {% block brand %}
         <a class="navbar-brand" href="{% url "index" %}">{{ sitename }}</a>
@@ -8,30 +9,30 @@
           {% if is_org %}
             <a class="btn btn-outline-primary"
                href="{% url "org:dashboard" slug %}"
-               aria-label="{% trans "Back to dashboard" %}"><span class="oi oi-dashboard">{% trans "Back to dashboard" %}</span></a>
+               aria-label="{% trans "Back to dashboard" %}"><span class="bi bi-speedometer">{% trans "Back to dashboard" %}</span></a>
           {% else %}
             <a class="btn btn-outline-primary"
                href="{% url "accounts:dashboard" %}"
-               aria-label="{% trans "Back to dashboard" %}"><span class="oi oi-dashboard">{% trans "Back to dashboard" %}</span></a>
+               aria-label="{% trans "Back to dashboard" %}"><span class="bi bi-speedometer">{% trans "Back to dashboard" %}</span></a>
           {% endif %}
         {% endif %}
       {% endblock brand %}
-      <button class="navbar-toggler navbar-toggler-right"
+      <button class="navbar-toggler navbar-toggler-end"
               type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarResponsive"
               aria-controls="navbarResponsive"
               aria-expanded="false"
               aria-label="Toggle navigation">
         Menu <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <form class="form-inline my-2 my-lg-0 ml-auto"
+        <form class="d-flex my-2 my-lg-0 ms-auto"
               action="{% url "set_language" %}"
               method="post">
           {% csrf_token %}
           <input name="next" type="hidden" value="{{ redirect_to }}">
-          <select class="custom-select custom-select-sm"
+          <select class="form-select form-select-sm"
                   name="language"
                   onchange='if(this.value !=  "{{ LANGUAGE_CODE }}") { this.form.submit(); }'>
             {% get_current_language as LANGUAGE_CODE %}
@@ -43,7 +44,7 @@
             {% endfor %}
           </select>
         </form>
-        <form class="form-inline my-2 my-lg-0 ml-0 ml-sm-3"
+        <form class="d-flex my-2 my-lg-0 ms-0 ms-sm-3"
               action="{% url "core.search:search" %}"
               method="get">
           <div class="input-group input-group-sm">
@@ -52,9 +53,7 @@
                    placeholder="{% trans "Search for petition" %}"
                    name="q"
                    value="{{ q }}">
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-outline-secondary">{% trans "Search" %}</button>
-            </div>
+            <button type="submit" class="btn btn-outline-secondary">{% trans "Search" %}</button>
           </div>
         </form>
         {% include "layouts/nav-useractions.html" %}
@@ -62,3 +61,4 @@
     </div>
   </nav>
 {% endblock navbar %}
+{% comment %} BS5-DONE {% endcomment %}

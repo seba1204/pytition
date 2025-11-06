@@ -153,7 +153,7 @@ def ensure_user_can_edit_preset(
             raise PermissionDenied("User lacks can_modify_templates.")
 
         return EditAccess(
-            base_template="org/base_bs5.html",
+            base_template="org/base.html",
             permissions=perms,
             org=org,
         )
@@ -163,7 +163,7 @@ def ensure_user_can_edit_preset(
         raise PermissionDenied("User cannot edit another user's preset.")
 
     return EditAccess(
-        base_template="accounts/base_bs5.html",
+        base_template="accounts/base.html",
         permissions=None,
         org=None,
     )

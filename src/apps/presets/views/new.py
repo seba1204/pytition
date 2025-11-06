@@ -84,10 +84,10 @@ def new(request: HttpRequest) -> HttpResponse:
                 )
             )
 
-        ctx["base_template"] = "org/base_bs5.html"
+        ctx["base_template"] = "org/base.html"
     else:
         redirection = PresetRoutes.NEW
-        ctx["base_template"] = "accounts/base_bs5.html"
+        ctx["base_template"] = "accounts/base.html"
 
     if request.method == "POST":
         template_name = request.POST.get("template_name", "")
@@ -102,4 +102,4 @@ def new(request: HttpRequest) -> HttpResponse:
             messages.error(request, _("You need to provide a template name."))
             return redirect(redirection)
     else:
-        return render(request, "presets/new_bs5.html", ctx)
+        return render(request, "presets/new.html", ctx)

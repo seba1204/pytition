@@ -50,6 +50,6 @@ def profile(request: HttpRequest, user_name: str) -> HttpResponse:
 
     return render(
         request,
-        template_name="accounts/profile_bs5.html",
+        template_name="accounts/profile.html",
         context={"user": user, "petitions": petitions, "sort": sort},
     )

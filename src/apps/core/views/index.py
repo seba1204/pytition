@@ -58,6 +58,6 @@ def index(request: HttpRequest) -> DjangoHttpResponse:
 
         return render(
             request,
-            "core/index_bs5.html",
+            "core/index.html",
             {"user": user, "petitions": petitions, "sort": sort},
         )
