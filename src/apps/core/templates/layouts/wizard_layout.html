@@ -3,7 +3,9 @@
 {% load widget_tweaks %}
 {% load static %}
 {% load vendor_static %}
-{% block media %}{{ form.media }}{% endblock media %}
+{% block media %}
+  {{ form.media }}
+{% endblock media %}
 {% block extra_css %}
   {{ block.super }}
   <link href="{% vendor_static "jquery-smart-wizard" "css/smart_wizard_theme_arrows.css" %}"

@@ -33,9 +33,9 @@ WizardForms = [
 ]
 
 WizardTemplates = {
-    "step1": "petitions/new_step1.html",
-    "step2": "petitions/new_step2.html",
-    "step3": "petitions/new_step3.html",
+    "step1": "petitions/new_step1_bs5.html",
+    "step2": "petitions/new_step2_bs5.html",
+    "step3": "petitions/new_step3_bs5.html",
 }
 
 SESSION_KEY = "wizard_params:petition_creation"
@@ -258,13 +258,13 @@ class PetitionCreationWizard(SessionWizardView):
         org_petition = self._is_org_petition()
         context = super().get_context_data(form=form, **kwargs)
         if org_petition:
-            base_template = "org/base.html"
+            base_template = "org/base_bs5.html"
             try:
                 org = Organization.objects.get(slugname=self._orgslugname())
             except Organization.DoesNotExist:
                 raise Http404(_("Organization does not exist.")) from None
         else:
-            base_template = "accounts/base.html"
+            base_template = "accounts/base_bs5.html"
 
         pytitionuser = get_session_user(self.request)
         context.update({"user": pytitionuser, "base_template": base_template})
