@@ -45,6 +45,9 @@ class ImagesStep(PipelineStep):
             rel = path.relative_to(src)
             if path.suffix.lower() == ".svg":
                 out = dst / rel
+                if out.exists():
+                    self.log(ctx, f"SVG already exists, skipped: {rel}")
+                    continue
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_bytes(path.read_bytes())
                 self.log(ctx, f"SVG copied: {rel}")
@@ -55,6 +58,9 @@ class ImagesStep(PipelineStep):
                     im.load()
             except UnidentifiedImageError:
                 out = dst / rel
+                if out.exists():
+                    self.log(ctx, f"Raw copy already exists, skipped: {rel}")
+                    continue
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_bytes(path.read_bytes())
                 self.log(ctx, f"Raw copy {rel}")
@@ -68,9 +74,16 @@ class ImagesStep(PipelineStep):
                 im = im.convert("RGB")
 
             for label, width in sizes.items():
+                out = (dst / rel).with_suffix(f".{label}.webp")
+                if out.exists():
+                    self.log(
+                        ctx,
+                        f"WebP {label} already exists, skipped"
+                        ": {rel.with_suffix('.webp')}",
+                    )
+                    continue
                 im_out = im.copy()
                 im_out.thumbnail((width, width * 10_000), Image.Resampling.LANCZOS)
-                out = (dst / rel).with_suffix(f".{label}.webp")
                 out.parent.mkdir(parents=True, exist_ok=True)
                 im_out.save(out, format="WEBP", quality=quality, method=6)
                 self.log(ctx, f"WebP {label} → {rel.with_suffix('.webp')} (w≤{width})")

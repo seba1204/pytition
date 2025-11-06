@@ -23,21 +23,18 @@
       <div class="col text-center sb-preview"
            data-petition-unpublish="{% url "petitions:unpublish" petition.id %}"
            data-petition-publish="{% url "petitions:publish" petition.id %}">
-        <div class="card h-100 {% if petition.is_moderated %}border border-danger{% endif %}">
+        <div class="card h-100 overflow-hidden bg-body {% if petition.is_moderated %}border border-danger{% endif %}">
           <a href="{{ petition.url }}" class="sb-preview-img">
             {% if not petition.twitter_image %}
-              <img class="card-img-top img-fluid img-thumbnail d-block mx-auto w-100"
-                   style="object-fit: contain;
-                          padding-top: 25px;
-                          padding-bottom: 25px"
-                   alt="thumbnail"
+              <img class="card-img-top d-block mx-auto p-4 object-fit-contain"
+                   alt="Placeholder image for '{{ petition.title|striptags }}'"
                    src="{% static settings.DEFAULT_INDEX_THUMBNAIL %}"
                    width="300"
                    height="200"
                    loading="lazy">
             {% else %}
-              <img class="card-img-top img-fluid img-thumbnail w-100"
-                   alt="thumbnail"
+              <img class="card-img-top object-fit-cover"
+                   alt="Thumbnail image for '{{ petition.title|striptags }}'"
                    src="{{ petition.twitter_image }}"
                    width="300"
                    height="200"
@@ -100,7 +97,7 @@
                  class="btn btn-outline-primary btn-sm"
                  data-bs-toggle="tooltip"
                  title="{% trans "Transfer this petition" %}">
-                <span class="bi bi-share" aria-hidden="true"></span>
+                <span class="bi bi-send" aria-hidden="true"></span>
                 <span class="visually-hidden">{% trans "Transfer this petition" %}</span>
               </a>
               <span data-bs-toggle="tooltip" title="{% trans "Delete the petition" %}">

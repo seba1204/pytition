@@ -88,7 +88,7 @@ def _assert_can_view_signatures(
                 _("You are not allowed to view this petition's signatures."),
                 AccountsRoute.DASHBOARD,
             )
-        return "accounts/base.html", {}
+        return "accounts/base_bs5.html", {}
 
     org: Organization | None = petition.org
     if org is None:
@@ -129,7 +129,7 @@ def _assert_can_view_signatures(
         "other_orgs": other_orgs,
         "user_permissions": permissions,
     }
-    return "org/base.html", extra_ctx
+    return "org/base_bs5.html", extra_ctx
 
 
 def _delete_signatures(signatures: Iterable[Signature], pytitionuser: Any) -> bool:
@@ -328,4 +328,4 @@ def list_view(request: HttpRequest, petition_id: int) -> HttpResponse:
         "signatures": signatures,
         **extra_ctx,
     }
-    return render(request, "signatures/data.html", ctx)
+    return render(request, "signatures/data_bs5.html", ctx)

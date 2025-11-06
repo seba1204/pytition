@@ -1,49 +1,71 @@
 {% extends base_template %}
 {% load i18n %}
 {% block content %}
-    <div class="row">
-        <div class="col d-flex justify-content-center">
-            <h2>{% trans "Create a petition template" %}</h2>
+    <section class="container py-3" role="region" aria-labelledby="page-title">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <h1 id="page-title" class="h2 mb-3">{% trans "Create a petition template" %}</h1>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="alert alert-info alert-dismissible show fade" role="alert">
-                <button type="button" class="close" data-bs-dismiss="alert">×</button>
-                <div class="row">
-                    <div class="col-1 alert-icon-col">
-                        <span class="bi bi-exclamation-triangle"></span>
-                    </div>
-                    <div class="col">
-                        <h4 class="alert-heading">{% trans "Beware, you are creating a template, not a petition!" %}</h4>
-                        <p class="mb-0">
-                            {% blocktrans trimmed %}
-                                A petition template allows you to put default values for future petitions.
-                                <br />
-                                For instance you might want to re-use the same e-mail SMTP account across several petitions.
-                            {% endblocktrans %}
-                        </p>
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="{% trans "Close alert" %}"></button>
+                    <div class="row g-2 align-items-start">
+                        <div class="col-1 d-flex justify-content-center pt-1" aria-hidden="true">
+                            <span class="bi bi-exclamation-triangle" aria-hidden="true"></span>
+                        </div>
+                        <div class="col">
+                            <h2 class="alert-heading h5 mb-2">{% trans "Beware, you are creating a template, not a petition!" %}</h2>
+                            <p class="mb-0">
+                                {% blocktrans trimmed %}
+                                    A petition template allows you to put default values for future petitions.
+                                    <br />
+                                    For instance you might want to re-use the same e-mail SMTP account across several petitions.
+                                {% endblocktrans %}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="template_name">{% trans "Template name" %}</label>
-                    <input type="text"
-                           class="form-control"
-                           id="template_name"
-                           name="template_name"
-                           placeholder="{% trans "My template name" %}"
-                           required>
-                    <small id="template_name_help" class="form-text text-muted">{% trans "Each template must have a different name" %}</small>
-                </div>
-                <input class="btn btn-primary" type="submit" value="{% trans "Create" %}">
-            </form>
+        <div class="row">
+            <div class="col">
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="template_name" class="form-label">{% trans "Template name" %}</label>
+                        <input type="text"
+                               class="form-control"
+                               id="template_name"
+                               name="template_name"
+                               placeholder="{% trans "My template name" %}"
+                               aria-describedby="template_name_help"
+                               required>
+                        <div id="template_name_help" class="form-text">{% trans "Each template must have a different name" %}</div>
+                        <div class="invalid-feedback">{% trans "Please provide a unique template name." %}</div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">{% trans "Create" %}</button>
+                </form>
+            </div>
         </div>
-    </div>
+    </section>
+    <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector("form.needs-validation");
+      if (!form) return;
+
+      form.addEventListener("submit", (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add("was-validated");
+      });
+    });
+    </script>
 {% endblock content %}
+{% comment %} BS5-DONE {% endcomment %}

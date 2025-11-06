@@ -4,25 +4,20 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 petition-list-row">
   {% for petition in petitions %}
     <div class="col text-center sb-preview">
-      <div class="card h-100 text-center shadow-sm card-hover overflow-hidden rounded-3">
+      <div class="card h-100 text-center shadow-sm overflow-hidden rounded-3">
         <a href="{{ petition.url }}" class="sb-preview-img">
           {% if not petition.twitter_image %}
-            <img class="card-img-top img-fluid d-block mx-auto w-100"
-                 style="object-fit: contain;
-                        padding-top: 25px;
-                        padding-bottom: 25px;
-                        max-height: 200px"
+            <img class="card-img-top d-block mx-auto p-4 object-fit-contain"
+                 alt="Placeholder image for '{{ petition.title|striptags }}'"
                  src="{% static settings.DEFAULT_INDEX_THUMBNAIL %}"
-                 alt="{% if petition.title %}{{ petition.title|striptags }}{% else %}Petition image{% endif %}"
-                 width="400"
+                 width="300"
                  height="200"
                  loading="lazy">
           {% else %}
-            <img class="card-img-top img-fluid w-100"
-                 style="max-height: 200px"
+            <img class="card-img-top object-fit-cover"
+                 alt="Thumbnail image for '{{ petition.title|striptags }}'"
                  src="{{ petition.twitter_image }}"
-                 alt="{% if petition.title %}{{ petition.title|striptags }}{% else %}Petition image{% endif %}"
-                 width="400"
+                 width="300"
                  height="200"
                  loading="lazy">
           {% endif %}
