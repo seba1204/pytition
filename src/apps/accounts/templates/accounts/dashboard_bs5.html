@@ -1,4 +1,5 @@
-{% extends "accounts/base.html" %}
+{% extends "accounts/base_bs5.html" %}
 {% block content %}
-  {% include "petitions/list.html" with petitions=petitions.all title=_("Your petitions") search=False %}
+  {% include "petitions/list_bs5.html" with petitions=petitions.all title=_("Your petitions") search=False %}
 {% endblock content %}
+{% comment %} BS5-DONE {% endcomment %}
