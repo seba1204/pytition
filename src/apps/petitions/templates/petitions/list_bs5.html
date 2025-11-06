@@ -20,11 +20,11 @@
 {% else %}
   <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 petition-list">
     {% for petition in petitions %}
-      <div class="col text-center sb-preview"
+      <div class="col text-center"
            data-petition-unpublish="{% url "petitions:unpublish" petition.id %}"
            data-petition-publish="{% url "petitions:publish" petition.id %}">
         <div class="card h-100 overflow-hidden bg-body {% if petition.is_moderated %}border border-danger{% endif %}">
-          <a href="{{ petition.url }}" class="sb-preview-img">
+          <a href="{{ petition.url }}">
             {% if not petition.twitter_image %}
               <img class="card-img-top d-block mx-auto p-4 object-fit-contain"
                    alt="Placeholder image for '{{ petition.title|striptags }}'"

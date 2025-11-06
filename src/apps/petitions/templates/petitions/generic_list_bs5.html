@@ -3,9 +3,9 @@
 {# === Petition list === #}
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 petition-list-row">
   {% for petition in petitions %}
-    <div class="col text-center sb-preview">
+    <div class="col text-center">
       <div class="card h-100 text-center shadow-sm overflow-hidden rounded-3">
-        <a href="{{ petition.url }}" class="sb-preview-img">
+        <a href="{{ petition.url }}">
           {% if not petition.twitter_image %}
             <img class="card-img-top d-block mx-auto p-4 object-fit-contain"
                  alt="Placeholder image for '{{ petition.title|striptags }}'"

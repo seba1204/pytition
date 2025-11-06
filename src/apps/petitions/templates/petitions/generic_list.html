@@ -2,9 +2,9 @@
 {% load i18n %}
 <div class="row petition-list-row">
   {% for petition in petitions %}
-    <div class="col-md-4 col-xs-6 text-center sb-preview">
+    <div class="col-md-4 col-xs-6 text-center">
       <div class="card h-100 text-center">
-        <a href="{{ petition.url }}" class="sb-preview-img">
+        <a href="{{ petition.url }}">
           {% if not petition.twitter_image %}
             <img class="card-img-top img-fluid img-thumbnail d-block mx-auto"
                  style="object-fit: contain;
