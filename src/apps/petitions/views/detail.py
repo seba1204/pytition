@@ -14,24 +14,23 @@ from apps.signatures.forms import SignatureForm
 from apps.signatures.helpers import hide_sign_form_if_user_just_signed
 
 
-# /<int:petition_id>/
 # Show information on a petition
 def detail(request: HttpRequest, petition_id: int) -> HttpResponse:
     """
     Detail view of a petition.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     request : HttpRequest
         The HTTP request object.
     petition_id : int
         The ID of the petition to display.
-    Returns:
-    --------
+
+    Returns
+    -------
     HttpResponse
         The HTTP response with the petition detail page or JSON data.
     """
-
     petition = petition_from_id(petition_id)
     check_petition_is_accessible(request, petition)
     try:
@@ -59,4 +58,4 @@ def detail(request: HttpRequest, petition_id: int) -> HttpResponse:
         response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
         return response
     else:
-        return render(request, "petitions/detail.html", ctx)
+        return render(request, "petitions/detail_bs5.html", ctx)

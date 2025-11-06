@@ -33,13 +33,103 @@
               <input name="next" type="hidden" value="{{ redirect_to }}">
               <select class="form-select form-select-sm"
                       name="language"
-                      onchange='if(this.value !=  "{{ LANGUAGE_CODE }}") { this.form.submit(); }'>
+                      onchange='if(this.value != "{{ LANGUAGE_CODE }}") { this.form.submit(); }'>
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
                 {% for language in languages %}
-                  <option value="{{ language.code }}"
-                          {% if language.code == LANGUAGE_CODE %}selected{% endif %}>{{ language.code }}</option>
+                  {% with lc=language.code|lower name=language.name_local|default:language.name|default:language.code %}
+                    <option value="{{ language.code }}"
+                            {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                      {# Emoji flag mapping (fallback 🌐) #}
+                      {% if lc == 'fr' %}
+                        🇫🇷
+                      {% elif lc == 'en' %}
+                        🇬🇧
+                      {% elif lc == 'en-us' %}
+                        🇺🇸
+                      {% elif lc == 'es' %}
+                        🇪🇸
+                      {% elif lc == 'de' %}
+                        🇩🇪
+                      {% elif lc == 'it' %}
+                        🇮🇹
+                      {% elif lc == 'pt-br' %}
+                        🇧🇷
+                      {% elif lc == 'pt' %}
+                        🇵🇹
+                      {% elif lc == 'nl' %}
+                        🇳🇱
+                      {% elif lc == 'pl' %}
+                        🇵🇱
+                      {% elif lc == 'ru' %}
+                        🇷🇺
+                      {% elif lc == 'uk' %}
+                        🇺🇦
+                      {% elif lc == 'tr' %}
+                        🇹🇷
+                      {% elif lc == 'ar' %}
+                        🇸🇦
+                      {% elif lc == 'fa' %}
+                        🇮🇷
+                      {% elif lc == 'zh-hans' %}
+                        🇨🇳
+                      {% elif lc == 'zh-hant' %}
+                        🇹🇼
+                      {% elif lc == 'ja' %}
+                        🇯🇵
+                      {% elif lc == 'ko' %}
+                        🇰🇷
+                      {% elif lc == 'sv' %}
+                        🇸🇪
+                      {% elif lc == 'no' or lc == 'nb' or lc == 'nn' %}
+                        🇳🇴
+                      {% elif lc == 'da' %}
+                        🇩🇰
+                      {% elif lc == 'fi' %}
+                        🇫🇮
+                      {% elif lc == 'cs' %}
+                        🇨🇿
+                      {% elif lc == 'sk' %}
+                        🇸🇰
+                      {% elif lc == 'el' %}
+                        🇬🇷
+                      {% elif lc == 'hu' %}
+                        🇭🇺
+                      {% elif lc == 'he' or lc == 'iw' %}
+                        🇮🇱
+                      {% elif lc == 'ro' %}
+                        🇷🇴
+                      {% elif lc == 'bg' %}
+                        🇧🇬
+                      {% elif lc == 'hr' %}
+                        🇭🇷
+                      {% elif lc == 'sr' %}
+                        🇷🇸
+                      {% elif lc == 'sl' %}
+                        🇸🇮
+                      {% elif lc == 'et' %}
+                        🇪🇪
+                      {% elif lc == 'lv' %}
+                        🇱🇻
+                      {% elif lc == 'lt' %}
+                        🇱🇹
+                      {% elif lc == 'hi' %}
+                        🇮🇳
+                      {% elif lc == 'id' %}
+                        🇮🇩
+                      {% elif lc == 'ms' %}
+                        🇲🇾
+                      {% elif lc == 'th' %}
+                        🇹🇭
+                      {% elif lc == 'vi' %}
+                        🇻🇳
+                      {% else %}
+                        🌐
+                      {% endif %}
+                      {{ name }}
+                    </option>
+                  {% endwith %}
                 {% endfor %}
               </select>
             </form>

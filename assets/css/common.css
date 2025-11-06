@@ -34,18 +34,6 @@ table caption {
   padding: 2em 0;
 }
 
-.petition-list-row {
-  margin-top: 2em;
-}
-
-.petition-publish-switch input~label {
-  color: var(--red);
-}
-
-.petition-publish-switch input:checked~label {
-  color: var(--green);
-}
-
 #reassurance p {
   text-align: justify
 }

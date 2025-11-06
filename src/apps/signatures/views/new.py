@@ -28,14 +28,15 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
     """
     Create a signature for a petition.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     request : HttpRequest
         The HTTP request object
     petition_id : int
         The ID of the petition to sign
-    Returns:
-    --------
+
+    Returns
+    -------
     HttpResponse
         A redirect to the petition detail page
     """
@@ -51,7 +52,7 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
             "og_image_absolute_url": request.build_absolute_uri(petition.twitter_image),
         }
         if not form.is_valid():
-            return render(request, "petitions/detail.html", ctx)
+            return render(request, "petitions/detail_bs5.html", ctx)
 
         ipaddr = make_password(
             get_client_ip(request),
@@ -66,7 +67,7 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
                 request,
                 _("Too many signatures from your IP address, please try again later."),
             )
-            return render(request, "petitions/detail.html", ctx)
+            return render(request, "petitions/detail_bs5.html", ctx)
         else:
             signature = form.save()
             signature.ipaddress = ipaddr
