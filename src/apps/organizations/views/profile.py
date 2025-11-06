@@ -29,7 +29,6 @@ def profile(request: HttpRequest, orgslugname: str) -> HttpResponse:
     HttpResponse
         The HTTP response object with the rendered organization profile.
     """
-
     # Try to get the logged-in user, if any
     try:
         user = get_session_user(request)
@@ -58,4 +57,4 @@ def profile(request: HttpRequest, orgslugname: str) -> HttpResponse:
     if user is not None:
         ctx["user"] = user
 
-    return render(request, "org/profile.html", ctx)
+    return render(request, "org/profile_bs5.html", ctx)

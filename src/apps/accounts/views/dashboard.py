@@ -1,4 +1,4 @@
-""""Views for the user dashboard."""
+"""Views for the user dashboard."""
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
@@ -17,6 +17,7 @@ def dashboard(request: HttpRequest) -> HttpResponse:
     ----------
     request : HttpRequest
         The current HTTP request.
+
     Returns
     -------
     HttpResponse
@@ -27,7 +28,7 @@ def dashboard(request: HttpRequest) -> HttpResponse:
 
     return render(
         request,
-        "accounts/dashboard.html",
+        "accounts/dashboard_bs5.html",
         {
             "user": user,
             "petitions": petitions,

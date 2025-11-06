@@ -16,7 +16,6 @@ from apps.organizations.models import Organization
 from apps.organizations.routes import OrgRoute
 
 
-# PATH : org/<slug:orgslugname>/edit_user_permissions/<slug:user_name>
 # Show a webpage to edit permissions
 @login_required
 def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpResponse:
@@ -42,7 +41,6 @@ def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpRe
     Http404
         If the organization or user does not exist.
     """
-
     pytitionuser = get_session_user(request)
 
     try:
@@ -97,7 +95,7 @@ def edit_perms(request: HttpRequest, orgslugname: str, user_name: str) -> HttpRe
 
     return render(
         request,
-        "org/edit_user_perms.html",
+        "org/edit_user_perms_bs5.html",
         {
             "org": org,
             "member": member,

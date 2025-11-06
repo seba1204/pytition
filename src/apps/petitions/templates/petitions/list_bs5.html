@@ -117,11 +117,14 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">{% trans "Delete petition?" %}</h4>
-              <button type="button" class="close" data-bs-dismiss="modal">×</button>
+              <button type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
               {% blocktrans trimmed with title=petition.title|striptags %}
-                Do you really want to delete petition "{{ title  }}"?
+                Do you really want to delete petition "{{ title }}"?
               {% endblocktrans %}
             </div>
             <div class="modal-footer">
@@ -137,3 +140,4 @@
     {% endfor %}
   </div>
 {% endif %}
+{% comment %} BS5-DONE {% endcomment %}

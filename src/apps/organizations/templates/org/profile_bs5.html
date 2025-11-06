@@ -1,4 +1,4 @@
-{% extends "layouts/layout.html" %}
+{% extends "layouts/layout_bs5.html" %}
 {% load static %}
 {% load i18n %}
 {% block title %}
@@ -27,6 +27,7 @@
                    role="button">{% trans "First Created" %}</a>
             </div>
         </div>
-        {% include "petitions/generic_list.html" with petitions=petitions sort=sort %}
+        {% include "petitions/generic_list_bs5.html" with petitions=petitions sort=sort %}
     </div>
 {% endblock main_content %}
+{% comment %} BS5-DONE {% endcomment %}
