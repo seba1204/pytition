@@ -6,12 +6,6 @@
 {% block media %}
   {{ form.media }}
 {% endblock media %}
-{% block extra_css %}
-  {{ block.super }}
-  <link href="{% vendor_static "jquery-smart-wizard" "css/smart_wizard_theme_arrows.css" %}"
-        rel="stylesheet"
-        type="text/css" />
-{% endblock extra_css %}
 {% block content %}
   {% block wizard_content %}
   {% endblock wizard_content %}

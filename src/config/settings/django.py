@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     # 3rd party
     "maintenance_mode",
     "tinymce",
+    "trumbowyg",
     "colorfield",
     "widget_tweaks",
     "formtools",

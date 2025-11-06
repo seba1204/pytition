@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import shutil
-
 from .base import Vendor
 from .registry import register
 
@@ -11,38 +9,16 @@ from .registry import register
 @register("smartwizard")
 @register("jquery-smart-wizard")
 class SmartWizardVendor(Vendor):
-    """Download jQuery Smart Wizard 4 from GitHub (techlab/SmartWizard)."""
+    """Fetch SmartWizard zip and stage JS+CSS minimal set."""
 
     def download_and_stage(self) -> None:
-        """Download and stage SmartWizard into `stage_dir`."""
-        v = self.version
-        urls = [
-            f"https://github.com/techlab/SmartWizard/archive/refs/tags/v{v}.zip",
-            f"https://github.com/techlab/SmartWizard/archive/refs/tags/{v}.zip",
-        ]
-        blob: bytes | None = None
-        for url in urls:
-            try:
-                blob = self._http_get_bytes(url)
-                tmp = self.stage_dir / "_zip"
-                self._extract_zip_bytes(blob, tmp)
-                break
-            except Exception:
-                continue
-        if blob is None:
-            raise RuntimeError(
-                "Impossible de récupérer SmartWizard (vérifie la version/tag)."
-            )
-
-        root = next((self.stage_dir / "_zip").iterdir())
-        js_src = list(root.rglob("dist/js/jquery.smartWizard.min.js"))
-        css_src = list(root.rglob("dist/css/smart_wizard*.css"))
-        if not js_src:
-            raise RuntimeError("Fichier JS SmartWizard introuvable dans l’archive.")
-        js_dst = self.stage_dir / "js"
-        css_dst = self.stage_dir / "css"
-        js_dst.mkdir(parents=True, exist_ok=True)
-        css_dst.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(js_src[0], js_dst / "jquery.smartWizard.min.js")
-        for css in css_src:
-            shutil.copy2(css, css_dst / css.name)
+        """Download and stage SmartWizard static files."""
+        url = f"https://github.com/techlab/SmartWizard/archive/refs/tags/v{self.version}.zip"
+        keep = self._stage_from_zip_url(
+            url,
+            [
+                ("dist/js/jquery.smartWizard.min.js", "js"),
+                ("dist/css/smart_wizard*.css", "css"),
+            ],
+        )
+        self._clean_stage_except(keep)
