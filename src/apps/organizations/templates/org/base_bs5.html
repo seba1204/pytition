@@ -52,6 +52,19 @@
 {% endblock main_content %}
 {% block extra_js %}
   {{ block.super }}
-  <script>{% include "org/orga.js" %}</script>
+  {# Inject dynamic URLs/constants for the external JS #}
+  <script>
+  /* Expose server-generated URLs and translations */
+  window.ORG_ADD_URL = "{% url 'org:members:add' org.slugname %}";
+  window.SEARCH_USERS_URL = "{% url 'core.search:users' %}";
+  window.ORG_DELETE_URL = "{% url 'org:members:delete' org.slugname %}";
+  window.DASHBOARD_URL = "{% url 'accounts:dashboard' %}";
+  window.CURRENT_USERNAME = "{{ user.name|escapejs }}";
+  window.TRANS_INVITE_GENERIC_ERROR = `{% blocktrans trimmed with orgname=org.name %}
+    An unknown error happened. We could not invite this user to <strong>{{ orgname }}</strong>
+  {% endblocktrans %}`;
+  </script>
+  {# Import the external script #}
+  <script src="{% static 'js/orga.js' %}" type="module"></script>
 {% endblock extra_js %}
 {% comment %} BS5-DONE {% endcomment %}

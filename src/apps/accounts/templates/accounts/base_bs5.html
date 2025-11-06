@@ -45,6 +45,9 @@
 {% endblock sidebar %}
 {% block extra_js %}
   {{ block.super }}
-  <script>{% include "accounts/user.js" %}</script>
+  {# Set DASHBOARD_URL for dashboards #}
+  {% url "accounts:dashboard" as dashboard_url %}
+  <script>window.DASHBOARD_URL = "{{ dashboard_url }}";</script>
+  <script src="{% static 'js/dashboard.js' %}" type="module"></script>
 {% endblock extra_js %}
 {% comment %} BS5-DONE {% endcomment %}
