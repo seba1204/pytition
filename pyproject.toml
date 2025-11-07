@@ -39,6 +39,7 @@ rrssb = "1.14.0"
 
 
 
+
 [tool.pdm]
 distribution = false
 
@@ -55,6 +56,10 @@ docs-live = "sphinx-autobuild docs/source docs/_build/html -a -j auto --host 0.0
 docs-coverage = "interrogate -v -c pyproject.toml src"
 # Generate docstring coverage badge
 docs-badge = "interrogate -c pyproject.toml src --generate-badge docs/source/_static/img/"
+# Collect static files
+collectstatic = "python manage.py collectstatic --noinput"
+collectstatic-live = "python -m watchfiles 'python manage.py collectstatic --noinput' assets/"
+
 
 [dependency-groups]
 dev = [
@@ -67,6 +72,7 @@ dev = [
     "django-extensions>=4.1",
     "graphviz>=0.21",
     "pydotplus>=2.0.2",
+    "watchfiles>=1.1.1",
 ]
 docs = [
     "coverage==4.5.2",

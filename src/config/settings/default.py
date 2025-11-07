@@ -58,6 +58,7 @@ PHONENUMBER_DEFAULT_REGION = "FR"
 # ──────────────────────────────────────────────────────────────────────────────
 
 TINYMCE_DEFAULT_CONFIG: dict[str, Any] = {
+    "license_key": "gpl",
     "height": 400,
     "menubar": False,
     "plugins": "lists link image table",
@@ -68,8 +69,6 @@ TINYMCE_DEFAULT_CONFIG: dict[str, Any] = {
     ),
     "promotion": False,
     "branding": False,
-    "language": "fr",
-    "images_upload_url": "/files/tinymce",
     "block_formats": "Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4",
 }
 

@@ -19,6 +19,7 @@ class BootstrapVendor(Vendor):
                 ("css/bootstrap.min.css", "css"),
                 ("css/bootstrap.min.css.map", "css"),
                 ("js/bootstrap.bundle.min.js", "js"),
+                ("js/bootstrap.bundle.min.js.map", "js"),
             ],
         )
         self._clean_stage_except(keep)

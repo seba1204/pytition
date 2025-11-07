@@ -23,6 +23,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.urls.resolvers import URLPattern, URLResolver
 from django.views.generic import RedirectView
+from django.views.i18n import JavaScriptCatalog
 
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
@@ -46,6 +47,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
+    path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     path("", include("django.contrib.auth.urls")),
     # Maintenance mode URLs (3rd party app)
     path("maintenance-mode/", include("maintenance_mode.urls")),

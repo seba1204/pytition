@@ -57,3 +57,43 @@ table caption {
 #page_container {
   min-height: 85vh;
 }
+
+
+.petition-body-placeholder {
+  min-height: 480px;
+}
+
+@media (max-width: 576px) {
+  .petition-title {
+    position: sticky;
+    top: 0px;
+    /* align with navbar height if any */
+    background: var(--bs-body-bg, #fff);
+    /* Smooth transition between normal and sticky states */
+    transition: height .2s ease, padding .2s ease, line-height .2s ease;
+    will-change: height, padding, line-height;
+  }
+
+  /* Default (not yet sticky) — natural size */
+  .petition-title:not(.is-sticky) {
+    height: auto;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    line-height: normal;
+  }
+
+  /* When sticky is active, lock to 56px total height */
+  .petition-title.is-sticky {
+    height: 56px;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 56px;
+    overflow: hidden;
+  }
+}
+
+.petition-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
