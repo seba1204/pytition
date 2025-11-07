@@ -78,6 +78,7 @@ class Signature(models.Model):
         self.confirmed = True
 
     def __str__(self) -> str:
+        """String representation of the Signature model."""
         return html.unescape(
             "[{}:{}] {} {}".format(
                 self.petition.id,
@@ -88,6 +89,7 @@ class Signature(models.Model):
         )
 
     def __repr__(self) -> str:
+        """Official string representation of the Signature model."""
         return html.unescape(
             "[{}:{}] {} {}".format(
                 self.petition.id,

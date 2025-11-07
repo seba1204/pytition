@@ -5,10 +5,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models, transaction
 from django.utils.translation import gettext_lazy
 
-from apps.core.model_refs import ORGANIZATION, PETITION_TEMPLATE
+from apps.core.model_refs import ORGANIZATION, PETITION_TEMPLATE, THEME
 
 if TYPE_CHECKING:
     pass
@@ -33,6 +34,13 @@ class PytitionUser(models.Model):
         on_delete=models.SET_NULL,
     )
     moderated = models.BooleanField(default=False)
+
+    themes = GenericRelation(
+        THEME,
+        content_type_field="owner_content_type",
+        object_id_field="owner_object_id",
+        related_query_name="user",
+    )
 
     class Meta:
         """Meta class for PytitionUser model."""
@@ -92,12 +100,14 @@ class PytitionUser(models.Model):
         return "user"
 
     def __str__(self) -> str:
+        """String representation of the PytitionUser."""
         if self.get_full_name != "":
             return self.get_full_name
         else:
             return self.username
 
     def __repr__(self) -> str:
+        """Official string representation of the PytitionUser."""
         if self.get_full_name != "":
             return self.get_full_name
         else:

@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _lazy
 
-from apps.core.model_refs import PERMISSION, PETITION_TEMPLATE, PYTITION_USER
+from apps.core.model_refs import PERMISSION, PETITION_TEMPLATE, PYTITION_USER, THEME
 
 if TYPE_CHECKING:
     from apps.accounts.models import PytitionUser
@@ -37,6 +38,12 @@ class Organization(models.Model):
     members: models.ManyToManyField = models.ManyToManyField(
         PYTITION_USER, through=PERMISSION
     )
+    themes = GenericRelation(
+        THEME,
+        content_type_field="owner_content_type",
+        object_id_field="owner_object_id",
+        related_query_name="org",
+    )
 
     class Meta:
         """Meta information for the Organization model."""
@@ -51,7 +58,11 @@ class Organization(models.Model):
         """
         Check if the user is the last admin of this organization.
 
-        Admin is an user having the can_modify_permissions right Return true or false.
+        Admin is a user having the `can_modify_permissions` right.
+
+        Returns
+        -------
+            True if the user is the last admin, otherwise False.
         """
         # get all permissions
         from apps.accounts.models import Permission  # noqa
@@ -103,7 +114,14 @@ class Organization(models.Model):
         return self.name
 
     def save(self, *args: Any, **kwargs: Any) -> None:
-        """Override save to automatically generate slugname from name if not set."""
+        """
+        Override save to automatically generate slugname from name if not set.
+
+        Notes
+        -----
+        'slugname' must be unique. If two organizations have the same name,
+        this may raise an integrity error due to the unique constraint on 'slugname'.
+        """
         if not self.slugname:
             self.slugname = slugify(self.name)
         super().save(*args, **kwargs)

@@ -113,3 +113,17 @@ ASSETS_PWA_DISPLAY = "standalone"
 # ──────────────────────────────────────────────────────────────────────────────
 
 SPHINX_LANGUAGE = "en"
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Theming / CSS Token Registry
+# ──────────────────────────────────────────────────────────────────────────────
+
+THEME_TOKEN_REGISTRY = {
+    "v1": "theming/registry/tokens_v1.json",
+}
+
+THEME_ALLOWED_TOKEN_SCOPES: set[str] = {
+    ":root",
+    '[data-bs-theme="dark"]',
+}

@@ -1,3 +1,5 @@
+""""Tests for PetitionTemplate views."""
+
 from pathlib import Path
 
 from django.conf import settings
@@ -16,21 +18,26 @@ class PetitionViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls) -> None:
+        """Set up test data for the whole TestCase."""
         add_default_data()
 
     def tearDown(self) -> None:
+        """Tear down run after every test method."""
         # Clean up run after every test method.
         pass
 
     def login(self, name: str, password: str | None = None) -> PytitionUser:
+        """Helper to log in a user by username."""
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
     def logout(self) -> None:
+        """Helper to log out the current user."""
         self.client.logout()
 
     def test_org_new_template_get(self) -> None:
+        """Test GET request to create a new template for an organization."""
         # GET request just shows the page
         # Not logged
         org = Organization.objects.get(name="RAP")
@@ -47,6 +54,7 @@ class PetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "presets/new.html")
 
     def test_org_new_template_post(self) -> None:
+        """Test POST request to create a new template for an organization."""
         self.login("julia")
         org = Organization.objects.get(name="RAP")
         self.assertEqual(org.petitiontemplate_set.count(), 0)
@@ -62,6 +70,7 @@ class PetitionViewTest(TestCase):
         self.assertRedirects(response, reverse(PresetRoutes.EDIT, args=[pt.id]))
 
     def test_user_new_template_post(self) -> None:
+        """Test POST request to create a new template for a user."""
         julia = self.login("julia")
         data = {"template_name": "This is a default template"}
         response = self.client.post(reverse(PresetRoutes.NEW), data)
@@ -75,12 +84,14 @@ class PetitionViewTest(TestCase):
         self.assertRedirects(response, reverse(PresetRoutes.EDIT, args=[pt.id]))
 
     def test_user_new_template_get(self) -> None:
+        """Test GET request to create a new template for a user."""
         julia = self.login("julia")
         response = self.client.get(reverse(PresetRoutes.NEW))
         self.assertEqual(julia.petitiontemplate_set.count(), 0)
         self.assertEqual(response.status_code, 200)
 
     def test_edit_template(self) -> None:
+        """Test editing a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         # For an org template
@@ -95,6 +106,7 @@ class PetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "presets/edit.html")
 
     def test_template_fav_toggle(self) -> None:
+        """Test toggling favorite status of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         # For an org template
@@ -111,6 +123,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(julia.default_template, pt2)
 
     def test_template_fav_toggle_twice(self) -> None:
+        """Test toggling favorite status of a petition template twice."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         # For an org template
@@ -135,6 +148,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(julia.default_template, None)
 
     def test_org_template_delete(self) -> None:
+        """Test deleting a petition template."""
         max = self.login("max")
         org = Organization.objects.get(name="Les Amis de la Terre")
         # For an org template
@@ -158,6 +172,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(PetitionTemplate.objects.count(), 0)
 
     def test_edit_template_POST_content_form(self) -> None:
+        """Test POST request to edit content form of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         content_form_data = {
@@ -205,6 +220,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(response.context["newsletter_form_submitted"], False)
 
     def test_edit_template_POST_email_form(self) -> None:
+        """Test POST request to edit email form of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         email_form_data = {
@@ -248,6 +264,7 @@ class PetitionViewTest(TestCase):
             self.assertEqual(getattr(pt, key), value)
 
     def test_edit_template_POST_social_network_form(self) -> None:
+        """Test POST request to edit social network form of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
 
@@ -326,6 +343,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(response2.context["newsletter_form_submitted"], False)
 
     def test_edit_template_POST_newsletter_form(self) -> None:
+        """Test POST request to edit newsletter form of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         newsletter_form_data = {
@@ -385,6 +403,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(response2.context["newsletter_form_submitted"], True)
 
     def test_edit_template_POST_style_form(self) -> None:
+        """Test POST request to edit style form of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         style_form_data = {
@@ -436,6 +455,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(response.context["style_form_submitted"], True)
 
     def test_edit_template_email_share_button(self) -> None:
+        """Test POST request to edit email share button of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -505,6 +525,7 @@ class PetitionViewTest(TestCase):
         self.assertFalse(pt.has_email_share_button)
 
     def test_edit_template_facebook_share_button(self) -> None:
+        """Test POST request to edit facebook share button of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -574,6 +595,7 @@ class PetitionViewTest(TestCase):
         self.assertFalse(pt.has_facebook_share_button)
 
     def test_edit_template_tumblr_share_button(self) -> None:
+        """Test POST request to edit tumblr share button of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -643,6 +665,7 @@ class PetitionViewTest(TestCase):
         self.assertFalse(pt.has_tumblr_share_button)
 
     def test_edit_template_linkedin_share_button(self) -> None:
+        """Test POST request to edit linkedin share button of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -712,6 +735,7 @@ class PetitionViewTest(TestCase):
         self.assertFalse(pt.has_linkedin_share_button)
 
     def test_edit_template_twitter_share_button(self) -> None:
+        """Test POST request to edit twitter share button of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -781,6 +805,7 @@ class PetitionViewTest(TestCase):
         self.assertFalse(pt.has_twitter_share_button)
 
     def test_edit_template_mastodon_share_button(self) -> None:
+        """Test POST request to edit mastodon share button of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
@@ -850,6 +875,7 @@ class PetitionViewTest(TestCase):
         self.assertFalse(pt.has_mastodon_share_button)
 
     def test_edit_template_whatsapp_share_button(self) -> None:
+        """Test POST request to edit whatsapp share button of a petition template."""
         julia = self.login("julia")
         org = Organization.objects.get(name="RAP")
         share_button_form_data = {
