@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-05 05:39+0100\n"
+"POT-Creation-Date: 2025-11-07 06:49+0100\n"
 "PO-Revision-Date: 2025-11-04 08:29+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-"
 "translation-memory@weblate.org>\n"
@@ -274,15 +274,13 @@ msgstr ""
 #: 769d441445ca4798aca45519cf6bf06a 76cf054542c74d1aa3ba6a1fc1bbfbc1
 #: 83fadf249fcf4c99aa7bcd11e5df0fc5 b1e1ec0ffd2242f0b02f440315fb38d4
 #: bca4271db14347e7add74fd35f55c9f8 bcf6bf1e787b40699171fbac91611fc8
-#: d79b0dc685a64413ac9a30905ec30b33
 msgid "Todo"
 msgstr "Todo"
 
 #: 30d176b67c94455ab7fced2d9e2c4888 36b088bdea11496489711a3a880d7ec2
 #: 50c6255ea4cd4a1a932ffc0c962e9c03 535c1566485447609e1f9adada021631
-#: 556ebf1ac40b47eb8daa055ff780484c 5f19aa19cddc42c980da08b6f8938511
-#: 67c84bcae86b4500a90ad6e3386c34c8 7826758aaa61408e9c791b934fd3bbd6
-#: 8eb8f3748cdb4bd0b516ba90db945b9b
+#: 556ebf1ac40b47eb8daa055ff780484c 67c84bcae86b4500a90ad6e3386c34c8
+#: 7826758aaa61408e9c791b934fd3bbd6 8eb8f3748cdb4bd0b516ba90db945b9b
 msgid "Write some docs."
 msgstr ""
 
@@ -515,6 +513,45 @@ msgstr ""
 #, fuzzy
 msgid "Basics conventions"
 msgstr "Convenciones"
+
+#: 7147e6eee68d429780bca3e8bd252a0c
+#, fuzzy
+msgid "Comments"
+msgstr "Contenido:"
+
+#: df8d1607ee3140b2a53666c106b042de
+msgid "Use English for all comments."
+msgstr ""
+
+#: c189e713ca6e45e699effc20a1084979
+msgid "Write comments that explain why the code does something, not what it does."
+msgstr ""
+
+#: 780aa78b4707403283e8cf518e856206
+msgid ""
+"You can use `FIXME` or `TODO` tags to indicate areas that need "
+"improvement, but provide an issue reference, with the format shown below:"
+msgstr ""
+
+#: 566cf8b6ac8a40608130d92357c6a541
+msgid "# TODO: [#123] Refactor this function to improve performance.\n"
+msgstr ""
+
+#: 2e62e260812a42e7aacba49e41cfc4fd
+msgid "Templates"
+msgstr ""
+
+#: 2774b7198f6848efab10ae75809bfdad
+msgid "Do not put inline CSS or JS in templates. Use static files instead."
+msgstr ""
+
+#: 7d2381926e464ed982c06d73a423ee5b
+msgid "Use Bootstrap 5 classes and components for styling and layout."
+msgstr ""
+
+#: 8e1acd5afcc14121a4348478c31204a8
+msgid "Use Django template inheritance to avoid code duplication."
+msgstr ""
 
 #: 793fc39d2e834b50aefe2cff1bd3f677
 msgid "Internationalization (i18n)"
@@ -762,6 +799,174 @@ msgstr ""
 #, fuzzy
 msgid "Python coding style"
 msgstr "Estilo de código Python"
+
+#: 32b760e06b2e48ac939372ff8a7562b6
+msgid "Comments and docstrings"
+msgstr ""
+
+#: 79026bc6a4ab4e0c9b56d4dc3b16004f
+msgid "Write docstrings for all public modules, functions, classes, and methods."
+msgstr ""
+
+#: fbea95acf95546bb90607648c20bb28b
+msgid "Use NumPy style for docstrings (cf. [below](#numpy-docstring-sections))."
+msgstr ""
+
+#: 29a2e9eeb4cc441082f41cf4c1542fef
+msgid "Use sentences like in comments:"
+msgstr ""
+
+#: 142e165a1ffc4a2084df24f69644ef53
+msgid "start with a capital letter,"
+msgstr ""
+
+#: effd8e44186140c59e5dbdb2466631cb
+msgid "DO NOT end with a full stop if it's a short phrase."
+msgstr ""
+
+#: 38228681cf6a417288050217f183614a
+#, python-brace-format
+msgid ""
+"# ✅ Good\n"
+"# Generate storage path\n"
+"storage_path = (\n"
+"    f\"{name_part}-{file_hash}{ext_part}\"\n"
+"    if INCLUDE_ORIGINAL_FILENAME\n"
+"    else f\"{file_hash}{ext_part}\"\n"
+")\n"
+"# ❌ Bad\n"
+"# this part generates storage path.\n"
+"# genration of storage path\n"
+"# ...\n"
+msgstr ""
+
+#: 7e49575f567644d1815e8a253ed05152
+msgid "NumPy docstring sections"
+msgstr ""
+
+#: 5e4ab1304a2445fc96fb229fe7479bc8
+msgid ""
+"def add(a: int, b: int) -> int:\n"
+"    \"\"\"\n"
+"    Add two integers.\n"
+"\n"
+"    Parameters\n"
+"    ----------\n"
+"    a : int\n"
+"        The first integer.\n"
+"    b : int\n"
+"        The integers to add.\n"
+"    Returns\n"
+"    -------\n"
+"    int\n"
+"        The sum of the two integers.\n"
+"    \"\"\"\n"
+"    return a + b\n"
+msgstr ""
+
+#: 1d1bcfd68c6442d8868ba7c5f0f073a5
+msgid "List of sections:"
+msgstr ""
+
+#: 6bc01351d4554d1e8f8c10cf21538c84
+msgid "`Short summary`: a sentence summarize the function's purpose"
+msgstr ""
+
+#: 550aadd9d94f413d92c7ec25fdc5bda4
+msgid "one line at the top to"
+msgstr ""
+
+#: 2f4683c4ab894ec5a0b2c69007b0fd33
+msgid "start with a capital letter"
+msgstr ""
+
+#: 43c3ecf7a06e446dba4b38267d5981e3
+msgid "ends without a full stop"
+msgstr ""
+
+#: c524e1d4d7914b8c9a39f4674e8584de
+msgid "DO NOT begin with \"This function ...\""
+msgstr ""
+
+#: 07e4e20be6994f93bef83c7309a69194
+msgid "use imperative mood (e.g., \"Return\", \"Compute\", \"Check\")"
+msgstr ""
+
+#: 4170ededab6243feb399443a3a3c9d92
+msgid "`Extended summary` [*optional*]: a longer description for specific details"
+msgstr ""
+
+#: e26e44833d0144f480a78d81993f7e60
+msgid "multiple lines"
+msgstr ""
+
+#: fd55af0e8cd2400fb0a57cb114f80416
+msgid "separated from the short summary by a blank line"
+msgstr ""
+
+#: b1f937297f11460790659681d4f80596
+msgid "`Parameters`: a list of parameters"
+msgstr ""
+
+#: 274592b0d1c44fb5b3a4923001831bf1
+msgid "each parameter has a name, type, and description"
+msgstr ""
+
+#: 1c9318da1e124b5082e8eb00aaebb8f0
+msgid "`Returns`: the return value(s)"
+msgstr ""
+
+#: 07b6e65b1d5d40ceb1cea654ee45a4b7
+msgid "specify the type and description"
+msgstr ""
+
+#: 7a77dd81dbe04e64b807a4859276c446
+msgid "`Yields` [*optional*]: for generator functions"
+msgstr ""
+
+#: d63ddb98c8e04230a2cd7aa6a641903a
+msgid "`Attributes` [*optional*]: for class docstrings, list of attributes"
+msgstr ""
+
+#: 8dccabc4c2fc48b989f8d4d0cef2c07e
+msgid "`Raises` [*optional*]: exceptions that the function may raise"
+msgstr ""
+
+#: d710543b7332456885a6101427d5a794
+msgid "`References` [*optional*]: citations or external references"
+msgstr ""
+
+#: bc66bf23bb6c49eb9a4f0379f658cebd
+msgid "for academic or technical references (e.g., papers, articles)"
+msgstr ""
+
+#: 303d3cb49f9a40d7823dd52aab8bb913
+msgid "`Examples` [*optional*]: usage examples"
+msgstr ""
+
+#: 0ec4da5365694494993fdc8510384745
+msgid "use triple backticks for code blocks"
+msgstr ""
+
+#: e2dd554ae76d4c9cb8066a3192ea7f42
+msgid "can include multiple examples"
+msgstr ""
+
+#: 32637f93804e465fafea84e75cb938be
+msgid "`See Also` [*optional*]: related functions or classes"
+msgstr ""
+
+#: 2610857c15e64dd1a4de57335aa8f255
+msgid "list of related items with brief descriptions"
+msgstr ""
+
+#: 599f4026de37441bb0ec5d2f201e1c13
+msgid "`Notes` [*optional*]: additional information or clarifications"
+msgstr ""
+
+#: 71fa7381e2e1426ab8edec35e9087705
+msgid "for implementation details or caveats"
+msgstr ""
 
 #: 28032a8f98854bfeb4b716cde83cd8aa
 msgid "User experience conventions"
