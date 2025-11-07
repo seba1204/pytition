@@ -19,6 +19,7 @@ from django.utils.translation import gettext_lazy as _lazy
 
 from apps.core.model_refs import PYTITION_USER
 from apps.theming.registry import CssTokenRegistry
+from apps.theming.services import sanitize_css
 from apps.theming.validators import ThemeQuerySet
 
 
@@ -286,6 +287,7 @@ class Theme(models.Model):
         - Validates that owner exists.
         - Fills slug if missing (for ergonomics when forms/admin call full_clean()).
         """
+        # --- Validate tokens_css against registry ----------------------
         if not isinstance(self.tokens_css, dict):
             raise ValidationError("tokens_css must be an object")
 
@@ -312,7 +314,20 @@ class Theme(models.Model):
         registry = CssTokenRegistry(self.tokens_schema_version)
         registry.validate_tokens(self.tokens_css)
 
-        # Ensure GFK owner exists
+        # --- Sanitize components_css ----------------------
+
+        if self.components_css:
+            try:
+                self.components_css = sanitize_css(self.components_css)
+            except ValueError as exc:
+                raise ValidationError(
+                    {
+                        "components_css": _("Unsafe CSS detected: %(error)s")
+                        % {"error": exc}
+                    }
+                ) from exc
+
+        # --- Ensure GFK owner exists -------------
         if not self.owner_content_type_id or not self.owner_object_id:
             raise ValidationError({"owner": _("Owner must be set.")})
 
@@ -325,6 +340,7 @@ class Theme(models.Model):
         except ObjectDoesNotExist as exc:
             raise ValidationError({"owner": _("Owner object does not exist.")}) from exc
 
+        # --- Ensure unique slug ----------------------
         # Pre-fill slug for admin/forms ergonomics (save() also safeguards this).
         if not self.slug:
             self.slug = self._build_unique_slug()

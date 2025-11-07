@@ -30,6 +30,7 @@ dependencies = [
     "rjsmin>=1.2.5",
     "cairosvg>=2.8.2",
     "beautifulsoup4>=4.14.2",
+    "cssutils>=2.11.1",
 ]
 
 [tool.pytition.vendors]

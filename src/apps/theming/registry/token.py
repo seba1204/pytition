@@ -37,6 +37,8 @@ class CssTokenRegistry:
     version : str
         Version key that maps to a JSON file via settings.THEME_TOKEN_REGISTRY.
         eg. "v1".
+    _tokens : Dict[str, TokenDef]
+        Mapping of token name to TokenDef.
     """
 
     def __init__(self, version: str) -> None:

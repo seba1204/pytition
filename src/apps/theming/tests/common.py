@@ -135,3 +135,22 @@ def make_org(slug: str | None = None, name: str | None = None) -> Organization:
     slug = slug or f"org-{uuid4().hex[:6]}"
     name = name or f"Org {slug}"
     return Organization.objects.create(name=name)
+
+
+def compact_css(css: str) -> str:
+    """
+    Return a minified version of the given CSS string for easier comparison.
+
+    Parameters
+    ----------
+    css : str
+        Raw CSS string.
+
+    Returns
+    -------
+    str
+        Minified CSS string.
+    """
+    return "".join(
+        line.strip().replace(" ", "") for line in css.splitlines() if line.strip()
+    )
