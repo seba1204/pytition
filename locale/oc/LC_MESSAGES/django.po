@@ -3,8 +3,9 @@ msgstr ""
 "Project-Id-Version: Occitan (Pytition)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-07 06:39+0100\n"
-"PO-Revision-Date: 2025-11-03 05:53+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-07 05:50+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Occitan <https://translate.sebastienpont.fr/projects/pytition/"
 "dev/oc/>\n"
 "Language: oc\n"
@@ -1465,8 +1466,6 @@ msgstr "Salvar"
 
 #: src/apps/petitions/templates/petitions/_sign_form.html:39
 #: src/apps/petitions/templates/petitions/detail.html:182
-#, fuzzy
-#| msgid "Sign!"
 msgid "Sign"
 msgstr "Signatz !"
 
@@ -1572,8 +1571,6 @@ msgstr "Partejar"
 #: src/apps/petitions/templates/petitions/detail.html:163
 #: src/apps/petitions/templates/petitions/detail.html:232
 #: src/apps/petitions/templates/petitions/detail.html:240
-#, fuzzy
-#| msgid "Sign the petition!"
 msgid "Sign the petition"
 msgstr "Signar la peticion !"
 
@@ -1653,8 +1650,6 @@ msgstr "Malhums socials"
 #: src/apps/petitions/templates/petitions/edit.html:69
 #: src/apps/petitions/templates/petitions/edit.html:484
 #: src/apps/petitions/templates/petitions/edit.html:488
-#, fuzzy
-#| msgid "Email"
 msgid "E-mail"
 msgstr "Corrièl"
 
@@ -1805,8 +1800,6 @@ msgid "You don't have any petitions yet."
 msgstr "Avètz pas encara de peticion."
 
 #: src/apps/petitions/templates/petitions/list.html:47
-#, fuzzy
-#| msgid "Signatures"
 msgid "signatures"
 msgstr "Signaturas"
 
@@ -1952,8 +1945,6 @@ msgid "This petition does not exist (anymore?)."
 msgstr "Aquesta peticion existís pas (o pas mai ?)."
 
 #: src/apps/petitions/views/slug/add.py:33
-#, fuzzy
-#| msgid "You entered an empty slug text"
 msgid "You entered an empty slug text."
 msgstr "Avètz picatz un tèxte slug void"
 
@@ -1971,14 +1962,10 @@ msgstr "Lo slug « {} » existís ja !"
 
 #: src/apps/petitions/views/slug/add.py:60
 #: src/apps/petitions/views/slug/delete.py:43
-#, fuzzy
-#| msgid "You don't have the permission to modify petitions"
 msgid "You don't have the permission to modify petitions."
 msgstr "Avètz pas l’autorizacion per modificar las peticions"
 
 #: src/apps/petitions/views/slug/delete.py:41
-#, fuzzy
-#| msgid "Successful deletion of a slug"
 msgid "Successful deletion of a slug."
 msgstr "Permaligam suprimit corrèctament"
 
@@ -2306,8 +2293,6 @@ msgid "Not subscribed"
 msgstr "Pas publicada"
 
 #: src/apps/signatures/templates/signatures/data.html:152
-#, fuzzy
-#| msgid "copy/paste the following text block into Sympa's mass-subscribe form"
 msgid "Copy/paste the following text block into Sympa's mass-subscribe form"
 msgstr ""
 "copiatz / pegatz lo blòt de tèxt seguent al formulari mass-subscribe de Sympa"

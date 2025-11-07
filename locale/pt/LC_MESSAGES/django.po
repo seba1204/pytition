@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-07 06:39+0100\n"
-"PO-Revision-Date: 2025-11-03 08:55+0000\n"
-"Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
+"PO-Revision-Date: 2025-11-07 06:08+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
 "Language-Team: Portuguese <https://translate.sebastienpont.fr/projects/"
 "pytition/dev/pt/>\n"
 "Language: pt\n"
@@ -188,10 +188,8 @@ msgid "Register"
 msgstr "Inscreva-se"
 
 #: src/apps/accounts/templates/accounts/settings.html:13
-#, fuzzy
-#| msgid "Personal Settings"
 msgid "Personal settings sections"
-msgstr "Configurações pessoais"
+msgstr "Secções de configurações pessoais"
 
 #: src/apps/accounts/templates/accounts/settings.html:14
 msgid "Personal Settings"
@@ -240,7 +238,7 @@ msgstr "Fechar"
 #: src/apps/accounts/templates/accounts/settings.html:111
 #: src/apps/accounts/templates/accounts/settings.html:190
 msgid "Leave"
-msgstr ""
+msgstr "Sair"
 
 #: src/apps/accounts/templates/accounts/settings.html:109
 msgid ""
@@ -428,7 +426,7 @@ msgstr "Ver as últimas petições"
 #: src/apps/core/templates/core/search.html:11
 #, python-format
 msgid "Search results for \"%(query)s\""
-msgstr ""
+msgstr "Resultados da pesquisa para «%(query)s »"
 
 #: src/apps/core/templates/layouts/base.html:13
 msgid "A platform for creating and signing petitions."
@@ -508,6 +506,8 @@ msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
 msgstr ""
+"A sua conta não tem acesso a esta página. Para continuar, inicie sessão com "
+"uma conta que tenha acesso."
 
 #: src/apps/core/templates/registration/login.html:35
 #: src/apps/core/templates/registration/login.html:43
@@ -517,10 +517,8 @@ msgstr "Nome de utilizador"
 
 #: src/apps/core/templates/registration/login.html:50
 #: src/apps/core/templates/registration/login.html:57
-#, fuzzy
-#| msgid "SMTP password"
 msgid "Password"
-msgstr "Senha SMTP"
+msgstr "Senha"
 
 #: src/apps/core/templates/registration/login.html:64
 msgid "No account?"
@@ -536,56 +534,50 @@ msgstr "Esqueci a minha palavra-passe!"
 
 #: src/apps/core/templates/registration/password_reset_complete.html:4
 msgid "Password reset complete"
-msgstr ""
+msgstr "Reposição da palavra-passe concluída"
 
 #: src/apps/core/templates/registration/password_reset_complete.html:10
 msgid "Your password has been set!"
-msgstr ""
+msgstr "A sua palavra-passe foi definida!"
 
 #: src/apps/core/templates/registration/password_reset_complete.html:13
 msgid "You can now log in with your new password."
-msgstr ""
+msgstr "Agora pode iniciar sessão com a sua nova palavra-passe."
 
 #: src/apps/core/templates/registration/password_reset_complete.html:15
 msgid "Log in"
-msgstr ""
+msgstr "Iniciar sessão"
 
 #: src/apps/core/templates/registration/password_reset_confirm.html:4
 #: src/apps/core/templates/registration/password_reset_confirm.html:10
-#, fuzzy
-#| msgid "Forgot your password?"
 msgid "Set your new password"
-msgstr "Esqueceu a sua palavra-passe?"
+msgstr "Defina a sua nova palavra-passe"
 
 #: src/apps/core/templates/registration/password_reset_confirm.html:31
 #: src/apps/core/templates/registration/password_reset_confirm.html:34
-#, fuzzy
-#| msgid "Change password"
 msgid "New password"
-msgstr "Alterar palavra-passe"
+msgstr "Nova palavra-passe"
 
 #: src/apps/core/templates/registration/password_reset_confirm.html:44
 #: src/apps/core/templates/registration/password_reset_confirm.html:47
-#, fuzzy
-#| msgid "Change password"
 msgid "Confirm new password"
-msgstr "Alterar palavra-passe"
+msgstr "Confirme a nova palavra-passe"
 
 #: src/apps/core/templates/registration/password_reset_confirm.html:52
-#, fuzzy
-#| msgid "Change password"
 msgid "Change my password"
-msgstr "Alterar palavra-passe"
+msgstr "Alterar a minha palavra-passe"
 
 #: src/apps/core/templates/registration/password_reset_confirm.html:56
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"O link para redefinir a palavra-passe era inválido, possivelmente porque já "
+"tinha sido utilizado. Solicite uma nova redefinição da palavra-passe."
 
 #: src/apps/core/templates/registration/password_reset_confirm.html:59
 msgid "Request a new password reset"
-msgstr ""
+msgstr "Solicitar uma nova palavra-passe"
 
 #: src/apps/core/templates/registration/password_reset_done.html:4
 msgid "Email Sent"
@@ -630,14 +622,6 @@ msgid "Send me instructions!"
 msgstr "Envie-me instruções!"
 
 #: src/apps/core/templates/ui/components/demo_text.html:4
-#, fuzzy
-#| msgid ""
-#| "<span style=\"color: red;font-weight: bold;\">Demonstration website "
-#| "(please DON'T put real petitions here!)</span> <br /> This tool is free "
-#| "and open-source software, you can install it on your server too! <br> "
-#| "Download the source code on <a href=\"https://github.com/pytition/"
-#| "pytition\">GitHub</a> <br> Documentation is available on <a "
-#| "href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 msgid ""
 "<span>Demonstration website (please DON'T put real petitions here!)</span> "
 "<br /> This tool is free and open-source software, you can install it on "
@@ -645,13 +629,12 @@ msgid ""
 "com/pytition/pytition\">GitHub</a> <br> Documentation is available on <a "
 "href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 msgstr ""
-"&lt;span style=&quot;color: red;font-weight: bold;&quot;&gt;Site de "
-"demonstração (por favor, NÃO coloque petições reais aqui!)&lt;/span&gt;&lt;"
-"br/&gt; Esta ferramenta é um software gratuito e de código aberto, você "
-"também pode instalá-la no seu servidor!&lt;br&gt; Descarregue o código-fonte "
-"em &lt;a href=&quot;https://github.com/pytition/pytition&quot;&gt;GitHub&lt;/"
-"a&gt;&lt;br&gt; A documentação está disponível em &lt;a href=&quot;https://"
-"pytition.readthedocs.io&quot;&gt;ReadTheDocs&lt;/a&gt;"
+"<span>Site de demonstração (por favor, NÃO coloque petições reais aqui!)</"
+"span> <br /> Esta ferramenta é um software gratuito e de código aberto, você "
+"também pode instalá-la no seu servidor! <br> Descarregue o código-fonte em "
+"<a href=\"https://github.com/pytition/pytition\">GitHub</a> <br> A "
+"documentação está disponível em <a href=\"https://pytition.readthedocs.io\""
+">ReadTheDocs</a>"
 
 #: src/apps/core/views/index.py:25
 msgid "You must set an INDEX_PAGE config in your settings"
@@ -667,11 +650,11 @@ msgstr "Tem de definir uma configuração INDEX_PAGE_ORGA nas suas definições"
 
 #: src/apps/files/views/tinymce_image_upload.py:67
 msgid "Invalid request."
-msgstr ""
+msgstr "Pedido inválido."
 
 #: src/apps/files/views/tinymce_image_upload.py:76
 msgid "Invalid file upload."
-msgstr ""
+msgstr "Carregamento de ficheiro inválido."
 
 #: src/apps/notifications/admin.py:11
 msgid "Send the confirmation email once again"
@@ -728,12 +711,13 @@ msgid "This is an invalid Organization name. Please try something else."
 msgstr "Este nome de organização não é válido. Tente outra opção."
 
 #: src/apps/organizations/templates/org/base.html:63
-#, fuzzy, python-format
-#| msgid "You are invited to <strong>&nbsp;%(orgname)s</strong>"
+#, python-format
 msgid ""
 "An unknown error happened. We could not invite this user to "
 "<strong>%(orgname)s</strong>"
-msgstr "Está convidado para <strong>&nbsp;%(orgname)s</strong>"
+msgstr ""
+"Ocorreu um erro desconhecido. Não foi possível convidar este utilizador para "
+"<strong>%(orgname)s</strong>"
 
 #. Translators: This is the label for a button that submits a form to create a new organization.
 #: src/apps/organizations/templates/org/create.html:15
@@ -752,7 +736,7 @@ msgstr "Convidar utilizador"
 
 #: src/apps/organizations/templates/org/invite_user.html:11
 msgid "User icon"
-msgstr ""
+msgstr "Ícone do utilizador"
 
 #: src/apps/organizations/templates/org/member_list.html:4
 msgid "Members"
@@ -1342,7 +1326,7 @@ msgstr "Título"
 #: src/apps/petitions/forms/create_single.py:26
 #: src/apps/petitions/templates/petitions/partials/_illustration.html:4
 msgid "Illustration image"
-msgstr ""
+msgstr "Imagem ilustrativa"
 
 #: src/apps/petitions/forms/create_single.py:32
 #: src/apps/petitions/templates/petitions/edit.html:54
@@ -1353,10 +1337,8 @@ msgid "Content"
 msgstr "Conteúdo"
 
 #: src/apps/petitions/forms/create_single.py:46
-#, fuzzy
-#| msgid "Title is required and must be a string."
 msgid "Title is required."
-msgstr "O título é obrigatório e deve ser uma sequência de caracteres."
+msgstr "O título é obrigatório."
 
 #: src/apps/petitions/helpers.py:27
 msgid "Petition does not exist."
@@ -1402,33 +1384,27 @@ msgstr "Um permlink não pode estar vazio. Por favor, insira algo."
 
 #: src/apps/petitions/templates/petitions/_inline_create_body.html:11
 msgid "Click to add a title"
-msgstr ""
+msgstr "Clique para adicionar um título"
 
 #: src/apps/petitions/templates/petitions/_inline_create_body.html:17
-#, fuzzy
-#| msgid "Your petitions"
 msgid "Your petition title"
-msgstr "As suas petições"
+msgstr "Título da sua petição"
 
 #: src/apps/petitions/templates/petitions/_inline_create_body.html:26
 msgid "Add an illustration"
-msgstr ""
+msgstr "Adicionar uma ilustração"
 
 #: src/apps/petitions/templates/petitions/_inline_create_body.html:31
-#, fuzzy
-#| msgid "Petition logo placeholder"
 msgid "Illustration placeholder"
-msgstr "Espaço reservado para o logótipo da petição"
+msgstr "Ilustração provisória"
 
 #: src/apps/petitions/templates/petitions/_inline_create_body.html:35
 msgid "Click to add an illustration"
-msgstr ""
+msgstr "Clique para adicionar uma ilustração"
 
 #: src/apps/petitions/templates/petitions/_inline_create_body.html:59
-#, fuzzy
-#| msgid "Give a title to your petition"
 msgid "Click here to start writing your petition..."
-msgstr "Dê um título à sua petição"
+msgstr "Clique aqui para começar a escrever a sua petição..."
 
 #: src/apps/petitions/templates/petitions/_inline_create_body.html:63
 #: src/apps/petitions/templates/petitions/edit.html:92
@@ -1441,8 +1417,6 @@ msgstr "Guardar"
 
 #: src/apps/petitions/templates/petitions/_sign_form.html:39
 #: src/apps/petitions/templates/petitions/detail.html:182
-#, fuzzy
-#| msgid "Sign!"
 msgid "Sign"
 msgstr "Assine!"
 
@@ -1456,7 +1430,7 @@ msgstr "Assine a petição!"
 #: src/apps/petitions/templates/petitions/admin/change_form.html:21
 #: src/apps/signatures/templates/signatures/admin/change_form.html:20
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Breadcrumb"
 
 #: src/apps/petitions/templates/petitions/admin/change_form.html:24
 #: src/apps/signatures/templates/signatures/admin/change_form.html:23
@@ -1548,14 +1522,12 @@ msgstr "Partilhar"
 #: src/apps/petitions/templates/petitions/detail.html:163
 #: src/apps/petitions/templates/petitions/detail.html:232
 #: src/apps/petitions/templates/petitions/detail.html:240
-#, fuzzy
-#| msgid "Sign the petition!"
 msgid "Sign the petition"
 msgstr "Assine a petição!"
 
 #: src/apps/petitions/templates/petitions/detail.html:180
 msgid "Open sign form"
-msgstr ""
+msgstr "Abrir formulário de inscrição"
 
 #: src/apps/petitions/templates/petitions/detail.html:189
 msgid "Careful!"
@@ -1581,25 +1553,16 @@ msgid "Published on: "
 msgstr "Publicado em: "
 
 #: src/apps/petitions/templates/petitions/detail.html:222
-#, fuzzy
-#| msgid "Actions"
 msgid "Associations"
-msgstr "Ações"
+msgstr "Associações"
 
 #: src/apps/petitions/templates/petitions/detail.html:243
-#, fuzzy, python-format
-#| msgctxt "petition stats"
-#| msgid ""
-#| "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
-#| msgid_plural ""
-#| "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
+#, python-format
 msgctxt "petition stats"
 msgid "Already <span id=\"nb-signatures\">%(count)s</span> signature."
 msgid_plural "Already <span id=\"nb-signatures\">%(count)s</span> signatures."
-msgstr[0] ""
-"Já tem <span id=\"nb-signatures\">%(count|localize)s</span> assinatura."
-msgstr[1] ""
-"Já são <span id=\"nb-signatures\">%(count|localize)s</span> assinaturas."
+msgstr[0] "Já <span id=\"nb-signatures\">%(count)s</span> assinaturas."
+msgstr[1] "Já <span id=\"nb-signatures\">%(count)s</span> assinaturas."
 
 #: src/apps/petitions/templates/petitions/detail.html:248
 #, python-format
@@ -1631,18 +1594,14 @@ msgstr "Redes sociais"
 #: src/apps/petitions/templates/petitions/edit.html:69
 #: src/apps/petitions/templates/petitions/edit.html:484
 #: src/apps/petitions/templates/petitions/edit.html:488
-#, fuzzy
-#| msgid "Email"
 msgid "E-mail"
 msgstr "E-mail"
 
 #: src/apps/petitions/templates/petitions/edit.html:74
 #: src/apps/petitions/templates/petitions/edit.html:508
 #: src/apps/petitions/templates/petitions/edit.html:512
-#, fuzzy
-#| msgid "Newsletter setup"
 msgid "Newsletter"
-msgstr "Configuração da newsletter"
+msgstr "Boletim informativo"
 
 #: src/apps/petitions/templates/petitions/edit.html:79
 msgid "Preview petition"
@@ -1698,17 +1657,15 @@ msgstr "Carregar"
 
 #: src/apps/petitions/templates/petitions/edit.html:239
 msgid "Choose an image for social sharing cards."
-msgstr ""
+msgstr "Escolha uma imagem para os cartões de partilha social."
 
 #: src/apps/petitions/templates/petitions/edit.html:249
 msgid "Image"
 msgstr "Imagem"
 
 #: src/apps/petitions/templates/petitions/edit.html:261
-#, fuzzy
-#| msgid "Petition logo placeholder"
 msgid "Upload placeholder"
-msgstr "Espaço reservado para o logótipo da petição"
+msgstr "Carregar espaço reservado"
 
 #: src/apps/petitions/templates/petitions/edit.html:266
 msgid "Remove image"
@@ -1747,6 +1704,8 @@ msgid ""
 "You have un-saved modifications in the petition, are you sure you want to "
 "leave this page? You would lose your changes."
 msgstr ""
+"Tem alterações não guardadas na petição. Tem a certeza de que deseja sair "
+"desta página? Perderá as suas alterações."
 
 #: src/apps/petitions/templates/petitions/generic_list.html:55
 msgid "Sign!"
@@ -1760,20 +1719,16 @@ msgstr[0] "%(signature_number)s assinatura"
 msgstr[1] "%(signature_number)s assinaturas"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:73
-#, fuzzy
-#| msgid "Petition"
 msgid "Pagination"
-msgstr "Petição"
+msgstr "Paginação"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:79
-#, fuzzy
-#| msgid "Previous step"
 msgid "Previous"
-msgstr "Passo anterior"
+msgstr "Anterior"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:89
 msgid "current"
-msgstr ""
+msgstr "atual"
 
 #: src/apps/petitions/templates/petitions/generic_list.html:101
 msgid "Next"
@@ -1784,14 +1739,12 @@ msgid "You don't have any petitions yet."
 msgstr "Ainda não tem nenhuma petição."
 
 #: src/apps/petitions/templates/petitions/list.html:47
-#, fuzzy
-#| msgid "Signatures"
 msgid "signatures"
 msgstr "Assinaturas"
 
 #: src/apps/petitions/templates/petitions/list.html:69
 msgid "Moderated"
-msgstr ""
+msgstr "Moderada"
 
 #: src/apps/petitions/templates/petitions/list.html:77
 #: src/apps/petitions/templates/petitions/list.html:80
@@ -1830,10 +1783,11 @@ msgstr "Deseja mesmo eliminar a petição «%(title)s »?"
 #: src/apps/petitions/templates/petitions/partials/_illustration.html:6
 msgid "Optional. Shown at the top and used for social preview."
 msgstr ""
+"Opcional. Exibido na parte superior e usado para pré-visualização social."
 
 #: src/apps/petitions/templates/petitions/partials/_illustration.html:9
 msgid "Illustration preview"
-msgstr ""
+msgstr "Pré-visualização da ilustração"
 
 #: src/apps/petitions/templates/petitions/transfer.html:9
 msgid "Transfer petition"
@@ -1856,12 +1810,12 @@ msgstr "Nome do utilizador ou da organização"
 
 #: src/apps/petitions/templates/petitions/transfer.html:39
 msgid "Type at least 2 characters to start searching."
-msgstr ""
+msgstr "Digite pelo menos 2 caracteres para iniciar a pesquisa."
 
 #: src/apps/petitions/templates/petitions/transfer.html:40
 #: src/apps/petitions/templates/petitions/transfer.html:197
 msgid "Please enter at least 2 characters."
-msgstr ""
+msgstr "Por favor, introduza pelo menos 2 caracteres."
 
 #: src/apps/petitions/templates/petitions/transfer.html:66
 msgid "Transfer this petition?"
@@ -1872,8 +1826,6 @@ msgid "Do you really want to transfer the following petition?"
 msgstr "Deseja mesmo transferir a seguinte petição?"
 
 #: src/apps/petitions/templates/petitions/transfer.html:78
-#, fuzzy
-#| msgid "It will be transfered to:"
 msgid "It will be transferred to:"
 msgstr "Será transferido para:"
 
@@ -1884,22 +1836,22 @@ msgstr "Transferência"
 #: src/apps/petitions/templates/petitions/transfer.html:147
 #: src/apps/petitions/templates/petitions/transfer.html:224
 msgid "No results"
-msgstr ""
+msgstr "Sem resultados"
 
 #: src/apps/petitions/templates/petitions/transfer.html:201
-#, fuzzy
-#| msgid "Search"
 msgid "Searching…"
-msgstr "Pesquisar"
+msgstr "Pesquisando…"
 
 #: src/apps/petitions/templates/petitions/transfer.html:223
 msgid "Found"
-msgstr ""
+msgstr "Encontrado"
 
 #: src/apps/petitions/templates/petitions/transfer.html:227
 #: src/apps/signatures/templates/signatures/data.html:223
 msgid "Unable to load the data at the moment. Please try again later."
 msgstr ""
+"Não é possível carregar os dados neste momento. Por favor, tente novamente "
+"mais tarde."
 
 #: src/apps/petitions/views/edit.py:44
 msgid "You are not allowed to edit this petition."
@@ -1915,10 +1867,8 @@ msgstr ""
 "Os utilizadores não estão autorizados a criar as suas próprias petições."
 
 #: src/apps/petitions/views/new.py:73
-#, fuzzy
-#| msgid "Petition template"
 msgid "Petition created."
-msgstr "Modelos de Petições"
+msgstr "Petição criada."
 
 #: src/apps/petitions/views/show_petition.py:59
 #: src/apps/petitions/views/show_petition.py:66
@@ -1932,33 +1882,25 @@ msgid "This petition does not exist (anymore?)."
 msgstr "Esta petição não existe (mais?)."
 
 #: src/apps/petitions/views/slug/add.py:33
-#, fuzzy
-#| msgid "You entered an empty slug text"
 msgid "You entered an empty slug text."
 msgstr "Introduziu um texto vazio"
 
 #: src/apps/petitions/views/slug/add.py:43
-#, fuzzy, python-format
-#| msgid "Successful addition of the slug '{}'!"
+#, python-format
 msgid "Successful addition of the slug '%(slugtext)s' to the petition."
-msgstr "Adição bem-sucedida do slug &#x27;{}&#x27;!"
+msgstr "Adição bem-sucedida do slug «%(slugtext)s » à petição."
 
 #: src/apps/petitions/views/slug/add.py:52
-#, fuzzy, python-format
-#| msgid "The slug '{}' already exists!"
+#, python-format
 msgid "The slug '%(slugtext)s' already exists."
-msgstr "A lesma «{}» já existe!"
+msgstr "O slug «%(slugtext)s » já existe."
 
 #: src/apps/petitions/views/slug/add.py:60
 #: src/apps/petitions/views/slug/delete.py:43
-#, fuzzy
-#| msgid "You don't have the permission to modify petitions"
 msgid "You don't have the permission to modify petitions."
 msgstr "Não tem permissão para modificar petições"
 
 #: src/apps/petitions/views/slug/delete.py:41
-#, fuzzy
-#| msgid "Successful deletion of a slug"
 msgid "Successful deletion of a slug."
 msgstr "Exclusão bem-sucedida de um slug"
 
@@ -2061,10 +2003,8 @@ msgid "Create a petition template"
 msgstr "Criar um modelo de petição"
 
 #: src/apps/presets/templates/presets/new.html:16
-#, fuzzy
-#| msgid "Choose file"
 msgid "Close alert"
-msgstr "Escolha o ficheiro"
+msgstr "Fechar alerta"
 
 #: src/apps/presets/templates/presets/new.html:22
 msgid "Beware, you are creating a template, not a petition!"
@@ -2093,10 +2033,8 @@ msgid "Each template must have a different name"
 msgstr "Cada modelo deve ter um nome diferente"
 
 #: src/apps/presets/templates/presets/new.html:49
-#, fuzzy
-#| msgid "You need to provide a template name."
 msgid "Please provide a unique template name."
-msgstr "É necessário fornecer um nome para o modelo."
+msgstr "Por favor, forneça um nome de modelo único."
 
 #: src/apps/presets/views/edit.py:71
 msgid "You are not allowed to edit this template."
@@ -2189,10 +2127,8 @@ msgid "You already signed the petition"
 msgstr "Já assinou a petição"
 
 #: src/apps/signatures/templates/signatures/admin/change_form.html:71
-#, fuzzy
-#| msgid "Re-send selected confirmation e-mail"
 msgid "Re-send confirmation email"
-msgstr "Reenviar e-mail de confirmação selecionado"
+msgstr "Reenviar e-mail de confirmação"
 
 #: src/apps/signatures/templates/signatures/data.html:29
 msgid "Export <strong>ALL</strong> signatures (CSV)"
@@ -2213,7 +2149,7 @@ msgstr "Inscreva os signatários na newsletter"
 
 #: src/apps/signatures/templates/signatures/data.html:52
 msgid "Bulk action"
-msgstr ""
+msgstr "Ação em massa"
 
 #: src/apps/signatures/templates/signatures/data.html:57
 msgid "Re-send selected confirmation e-mail"
@@ -2224,20 +2160,16 @@ msgid "Delete selected signatures"
 msgstr "Eliminar assinaturas selecionadas"
 
 #: src/apps/signatures/templates/signatures/data.html:61
-#, fuzzy
-#| msgid "Delete selected signatures"
 msgid "Choose what to do with the selected signatures."
-msgstr "Eliminar assinaturas selecionadas"
+msgstr "Escolha o que fazer com as assinaturas selecionadas."
 
 #: src/apps/signatures/templates/signatures/data.html:71
 msgid "List of signatures with selection checkboxes and status"
-msgstr ""
+msgstr "Lista de assinaturas com caixas de seleção e status"
 
 #: src/apps/signatures/templates/signatures/data.html:81
-#, fuzzy
-#| msgid "Delete selected signatures"
 msgid "Select all signatures"
-msgstr "Eliminar assinaturas selecionadas"
+msgstr "Selecionar todas as assinaturas"
 
 #: src/apps/signatures/templates/signatures/data.html:86
 msgid "Email"
@@ -2256,30 +2188,22 @@ msgid "Subscribed to newsletter?"
 msgstr "Inscreveu-se na newsletter?"
 
 #: src/apps/signatures/templates/signatures/data.html:103
-#, fuzzy
-#| msgid "Can delete signatures?"
 msgid "Select signature"
-msgstr "É possível eliminar assinaturas?"
+msgstr "Selecionar assinatura"
 
 #: src/apps/signatures/templates/signatures/data.html:118
-#, fuzzy
-#| msgid "Confirmed"
 msgid "Not confirmed"
-msgstr "Confirmado"
+msgstr "Não confirmado"
 
 #: src/apps/signatures/templates/signatures/data.html:125
 msgid "Subscribed"
-msgstr ""
+msgstr "Inscrevi-me"
 
 #: src/apps/signatures/templates/signatures/data.html:129
-#, fuzzy
-#| msgid "Not published"
 msgid "Not subscribed"
-msgstr "Não publicado"
+msgstr "Não inscrito"
 
 #: src/apps/signatures/templates/signatures/data.html:152
-#, fuzzy
-#| msgid "copy/paste the following text block into Sympa's mass-subscribe form"
 msgid "Copy/paste the following text block into Sympa's mass-subscribe form"
 msgstr ""
 "copie/cole o seguinte bloco de texto no formulário de subscrição em massa do "

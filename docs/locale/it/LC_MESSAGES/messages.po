@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-07 06:49+0100\n"
-"PO-Revision-Date: 2025-11-04 08:29+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-"
-"translation-memory@weblate.org>\n"
+"PO-Revision-Date: 2025-11-07 06:08+0000\n"
+"Last-Translator: DeepL <noreply-mt-deepl@weblate.org>\n"
+"Language-Team: Italian <https://translate.sebastienpont.fr/projects/pytition/"
+"docs/it/>\n"
 "Language: it\n"
-"Language-Team: Italian "
-"<https://translate.sebastienpont.fr/projects/pytition/docs/it/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: 48c15101f14541f1a6ead0bf34c2bf69
 msgid "Under the hood"
-msgstr ""
+msgstr "Dietro le quinte"
 
 #: 146c73d80e6e455a89c1ead6c03eefb8
 msgid ""
@@ -31,6 +31,10 @@ msgid ""
 "variables without modifying any source files or `*.py` files. The "
 "following diagrams explain how this works."
 msgstr ""
+"Al fine di rispettare al meglio le convenzioni di una [12-factor app]"
+"(https://www.12factor.net/), Pytition è in grado di caricare variabili di "
+"configurazione senza modificare alcun file sorgente o file `*.py`. I "
+"seguenti diagrammi spiegano come funziona."
 
 #: c7a180c6c99040d6a17c7c67103f59c6
 msgid ""
@@ -38,41 +42,45 @@ msgid ""
 "files, but this is not recommended as the file may be overwritten on the "
 "next update."
 msgstr ""
+"È ancora possibile modificare le variabili direttamente nei file `config/"
+"settings/**.py`, ma questa operazione non è consigliata poiché il file "
+"potrebbe essere sovrascritto al prossimo aggiornamento."
 
 #: 59b6fdb9d7454adbafce3b73e9a7c629
-#, fuzzy
 msgid "Settings structure"
-msgstr "Per iniziare"
+msgstr "Struttura delle impostazioni"
 
 #: 390b656ac1894bcc941d82de878b8b3a
 msgid "Load order"
-msgstr ""
+msgstr "Ordine di caricamento"
 
 #: 59c05a525e324394ab58a8dad3af8056
 msgid "All env variables"
-msgstr ""
+msgstr "Tutte le variabili d'ambiente"
 
 #: 4c2d0670484346f68740c9329fec3d2b
 msgid ""
 "Here is the complete list of all environment variables that Pytition can "
 "read. For each variable, you will find."
 msgstr ""
+"Ecco l'elenco completo di tutte le variabili d'ambiente che Pytition è in "
+"grado di leggere. Per ogni variabile troverete."
 
 #: 7d0e1786ce984ce6bde3f652049fc080
 msgid "Common environment variables"
-msgstr ""
+msgstr "Variabili ambientali comuni"
 
 #: 4d0a9ebea7524779aac8539dc62897ce
 msgid "Enables debug mode for development purposes."
-msgstr ""
+msgstr "Abilita la modalità debug per scopi di sviluppo."
 
 #: 4d3d6e18f34446f4b847d3c94323ef8c
 msgid "Must be set to `False` in production!"
-msgstr ""
+msgstr "Deve essere impostata su `False` in produzione!"
 
 #: ca9af5bf1d9f4f8aa5dea828f206302d
 msgid "Django secret key for cryptographic signing."
-msgstr ""
+msgstr "Chiave segreta Django per la firma crittografica."
 
 #: 9b7a5d9a64c14bd78b70e9fbf3e487a9
 msgid ""
@@ -80,6 +88,9 @@ msgid ""
 "manager. You can use `pdm manage generate_secret_key --quiet` to create a"
 " strong key."
 msgstr ""
+"**DEVE essere sovrascritta in produzione** tramite variabile di ambiente o "
+"gestore di segreti. È possibile utilizzare `pdm manage generate_secret_key "
+"--quiet` per creare una chiave forte."
 
 #: aca34f6174a249c48a7dee82a326c2ec
 msgid ""
@@ -87,69 +98,76 @@ msgid ""
 " MUST be overridden in production via environment variable or secrets "
 "manager."
 msgstr ""
+"Configurazione predefinita del database che utilizza **SQLite** per scopi di "
+"sviluppo. DEVE essere sovrascritta in produzione tramite variabile di "
+"ambiente o gestore di segreti."
 
 #: aba6c508a4304840a507a50002715a1f
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #: 27fd657e63764ce3afb35c35e9d427ac
 msgid "Relative path to the SQLite database file :"
-msgstr ""
+msgstr "Percorso relativo al file di database SQLite:"
 
 #: 04202ca260f04005991fbe8bbf0d7bd8 04337b8449c649dbafe67637417e7d36
 #: 18b12cc124e843369670d93e3d6151f4 372ab49f24f84db9850a50c241bdfcf8
 #: 695d40776125425b8321b78e0dd0004a 6c7e07750af64fce9d412dfc61e1ee55
 #: a3c050ac04e940099d134e3bced29730 ee9a813f0d3547e19b35b43a0e8505a1
 msgid ".env"
-msgstr ""
+msgstr ".env"
 
 #: 3113ecfc14134a218c802f0d1785e606
 msgid "DATABASE_URL=sqlite:///./db.sqlite3"
-msgstr ""
+msgstr "DATABASE_URL=sqlite:///./db.sqlite3"
 
 #: bf7f3f8e39924894a3248909bb0e02b6
 msgid "Or absolute path"
-msgstr ""
+msgstr "O percorso assoluto"
 
 #: 71eee49573004f73bf76d5fc18909b76
 msgid "DATABASE_URL=sqlite:////absolute/path/to/db.sqlite3"
-msgstr ""
+msgstr "DATABASE_URL=sqlite:////percorso/assoluto/verso/db.sqlite3"
 
 #: d876e1bb4c2c454c9e8652f053e4abdf
 msgid ""
 "For in-memory (not persistent) database (default configuration if "
 "`ENV=test`) :"
 msgstr ""
+"Per database in memoria (non persistente) "
+"(configurazione predefinita se `ENV=test`) :"
 
 #: a78da192b91c42eb94492a0473029188
 msgid "DATABASE_URL=sqlite:///:memory:"
-msgstr ""
+msgstr "DATABASE_URL=sqlite:///:memory:"
 
 #: c5b242a46d2d4a539a5f4340c46f6a84
 msgid "If you prefer `DB_` variables :"
-msgstr ""
+msgstr "Se preferisci le variabili `DB_` :"
 
 #: be514fc464c6431a849b07a886ce3838
 msgid ""
 "DB_ENGINE=django.db.backends.sqlite3\n"
 "DB_NAME=/absolute/or/relative/path/to/db.sqlite3"
 msgstr ""
+"DB_ENGINE=django.db.backends.sqlite3\n"
+"DB_NAME=/absolute/or/relative/path/to/db.sqlite3"
 
 #: 69fa8a3569c749e98721a7b3af7729b2
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
 #: 40304e51a7324389b1036a6310c559c0 5f113ba7d20b4a0589fba1e98d166a86
 msgid "With `DATABASE_URL` :"
-msgstr ""
+msgstr "Con `DATABASE_URL` :"
 
 #: 18951ac883f94d43b96faa31bea6fef3
 msgid "DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@HOST:PORT/DB_NAME"
-msgstr ""
+msgstr "DATABASE_URL=postgresql+psycopg2://USER:PASSWORD@HOST:PORT/DB_NAME"
 
 #: 21d5e0cb60dc428cb3879c6194bdb87b f0feb64cd1ef4906a3a070db74ece1e8
 msgid "Or with `DB_` variables :"
-msgstr ""
+msgstr "Oppure con variabili `DB_` :"
 
 #: 70e6e042106b4b2f8c314d9950f60714
 msgid ""
@@ -160,14 +178,20 @@ msgid ""
 "DB_HOST=<host>\n"
 "DB_PORT=<port>"
 msgstr ""
+"DB_ENGINE=django.db.backends.postgresql\n"
+"DB_NAME=<db_name>\n"
+"DB_USER=<user>\n"
+"DB_PASSWORD=<password>\n"
+"DB_HOST=<host>\n"
+"DB_PORT=<port>"
 
 #: 6ae9b48e55e3456184e49b09b565ae68
 msgid "MySQL/MariaDB"
-msgstr ""
+msgstr "MySQL/MariaDB"
 
 #: c6e66257d21e4c9cb1ffdf5e09c17fdd
 msgid "DATABASE_URL=mysql+pymysql://USER:PASSWORD@HOST:PORT/DB_NAME"
-msgstr ""
+msgstr "DATABASE_URL=mysql+pymysql://USER:PASSWORD@HOST:PORT/DB_NAME"
 
 #: 08e556c978354fe488ef575ddb2e02c3
 msgid ""
@@ -178,34 +202,45 @@ msgid ""
 "DB_HOST=<host>\n"
 "DB_PORT=<port>"
 msgstr ""
+"DB_ENGINE=django.db.backends.mysql\n"
+"DB_NAME=<db_name>\n"
+"DB_USER=<user>\n"
+"DB_PASSWORD=<password>\n"
+"DB_HOST=<host>\n"
+"DB_PORT=<port>"
 
 #: 8eb3cc4e7e59407fb2f64398176c9600
 msgid ""
 "List of strings representing the host/domain names that this Django site "
 "can serve."
 msgstr ""
+"Elenco di stringhe che rappresentano i nomi host/dominio che questo sito "
+"Django può servire."
 
 #: e3ac8ef97b334cdaa3094d65ed889393
 msgid "Example values:"
-msgstr ""
+msgstr "Valori di esempio:"
 
 #: 7b8f2343f5264361bd9123a231bd4f42
 msgid "`[\"localhost\", \"127.0.0.1\", \"[::1]\"]` (for local development)"
-msgstr ""
+msgstr "`[\"localhost\", \"127.0.0.1\", \"[::1]\"]` (per lo sviluppo locale)"
 
 #: f222753366f44f2db34a29b13e79699c
 msgid "`[\"example.com\", \"www.example.com\"]` (for production, staging, etc.)"
 msgstr ""
+"`[\"example.com\", \"www.example.com\"]` (per produzione, staging, ecc.)"
 
 #: 9b2cc346e60f473d97a0298b8367918d
 msgid ""
 "Directory where persistent data is stored (uploaded media files, "
 "databases, etc.)."
 msgstr ""
+"Directory in cui sono memorizzati i dati persistenti "
+"(file multimediali caricati, database, ecc.)."
 
 #: a13f10dff57f4e7384f69597aeee2fd7
 msgid "Initial configuration"
-msgstr ""
+msgstr "Configurazione iniziale"
 
 #: 4752db7354984ed5b26d34b33954bf5f
 msgid ""
@@ -214,36 +249,48 @@ msgid ""
 "simplify things, Pytition can also read a `.env` file or environment "
 "variables."
 msgstr ""
+"Poiché Pytition è basato su Django, è possibile configurare MOLTE cose "
+"utilizzando le variabili. Di solito è necessario modificare un file "
+"`settings.py`, ma per semplificare le cose, Pytition può anche leggere un "
+"file `.env` o variabili di ambiente."
 
 #: 8341dda9e49149a79b437bb4bd8a8c22
 msgid ""
 "To simplify the documentation, we have organized the section on parameter"
 " variables into three parts:"
 msgstr ""
+"Per semplificare la documentazione, abbiamo organizzato la sezione relativa "
+"alle variabili dei parametri in tre parti:"
 
 #: e6794dcb78f44cb4aa7b53816e6f2b2a
 msgid ""
 "**Basics**: the most common variables you will want to modify for a quick"
 " and standard installation"
 msgstr ""
+"**Nozioni di base**: le variabili più comuni che vorrai modificare per "
+"un'installazione rapida e standard."
 
 #: c0cbd5cbf3954789b5b7accd36c22485
 msgid ""
 "**All**: all variables if you are looking for a specific one, or just "
 "want to take a look at what is available"
 msgstr ""
+"**Tutte**: tutte le variabili se ne stai cercando una specifica o vuoi "
+"semplicemente dare un'occhiata a quelle disponibili."
 
 #: 3c25a345f2d94db8815ad8f770e86e32
 msgid "**Under the hood**: explains the logic behind reading variables"
 msgstr ""
+"**Dietro le quinte**: spiega la logica alla base della lettura delle "
+"variabili."
 
 #: b42143b4daee4a9a8920b6e09936cb5c
 msgid "Configuration"
-msgstr ""
+msgstr "Configurazione"
 
 #: 52d4c4b42121456f92287b2d1987b865
 msgid "There are two types of configurations:"
-msgstr ""
+msgstr "Esistono due tipi di configurazioni:"
 
 #: 395ccbc93adb49f8b4e3dc841f146fd7
 msgid ""
@@ -251,6 +298,10 @@ msgid ""
 "via configuration files, or env var: a few settings that must be "
 "configured before anything else (database access, data folders, etc.)"
 msgstr ""
+"[**Configurazione iniziale**](./env_var/index.md) : durante l'installazione, "
+"tramite file di configurazione o variabili d'ambiente: alcune impostazioni "
+"che devono essere configurate prima di qualsiasi altra cosa "
+"(accesso al database, cartelle dati, ecc.)"
 
 #: 48d06e3168f0438b9ff1a47a61365944
 msgid ""
@@ -258,16 +309,21 @@ msgid ""
 "running, you wan tweak it from the web interface (site name, security "
 "rules, etc.)"
 msgstr ""
+"[**Configurazione dell'istanza**](./site_conf/index.md) : quando "
+"l'applicazione è in esecuzione, è possibile modificarla dall'interfaccia web "
+"(nome del sito, regole di sicurezza, ecc.)."
 
 #: 9c44ac42a0ca42d2a7e74449b3df871b
 msgid ""
 "If you plan to deploy Pytition in production, please also refer to the "
 "[Production Configuration](./prod.md) page."
 msgstr ""
+"Se prevedi di implementare Pytition in produzione, consulta anche la pagina "
+"[Configurazione di produzione](./prod.md)."
 
 #: 5ede0d0a82f648a29d6fcfa4a388251c
 msgid "Production concerns"
-msgstr ""
+msgstr "Preoccupazioni relative alla produzione"
 
 #: 12d51c18c5bd4d468e76021f53c9f285 33bb08eadda44648a2dd0b52f72e27cd
 #: 615759e326ca4de6a92110c67393ea07 6455ddfa83c84791b6fcb6b8fea15da8
@@ -282,15 +338,14 @@ msgstr "Todo"
 #: 556ebf1ac40b47eb8daa055ff780484c 67c84bcae86b4500a90ad6e3386c34c8
 #: 7826758aaa61408e9c791b934fd3bbd6 8eb8f3748cdb4bd0b516ba90db945b9b
 msgid "Write some docs."
-msgstr ""
+msgstr "Scrivi alcuni documenti."
 
 #: e153d5bb132c4fba8d521c1434dcf567
 msgid "Instance configuration"
-msgstr ""
+msgstr "Configurazione dell'istanza"
 
-#, fuzzy
 msgid "Admin Guides"
-msgstr "Guida amministrativa"
+msgstr "Guide amministrative"
 
 #: d88db9b3cd7d4ea59a4410c2c3ba233b
 msgid "Admin guide"
@@ -311,11 +366,11 @@ msgstr "Per gli amministratori che gestiscono l'applicazione."
 
 #: 3019ac82217f4062b7b722638d232cd8
 msgid "Installation with Docker"
-msgstr ""
+msgstr "Installazione con Docker"
 
 #: efdd324ba7174842b0f38c80c62fcfdc
 msgid "Installation"
-msgstr ""
+msgstr "Installazione"
 
 #: b3e3b0a975bd4775a751708c6c069c52
 msgid ""
@@ -325,18 +380,25 @@ msgid ""
 "these [production recommendations](../configuration/prod.md) for safe "
 "installation."
 msgstr ""
+"Si prega di notare che Pytition utilizza un approccio \"plug and play\" "
+"(semplici configurazioni predefinite) per facilitare l'installazione e la "
+"scoperta, che NON È SICURO NÉ EFFICIENTE. Quando si è pronti, fare "
+"riferimento a queste [raccomandazioni di produzione]"
+"(../configuration/prod.md) per un'installazione sicura."
 
 #: a65aa0750da24327b47baa3ef37d2281
 msgid "This documentation is designed for **two types of installations**:"
-msgstr ""
+msgstr "Questa documentazione è pensata per **due tipi di installazioni**:"
 
 #: 945d3ff9b39d40fda9da97d749c2e455
 msgid "actual **production use**, which must be efficient and secure"
-msgstr ""
+msgstr "**utilizzo effettivo**, che deve essere efficiente e sicuro"
 
 #: 41134100b47a44f5a13e099e40b9fb08
 msgid "**quick installation** for beta testing the tool, for example."
 msgstr ""
+"**Installazione rapida** per testare la versione beta dello strumento, ad "
+"esempio."
 
 #: dc2c1d23b3de4b1b92637d2acdd7b7eb
 msgid ""
@@ -344,17 +406,21 @@ msgid ""
 "contributing to it, please refer to the [developer "
 "guides](../../dev/index.md)."
 msgstr ""
+"Se hai intenzione di installare Pytition per modificare il codice sorgente o "
+"anche solo per contribuire al suo sviluppo, consulta le "
+"[guide per sviluppatori](../../dev/index.md)."
 
 #: cb6f74526973496dbfa4e613d2c181f9
-#, fuzzy
 msgid "Installation methods"
-msgstr "Guida amministrativa"
+msgstr "Metodi di installazione"
 
 #: a0af68dec48f4e5abcca515e2a7d1410
 msgid ""
 "You can install Pytition in various ways, depending on your needs and "
 "environment:"
 msgstr ""
+"È possibile installare Pytition in vari modi, a seconda delle esigenze e "
+"dell'ambiente:"
 
 #: c09b0f85ea6c48ffb28a5d9b1b174e1b
 msgid ""
@@ -362,6 +428,9 @@ msgid ""
 "flexibility. Suitable for production environments where you want to "
 "customize every aspect of the installation."
 msgstr ""
+"[**Installazione manuale**](./manual.md): per il massimo controllo e "
+"flessibilità. Adatta ad ambienti di produzione in cui si desidera "
+"personalizzare ogni aspetto dell'installazione."
 
 #: f22e772a93084b1c99767f338dad58c1
 msgid ""
@@ -369,6 +438,9 @@ msgid ""
 "deployment and management. Ideal for those familiar with "
 "containerization."
 msgstr ""
+"[**Installazione Docker**](./docker.md): utilizzo dei container Docker per "
+"una facile implementazione e gestione. Ideale per chi ha familiarità con la "
+"containerizzazione."
 
 #: 1a26f554c49c4429a1ade2b547e38a5a
 msgid ""
@@ -376,6 +448,9 @@ msgid ""
 "Pytition instances on a single server. Useful for service providers (like"
 " [CHATONS](https://www.chatons.org/))."
 msgstr ""
+"[**Installazione multi-dominio**](./multi_domain.md): per ospitare più "
+"istanze di Pytition su un unico server. Utile per i fornitori di servizi "
+"(come [CHATONS](https://www.chatons.org/))."
 
 #: 1c0aae1759694deaa257452e5139843a
 msgid ""
@@ -383,40 +458,40 @@ msgid ""
 "method using the YunoHost platform. Perfect for users seeking an easy "
 "setup process."
 msgstr ""
+"[**Installazione YunoHost**](./yunohost.md): un metodo di installazione "
+"semplificato che utilizza la piattaforma YunoHost. Perfetto per gli utenti "
+"che cercano un processo di configurazione facile."
 
 #: 3c7eaa67285a47948770d50fd51cbd93
 msgid "Manual installation"
-msgstr ""
+msgstr "Installazione manuale"
 
 #: 3d853877ae7445d898fac79b4e587ff5
 msgid "Requirements"
-msgstr ""
+msgstr "Requisiti"
 
 #: 4810007087ac4c7fa730090c1c46ef3f
-#, fuzzy
 msgid "Installation steps"
-msgstr "Guida amministrativa"
+msgstr "Procedura di installazione"
 
 #: 713213bb5cfd46ce9f9d5ba3bdf94ed2
 msgid "Multi-domain installation"
-msgstr ""
+msgstr "Installazione multi-dominio"
 
 #: 22f73aa1ab7f42319ec7b48478d2cb47
-#, fuzzy
 msgid "YunoHost installation"
-msgstr "Guida amministrativa"
+msgstr "Installazione su YunoHost"
 
 #: 8a564fe8b86e40ce8b91fe6e49afe796
 msgid "Backup"
-msgstr ""
+msgstr "Backup"
 
-#, fuzzy
 msgid "Management Guides"
-msgstr "Guida amministrativa"
+msgstr "Guide alla gestione"
 
 #: c4f91d3e55ef47579cb3c4b11c8dbcd9
 msgid "Management"
-msgstr ""
+msgstr "Gestione"
 
 #: b82884d975144c22b4676caaf773a669
 msgid "Update"
@@ -424,156 +499,182 @@ msgstr "Aggiorna"
 
 #: bc87a7e24aa34903873b0f3c7ae488b0
 msgid "Architecture Overview"
-msgstr ""
+msgstr "Panoramica dell'architettura"
 
 #: 7dd597c2633943a2826549cdf8b72d9c
 msgid ""
 "This document provides an overview of the architecture of the Pytition "
 "application, including its main components and their interactions."
 msgstr ""
+"Questo documento fornisce una panoramica dell'architettura dell'applicazione "
+"Pytition, compresi i suoi componenti principali e le loro interazioni."
 
 #: 9d99e7050dc941c9ac0203e854ad096d
 msgid "Apps"
-msgstr ""
+msgstr "App"
 
 #: 8eb9e6471aa04e34b024676e0bb1e9ea
 msgid ""
 "This application is built using the Django framework and is organized "
 "into several apps, each responsible for a specific area of functionality:"
 msgstr ""
+"Questa applicazione è stata realizzata utilizzando il framework Django ed è "
+"organizzata in diverse app, ciascuna responsabile di un'area specifica di "
+"funzionalità:"
 
 #: 4fa93e4953084ed3bf27379c72d08e35
 msgid "**Accounts**: Manages user authentication, profiles, and permissions."
 msgstr ""
+"**Account**: gestisce l'autenticazione degli utenti, i profili e le "
+"autorizzazioni."
 
 #: 562a2c733a2d4b29b7b0b99e173b563a
 msgid ""
 "**Organizations**: Handles organization creation, management, and "
 "membership."
 msgstr ""
+"**Organizzazioni**: gestisce la creazione, la gestione e l'adesione alle "
+"organizzazioni."
 
 #: ca0074a4b604445d9c1116e770d7e714
 msgid ""
 "**Petitions**: Core functionality for creating, managing, and signing "
 "petitions."
 msgstr ""
+"**Petizioni**: funzionalità di base per creare, gestire e firmare petizioni."
 
 #: 8d60786c3de34293b75783237344d8b5
 msgid ""
 "**Signatures**: Manages the collection and validation of petition "
 "signatures."
 msgstr ""
+"**Firme**: gestisce la raccolta e la convalida delle firme delle petizioni."
 
 #: 7602d710f11749ab823086797696772c
 msgid "**Presets**: Provides predefined templates and settings for petitions."
 msgstr ""
+"**Presets**: fornisce modelli e impostazioni predefiniti per le petizioni."
 
 #: b21a5725e7bd478f8186e63c5d42e827
 msgid ""
 "**Moderation**: Tools and workflows for moderating content and user "
 "activity."
 msgstr ""
+"**Moderazione**: strumenti e flussi di lavoro per moderare i contenuti e "
+"l'attività degli utenti."
 
 #: 8ac8e167e05e44dc8c9b6ee29a18b3e6
 msgid "Models"
-msgstr ""
+msgstr "Modelli"
 
 #: d2d2bfce76214e46ae1378d961268bd9
 msgid ""
 "The data model is structured around the main entities of the application,"
 " with relationships defined between them."
 msgstr ""
+"Il modello di dati è strutturato attorno alle entità principali "
+"dell'applicazione, con relazioni definite tra di esse."
 
 #: 2457ed205659426ba3dd342805260fb9
 msgid "This is a simplified diagram of the main models and their relationships:"
 msgstr ""
+"Questo è un diagramma semplificato dei modelli principali e delle loro "
+"relazioni:"
 
 #: f8eb2ca294c54c37bdf1f296e8070793
 msgid "![Data Model](../_static/img/models.svg)"
-msgstr ""
+msgstr "![Modello dati](../_static/img/models.svg)"
 
 #: 5a7afcc5a8154ec9bfcd424b03a9d873
 msgid "Data Model"
-msgstr ""
+msgstr "Modello di dati"
 
 #: 0728c439cea04bdb863281d22524c71b
 msgid "Template Inheritance"
-msgstr ""
+msgstr "Eredità dei modelli"
 
 #: 1b83f4d9a5754ac2afcab011b59597ad
-#, fuzzy
 msgid "Includes"
-msgstr "Guida amministrativa"
+msgstr "Include"
 
 #: 7647880219cc49349d0c82ac9678d8a9
 msgid "Extends"
-msgstr ""
+msgstr "Estende"
 
 #: 7719068883e24e35997522b697786774
-#, fuzzy
 msgid "Basics conventions"
-msgstr "Convenzioni"
+msgstr "Convenzioni di base"
 
 #: 7147e6eee68d429780bca3e8bd252a0c
-#, fuzzy
 msgid "Comments"
-msgstr "Contenuti:"
+msgstr "Commenti"
 
 #: df8d1607ee3140b2a53666c106b042de
 msgid "Use English for all comments."
-msgstr ""
+msgstr "Utilizza l'inglese per tutti i commenti."
 
 #: c189e713ca6e45e699effc20a1084979
 msgid "Write comments that explain why the code does something, not what it does."
-msgstr ""
+msgstr "Scrivi commenti che spiegano perché il codice fa qualcosa, non cosa fa."
 
 #: 780aa78b4707403283e8cf518e856206
 msgid ""
 "You can use `FIXME` or `TODO` tags to indicate areas that need "
 "improvement, but provide an issue reference, with the format shown below:"
 msgstr ""
+"È possibile utilizzare i tag `FIXME` o `TODO` per indicare le aree che "
+"necessitano di miglioramenti, ma è necessario fornire un riferimento al "
+"problema, utilizzando il formato riportato di seguito:"
 
 #: 566cf8b6ac8a40608130d92357c6a541
 msgid "# TODO: [#123] Refactor this function to improve performance.\n"
 msgstr ""
+"# TODO: [#123] Rifattorizzare questa funzione per migliorarne le prestazioni."
+"\n"
 
 #: 2e62e260812a42e7aacba49e41cfc4fd
 msgid "Templates"
-msgstr ""
+msgstr "Modelli"
 
 #: 2774b7198f6848efab10ae75809bfdad
 msgid "Do not put inline CSS or JS in templates. Use static files instead."
-msgstr ""
+msgstr "Non inserire CSS o JS inline nei modelli. Utilizza invece file statici."
 
 #: 7d2381926e464ed982c06d73a423ee5b
 msgid "Use Bootstrap 5 classes and components for styling and layout."
 msgstr ""
+"Utilizza le classi e i componenti Bootstrap 5 per lo styling e il layout."
 
 #: 8e1acd5afcc14121a4348478c31204a8
 msgid "Use Django template inheritance to avoid code duplication."
 msgstr ""
+"Utilizza l'ereditarietà dei modelli Django per evitare la duplicazione del "
+"codice."
 
 #: 793fc39d2e834b50aefe2cff1bd3f677
 msgid "Internationalization (i18n)"
-msgstr ""
+msgstr "Internazionalizzazione (i18n)"
 
 #: 7b2a048679b54ebcb17e1073ac66565e
 msgid "General rules"
-msgstr ""
+msgstr "Regole generali"
 
 #: ba5eda832b8448389be103593d861018
 msgid "Use comments for translators"
-msgstr ""
+msgstr "Utilizza i commenti per i traduttori"
 
 #: d75cc6b649604416a9b520bfd3f542b5
 msgid ""
 "When a string requires additional context for translators, add a comment "
 "just above the string. The comment has to start with `Translators:`."
 msgstr ""
+"Quando una stringa richiede un contesto aggiuntivo per i traduttori, "
+"aggiungi un commento appena sopra la stringa. Il commento deve iniziare con "
+"`Traduttori:`."
 
 #: 7be9447238be4b59a4b0372716f97c22 c516888a1397426fad9c4c44989c7bbc
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: ff1c8db9e84d45119d625257498fe178
 #, python-brace-format, python-format
@@ -581,10 +682,12 @@ msgid ""
 "# Translators: This refers to the name of the user\n"
 "_(\"Hello %(name)s\") % {\"name\": name}\n"
 msgstr ""
+"# Traduttori: si riferisce al nome dell'utente\n"
+"_(\"Ciao %(name)s\") % {\"name\": nome}\n"
 
 #: cc56993f0bfc4f018bda0051cc859c3a
 msgid "Django templates"
-msgstr ""
+msgstr "Modelli Django"
 
 #: 0c1fcc6eaed745d89038edd60330ca8e
 #, python-brace-format
@@ -592,10 +695,12 @@ msgid ""
 "{# Translators: This is the title of the page #}\n"
 "<h1>{% trans \"Welcome to Pytition\" %}</h1>\n"
 msgstr ""
+"{# Traduttori: questo è il titolo della pagina #}<h1>{% trans "
+"\"Benvenuto su Pytition\" %}</h1>\n"
 
 #: b1341f1174c0420a880b68279bf409cd
 msgid "Do not concatenate strings"
-msgstr ""
+msgstr "Non concatenare stringhe"
 
 #: 49679fabed2d4fe9b4054e80fe0ce02e
 #, python-brace-format, python-format
@@ -607,16 +712,24 @@ msgid ""
 "# ❌ Bad\n"
 "_(f\"Hello {name}\")\n"
 msgstr ""
+"da django.utils.translation import gettext come _\n"
+"\n"
+"# ✅ Corretto\n"
+"_(\"Ciao %(name)s\") % {\"name\": name}\n"
+"# ❌ Errato\n"
+"_(f\"Ciao {name}\")\n"
 
 #: 532754239e184b5cad207ebf7dda9cc7
 msgid ""
 "⇉ Variable names are outside the `_(…)`. This allows translators to "
 "better understand the context of the string."
 msgstr ""
+"⇉ I nomi delle variabili sono al di fuori di `_(…)`. Ciò consente ai "
+"traduttori di comprendere meglio il contesto della stringa."
 
 #: 2dc8cafa68724abe9c9a0e2e08921228
 msgid "Never use `f-strings` for translatable strings"
-msgstr ""
+msgstr "Non utilizzare mai `f-strings` per stringhe traducibili."
 
 #: a5d2fd7a16c0475680210e620db4f68f
 #, python-brace-format, python-format
@@ -627,16 +740,23 @@ msgid ""
 "# ❌ Bad\n"
 "_(f\"Hello {name}\")\n"
 msgstr ""
+"da django.utils.translation import gettext come _\n"
+"# ✅ Corretto\n"
+"_(\"Ciao %(name)s\") % {\"name\": name}\n"
+"# ❌ Errato\n"
+"_(f\"Ciao {name}\")\n"
 
 #: be0a33c83cb54d04a50a474e59c5490e
 msgid ""
 "Indeed, `f-strings` are evaluated at runtime, which means the string is "
 "no longer translatable."
 msgstr ""
+"Infatti, le `f-string` vengono valutate in fase di esecuzione, il che "
+"significa che la stringa non è più traducibile."
 
 #: bc1127105d2248ebb5e85af18c413918
 msgid "Use named placeholders"
-msgstr ""
+msgstr "Utilizza segnaposto denominati"
 
 #: 2e1d0a1a7fc34f1db25b1f7832a19c21
 msgid ""
@@ -644,6 +764,9 @@ msgid ""
 "placeholders instead of positional ones. This improves clarity for "
 "translators."
 msgstr ""
+"Quando si includono variabili nelle stringhe traducibili, utilizzare sempre "
+"segnaposto denominati anziché posizionali. Ciò migliora la chiarezza per i "
+"traduttori."
 
 #: f3e2abcd80c04382a651720aee10624f
 #, python-brace-format, python-format
@@ -653,28 +776,34 @@ msgid ""
 "# ❌ Bad\n"
 "_(\"Hello %s\") % name\n"
 msgstr ""
+"# ✅ Corretto\n"
+"_(\"Ciao %(name)s\") % {\"name\": name}\n"
+"# ❌ Errato\n"
+"_(\"Ciao %s\") % name\n"
 
 #: 3d63cecc784e4afeae9aec8010200c8b
 msgid "Templates (Django)"
-msgstr ""
+msgstr "Modelli (Django)"
 
 #: cccd39731add40e0a0e00bc2667a51a1
 msgid "Prefer `transblock`"
-msgstr ""
+msgstr "Preferisci `transblock`"
 
 #: 2cb298b46ec64299bb0be0d915c75afe
 msgid "Try to avoid html in translations"
-msgstr ""
+msgstr "Cerca di evitare l'uso dell'html nelle traduzioni."
 
 #: 31f54cab345743aea4458d83dd8de264
 msgid "Use `trimmed` on `transblock`"
-msgstr ""
+msgstr "Utilizza `trimmed` su `transblock`"
 
 #: 0a402daff9864234a62dd5bce8693009
 msgid ""
 "When using `transblock`, use the `trimmed` option to avoid unwanted "
 "whitespace."
 msgstr ""
+"Quando si utilizza `transblock`, utilizzare l'opzione `trimmed` per evitare "
+"spazi bianchi indesiderati."
 
 #: 4fcbc4563f064d7a9fcf528ca55b22cf
 #, python-brace-format, python-format
@@ -684,6 +813,10 @@ msgid ""
 "    spans multiple lines.\n"
 "{% endtransblock %}\n"
 msgstr ""
+"{% transblock trimmed %}\n"
+"    Questo è un testo lungo che\n"
+"    si estende su più righe.\n"
+"{% endtransblock %}\n"
 
 #: e9c6edc7b8324076955b233767b79d32
 msgid "Conventions"
@@ -704,48 +837,62 @@ msgid ""
 "[**Python coding style**](./python.md) : Python coding style guidelines "
 "including PEP 8 compliance, naming conventions, and best practices."
 msgstr ""
+"[**Stile di programmazione Python**](./python.md) : linee guida per lo stile "
+"di programmazione Python, tra cui conformità PEP 8, convenzioni di "
+"denominazione e best practice."
 
 #: 1321dd10438845a3a6fb0e5f6ccec485
 msgid ""
 "[**Basics**](./basics.md) : Basic conventions for file organization, "
 "documentation, and version control."
 msgstr ""
+"[**Nozioni di base**](./basics.md) : Convenzioni di base per "
+"l'organizzazione dei file, la documentazione e il controllo delle versioni."
 
 #: a1f80256e3404b3ab1f772a47d7a7384
 msgid ""
 "[**Internationalization (i18n)**](./i18n.md) : Guidelines for making the "
 "application translatable and handling multiple languages."
 msgstr ""
+"[**Internazionalizzazione (i18n)**](./i18n.md) : Linee guida per rendere "
+"l'applicazione traducibile e gestire più lingue."
 
 #: 1f4fead76d1a4ab091dfaedbfe5980a9
 msgid ""
 "[**Literals**](./literals.md) : Conventions for using literals in code, "
 "including string formatting and constant definitions."
 msgstr ""
+"[**Letterali**](./literals.md) : Convenzioni per l'uso dei letterali nel "
+"codice, inclusi il formattazione delle stringhe e le definizioni delle "
+"costanti."
 
 #: 2b15182c236a4d62a18cc09ccd2670d7
 msgid ""
 "[**User Experience (UX)**](./ux.md) : Best practices for designing user "
 "interfaces and enhancing user experience."
 msgstr ""
+"[**User Experience (UX)**](./ux.md) : Best practice per la progettazione di "
+"interfacce utente e il miglioramento dell'esperienza utente."
 
 #: f2bcb93c539e407c90e572bf09ca56e7
 msgid "Literals"
-msgstr ""
+msgstr "Letterali"
 
 #: 1b21f82ec96544c0a9f0c229fb83c145
 msgid "Error and status messages"
-msgstr ""
+msgstr "Messaggi di errore e di stato"
 
 #: d75219a9f7624c7daa21be127ddaf77b
 msgid ""
 "Error messages are correctly formed sentences (capital letters, subject, "
 "verb, complement, period at the end)."
 msgstr ""
+"I messaggi di errore sono frasi correttamente formate "
+"(lettere maiuscole, soggetto, verbo, complemento, punto alla fine)."
 
 #: 48091d8f2fb2469cb6ebd629135101e7 a761f736221f4c4391ac3128f113caef
 msgid "Example:"
-msgstr ""
+msgstr "Esempio:"
 
 #: 2ef6790030d5460685e208ddb6160b49
 msgid ""
@@ -754,26 +901,30 @@ msgid ""
 "# ❌ Bad\n"
 "raise ValidationError(_(\"field required\"))\n"
 msgstr ""
+"# ✅ Corretto\n"
+"raise ValidationError(_(\"Questo campo è obbligatorio.\"))\n"
+"# ❌ Errato\n"
+"raise ValidationError(_(\"campo obbligatorio\"))\n"
 
 #: f26525b9d7a74e93a5c1f1fc01bb7663
 msgid "Button labels and short action messages"
-msgstr ""
+msgstr "Etichette dei pulsanti e brevi messaggi di azione"
 
 #: 128f9df311ce4d948002155252ec553a
 msgid "Button labels and short action messages are :"
-msgstr ""
+msgstr "Le etichette dei pulsanti e i brevi messaggi di azione sono:"
 
 #: 31daf7ab3b9d49b198a5e7a76796b033
 msgid "necessarily short"
-msgstr ""
+msgstr "necessariamente breve"
 
 #: 4ca2a461844e4bb783463594dce249bf
 msgid "without a period at the end"
-msgstr ""
+msgstr "senza punto alla fine"
 
 #: c02689ab6b5b450db7dad42028fdd121
 msgid "if possible, an infinitive verb (an action)"
-msgstr ""
+msgstr "se possibile, un verbo all'infinito (un'azione)"
 
 #: 018a953ed1e74993a300d760b332d47d
 #, python-brace-format
@@ -785,6 +936,9 @@ msgid ""
 "<button type=\"submit\">{% trans \"Export signatures to CSV file.\" "
 "%}</button>\n"
 msgstr ""
+"{# ✅ Buono #}<button type=\"submit\">{% trans \"Esporta\" %}</button>\n"
+"{# ❌ Cattivo #}<button type=\"submit\">{% trans "
+"\"Esporta le firme in un file CSV.\" %}</button>\n"
 
 #: e8844649046d40d7a0c97bba8085454f
 msgid ""
@@ -793,35 +947,42 @@ msgid ""
 "help text near the button (tooltip are not visible on mobile, cf. [UX "
 "conventions](./ux.md))."
 msgstr ""
+"L'interfaccia deve chiarire che quando si fa clic sul pulsante Esporta, le "
+"firme vengono esportate in formato CSV. Ciò potrebbe essere fatto con un "
+"testo di aiuto vicino al pulsante (i suggerimenti non sono visibili sui "
+"dispositivi mobili, cfr. [Convenzioni UX](./ux.md))."
 
 #: aa7c0b8252a8434a99d7169fb605f3e1
-#, fuzzy
 msgid "Python coding style"
-msgstr "Stile di codice Python"
+msgstr "Stile di programmazione Python"
 
 #: 32b760e06b2e48ac939372ff8a7562b6
 msgid "Comments and docstrings"
-msgstr ""
+msgstr "Commenti e stringhe di documentazione"
 
 #: 79026bc6a4ab4e0c9b56d4dc3b16004f
 msgid "Write docstrings for all public modules, functions, classes, and methods."
 msgstr ""
+"Scrivere stringhe di documentazione per tutti i moduli, le funzioni, le "
+"classi e i metodi pubblici."
 
 #: fbea95acf95546bb90607648c20bb28b
 msgid "Use NumPy style for docstrings (cf. [below](#numpy-docstring-sections))."
 msgstr ""
+"Utilizza lo stile NumPy per le stringhe di documentazione "
+"(cfr. [sotto](#numpy-docstring-sections))."
 
 #: 29a2e9eeb4cc441082f41cf4c1542fef
 msgid "Use sentences like in comments:"
-msgstr ""
+msgstr "Utilizza frasi come nei commenti:"
 
 #: 142e165a1ffc4a2084df24f69644ef53
 msgid "start with a capital letter,"
-msgstr ""
+msgstr "Inizia con una lettera maiuscola,"
 
 #: effd8e44186140c59e5dbdb2466631cb
 msgid "DO NOT end with a full stop if it's a short phrase."
-msgstr ""
+msgstr "NON terminare con un punto fermo se si tratta di una frase breve."
 
 #: 38228681cf6a417288050217f183614a
 #, python-brace-format
@@ -838,10 +999,21 @@ msgid ""
 "# genration of storage path\n"
 "# ...\n"
 msgstr ""
+"# ✅ Buono\n"
+"# Generare percorso di archiviazione\n"
+"storage_path = (\n"
+"    f\"{name_part}-{file_hash}{ext_part}\"\n"
+"    if INCLUDE_ORIGINAL_FILENAME\n"
+"    else f\"{file_hash}{ext_part}\")\n"
+"\n"
+"# ❌ Cattivo\n"
+"# questa parte genera il percorso di archiviazione.\n"
+"# generazione del percorso di archiviazione\n"
+"# ...\n"
 
 #: 7e49575f567644d1815e8a253ed05152
 msgid "NumPy docstring sections"
-msgstr ""
+msgstr "Sezioni docstring NumPy"
 
 #: 5e4ab1304a2445fc96fb229fe7479bc8
 msgid ""
@@ -862,118 +1034,139 @@ msgid ""
 "    \"\"\"\n"
 "    return a + b\n"
 msgstr ""
+"def add(a: int, b: int) -> int:\n"
+"    \"\"\"\n"
+"    Aggiungi due numeri interi.\n"
+"\n"
+"    Parametri\n"
+"    ----------\n"
+"    a : int\n"
+"        Il primo numero intero.\n"
+"    b : int\n"
+"        I numeri interi da sommare.\n"
+"Restituisce\n"
+"    -------\n"
+"    int\n"
+"        La somma dei due numeri interi.\n"
+"    \"\"\"\n"
+"    restituisce a + b\n"
 
 #: 1d1bcfd68c6442d8868ba7c5f0f073a5
 msgid "List of sections:"
-msgstr ""
+msgstr "Elenco delle sezioni:"
 
 #: 6bc01351d4554d1e8f8c10cf21538c84
 msgid "`Short summary`: a sentence summarize the function's purpose"
-msgstr ""
+msgstr "`Breve riassunto`: una frase che riassume lo scopo della funzione."
 
 #: 550aadd9d94f413d92c7ec25fdc5bda4
 msgid "one line at the top to"
-msgstr ""
+msgstr "una riga in alto per"
 
 #: 2f4683c4ab894ec5a0b2c69007b0fd33
 msgid "start with a capital letter"
-msgstr ""
+msgstr "Inizia con una lettera maiuscola."
 
 #: 43c3ecf7a06e446dba4b38267d5981e3
 msgid "ends without a full stop"
-msgstr ""
+msgstr "finisce senza un punto fermo"
 
 #: c524e1d4d7914b8c9a39f4674e8584de
 msgid "DO NOT begin with \"This function ...\""
-msgstr ""
+msgstr "NON iniziare con \"Questa funzione ...\""
 
 #: 07e4e20be6994f93bef83c7309a69194
 msgid "use imperative mood (e.g., \"Return\", \"Compute\", \"Check\")"
 msgstr ""
+"usa il modo imperativo (ad esempio, \"Ritorna\", \"Calcola\", \"Controlla\")"
 
 #: 4170ededab6243feb399443a3a3c9d92
 msgid "`Extended summary` [*optional*]: a longer description for specific details"
 msgstr ""
+"`Riepilogo esteso` [*facoltativo*]: una descrizione più lunga per dettagli "
+"specifici"
 
 #: e26e44833d0144f480a78d81993f7e60
 msgid "multiple lines"
-msgstr ""
+msgstr "più righe"
 
 #: fd55af0e8cd2400fb0a57cb114f80416
 msgid "separated from the short summary by a blank line"
-msgstr ""
+msgstr "separata dal breve riassunto da una riga vuota"
 
 #: b1f937297f11460790659681d4f80596
 msgid "`Parameters`: a list of parameters"
-msgstr ""
+msgstr "`Parametri`: un elenco di parametri"
 
 #: 274592b0d1c44fb5b3a4923001831bf1
 msgid "each parameter has a name, type, and description"
-msgstr ""
+msgstr "Ogni parametro ha un nome, un tipo e una descrizione."
 
 #: 1c9318da1e124b5082e8eb00aaebb8f0
 msgid "`Returns`: the return value(s)"
-msgstr ""
+msgstr "`Restituisce`: il valore o i valori restituiti"
 
 #: 07b6e65b1d5d40ceb1cea654ee45a4b7
 msgid "specify the type and description"
-msgstr ""
+msgstr "Specificare il tipo e la descrizione."
 
 #: 7a77dd81dbe04e64b807a4859276c446
 msgid "`Yields` [*optional*]: for generator functions"
-msgstr ""
+msgstr "`Yields` [*opzionale*]: per le funzioni generatrici"
 
 #: d63ddb98c8e04230a2cd7aa6a641903a
 msgid "`Attributes` [*optional*]: for class docstrings, list of attributes"
 msgstr ""
+"`Attributi` [*facoltativo*]: per le stringhe di documentazione delle classi, "
+"elenco degli attributi"
 
 #: 8dccabc4c2fc48b989f8d4d0cef2c07e
 msgid "`Raises` [*optional*]: exceptions that the function may raise"
-msgstr ""
+msgstr "`Raises` [*facoltativo*]: eccezioni che la funzione può generare"
 
 #: d710543b7332456885a6101427d5a794
 msgid "`References` [*optional*]: citations or external references"
-msgstr ""
+msgstr "`Riferimenti` [*facoltativo*]: citazioni o riferimenti esterni"
 
 #: bc66bf23bb6c49eb9a4f0379f658cebd
 msgid "for academic or technical references (e.g., papers, articles)"
-msgstr ""
+msgstr "per riferimenti accademici o tecnici (ad esempio, documenti, articoli)"
 
 #: 303d3cb49f9a40d7823dd52aab8bb913
 msgid "`Examples` [*optional*]: usage examples"
-msgstr ""
+msgstr "`Esempi` [*facoltativo*]: esempi di utilizzo"
 
 #: 0ec4da5365694494993fdc8510384745
 msgid "use triple backticks for code blocks"
-msgstr ""
+msgstr "Utilizza tre apostrofi per i blocchi di codice."
 
 #: e2dd554ae76d4c9cb8066a3192ea7f42
 msgid "can include multiple examples"
-msgstr ""
+msgstr "Può includere più esempi."
 
 #: 32637f93804e465fafea84e75cb938be
 msgid "`See Also` [*optional*]: related functions or classes"
-msgstr ""
+msgstr "`Vedi anche` [*facoltativo*]: funzioni o classi correlate"
 
 #: 2610857c15e64dd1a4de57335aa8f255
 msgid "list of related items with brief descriptions"
-msgstr ""
+msgstr "elenco di elementi correlati con brevi descrizioni"
 
 #: 599f4026de37441bb0ec5d2f201e1c13
 msgid "`Notes` [*optional*]: additional information or clarifications"
-msgstr ""
+msgstr "`Note` [*facoltativo*]: informazioni aggiuntive o chiarimenti"
 
 #: 71fa7381e2e1426ab8edec35e9087705
 msgid "for implementation details or caveats"
-msgstr ""
+msgstr "Per dettagli sull'implementazione o avvertenze"
 
 #: 28032a8f98854bfeb4b716cde83cd8aa
 msgid "User experience conventions"
-msgstr ""
+msgstr "Convenzioni relative all'esperienza utente"
 
 #: 0922707d3bf940c1adebe9da478fed96
 msgid "Tooltips"
-msgstr ""
+msgstr "Suggerimenti"
 
 #: 5d9e9ba33ce445279fc376675d6929fd
 msgid ""
@@ -981,6 +1174,10 @@ msgid ""
 " and should be to comply some users, but always ensure that the "
 "information is also accessible to touch users."
 msgstr ""
+"I tooltip sono un ottimo modo per fornire informazioni aggiuntive agli "
+"utenti desktop e dovrebbero soddisfare alcuni utenti, ma è necessario "
+"assicurarsi sempre che le informazioni siano accessibili anche agli utenti "
+"touch."
 
 msgid "Contents:"
 msgstr "Contenuti:"
@@ -992,10 +1189,11 @@ msgstr "Guida per sviluppatori"
 #: 985678501f7441b3939f71201fad0ceb
 msgid "Doc coverage : ![Cover badge](../_static/img/interrogate_badge.svg)"
 msgstr ""
+"Copertura del documento: ![Cover badge](../_static/img/interrogate_badge.svg)"
 
 #: e9f0a43a14fd46c4a4b4cc0460646929
 msgid "Cover badge"
-msgstr ""
+msgstr "Badge di copertina"
 
 #: 87f212e0e12146e79bac80e0525adedd
 msgid "Welcome to the developer documentation!"
@@ -1019,13 +1217,15 @@ msgstr "Qual è il prossimo passo?"
 
 #: 3c0cab95bee14d1ea91be46861b22fb1
 msgid "Setting up a development environment"
-msgstr ""
+msgstr "Configurazione di un ambiente di sviluppo"
 
 #: 65415f209de14e818d97b0827732b4ad
 msgid ""
 "This document describes how to set up a development environment for "
 "Pytition."
 msgstr ""
+"Questo documento descrive come configurare un ambiente di sviluppo per "
+"Pytition."
 
 #: 946c8e96c7a14a4db68273e5959944fa
 msgid "Welcome to Pytition's documentation"
@@ -1047,11 +1247,11 @@ msgstr "Demo: [pytition.sebastienpont.fr](https://pytition.sebastienpont.fr)"
 
 #: a48eda8fa88a46d59f3a0a6d16153486
 msgid "command"
-msgstr ""
+msgstr "comando"
 
 #: 8e65cdce22dd4beb84a3793d274963f1
 msgid "`pdm run docs` to build the documentation locally."
-msgstr ""
+msgstr "`pdm run docs` per compilare la documentazione localmente."
 
 #: 48cce3f3794e4878b119d30121278783
 msgid "Indices and tables"
@@ -1120,4 +1320,3 @@ msgstr "Implementare qui il contenuto della guida utente."
 
 #~ msgid "![Cover badge](_static/img/interrogate_badge.svg)"
 #~ msgstr ""
-
