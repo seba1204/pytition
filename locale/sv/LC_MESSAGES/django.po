@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 09:29+0100\n"
+"POT-Creation-Date: 2025-11-07 06:39+0100\n"
 "PO-Revision-Date: 2025-11-03 08:55+0000\n"
 "Last-Translator: Sébastien PONT <seba12.04@orange.fr>\n"
 "Language-Team: Swedish <https://translate.sebastienpont.fr/projects/pytition/"
@@ -21,60 +21,44 @@ msgstr ""
 
 #. Translators: Name of a Pytition user in the admin interface
 #. Translators: Petition template name field in models (admin interface)
-#: src/apps/accounts/admin.py:14
-#: src/apps/presets/models/petition_template.py:36
+#: src/apps/accounts/admin.py:18
+#: src/apps/presets/models/petition_template.py:40
 msgid "Name"
 msgstr "Namn"
 
-#: src/apps/accounts/forms/create.py:45
+#: src/apps/accounts/forms/create.py:52
 msgid "Wrong answer"
 msgstr "Fel svar"
 
-#: src/apps/accounts/forms/delete.py:15
-#: src/apps/accounts/templates/accounts/settings.html:141
+#: src/apps/accounts/forms/delete.py:19
+#: src/apps/accounts/templates/accounts/settings.html:149
 msgid "DROP MY ACCOUNT"
 msgstr "RADERA MITT KONTO"
 
-#: src/apps/accounts/forms/delete.py:19
+#: src/apps/accounts/forms/delete.py:23
 msgid "You miss-typed the validation code"
 msgstr "Du har skrivit in valideringskoden felaktigt"
 
-#: src/apps/accounts/models/permission.py:13
-msgid "Organization related to these permissions"
-msgstr "Organisation relaterad till dessa behörigheter"
-
-#: src/apps/accounts/models/permission.py:18
-msgid "User related to these permissions"
-msgstr "Användare relaterade till dessa behörigheter"
-
-#: src/apps/accounts/models/permission.py:36
-msgid "Permission"
-msgstr "Tillstånd"
-
-#: src/apps/accounts/models/permission.py:37
-msgid "Permissions"
-msgstr "Tillstånd"
-
-#: src/apps/accounts/models/pytition_user.py:27
+#: src/apps/accounts/models/pytition_user.py:31
 msgid "Default petition template"
 msgstr "Standardmall för ansökan"
 
-#: src/apps/accounts/models/pytition_user.py:35
+#: src/apps/accounts/models/pytition_user.py:41
 msgid "Pytition User"
 msgstr "Pytition-användare"
 
-#: src/apps/accounts/models/pytition_user.py:36
+#: src/apps/accounts/models/pytition_user.py:42
 msgid "Pytition Users"
 msgstr "Pytition-användare"
 
-#: src/apps/accounts/services.py:44 src/apps/accounts/views/profile.py:41
-#: src/apps/organizations/views/invitations/accept.py:45
-#: src/apps/organizations/views/invitations/accept.py:55
+#: src/apps/accounts/services.py:46 src/apps/accounts/views/profile.py:40
+#: src/apps/organizations/views/invitations/accept.py:46
+#: src/apps/organizations/views/invitations/accept.py:56
 #: src/apps/organizations/views/invitations/dismiss.py:44
 #: src/apps/organizations/views/invitations/dismiss.py:52
-#: src/apps/organizations/views/leave.py:42
-#: src/apps/organizations/views/leave.py:48
-#: src/apps/organizations/views/profile.py:41
+#: src/apps/organizations/views/leave.py:44
+#: src/apps/organizations/views/leave.py:50
+#: src/apps/organizations/views/profile.py:42
 msgid "not found"
 msgstr "hittades inte"
 
@@ -130,61 +114,15 @@ msgstr "Tillståndsnamn"
 msgid "Authorized?"
 msgstr "Auktoriserad?"
 
-#: src/apps/accounts/templates/accounts/edit_permissions.html:20
-msgid "Can remove member?"
-msgstr "Kan man ta bort medlemmar?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:33
-msgid "Can invite new members?"
-msgstr "Kan man bjuda in nya medlemmar?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:46
-msgid "Can create petitions?"
-msgstr "Kan skapa petitioner?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:59
-msgid "Can modify petitions?"
-msgstr "Kan man ändra petitioner?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:72
-msgid "Can delete petitions?"
-msgstr "Kan man radera petitioner?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:85
-msgid "Can create petition templates?"
-msgstr "Kan man skapa mallar för namninsamlingar?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:98
-msgid "Can modify petition templates?"
-msgstr "Kan man ändra mallarna för namninsamlingar?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:111
-msgid "Can delete petition templates?"
-msgstr "Kan man radera mallar för namninsamlingar?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:124
-msgid "Can view signatures?"
-msgstr "Kan man se underskrifter?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:137
-msgid "Can modify signatures?"
-msgstr "Kan man ändra underskrifter?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:150
-msgid "Can delete signatures?"
-msgstr "Kan man radera underskrifter?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:163
-msgid "Can modify permissions?"
-msgstr "Kan ändra behörigheter?"
-
-#: src/apps/accounts/templates/accounts/edit_permissions.html:176
+#: src/apps/accounts/templates/accounts/edit_permissions.html:38
 msgid "Validate those new permissions"
 msgstr "Bekräfta dessa nya behörigheter"
 
-#: src/apps/accounts/templates/accounts/edit_permissions.html:177
-#: src/apps/core/templates/layouts/nav_dashboard.html:11
-#: src/apps/core/templates/layouts/nav_dashboard.html:15
+#: src/apps/accounts/templates/accounts/edit_permissions.html:40
+#: src/apps/core/templates/layouts/nav_dashboard.html:12
+#: src/apps/core/templates/layouts/nav_dashboard.html:13
+#: src/apps/core/templates/layouts/nav_dashboard.html:18
+#: src/apps/core/templates/layouts/nav_dashboard.html:19
 msgid "Back to dashboard"
 msgstr "Tillbaka till sammanställningen"
 
@@ -208,8 +146,9 @@ msgid "Dismiss"
 msgstr "Avvisa"
 
 #: src/apps/accounts/templates/accounts/org_list.html:5
-#: src/apps/accounts/templates/accounts/settings.html:29
-#: src/apps/accounts/templates/accounts/settings.html:74
+#: src/apps/accounts/templates/accounts/settings.html:32
+#: src/apps/accounts/templates/accounts/settings.html:77
+#: src/apps/core/templates/core/search.html:19
 msgid "Organizations"
 msgstr "Organisationer"
 
@@ -244,37 +183,66 @@ msgstr "Skapad"
 msgid "This user has not created any petition yet."
 msgstr "Denna användare har ännu inte skapat någon petition."
 
-#: src/apps/accounts/templates/accounts/register.html:15
+#: src/apps/accounts/templates/accounts/register.html:10
 msgid "Register"
 msgstr "Registrera dig"
 
-#: src/apps/accounts/templates/accounts/settings.html:11
+#: src/apps/accounts/templates/accounts/settings.html:13
+#, fuzzy
+#| msgid "Personal Settings"
+msgid "Personal settings sections"
+msgstr "Personliga inställningar"
+
+#: src/apps/accounts/templates/accounts/settings.html:14
 msgid "Personal Settings"
 msgstr "Personliga inställningar"
 
-#: src/apps/accounts/templates/accounts/settings.html:17
-#: src/apps/accounts/templates/accounts/settings.html:44
+#: src/apps/accounts/templates/accounts/settings.html:20
+#: src/apps/accounts/templates/accounts/settings.html:47
 msgid "Personal Information"
 msgstr "Personuppgifter"
 
-#: src/apps/accounts/templates/accounts/settings.html:23
+#: src/apps/accounts/templates/accounts/settings.html:26
 msgid "Change Password"
 msgstr "Ändra Llösenord"
 
-#: src/apps/accounts/templates/accounts/settings.html:35
+#: src/apps/accounts/templates/accounts/settings.html:38
 msgid "Delete your account"
 msgstr "Ta bort ditt konto"
 
-#: src/apps/accounts/templates/accounts/settings.html:52
+#: src/apps/accounts/templates/accounts/settings.html:55
 msgid "Update"
 msgstr "Uppdatering"
 
-#: src/apps/accounts/templates/accounts/settings.html:60
-#: src/apps/accounts/templates/accounts/settings.html:68
+#: src/apps/accounts/templates/accounts/settings.html:63
+#: src/apps/accounts/templates/accounts/settings.html:71
 msgid "Change password"
 msgstr "Ändra lösenord"
 
-#: src/apps/accounts/templates/accounts/settings.html:105
+#: src/apps/accounts/templates/accounts/settings.html:86
+#: src/apps/accounts/templates/accounts/settings.html:136
+#: src/apps/accounts/templates/accounts/settings.html:181
+#: src/apps/core/templates/registration/login.html:15
+#: src/apps/core/templates/registration/password_reset_confirm.html:21
+#: src/apps/core/templates/registration/password_reset_form.html:23
+#: src/apps/petitions/templates/petitions/detail.html:133
+#: src/apps/petitions/templates/petitions/detail.html:147
+#: src/apps/petitions/templates/petitions/detail.html:167
+#: src/apps/petitions/templates/petitions/detail.html:197
+#: src/apps/petitions/templates/petitions/list.html:126
+#: src/apps/petitions/templates/petitions/transfer.html:71
+#: src/apps/presets/templates/presets/list.html:75
+#: src/apps/signatures/templates/signatures/data.html:158
+msgid "Close"
+msgstr "Stäng"
+
+#: src/apps/accounts/templates/accounts/settings.html:103
+#: src/apps/accounts/templates/accounts/settings.html:111
+#: src/apps/accounts/templates/accounts/settings.html:190
+msgid "Leave"
+msgstr ""
+
+#: src/apps/accounts/templates/accounts/settings.html:109
 msgid ""
 "You cannot leave an organization where you are either the last administrator "
 "or the last member."
@@ -282,20 +250,20 @@ msgstr ""
 "Du kan inte lämna en organisation där du är den sista administratören eller "
 "den sista medlemmen."
 
-#: src/apps/accounts/templates/accounts/settings.html:114
+#: src/apps/accounts/templates/accounts/settings.html:119
 msgid "You are not part of any organization."
 msgstr "Du tillhör ingen organisation."
 
-#: src/apps/accounts/templates/accounts/settings.html:118
+#: src/apps/accounts/templates/accounts/settings.html:123
 #: src/apps/organizations/templates/org/create.html:6
 msgid "Create an organization"
 msgstr "Skapa en organisation"
 
-#: src/apps/accounts/templates/accounts/settings.html:126
+#: src/apps/accounts/templates/accounts/settings.html:131
 msgid "Delete account"
 msgstr "Radera konto"
 
-#: src/apps/accounts/templates/accounts/settings.html:134
+#: src/apps/accounts/templates/accounts/settings.html:142
 msgid ""
 "WARNING: If you do this, your data will be permanently deleted. <br /> "
 "Please, confirm you understand the risks by entering the following sentence "
@@ -305,131 +273,138 @@ msgstr ""
 "Bekräfta att du förstår riskerna genom att skriva följande mening i "
 "valideringsfältet:"
 
-#: src/apps/accounts/templates/accounts/settings.html:152
-#: src/apps/petitions/templates/petitions/edit.html:327
-#: src/apps/petitions/templates/petitions/list.html:131
-#: src/apps/presets/templates/presets/list.html:75
+#: src/apps/accounts/templates/accounts/settings.html:160
+#: src/apps/petitions/templates/petitions/edit.html:307
+#: src/apps/petitions/templates/petitions/list.html:138
+#: src/apps/presets/templates/presets/list.html:76
 msgid "Delete"
 msgstr "Radera"
 
-#: src/apps/accounts/templates/accounts/settings.html:169
+#: src/apps/accounts/templates/accounts/settings.html:177
 msgid "Leaving an organization"
 msgstr "Lämna en organisation"
 
-#: src/apps/accounts/templates/accounts/settings.html:175
+#: src/apps/accounts/templates/accounts/settings.html:184
 #, python-format
 msgid "Are you sure you want to leave %(orgname)s?"
 msgstr "Är du säker på att du vill lämna %(orgname)s?"
 
-#: src/apps/accounts/views/register.py:40
+#: src/apps/accounts/templates/accounts/settings.html:189
+#: src/apps/core/templates/layouts/nav.html:191
+#: src/apps/petitions/templates/petitions/list.html:141
+#: src/apps/petitions/templates/petitions/transfer.html:89
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/apps/accounts/views/register.py:45
 #, python-format
 msgid "How much is %(a)d + %(b)d?"
 msgstr "Hur mycket är %(a)d + %(b)d?"
 
-#: src/apps/accounts/views/settings.py:65
+#: src/apps/accounts/views/settings.py:66
 msgid "You successfully changed your password!"
 msgstr "Du har ändrat ditt lösenord!"
 
 #. Translators: Admin action to confirm signatures
-#: src/apps/consents/admin.py:9
+#: src/apps/consents/admin.py:11
 msgid "Confirm the signatures"
 msgstr "Bekräfta underskrifterna"
 
-#: src/apps/consents/admin.py:16
+#: src/apps/consents/admin.py:19
 #, python-format
 msgid "Error: %(error)s"
 msgstr "Fel: %(error)s"
 
-#: src/apps/consents/forms/newsletter.py:15
+#: src/apps/consents/forms/newsletter.py:17
 msgid "Does this petition have a newsletter?"
 msgstr "Har den här petitionen ett nyhetsbrev?"
 
-#: src/apps/consents/forms/newsletter.py:17
+#: src/apps/consents/forms/newsletter.py:19
 msgid "Newsletter description"
 msgstr "Beskrivning av nyhetsbrevet"
 
-#: src/apps/consents/forms/newsletter.py:19
+#: src/apps/consents/forms/newsletter.py:21
 msgid "HTTP data"
 msgstr "HTTP-data"
 
-#: src/apps/consents/forms/newsletter.py:24
+#: src/apps/consents/forms/newsletter.py:26
 msgid "Email field name for HTTP subscription"
 msgstr "E-postfältnamn för HTTP-prenumeration"
 
-#: src/apps/consents/forms/newsletter.py:27
+#: src/apps/consents/forms/newsletter.py:29
 msgid "HTTP subscription URL"
 msgstr "HTTP-prenumerationsadress"
 
-#: src/apps/consents/forms/newsletter.py:30
+#: src/apps/consents/forms/newsletter.py:32
 msgid "Mail subject template"
 msgstr "Mall för e-postämne"
 
-#: src/apps/consents/forms/newsletter.py:33
+#: src/apps/consents/forms/newsletter.py:35
 msgid "Mail from address"
 msgstr "E-post från adress"
 
-#: src/apps/consents/forms/newsletter.py:37
+#: src/apps/consents/forms/newsletter.py:39
 msgid "Mail to (list admin) address"
 msgstr "E-post till (lista admin) adress"
 
-#: src/apps/consents/forms/newsletter.py:42 src/apps/petitions/admin.py:180
-#: src/apps/presets/admin.py:179
+#: src/apps/consents/forms/newsletter.py:44 src/apps/petitions/admin.py:192
+#: src/apps/presets/admin.py:185
 msgid "Newsletter subscription method"
 msgstr "Metod för prenumeration på nyhetsbrev"
 
-#: src/apps/consents/forms/newsletter.py:47
+#: src/apps/consents/forms/newsletter.py:49
 msgid "SMTP server host"
 msgstr "SMTP-servervärd"
 
-#: src/apps/consents/forms/newsletter.py:53
+#: src/apps/consents/forms/newsletter.py:55
 msgid "SMTP server username"
 msgstr "SMTP-serverns användarnamn"
 
-#: src/apps/consents/forms/newsletter.py:59
+#: src/apps/consents/forms/newsletter.py:61
 msgid "SMTP server password"
 msgstr "SMTP-serverlösenord"
 
-#: src/apps/consents/forms/newsletter.py:63
+#: src/apps/consents/forms/newsletter.py:65
 msgid "Use TLS?"
 msgstr "Vill du använda TLS?"
 
-#: src/apps/consents/forms/newsletter.py:66
+#: src/apps/consents/forms/newsletter.py:68
 msgid "Use STARTTLS?"
 msgstr "Vill du använda STARTTLS?"
 
-#: src/apps/consents/forms/newsletter.py:85
-#: src/apps/consents/forms/newsletter.py:91
+#: src/apps/consents/forms/newsletter.py:88
+#: src/apps/consents/forms/newsletter.py:94
 msgid "You cannot select both TLS and STARTTLS."
 msgstr "Du kan inte välja både TLS och STARTTLS."
 
-#: src/apps/consents/forms/newsletter.py:105
+#: src/apps/consents/forms/newsletter.py:108
 #, python-format
 msgid "Port must be between 1 and %(max)d."
 msgstr "Porten måste vara mellan 1 och %(max)d."
 
-#: src/apps/consents/forms/newsletter.py:113
+#: src/apps/consents/forms/newsletter.py:116
 msgid "Port must be an integer."
 msgstr "Porten måste vara ett heltal."
 
-#: src/apps/consents/forms/newsletter.py:125
+#: src/apps/consents/forms/newsletter.py:128
 msgid "This field is required for HTTP subscription."
 msgstr "Detta fält är obligatoriskt för HTTP-prenumeration."
 
-#: src/apps/consents/forms/newsletter.py:137
+#: src/apps/consents/forms/newsletter.py:140
 msgid "Provide either a subscription URL or HTTP data."
 msgstr "Ange antingen en prenumerations-URL eller HTTP-data."
 
 #. Translators: Newsletter subscription - mail to address
-#: src/apps/consents/forms/newsletter.py:149
+#: src/apps/consents/forms/newsletter.py:152
 msgid "Please provide the list admin address."
 msgstr "Ange listadministratörens adress."
 
 #. Translators: Newsletter subscription - mail subject template
-#: src/apps/consents/forms/newsletter.py:158
+#: src/apps/consents/forms/newsletter.py:161
 msgid "Please provide the subscription subject template."
 msgstr "Vänligen ange mallen för prenumerationens ämne."
 
-#: src/apps/consents/views/export.py:55
+#: src/apps/consents/views/export.py:57
 msgid "No newsletter subscription yet!"
 msgstr "Ingen nyhetsbrevsprenumeration ännu!"
 
@@ -442,12 +417,18 @@ msgid "Make things change!"
 msgstr "Få saker att förändras!"
 
 #: src/apps/core/templates/core/index.html:20
+#: src/apps/petitions/templates/petitions/new.html:4
 msgid "Create a petition"
 msgstr "Skapa en petition"
 
 #: src/apps/core/templates/core/index.html:27
 msgid "View latest petitions"
 msgstr "Visa senaste petitioner"
+
+#: src/apps/core/templates/core/search.html:11
+#, python-format
+msgid "Search results for \"%(query)s\""
+msgstr ""
 
 #: src/apps/core/templates/layouts/base.html:13
 msgid "A platform for creating and signing petitions."
@@ -470,7 +451,7 @@ msgid "Logout"
 msgstr "Logga ut"
 
 #: src/apps/core/templates/layouts/nav-useractions.html:57
-#: src/apps/core/templates/registration/login.html:41
+#: src/apps/core/templates/registration/login.html:59
 msgid "Login"
 msgstr "Logga in"
 
@@ -478,97 +459,131 @@ msgstr "Logga in"
 msgid "Report to moderation"
 msgstr "Rapportera till moderatorn"
 
-#: src/apps/core/templates/layouts/nav.html:54
-#: src/apps/core/templates/layouts/nav_dashboard.html:52
+#: src/apps/core/templates/layouts/nav.html:144
+#: src/apps/core/templates/layouts/nav_dashboard.html:57
 msgid "Search for petition"
 msgstr "Sök efter petitioner"
 
-#: src/apps/core/templates/layouts/nav.html:58
-#: src/apps/core/templates/layouts/nav_dashboard.html:56
+#: src/apps/core/templates/layouts/nav.html:147
+#: src/apps/core/templates/layouts/nav_dashboard.html:60
 msgid "Search"
 msgstr "Sök"
 
-#: src/apps/core/templates/layouts/nav.html:71
+#: src/apps/core/templates/layouts/nav.html:159
 msgid "Thank you for your reporting!"
 msgstr "Tack för din rapport!"
 
-#: src/apps/core/templates/layouts/nav.html:72
+#: src/apps/core/templates/layouts/nav.html:160
 msgid "Reporting failed, please retry later."
 msgstr "Rapporteringen misslyckades, försök igen senare."
 
-#: src/apps/core/templates/layouts/nav.html:76
+#: src/apps/core/templates/layouts/nav.html:164
 msgid "Report this petition to moderation"
 msgstr "Anmäl denna petition till moderatorn"
 
-#: src/apps/core/templates/layouts/nav.html:81
+#: src/apps/core/templates/layouts/nav.html:172
 msgid "Why do you want to report this petition?"
 msgstr "Varför vill du rapportera denna petition?"
 
-#: src/apps/core/templates/layouts/nav.html:92
+#: src/apps/core/templates/layouts/nav.html:183
 msgid "You are about to report this petition to moderation."
 msgstr "Du är på väg att rapportera denna petition till moderatorn."
 
-#: src/apps/core/templates/layouts/nav.html:99
+#: src/apps/core/templates/layouts/nav.html:190
 msgid "Report"
 msgstr "Rapportera"
-
-#: src/apps/core/templates/layouts/nav.html:100
-#: src/apps/petitions/templates/petitions/list.html:132
-#: src/apps/petitions/templates/petitions/transfer.html:68
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: src/apps/core/templates/layouts/wizard_layout.html:14
-msgid "Create a new petition!"
-msgstr "Skapa en ny petition!"
-
-#: src/apps/core/templates/layouts/wizard_layout.html:18
-#: src/apps/petitions/templates/petitions/new_step1.html:15
-msgid "Title"
-msgstr "Titel"
-
-#: src/apps/core/templates/layouts/wizard_layout.html:20
-msgid "Give a title to your petition"
-msgstr "Ge din petition en titel"
-
-#: src/apps/core/templates/layouts/wizard_layout.html:23
-#: src/apps/petitions/templates/petitions/edit.html:56
-#: src/apps/petitions/templates/petitions/edit.html:450
-#: src/apps/petitions/templates/petitions/edit.html:456
-msgid "Content"
-msgstr "Innehåll"
-
-#: src/apps/core/templates/layouts/wizard_layout.html:25
-msgid "Write your petition content"
-msgstr "Skriv innehållet i din petition"
-
-#: src/apps/core/templates/layouts/wizard_layout.html:28
-msgid "Publish"
-msgstr "Publicera"
-
-#: src/apps/core/templates/layouts/wizard_layout.html:30
-msgid "Save your petition and publish it if it's ready"
-msgstr "Spara din petition och publicera den när den är klar"
 
 #: src/apps/core/templates/registration/login.html:7
 msgid "Please sign in"
 msgstr "Vänligen logga in"
 
-#: src/apps/core/templates/registration/login.html:10
+#: src/apps/core/templates/registration/login.html:11
 msgid "Your username and password didn't match. Please try again."
 msgstr "Ditt användarnamn och lösenord stämde inte överens. Försök igen."
 
-#: src/apps/core/templates/registration/login.html:46
+#: src/apps/core/templates/registration/login.html:20
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+
+#: src/apps/core/templates/registration/login.html:35
+#: src/apps/core/templates/registration/login.html:43
+#: src/apps/organizations/templates/org/invite_user.html:17
+msgid "Username"
+msgstr "Användarnamn"
+
+#: src/apps/core/templates/registration/login.html:50
+#: src/apps/core/templates/registration/login.html:57
+#, fuzzy
+#| msgid "SMTP password"
+msgid "Password"
+msgstr "Lösenord för SMTP"
+
+#: src/apps/core/templates/registration/login.html:64
 msgid "No account?"
 msgstr "Inget konto?"
 
-#: src/apps/core/templates/registration/login.html:46
+#: src/apps/core/templates/registration/login.html:64
 msgid "Register!"
 msgstr "Registrera dig!"
 
-#: src/apps/core/templates/registration/login.html:50
+#: src/apps/core/templates/registration/login.html:68
 msgid "I forgot my password!"
 msgstr "Jag har glömt mitt lösenord!"
+
+#: src/apps/core/templates/registration/password_reset_complete.html:4
+msgid "Password reset complete"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_complete.html:10
+msgid "Your password has been set!"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_complete.html:13
+msgid "You can now log in with your new password."
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_complete.html:15
+msgid "Log in"
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_confirm.html:4
+#: src/apps/core/templates/registration/password_reset_confirm.html:10
+#, fuzzy
+#| msgid "Forgot your password?"
+msgid "Set your new password"
+msgstr "Har du glömt ditt lösenord?"
+
+#: src/apps/core/templates/registration/password_reset_confirm.html:31
+#: src/apps/core/templates/registration/password_reset_confirm.html:34
+#, fuzzy
+#| msgid "Change password"
+msgid "New password"
+msgstr "Ändra lösenord"
+
+#: src/apps/core/templates/registration/password_reset_confirm.html:44
+#: src/apps/core/templates/registration/password_reset_confirm.html:47
+#, fuzzy
+#| msgid "Change password"
+msgid "Confirm new password"
+msgstr "Ändra lösenord"
+
+#: src/apps/core/templates/registration/password_reset_confirm.html:52
+#, fuzzy
+#| msgid "Change password"
+msgid "Change my password"
+msgstr "Ändra lösenord"
+
+#: src/apps/core/templates/registration/password_reset_confirm.html:56
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+
+#: src/apps/core/templates/registration/password_reset_confirm.html:59
+msgid "Request a new password reset"
+msgstr ""
 
 #: src/apps/core/templates/registration/password_reset_done.html:4
 msgid "Email Sent"
@@ -591,7 +606,7 @@ msgstr ""
 msgid "Forgot your password?"
 msgstr "Har du glömt ditt lösenord?"
 
-#: src/apps/core/templates/registration/password_reset_form.html:11
+#: src/apps/core/templates/registration/password_reset_form.html:12
 msgid ""
 "Enter your email address below, and we'll email instructions for setting a "
 "new one."
@@ -599,27 +614,34 @@ msgstr ""
 "Ange din e-postadress nedan så skickar vi instruktioner för hur du skapar en "
 "ny."
 
-#: src/apps/core/templates/registration/password_reset_form.html:15
-#: src/apps/signatures/templates/signatures/data.html:88
-msgid "Email"
-msgstr "E-post"
-
-#: src/apps/core/templates/registration/password_reset_form.html:21
+#: src/apps/core/templates/registration/password_reset_form.html:33
 msgid "email@example.com"
 msgstr "email@example.com"
 
-#: src/apps/core/templates/registration/password_reset_form.html:24
+#: src/apps/core/templates/registration/password_reset_form.html:36
+#: src/apps/signatures/models/signature.py:28
+msgid "Email address"
+msgstr "E-postadress"
+
+#: src/apps/core/templates/registration/password_reset_form.html:41
 msgid "Send me instructions!"
 msgstr "Skicka instruktioner till mig!"
 
-#: src/apps/core/templates/ui/components/demo_text.html:3
+#: src/apps/core/templates/ui/components/demo_text.html:4
+#, fuzzy
+#| msgid ""
+#| "<span style=\"color: red;font-weight: bold;\">Demonstration website "
+#| "(please DON'T put real petitions here!)</span> <br /> This tool is free "
+#| "and open-source software, you can install it on your server too! <br> "
+#| "Download the source code on <a href=\"https://github.com/pytition/"
+#| "pytition\">GitHub</a> <br> Documentation is available on <a "
+#| "href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 msgid ""
-"<span style=\"color: red;font-weight: bold;\">Demonstration website (please "
-"DON'T put real petitions here!)</span> <br /> This tool is free and open-"
-"source software, you can install it on your server too! <br> Download the "
-"source code on <a href=\"https://github.com/pytition/pytition\">GitHub</a> "
-"<br> Documentation is available on <a href=\"https://pytition.readthedocs."
-"io\">ReadTheDocs</a>"
+"<span>Demonstration website (please DON'T put real petitions here!)</span> "
+"<br /> This tool is free and open-source software, you can install it on "
+"your server too! <br> Download the source code on <a href=\"https://github."
+"com/pytition/pytition\">GitHub</a> <br> Documentation is available on <a "
+"href=\"https://pytition.readthedocs.io\">ReadTheDocs</a>"
 msgstr ""
 "<span style=\"color: red;font-weight: bold;\">Demonstrationswebbplats (lägg "
 "INTE riktiga petitioner här!)</span> <br /> Detta verktyg är gratis och "
@@ -628,23 +650,31 @@ msgstr ""
 "<br> Dokumentation finns tillgänglig på <a href=\"https://pytition."
 "readthedocs.io\">ReadTheDocs</a>"
 
-#: src/apps/core/views/index.py:18
+#: src/apps/core/views/index.py:25
 msgid "You must set an INDEX_PAGE config in your settings"
 msgstr "Du måste ställa in INDEX_PAGE i dina inställningar"
 
-#: src/apps/core/views/index.py:23
+#: src/apps/core/views/index.py:30
 msgid "You must set an INDEX_PAGE_USER config in your settings"
 msgstr "Du måste ställa in INDEX_PAGE_USER i dina inställningar"
 
-#: src/apps/core/views/index.py:27
+#: src/apps/core/views/index.py:34
 msgid "You must set an INDEX_PAGE_ORGA config in your settings"
 msgstr "Du måste ställa in INDEX_PAGE_ORGA i dina inställningar"
 
-#: src/apps/notifications/admin.py:9
+#: src/apps/files/views/tinymce_image_upload.py:67
+msgid "Invalid request."
+msgstr ""
+
+#: src/apps/files/views/tinymce_image_upload.py:76
+msgid "Invalid file upload."
+msgstr ""
+
+#: src/apps/notifications/admin.py:11
 msgid "Send the confirmation email once again"
 msgstr "Skicka e-postmeddelandet för bekräftelse en gång till"
 
-#: src/apps/notifications/forms/email.py:16
+#: src/apps/notifications/forms/email.py:18
 msgid ""
 "Your contact email. It will be used as 'Reply-To' field of the confirmation "
 "email sent to signatories. People responding to confirmation email will in "
@@ -654,7 +684,7 @@ msgstr ""
 "bekräftelsemejlet som skickas till undertecknarna. Personer som svarar på "
 "bekräftelsemejlet kommer i själva verket att svara till denna adress."
 
-#: src/apps/notifications/services.py:42
+#: src/apps/notifications/services.py:43
 msgid "Confirm your signature to our petition"
 msgstr "Bekräfta att du vill skriva under vår petition"
 
@@ -682,21 +712,29 @@ msgstr "Nu behöver du bara klicka här för att bekräfta din underskrift:"
 msgid "See you soon!"
 msgstr "Vi ses snart!"
 
-#: src/apps/organizations/admin.py:13
+#: src/apps/organizations/admin.py:17
 msgid "Number of petitions"
 msgstr "Antal petitioner"
 
-#: src/apps/organizations/admin.py:17
+#: src/apps/organizations/admin.py:22
 msgid "Number of members"
 msgstr "Antal medlemmar"
 
-#: src/apps/organizations/forms.py:23
+#: src/apps/organizations/forms.py:30
 msgid "This is an invalid Organization name. Please try something else."
 msgstr "Detta är ett ogiltigt organisationsnamn. Försök med något annat."
 
+#: src/apps/organizations/templates/org/base.html:63
+#, fuzzy, python-format
+#| msgid "You are invited to <strong>&nbsp;%(orgname)s</strong>"
+msgid ""
+"An unknown error happened. We could not invite this user to "
+"<strong>%(orgname)s</strong>"
+msgstr "Du är inbjuden att <strong>&nbsp;%(orgname)s</strong>"
+
 #. Translators: This is the label for a button that submits a form to create a new organization.
 #: src/apps/organizations/templates/org/create.html:15
-#: src/apps/presets/templates/presets/new.html:45
+#: src/apps/presets/templates/presets/new.html:51
 msgid "Create"
 msgstr "Skapa"
 
@@ -709,9 +747,9 @@ msgstr "Petitioner från \"%(orgname)s\""
 msgid "Invite user"
 msgstr "Bjud in användare"
 
-#: src/apps/organizations/templates/org/invite_user.html:16
-msgid "Username"
-msgstr "Användarnamn"
+#: src/apps/organizations/templates/org/invite_user.html:11
+msgid "User icon"
+msgstr ""
 
 #: src/apps/organizations/templates/org/member_list.html:4
 msgid "Members"
@@ -744,20 +782,19 @@ msgstr "Ta bort denna medlem från organisationen."
 msgid "Unable to remove this member from the organization."
 msgstr "Det går inte att ta bort denna medlem från organisationen."
 
-#: src/apps/organizations/views/dashboard.py:41
+#: src/apps/organizations/views/dashboard.py:40
 #, python-format
 msgid "This organization does not exist: %(orgname)s."
 msgstr "Denna organisation existerar inte: %(orgname)s."
 
-#: src/apps/organizations/views/dashboard.py:52
+#: src/apps/organizations/views/dashboard.py:51
 #, python-format
 msgid "You are not part of this organization: %(orgname)s."
 msgstr "Du är inte medlem i denna organisation: %(orgname)s."
 
-#: src/apps/organizations/views/dashboard.py:64
-#: src/apps/organizations/views/members/edit_perms.py:91
-#: src/apps/petitions/forms/creation_wizard.py:266
-#: src/apps/presets/views/edit.py:66 src/apps/signatures/views/list.py:110
+#: src/apps/organizations/views/dashboard.py:63
+#: src/apps/organizations/views/members/edit_perms.py:89
+#: src/apps/presets/views/edit.py:64 src/apps/signatures/views/list.py:112
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
@@ -766,33 +803,33 @@ msgstr ""
 "Internt fel, kan inte hitta dina behörigheter kopplade till denna "
 "organisation (%(orgname)s)."
 
-#: src/apps/organizations/views/leave.py:54
+#: src/apps/organizations/views/leave.py:56
 msgid "Impossible to leave this organization, you are the last administrator"
 msgstr ""
 "Det är omöjligt att lämna denna organisation, du är den sista administratören"
 
-#: src/apps/organizations/views/leave.py:62
+#: src/apps/organizations/views/leave.py:64
 msgid "Impossible to leave this organization, you are the last member"
 msgstr ""
 "Det är omöjligt att lämna denna organisation, du är den sista medlemmen"
 
-#: src/apps/organizations/views/members/add.py:43
+#: src/apps/organizations/views/members/add.py:44
 msgid "This user does not exist (any longer?)"
 msgstr "Denna användare finns inte (längre?)"
 
-#: src/apps/organizations/views/members/add.py:47
+#: src/apps/organizations/views/members/add.py:48
 msgid "This organization does not exist (any longer?)"
 msgstr "Denna organisation finns inte (längre?)"
 
-#: src/apps/organizations/views/members/add.py:50
+#: src/apps/organizations/views/members/add.py:51
 msgid "You are not part of this organization."
 msgstr "Du är inte med i den här organisationen."
 
-#: src/apps/organizations/views/members/add.py:54
+#: src/apps/organizations/views/members/add.py:55
 msgid "You are not allowed to invite new members into this organization."
 msgstr "Du får inte bjuda in nya medlemmar till denna organisation."
 
-#: src/apps/organizations/views/members/add.py:59
+#: src/apps/organizations/views/members/add.py:60
 #, python-format
 msgid "User is already member of %(orgname)s organization."
 msgstr "Användaren är redan medlem i organisationen %(orgname)s."
@@ -816,24 +853,24 @@ msgstr "Användaren finns inte"
 msgid "Organization does not exist"
 msgstr "Organisationen finns inte"
 
-#: src/apps/organizations/views/members/edit_perms.py:52
+#: src/apps/organizations/views/members/edit_perms.py:50
 #, python-format
 msgid "User '%(name)s' does not exist"
 msgstr "Användarens '%(name)s' finns inte"
 
-#: src/apps/organizations/views/members/edit_perms.py:60
+#: src/apps/organizations/views/members/edit_perms.py:58
 #, python-format
 msgid "Organization '%(name)s' does not exist"
 msgstr "Organisationen ”%(name)s ” existerar inte"
 
-#: src/apps/organizations/views/members/edit_perms.py:67
+#: src/apps/organizations/views/members/edit_perms.py:65
 #, python-format
 msgid ""
 "The user '%(username)s' is not member of this organization (%(orgname)s)."
 msgstr ""
 "Användaren '%(username)s' är inte medlem i denna organisation (%(orgname)s)."
 
-#: src/apps/organizations/views/members/edit_perms.py:80
+#: src/apps/organizations/views/members/edit_perms.py:78
 msgid ""
 "Internal error, this member does not have permissions attached to this "
 "organization."
@@ -886,16 +923,16 @@ msgstr ""
 msgid "Permissions successfully changed!"
 msgstr "Behörigheterna har ändrats!"
 
-#: src/apps/organizations/views/new.py:36
+#: src/apps/organizations/views/new.py:37
 msgid "Only super users can create an organization."
 msgstr "Endast superanvändare kan skapa en organisation."
 
-#: src/apps/organizations/views/new.py:60
+#: src/apps/organizations/views/new.py:61
 #, python-format
 msgid "You successfully created organization '%(orgname)s'"
 msgstr "Du har skapat organisationen \"%(orgname)s\""
 
-#: src/apps/petitions/admin.py:22 src/apps/presets/admin.py:21
+#: src/apps/petitions/admin.py:34 src/apps/presets/admin.py:27
 msgid ""
 "This is a gradient color. If selected, the background color will be a "
 "gradient color. If not, the background color will be a monochrome background "
@@ -905,18 +942,18 @@ msgstr ""
 "gradientfärg. Om den inte väljs kommer bakgrundsfärgen att vara en monokrom "
 "bakgrundsfärg."
 
-#: src/apps/petitions/admin.py:26 src/apps/petitions/admin.py:27
-#: src/apps/presets/admin.py:25 src/apps/presets/admin.py:26
+#: src/apps/petitions/admin.py:38 src/apps/petitions/admin.py:39
+#: src/apps/presets/admin.py:31 src/apps/presets/admin.py:32
 msgid "Only used if gradient is selected"
 msgstr "Används bara om en gradient har valts"
 
-#: src/apps/petitions/admin.py:29 src/apps/presets/admin.py:28
+#: src/apps/petitions/admin.py:41 src/apps/presets/admin.py:34
 msgid ""
 "Put a bullet point list of links, it will appear horizontally in the page "
 "footer."
 msgstr "Gör en punktlista med länkar som kommer visas horisontellt i sidfoten."
 
-#: src/apps/petitions/admin.py:33 src/apps/presets/admin.py:32
+#: src/apps/petitions/admin.py:45 src/apps/presets/admin.py:38
 msgid ""
 "This is the description of the petition, it will be displayed when sharing "
 "on social media. You can preview it via some tools such as https://toolsaday."
@@ -926,7 +963,7 @@ msgstr ""
 "sociala medier. Du kan förhandsgranska den med hjälp av verktyg som https://"
 "toolsaday.com/seo/open-graph (var uppmärksam på spårare!)."
 
-#: src/apps/petitions/admin.py:39 src/apps/presets/admin.py:38
+#: src/apps/petitions/admin.py:51 src/apps/presets/admin.py:44
 msgid ""
 "Picture displayed when shared on social media. You can preview it via some "
 "tools such as https://toolsaday.com/seo/open-graph (be aware of trackers!)."
@@ -935,14 +972,14 @@ msgstr ""
 "med hjälp av verktyg som https://toolsaday.com/seo/open-graph (var "
 "uppmärksam på spårare!)."
 
-#: src/apps/petitions/admin.py:44 src/apps/presets/admin.py:43
+#: src/apps/petitions/admin.py:56 src/apps/presets/admin.py:49
 msgid ""
 "Allow to chose whether the newsletter subscription checkbox is shown or not."
 msgstr ""
 "Möjlighet att välja om kryssrutan för nyhetsbrevsprenumeration ska visas "
 "eller inte."
 
-#: src/apps/petitions/admin.py:47 src/apps/presets/admin.py:46
+#: src/apps/petitions/admin.py:59 src/apps/presets/admin.py:52
 msgid ""
 "Only in case \"\n"
 "            \"subscription to the newsletter via HTTP POST or GET methods. "
@@ -970,7 +1007,7 @@ msgstr ""
 "                    'your-email': ''<br>\n"
 "                    }"
 
-#: src/apps/petitions/admin.py:58 src/apps/presets/admin.py:57
+#: src/apps/petitions/admin.py:70 src/apps/presets/admin.py:63
 msgid ""
 "Only when HTTP POST or GET subscription method is used. Name of the field to "
 "send via GET or POST, containing the email address to subscribe. Following "
@@ -981,7 +1018,7 @@ msgstr ""
 "ska prenumereras på. Enligt exemplet i föregående formulärfält skulle det "
 "vara 'din-e-postadress'."
 
-#: src/apps/petitions/admin.py:64 src/apps/presets/admin.py:63
+#: src/apps/petitions/admin.py:76 src/apps/presets/admin.py:69
 msgid ""
 "Only when HTTP POST or GET subscription method is used. HTTP address to "
 "query via GET or POST to subscribe someone to the newsletter."
@@ -990,7 +1027,7 @@ msgstr ""
 "för att skicka en GET- eller POST-förfrågan för att prenumerera på "
 "nyhetsbrevet."
 
-#: src/apps/petitions/admin.py:69 src/apps/presets/admin.py:68
+#: src/apps/petitions/admin.py:81 src/apps/presets/admin.py:74
 msgid ""
 "Only when EMAIL subscription method is used.Enter here the subject line "
 "syntax that allows you to subscribe someone to the newsletter. Indicate {} "
@@ -1002,7 +1039,7 @@ msgstr ""
 "undertecknarens e-postadress ska infogas. T.ex.: ”ADD LIST_NAME {} "
 "SIGNER_NAME”"
 
-#: src/apps/petitions/admin.py:75 src/apps/presets/admin.py:74
+#: src/apps/petitions/admin.py:87 src/apps/presets/admin.py:80
 msgid ""
 "Only when EMAIL subscription method is used. The sender of the email that "
 "allows someone to subscribe to the newsletter. This is usuallyan address "
@@ -1013,7 +1050,7 @@ msgstr ""
 "nyhetsbrevet. Detta är vanligtvis en adress som är administratör för SYMPA- "
 "eller MAILMAN-listan."
 
-#: src/apps/petitions/admin.py:80 src/apps/presets/admin.py:79
+#: src/apps/petitions/admin.py:92 src/apps/presets/admin.py:85
 msgid ""
 "Only when EMAIL subscription method is used. Email addressfor list "
 "administration, e.g.: sympa@NOM_LISTE.listes.vox.coop"
@@ -1021,7 +1058,7 @@ msgstr ""
 "Endast när E-POST-prenumerationsmetoden används. E-postadress för "
 "listadministration, t.ex.: sympa@NOM_LISTE.listes.vox.coop"
 
-#: src/apps/petitions/admin.py:84 src/apps/presets/admin.py:83
+#: src/apps/petitions/admin.py:96 src/apps/presets/admin.py:89
 msgid ""
 "This selects the newsletter subscription method. It is either HTTP GET or "
 "POST or via sending EMAIL to the newsletter admin address."
@@ -1030,7 +1067,7 @@ msgstr ""
 "eller POST eller genom att skicka ett e-postmeddelande till nyhetsbrevets "
 "administratör."
 
-#: src/apps/petitions/admin.py:88 src/apps/presets/admin.py:87
+#: src/apps/petitions/admin.py:100 src/apps/presets/admin.py:93
 msgid ""
 "If checked, the petition is published and accessible on the website by "
 "everybody. If not checked, the petition is only accessible by logged in "
@@ -1040,13 +1077,13 @@ msgstr ""
 "alla på webbplatsen. Om den inte är markerad är petitionen endast "
 "tillgänglig för inloggade användare, övriga får ett 404-fel."
 
-#: src/apps/petitions/admin.py:93 src/apps/presets/admin.py:92
+#: src/apps/petitions/admin.py:105 src/apps/presets/admin.py:98
 msgid "E.g.: I want to receive updates or information from this organization."
 msgstr ""
 "Exempel: Jag vill få uppdateringar och annan information från den här "
 "organisationen."
 
-#: src/apps/petitions/admin.py:96 src/apps/presets/admin.py:95
+#: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:101
 msgid ""
 "E.g.: Your data will stay strictly confidential and will not be sold, given "
 "away or exchanged with third parties. Information about this campaign as "
@@ -1059,7 +1096,7 @@ msgstr ""
 "till dig om du har markerat kryssrutan. Du kan när som helst avsluta "
 "prenumerationen."
 
-#: src/apps/petitions/admin.py:102 src/apps/presets/admin.py:101
+#: src/apps/petitions/admin.py:114 src/apps/presets/admin.py:107
 msgid ""
 "The twitter account handle of the organization, starting with the '@' "
 "symbol. E.g.: @RAP_Asso. This is necessary in order to attribute the "
@@ -1071,19 +1108,19 @@ msgstr ""
 "konto. Se https://developer.twitter.com/en/docs/tweets/optimize-with-cards/"
 "overview/summary"
 
-#: src/apps/petitions/admin.py:108 src/apps/presets/admin.py:107
+#: src/apps/petitions/admin.py:120 src/apps/presets/admin.py:113
 msgid "Check if you want to use your own Email SMTP account."
 msgstr "Kontrollera om du vill använda ditt eget e-post-SMTP-konto."
 
-#: src/apps/petitions/admin.py:110 src/apps/presets/admin.py:109
+#: src/apps/petitions/admin.py:122 src/apps/presets/admin.py:115
 msgid "e.g.: petition@mydomain.tld"
 msgstr "t.ex: petition@min-domän.tld"
 
-#: src/apps/petitions/admin.py:112 src/apps/presets/admin.py:111
+#: src/apps/petitions/admin.py:124 src/apps/presets/admin.py:117
 msgid "If you don't have a real email account, leave 'localhost'."
 msgstr "Skriv ’localhost’ om du inte har ett riktigt e-postkonto."
 
-#: src/apps/petitions/admin.py:115 src/apps/presets/admin.py:114
+#: src/apps/petitions/admin.py:127 src/apps/presets/admin.py:120
 msgid ""
 "25 for cleartext connection, 587 for STARTTLS, 465 for TLS. Prefer TLS if "
 "the email server supports it."
@@ -1091,12 +1128,12 @@ msgstr ""
 "25 för klartextanslutning, 587 för STARTTLS, 465 för TLS. Föredra TLS om e-"
 "postservern stöder det."
 
-#: src/apps/petitions/admin.py:119 src/apps/petitions/admin.py:122
-#: src/apps/presets/admin.py:118 src/apps/presets/admin.py:121
+#: src/apps/petitions/admin.py:131 src/apps/petitions/admin.py:134
+#: src/apps/presets/admin.py:124 src/apps/presets/admin.py:127
 msgid "Leave empty if you don't use any account authentication."
 msgstr "Lämna tomt om du inte använder någon kontoautentisering."
 
-#: src/apps/petitions/admin.py:125 src/apps/presets/admin.py:124
+#: src/apps/petitions/admin.py:137 src/apps/presets/admin.py:130
 msgid ""
 "SMTP connection encrypted via TLS, prefer this rather than STARTTLS if "
 "possible. Don't check both. The 2 settings are mutually exclusive."
@@ -1104,7 +1141,7 @@ msgstr ""
 "SMTP-anslutning krypterad via TLS, föredra detta framför STARTTLS om "
 "möjligt. Markera inte båda. De två inställningarna utesluter varandra."
 
-#: src/apps/petitions/admin.py:129 src/apps/presets/admin.py:128
+#: src/apps/petitions/admin.py:141 src/apps/presets/admin.py:134
 msgid ""
 "Encrypted SMTP connection via STARTTLS, prefer TLS to this setting. Do not "
 "check both. The two settings are mutually exclusive."
@@ -1112,67 +1149,67 @@ msgstr ""
 "Krypterad SMTP-anslutning via STARTTLS, välj TLS framför denna inställning. "
 "Markera inte båda. De två inställningarna utesluter varandra."
 
-#: src/apps/petitions/admin.py:134 src/apps/presets/admin.py:133
+#: src/apps/petitions/admin.py:146 src/apps/presets/admin.py:139
 msgid "Petition title"
 msgstr "Petitionens titel"
 
-#: src/apps/petitions/admin.py:135 src/apps/presets/admin.py:134
+#: src/apps/petitions/admin.py:147 src/apps/presets/admin.py:140
 msgid "Petition text"
 msgstr "Petitionens brödtext"
 
-#: src/apps/petitions/admin.py:136 src/apps/presets/admin.py:135
+#: src/apps/petitions/admin.py:148 src/apps/presets/admin.py:141
 msgid "Side text, on top of form"
 msgstr "Sidotext, ovanför formuläret"
 
-#: src/apps/petitions/admin.py:137 src/apps/presets/admin.py:136
+#: src/apps/petitions/admin.py:149 src/apps/presets/admin.py:142
 msgid "Signature target number"
 msgstr "Namninsamlingens målantal"
 
-#: src/apps/petitions/admin.py:139 src/apps/presets/admin.py:138
+#: src/apps/petitions/admin.py:151 src/apps/presets/admin.py:144
 msgid "Number of paper (or other external medium) signatures"
 msgstr "Antal underskrifter på papper (eller annat externt medium)"
 
-#: src/apps/petitions/admin.py:142 src/apps/presets/admin.py:141
+#: src/apps/petitions/admin.py:154 src/apps/presets/admin.py:147
 msgid "Enable paper signatures accounting"
 msgstr "Tillåt signaturinsamling på papper"
 
-#: src/apps/petitions/admin.py:145 src/apps/presets/admin.py:144
+#: src/apps/petitions/admin.py:157 src/apps/presets/admin.py:150
 msgid "Direction of linear gradient for background color"
 msgstr "Riktning för linjär gradient för bakgrundsfärg"
 
-#: src/apps/petitions/admin.py:147 src/apps/presets/admin.py:146
+#: src/apps/petitions/admin.py:159 src/apps/presets/admin.py:152
 msgid "Source color for linear gradient"
 msgstr "Källfärg för linjär gradient"
 
-#: src/apps/petitions/admin.py:148 src/apps/presets/admin.py:147
+#: src/apps/petitions/admin.py:160 src/apps/presets/admin.py:153
 msgid "Destination color for linear gradient"
 msgstr "Destinationsfärg för linjär gradient"
 
-#: src/apps/petitions/admin.py:149 src/apps/presets/admin.py:148
+#: src/apps/petitions/admin.py:161 src/apps/presets/admin.py:154
 msgid "Color for monochrome background color"
 msgstr "Färg för monokrom bakgrundsfärg"
 
-#: src/apps/petitions/admin.py:150 src/apps/presets/admin.py:149
+#: src/apps/petitions/admin.py:162 src/apps/presets/admin.py:155
 msgid "Footer text"
 msgstr "Text i sidfoten"
 
-#: src/apps/petitions/admin.py:151 src/apps/presets/admin.py:150
+#: src/apps/petitions/admin.py:163 src/apps/presets/admin.py:156
 msgid "Footer links"
 msgstr "Länkar i sidfoten"
 
-#: src/apps/petitions/admin.py:153 src/apps/presets/admin.py:152
+#: src/apps/petitions/admin.py:165 src/apps/presets/admin.py:158
 msgid "Description for Twitter/Facebook cards"
 msgstr "Beskrivning för Twitter/Facebook-kort"
 
-#: src/apps/petitions/admin.py:155 src/apps/presets/admin.py:154
+#: src/apps/petitions/admin.py:167 src/apps/presets/admin.py:160
 msgid "Picture for Twitter/Facebook cards"
 msgstr "Bild för Twitter/Facebook-kort"
 
-#: src/apps/petitions/admin.py:157 src/apps/presets/admin.py:156
+#: src/apps/petitions/admin.py:169 src/apps/presets/admin.py:162
 msgid "Is the petition associated with a newsletter?"
 msgstr "Är petitionen kopplad till ett nyhetsbrev?"
 
-#: src/apps/petitions/admin.py:160 src/apps/presets/admin.py:159
+#: src/apps/petitions/admin.py:172 src/apps/presets/admin.py:165
 msgid ""
 "Data structure to be sent in order to subscribe someone to the newsletter in "
 "case of HTTP method"
@@ -1180,201 +1217,170 @@ msgstr ""
 "Datastruktur som ska skickas för att prenumerera på nyhetsbrevet vid "
 "användning av HTTP-metoden"
 
-#: src/apps/petitions/admin.py:164 src/apps/presets/admin.py:163
+#: src/apps/petitions/admin.py:176 src/apps/presets/admin.py:169
 msgid ""
 "Name of the field which should contain the email value in the PHP data "
 "structure"
 msgstr "Namnet på fältet som ska innehålla e-postvärdet i PHP-datastrukturen"
 
-#: src/apps/petitions/admin.py:168 src/apps/presets/admin.py:167
+#: src/apps/petitions/admin.py:180 src/apps/presets/admin.py:173
 msgid "HTTP URL for newsletter subscription"
 msgstr "HTTP-URL för prenumeration på nyhetsbrev"
 
-#: src/apps/petitions/admin.py:171 src/apps/presets/admin.py:170
+#: src/apps/petitions/admin.py:183 src/apps/presets/admin.py:176
 msgid "Email subject for newsletter subscription command"
 msgstr "E-postämne för prenumeration på nyhetsbrev"
 
-#: src/apps/petitions/admin.py:174 src/apps/presets/admin.py:173
+#: src/apps/petitions/admin.py:186 src/apps/presets/admin.py:179
 msgid "FROM field for newsletter subscription command"
 msgstr "FROM-fält för prenumeration på nyhetsbrev"
 
-#: src/apps/petitions/admin.py:177 src/apps/presets/admin.py:176
+#: src/apps/petitions/admin.py:189 src/apps/presets/admin.py:182
 msgid "TO field for newsletter subscription command"
 msgstr "TO-fält för prenumeration på nyhetsbrev"
 
-#: src/apps/petitions/admin.py:182
-#: src/apps/petitions/templates/petitions/edit.html:44
+#: src/apps/petitions/admin.py:194
+#: src/apps/petitions/templates/petitions/edit.html:41
 #: src/apps/petitions/templates/petitions/list.html:62
-#: src/apps/presets/admin.py:181
+#: src/apps/presets/admin.py:187
 msgid "Published"
 msgstr "Publicerad"
 
-#: src/apps/petitions/admin.py:184 src/apps/presets/admin.py:183
+#: src/apps/petitions/admin.py:196 src/apps/presets/admin.py:189
 msgid "Form label text of newsletter subscription checkbox"
 msgstr "Formulärtext för kryssrutan för prenumeration på nyhetsbrev"
 
-#: src/apps/petitions/admin.py:186 src/apps/presets/admin.py:185
+#: src/apps/petitions/admin.py:198 src/apps/presets/admin.py:191
 msgid "Sign form footer text"
 msgstr "Signera formulärets sidfotstext"
 
-#: src/apps/petitions/admin.py:187
-#: src/apps/petitions/templates/petitions/edit.html:117
-#: src/apps/presets/admin.py:186
+#: src/apps/petitions/admin.py:199
+#: src/apps/petitions/templates/petitions/edit.html:115
+#: src/apps/presets/admin.py:192
 msgid "Organization Twitter handle"
 msgstr "Organisationens användarnamn på Twitter"
 
-#: src/apps/petitions/admin.py:188 src/apps/presets/admin.py:187
+#: src/apps/petitions/admin.py:200 src/apps/presets/admin.py:193
 msgid "Use custom e-mail settings?"
 msgstr "Vill du använda anpassade e-postinställningar?"
 
-#: src/apps/petitions/admin.py:190 src/apps/presets/admin.py:189
+#: src/apps/petitions/admin.py:202 src/apps/presets/admin.py:195
 msgid "Confirmation email Reply-to address"
 msgstr "Bekräftelsemejl Svara till-adress"
 
-#: src/apps/petitions/admin.py:192 src/apps/presets/admin.py:191
+#: src/apps/petitions/admin.py:204 src/apps/presets/admin.py:197
 msgid "SMTP server hostname"
 msgstr "SMTP-serverns värdnamn"
 
-#: src/apps/petitions/admin.py:193 src/apps/presets/admin.py:192
+#: src/apps/petitions/admin.py:205 src/apps/presets/admin.py:198
 msgid "SMTP port"
 msgstr "SMTP-port"
 
-#: src/apps/petitions/admin.py:194 src/apps/presets/admin.py:193
+#: src/apps/petitions/admin.py:206 src/apps/presets/admin.py:199
 msgid "SMTP username"
 msgstr "Användarnamn för SMTP"
 
-#: src/apps/petitions/admin.py:195 src/apps/presets/admin.py:194
+#: src/apps/petitions/admin.py:207 src/apps/presets/admin.py:200
 msgid "SMTP password"
 msgstr "Lösenord för SMTP"
 
-#: src/apps/petitions/admin.py:196 src/apps/presets/admin.py:195
+#: src/apps/petitions/admin.py:208 src/apps/presets/admin.py:201
 msgid "SMTP via TLS?"
 msgstr "SMTP via TLS?"
 
-#: src/apps/petitions/admin.py:198 src/apps/presets/admin.py:197
+#: src/apps/petitions/admin.py:210 src/apps/presets/admin.py:203
 msgid "SMTP via STARTTLS?"
 msgstr "SMTP via STARTTLS?"
 
-#: src/apps/petitions/admin.py:214
+#: src/apps/petitions/admin.py:228
 msgid "To whom is this petition?"
 msgstr "Vem riktar sig petitionen till?"
 
-#: src/apps/petitions/admin.py:216 src/apps/presets/admin.py:211
+#: src/apps/petitions/admin.py:230 src/apps/presets/admin.py:219
 msgid "Content of the petition"
 msgstr "Petitionens innehåll"
 
-#: src/apps/petitions/admin.py:232 src/apps/presets/admin.py:225
+#: src/apps/petitions/admin.py:246 src/apps/presets/admin.py:233
 msgid "Background color"
 msgstr "Bakgrundsfärg"
 
-#: src/apps/petitions/admin.py:243 src/apps/presets/admin.py:236
+#: src/apps/petitions/admin.py:257 src/apps/presets/admin.py:244
 msgid "Setup of the newsletter associated to the petition"
 msgstr "Inställningar för petitionens nyhetsbrev"
 
-#: src/apps/petitions/admin.py:265 src/apps/presets/admin.py:258
+#: src/apps/petitions/admin.py:279 src/apps/presets/admin.py:266
 msgid "Confirmation email setup"
 msgstr "Inställningar för bekräftelse-e-post"
 
-#: src/apps/petitions/admin.py:269 src/apps/presets/admin.py:262
+#: src/apps/petitions/admin.py:283 src/apps/presets/admin.py:270
 msgid "Petition meta-data for social networks"
 msgstr "Metadata för petitionen på sociala media"
 
-#: src/apps/petitions/admin.py:272
+#: src/apps/petitions/admin.py:286
 msgid "Publish the petition"
 msgstr "Publicera petitionen"
 
-#: src/apps/petitions/admin.py:275
+#: src/apps/petitions/admin.py:289
 msgid "Unconfirmed signatures"
 msgstr "Obekräftade underskrifter"
 
-#: src/apps/petitions/admin.py:279
+#: src/apps/petitions/admin.py:294
 msgid "Confirmed signatures"
 msgstr "Bekräftade underskrifter"
 
-#: src/apps/petitions/forms/content.py:25
+#: src/apps/petitions/forms/content.py:29
 msgid "Show publication date"
 msgstr "Visa publiceringsdatum"
 
-#: src/apps/petitions/forms/creation_steps.py:22
-msgid "Title is required and must be a string."
+#: src/apps/petitions/forms/create_single.py:21
+#: src/apps/petitions/templates/petitions/partials/_title.html:4
+msgid "Title"
+msgstr "Titel"
+
+#: src/apps/petitions/forms/create_single.py:26
+#: src/apps/petitions/templates/petitions/partials/_illustration.html:4
+msgid "Illustration image"
+msgstr ""
+
+#: src/apps/petitions/forms/create_single.py:32
+#: src/apps/petitions/templates/petitions/edit.html:54
+#: src/apps/petitions/templates/petitions/edit.html:454
+#: src/apps/petitions/templates/petitions/edit.html:458
+#: src/apps/petitions/templates/petitions/partials/_editor.html:3
+msgid "Content"
+msgstr "Innehåll"
+
+#: src/apps/petitions/forms/create_single.py:46
+#, fuzzy
+#| msgid "Title is required and must be a string."
+msgid "Title is required."
 msgstr "Titel är obligatorisk och måste vara en sträng."
 
-#: src/apps/petitions/forms/creation_steps.py:38
-msgid "There is already a petition with this title."
-msgstr "Det finns redan en petition med samma rubrik."
-
-#: src/apps/petitions/forms/creation_steps.py:52
-msgid "You should either provide an org name or a user name."
-msgstr "Du måste ange antingen ett organisationsnamn eller ett användarnamn."
-
-#: src/apps/petitions/forms/creation_steps.py:65
-msgid "Publish the petition now?"
-msgstr "Vill du publicera petitionen nu?"
-
-#: src/apps/petitions/forms/creation_steps.py:66
-#: src/apps/petitions/templates/petitions/new_step3.html:35
-msgid "Save & Configure"
-msgstr "Spara och verkställ"
-
-#: src/apps/petitions/forms/creation_steps.py:72
-msgid "Use template"
-msgstr "Använd mall"
-
-#: src/apps/petitions/forms/creation_steps.py:75
-msgid "Template id"
-msgstr "Mall-id"
-
-#: src/apps/petitions/forms/creation_wizard.py:100
-msgid "Users are not allowed to create their own petitions."
-msgstr "Användare får inte skapa egna petitioner."
-
-#: src/apps/petitions/forms/creation_wizard.py:172
-msgid "Cannot find this organization."
-msgstr "Kan inte hitta denna organisation."
-
-#: src/apps/petitions/forms/creation_wizard.py:200
-msgid "This template does not belong to your organization."
-msgstr "Denna mall tillhör inte din organisation."
-
-#: src/apps/petitions/forms/creation_wizard.py:214
-msgid ""
-"You don't have the permission to create a new petition in this Organization."
-msgstr "Du har inte behörighet att skapa en ny petition i denna organisation."
-
-#: src/apps/petitions/forms/creation_wizard.py:232
-msgid "This template does not belong to you."
-msgstr "Denna mall tillhör inte dig."
-
-#: src/apps/petitions/forms/creation_wizard.py:251
-#: src/apps/presets/views/new.py:61
-msgid "Organization does not exist."
-msgstr "Organisationen finns inte."
-
-#: src/apps/petitions/helpers.py:25
+#: src/apps/petitions/helpers.py:27
 msgid "Petition does not exist."
 msgstr "Petitionen finns inte."
 
-#: src/apps/petitions/helpers.py:50
+#: src/apps/petitions/helpers.py:52
 msgid "This Petition has been moderated!"
 msgstr "Denna petition har modererats!"
 
-#: src/apps/petitions/helpers.py:52
+#: src/apps/petitions/helpers.py:54
 msgid "This Petition is not published yet!"
 msgstr "Den här petitionen har inte publicerats än!"
 
-#: src/apps/petitions/models/petition.py:252
+#: src/apps/petitions/models/petition.py:271
 msgid "Thank you for confirming your signature!"
 msgstr "Tack för att du har bekräftat din signatur!"
 
-#: src/apps/petitions/models/petition.py:361
+#: src/apps/petitions/models/petition.py:392
 msgid "This petition is missing an organization owner."
 msgstr "Denna petition saknar en organisationsägare."
 
-#: src/apps/petitions/models/petition.py:370
+#: src/apps/petitions/models/petition.py:401
 msgid "This petition is missing a user owner."
 msgstr "Denna petition saknar en användarägare."
 
-#: src/apps/petitions/models/petition.py:373
+#: src/apps/petitions/models/petition.py:404
 msgid "This petition is buggy. Sorry about that!"
 msgstr "Denna petition är buggig. Vi ber om ursäkt för det!"
 
@@ -1388,69 +1394,121 @@ msgstr "Slug"
 msgid "Slugs"
 msgstr "Slugs"
 
-#: src/apps/petitions/models/slug.py:33
+#: src/apps/petitions/models/slug.py:34
 msgid "A permalink cannot be empty. Please enter something."
 msgstr "En permalänk får inte vara tom. Ange något."
 
+#: src/apps/petitions/templates/petitions/_inline_create_body.html:11
+msgid "Click to add a title"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/_inline_create_body.html:17
+#, fuzzy
+#| msgid "Your petitions"
+msgid "Your petition title"
+msgstr "Dina framställningar"
+
+#: src/apps/petitions/templates/petitions/_inline_create_body.html:26
+msgid "Add an illustration"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/_inline_create_body.html:31
+#, fuzzy
+#| msgid "Petition logo placeholder"
+msgid "Illustration placeholder"
+msgstr "Platshållare för namninsamlingens logotyp"
+
+#: src/apps/petitions/templates/petitions/_inline_create_body.html:35
+msgid "Click to add an illustration"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/_inline_create_body.html:59
+#, fuzzy
+#| msgid "Give a title to your petition"
+msgid "Click here to start writing your petition..."
+msgstr "Ge din petition en titel"
+
+#: src/apps/petitions/templates/petitions/_inline_create_body.html:63
+#: src/apps/petitions/templates/petitions/edit.html:92
+#: src/apps/petitions/templates/petitions/edit.html:275
+#: src/apps/petitions/templates/petitions/edit.html:329
+#: src/apps/petitions/templates/petitions/edit.html:342
+#: src/apps/petitions/templates/petitions/edit.html:355
+msgid "Save"
+msgstr "Spara"
+
+#: src/apps/petitions/templates/petitions/_sign_form.html:39
+#: src/apps/petitions/templates/petitions/detail.html:182
+#, fuzzy
+#| msgid "Sign!"
+msgid "Sign"
+msgstr "Skriv under!"
+
+#: src/apps/petitions/templates/petitions/_sign_form.html:46
+#: src/apps/petitions/templates/petitions/_sign_form.html:91
+#: src/apps/petitions/templates/petitions/_sign_form.html:106
+#: src/apps/petitions/templates/petitions/_sign_form.html:122
+msgid "Sign the petition!"
+msgstr "Skriv under petitionen!"
+
+#: src/apps/petitions/templates/petitions/admin/change_form.html:21
+#: src/apps/signatures/templates/signatures/admin/change_form.html:20
+msgid "Breadcrumb"
+msgstr ""
+
 #: src/apps/petitions/templates/petitions/admin/change_form.html:24
-#: src/apps/signatures/templates/signatures/change_form.html:23
+#: src/apps/signatures/templates/signatures/admin/change_form.html:23
 msgid "Home"
 msgstr "Hem"
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:34
-#: src/apps/signatures/templates/signatures/change_form.html:33
+#: src/apps/petitions/templates/petitions/admin/change_form.html:38
+#: src/apps/signatures/templates/signatures/admin/change_form.html:37
 #, python-format
 msgid "Add %(name)s"
 msgstr "Lägg till %(name)s"
 
-#. Translators: "History" link in the admin change form page
-#. Translators: Link to the history page for this object in the admin interface
-#: src/apps/petitions/templates/petitions/admin/change_form.html:53
-#: src/apps/signatures/templates/signatures/change_form.html:52
+#: src/apps/petitions/templates/petitions/admin/change_form.html:57
+#: src/apps/signatures/templates/signatures/admin/change_form.html:56
 msgid "History"
 msgstr "Historia"
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:57
-#: src/apps/signatures/templates/signatures/change_form.html:56
+#: src/apps/petitions/templates/petitions/admin/change_form.html:61
+#: src/apps/signatures/templates/signatures/admin/change_form.html:60
 msgid "View on site"
 msgstr "Visa på webbplatsen"
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:68
+#: src/apps/petitions/templates/petitions/admin/change_form.html:72
 msgid "Generate confirmed signatures CSV file"
 msgstr "Generera CSV-fil med bekräftade underskrifter"
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:71
+#: src/apps/petitions/templates/petitions/admin/change_form.html:76
 msgid "Generate ALL-signatures CSV file"
 msgstr "Skapa CSV-fil med ALLA signaturer"
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:74
-msgid "Preview the petition"
-msgstr "Förhandsgranska petitionen"
-
-#: src/apps/petitions/templates/petitions/admin/change_form.html:78
+#: src/apps/petitions/templates/petitions/admin/change_form.html:83
 msgid "Show signatures"
 msgstr "Visa underskrifter"
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:81
+#: src/apps/petitions/templates/petitions/admin/change_form.html:86
 msgid "Show unconfirmed signatures"
 msgstr "Visa obekräftade underskrifter"
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:104
-#: src/apps/signatures/templates/signatures/change_form.html:88
+#: src/apps/petitions/templates/petitions/admin/change_form.html:109
+#: src/apps/signatures/templates/signatures/admin/change_form.html:93
 msgid "Please correct the error below."
 msgstr "Korrigera felet nedan."
 
-#: src/apps/petitions/templates/petitions/admin/change_form.html:106
-#: src/apps/signatures/templates/signatures/change_form.html:90
+#: src/apps/petitions/templates/petitions/admin/change_form.html:111
+#: src/apps/signatures/templates/signatures/admin/change_form.html:95
 msgid "Please correct the errors below."
 msgstr "Korrigera felen nedan."
 
-#: src/apps/petitions/templates/petitions/detail.html:80
-#: src/apps/petitions/templates/petitions/detail.html:102
+#: src/apps/petitions/templates/petitions/detail.html:71
+#: src/apps/petitions/templates/petitions/detail.html:101
 msgid "Thank you!"
 msgstr "Tack!"
 
-#: src/apps/petitions/templates/petitions/detail.html:84
+#: src/apps/petitions/templates/petitions/detail.html:79
 msgid ""
 "Thank you for signing this petition! Your signature will be accounted for as "
 "soon as you click on the link in the e-mail we've just sent you."
@@ -1458,14 +1516,14 @@ msgstr ""
 "Tack för att du undertecknat denna petition! Din underskrift registreras så "
 "snart du klickar på länken i det e-postmeddelande vi just skickat till dig."
 
-#: src/apps/petitions/templates/petitions/detail.html:91
-#: src/apps/petitions/templates/petitions/detail.html:112
-#: src/apps/signatures/templates/signatures/data.html:54
-#: src/apps/signatures/templates/signatures/data.html:70
+#: src/apps/petitions/templates/petitions/detail.html:86
+#: src/apps/petitions/templates/petitions/detail.html:114
+#: src/apps/signatures/templates/signatures/data.html:64
+#: src/apps/signatures/templates/signatures/data.html:168
 msgid "Ok"
 msgstr "Ok"
 
-#: src/apps/petitions/templates/petitions/detail.html:106
+#: src/apps/petitions/templates/petitions/detail.html:108
 msgid ""
 "Thank you for confirming your signature to this petition! Your signature is "
 "now accounted for. See you soon!"
@@ -1473,32 +1531,35 @@ msgstr ""
 "Tack för att du bekräftade din underskrift på denna petition! Din "
 "underskrift är nu registrerad. Vi ses snart!"
 
-#: src/apps/petitions/templates/petitions/detail.html:128
+#: src/apps/petitions/templates/petitions/detail.html:129
 msgid "Instance address"
 msgstr "Instansadress"
 
-#: src/apps/petitions/templates/petitions/detail.html:135
+#: src/apps/petitions/templates/petitions/detail.html:137
 msgid "Enter your Mastodon instance's address"
 msgstr "Ange adressen till din Mastodon-instans"
 
-#: src/apps/petitions/templates/petitions/detail.html:143
-#: src/apps/presets/templates/presets/list.html:74
-msgid "Close"
-msgstr "Stäng"
-
-#: src/apps/petitions/templates/petitions/detail.html:144
+#: src/apps/petitions/templates/petitions/detail.html:148
 msgid "Share"
 msgstr "Dela"
 
-#: src/apps/petitions/templates/petitions/detail.html:154
-msgid "SIGN"
-msgstr "UNDERTEKN"
+#: src/apps/petitions/templates/petitions/detail.html:163
+#: src/apps/petitions/templates/petitions/detail.html:232
+#: src/apps/petitions/templates/petitions/detail.html:240
+#, fuzzy
+#| msgid "Sign the petition!"
+msgid "Sign the petition"
+msgstr "Skriv under petitionen!"
 
-#: src/apps/petitions/templates/petitions/detail.html:160
+#: src/apps/petitions/templates/petitions/detail.html:180
+msgid "Open sign form"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/detail.html:189
 msgid "Careful!"
 msgstr "Var försiktig!"
 
-#: src/apps/petitions/templates/petitions/detail.html:161
+#: src/apps/petitions/templates/petitions/detail.html:190
 msgid ""
 "This petition is not published yet. You can only see it because you are "
 "logged-in as either its creator or a member of the organization which "
@@ -1508,149 +1569,150 @@ msgstr ""
 "inloggad som dess skapare eller som medlem i den organisation som skapade "
 "den. Andra besökare kan inte se den."
 
-#: src/apps/petitions/templates/petitions/detail.html:173
+#: src/apps/petitions/templates/petitions/detail.html:205
 msgid ""
 "This petition is moderated. You only see it because you are its creator."
 msgstr "Denna petition modereras. Du ser den bara eftersom du är dess skapare."
 
-#. Translators: shows current number of signatures on a petition
-#: src/apps/petitions/templates/petitions/detail.html:185
-#, python-format
+#: src/apps/petitions/templates/petitions/detail.html:215
+msgid "Published on: "
+msgstr "Publicerad den: "
+
+#: src/apps/petitions/templates/petitions/detail.html:222
+#, fuzzy
+#| msgid "Actions"
+msgid "Associations"
+msgstr "Åtgärder"
+
+#: src/apps/petitions/templates/petitions/detail.html:243
+#, fuzzy, python-format
+#| msgctxt "petition stats"
+#| msgid ""
+#| "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
+#| msgid_plural ""
+#| "Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
 msgctxt "petition stats"
-msgid "Already <span id=\"nb-signatures\">%(count|localize)s</span> signature."
-msgid_plural ""
-"Already <span id=\"nb-signatures\">%(count|localize)s</span> signatures."
+msgid "Already <span id=\"nb-signatures\">%(count)s</span> signature."
+msgid_plural "Already <span id=\"nb-signatures\">%(count)s</span> signatures."
 msgstr[0] ""
 "Redan <span id=\"nb-signatures\">%(count|localize)s</span> signatur."
 msgstr[1] ""
 "Redan <span id=\"nb-signatures\">%(count|localize)s</span> underskrifter."
 
-#. Translators: label before the numeric goal value
-#: src/apps/petitions/templates/petitions/detail.html:191
+#: src/apps/petitions/templates/petitions/detail.html:248
 #, python-format
 msgctxt "petition stats"
 msgid "Goal: <span class=\"format-number\">%(target)s</span>"
 msgstr "Mål: <span class=\"format-number\">%(target)s</span>"
 
-#: src/apps/petitions/templates/petitions/detail.html:255
-#: src/apps/petitions/templates/petitions/detail.html:298
-#: src/apps/petitions/templates/petitions/detail.html:312
-#: src/apps/petitions/templates/petitions/detail.html:326
-msgid "Sign the petition!"
-msgstr "Skriv under petitionen!"
-
-#: src/apps/petitions/templates/petitions/detail.html:367
-msgid "Published on: "
-msgstr "Publicerad den: "
-
-#: src/apps/petitions/templates/petitions/edit.html:25
+#: src/apps/petitions/templates/petitions/edit.html:22
 msgid "Petition settings"
 msgstr "Inställningar för namninsamlingar"
 
-#: src/apps/petitions/templates/petitions/edit.html:42
+#: src/apps/petitions/templates/petitions/edit.html:39
 #: src/apps/petitions/templates/petitions/list.html:60
 msgid "Not published"
 msgstr "Ej publicerad"
 
-#: src/apps/petitions/templates/petitions/edit.html:61
-#: src/apps/petitions/templates/petitions/edit.html:465
-#: src/apps/petitions/templates/petitions/edit.html:471
+#: src/apps/petitions/templates/petitions/edit.html:59
+#: src/apps/petitions/templates/petitions/edit.html:472
+#: src/apps/petitions/templates/petitions/edit.html:476
 msgid "Style & Look"
 msgstr "Stil och utseende"
 
-#: src/apps/petitions/templates/petitions/edit.html:66
-#: src/apps/petitions/templates/petitions/edit.html:495
-#: src/apps/petitions/templates/petitions/edit.html:501
+#: src/apps/petitions/templates/petitions/edit.html:64
+#: src/apps/petitions/templates/petitions/edit.html:496
+#: src/apps/petitions/templates/petitions/edit.html:500
 msgid "Social Networks"
 msgstr "Sociala nätverk"
 
-#: src/apps/petitions/templates/petitions/edit.html:71
-#: src/apps/petitions/templates/petitions/edit.html:480
-#: src/apps/petitions/templates/petitions/edit.html:486
-msgid "E-mail setup"
-msgstr "E-postinställningar"
+#: src/apps/petitions/templates/petitions/edit.html:69
+#: src/apps/petitions/templates/petitions/edit.html:484
+#: src/apps/petitions/templates/petitions/edit.html:488
+#, fuzzy
+#| msgid "Email"
+msgid "E-mail"
+msgstr "E-post"
 
-#: src/apps/petitions/templates/petitions/edit.html:76
-#: src/apps/petitions/templates/petitions/edit.html:510
-#: src/apps/petitions/templates/petitions/edit.html:516
-msgid "Newsletter setup"
+#: src/apps/petitions/templates/petitions/edit.html:74
+#: src/apps/petitions/templates/petitions/edit.html:508
+#: src/apps/petitions/templates/petitions/edit.html:512
+#, fuzzy
+#| msgid "Newsletter setup"
+msgid "Newsletter"
 msgstr "Nyhetsbrevsinställningar"
 
-#: src/apps/petitions/templates/petitions/edit.html:81
+#: src/apps/petitions/templates/petitions/edit.html:79
 msgid "Preview petition"
 msgstr "Förhandsgranska petition"
 
-#: src/apps/petitions/templates/petitions/edit.html:94
-#: src/apps/petitions/templates/petitions/edit.html:293
-#: src/apps/petitions/templates/petitions/edit.html:349
-#: src/apps/petitions/templates/petitions/edit.html:362
-#: src/apps/petitions/templates/petitions/edit.html:375
-#: src/apps/petitions/templates/petitions/new_step3.html:39
-#: src/apps/petitions/templates/petitions/new_step3.html:40
-msgid "Save"
-msgstr "Spara"
-
-#: src/apps/petitions/templates/petitions/edit.html:105
+#: src/apps/petitions/templates/petitions/edit.html:103
 msgid "Twitter description"
 msgstr "Beskrivning på Twitter"
 
-#: src/apps/petitions/templates/petitions/edit.html:129
-#: src/apps/petitions/templates/petitions/edit.html:137
+#: src/apps/petitions/templates/petitions/edit.html:127
+#: src/apps/petitions/templates/petitions/edit.html:135
 msgid "Enable email share button?"
 msgstr "Aktivera knappen för delning via e-post?"
 
-#: src/apps/petitions/templates/petitions/edit.html:143
-#: src/apps/petitions/templates/petitions/edit.html:152
+#: src/apps/petitions/templates/petitions/edit.html:141
+#: src/apps/petitions/templates/petitions/edit.html:149
 msgid "Enable Facebook share button?"
 msgstr "Aktivera Facebook-delningsknappen?"
 
-#: src/apps/petitions/templates/petitions/edit.html:159
-#: src/apps/petitions/templates/petitions/edit.html:167
+#: src/apps/petitions/templates/petitions/edit.html:155
+#: src/apps/petitions/templates/petitions/edit.html:163
 msgid "Enable Tumblr share button?"
 msgstr "Aktivera Tumblr-delningsknappen?"
 
-#: src/apps/petitions/templates/petitions/edit.html:173
-#: src/apps/petitions/templates/petitions/edit.html:182
+#: src/apps/petitions/templates/petitions/edit.html:169
+#: src/apps/petitions/templates/petitions/edit.html:177
 msgid "Enable LinkedIn share button?"
 msgstr "Aktivera LinkedIn-delningsknappen?"
 
-#: src/apps/petitions/templates/petitions/edit.html:189
-#: src/apps/petitions/templates/petitions/edit.html:198
+#: src/apps/petitions/templates/petitions/edit.html:183
+#: src/apps/petitions/templates/petitions/edit.html:191
 msgid "Enable Twitter share button?"
 msgstr "Aktivera Twitter-delningsknappen?"
 
+#: src/apps/petitions/templates/petitions/edit.html:197
 #: src/apps/petitions/templates/petitions/edit.html:205
-#: src/apps/petitions/templates/petitions/edit.html:214
 msgid "Enable Mastodon share button?"
 msgstr "Aktivera Mastodon-delningsknappen?"
 
-#: src/apps/petitions/templates/petitions/edit.html:221
-#: src/apps/petitions/templates/petitions/edit.html:230
+#: src/apps/petitions/templates/petitions/edit.html:211
+#: src/apps/petitions/templates/petitions/edit.html:219
 msgid "Enable Whatsapp share button?"
 msgstr "Aktivera Whatsapp-delningsknappen?"
 
-#: src/apps/petitions/templates/petitions/edit.html:242
+#: src/apps/petitions/templates/petitions/edit.html:225
 msgid "Twitter image"
 msgstr "Twitter-bild"
 
-#: src/apps/petitions/templates/petitions/edit.html:244
+#: src/apps/petitions/templates/petitions/edit.html:232
+#: src/apps/petitions/templates/petitions/edit.html:399
 msgid "Upload"
 msgstr "Ladda upp"
 
-#: src/apps/petitions/templates/petitions/edit.html:252
-#: src/apps/petitions/templates/petitions/edit.html:416
-msgid "Choose file"
-msgstr "Välj fil"
+#: src/apps/petitions/templates/petitions/edit.html:239
+msgid "Choose an image for social sharing cards."
+msgstr ""
 
-#: src/apps/petitions/templates/petitions/edit.html:263
+#: src/apps/petitions/templates/petitions/edit.html:249
 msgid "Image"
 msgstr "Bild"
 
-#: src/apps/petitions/templates/petitions/edit.html:284
+#: src/apps/petitions/templates/petitions/edit.html:261
+#, fuzzy
+#| msgid "Petition logo placeholder"
+msgid "Upload placeholder"
+msgstr "Platshållare för namninsamlingens logotyp"
+
+#: src/apps/petitions/templates/petitions/edit.html:266
 msgid "Remove image"
 msgstr "Ta bort bild"
 
-#: src/apps/petitions/templates/petitions/edit.html:297
+#: src/apps/petitions/templates/petitions/edit.html:279
 msgid ""
 "A permalink (permanent link) is what allows you to share your petition with "
 "a nice link containing a meaningful small title instead of a number. With a "
@@ -1660,15 +1722,15 @@ msgstr ""
 "länk som innehåller en meningsfull liten titel istället för ett nummer. Med "
 "en permalänk kan din petition nås via en länk som:"
 
-#: src/apps/petitions/templates/petitions/edit.html:313
+#: src/apps/petitions/templates/petitions/edit.html:293
 msgid "Permalinks"
 msgstr "Permalänkar"
 
-#: src/apps/petitions/templates/petitions/edit.html:314
+#: src/apps/petitions/templates/petitions/edit.html:294
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: src/apps/petitions/templates/petitions/edit.html:384
+#: src/apps/petitions/templates/petitions/edit.html:364
 msgid ""
 "Beware: this preview shows the current state of the petition. <br /> If you "
 "modified some settings, please save if you want to see them in the preview."
@@ -1677,119 +1739,164 @@ msgstr ""
 "> Om du har ändrat några inställningar, spara dem om du vill se dem i "
 "förhandsgranskningen."
 
-#: src/apps/petitions/templates/petitions/edit.html:451
-#: src/apps/petitions/templates/petitions/edit.html:466
-#: src/apps/petitions/templates/petitions/edit.html:481
-#: src/apps/petitions/templates/petitions/edit.html:496
-#: src/apps/petitions/templates/petitions/edit.html:511
-msgid "unsaved"
-msgstr "osparad"
+#: src/apps/petitions/templates/petitions/edit.html:593
+msgid ""
+"You have un-saved modifications in the petition, are you sure you want to "
+"leave this page? You would lose your changes."
+msgstr ""
 
-#: src/apps/petitions/templates/petitions/edit.html:592
-msgid "OK"
-msgstr "OK"
-
-#: src/apps/petitions/templates/petitions/generic_list.html:40
+#: src/apps/petitions/templates/petitions/generic_list.html:55
 msgid "Sign!"
 msgstr "Skriv under!"
 
-#: src/apps/petitions/templates/petitions/generic_list.html:44
+#: src/apps/petitions/templates/petitions/generic_list.html:59
 #, python-format
 msgid "%(signature_number)s signature"
 msgid_plural "%(signature_number)s signatures"
 msgstr[0] "%(signature_number)s signatur"
 msgstr[1] "%(signature_number)s underskrifter"
 
+#: src/apps/petitions/templates/petitions/generic_list.html:73
+#, fuzzy
+#| msgid "Petition"
+msgid "Pagination"
+msgstr "Petition"
+
+#: src/apps/petitions/templates/petitions/generic_list.html:79
+#, fuzzy
+#| msgid "Previous step"
+msgid "Previous"
+msgstr "Föregående steg"
+
+#: src/apps/petitions/templates/petitions/generic_list.html:89
+msgid "current"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/generic_list.html:101
+msgid "Next"
+msgstr "Nästa"
+
 #: src/apps/petitions/templates/petitions/list.html:12
 msgid "You don't have any petitions yet."
 msgstr "Du har inga petitioner ännu."
 
-#: src/apps/petitions/templates/petitions/list.html:68
-msgid "This petition is moderated"
-msgstr "Denna petition modereras"
+#: src/apps/petitions/templates/petitions/list.html:47
+#, fuzzy
+#| msgid "Signatures"
+msgid "signatures"
+msgstr "Underskrifter"
 
-#: src/apps/petitions/templates/petitions/list.html:76
+#: src/apps/petitions/templates/petitions/list.html:69
+msgid "Moderated"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/list.html:77
+#: src/apps/petitions/templates/petitions/list.html:80
 msgid "View petition"
 msgstr "Visa petition"
 
-#: src/apps/petitions/templates/petitions/list.html:83
+#: src/apps/petitions/templates/petitions/list.html:84
+#: src/apps/petitions/templates/petitions/list.html:87
 msgid "Edit petition"
 msgstr "Redigera petition"
 
-#: src/apps/petitions/templates/petitions/list.html:88
+#: src/apps/petitions/templates/petitions/list.html:92
+#: src/apps/petitions/templates/petitions/list.html:94
 msgid "View signatures"
 msgstr "Visa underskrifter"
 
-#: src/apps/petitions/templates/petitions/list.html:95
+#: src/apps/petitions/templates/petitions/list.html:99
+#: src/apps/petitions/templates/petitions/list.html:101
 msgid "Transfer this petition"
 msgstr "Överför denna petition"
 
-#: src/apps/petitions/templates/petitions/list.html:99
+#: src/apps/petitions/templates/petitions/list.html:103
+#: src/apps/petitions/templates/petitions/list.html:109
 msgid "Delete the petition"
 msgstr "Ta bort petitionen"
 
-#: src/apps/petitions/templates/petitions/list.html:119
+#: src/apps/petitions/templates/petitions/list.html:123
 msgid "Delete petition?"
 msgstr "Radera petition?"
 
-#: src/apps/petitions/templates/petitions/list.html:123
+#: src/apps/petitions/templates/petitions/list.html:130
 #, python-format
 msgid "Do you really want to delete petition \"%(title)s\"?"
 msgstr "Vill du verkligen ta bort petitionen \"%(title)s\"?"
 
-#: src/apps/petitions/templates/petitions/new_step1.html:29
-#: src/apps/petitions/templates/petitions/new_step2.html:39
-msgid "Next"
-msgstr "Nästa"
+#: src/apps/petitions/templates/petitions/partials/_illustration.html:6
+msgid "Optional. Shown at the top and used for social preview."
+msgstr ""
 
-#: src/apps/petitions/templates/petitions/new_step2.html:37
-#: src/apps/petitions/templates/petitions/new_step3.html:66
-msgid "Previous step"
-msgstr "Föregående steg"
+#: src/apps/petitions/templates/petitions/partials/_illustration.html:9
+msgid "Illustration preview"
+msgstr ""
 
-#: src/apps/petitions/templates/petitions/new_step3.html:26
-msgid "Petition logo placeholder"
-msgstr "Platshållare för namninsamlingens logotyp"
-
-#: src/apps/petitions/templates/petitions/new_step3.html:61
-msgid "First step"
-msgstr "Första steget"
-
-#: src/apps/petitions/templates/petitions/transfer.html:7
+#: src/apps/petitions/templates/petitions/transfer.html:9
 msgid "Transfer petition"
 msgstr "Överför petition"
 
-#: src/apps/petitions/templates/petitions/transfer.html:13
+#: src/apps/petitions/templates/petitions/transfer.html:16
 msgid "You are going to transfer this petition to someone else:"
 msgstr "Du kommer att överföra denna petition till någon annan:"
 
-#: src/apps/petitions/templates/petitions/transfer.html:25
+#: src/apps/petitions/templates/petitions/transfer.html:30
 msgid ""
 "Enter the name of the user or organization you want to give the petition to:"
 msgstr ""
 "Ange namnet på den användare eller organisation som du vill skicka "
 "petitionen till:"
 
-#: src/apps/petitions/templates/petitions/transfer.html:29
+#: src/apps/petitions/templates/petitions/transfer.html:35
 msgid "User or Organization name"
 msgstr "Användar- eller organisationsnamn"
 
-#: src/apps/petitions/templates/petitions/transfer.html:44
+#: src/apps/petitions/templates/petitions/transfer.html:39
+msgid "Type at least 2 characters to start searching."
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/transfer.html:40
+#: src/apps/petitions/templates/petitions/transfer.html:197
+msgid "Please enter at least 2 characters."
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/transfer.html:66
 msgid "Transfer this petition?"
 msgstr "Överföra denna petition?"
 
-#: src/apps/petitions/templates/petitions/transfer.html:49
+#: src/apps/petitions/templates/petitions/transfer.html:74
 msgid "Do you really want to transfer the following petition?"
 msgstr "Vill du verkligen överföra följande petition?"
 
-#: src/apps/petitions/templates/petitions/transfer.html:55
-msgid "It will be transfered to:"
+#: src/apps/petitions/templates/petitions/transfer.html:78
+#, fuzzy
+#| msgid "It will be transfered to:"
+msgid "It will be transferred to:"
 msgstr "Den kommer att överföras till:"
 
-#. Translators: Button to confirm the transfer of a petition
-#: src/apps/petitions/templates/petitions/transfer.html:67
+#: src/apps/petitions/templates/petitions/transfer.html:88
 msgid "Transfer"
 msgstr "Överföring"
+
+#: src/apps/petitions/templates/petitions/transfer.html:147
+#: src/apps/petitions/templates/petitions/transfer.html:224
+msgid "No results"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/transfer.html:201
+#, fuzzy
+#| msgid "Search"
+msgid "Searching…"
+msgstr "Sök"
+
+#: src/apps/petitions/templates/petitions/transfer.html:223
+msgid "Found"
+msgstr ""
+
+#: src/apps/petitions/templates/petitions/transfer.html:227
+#: src/apps/signatures/templates/signatures/data.html:223
+msgid "Unable to load the data at the moment. Please try again later."
+msgstr ""
 
 #: src/apps/petitions/views/edit.py:44
 msgid "You are not allowed to edit this petition."
@@ -1799,43 +1906,63 @@ msgstr "Du har inte behörighet att redigera denna petition."
 msgid "save-the-kittens-from-bad-wolf"
 msgstr "rädda-kattungarna-från-den-elaka-vargen"
 
-#: src/apps/petitions/views/show_petition.py:58
-#: src/apps/petitions/views/show_petition.py:65
-#: src/apps/petitions/views/show_petition.py:67
+#: src/apps/petitions/views/new.py:43
+msgid "Users are not allowed to create their own petitions."
+msgstr "Användare får inte skapa egna petitioner."
+
+#: src/apps/petitions/views/new.py:73
+#, fuzzy
+#| msgid "Petition template"
+msgid "Petition created."
+msgstr "Mall för namninsamling"
+
+#: src/apps/petitions/views/show_petition.py:59
+#: src/apps/petitions/views/show_petition.py:66
+#: src/apps/petitions/views/show_petition.py:68
 msgid "Sorry, we are not able to find this petition."
 msgstr "Tyvärr kan vi inte hitta denna petition."
 
-#: src/apps/petitions/views/slug/add.py:24
-#: src/apps/petitions/views/slug/delete.py:26
+#: src/apps/petitions/views/slug/add.py:27
+#: src/apps/petitions/views/slug/delete.py:28
 msgid "This petition does not exist (anymore?)."
 msgstr "Denna petition finns inte (längre?)."
 
-#: src/apps/petitions/views/slug/add.py:30
-msgid "You entered an empty slug text"
+#: src/apps/petitions/views/slug/add.py:33
+#, fuzzy
+#| msgid "You entered an empty slug text"
+msgid "You entered an empty slug text."
 msgstr "Du har angett en tom slug-text"
 
-#: src/apps/petitions/views/slug/add.py:38
-msgid "Successful addition of the slug '{}'!"
+#: src/apps/petitions/views/slug/add.py:43
+#, fuzzy, python-format
+#| msgid "Successful addition of the slug '{}'!"
+msgid "Successful addition of the slug '%(slugtext)s' to the petition."
 msgstr "Sluggen '{}' har lagts till!"
 
-#: src/apps/petitions/views/slug/add.py:42
-msgid "The slug '{}' already exists!"
+#: src/apps/petitions/views/slug/add.py:52
+#, fuzzy, python-format
+#| msgid "The slug '{}' already exists!"
+msgid "The slug '%(slugtext)s' already exists."
 msgstr "Sluggen '{}' finns redan!"
 
-#: src/apps/petitions/views/slug/add.py:49
-#: src/apps/petitions/views/slug/delete.py:41
-msgid "You don't have the permission to modify petitions"
+#: src/apps/petitions/views/slug/add.py:60
+#: src/apps/petitions/views/slug/delete.py:43
+#, fuzzy
+#| msgid "You don't have the permission to modify petitions"
+msgid "You don't have the permission to modify petitions."
 msgstr "Du har inte behörighet att ändra petitioner"
 
-#: src/apps/petitions/views/slug/delete.py:39
-msgid "Successful deletion of a slug"
+#: src/apps/petitions/views/slug/delete.py:41
+#, fuzzy
+#| msgid "Successful deletion of a slug"
+msgid "Successful deletion of a slug."
 msgstr "Slutför borttagning av en slug"
 
-#: src/apps/petitions/views/transfer.py:40
+#: src/apps/petitions/views/transfer.py:39
 msgid "This petition does not exist."
 msgstr "Denna petition finns inte."
 
-#: src/apps/petitions/views/transfer.py:52
+#: src/apps/petitions/views/transfer.py:51
 #, python-format
 msgid ""
 "You don't have the permission to transfer a petition from Organization "
@@ -1844,48 +1971,48 @@ msgstr ""
 "Du har inte behörighet att överföra en petition från organisationen. "
 "%(org_name)s"
 
-#: src/apps/petitions/views/transfer.py:63
+#: src/apps/petitions/views/transfer.py:62
 msgid "You don't have the permission to transfer this petition."
 msgstr "Du har inte behörighet att överföra denna petition."
 
-#: src/apps/petitions/views/transfer.py:78
+#: src/apps/petitions/views/transfer.py:77
 msgid "Incorrect request, something went wrong."
 msgstr "Felaktig begäran, något gick fel."
 
-#: src/apps/petitions/views/transfer.py:92
+#: src/apps/petitions/views/transfer.py:91
 msgid ""
 "Users are not allowed to transfer petitions to organizations on this "
 "instance."
 msgstr ""
 "Användare får inte överföra petitioner till organisationer på denna instans."
 
-#: src/apps/petitions/views/transfer.py:104
+#: src/apps/petitions/views/transfer.py:103
 msgid "You tried to transfer a petition to a non-exiting account."
 msgstr "Du försökte överföra en petition till ett konto som inte finns."
 
-#: src/apps/petitions/views/transfer.py:112
+#: src/apps/petitions/views/transfer.py:111
 msgid "Petition successfully transfered!"
 msgstr "Petitionen har överförts!"
 
-#: src/apps/petitions/views/transfer.py:116
+#: src/apps/petitions/views/transfer.py:115
 msgid "Something went wrong while transferring this petition."
 msgstr "Något gick fel vid överföringen av denna petition."
 
-#: src/apps/presets/admin.py:207
+#: src/apps/presets/admin.py:215
 msgid "To whom is this petition template?"
 msgstr "Vem är denna petitionmall avsedd för?"
 
 #. Translators: Petition template model name in models (admin interface)
-#: src/apps/presets/models/petition_template.py:95
+#: src/apps/presets/models/petition_template.py:101
 msgid "Petition template"
 msgstr "Mall för namninsamling"
 
 #. Translators: Petition template model name plural in models (admin interface)
-#: src/apps/presets/models/petition_template.py:97
+#: src/apps/presets/models/petition_template.py:103
 msgid "Petition Templates"
 msgstr "Petitionsmallar"
 
-#: src/apps/presets/services.py:112
+#: src/apps/presets/services.py:114
 msgid "This template does not exist."
 msgstr "Denna mall finns inte."
 
@@ -1918,23 +2045,29 @@ msgstr "Ta bort mall"
 msgid "Delete this template?"
 msgstr "Ska denna mall raderas?"
 
-#: src/apps/presets/templates/presets/list.html:68
+#: src/apps/presets/templates/presets/list.html:69
 msgid "You are about to delete the following petition template:"
 msgstr "Du är på väg att radera följande petitionmall:"
 
-#: src/apps/presets/templates/presets/list.html:70
+#: src/apps/presets/templates/presets/list.html:71
 msgid "Do you really want to do this?"
 msgstr "Vill du verkligen göra detta?"
 
-#: src/apps/presets/templates/presets/new.html:6
+#: src/apps/presets/templates/presets/new.html:7
 msgid "Create a petition template"
 msgstr "Skapa en petitionmall"
 
-#: src/apps/presets/templates/presets/new.html:18
+#: src/apps/presets/templates/presets/new.html:16
+#, fuzzy
+#| msgid "Choose file"
+msgid "Close alert"
+msgstr "Välj fil"
+
+#: src/apps/presets/templates/presets/new.html:22
 msgid "Beware, you are creating a template, not a petition!"
 msgstr "Observera att du skapar en mall, inte en petition!"
 
-#: src/apps/presets/templates/presets/new.html:20
+#: src/apps/presets/templates/presets/new.html:24
 msgid ""
 "A petition template allows you to put default values for future petitions. "
 "<br /> For instance you might want to re-use the same e-mail SMTP account "
@@ -1944,19 +2077,25 @@ msgstr ""
 "petitioner. <br /> Du kanske till exempel vill återanvända samma e-post-SMTP-"
 "konto för flera petitioner."
 
-#: src/apps/presets/templates/presets/new.html:36
+#: src/apps/presets/templates/presets/new.html:40
 msgid "Template name"
 msgstr "Mallnamn"
 
-#: src/apps/presets/templates/presets/new.html:41
+#: src/apps/presets/templates/presets/new.html:45
 msgid "My template name"
 msgstr "Mitt mallnamn"
 
-#: src/apps/presets/templates/presets/new.html:43
+#: src/apps/presets/templates/presets/new.html:48
 msgid "Each template must have a different name"
 msgstr "Varje mall måste ha ett unikt namn"
 
-#: src/apps/presets/views/edit.py:73
+#: src/apps/presets/templates/presets/new.html:49
+#, fuzzy
+#| msgid "You need to provide a template name."
+msgid "Please provide a unique template name."
+msgstr "Du måste ange ett mallnamn."
+
+#: src/apps/presets/views/edit.py:71
 msgid "You are not allowed to edit this template."
 msgstr "Du får inte redigera denna mall."
 
@@ -1964,11 +2103,15 @@ msgstr "Du får inte redigera denna mall."
 msgid "You are not allowed to change this user's default template."
 msgstr "Du får inte ändra denna användares standardmall."
 
-#: src/apps/presets/views/new.py:65
+#: src/apps/presets/views/new.py:59
+msgid "Organization does not exist."
+msgstr "Organisationen finns inte."
+
+#: src/apps/presets/views/new.py:63
 msgid "You are not allowed to view this organization dashboard."
 msgstr "Du har inte behörighet att visa denna organisations instrumentpanel."
 
-#: src/apps/presets/views/new.py:74
+#: src/apps/presets/views/new.py:72
 #, python-format
 msgid ""
 "Internal error, cannot find your permissions attached to this organization "
@@ -1977,175 +2120,226 @@ msgstr ""
 "Internt fel, kan inte hitta dina behörigheter kopplade till denna "
 "organisation ('%(orgname)s')."
 
-#: src/apps/presets/views/new.py:84
+#: src/apps/presets/views/new.py:82
 msgid "You don't have the permission to create a Template in this organization"
 msgstr "Du har inte behörighet att skapa en mall i denna organisation"
 
-#: src/apps/presets/views/new.py:104
+#: src/apps/presets/views/new.py:102
 msgid "You need to provide a template name."
 msgstr "Du måste ange ett mallnamn."
 
-#: src/apps/signatures/forms.py:32
+#: src/apps/signatures/forms.py:38
 msgid "First name *"
 msgstr "Förnamn *"
 
-#: src/apps/signatures/forms.py:39
+#: src/apps/signatures/forms.py:45
 msgid "Last name *"
 msgstr "Efternamn *"
 
-#: src/apps/signatures/forms.py:46 src/apps/signatures/models/signature.py:22
+#: src/apps/signatures/forms.py:52 src/apps/signatures/models/signature.py:26
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-#: src/apps/signatures/forms.py:53
+#: src/apps/signatures/forms.py:59
 msgid "Email address *"
 msgstr "E-postadress *"
 
-#: src/apps/signatures/models/signature.py:18
-#: src/apps/signatures/templates/signatures/data.html:86
+#: src/apps/signatures/models/signature.py:22
+#: src/apps/signatures/templates/signatures/data.html:84
 msgid "First name"
 msgstr "Förnamn"
 
-#: src/apps/signatures/models/signature.py:20
-#: src/apps/signatures/templates/signatures/data.html:87
+#: src/apps/signatures/models/signature.py:24
+#: src/apps/signatures/templates/signatures/data.html:85
 msgid "Last name"
 msgstr "Efternamn"
 
-#: src/apps/signatures/models/signature.py:24
-msgid "Email address"
-msgstr "E-postadress"
-
-#: src/apps/signatures/models/signature.py:29
+#: src/apps/signatures/models/signature.py:33
+#: src/apps/signatures/templates/signatures/data.html:114
 msgid "Confirmed"
 msgstr "Bekräftad"
 
-#: src/apps/signatures/models/signature.py:32
+#: src/apps/signatures/models/signature.py:36
 msgid "Petition"
 msgstr "Petition"
 
-#: src/apps/signatures/models/signature.py:35
+#: src/apps/signatures/models/signature.py:39
 msgid "Subscribed to mailing list"
 msgstr "Prenumererar på nyhetsbrevet"
 
-#: src/apps/signatures/models/signature.py:38
-#: src/apps/signatures/templates/signatures/data.html:92
+#: src/apps/signatures/models/signature.py:42
+#: src/apps/signatures/templates/signatures/data.html:90
 msgid "Date"
 msgstr "Datum"
 
-#: src/apps/signatures/models/signature.py:44
+#: src/apps/signatures/models/signature.py:50
 msgid "Signature"
 msgstr "Signatur"
 
-#: src/apps/signatures/models/signature.py:45
-#: src/apps/signatures/templates/signatures/data.html:6
+#: src/apps/signatures/models/signature.py:51
+#: src/apps/signatures/templates/signatures/data.html:9
 msgid "Signatures"
 msgstr "Underskrifter"
 
-#: src/apps/signatures/models/signature.py:55
+#: src/apps/signatures/models/signature.py:62
 msgid "You already signed the petition"
 msgstr "Du har redan skrivit under petitionen"
 
-#: src/apps/signatures/templates/signatures/data.html:24
+#: src/apps/signatures/templates/signatures/admin/change_form.html:71
+#, fuzzy
+#| msgid "Re-send selected confirmation e-mail"
+msgid "Re-send confirmation email"
+msgstr "Skicka om valt bekräftelsemejl"
+
+#: src/apps/signatures/templates/signatures/data.html:29
 msgid "Export <strong>ALL</strong> signatures (CSV)"
 msgstr "Exportera <strong>ALLA</strong> underskrifter (CSV)"
 
-#: src/apps/signatures/templates/signatures/data.html:29
+#: src/apps/signatures/templates/signatures/data.html:34
 msgid "Export <strong>confirmed</strong> signatures (CSV)"
 msgstr "Exportera <strong>bekräftade</strong> underskrifter (CSV)"
 
-#: src/apps/signatures/templates/signatures/data.html:35
-#: src/apps/signatures/templates/signatures/data.html:66
+#: src/apps/signatures/templates/signatures/data.html:39
+#: src/apps/signatures/templates/signatures/data.html:59
 msgid "Re-send confirmation e-mail to all unconfirmed"
 msgstr "Skicka bekräftelsemejl på nytt till alla obekräftade"
 
-#: src/apps/signatures/templates/signatures/data.html:44
+#: src/apps/signatures/templates/signatures/data.html:46
 msgid "Subscribe signatories to the newsletter"
 msgstr "Prenumerera på nyhetsbrevet"
 
-#: src/apps/signatures/templates/signatures/data.html:49
-msgid "copy/paste the following text block into Sympa's mass-subscribe form"
+#: src/apps/signatures/templates/signatures/data.html:52
+msgid "Bulk action"
 msgstr ""
-"Kopiera/klistra in följande textblock i Sympas massprenumerationsformulär"
 
-#: src/apps/signatures/templates/signatures/data.html:64
+#: src/apps/signatures/templates/signatures/data.html:57
 msgid "Re-send selected confirmation e-mail"
 msgstr "Skicka om valt bekräftelsemejl"
 
-#: src/apps/signatures/templates/signatures/data.html:65
+#: src/apps/signatures/templates/signatures/data.html:58
 msgid "Delete selected signatures"
 msgstr "Ta bort valda signaturer"
 
-#: src/apps/signatures/templates/signatures/data.html:89
+#: src/apps/signatures/templates/signatures/data.html:61
+#, fuzzy
+#| msgid "Delete selected signatures"
+msgid "Choose what to do with the selected signatures."
+msgstr "Ta bort valda signaturer"
+
+#: src/apps/signatures/templates/signatures/data.html:71
+msgid "List of signatures with selection checkboxes and status"
+msgstr ""
+
+#: src/apps/signatures/templates/signatures/data.html:81
+#, fuzzy
+#| msgid "Delete selected signatures"
+msgid "Select all signatures"
+msgstr "Ta bort valda signaturer"
+
+#: src/apps/signatures/templates/signatures/data.html:86
+msgid "Email"
+msgstr "E-post"
+
+#: src/apps/signatures/templates/signatures/data.html:87
 msgid "Phone"
 msgstr "Telefon"
 
-#: src/apps/signatures/templates/signatures/data.html:90
+#: src/apps/signatures/templates/signatures/data.html:88
 msgid "Confirmed?"
 msgstr "Bekräftad?"
 
-#: src/apps/signatures/templates/signatures/data.html:91
+#: src/apps/signatures/templates/signatures/data.html:89
 msgid "Subscribed to newsletter?"
 msgstr "Prenumererar du på nyhetsbrevet?"
 
-#: src/apps/signatures/views/confirm.py:41
+#: src/apps/signatures/templates/signatures/data.html:103
+#, fuzzy
+#| msgid "Can delete signatures?"
+msgid "Select signature"
+msgstr "Kan man radera underskrifter?"
+
+#: src/apps/signatures/templates/signatures/data.html:118
+#, fuzzy
+#| msgid "Confirmed"
+msgid "Not confirmed"
+msgstr "Bekräftad"
+
+#: src/apps/signatures/templates/signatures/data.html:125
+msgid "Subscribed"
+msgstr ""
+
+#: src/apps/signatures/templates/signatures/data.html:129
+#, fuzzy
+#| msgid "Not published"
+msgid "Not subscribed"
+msgstr "Ej publicerad"
+
+#: src/apps/signatures/templates/signatures/data.html:152
+#, fuzzy
+#| msgid "copy/paste the following text block into Sympa's mass-subscribe form"
+msgid "Copy/paste the following text block into Sympa's mass-subscribe form"
+msgstr ""
+"Kopiera/klistra in följande textblock i Sympas massprenumerationsformulär"
+
+#: src/apps/signatures/views/confirm.py:42
 msgid ""
 "Error: This confirmation code is invalid. Maybe you've already confirmed?"
 msgstr "Fel: Denna bekräftelsekod är ogiltig. Kanske har du redan bekräftat?"
 
-#: src/apps/signatures/views/confirm.py:51
+#: src/apps/signatures/views/confirm.py:52
 msgid "Error: This confirmation code is invalid."
 msgstr "Fel: Denna bekräftelsekod är ogiltig."
 
-#: src/apps/signatures/views/list.py:86
+#: src/apps/signatures/views/list.py:88
 msgid "You are not allowed to view this petition's signatures."
 msgstr "Du har inte behörighet att visa underskrifterna på denna petition."
 
-#: src/apps/signatures/views/list.py:94
+#: src/apps/signatures/views/list.py:96
 msgid "Internal error, cannot find the organization owning this petition."
 msgstr "Internt fel, kan inte hitta organisationen som äger denna petition."
 
-#: src/apps/signatures/views/list.py:100
+#: src/apps/signatures/views/list.py:102
 #, python-format
 msgid "You are not member of the following organization: %(orgname)s."
 msgstr "Du är inte medlem i följande organisation: %(orgname)s."
 
-#: src/apps/signatures/views/list.py:119
+#: src/apps/signatures/views/list.py:121
 msgid "You are not allowed to view signatures in this organization."
 msgstr "Du har inte behörighet att visa signaturer i denna organisation."
 
-#: src/apps/signatures/views/list.py:227 src/apps/signatures/views/list.py:268
+#: src/apps/signatures/views/list.py:229 src/apps/signatures/views/list.py:270
 msgid "An error happened while trying to re-send confirmation emails."
 msgstr "Ett fel uppstod när vi försökte skicka bekräftelsemejl igen."
 
-#: src/apps/signatures/views/list.py:231
+#: src/apps/signatures/views/list.py:233
 msgid "You successfully re-sent all confirmation emails."
 msgstr "Du har skickat om alla bekräftelsemejl."
 
-#: src/apps/signatures/views/list.py:239
+#: src/apps/signatures/views/list.py:241
 msgid "No signatures were selected for the requested action."
 msgstr "Inga underskrifter valdes för den begärda åtgärden."
 
-#: src/apps/signatures/views/list.py:253
+#: src/apps/signatures/views/list.py:255
 msgid "You don't have permission to delete some or all of selected signatures."
 msgstr "Du har inte behörighet att radera vissa eller alla valda signaturer."
 
-#: src/apps/signatures/views/list.py:259
+#: src/apps/signatures/views/list.py:261
 msgid "You successfully deleted all selected signatures."
 msgstr "Du har raderat alla valda signaturer."
 
-#: src/apps/signatures/views/list.py:273
+#: src/apps/signatures/views/list.py:275
 msgid "You successfully re-sent all selected confirmation emails."
 msgstr "Du har skickat om alla valda bekräftelsemejl."
 
-#: src/apps/signatures/views/list.py:278
+#: src/apps/signatures/views/list.py:280
 msgid "Unknown action requested."
 msgstr "Okänd åtgärd begärd."
 
-#: src/apps/signatures/views/new.py:65
+#: src/apps/signatures/views/new.py:68
 msgid "Too many signatures from your IP address, please try again later."
 msgstr "För många signaturer från din IP-adress, försök igen senare."
 
-#: src/apps/signatures/views/new.py:77
+#: src/apps/signatures/views/new.py:80
 #, python-format
 msgid ""
 "Thank you for signing this petition, an email has just been sent to you at "
@@ -2158,37 +2352,149 @@ msgstr ""
 "måste klicka på bekräftelselänken i e-postmeddelandet.<br>Om du inte hittar "
 "e-postmeddelandet i din inkorg, titta i din skräppostmapp."
 
-#: src/config/settings/django.py:174
+#: src/config/settings/django.py:200
 msgid "English"
 msgstr "Engelska"
 
-#: src/config/settings/django.py:175
+#: src/config/settings/django.py:201
 msgid "Spanish"
 msgstr "Spanska"
 
-#: src/config/settings/django.py:176
+#: src/config/settings/django.py:202
 msgid "French"
 msgstr "Franska"
 
-#: src/config/settings/django.py:177
+#: src/config/settings/django.py:203
 msgid "Italian"
 msgstr "Italienska"
 
-#: src/config/settings/django.py:178
+#: src/config/settings/django.py:204
 msgid "Occitan"
 msgstr "Occitan"
 
-#: src/config/settings/django.py:179
+#: src/config/settings/django.py:205
 msgid "Russian"
 msgstr "Ryska"
 
-#: src/config/settings/django.py:180
+#: src/config/settings/django.py:206
 msgid "Japanese"
 msgstr "Japanska"
 
-#: src/config/settings/django.py:181
+#: src/config/settings/django.py:207
 msgid "Swedish"
 msgstr "Svenska"
+
+#~ msgid "Organization related to these permissions"
+#~ msgstr "Organisation relaterad till dessa behörigheter"
+
+#~ msgid "User related to these permissions"
+#~ msgstr "Användare relaterade till dessa behörigheter"
+
+#~ msgid "Permission"
+#~ msgstr "Tillstånd"
+
+#~ msgid "Permissions"
+#~ msgstr "Tillstånd"
+
+#~ msgid "Can remove member?"
+#~ msgstr "Kan man ta bort medlemmar?"
+
+#~ msgid "Can invite new members?"
+#~ msgstr "Kan man bjuda in nya medlemmar?"
+
+#~ msgid "Can create petitions?"
+#~ msgstr "Kan skapa petitioner?"
+
+#~ msgid "Can modify petitions?"
+#~ msgstr "Kan man ändra petitioner?"
+
+#~ msgid "Can delete petitions?"
+#~ msgstr "Kan man radera petitioner?"
+
+#~ msgid "Can create petition templates?"
+#~ msgstr "Kan man skapa mallar för namninsamlingar?"
+
+#~ msgid "Can modify petition templates?"
+#~ msgstr "Kan man ändra mallarna för namninsamlingar?"
+
+#~ msgid "Can delete petition templates?"
+#~ msgstr "Kan man radera mallar för namninsamlingar?"
+
+#~ msgid "Can view signatures?"
+#~ msgstr "Kan man se underskrifter?"
+
+#~ msgid "Can modify signatures?"
+#~ msgstr "Kan man ändra underskrifter?"
+
+#~ msgid "Can modify permissions?"
+#~ msgstr "Kan ändra behörigheter?"
+
+#~ msgid "Create a new petition!"
+#~ msgstr "Skapa en ny petition!"
+
+#~ msgid "Write your petition content"
+#~ msgstr "Skriv innehållet i din petition"
+
+#~ msgid "Publish"
+#~ msgstr "Publicera"
+
+#~ msgid "Save your petition and publish it if it's ready"
+#~ msgstr "Spara din petition och publicera den när den är klar"
+
+#~ msgid "There is already a petition with this title."
+#~ msgstr "Det finns redan en petition med samma rubrik."
+
+#~ msgid "You should either provide an org name or a user name."
+#~ msgstr ""
+#~ "Du måste ange antingen ett organisationsnamn eller ett användarnamn."
+
+#~ msgid "Publish the petition now?"
+#~ msgstr "Vill du publicera petitionen nu?"
+
+#~ msgid "Save & Configure"
+#~ msgstr "Spara och verkställ"
+
+#~ msgid "Use template"
+#~ msgstr "Använd mall"
+
+#~ msgid "Template id"
+#~ msgstr "Mall-id"
+
+#~ msgid "Cannot find this organization."
+#~ msgstr "Kan inte hitta denna organisation."
+
+#~ msgid "This template does not belong to your organization."
+#~ msgstr "Denna mall tillhör inte din organisation."
+
+#~ msgid ""
+#~ "You don't have the permission to create a new petition in this "
+#~ "Organization."
+#~ msgstr ""
+#~ "Du har inte behörighet att skapa en ny petition i denna organisation."
+
+#~ msgid "This template does not belong to you."
+#~ msgstr "Denna mall tillhör inte dig."
+
+#~ msgid "Preview the petition"
+#~ msgstr "Förhandsgranska petitionen"
+
+#~ msgid "SIGN"
+#~ msgstr "UNDERTEKN"
+
+#~ msgid "E-mail setup"
+#~ msgstr "E-postinställningar"
+
+#~ msgid "unsaved"
+#~ msgstr "osparad"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "This petition is moderated"
+#~ msgstr "Denna petition modereras"
+
+#~ msgid "First step"
+#~ msgstr "Första steget"
 
 #, fuzzy
 #~| msgid "Organization Twitter handle"
