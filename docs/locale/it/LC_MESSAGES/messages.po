@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pytition 2.10.0-21-g3bddfef\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-04 21:57+0100\n"
+"POT-Creation-Date: 2025-11-05 05:39+0100\n"
 "PO-Revision-Date: 2025-11-04 08:29+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-"
 "translation-memory@weblate.org>\n"
@@ -496,6 +496,19 @@ msgstr ""
 
 #: 5a7afcc5a8154ec9bfcd424b03a9d873
 msgid "Data Model"
+msgstr ""
+
+#: 0728c439cea04bdb863281d22524c71b
+msgid "Template Inheritance"
+msgstr ""
+
+#: 1b83f4d9a5754ac2afcab011b59597ad
+#, fuzzy
+msgid "Includes"
+msgstr "Guida amministrativa"
+
+#: 7647880219cc49349d0c82ac9678d8a9
+msgid "Extends"
 msgstr ""
 
 #: 7719068883e24e35997522b697786774

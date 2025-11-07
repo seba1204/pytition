@@ -1,0 +1,18 @@
+{% load static %}
+{# Guard: avoid duplicating TinyMCE & config if this partial is included twice #}
+<script>
+  // All comments are in English.
+  window.TINYMCE_BOOTSTRAPPED = window.TINYMCE_BOOTSTRAPPED || false;
+</script>
+{% if not TINYMCE_BOOTSTRAPPED %}
+  {# add TinyMCE from django-tinymce #}
+  <script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+  {# expose TinyMCE config from settings into JS #}
+  {{ settings.TINYMCE_DEFAULT_CONFIG|json_script:"tinymce-config" }}
+  {# expose the file upload URL from django template urls #}
+  <script>window.TINYMCE_FILE_UPLOAD_URL = "{% url 'files:tinymce' %}";</script>
+  {# initialize TinyMCE #}
+  <script defer src="{% static 'js/core/init_editors.js' %}"></script>
+  {# set guard to true #}
+  <script>window.TINYMCE_BOOTSTRAPPED = true;</script>
+{% endif %}

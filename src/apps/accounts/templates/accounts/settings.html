@@ -7,32 +7,35 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
-                <div class="list-group" id="list-tab" role="tablist">
+                <div class="list-group"
+                     id="list-tab"
+                     role="tablist"
+                     aria-label="{% trans "Personal settings sections" %}">
                     <span class="list-group-item disabled"><b>{% trans "Personal Settings" %}</b></span>
                     <a href="#update_info_form"
                        class="list-group-item list-group-item-action active"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        id="a_update_info_form"
                        aria-controls="update_info_form"
-                       role="tab"><span class="oi oi-person"></span>  {% trans "Personal Information" %}</a>
+                       role="tab"><span class="bi bi-person" aria-hidden="true"></span> {% trans "Personal Information" %}</a>
                     <a href="#password_change_form"
                        class="list-group-item list-group-item-action"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        id="a_password_change"
                        aria-controls="password_change_form"
-                       role="tab"><span class="oi oi-key"></span>  {% trans "Change Password" %}</a>
+                       role="tab"><span class="bi bi-key" aria-hidden="true"></span> {% trans "Change Password" %}</a>
                     <a href="#org_form"
                        class="list-group-item list-group-item-action"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        aria-controls="org_form"
                        id="a_org_form"
-                       role="tab"><span class="oi oi-people"></span>  {% trans "Organizations" %}</a>
+                       role="tab"><span class="bi bi-people" aria-hidden="true"></span> {% trans "Organizations" %}</a>
                     <a href="#delete_account_form"
                        class="list-group-item list-group-item-action"
-                       data-toggle="list"
+                       data-bs-toggle="list"
                        id="a_delete_account"
                        aria-controls="delete_account_form"
-                       role="tab"><span class="oi oi-trash"></span>  {% trans "Delete your account" %}</a>
+                       role="tab"><span class="bi bi-trash" aria-hidden="true"></span> {% trans "Delete your account" %}</a>
                 </div>
             </div>
             <div class="col-8">
@@ -42,7 +45,7 @@
                          role="tabpanel"
                          aria-labelledby="update-info-form-list">
                         <h3 class="mb-4">{% trans "Personal Information" %}</h3>
-                        <form method="post">
+                        <form method="post" novalidate>
                             {% csrf_token %}
                             {% include "ui/forms/bs4.html" with form=update_info_form %}
                             <div class="text-center">
@@ -58,7 +61,7 @@
                          role="tabpanel"
                          aria-labelledby="password-change-form-list">
                         <h3 class="mb-4">{% trans "Change password" %}</h3>
-                        <form method="post">
+                        <form method="post" novalidate>
                             {% csrf_token %}
                             {% include "ui/forms/bs4.html" with form=password_change_form %}
                             <div class="text-center">
@@ -77,9 +80,10 @@
                             {% for message in messages %}
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>{{ message }}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
+                                    <button type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="alert"
+                                            aria-label="{% trans "Close" %}"></button>
                                 </div>
                             {% endfor %}
                         {% endif %}
@@ -96,14 +100,15 @@
                                                         class="btn btn-light btn-delete-org"
                                                         data-orgname="{{ org.name }}"
                                                         data-leaveurl="{% url "org:leave" org.slugname %}">
-                                                    Leave
+                                                    {% trans "Leave" %}
                                                 </button>
                                             {% else %}
                                                 <span class="d-inline-block"
                                                       tabindex="0"
-                                                      data-toggle="tooltip"
+                                                      data-bs-toggle="tooltip"
                                                       title="{% trans "You cannot leave an organization where you are either the last administrator or the last member." %}">
-                                                    <button type="button" class="btn btn-light disabled" disabled>Leave</button>
+                                                    {# TODO: replace disabled by a modal, cf. #40 #}
+                                                    <button type="button" class="btn btn-light disabled" aria-disabled="true">{% trans "Leave" %}</button>
                                                 </span>
                                             {% endif %}
                                         </div>
@@ -124,11 +129,14 @@
                          role="tabpanel"
                          aria-labelledby="delete-account-form-list">
                         <h3 class="mb-4">{% trans "Delete account" %}</h3>
-                        <div class="alert alert-warning alert-dismissible show fade">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
+                        <div class="alert alert-warning alert-dismissible show fade" role="alert">
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="{% trans "Close" %}"></button>
                             <div class="row">
                                 <div class="col-1 alert-icon-col">
-                                    <span class="oi oi-warning"></span>
+                                    <span class="bi bi-exclamation-triangle" aria-hidden="true"></span>
                                 </div>
                                 <div class="col">
                                     {% blocktrans trimmed %}
@@ -142,7 +150,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="post">
+                        <form method="post" novalidate>
                             {% csrf_token %}
                             {% include "ui/forms/bs4.html" with form=delete_account_form %}
                             <div class="text-center">
@@ -157,19 +165,20 @@
             </div>
         </div>
     </div>
+    <!-- Leave organization modal -->
     <div class="modal fade"
          id="org_leave_modal"
          tabindex="-1"
-         role="dialog"
          aria-labelledby="org_leave_modal_label"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="org_leave_modal_label">{% trans "Leaving an organization" %}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="{% trans "Close" %}"></button>
                 </div>
                 <div class="modal-body">
                     {% blocktrans trimmed with orgname='<span id="orgname_modal"></span>' %}
@@ -177,10 +186,8 @@
                 {% endblocktrans %}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="#" id="leave_link">
-                    <button type="button" class="btn btn-primary">Leave</button>
-                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                <a href="#" id="leave_link" class="btn btn-primary">{% trans "Leave" %}</a>
             </div>
         </div>
     </div>
@@ -188,38 +195,65 @@
 {% endblock main_content %}
 {% block extra_js %}
     {{ block.super }}
-    <script>
-$(function() {
-    {% if not password_change_form_submitted %}
-   $("#password_change_form").find("form input").removeClass("is-valid").removeClass("is-invalid");
-    {% endif %}
-    {% if not update_info_form_submitted %}
-   $("#update_info_form").find("form input").removeClass("is-valid").removeClass("is-invalid");
-    {% endif %}
-    {% if not delete_account_form_submitted %}
-   $("#delete_account_form_submitted").find("form input").removeClass("is-valid").removeClass("is-invalid");
-    {% endif %}
-
-    //show first tab pane where there is an :invalid field
-    var pane_id = $("input.is-invalid").closest(".tab-pane").attr("id");
-    $(".list-group a[href="#" + pane_id + ""]").tab("show");
-
-    $(".btn-delete-org").on("click", function(e) {
-        $("#orgname_modal").html($(this).data("orgname"));
-        $("#leave_link").attr("href", $(this).data("leaveurl"));
-        $("#org_leave_modal").modal("show");
-        return false;
-    });
-
-    if(window.location.hash) {
-        if(["#a_password_change", "#a_org_form", "#a_update_info_form", "#a_delete_account"].includes(window.location.hash)) {
-            $(window.location.hash).tab("show");
+    <script type="module">
+      document.addEventListener("DOMContentLoaded", () => {
+        function clearValidation(paneId) {
+          const pane = document.getElementById(paneId);
+          if (!pane) return;
+          pane.querySelectorAll("form input.is-valid, form input.is-invalid").forEach((el) => {
+            el.classList.remove("is-valid", "is-invalid");
+          });
         }
-    }
 
-    $("[data-toggle="tooltip"]").tooltip()
+        {% if not password_change_form_submitted %}clearValidation("password_change_form");{% endif %}
+        {% if not update_info_form_submitted %}clearValidation("update_info_form");{% endif %}
+        {% if not delete_account_form_submitted %}clearValidation("delete_account_form");{% endif %}
 
-})
+        const firstInvalid = document.querySelector("input.is-invalid");
+        if (firstInvalid) {
+          const invalidPane = firstInvalid.closest(".tab-pane");
+          if (invalidPane && invalidPane.id) {
+            const trigger = document.querySelector(`.list-group a[href="#${invalidPane.id}"]`);
+            if (trigger) {
+              const tab = bootstrap.Tab.getOrCreateInstance(trigger);
+              tab.show();
+            }
+          }
+        }
 
+        const leaveButtons = document.querySelectorAll(".btn-delete-org");
+        leaveButtons.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const orgName = btn.getAttribute("data-orgname") || "";
+            const leaveUrl = btn.getAttribute("data-leaveurl") || "#";
+            const orgNameEl = document.getElementById("orgname_modal");
+            const leaveLink = document.getElementById("leave_link");
+            if (orgNameEl) orgNameEl.textContent = orgName;
+            if (leaveLink) leaveLink.setAttribute("href", leaveUrl);
+
+            const modalEl = document.getElementById("org_leave_modal");
+            if (modalEl) {
+              const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+              modal.show();
+            }
+          });
+        });
+
+        if (window.location.hash) {
+          const allowed = ["#a_password_change", "#a_org_form", "#a_update_info_form", "#a_delete_account"];
+          if (allowed.includes(window.location.hash)) {
+            const trigger = document.querySelector(window.location.hash);
+            if (trigger) {
+              const tab = bootstrap.Tab.getOrCreateInstance(trigger);
+              tab.show();
+            }
+          }
+        }
+
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
+          new bootstrap.Tooltip(el);
+        });
+      });
     </script>
 {% endblock extra_js %}

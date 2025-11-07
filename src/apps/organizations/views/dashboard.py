@@ -31,7 +31,6 @@ def dashboard(request: HttpRequest, orgslugname: str) -> HttpResponse:
     HttpResponse
         The HTTP response object with the rendered dashboard.
     """
-
     # Check that the organization exists
     try:
         org = Organization.objects.get(slugname=orgslugname)

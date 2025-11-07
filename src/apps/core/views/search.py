@@ -24,12 +24,12 @@ def search(request: HttpRequest) -> HttpResponse:
     ----------
     request : HttpRequest
         The HTTP request object containing GET parameters.
+
     Returns
     -------
     HttpResponse
         The rendered search results page.
     """
-
     query = request.GET.get("q", "").strip()
     page = request.GET.get("page", "1")
 

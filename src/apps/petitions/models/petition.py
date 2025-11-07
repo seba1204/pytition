@@ -74,6 +74,7 @@ class Petition(models.Model):
     footer_links = tinymce_models.HTMLField(blank=True)
     twitter_description = models.CharField(max_length=200, blank=True)
     twitter_image = models.CharField(max_length=500, blank=True)
+    illustration = models.ImageField(upload_to='petitions/illustrations/', blank=True)
     has_newsletter = models.BooleanField(default=False)
     newsletter_subscribe_http_data = models.TextField(blank=True)
     newsletter_subscribe_http_mailfield = models.CharField(max_length=100, blank=True)
@@ -244,7 +245,6 @@ class Petition(models.Model):
 
     def already_signed(self, email: str) -> bool:
         """Check if an email has already signed the petition."""
-
         # lazy import to avoid circular imports
         from apps.signatures.models import Signature  # noqa
 
@@ -258,7 +258,6 @@ class Petition(models.Model):
 
     def confirm_signature(self, conf_hash: str) -> str | None:
         """Confirm a signature given its confirmation hash."""
-
         # lazy import to avoid circular imports
         from apps.signatures.models import Signature  # noqa
 
@@ -278,6 +277,7 @@ class Petition(models.Model):
         self.published = True
         self.publication_date = timezone.now()
         self.save()
+
     def unpublish(self) -> None:
         """Unpublish the petition."""
         self.published = False
@@ -351,14 +351,15 @@ class Petition(models.Model):
         return html.unescape(mark_safe(strip_tags(sanitize_html(self.text))))
 
     def __str__(self) -> str:
+        """String representation of the petition."""
         return self.title
 
     def __repr__(self) -> str:
+        """Official string representation of the petition."""
         return self.title
 
     def is_allowed_to_edit(self, user: PytitionUser) -> bool:
         """Check if a user is allowed to edit this petition."""
-
         # lazy import to avoid circular imports
         from apps.accounts.models import Permission  # noqa
 

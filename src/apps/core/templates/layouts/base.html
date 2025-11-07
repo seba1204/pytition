@@ -21,7 +21,8 @@
         <link rel="stylesheet"
               href="{% vendor_static "bootstrap" "css/bootstrap.min.css" %}">
         <link rel="stylesheet"
-              href="{% vendor_static "open-iconic" "css/open-iconic-bootstrap.min.css" %}">
+              href="{% vendor_static "bootstrap-icons" "css/bootstrap-icons.min.css" %}">
+        <script src="{% vendor_static "bootstrap" "js/bootstrap.bundle.min.js" %}"></script>
         <link href="{% static "css/common.css" %}" rel="stylesheet">
         {% load static %}
         <!-- Extra media -->
@@ -53,10 +54,31 @@
             {% endblock footer %}
         </div>
         <script>{% include "files/upload.js" %}</script>
-        <script src="{% vendor_static "jquery" "jquery.min.js" %}"></script>
-        <script src="{% vendor_static "popper" "popper.min.js" %}"></script>
-        <script src="{% vendor_static "bootstrap" "js/bootstrap.bundle.min.js" %}"></script>
+        <script>
+            // Single helper to build static URLs (keeps Django's STATIC_URL/CDN/hash)
+            if (typeof window.staticUrl === "undefined") {
+                window.staticUrl = (path) => {
+                const root = "{% get_static_prefix %}";
+                if (!path) return root;
+                return path.startsWith("/") ? root + path.slice(1) : root + path;
+                };
+            }
+
+            // Small DOM-ready helper reusable in all modules
+            if (typeof window.onReady === "undefined") {
+                window.onReady = (cb) => {
+                    if (document.readyState === "loading") {
+                        document.addEventListener("DOMContentLoaded", cb, { once: true });
+                    } else {
+                        cb();
+                    }
+                };
+            }
+        </script>
+        {# i18n pour le JS #}
+        <script src="{% url 'javascript-catalog' %}"></script>
         {% block extra_js %}
         {% endblock extra_js %}
     </body>
 </html>
+{% comment %} BS5-DONE {% endcomment %}

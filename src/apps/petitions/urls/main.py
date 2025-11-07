@@ -15,7 +15,6 @@ from django.urls import include, path
 from django.views.generic import RedirectView
 
 from apps.core.route import Route, build_urlpatterns, validate_bijection
-from apps.petitions import forms as PF
 from apps.petitions import views as PV
 from apps.petitions.routes import SLUG_NS, PetitionsRoute
 
@@ -32,9 +31,7 @@ ROUTES: dict[PetitionsRoute, Route] = {
     PetitionsRoute.ALL_PETITIONS: Route(
         "all/", RedirectView.as_view(pattern_name="index", permanent=False)
     ),
-    PetitionsRoute.NEW: Route(
-        "new/", PF.PetitionCreationWizard.as_view(PF.WizardForms)
-    ),
+    PetitionsRoute.NEW: Route("new/", PV.new),
     # items
     PetitionsRoute.DELETE: Route(f"{PID}/delete/", PV.delete),
     PetitionsRoute.PUBLISH: Route(f"{PID}/publish/", PV.publish),

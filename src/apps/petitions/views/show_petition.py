@@ -35,16 +35,17 @@ def slug_show_petition(
         The username of the petition owner.
     petitionname : str | None
         The slugname of the petition.
+
     Returns
     -------
     HttpResponse
         The HTTP response object with the petition details.
+
     Raises
     ------
     Http404
         If the petition does not exist or is not accessible.
     """
-
     try:
         pytitionuser = get_session_user(request)
     except Exception:

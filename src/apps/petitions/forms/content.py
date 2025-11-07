@@ -22,7 +22,9 @@ class ContentFormPetition(ContentFormGeneric):
     """Class specifying the content for a petition editing form."""
 
     title = forms.CharField(max_length=200)
-    publication_date = forms.DateField(required=False)
+    publication_date = forms.DateField(
+        widget=forms.DateInput(attrs={"type": "date"}), required=False
+    )
     show_publication_date = SwitchField(
         required=False, label=_("Show publication date")
     )

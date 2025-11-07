@@ -23,8 +23,7 @@ class Command(BaseCommand):
         parser.add_argument("org", type=str)
 
     def handle(self, *args: object, **opts: object) -> None:
-        """Add the specified user to the specified organization with full
-        permissions."""
+        """Add the user to the org with full permissions."""
         try:
             user = PytitionUser.objects.get(user__username=opts["username"])
         except PytitionUser.DoesNotExist:

@@ -1,3 +1,5 @@
+"""Tests for Permission model."""
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
@@ -6,12 +8,16 @@ from apps.organizations.models import Organization
 
 
 class PermissionTest(TestCase):
+    """Tests for Permission model."""
+
     def setUp(self) -> None:
+        """Set up test data."""
         User = get_user_model()
         _u = User.objects.create_user("julia", password="julia")
         _org = Organization.objects.create(name="RAP")
 
     def test_createPermission(self) -> None:
+        """Test creation of Permission object with default values."""
         self.assertEqual(Permission.objects.count(), 0)
         org = Organization.objects.get(name="RAP")
         pu = PytitionUser.objects.get(user__username="julia")
@@ -36,6 +42,7 @@ class PermissionTest(TestCase):
         self.assertEqual(p.can_modify_permissions, False)
 
     def test_to_string(self) -> None:
+        """Test string representation of Permission object."""
         self.assertEqual(Permission.objects.count(), 0)
         org = Organization.objects.get(name="RAP")
         pu = PytitionUser.objects.get(user__username="julia")

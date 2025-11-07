@@ -20,3 +20,27 @@ The data model is structured around the main entities of the application, with r
 This is a simplified diagram of the main models and their relationships:
 
 ![Data Model](../_static/img/models.svg)
+
+## Template Inheritance
+
+### Includes
+
+<div class="svg-frame">
+  <object class="themed-diagram zoomable-svg"
+      type="image/svg+xml"
+      data-src-light="../_static/img/diagrams/light/templates_includes.svg"
+      data-src-dark="../_static/img/diagrams/dark/templates_includes.svg"
+      data="../_static/img/diagrams/light/templates_includes.svg">
+    </object>
+</div>
+
+### Extends
+
+<div class="svg-frame">
+  <object class="themed-diagram zoomable-svg"
+      type="image/svg+xml"
+      data-src-light="../_static/img/diagrams/light/templates_extends.svg"
+      data-src-dark="../_static/img/diagrams/dark/templates_extends.svg"
+      data="../_static/img/diagrams/light/templates_extends.svg">
+    </object>
+</div>

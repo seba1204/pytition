@@ -51,22 +51,17 @@ See [pytition.readthedocs.io](https://pytition.readthedocs.io).
 
 Those are external projects that are needed and used by Pytition, but included in Pytition source tree:
 
-- Bootstrap 4.2.1
-- JQuery 3.3.1
-- Popper 1.14.6
-- Open Iconic 1.1.1
-- TinyMCE 4.9.2
-- jQuery Smart Wizard 4
+- Bootstrap 5.3.8
+- TinyMCE 7.9.2
 
 ## Dependencies
 
 - `Python` 3.8 up to 3.11
-- `Django` 4.2.x
-- `django-tinymce` 3.5.0
-- `django-colorfield` 0.8.0
+- `Django` 5.2.x
+- `django-tinymce` 5.0.0
+- `django-colorfield` 0.10.1
 - `requests` 2.20.x
 - `mysqlclient` 2.0.1
-- `beautifulsoup4` 4.6.3
 - `django-formtools` 2.2
 - `bcrypt`
 

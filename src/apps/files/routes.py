@@ -17,4 +17,5 @@ class FilesRoute(StrEnum):
     Each member is a string equal to "<namespace>:<short>".
     """
 
-    UPLOAD = _NS + "upload"  # old image_upload
+    UPLOAD = _NS + "upload"
+    TINYMCE = _NS + "tinymce"

@@ -5,7 +5,7 @@
 groups = ["default", "dev", "docs", "typecheck"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:ef2c8a6de1cfab06585622e914f4f1f2e94f747e8765b13a3c7cd08753d12edf"
+content_hash = "sha256:5ea5ca051bf3ce5369f786c5cb9013ec8e1dbe3a6f6f45ae3f1577b70820fc19"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -40,7 +40,7 @@ name = "anyio"
 version = "4.11.0"
 requires_python = ">=3.9"
 summary = "High-level concurrency and networking framework on top of asyncio or Trio"
-groups = ["docs"]
+groups = ["dev", "docs"]
 dependencies = [
     "exceptiongroup>=1.0.2; python_version < \"3.11\"",
     "idna>=2.8",
@@ -601,13 +601,27 @@ files = [
 ]
 
 [[package]]
-name = "django-tinymce"
-version = "3.6.1"
-summary = "A Django application that contains a widget to render a form field as a TinyMCE editor."
-groups = ["default"]
+name = "django-template-analyzer"
+version = "2.1"
+summary = "Django Template Analyzer - Extract template nodes from a Django template"
+groups = ["docs"]
 files = [
-    {file = "django-tinymce-3.6.1.tar.gz", hash = "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29"},
-    {file = "django_tinymce-3.6.1-py3-none-any.whl", hash = "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"},
+    {file = "django-template-analyzer-2.1.tar.gz", hash = "sha256:aacacf114a23f65b3f967319fb49284b413a9596652bc6594b63aba82db06b89"},
+    {file = "django_template_analyzer-2.1-py3-none-any.whl", hash = "sha256:f528ee9712c508bdec31f36a57a69c85a704b3df723454cc43786af908b758cb"},
+]
+
+[[package]]
+name = "django-tinymce"
+version = "5.0.0"
+requires_python = ">=3.9"
+summary = "A Django application that contains a widget to render a"
+groups = ["default"]
+dependencies = [
+    "django>=4.2",
+]
+files = [
+    {file = "django_tinymce-5.0.0-py3-none-any.whl", hash = "sha256:c2e9c5efd2cc6c036f4c57e602b133180433e2bd1513b897089d3c4fb4e20579"},
+    {file = "django_tinymce-5.0.0.tar.gz", hash = "sha256:6257669ed596accf5fa967ff3061276b2c5352baac1bbc658fcd8252b12ca38a"},
 ]
 
 [[package]]
@@ -735,7 +749,7 @@ name = "idna"
 version = "3.11"
 requires_python = ">=3.8"
 summary = "Internationalized Domain Names in Applications (IDNA)"
-groups = ["default", "docs"]
+groups = ["default", "dev", "docs"]
 files = [
     {file = "idna-3.11-py3-none-any.whl", hash = "sha256:771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea"},
     {file = "idna-3.11.tar.gz", hash = "sha256:795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902"},
@@ -1874,7 +1888,7 @@ name = "sniffio"
 version = "1.3.1"
 requires_python = ">=3.7"
 summary = "Sniff out which async library your code is running under"
-groups = ["docs"]
+groups = ["dev", "docs"]
 files = [
     {file = "sniffio-1.3.1-py3-none-any.whl", hash = "sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2"},
     {file = "sniffio-1.3.1.tar.gz", hash = "sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc"},
@@ -2251,7 +2265,7 @@ name = "typing-extensions"
 version = "4.15.0"
 requires_python = ">=3.9"
 summary = "Backported and Experimental Type Hints for Python 3.9+"
-groups = ["default", "docs", "typecheck"]
+groups = ["default", "dev", "docs", "typecheck"]
 files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
@@ -2330,7 +2344,7 @@ name = "watchfiles"
 version = "1.1.1"
 requires_python = ">=3.9"
 summary = "Simple, modern and high performance file watching and code reload in python."
-groups = ["docs"]
+groups = ["dev", "docs"]
 dependencies = [
     "anyio>=3.0.0",
 ]

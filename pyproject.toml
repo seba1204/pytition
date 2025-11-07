@@ -12,7 +12,7 @@ license = { text = "BSD 3-Clause" }
 dependencies = [
     "django>=5.2.7",
     "django-colorfield==0.10.1",
-    "django-tinymce==3.6.1",
+    "django-tinymce>=5.0.0",
     "django-mailer==2.3",
     "django-maintenance-mode",
     "django-phonenumber-field[phonenumbers]==6.3.0",
@@ -33,13 +33,10 @@ dependencies = [
 ]
 
 [tool.pytition.vendors]
-bootstrap = "4.3.1"
-open-iconic = "1.1.1"
-jquery = "3.3.1"
-popper = "1.14.6"
-jquery-smart-wizard = "4.4.1"
+bootstrap = "5.3.8"
+bootstrap-icons = "1.13.1"
 rrssb = "1.14.0"
-bs-custom-file-input = "1.3.4"
+
 
 
 
@@ -59,6 +56,10 @@ docs-live = "sphinx-autobuild docs/source docs/_build/html -a -j auto --host 0.0
 docs-coverage = "interrogate -v -c pyproject.toml src"
 # Generate docstring coverage badge
 docs-badge = "interrogate -c pyproject.toml src --generate-badge docs/source/_static/img/"
+# Collect static files
+collectstatic = "python manage.py collectstatic --noinput"
+collectstatic-live = "python -m watchfiles 'python manage.py collectstatic --noinput' assets/"
+
 
 [dependency-groups]
 dev = [
@@ -71,6 +72,7 @@ dev = [
     "django-extensions>=4.1",
     "graphviz>=0.21",
     "pydotplus>=2.0.2",
+    "watchfiles>=1.1.1",
 ]
 docs = [
     "coverage==4.5.2",
@@ -87,6 +89,7 @@ docs = [
     "sphinx-multiversion>=0.2.4",
     "sphinx-intl>=2.3.2",
     "interrogate>=1.7.0",
+    "django-template-analyzer>=2.1",
 ]
 typecheck = [
     "django-stubs>=5.2.7",

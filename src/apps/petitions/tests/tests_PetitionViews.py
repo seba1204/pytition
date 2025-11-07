@@ -1,3 +1,7 @@
+"""Tests for Petition views."""
+
+from typing import Protocol
+
 from django.test import TestCase
 from django.urls import reverse
 
@@ -9,28 +13,52 @@ from apps.petitions.routes import PetitionsRoute
 from apps.signatures.routes import SignatureRoute
 
 
+class HasBytesContent(Protocol):
+    """Structural type for any Django test response with a bytes `content` attribute."""
+
+    @property
+    def content(self) -> bytes:
+        """Return the response content as bytes."""
+        ...
+
+
 class PetitionViewTest(TestCase):
     """Test index view."""
 
+    # --- Helpers ----------------------------------------------------------------------
+
+    def _check_for_success_modal(
+        self, response: HasBytesContent, modal_id: str
+    ) -> None:
+        """Check that the success modal is present in the response."""
+        self.assertRegex(
+            response.content.decode(),
+            rf'<div[^>]*class="modal\s+fade"[^>]*id="{modal_id}"[^>]*>',
+        )
+
+    # --- Tests ----------------------------------------------------------------------
     @classmethod
     def setUpTestData(cls) -> None:
+        """Set up test data for all tests."""
         add_default_data()
 
     def tearDown(self) -> None:
+        """Tear down after each test."""
         # Clean up run after every test method.
         pass
 
     def login(self, name: str, password: str | None = None) -> PytitionUser:
+        """Login helper method."""
         self.client.login(username=name, password=password if password else name)
         self.pu = PytitionUser.objects.get(user__username=name)
         return self.pu
 
     def logout(self) -> None:
+        """Logout helper method."""
         self.client.logout()
 
     def test_petition_detail(self) -> None:
         """Every body should see the petition, even when not logged in."""
-
         petition = Petition.objects.filter(user__user__username="julia").first()
 
         self.assertIsNotNone(petition, "Petition should not be None.")
@@ -69,17 +97,7 @@ class PetitionViewTest(TestCase):
             reverse(SignatureRoute.NEW, args=[petition.id]), data, follow=True
         )
         self.assertRedirects(response, petition.url)
-        self.assertContains(
-            response,
-            text=(
-                """<script type="text/javascript">"""
-                """$("#show_sign_success").modal("show");"""
-                """</script>"""
-            ),
-        )
-        self.assertContains(
-            response, text='<div class="modal fade" id="show_sign_success">'
-        )
+        self._check_for_success_modal(response, "show_sign_success")
         self.assertNotContains(response, text="show_confirm_success")
         # Now, let's confirm our signature
         signature = petition.signature_set.first()
@@ -96,20 +114,12 @@ class PetitionViewTest(TestCase):
         self.assertRedirects(response, petition.url)
         signature.refresh_from_db()
         self.assertTrue(signature.confirmed)
-        self.assertContains(
-            response,
-            text=(
-                """<script type="text/javascript">"""
-                """$("#show_confirm_success").modal("show");"""
-                """</script>"""
-            ),
-        )
-        self.assertContains(
-            response, text='<div class="modal fade" id="show_confirm_success">'
-        )
+        # Check for success modal
+        self._check_for_success_modal(response, "show_confirm_success")
         self.assertNotContains(response, text="show_sign_success")
 
     def test_petition_publish(self) -> None:
+        """Test publishing a petition by its owner."""
         self.logout()
         petition = Petition.objects.filter(user__user__username="julia").first()
         self.assertIsNotNone(petition, "Petition should not be None.")
@@ -135,7 +145,7 @@ class PetitionViewTest(TestCase):
         p2.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p2.published, False)
-        # Petition from another organisation
+        # Petition from another organization
         greenpeace = Organization.objects.get(name="Greenpeace")
         p3 = Petition.objects.create(title="Sauver la planete", org=greenpeace)
         self.assertEqual(p3.published, False)
@@ -145,6 +155,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(p3.published, False)
 
     def test_petition_unpublish(self) -> None:
+        """Test un-publishing a petition by its owner."""
         petition = Petition.objects.filter(user__user__username="julia").first()
         self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
@@ -174,6 +185,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(petition.published, False)
 
     def test_user_petition_delete(self) -> None:
+        """Test deleting a petition by its owner."""
         petitions = Petition.objects.filter(user__user__username="julia")
         petition = petitions.first()
         self.assertIsNotNone(petition, "Petition should not be None.")
@@ -190,6 +202,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(petitions.count(), nb_julia_petitions - 1)
 
     def test_org_petition_delete(self) -> None:
+        """Test deleting a petition by org admin."""
         self.logout()
         petitions = Petition.objects.filter(org__name="Attac")
         petition = petitions.first()
@@ -213,6 +226,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(petitions.count(), nb_attac_petitions - 1)
 
     def test_user_slug_show_petition(self) -> None:
+        """Test showing a petition via user slug URL."""
         petition = Petition.objects.filter(user__user__username="julia").first()
         self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:
@@ -234,6 +248,7 @@ class PetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "petitions/detail.html")
 
     def pending_org_slug_show_petition(self) -> None:
+        """Test showing a petition via org slug URL."""
         # Problem here
         org = Organization.objects.first()
         petition = Petition.objects.create(title="NON NON NON", org=org)
@@ -253,6 +268,7 @@ class PetitionViewTest(TestCase):
         self.assertTemplateUsed(response, "petitions/detail.html")
 
     def test_petition_publish_org(self) -> None:
+        """Test publishing a petition by org admin."""
         self.logout()
         petition = Petition.objects.filter(org__name="Les Amis de la Terre").first()
         self.assertIsNotNone(petition, "Petition should not be None.")
@@ -287,7 +303,7 @@ class PetitionViewTest(TestCase):
         p2.refresh_from_db()
         self.assertEqual(response.status_code, 403)
         self.assertEqual(p2.published, False)
-        # Petition from another organisation
+        # Petition from another organization
         greenpeace = Organization.objects.get(name="Greenpeace")
         p3 = Petition.objects.create(title="Sauver la planete", org=greenpeace)
         self.assertEqual(p3.published, False)
@@ -297,6 +313,7 @@ class PetitionViewTest(TestCase):
         self.assertEqual(p3.published, False)
 
     def test_petition_unpublish_org(self) -> None:
+        """Test un-publishing a petition by org admin."""
         petition = Petition.objects.filter(org__name="Les Amis de la Terre").first()
         self.assertIsNotNone(petition, "Petition should not be None.")
         if petition is None:

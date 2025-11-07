@@ -15,18 +15,20 @@ def profile(request: HttpRequest, user_name: str) -> HttpResponse:
     """
     Show a list of all public petitions of the user.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
         request: HttpRequest
         user_name: str -- the username of the user
     GET parameters (in request.GET):
     ----------------------------
         sort: str -- 'asc' or 'desc' for creation date sorting (default 'desc')
         page: int -- the page number (default 1)
-    Returns:
-    --------
+
+    Returns
+    -------
         HttpResponse -- the rendered user profile page
-    Notes:
+
+    Notes
     -----
         Shows only published and non-moderated petitions
     """

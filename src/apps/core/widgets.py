@@ -27,12 +27,12 @@ class SwitchWidget(forms.CheckboxInput):
             The value of the field.
         attrs : dict[str, Any] | None
             Additional HTML attributes for the widget.
+
         Returns
         -------
         dict[str, Any]
             The context for rendering the widget.
         """
-
         if attrs is None:
             attrs = {}
         if "class" in attrs:

@@ -3,7 +3,9 @@ Pytition URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
+
+Examples
+--------
 Function views
     1. Add an import:  from my_app import views
     2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
@@ -21,6 +23,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.urls.resolvers import URLPattern, URLResolver
 from django.views.generic import RedirectView
+from django.views.i18n import JavaScriptCatalog
 
 from apps.accounts.routes import NAMESPACE as ACCOUNT_NS
 from apps.consents.routes import NAMESPACE as CONSENT_NS
@@ -44,6 +47,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
+    path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     path("", include("django.contrib.auth.urls")),
     # Maintenance mode URLs (3rd party app)
     path("maintenance-mode/", include("maintenance_mode.urls")),
@@ -89,6 +93,7 @@ favicons = [
     "browserconfig.xml",
 ]
 
+# Generate URL patterns for each favicon to serve them from the static files location.
 favicon_urlpatterns: list[URLPattern] = [
     path(
         f"{fname}",

@@ -28,14 +28,15 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
     """
     Create a signature for a petition.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     request : HttpRequest
         The HTTP request object
     petition_id : int
         The ID of the petition to sign
-    Returns:
-    --------
+
+    Returns
+    -------
     HttpResponse
         A redirect to the petition detail page
     """

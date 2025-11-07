@@ -1,4 +1,5 @@
 """Models for petition templates (presets)."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -13,6 +14,7 @@ from apps.core.model_refs import ORGANIZATION, PYTITION_USER
 
 class PetitionTemplate(models.Model):
     """A petition template (preset) that can be used to create petitions quickly."""
+
     NO = "no gradient"
     RIGHT = "to right"
     BOTTOM = "to bottom"
@@ -93,6 +95,7 @@ class PetitionTemplate(models.Model):
 
     class Meta:
         """Meta information for PetitionTemplate model."""
+
         db_table = "petition_petitiontemplate"
         # Translators: Petition template model name in models (admin interface)
         verbose_name = gettext_lazy("Petition template")
@@ -100,9 +103,11 @@ class PetitionTemplate(models.Model):
         verbose_name_plural = gettext_lazy("Petition Templates")
 
     def __str__(self) -> str:
+        """String representation of the petition template."""
         return self.name
 
     def __repr__(self) -> str:
+        """Official string representation of the petition template."""
         return self.name
 
     @property

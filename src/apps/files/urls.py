@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from apps.core.route import Route, build_urlpatterns, validate_bijection
-from apps.files import views as MdV
+from apps.files import views as FV
 from apps.files.routes import FilesRoute
 
 app_name = "files"
@@ -13,7 +13,8 @@ app_name = "files"
 # --------------------------------------------------------------------------- #
 
 ROUTES: dict[FilesRoute, Route] = {
-    FilesRoute.UPLOAD: Route("upload", MdV.upload),
+    FilesRoute.UPLOAD: Route("upload", FV.upload),
+    FilesRoute.TINYMCE: Route("tinymce", FV.tinymce_image_upload),
 }
 
 # Fail fast at import time (CI-friendly)

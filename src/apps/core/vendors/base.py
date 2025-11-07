@@ -79,6 +79,94 @@ class Vendor(ABC):
         with Path.open(where, "wb") as f:
             f.write(data)
 
+    # ----------------------- generic staging helpers -----------------------
+    def _stage_from_zip_url(self, url: str, rules: list[tuple[str, str]]) -> set[Path]:
+        """
+        Download a zip from ``url`` and stage selected files/dirs.
+
+        Parameters
+        ----------
+        url : str
+            HTTPS URL to a ``.zip`` archive.
+        rules : list of tuple
+            (src_glob, dest_rel_dir) entries; glob is evaluated relative to the
+            single top-level directory of the unpacked archive.
+
+        Returns
+        -------
+        set of Path
+            Absolute paths created under stage_dir.
+        """
+        blob = self._http_get_bytes(url)
+        zip_root = self.stage_dir / "_zip"
+        self._extract_zip_bytes(blob, zip_root)
+        try:
+            archive_root = next(p for p in zip_root.iterdir() if p.is_dir())
+        except StopIteration as exc:
+            raise RuntimeError(
+                "Unexpected archive structure (no top-level dir)."
+            ) from exc
+
+        keep: set[Path] = set()
+        for src_glob, dest_rel in rules:
+            dest_dir = (self.stage_dir / dest_rel).resolve()
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            matches = list(archive_root.rglob(src_glob))
+            if not matches:
+                continue
+            for m in matches:
+                if m.is_dir():
+                    for sub in m.rglob("*"):
+                        if sub.is_file():
+                            rel = sub.relative_to(m)
+                            dst = dest_dir / rel
+                            dst.parent.mkdir(parents=True, exist_ok=True)
+                            shutil.copy2(sub, dst)
+                            keep.add(dst.resolve())
+                else:
+                    dst = dest_dir / m.name
+                    shutil.copy2(m, dst)
+                    keep.add(dst.resolve())
+        return keep
+
+    def _stage_from_file_url(self, url: str, dest_rel: str) -> set[Path]:
+        """Download a single file from ``url`` into ``stage_dir/dest_rel``."""
+        data = self._http_get_bytes(url)
+        dst = (self.stage_dir / dest_rel).resolve()
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        self._write_file(dst, data)
+        return {dst}
+
+    def _clean_stage_except(self, keep: set[Path]) -> None:
+        """Remove everything from ``stage_dir`` except the keep set."""
+        stage_root = self.stage_dir.resolve()
+        keep_with_parents: set[Path] = set(keep)
+        for p in list(keep):
+            cur = p.parent
+            while cur != stage_root and stage_root in cur.parents:
+                keep_with_parents.add(cur)
+                cur = cur.parent
+        keep_with_parents.add(stage_root)
+        for p in sorted(stage_root.rglob("*")):
+            try:
+                rp = p.resolve()
+            except FileNotFoundError:
+                continue
+            if rp.is_file() and rp not in keep_with_parents:
+                rp.unlink()
+        for d in sorted(
+            (p for p in stage_root.rglob("*") if p.is_dir()),
+            key=lambda x: len(x.parts),
+            reverse=True,
+        ):
+            try:
+                next(d.iterdir())
+            except StopIteration:
+                if d not in keep_with_parents:
+                    d.rmdir()
+            except FileNotFoundError:
+                continue
+
     def _atomic_replace_from_stage(self) -> bool:
         """
         Replace `dest_dir` with `stage_dir` atomically.

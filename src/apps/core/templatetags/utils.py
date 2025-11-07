@@ -17,3 +17,9 @@ def addstr(arg1: object, arg2: object) -> str:
 def html_sanitize(html: str) -> str:
     """Sanitize HTML content to prevent XSS attacks."""
     return sanitize_html(html)
+
+
+@register.filter
+def get_attr(obj: object, name: str) -> object:
+    """Return dynamic attribute access in templates."""
+    return getattr(obj, name, None)

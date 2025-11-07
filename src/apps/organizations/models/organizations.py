@@ -48,8 +48,11 @@ class Organization(models.Model):
         verbose_name_plural = _lazy("Organizations")
 
     def is_last_admin(self, user: PytitionUser) -> bool:
-        """Check if the given user is the last admin of this organization Admin is an
-        user having the can_modify_permissions right Return true or false."""
+        """
+        Check if the user is the last admin of this organization.
+
+        Admin is an user having the can_modify_permissions right Return true or false.
+        """
         # get all permissions
         from apps.accounts.models import Permission  # noqa
 
@@ -67,7 +70,6 @@ class Organization(models.Model):
 
     def is_allowed_to(self, user: PytitionUser, right: str) -> bool:
         """Check if an user has a given access right on the organization."""
-
         from apps.accounts.models import Permission  # noqa
 
         try:
@@ -78,9 +80,11 @@ class Organization(models.Model):
             return bool(getattr(perm, right))
 
     def __str__(self) -> str:
+        """Return the string representation of the organization."""
         return self.name
 
     def __repr__(self) -> str:
+        """Return the official string representation of the organization."""
         return f"< {self.name} >"
 
     @property
