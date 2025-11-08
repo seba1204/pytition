@@ -39,13 +39,23 @@ class CssTokenRegistry:
         eg. "v1".
     _tokens : Dict[str, TokenDef]
         Mapping of token name to TokenDef.
+    _allowed_scopes : set[str]
+        Allowed CSS scopes provided by the registry JSON.
     """
 
     def __init__(self, version: str) -> None:
         self.version: str = version
-        self._tokens: dict[str, TokenDef] = _load_tokens_for_version(version)
+        tokens, scopes = _load_registry_for_version(version)
+        self._tokens: dict[str, TokenDef] = tokens
+        self._allowed_scopes: set[str] = scopes
 
     # ---------------- Public API ----------------
+
+    @property
+    def allowed_scopes(self) -> set[str]:
+        """Return the set of allowed scopes loaded from the registry JSON."""
+        return set(self._allowed_scopes)
+
     def known(self, name: str) -> bool:
         """
         Whether a token name is known in this registry.
@@ -90,6 +100,15 @@ class CssTokenRegistry:
         ValidationError
             If a token name or value is invalid for this version.
         """
+        # Validate scopes present in payload
+        invalid_scopes = set(payload.keys()) - self._allowed_scopes
+        if invalid_scopes:
+            raise ValidationError(
+                _("Invalid token scopes: %(scopes)s")
+                % {"scopes": ", ".join(sorted(invalid_scopes))}
+            )
+
+        # Validate tokens per scope
         for scope, tokens in payload.items():
             if not isinstance(tokens, Mapping):
                 raise ValidationError(
@@ -228,79 +247,59 @@ def _is_length(s: str) -> bool:
     )
 
 
-@lru_cache(maxsize=64)
-def _load_tokens_for_version(version: str) -> dict[str, TokenDef]:
+def _load_registry_for_version(version: str) -> tuple[dict[str, TokenDef], set[str]]:
     """
-    Load token definitions for the given version with file-based caching.
-
-    Notes
-    -----
-    A second cache key is wrapped using the file mtime so that changing the JSON
-    invalidates the lru_cache automatically on next process start or import reload.
+    Load tokens and scopes for a given version from JSON.
 
     Parameters
     ----------
     version : str
-        Version key matching settings.THEME_TOKEN_REGISTRY.
+        Schema version key (e.g. "v1").
 
     Returns
     -------
-    Dict[str, TokenDef]
-        Mapping token_name -> TokenDef
+    (dict[str, TokenDef], set[str])
+        Mapping token_name -> TokenDef, and the allowed scopes set.
 
     Raises
     ------
-    KeyError
-        If the version is not configured.
     FileNotFoundError
-        If the JSON file is missing.
-    ValueError
-        If JSON structure is invalid.
+        If the JSON path is not found.
+    ValidationError
+        If the JSON is invalid or missing required keys.
     """
-    unsafe_path: str | None = settings.THEME_TOKEN_REGISTRY.get(version)
-    if unsafe_path is None:
-        raise KeyError(
-            _("No token registry file configured for version '%(version)s'.")
-            % {"version": version}
-        )
+    mapping = getattr(settings, "THEME_TOKEN_REGISTRY", None)
+    if not isinstance(mapping, Mapping) or version not in mapping:
+        raise FileNotFoundError(f"No token registry mapping for version '{version}'")
 
-    path: Path = Path(unsafe_path)
-
-    # # get root path if relative
-    # if not path.is_absolute():
-    #     base_dir = Path(settings.BASE_DIR)
-    #     path = base_dir.joinpath(path).resolve()
-
-    # check file exists
-    if not path.is_file():
-        raise FileNotFoundError(
-            _("Token registry file not found: %(path)s") % {"path": str(path)}
-        )
-
+    path = Path(mapping[version])
     with path.open("r", encoding="utf-8") as fh:
-        data: dict[str, Any] = json.load(fh)
+        data = json.load(fh)
+
+    if not isinstance(data, Mapping):
+        raise ValidationError(_("Registry JSON must be a mapping."))
 
     if data.get("version") != version:
-        raise ValueError(
-            _(
-                "Token registry file version mismatch: expected '%(expected)s', "
-                "got '%(got)s'."
-            )
-            % {"expected": version, "got": data.get("version")}
-        )
+        raise ValidationError(_("Registry 'version' mismatch."))
 
     tokens_raw = data.get("tokens")
     if not isinstance(tokens_raw, list):
-        raise ValueError(_("Registry JSON must contain a 'tokens' array."))
+        raise ValidationError(_("Registry must contain a 'tokens' array."))
 
-    out: dict[str, TokenDef] = {}
+    scopes_raw = data.get("scopes")
+    if not isinstance(scopes_raw, list) or not all(
+        isinstance(s, str) for s in scopes_raw
+    ):
+        raise ValidationError(_("Registry must contain a 'scopes' array of strings."))
+
+    tokens: dict[str, TokenDef] = {}
     for item in tokens_raw:
-        if not isinstance(item, dict) or "name" not in item or "type" not in item:
-            raise ValueError(_("Each token must have at least 'name' and 'type'."))
+        if not isinstance(item, Mapping) or "name" not in item or "type" not in item:
+            raise ValidationError(_("Each token must have at least 'name' and 'type'."))
         td = TokenDef(
             name=str(item["name"]),
             type=str(item["type"]),
-            pattern=item.get("pattern"),
+            pattern=str(item["pattern"]) if "pattern" in item else None,
             min_value=float(item["min_value"]) if "min_value" in item else None,
             max_value=float(item["max_value"]) if "max_value" in item else None,
             allowed_values=set(item["allowed_values"])
@@ -308,5 +307,13 @@ def _load_tokens_for_version(version: str) -> dict[str, TokenDef]:
             else None,
             deprecated=bool(item.get("deprecated", False)),
         )
-        out[td.name] = td
-    return out
+        tokens[td.name] = td
+
+    return tokens, set(scopes_raw)
+
+
+@lru_cache(maxsize=32)
+def _load_tokens_for_version(version: str) -> dict[str, TokenDef]:
+    """Backward-compat shim if other code still calls this."""
+    tokens, _ = _load_registry_for_version(version)
+    return tokens

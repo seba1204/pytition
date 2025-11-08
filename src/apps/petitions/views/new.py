@@ -74,7 +74,6 @@ def new(request: HttpRequest, orgslugname: str | None = None) -> HttpResponse:
             return redirect(PetitionsRoute.DETAIL, petition_id=pet.id)
     else:
         form = PetitionCreateForm()
-    print("Rendering new petition form")
     return render(
         request,
         "petitions/new.html",

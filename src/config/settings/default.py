@@ -122,8 +122,3 @@ SPHINX_LANGUAGE = "en"
 THEME_TOKEN_REGISTRY = {
     "v1": "src/apps/theming/registry/tokens_v1.json",
 }
-
-THEME_ALLOWED_TOKEN_SCOPES: set[str] = {
-    ":root",
-    '[data-bs-theme="dark"]',
-}

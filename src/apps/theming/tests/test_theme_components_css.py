@@ -2,44 +2,26 @@
 
 from __future__ import annotations
 
-from uuid import uuid4
-
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from apps.accounts.models import PytitionUser
-from apps.organizations.models import Organization
 from apps.theming.models import Theme
+from apps.theming.tests.common import (
+    RegistrySettingsMixin,
+    make_org,
+    make_pytition_user,
+)
 
 from .common import compact_css
 
 
-def _make_p_user(username: str | None = None) -> PytitionUser:
-    """Create or retrieve a PytitionUser linked to AUTH_USER_MODEL."""
-    BaseUser = get_user_model()
-    uname: str = username or f"test_{uuid4().hex[:8]}"
-    auth = BaseUser.objects.create_user(username=uname, password="x")
-    try:
-        return auth.pytitionuser  # signal should have created it
-    except PytitionUser.DoesNotExist:
-        return PytitionUser.objects.create(user=auth)
-
-
-def _make_org(slug: str | None = None, name: str | None = None) -> Organization:
-    """Create a simple Organization with a unique slug."""
-    s = slug or f"org-{uuid4().hex[:6]}"
-    n = name or f"Org {s}"
-    return Organization.objects.create(name=n)
-
-
-class ThemeComponentsCssTests(TestCase):
+class ThemeComponentsCssTests(RegistrySettingsMixin, TestCase):
     """Integration tests for Theme.components_css sanitization via Theme.clean()."""
 
     def setUp(self) -> None:
         """Create common test users and orgs."""
-        self.creator = _make_p_user("creator_css")
-        self.owner = _make_org()
+        self.creator = make_pytition_user("creator_css")
+        self.owner = make_org()
 
     def _base_theme(self) -> Theme:
         """Create an unsaved Theme with required fields populated."""

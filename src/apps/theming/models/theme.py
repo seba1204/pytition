@@ -8,7 +8,6 @@ from collections.abc import Sequence
 from typing import Any, cast
 from uuid import uuid4
 
-from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
@@ -24,15 +23,7 @@ from apps.theming.validators import ThemeQuerySet
 
 
 class Theme(models.Model):
-    """
-    Model representing a custom user theme.
-
-    Notes
-    -----
-    - Strongly typed for mypy.
-    - Docstrings follow the Numpy convention.
-    - Comments are in English as requested.
-    """
+    """Model representing a custom user theme."""
 
     # --- Identity / labeling ------------------------------------------------------
     name = models.CharField(
@@ -285,7 +276,7 @@ class Theme(models.Model):
 
         Notes
         -----
-        - Coerces THEME_ALLOWED_TOKEN_SCOPES to a set of strings.
+        - Validates tokens and scopes against the JSON-backed registry.
         - Validates that owner exists.
         - Fills slug if missing (for ergonomics when forms/admin call full_clean()).
         """
@@ -293,26 +284,7 @@ class Theme(models.Model):
         if not isinstance(self.tokens_css, dict):
             raise ValidationError("tokens_css must be an object")
 
-        # Allowed scopes from settings; coerce to a set[str]
-        allowed_scopes_cfg = getattr(settings, "THEME_ALLOWED_TOKEN_SCOPES", None)
-        if allowed_scopes_cfg is None:
-            raise ValidationError(
-                _("THEME_ALLOWED_TOKEN_SCOPES setting is not defined.")
-            )
-        try:
-            allowed_scopes: set[str] = set(map(str, allowed_scopes_cfg))
-        except TypeError as exc:
-            raise ValidationError(
-                _("THEME_ALLOWED_TOKEN_SCOPES must be an iterable of strings.")
-            ) from exc
-
-        invalid_scopes = set(self.tokens_css.keys()) - allowed_scopes
-        if invalid_scopes:
-            raise ValidationError(
-                _("Invalid token scopes: %(scopes)s")
-                % {"scopes": ", ".join(sorted(invalid_scopes))}
-            )
-
+        # --- Validate tokens and scopes via the registry -------------------
         registry = CssTokenRegistry(self.tokens_schema_version)
         registry.validate_tokens(self.tokens_css)
 
@@ -330,11 +302,6 @@ class Theme(models.Model):
                 ) from exc
 
         # --- Ensure GFK owner exists -------------
-        print("Validating owner existence...")  # --- DEBUG ---
-        print(
-            f"owner_content_type_id={self.owner_content_type_id}, "
-            f"owner_object_id={self.owner_object_id}"
-        )  # --- DEBUG ---
         if not self.owner_content_type_id or not self.owner_object_id:
             raise ValidationError(
                 {

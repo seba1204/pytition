@@ -26,7 +26,6 @@ class RegistrySettingsMixin(unittest.TestCase):
     Notes
     -----
     - Creates v1.json and v2.json in a temp folder.
-    - Overrides THEME_TOKEN_REGISTRY and THEME_ALLOWED_TOKEN_SCOPES.
     """
 
     _tmpdir: Path
@@ -47,6 +46,7 @@ class RegistrySettingsMixin(unittest.TestCase):
                         {"name": "--bs-body-bg", "type": "color"},
                         {"name": "--bs-border-radius", "type": "length"},
                     ],
+                    "scopes": [":root", '[data-bs-theme="dark"]'],
                 }
             ),
             encoding="utf-8",
@@ -60,22 +60,16 @@ class RegistrySettingsMixin(unittest.TestCase):
                         {"name": "--bs-border-radius", "type": "length"},
                         {"name": "--bs-body-font-size", "type": "length"},
                     ],
+                    "scopes": [":root", '[data-bs-theme="dark"]'],
                 }
             ),
             encoding="utf-8",
         )
 
-        cls._saved_registry = dict(getattr(settings, "THEME_TOKEN_REGISTRY", {}))
-        cls._saved_scopes = set(
-            getattr(settings, "THEME_ALLOWED_TOKEN_SCOPES", {":root"})
-        )
+        cls._saved_registry = getattr(settings, "THEME_TOKEN_REGISTRY", {})
         settings.THEME_TOKEN_REGISTRY = {
             "v1": cls._tmpdir / "v1.json",
             "v2": cls._tmpdir / "v2.json",
-        }
-        settings.THEME_ALLOWED_TOKEN_SCOPES = {
-            ":root",
-            '[data-bs-theme="dark"]',
         }
 
     @classmethod
@@ -83,7 +77,6 @@ class RegistrySettingsMixin(unittest.TestCase):
         """Restore settings and clean up temporary files."""
         try:
             settings.THEME_TOKEN_REGISTRY = cls._saved_registry
-            settings.THEME_ALLOWED_TOKEN_SCOPES = cls._saved_scopes
         finally:
             shutil.rmtree(cls._tmpdir, ignore_errors=True)
             super().tearDownClass()

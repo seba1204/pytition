@@ -1,9 +1,6 @@
 {% load static %}
 {# Guard: avoid duplicating TinyMCE & config if this partial is included twice #}
-<script>
-  // All comments are in English.
-  window.TINYMCE_BOOTSTRAPPED = window.TINYMCE_BOOTSTRAPPED || false;
-</script>
+<script>window.TINYMCE_BOOTSTRAPPED = window.TINYMCE_BOOTSTRAPPED || false;</script>
 {% if not TINYMCE_BOOTSTRAPPED %}
   {# add TinyMCE from django-tinymce #}
   <script src="{% static 'tinymce/tinymce.min.js' %}"></script>

@@ -1,4 +1,3 @@
-/* All comments are in English. */
 (function () {
     'use strict';
     const RESPONSIVE_IMG_CSS = 'img{max-width:100%;height:auto;display:block;}';
