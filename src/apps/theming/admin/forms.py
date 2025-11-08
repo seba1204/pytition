@@ -63,6 +63,7 @@ class ThemeAdminForm(forms.ModelForm):
         - From the instance's current ``owner_content_type`` if editing.
         """
         super().__init__(*args, **kwargs)
+        owner_field = cast(forms.ModelChoiceField, self.fields["owner_object"])
 
         ct_obj: ContentType | None = None
 
@@ -80,19 +81,14 @@ class ThemeAdminForm(forms.ModelForm):
         if ct_obj is not None:
             model_cls = ct_obj.model_class()
             if model_cls is not None:
-                self.fields["owner_object"].queryset = cast(
-                    "QuerySet[Model]",
-                    model_cls._default_manager.all(),
-                )
+                qs: QuerySet[Model] = model_cls._default_manager.all()
+                owner_field.queryset = qs
+
             else:
                 # Empty queryset when CT cannot resolve a model class.
-                self.fields["owner_object"].queryset = cast(
-                    "QuerySet[Model]", ContentType.objects.none()
-                )
+                owner_field.queryset = ContentType.objects.none()
         else:
-            self.fields["owner_object"].queryset = cast(
-                "QuerySet[Model]", ContentType.objects.none()
-            )
+            owner_field.queryset = ContentType.objects.none()
 
         # Pre-select owner_object when editing an existing instance.
         if (
@@ -103,7 +99,7 @@ class ThemeAdminForm(forms.ModelForm):
             and ct_obj.model_class() is not None
         ):
             try:
-                obj_qs = cast("QuerySet[Model]", self.fields["owner_object"].queryset)
+                obj_qs: QuerySet[Model] = owner_field.queryset
                 self.initial["owner_object"] = obj_qs.get(
                     pk=self.instance.owner_object_id
                 )
@@ -115,7 +111,7 @@ class ThemeAdminForm(forms.ModelForm):
         # Expose the AJAX endpoint on the widget for frontend JS.
         try:
             url = reverse("admin:theming_theme_owner_objects")
-            self.fields["owner_object"].widget.attrs["data-owner-objects-url"] = url
+            owner_field.widget.attrs["data-owner-objects-url"] = url
         except Exception:
             # In case admin URLs are not yet loaded (e.g., during certain imports).
             pass
@@ -134,7 +130,10 @@ class ThemeAdminForm(forms.ModelForm):
         ValidationError
             If the selected owner object does not match the selected content type.
         """
-        cleaned = super().clean()
+        super().clean()
+
+        cleaned: dict[str, Any] = self.cleaned_data
+
         ct: ContentType | None = cleaned.get("owner_content_type")
         owner_obj: Model | None = cleaned.get("owner_object")
 
