@@ -1,0 +1,15 @@
+{% load i18n %}
+{% if petition.illustration %}
+  <figure class="mb-4">
+    <img src="{{ petition.illustration.url }}"
+         class="img-fluid rounded-3 shadow-sm w-100 object-fit-cover"
+         style="max-height: 420px"
+         alt="{% translate "Petition illustration" %}"
+         data-field="illustration">
+  </figure>
+{% elif mode != 'view' %}
+  <div class="mb-4 p-5 border border-2 border-dashed rounded-3 text-center text-muted bg-light"
+       data-field="illustration">
+    <div class="small">{% translate "Click to add an illustration" %}</div>
+  </div>
+{% endif %}

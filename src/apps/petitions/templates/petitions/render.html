@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+{% load i18n static %}
+{% block main_content %}
+  <div class="container-xxl my-4 petition-layout"
+       data-mode="{{ mode|default:'view' }}"
+       data-petition-id="{{ petition.id }}">
+    <div class="row g-4">
+      <div class="col-12 col-lg-8">
+        <main class="petition-main">
+          {% include "petitions/partials/title.html" %}
+          {% include "petitions/partials/illustration.html" %}
+          {% include "petitions/partials/tagline.html" %}
+          {% include "petitions/partials/body.html" %}
+          {% include "petitions/partials/authors.html" %}
+          {% include "petitions/partials/resources.html" %}
+          {% include "petitions/partials/news.html" %}
+        </main>
+      </div>
+      <div class="col-12 col-lg-4 d-none d-lg-block">
+        <aside class="petition-aside position-sticky" style="top: 1.25rem;">
+          <div class="d-grid gap-3">
+            {% include "petitions/partials/progress.html" %}
+            {% include "petitions/partials/sign_form.html" %}
+            {% include "petitions/partials/share.html" %}
+          </div>
+        </aside>
+      </div>
+    </div>
+    {% if can_edit %}
+      <a class="btn btn-outline-secondary position-fixed end-0 bottom-0 m-3 shadow petition-edit-fab"
+         id="petition-edit-toggle"
+         href="{% url 'petitions:edit' petition_id=petition.id %}">{% translate "Edit this petition" %}</a>
+    {% endif %}
+    <button class="btn btn-primary position-fixed start-0 bottom-0 m-3 shadow d-lg-none petition-sign-fab"
+            id="petition-sign-fab"
+            type="button">{% translate "Sign" %}</button>
+  </div>
+{% endblock main_content %}
+{% block extra_js %}
+  <script src="{% static 'js/petitions/render.js' %}"></script>
+  <script src="{% static 'js/petitions/share.js' %}"></script>
+  <script src="{% static 'js/petitions/progress.js' %}"></script>
+  <script src="{% static 'js/petitions/sign_modal.js' %}"></script>
+{% endblock extra_js %}

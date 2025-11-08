@@ -17,11 +17,11 @@ class PetitionsRoute(StrEnum):
     Each member is a string equal to "<namespace>:<short>".
     """
 
-    DETAIL = _NS + "detail"  # old detail
-    DELETE = _NS + "delete"  # old petition_delete
-    PUBLISH = _NS + "publish"  # old petition_publish
-    UNPUBLISH = _NS + "unpublish"  # old petition_unpublish
-    EDIT = _NS + "edit"  # old edit_petition
-    TRANSFER = _NS + "transfer"  # old transfer_petition
-    ALL_PETITIONS = _NS + "all"  # old all_petitions
+    DETAIL = _NS + "detail"
+    DELETE = _NS + "delete"
+    PUBLISH = _NS + "publish"
+    UNPUBLISH = _NS + "unpublish"
+    EDIT = _NS + "edit"
+    TRANSFER = _NS + "transfer"
+    ALL_PETITIONS = _NS + "all"
     NEW = _NS + "new"

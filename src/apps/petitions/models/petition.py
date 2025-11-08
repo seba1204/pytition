@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Any
 
 from colorfield.fields import ColorField  # type: ignore
 from django.contrib.auth.hashers import get_hasher
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models, transaction
 from django.urls import reverse
 from django.utils import timezone
@@ -18,7 +19,7 @@ from django.utils.translation import gettext_lazy as _lazy
 from tinymce import models as tinymce_models  # type: ignore
 
 from apps.core.helpers import sanitize_html
-from apps.core.model_refs import ORGANIZATION, PYTITION_USER
+from apps.core.model_refs import ORGANIZATION, PETITION_AUTHOR, PYTITION_USER
 from apps.petitions.routes import PetitionsRoute
 
 if TYPE_CHECKING:
@@ -54,7 +55,7 @@ class Petition(models.Model):
     # Description
     title = models.TextField(verbose_name=_lazy("Title"))
     text = tinymce_models.HTMLField(blank=True)
-    side_text = tinymce_models.HTMLField(blank=True)
+    tagline = tinymce_models.HTMLField(blank=True)
     target = models.IntegerField(default=500)
     # Owner
     user = models.ForeignKey(
@@ -63,6 +64,8 @@ class Petition(models.Model):
     org = models.ForeignKey(
         ORGANIZATION, on_delete=models.CASCADE, null=True, blank=True
     )
+    authors = GenericRelation(PETITION_AUTHOR, related_query_name="petition")
+
     # Colors
     linear_gradient_direction = models.CharField(
         choices=LINEAR_GRADIENT_CHOICES, max_length=15, default=NO, blank=True
@@ -74,7 +77,7 @@ class Petition(models.Model):
     footer_links = tinymce_models.HTMLField(blank=True)
     twitter_description = models.CharField(max_length=200, blank=True)
     twitter_image = models.CharField(max_length=500, blank=True)
-    illustration = models.ImageField(upload_to='petitions/illustrations/', blank=True)
+    illustration = models.ImageField(upload_to="petitions/illustrations/", blank=True)
     has_newsletter = models.BooleanField(default=False)
     newsletter_subscribe_http_data = models.TextField(blank=True)
     newsletter_subscribe_http_mailfield = models.CharField(max_length=100, blank=True)
@@ -256,6 +259,22 @@ class Petition(models.Model):
         )
         return signature_number > 0
 
+    @property
+    def signature_progress(self) -> int:
+        """
+        Compute signature progress towards target in percent.
+
+        Returns
+        -------
+        int
+            A clamped percentage between 0 and 100.
+        """
+        try:
+            pct = int(round((self.signature_number * 100) / max(1, self.target)))
+        except Exception:
+            pct = 0
+        return max(0, min(100, pct))
+
     def confirm_signature(self, conf_hash: str) -> str | None:
         """Confirm a signature given its confirmation hash."""
         # lazy import to avoid circular imports
@@ -384,19 +403,13 @@ class Petition(models.Model):
         elif self.owner_type == "org":
             #  This petition is owned by an Organization
             if self.org is not None:
-                return reverse(
-                    "slug_show_petition",
-                    kwargs={"orgslugname": self.org.slugname, "petitionname": slugs[0]},
-                )
+                return reverse(PetitionsRoute.DETAIL, kwargs={"petition_id": self.id})
             else:
                 raise ValueError(_("This petition is missing an organization owner."))
         elif self.owner_type == "user":
             # This petition is owned by a PytitionUser
             if self.user is not None:
-                return reverse(
-                    "slug_show_petition",
-                    kwargs={"username": self.user.username, "petitionname": slugs[0]},
-                )
+                return reverse(PetitionsRoute.DETAIL, kwargs={"petition_id": self.id})
             else:
                 raise ValueError(_("This petition is missing a user owner."))
         else:

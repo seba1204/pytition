@@ -14,14 +14,15 @@ def publish(request: HttpRequest, petition_id: int) -> JsonResponse:
     """
     Publish a petition.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     request : HttpRequest
         The HTTP request object.
     petition_id : int
         The ID of the petition to publish.
-    Returns:
-    --------
+
+    Returns
+    -------
     JsonResponse
         The JSON response indicating success or failure.
     """

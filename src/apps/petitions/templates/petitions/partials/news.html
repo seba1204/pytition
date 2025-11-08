@@ -1,0 +1,31 @@
+{% load i18n %}
+{% with items=petition.news.all %}
+  {% if items and items.count %}
+    <section class="mb-5" data-field="news">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <h2 class="h4 mb-0">{% translate "Updates" %}</h2>
+        {% if mode != 'view' %}
+          <button class="btn btn-sm btn-outline-primary news-add" type="button">+ {% translate "Add update" %}</button>
+        {% endif %}
+      </div>
+      <ol class="list-unstyled m-0">
+        {% for n in items %}
+          <li class="py-3 border-bottom">
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="badge bg-secondary-subtle text-secondary-emphasis">{{ n.date|date:'d/m/Y' }}</span>
+              <strong>{{ n.title }}</strong>
+            </div>
+            <div class="text-body-secondary">{{ n.content|safe }}</div>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% elif mode != 'view' %}
+    <section class="mb-5" data-field="news">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <h2 class="h4 mb-0 text-muted fst-italic">{% translate "Updates (disabled)" %}</h2>
+        <button class="btn btn-sm btn-outline-primary news-add" type="button">+ {% translate "Add update" %}</button>
+      </div>
+    </section>
+  {% endif %}
+{% endwith %}

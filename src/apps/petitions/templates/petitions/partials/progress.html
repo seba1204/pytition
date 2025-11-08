@@ -1,0 +1,18 @@
+{% load i18n %}
+{% with pct=petition.signature_progress %}
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="d-none d-lg-block h5 mb-3">{% translate "Sign the petition" %}</div>
+      <div class="progress mb-2"
+           role="progressbar"
+           aria-valuenow="{{ pct }}"
+           aria-valuemin="0"
+           aria-valuemax="100">
+        <div class="progress-bar" style="width: {{ pct }}%;"></div>
+      </div>
+      <div class="small text-muted">
+        {% blocktrans %}Already {{ petition.signature_number }} signatures{% endblocktrans %}
+      </div>
+    </div>
+  </div>
+{% endwith %}

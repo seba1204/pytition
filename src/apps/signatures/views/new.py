@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.utils.html import format_html
 from django.utils.timezone import now
 from django.utils.translation import gettext as _
@@ -16,7 +16,6 @@ from apps.core.helpers import get_client_ip
 from apps.notifications.services import send_confirmation_email
 from apps.petitions.helpers import (
     check_petition_is_accessible,
-    petition_detail_meta,
     petition_from_id,
 )
 from apps.signatures.forms import SignatureForm
@@ -45,14 +44,9 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
 
     if request.method == "POST":
         form = SignatureForm(petition=petition, data=request.POST)
-        ctx = {
-            "petition": petition,
-            "form": form,
-            "meta": petition_detail_meta(request, petition_id),
-            "og_image_absolute_url": request.build_absolute_uri(petition.twitter_image),
-        }
         if not form.is_valid():
-            return render(request, "petitions/detail.html", ctx)
+            # redirect back to petition detail with form errors
+            return redirect(petition.url)
 
         ipaddr = make_password(
             get_client_ip(request),
@@ -67,7 +61,7 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
                 request,
                 _("Too many signatures from your IP address, please try again later."),
             )
-            return render(request, "petitions/detail.html", ctx)
+            return redirect(petition.url)
         else:
             signature = form.save()
             signature.ipaddress = ipaddr

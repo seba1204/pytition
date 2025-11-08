@@ -23,9 +23,7 @@ ROUTES: dict[OrgRoute, Route] = {
     OrgRoute.DASHBOARD: Route(f"{SLUG}/dashboard", OV.dashboard),
     OrgRoute.LEAVE: Route(f"{SLUG}/leave", OV.leave),
     # LEGACY
-    OrgRoute.SLUG_SHOW_PETITION: Route(
-        f"{SLUG}/<slug:petitionname>", PV.slug_show_petition
-    ),
+    OrgRoute.LEGACY_DETAIL: Route(f"{SLUG}/<slug:petitionname>", PV.legacy_detail),
 }
 
 

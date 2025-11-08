@@ -68,12 +68,12 @@ urlpatterns = [
     # ──────────────────────────────────────────────────────────────────────────────────
     path(
         "petition/org/<orgslugname>/<slug:petitionname>",
-        PV.slug_show_petition,
+        PV.legacy_detail,
         name="slug_show_petition",
     ),
     path(
         "petition/user/<username>/<slug:petitionname>",
-        PV.slug_show_petition,
+        PV.legacy_detail,
         name="slug_show_petition",
     ),
 ]

@@ -21,6 +21,7 @@ from apps.petitions.routes import SLUG_NS, PetitionsRoute
 app_name = "petitions"
 
 PID = "<int:petition_id>"
+PSL = "<slug:petition_slug>"
 
 # --------------------------------------------------------------------------- #
 # One-to-one mapping: every PetitionsRoute must appear exactly once

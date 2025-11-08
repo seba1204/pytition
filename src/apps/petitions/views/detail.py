@@ -1,61 +1,94 @@
-"""View to show petition details."""
+"""Detail view for Petition (read-only render mode)."""
 
-from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import render
+from __future__ import annotations
 
+from typing import Any
+
+from django.http import Http404, HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import gettext as _
+
+from apps.accounts.models import PytitionUser
 from apps.accounts.services import get_session_user
-from apps.moderation.models import ModerationReason
-from apps.petitions.helpers import (
-    check_petition_is_accessible,
-    petition_detail_meta,
-    petition_from_id,
-)
-from apps.signatures.forms import SignatureForm
-from apps.signatures.helpers import hide_sign_form_if_user_just_signed
+from apps.organizations.models import Organization
+from apps.petitions.helpers import check_petition_is_accessible
+from apps.petitions.models import Petition, SlugModel
+from apps.petitions.routes import PetitionsRoute
 
 
-# Show information on a petition
 def detail(request: HttpRequest, petition_id: int) -> HttpResponse:
     """
-    Detail view of a petition.
+    Render a petition in view mode.
 
     Parameters
     ----------
     request : HttpRequest
-        The HTTP request object.
+        Incoming request.
     petition_id : int
-        The ID of the petition to display.
+        ID of the petition to display.
 
     Returns
     -------
     HttpResponse
-        The HTTP response with the petition detail page or JSON data.
+        Rendered page using the unified ``render.html`` template.
     """
-    petition = petition_from_id(petition_id)
-    check_petition_is_accessible(request, petition)
-    try:
+    petition: Petition = get_object_or_404(Petition, pk=petition_id)
+    # if user is connected, get pytitionuser
+    can_edit = False
+    if request.user.is_authenticated:
         pytitionuser = get_session_user(request)
-    except Exception:
-        pytitionuser = None
-
-    reasons = ModerationReason.objects.all()
-    sign_form = SignatureForm(petition=petition)
-    ctx = {
-        "user": pytitionuser,
+        can_edit = petition.is_allowed_to_edit(pytitionuser)
+    context: dict[str, Any] = {
         "petition": petition,
-        "form": sign_form,
-        "meta": petition_detail_meta(request, petition_id),
-        "moderation_reasons": reasons,
-        "og_image_absolute_url": request.build_absolute_uri(petition.twitter_image),
+        "mode": "view",
+        "can_edit": can_edit,
     }
+    return render(request, "petitions/render.html", context)
 
-    # If we've just signed successfully the petition, do not show the sign form
-    hide_sign_form_if_user_just_signed(request, ctx)
 
-    if "application/json" in request.META.get("HTTP_ACCEPT", []):
-        response = JsonResponse(petition.to_json)
-        response["Access-Control-Allow-Origin"] = "*"
-        response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
-        return response
+def legacy_detail(
+    request: HttpRequest,
+    orgslugname: str | None = None,
+    username: str | None = None,
+    petitionname: str | None = None,
+) -> HttpResponse:
+    """
+    LEGACY: Render a petition by its owner (user/org) and petition slug.
+
+    Parameters
+    ----------
+    request : HttpRequest
+        Incoming request.
+    orgslugname : str | None
+        Slug name of the organization owning the petition (if any).
+    username : str | None
+        Username of the user owning the petition (if any).
+    petitionname : str
+        Slug name of the petition.
+
+    Returns
+    -------
+    HttpResponse
+        Rendered page using the unified ``render.html`` template.
+    """
+    # permanent redirect to the new URL structure
+
+    if orgslugname:
+        try:
+            org = Organization.objects.get(slugname=orgslugname)
+            slug = SlugModel.objects.get(slug=petitionname, petition__org=org)
+        except (Organization.DoesNotExist, SlugModel.DoesNotExist):
+            raise Http404(_("Sorry, we are not able to find this petition.")) from None
+        petition = slug.petition
     else:
-        return render(request, "petitions/detail.html", ctx)
+        try:
+            user = PytitionUser.objects.get(user__username=username)
+            slug = SlugModel.objects.get(slug=petitionname, petition__user=user)
+        except PytitionUser.DoesNotExist:
+            raise Http404(_("Sorry, we are not able to find this petition.")) from None
+        except SlugModel.DoesNotExist:
+            raise Http404(_("Sorry, we are not able to find this petition.")) from None
+        petition = slug.petition
+        check_petition_is_accessible(request, petition)
+
+    return redirect(PetitionsRoute.DETAIL, petition_id=petition.id)

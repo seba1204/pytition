@@ -1,0 +1,12 @@
+{# Bootstrap resource list item component #}
+<div class="list-group-item d-flex align-items-center justify-content-between">
+  <a href="{{ url }}"
+     target="_blank"
+     rel="noopener"
+     class="text-decoration-none">{{ title }}</a>
+  {% if removable %}
+    <button class="btn btn-sm btn-outline-danger resource-remove" type="button">
+      <span class="bi bi-x"></span>
+    </button>
+  {% endif %}
+</div>

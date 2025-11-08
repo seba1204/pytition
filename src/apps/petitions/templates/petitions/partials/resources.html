@@ -1,0 +1,33 @@
+{% load i18n %}
+{% if petition.resources.all and petition.resources.all.count %}
+  <section class="mb-5" data-field="resources">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h2 class="h4 mb-0">{% translate "Resources" %}</h2>
+      {% if mode != 'view' %}
+        <button class="btn btn-sm btn-outline-primary resource-add" type="button">+ {% translate "Add resource" %}</button>
+      {% endif %}
+    </div>
+    <div class="list-group shadow-sm">
+      {% for r in petition.resources.all %}
+        <div class="list-group-item d-flex align-items-center justify-content-between">
+          <a href="{{ r.file.url }}"
+             target="_blank"
+             rel="noopener"
+             class="text-decoration-none">{{ r.title|default:r.file.name }}</a>
+          {% if mode != 'view' %}
+            <button class="btn btn-sm btn-outline-danger resource-remove" type="button">
+              <span class="bi bi-x"></span>
+            </button>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% elif mode != 'view' %}
+  <section class="mb-5" data-field="resources">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h2 class="h4 mb-0 text-muted fst-italic">{% translate "Resources (disabled)" %}</h2>
+      <button class="btn btn-sm btn-outline-primary resource-add" type="button">+ {% translate "Add resource" %}</button>
+    </div>
+  </section>
+{% endif %}

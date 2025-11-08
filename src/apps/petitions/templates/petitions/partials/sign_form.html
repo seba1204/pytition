@@ -1,0 +1,65 @@
+{% load i18n %}
+<form class="needs-validation sign-form"
+      novalidate
+      name="petition"
+      method="post"
+      action="{% url 'signatures:new' petition.id %}"
+      data-component="sign-form"
+      data-share-on-success="{{ share_on_success|default:'1' }}">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="id_first_name" class="form-label">{% translate "First name" %}</label>
+    <input type="text"
+           class="form-control"
+           id="id_first_name"
+           name="first_name"
+           required>
+    <div class="invalid-feedback">{% translate "Please enter your first name." %}</div>
+  </div>
+  <div class="mb-3">
+    <label for="id_last_name" class="form-label">{% translate "Last name" %}</label>
+    <input type="text"
+           class="form-control"
+           id="id_last_name"
+           name="last_name"
+           required>
+    <div class="invalid-feedback">{% translate "Please enter your last name." %}</div>
+  </div>
+  <div class="mb-3">
+    <label for="id_phone" class="form-label">{% translate "Phone (optional)" %}</label>
+    <input type="tel"
+           class="form-control"
+           id="id_phone"
+           name="phone"
+           inputmode="tel"
+           autocomplete="tel">
+  </div>
+  <div class="mb-3">
+    <label for="id_email" class="form-label">{% translate "Email" %}</label>
+    <input type="email"
+           class="form-control"
+           id="id_email"
+           name="email"
+           autocomplete="email"
+           required>
+    <div class="invalid-feedback">{% translate "Please enter a valid email address." %}</div>
+  </div>
+  {# Optional newsletter opt-in, shown only if context variable is true #}
+  {% if show_newsletter_optin %}
+    <div class="form-check mb-3">
+      <input class="form-check-input"
+             type="checkbox"
+             value="1"
+             id="id_newsletter_optin"
+             name="newsletter_optin">
+      <label class="form-check-label" for="id_newsletter_optin">
+        {{ newsletter_label|default:_("I want to receive the newsletter") }}
+      </label>
+    </div>
+  {% endif %}
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-lg" data-role="submit">{% translate "Sign the petition" %}</button>
+  </div>
+  {# Placeholders for server errors #}
+  {% if form_errors %}<div class="alert alert-danger mt-3" role="alert">{{ form_errors }}</div>{% endif %}
+</form>

@@ -22,4 +22,4 @@ class OrgRoute(StrEnum):
     DASHBOARD = _NS + "dashboard"
     LEAVE = _NS + "leave"
     # LEGACY
-    SLUG_SHOW_PETITION = _NS + "slug_show_petition"
+    LEGACY_DETAIL = _NS + "legacy_detail"
