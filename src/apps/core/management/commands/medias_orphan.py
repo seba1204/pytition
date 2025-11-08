@@ -26,7 +26,7 @@ class Command(BaseCommand):
                 for petition in all_petition:
                     if (
                         media_str in petition.text
-                        or media_str in petition.twitter_image
+                        or media_str in petition.illustration.name
                     ):
                         break
                     if petition == last_petition:
