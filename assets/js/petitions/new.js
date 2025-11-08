@@ -114,11 +114,6 @@
     textDisplay.classList.add('d-none');
     textInput.classList.remove('d-none');
 
-    // get finalCfg from global AppEditors config
-    const finalCfg = window.AppEditors && window.AppEditors.getFinalConfig && window.AppEditors.getFinalConfig();
-
-
-
     window.AppEditors.initTinyMCE(textInput, {
       plugins: 'link lists table media image autoresize',
       min_height: 480,
@@ -129,8 +124,6 @@
         toolbar_sticky: true,
         toolbar_sticky_offset: 56,
       },
-
-
 
       setup: (ed) => {
         editor = ed;

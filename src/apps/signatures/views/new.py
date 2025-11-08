@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils.html import format_html
 from django.utils.timezone import now
 from django.utils.translation import gettext as _
@@ -44,9 +44,14 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
 
     if request.method == "POST":
         form = SignatureForm(petition=petition, data=request.POST)
+        ctx = {
+            "petition": petition,
+            "mode": "view",
+            "can_edit": False,
+            "form": form,
+        }
         if not form.is_valid():
-            # redirect back to petition detail with form errors
-            return redirect(petition.url)
+            return render(request, "petitions/render.html", ctx)
 
         ipaddr = make_password(
             get_client_ip(request),
@@ -61,7 +66,7 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
                 request,
                 _("Too many signatures from your IP address, please try again later."),
             )
-            return redirect(petition.url)
+            return render(request, "petitions/render.html", ctx)
         else:
             signature = form.save()
             signature.ipaddress = ipaddr

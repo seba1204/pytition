@@ -97,3 +97,7 @@ table caption {
   height: auto;
   display: block;
 }
+
+.petition-aside {
+  top: 1.25rem;
+}

@@ -76,7 +76,6 @@ class Petition(models.Model):
     footer_text = tinymce_models.HTMLField(blank=True)
     footer_links = tinymce_models.HTMLField(blank=True)
     twitter_description = models.CharField(max_length=200, blank=True)
-    twitter_image = models.CharField(max_length=500, blank=True)
     illustration = models.ImageField(upload_to="petitions/illustrations/", blank=True)
     has_newsletter = models.BooleanField(default=False)
     newsletter_subscribe_http_data = models.TextField(blank=True)
@@ -312,7 +311,7 @@ class Petition(models.Model):
             "text": self.text,
             "target": self.target,
             "description": self.twitter_description,
-            "image": self.twitter_image,
+            "image": self.illustration.url if self.illustration else "",
             "org_twitter_handle": self.org_twitter_handle,
             "has_newsletter": self.has_newsletter,
             "creator": self.owner_name,

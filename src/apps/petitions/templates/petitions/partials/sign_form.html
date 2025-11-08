@@ -1,65 +1,60 @@
 {% load i18n %}
-<form class="needs-validation sign-form"
-      novalidate
-      name="petition"
-      method="post"
+{% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+<form method="post"
+      class="sign-form mb-4"
       action="{% url 'signatures:new' petition.id %}"
-      data-component="sign-form"
-      data-share-on-success="{{ share_on_success|default:'1' }}">
+      novalidate>
   {% csrf_token %}
   <div class="mb-3">
-    <label for="id_first_name" class="form-label">{% translate "First name" %}</label>
+    <label class="form-label" for="id_first_name">{% translate "First name" %}</label>
     <input type="text"
-           class="form-control"
-           id="id_first_name"
            name="first_name"
-           required>
-    <div class="invalid-feedback">{% translate "Please enter your first name." %}</div>
+           id="id_first_name"
+           value="{{ form.first_name.value|default_if_none:'' }}"
+           class="form-control{% if form.first_name.errors %} is-invalid{% endif %}">
+    {% for err in form.first_name.errors %}<div class="invalid-feedback">{{ err }}</div>{% endfor %}
   </div>
   <div class="mb-3">
-    <label for="id_last_name" class="form-label">{% translate "Last name" %}</label>
+    <label class="form-label" for="id_last_name">{% translate "Last name" %}</label>
     <input type="text"
-           class="form-control"
-           id="id_last_name"
            name="last_name"
-           required>
-    <div class="invalid-feedback">{% translate "Please enter your last name." %}</div>
+           id="id_last_name"
+           value="{{ form.last_name.value|default_if_none:'' }}"
+           class="form-control{% if form.last_name.errors %} is-invalid{% endif %}">
+    {% for err in form.last_name.errors %}<div class="invalid-feedback">{{ err }}</div>{% endfor %}
   </div>
   <div class="mb-3">
-    <label for="id_phone" class="form-label">{% translate "Phone (optional)" %}</label>
+    <label class="form-label" for="id_phone">{% translate "Phone (optional)" %}</label>
     <input type="tel"
-           class="form-control"
-           id="id_phone"
            name="phone"
-           inputmode="tel"
-           autocomplete="tel">
+           id="id_phone"
+           value="{{ form.phone.value|default_if_none:'' }}"
+           class="form-control{% if form.phone.errors %} is-invalid{% endif %}">
+    {% for err in form.phone.errors %}<div class="invalid-feedback">{{ err }}</div>{% endfor %}
   </div>
   <div class="mb-3">
-    <label for="id_email" class="form-label">{% translate "Email" %}</label>
+    <label class="form-label" for="id_email">{% translate "Email" %}</label>
     <input type="email"
-           class="form-control"
-           id="id_email"
            name="email"
-           autocomplete="email"
-           required>
-    <div class="invalid-feedback">{% translate "Please enter a valid email address." %}</div>
+           id="id_email"
+           value="{{ form.email.value|default_if_none:'' }}"
+           class="form-control{% if form.email.errors %} is-invalid{% endif %}">
+    {% for err in form.email.errors %}<div class="invalid-feedback">{{ err }}</div>{% endfor %}
   </div>
-  {# Optional newsletter opt-in, shown only if context variable is true #}
   {% if show_newsletter_optin %}
     <div class="form-check mb-3">
       <input class="form-check-input"
              type="checkbox"
-             value="1"
              id="id_newsletter_optin"
-             name="newsletter_optin">
+             name="newsletter_optin"
+             {% if form.newsletter_optin.value %}checked{% endif %}>
       <label class="form-check-label" for="id_newsletter_optin">
         {{ newsletter_label|default:_("I want to receive the newsletter") }}
       </label>
+      {% for err in form.newsletter_optin.errors %}<div class="invalid-feedback d-block">{{ err }}</div>{% endfor %}
     </div>
   {% endif %}
   <div class="d-grid">
-    <button type="submit" class="btn btn-primary btn-lg" data-role="submit">{% translate "Sign the petition" %}</button>
+    <button class="btn btn-primary btn-lg" type="submit">{% translate "Sign the petition" %}</button>
   </div>
-  {# Placeholders for server errors #}
-  {% if form_errors %}<div class="alert alert-danger mt-3" role="alert">{{ form_errors }}</div>{% endif %}
 </form>

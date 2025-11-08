@@ -1,25 +1,22 @@
 {% load i18n %}
 {# Right panel - Share buttons (vanilla) #}
-<div class="card shadow-sm petition-share"
-     data-share-url="{{ request.build_absolute_uri }}">
-  <div class="card-body">
-    <h3 class="h6 text-uppercase text-muted mb-3">{% translate "Share" %}</h3>
-    <div class="d-grid gap-2">
-      <button class="btn btn-outline-secondary share-copy"
-              data-kind="copy"
-              type="button">{% translate "Copy link" %}</button>
-      <button class="btn btn-outline-secondary share-social"
-              data-kind="twitter"
-              type="button">X / Twitter</button>
-      <button class="btn btn-outline-secondary share-social"
-              data-kind="facebook"
-              type="button">Facebook</button>
-      <button class="btn btn-outline-secondary share-social"
-              data-kind="linkedin"
-              type="button">LinkedIn</button>
-      <button class="btn btn-outline-secondary share-social"
-              data-kind="email"
-              type="button">{% translate "Email" %}</button>
-    </div>
-  </div>
+<div data-share-url="{{ request.build_absolute_uri }}">
+        <h3 class="h6 text-uppercase text-muted mb-3">{% translate "Share" %}</h3>
+        <div class="d-grid gap-2">
+                <button class="btn btn-outline-secondary share-copy"
+                        data-kind="copy"
+                        type="button">{% translate "Copy link" %}</button>
+                <button class="btn btn-outline-secondary share-social"
+                        data-kind="twitter"
+                        type="button">X / Twitter</button>
+                <button class="btn btn-outline-secondary share-social"
+                        data-kind="facebook"
+                        type="button">Facebook</button>
+                <button class="btn btn-outline-secondary share-social"
+                        data-kind="linkedin"
+                        type="button">LinkedIn</button>
+                <button class="btn btn-outline-secondary share-social"
+                        data-kind="email"
+                        type="button">{% translate "Email" %}</button>
+        </div>
 </div>

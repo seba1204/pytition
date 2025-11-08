@@ -1,0 +1,9 @@
+{% load i18n %}
+<div class="card shadow-sm">
+    <div class="card-body gap-3">
+        <div class="d-none d-lg-block h5 mb-3">{% translate "Sign the petition" %}</div>
+        {% include "petitions/partials/progress.html" %}
+        {% include "petitions/partials/sign_form.html" %}
+        {% include "petitions/partials/share.html" %}
+    </div>
+</div>

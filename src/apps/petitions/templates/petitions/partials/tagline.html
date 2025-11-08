@@ -1,8 +1,10 @@
 {% load i18n %}
 {% if petition.tagline %}
   <p class="lead text-secondary mb-4 petition-tagline"
-     data-field="tagline">{{ petition.tagline|safe }}</p>
+     data-field="tagline"
+     data-editable="true">{{ petition.tagline|safe }}</p>
 {% elif mode != 'view' %}
   <p class="lead text-muted fst-italic mb-4 petition-tagline"
-     data-field="tagline">{% translate "Add a tagline" %}</p>
+     data-field="tagline"
+     data-editable="true">{% translate "Add a tagline" %}</p>
 {% endif %}

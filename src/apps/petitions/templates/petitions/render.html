@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/layout.html" %}
 {% load i18n static %}
 {% block main_content %}
   <div class="container-xxl my-4 petition-layout"
@@ -17,12 +17,8 @@
         </main>
       </div>
       <div class="col-12 col-lg-4 d-none d-lg-block">
-        <aside class="petition-aside position-sticky" style="top: 1.25rem;">
-          <div class="d-grid gap-3">
-            {% include "petitions/partials/progress.html" %}
-            {% include "petitions/partials/sign_form.html" %}
-            {% include "petitions/partials/share.html" %}
-          </div>
+        <aside class="petition-aside position-sticky">
+          <div class="d-grid gap-3">{% include "petitions/partials/side_panel.html" %}</div>
         </aside>
       </div>
     </div>
@@ -37,7 +33,9 @@
   </div>
 {% endblock main_content %}
 {% block extra_js %}
-  <script src="{% static 'js/petitions/render.js' %}"></script>
+  {% include "layouts/tinymce.html" %}
+  {% comment %} <script src="{% static 'js/petitions/render.js' %}"></script> {% endcomment %}
+  <script src="{% static 'js/petitions/editor.js' %}"></script>
   <script src="{% static 'js/petitions/share.js' %}"></script>
   <script src="{% static 'js/petitions/progress.js' %}"></script>
   <script src="{% static 'js/petitions/sign_modal.js' %}"></script>
