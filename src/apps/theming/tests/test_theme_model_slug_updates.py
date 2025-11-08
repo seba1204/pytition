@@ -46,7 +46,7 @@ class ThemeSlugUpdateBehaviorTests(RegistrySettingsMixin, TestCase):
         self.assertEqual(t.slug, "locked-slug")
 
         # Clear slug in memory and save only 'name'
-        t.slug = ""  # type: ignore[assignment]  # simulate misuse
+        t.slug = ""
         t.name = "Locked Slug Renamed"
         t.full_clean()
         t.save(update_fields=["name"])

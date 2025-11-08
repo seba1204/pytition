@@ -37,6 +37,7 @@ from apps.petitions import views as PV
 from apps.petitions.routes import NAMESPACE as PET_NS
 from apps.presets.routes import NAMESPACE as PRESET_NS
 from apps.signatures.routes import NAMESPACE as SIGN_NS
+from apps.theming.routes import NAMESPACE as THEME_NS
 
 urlpatterns: list[URLPattern | URLResolver]
 
@@ -57,6 +58,7 @@ urlpatterns = [
     path("org/", include("apps.organizations.urls", namespace=ORG_NS)),
     path("presets/", include("apps.presets.urls", namespace=PRESET_NS)),
     path("search/", include("apps.core.urls.search", namespace=SEARCH_NS)),
+    path("theme/", include("apps.theming.urls", namespace=THEME_NS)),
     path("user/", include("apps.accounts.urls", namespace=ACCOUNT_NS)),
     path(f"p/{PID}/consents/", include("apps.consents.urls", namespace=CONSENT_NS)),
     path(f"p/{PID}/signatures/", include("apps.signatures.urls", namespace=SIGN_NS)),

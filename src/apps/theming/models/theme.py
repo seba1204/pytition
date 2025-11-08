@@ -45,7 +45,9 @@ class Theme(models.Model):
         unique=True,
         blank=True,
         verbose_name=_lazy("Slug"),
-        help_text=_lazy("A unique identifier for the theme (auto generated)."),
+        help_text=_lazy(
+            "A unique identifier for the theme (auto generated if not specified)."
+        ),
     )
     description: models.TextField = models.TextField(
         blank=True,
@@ -328,8 +330,18 @@ class Theme(models.Model):
                 ) from exc
 
         # --- Ensure GFK owner exists -------------
+        print("Validating owner existence...")  # --- DEBUG ---
+        print(
+            f"owner_content_type_id={self.owner_content_type_id}, "
+            f"owner_object_id={self.owner_object_id}"
+        )  # --- DEBUG ---
         if not self.owner_content_type_id or not self.owner_object_id:
-            raise ValidationError({"owner": _("Owner must be set.")})
+            raise ValidationError(
+                {
+                    "owner_content_type": _("Owner must be set."),
+                    "owner_object_id": _("Owner must be set."),
+                }
+            )
 
         try:
             ct = cast(ContentType, self.owner_content_type)

@@ -1,4 +1,3 @@
-/* All comments are in English. */
 /* global tinymce, gettext */
 
 (function () {

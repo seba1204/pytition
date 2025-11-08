@@ -1,0 +1,85 @@
+{
+    "version": "v1",
+    "tokens": [
+        {
+            "name": "--color-bg",
+            "type": "color"
+        },
+        {
+            "name": "--color-text",
+            "type": "color"
+        },
+        {
+            "name": "--color-primary",
+            "type": "color"
+        },
+        {
+            "name": "--border-color",
+            "type": "color"
+        },
+        {
+            "name": "--font-family-base",
+            "type": "string"
+        },
+        {
+            "name": "--font-size-base",
+            "type": "length"
+        },
+        {
+            "name": "--line-height",
+            "type": "number",
+            "min_value": 1.0,
+            "max_value": 2.0
+        },
+        {
+            "name": "--radius-sm",
+            "type": "length"
+        },
+        {
+            "name": "--radius-md",
+            "type": "length"
+        },
+        {
+            "name": "--radius-lg",
+            "type": "length"
+        },
+        {
+            "name": "--spacing-sm",
+            "type": "length"
+        },
+        {
+            "name": "--spacing-md",
+            "type": "length"
+        },
+        {
+            "name": "--spacing-lg",
+            "type": "length"
+        },
+        {
+            "name": "--opacity-overlay",
+            "type": "number",
+            "min_value": 0.1,
+            "max_value": 1.0
+        },
+        {
+            "name": "--motion-easing",
+            "type": "string",
+            "allowed_values": [
+                "ease",
+                "linear",
+                "ease-in",
+                "ease-out",
+                "ease-in-out"
+            ]
+        },
+        {
+            "name": "--container-max-width",
+            "type": "length"
+        },
+        {
+            "name": "--shadow-color",
+            "type": "color",
+            "deprecated": true
+        }
+    ]
+}

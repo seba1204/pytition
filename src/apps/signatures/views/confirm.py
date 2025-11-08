@@ -25,12 +25,12 @@ def confirm(
         The ID of the petition.
     confirmation_hash : str
         The confirmation hash for the signature.
+
     Returns
     -------
     HttpResponse
         A redirect response to the petition detail page with a success or error message.
     """
-
     petition = petition_from_id(petition_id)
     check_petition_is_accessible(request, petition)
     try:

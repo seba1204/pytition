@@ -266,6 +266,17 @@ def _load_tokens_for_version(version: str) -> dict[str, TokenDef]:
 
     path: Path = Path(unsafe_path)
 
+    # # get root path if relative
+    # if not path.is_absolute():
+    #     base_dir = Path(settings.BASE_DIR)
+    #     path = base_dir.joinpath(path).resolve()
+
+    # check file exists
+    if not path.is_file():
+        raise FileNotFoundError(
+            _("Token registry file not found: %(path)s") % {"path": str(path)}
+        )
+
     with path.open("r", encoding="utf-8") as fh:
         data: dict[str, Any] = json.load(fh)
 
