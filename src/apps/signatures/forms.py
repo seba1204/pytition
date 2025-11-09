@@ -70,9 +70,3 @@ class SignatureForm(ModelForm):
     ) -> None:
         super().__init__(*args, **kwargs)
         self.instance.petition = petition
-        if not petition or not petition.has_newsletter:
-            del self.fields["subscribed_to_mailinglist"]
-        else:
-            self.fields[
-                "subscribed_to_mailinglist"
-            ].label = self.instance.petition.newsletter_text

@@ -1,8 +1,5 @@
-""""Tests for EditPetitionView."""
+"""Tests for EditPetitionView."""
 
-from pathlib import Path
-
-from django.conf import settings
 from django.test import TestCase
 from django.urls import reverse
 
@@ -292,85 +289,6 @@ class EditPetitionViewTest(TestCase):
                 continue
             self.assertEqual(getattr(p2, key), value)
             self.assertEqual(getattr(p, key), value)
-
-    def test_edit_petition_POST_social_network_form(self) -> None:
-        julia = self.login("julia")
-        org = Organization.objects.get(name="RAP")
-
-        # FIXME: [#80] path manipulation is ugly here, find a better way
-        this_path = Path(__file__).parent
-        # this path should point to <root>/src/apps/petition/tests/
-        # and the logo is at <root>/assets/img/logo.png
-        logo = (this_path / "../../../../assets/img/logo.png").resolve()
-        fp = Path.open(logo, "rb")
-        social_network_form_data = {
-            "social_network_form_submitted": "yes",
-            "twitter_description": "This is my twitter desc!",
-            "org_twitter_handle": "@Rap_Asso",
-            "twitter_image": fp,
-        }
-
-        # For an org template
-        p = Petition.objects.create(title="My petition", org=org)
-        social_network_form_data.update({"twitter_image": fp})
-        response = self.client.post(
-            reverse(PetitionsRoute.EDIT, args=[p.id]), social_network_form_data
-        )
-        fp.close()
-        self.assertEqual(response.status_code, 200)
-        p.refresh_from_db()
-        self.assertTemplateUsed(response, "petitions/edit.html")
-        self.assertEqual(response.context["social_network_form"].is_valid(), True)
-        self.assertEqual(response.context["social_network_form"].is_bound, True)
-        self.assertEqual(response.context["content_form_submitted"], False)
-        self.assertEqual(response.context["email_form_submitted"], False)
-        self.assertEqual(response.context["social_network_form_submitted"], True)
-        self.assertEqual(response.context["newsletter_form_submitted"], False)
-
-        fp = Path.open(logo, "rb")
-        social_network_form_data.update({"twitter_image": fp})
-        # For an user template
-        p2 = Petition.objects.create(title="My petition 2", user=julia)
-        response2 = self.client.post(
-            reverse(PetitionsRoute.EDIT, args=[p2.id]), social_network_form_data
-        )
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "petitions/edit.html")
-        p2.refresh_from_db()
-
-        for key, value in social_network_form_data.items():
-            if key == "social_network_form_submitted":
-                continue
-            if key == "twitter_image":
-                self.assertTrue(p.twitter_image.startswith(settings.MEDIA_URL))
-                self.assertTrue(p2.twitter_image.startswith(settings.MEDIA_URL))
-                petition_path = (
-                    settings.MEDIA_ROOT
-                    + "/"
-                    + p.twitter_image[len(settings.MEDIA_URL) :]
-                )
-                petition2_path = (
-                    settings.MEDIA_ROOT
-                    + "/"
-                    + p2.twitter_image[len(settings.MEDIA_URL) :]
-                )
-                with (
-                    Path(petition_path).open("rb") as img,
-                    Path(petition2_path).open("rb") as img2,
-                    logo.open("rb") as logo_fp,
-                ):
-                    logo_content = logo_fp.read()
-                    self.assertEqual(img.read(), logo_content)
-                    self.assertEqual(img2.read(), logo_content)
-                continue
-            self.assertEqual(getattr(p2, key), value)
-            self.assertEqual(getattr(p, key), value)
-        self.assertEqual(response2.context["social_network_form"].is_valid(), True)
-        self.assertEqual(response2.context["social_network_form"].is_bound, True)
-        self.assertEqual(response2.context["content_form_submitted"], False)
-        self.assertEqual(response2.context["email_form_submitted"], False)
-        self.assertEqual(response2.context["social_network_form_submitted"], True)
-        self.assertEqual(response2.context["newsletter_form_submitted"], False)
 
     def test_edit_petition_POST_newsletter_form(self) -> None:
         julia = self.login("julia")

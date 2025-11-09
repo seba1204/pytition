@@ -11,7 +11,6 @@ from django.utils.html import format_html
 from django.utils.timezone import now
 from django.utils.translation import gettext as _
 
-from apps.consents.helpers import subscribe_to_newsletter
 from apps.core.helpers import get_client_ip
 from apps.notifications.services import send_confirmation_email
 from apps.petitions.helpers import (
@@ -88,8 +87,5 @@ def new(request: HttpRequest, petition_id: int) -> HttpResponse:
                     % {"email": signature.email}
                 ),
             )
-
-        if petition.has_newsletter and signature.subscribed_to_mailinglist:
-            subscribe_to_newsletter(petition, signature.email)
 
     return redirect(petition.url)
