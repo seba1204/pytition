@@ -24,6 +24,7 @@ PETITION_RESOURCE = "petitions.PetitionResource"
 PETITION_NEWS = "petitions.PetitionNews"
 
 SHARING_CONFIG = "petitions.SharingConfig"
+THRESHOLD_CONFIG = "petitions.ThresholdConfig"
 
 # --- Signature models ------------------------------------------------------
 SIGNATURE = "signatures.Signature"
@@ -36,7 +37,7 @@ THEME = "theming.Theme"
 
 # --- Notification models ---------------------------------------------------
 SMTP_CONFIG = "notifications.config.SMTPConfig"
-MAIL_CONFIG = "notifications.config.MailConfig"
+MAIL_TEMPLATE_CONFIG = "notifications.config.MailConfig"
 WEBHOOK_CONFIG = "notifications.config.WebhookConfig"
 
 

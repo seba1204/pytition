@@ -11,10 +11,10 @@ from tinymce import models as tinymce_models  # type: ignore
 
 from apps.core.mixins import HasConfig, HasOwner
 from apps.core.model_refs import (
-    MAIL_CONFIG,
     PETITION_AUTHOR,
     SHARING_CONFIG,
     SMTP_CONFIG,
+    THRESHOLD_CONFIG,
 )
 
 if TYPE_CHECKING:
@@ -25,11 +25,36 @@ if TYPE_CHECKING:
 class Petition(HasOwner, HasConfig, models.Model):
     """Model representing a petition."""
 
-    config = {
-        "confirmation_mail": MAIL_CONFIG,
-        "smtp": SMTP_CONFIG,
-        "sharing": SHARING_CONFIG,
-    }
+    class Config:
+        """Configuration for HasConfig mixin."""
+
+        verbose_name = "Petition configuration"
+
+        threshold = {
+            "config": THRESHOLD_CONFIG,
+            "verbose_name": "Threshold configuration",
+            "help_text": "Signature number thresholds for this petition.",
+        }
+
+        mails = {
+            "config": SMTP_CONFIG,
+            "verbose_name": "SMTP configuration",
+            "help_text": "SMTP config for sending emails related to this petition.",
+        }
+
+        sharing = {
+            "config": SHARING_CONFIG,
+            "verbose_name": "Sharing configuration",
+            "help_text": "Configuration for sharing options of this petition.",
+        }
+
+        # all these settings will be auto discovered in the settings page
+        # the setting view is in charge of "manually" adding the opt-in config
+        # according to the authors and current logged in user
+        # (show only opt-in settings that the user can actually edit)
+        # To do this, the trick is to set the author as the setting owner, and not the
+        # current user.
+
     state = models.CharField(
         max_length=10,
         choices=(

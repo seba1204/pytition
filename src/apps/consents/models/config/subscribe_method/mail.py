@@ -8,7 +8,7 @@ from django.db import models
 
 from apps.consents.mixins import HasSubscribe
 from apps.core.mixins import HasConfig
-from apps.core.model_refs import MAIL_CONFIG, SMTP_CONFIG
+from apps.core.model_refs import MAIL_TEMPLATE_CONFIG, SMTP_CONFIG
 
 
 class MailSubscribeMethod(HasSubscribe, HasConfig, models.Model):
@@ -28,7 +28,7 @@ class MailSubscribeMethod(HasSubscribe, HasConfig, models.Model):
     """
 
     config = {
-        "mail": MAIL_CONFIG,
+        "mail": MAIL_TEMPLATE_CONFIG,
         "smtp": SMTP_CONFIG,
     }
 
